@@ -1,0 +1,30 @@
+- [x] Fix Paragraph Node
+- [x] Fix Image Node (Resizing from left side)
+  - [] Provide more options on how to present image node probably
+  - [x] Show loader before uploading image, handle image fail
+- [x] Fix how the toolbar updates when selection changes
+- [x] Fix font Weight not being disabled when inside code node
+- [x] don't show floating text format menu if inside code node
+- [] fix deleting table cells when merged
+  - [] Table Sort
+  - [] Table Data upload
+  - [] Big Table
+- [x] Properly handle node selection 
+- [x] Look at aside node to make sure that the user can insert before / after 
+- [x] implement view at different sizes
+  - [x] mobile
+  - [x] tablet 
+  - [x] desktop
+- [x] when editing math node, dispatch an event that disables most of the elements on the toolbar
+  - selection change command isn't called when inside the textarea of changing the equation
+- [x] improve inserting audio node and video node
+- [x] improve deleting the table node
+- [] Deleting Table Nodes on the edge of the table
+  - [x] Added Hack For Now
+- [x] Add `playsinline webkit-playsinline` to video nodes
+- [] Change how random IDs are generated to add uuid module
+- [] Maybe add and remove toolbar from DOM to improve speed
+- [] The wrong editor is being focused sometimes after dispatching commands
+- [] Need to fix image node editing on mobile
+- [] Need to add a better way of adding multiple images
+- [] Need to add 

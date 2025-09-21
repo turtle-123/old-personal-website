@@ -1,0 +1,25 @@
+{
+  "name": "@lexical/aside",
+  "description": "This package contains the functionality for Frank's Lexical Aside implementation.",
+  "keywords": [
+    "aside",
+    "lexical",
+    "editor",
+    "rich-text",
+    "implementation"
+  ],
+  "license": "MIT",
+  "version": "0.12.4",
+  "main": "LexicalAside.js",
+  "peerDependencies": {
+    "lexical": "0.12.4"
+  },
+  "dependencies": {
+    "@lexical/utils": "0.12.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/facebook/lexical",
+    "directory": "packages/lexical-aside"
+  }
+}

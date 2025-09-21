@@ -1,0 +1,90 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "downlevelIteration": true,
+    "noEmit": true,
+    "strict": true,
+    "baseUrl": ".",
+    "typeRoots": ["node_modules/@types", "libdefs/globals"],
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "lexical": ["./packages/lexical/src/"],
+      "@lexical/clipboard": ["./packages/lexical-clipboard/src/"],
+      "@lexical/list": ["./packages/lexical-list/src/"],
+      "@lexical/table": ["./packages/lexical-table/src/"],
+      "@lexical/file": ["./packages/lexical-file/src/"],
+      "@lexical/hashtag": ["./packages/lexical-hashtag/src/"],
+      "@lexical/selection": ["./packages/lexical-selection/src/"],
+      "@lexical/text": ["./packages/lexical-text/src/"],
+      "@lexical/offset": ["./packages/lexical-offset/src/"],
+      "@lexical/history": ["./packages/lexical-history/src/"],
+      "@lexical/headless": ["./packages/lexical-headless/src/"],
+      "@lexical/html": ["./packages/lexical-html/src/"],
+      "@lexical/utils": ["./packages/lexical-utils/src/"],
+      "@lexical/code": ["./packages/lexical-code/src/"],
+      "@lexical/plain-text": ["./packages/lexical-plain-text/src/"],
+      "@lexical/rich-text": ["./packages/lexical-rich-text/src/"],
+      "@lexical/dragon": ["./packages/lexical-dragon/src/"],
+      "@lexical/link": ["./packages/lexical-link/src/"],
+      "@lexical/overflow": ["./packages/lexical-overflow/src/"],
+      "@lexical/markdown": ["./packages/lexical-markdown/src/"],
+      "@lexical/mark": ["./packages/lexical-mark/src/"],
+      "@lexical/dragon/LexicalDragon": ["./packages/lexical-dragon/src/"],
+      "@lexical/history/LexicalHistory": ["./packages/lexical-history/src/"],
+      "@lexical/link/LexicalLink": ["./packages/lexical-link/src/"],
+      "@lexical/markdown/LexicalMarkdown": ["./packages/lexical-markdown/src/"],
+      "@lexical/headless/LexicalHeadless": ["./packages/lexical-markdown/src/"],
+      "@lexical/offset/LexicalOffset": ["./packages/lexical-offset/src/"],
+      "@lexical/overflow/LexicalOverflow": ["./packages/lexical-overflow/src/"],
+      "@lexical/decorators": ["./packages/lexical-decorators/src/"],
+      "@lexical/aside": ["./packages/lexical-aside/src/"],
+      "@lexical/details": ["./packages/lexical-details/src/"],
+      "@lexical/toolbar": ["./packages/lexical-toolbar/src/"],
+      "@lexical/shared": ["./packages/lexical-shared/src/"],
+      "@lexical/math": ["./packages/lexical-math/src/"],
+      "@lexical/column": ["./packages/lexical-column/src/"],
+      "@lexical/plain-text/LexicalPlainText": [
+        "./packages/lexical-plain-text/src/"
+      ],
+      "@lexical/rich-text/LexicalRichText": [
+        "./packages/lexical-rich-text/src/"
+      ],
+      "@lexical/selection/LexicalSelection": [
+        "./packages/lexical-selection/src/"
+      ],
+      "@lexical/text/LexicalText": ["./packages/lexical-text/src/"],
+      "@lexical/utils/LexicalUtils": ["./packages/lexical-utils/src/"],
+      "@lexical/yjs": ["./packages/lexical-yjs/src/"],
+      "shared/canUseDOM": ["./packages/shared/src/canUseDOM.ts"],
+      "shared/caretFromPoint": ["./packages/shared/src/caretFromPoint.ts"],
+      "shared/simpleDiffWithCursor": [
+        "packages/shared/src/simpleDiffWithCursor.ts"
+      ],
+      "shared/invariant": ["./packages/shared/src/invariant.ts"],
+      "shared/warnOnlyOnce": ["./packages/shared/src/warnOnlyOnce.ts"],
+      "shared/environment": ["./packages/shared/src/environment.ts"],
+      "shared/useLayoutEffect": ["./packages/shared/src/useLayoutEffect.ts"],
+      "personal-website-shared": ["packages/personal-website-shared/src/"]
+    }
+  },
+  "include": ["./libdefs", "./packages"],
+  "exclude": [
+    "**/__tests__/**",
+    "**/dist/**",
+    "**/npm/**",
+    "**/node_modules/**",
+    "./packages/playwright-core/**"
+  ],
+  "typedocOptions": {
+    "logLevel": "Verbose"
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"],
+    "transpileOnly": true
+  }
+}

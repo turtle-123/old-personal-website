@@ -1,0 +1,25 @@
+{
+  "name": "@lexical/shared",
+  "description": "This package contains the functionality for Frank's Lexical Toolbar implementation.",
+  "keywords": [
+    "lexical",
+    "editor",
+    "rich-text",
+    "implementation",
+    "toolbar"
+  ],
+  "license": "MIT",
+  "version": "0.12.4",
+  "main": "LexicalToolbar.js",
+  "peerDependencies": {
+    "lexical": "0.12.4"
+  },
+  "dependencies": {
+    "@lexical/utils": "0.12.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/facebook/lexical",
+    "directory": "packages/lexical-toolbar"
+  }
+}
