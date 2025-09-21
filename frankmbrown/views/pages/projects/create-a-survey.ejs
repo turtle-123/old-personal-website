@@ -1,0 +1,380 @@
+<%# 
+PARTIAL ROUTE: pages/projects/create-a-survey.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.desktop
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  <section id="page-head">
+    <h1 class="page-title">Create A Survey</h1>
+    <p class="mt-4">
+      Read more about <a class="primary link" hx-get="/blog/20/Creating%20Surveys" href="/blog/20/Creating%20Surveys" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">creating articles in this blog post</a>.
+    </p>
+  </section>
+  
+
+  <section id="required-survey-attributes" class="mt-2">
+    <h2 class="bold bb-thick h2">
+      <a href="#required-survey-attributes" class="same-page fw-regular">Required Survey Attributes</a>
+    </h2>
+    <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+      <label for="survey-title" class="bold">Survey Title:</label>
+      <div class="text-input block medium">
+          <input 
+          type="text" 
+          name="survey-title" 
+          id="survey-title" 
+          class="medium icon-before mt-1" 
+          required
+          placeholder="Enter the title for the survey..." 
+          maxlength="100"
+          minlength="1" 
+          spellcheck="true" 
+          autocapitalize="off"
+          >
+          <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Title"><path d="M5 4v3h5.5v12h3V7H19V4z"></path></svg>
+      </div>
+    </div>
+    <p class="body1 bold mt-2">Survey Description:</p>
+    <%-locals.survey_description%>
+
+    <label for="survey-image" class="bold mt-2">Survey Image:</label>
+    <input data-image-input type="file" id="survey-image" accept="image/*" name="survey-image" class="mt-1 info">
+    <output class="block" for="survey-image"></output>
+
+    <div class="input-group block mt-2">
+      <label for="survey-deadline">Survey Deadline:</label>
+      <div class="flex-row align-center gap-2 mt-1">
+        <button data-launch-datetime type="button" class="icon medium" aria-label="Launch Datetime Input Menu">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Today"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path></svg>
+        </button>
+        <input step="1" placeholder="mm/dd/yyyy" type="datetime-local" id="survey-deadline" name="survey-deadline" max="<%=locals.max_datetime%>" value="<%=locals.deadline_default%>" min="<%=locals.min_datetime%>"/>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="survey-questions-wrapper">
+    <h2 class="bold bb-thick h2 mt-4" id="survey-questions">
+      <a href="#survey-questions" class="same-page fw-regular">Survey Questions</a>
+    </h2>
+    <div data-type="survey-question" id="survey-questions-container" class="mt-3" style="position: relative; min-height: 400px;" data-drag-container></div>
+  
+    <form id="survey-form" class="mt-3">
+      <div class="flex-row w-100 justify-between align-center" role="toolbar">
+        <div class="gap-1  flex-row align-center">
+          <button type="button" class="primary icon-text medium filled" id="save-survey">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Save"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"></path></svg>
+            SAVE
+          </button>
+          <button type="button" class="warning icon-text medium outlined" data-dialog="survey-download-state-dialog">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Download"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path></svg>
+            DOWNLOAD
+          </button>          
+        </div>
+
+        <div class="gap-1 flex-row align-center">
+          <button type="button" class="info filled icon-text medium" id="preview-survey">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="RemoveRedEye"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+            PREVIEW
+          </button>
+          <button type="submit" class="success filled icon-text medium">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+            SUBMIT
+          </button>
+        </div>
+        
+      </div>
+    </form>
+  </section>
+  
+  <output form="survey-form" hidden>
+  </output>
+
+
+  <div data-click-capture class="floating-menu o-xs" style="padding: 0px; max-width: 175px;" data-placement="top-end" id="change-survey-option-type-menu">
+    <button type="button" tabindex="-1" class="select-option small" role="option" aria-selected="false" data-val="survey-paragraph">
+      <div class="w-auto flex-row align-center gap-1 justify-center">
+        <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Article"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"></path></svg>
+        <span class="fw-regular body-2">Paragraph</span>
+      </div>
+    </button>
+    <button type="button" tabindex="-1" class="select-option small" role="option" aria-selected="false" data-val="image">
+      <div class="w-auto flex-row align-center gap-1 justify-center">
+        <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Image"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"></path></svg>
+        <span class="fw-regular body-2">Image</span>
+      </div>
+    </button>
+    <button type="button" tabindex="-1" class="select-option small" role="option" aria-selected="false" data-val="audio">
+      <div class="w-auto flex-row align-center gap-1 justify-center">
+        <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Audiotrack"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"></path></svg>
+        <span class="fw-regular body-2">Audio</span>
+      </div>
+    </button>
+    <button type="button" tabindex="-1" class="select-option small" role="option" aria-selected="false" data-val="video">
+      <div class="w-auto flex-row align-center gap-1 justify-center">
+        <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Videocam"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"></path></svg>
+        <span class="fw-regular body-2">Video</span>
+      </div>
+    </button>
+  </div>
+
+  <div id="add-survey-tooltip" class="tooltip body2" data-placement="bottom">
+    Add Question Below
+  </div>
+  <div id="duplicate-survey-tooltip" class="tooltip body2" data-placement="bottom">
+    Duplicate Question Below
+  </div>
+  <div id="delete-question-tool" class="tooltip body2" data-placement="bottom">
+    Delete Question
+  </div>
+
+  <div style="display: none;" hidden class="dialog-wrapper" id="survey-question-type-dialog" data-close-backdrop data-esc>
+    <div class="dialog large" data-click-capture>
+      <div class="dialog-header">
+        <p class="grow-1 flex-row h3 bold">Survey Question Type</p>
+          <%if(locals.desktop===true){%>
+            <kbd class="inline" style="margin-right: 4px;"  data-pelem="#close-dialog-esc-question-type-dialog" aria-describedby="close-dialog-esc-question-type-dialog" data-mouse data-popover>ESC</kbd>
+            <div id="close-dialog-esc-question-type-dialog" role="tooltip" class="tooltip body2" data-placement="bottom-end">
+              Press the Escape key to Close the Dialog
+            </div>
+          <%}%>        
+        <button class="icon medium close-dialog" type="button" aria-label="Close Dialog">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </div>
+      <div class="dialog-body">
+        <form method="dialog" id="question-type-form">
+          <fieldset>
+            <legend class="h6 bold">Question Type:</legend>
+            <div class="flex-row align-start gap-2 justify-start w-100">
+              <div class="flex-column grow-1">
+                <label class="radio flex-row align-center">
+                  <input type="radio" name="survey-question-type" value="survey-short-answer" class="primary">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Title"><path d="M5 4v3h5.5v12h3V7H19V4z"></path></svg>
+                    <span class="fw-regular body-1">Short Answer</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-paragraph" class="secondary">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Article"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"></path></svg>
+                    <span class="fw-regular body-1">Paragraph</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-short-blog" class="warning">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Edit"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
+                    <span class="fw-regular body-1">Short Blog</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-multiple-choice" class="success">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Multiple Choice"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5m0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8"></path></svg>
+                    <span class="fw-regular body-1">Multiple Choice</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-checkbox" class="info">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CheckBoxSharp"><path d="M21 3H3v18h18V3zM10 17l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+                    <span class="fw-regular body-1">Checkbox</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-range" class="error">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Title"><path d="M19.5 9.5c-1.03 0-1.9.62-2.29 1.5h-2.92c-.39-.88-1.26-1.5-2.29-1.5s-1.9.62-2.29 1.5H6.79c-.39-.88-1.26-1.5-2.29-1.5C3.12 9.5 2 10.62 2 12s1.12 2.5 2.5 2.5c1.03 0 1.9-.62 2.29-1.5h2.92c.39.88 1.26 1.5 2.29 1.5s1.9-.62 2.29-1.5h2.92c.39.88 1.26 1.5 2.29 1.5 1.38 0 2.5-1.12 2.5-2.5s-1.12-2.5-2.5-2.5"></path></svg>
+                    <span class="fw-regular body-1">Range</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-month" class="primary">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CalendarMonth"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"></path></svg>
+                    <span class="fw-regular body-1">Month</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-ranking" class="secondary">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" viewBox="0 0 512 512" title="list-ol" focusable="false" inert tabindex="-1"><path d="M24 56c0-13.3 10.7-24 24-24H80c13.3 0 24 10.7 24 24V176h16c13.3 0 24 10.7 24 24s-10.7 24-24 24H40c-13.3 0-24-10.7-24-24s10.7-24 24-24H56V80H48C34.7 80 24 69.3 24 56zM86.7 341.2c-6.5-7.4-18.3-6.9-24 1.2L51.5 357.9c-7.7 10.8-22.7 13.3-33.5 5.6s-13.3-22.7-5.6-33.5l11.1-15.6c23.7-33.2 72.3-35.6 99.2-4.9c21.3 24.4 20.8 60.9-1.1 84.7L86.8 432H120c13.3 0 24 10.7 24 24s-10.7 24-24 24H32c-9.5 0-18.2-5.6-22-14.4s-2.1-18.9 4.3-25.9l72-78c5.3-5.8 5.4-14.6 .3-20.5zM224 64H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H224c-17.7 0-32-14.3-32-32s14.3-32 32-32zm0 160H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H224c-17.7 0-32-14.3-32-32s14.3-32 32-32zm0 160H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
+                    <span class="fw-regular body-1">Ranking</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-number" class="warning">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Numbers"><path d="m20.5 10 .5-2h-4l1-4h-2l-1 4h-4l1-4h-2L9 8H5l-.5 2h4l-1 4h-4L3 16h4l-1 4h2l1-4h4l-1 4h2l1-4h4l.5-2h-4l1-4h4zm-7 4h-4l1-4h4l-1 4z"></path></svg>
+                    <span class="fw-regular body-1">Number</span>
+                  </span>
+                </label>
+              </div>
+              <div class="flex-column grow-1">
+                <label class="radio flex-row align-center">
+                  <input type="radio" name="survey-question-type" value="survey-date" class="error">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="DateRange"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"></path></svg>
+                    <span class="fw-regular body-1">Date</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-datetime" class="info">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Today"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path></svg>
+                    <span class="fw-regular body-1">Datetime</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-time" class="success">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="QueryBuilder"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"></path></svg>
+                    <span class="fw-regular body-1">Time</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-image" class="warning">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Image"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"></path></svg>
+                    <span class="fw-regular body-1">Image</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-audio" class="secondary">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Audiotrack"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"></path></svg>
+                    <span class="fw-regular body-1">Audio</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-video" class="primary">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Videocam"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"></path></svg>
+                    <span class="fw-regular body-1">Video</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-color" class="error">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ColorLens"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path></svg>
+                    <span class="fw-regular body-1">Color</span>
+                  </span>
+                </label>
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-selection" class="info">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+                    <span class="fw-regular body-1">Selection</span>
+                  </span>
+                </label>
+                <%#
+                <label class="radio flex-row align-center mt-3">
+                  <input type="radio" name="survey-question-type" value="survey-week" class="success">
+                  <span class="flex-row align-center gap-2">
+                    <svg class="custom-survey t-normal" focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="CalendarViewWeek"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-7 2h2.5v12H13V6zm-2 12H8.5V6H11v12zM4 6h2.5v12H4V6zm16 12h-2.5V6H20v12z"></path></svg>
+                    <span class="fw-regular body-1">Week</span>
+                  </span>
+                </label>
+                %>
+              </div>
+            </div>
+          </fieldset>
+          <div class="flex-row mt-3 align-center justify-end">
+            <button type="submit" aria-label="Submit Form" class="success filled icon-text medium">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+              SUBMIT
+            </button>
+          </div>
+        </form>
+        <output form="question-type-form" class="mt-3">
+        </output>
+        <div class="alert warning filled icon medium mt-3" role="alert">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+          <p class="alert">
+            Changing the question type will remove the currently saved data for the question.
+          </p>
+          <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+          </button>
+        </div>
+      </div>
+      <div class="dialog-footer" role="toolbar">
+        <button class="filled error small close-dialog" type="button" aria-label="Close Dialog">
+          CLOSE DIALOG
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none;" hidden class="dialog-wrapper" id="survey-download-state-dialog" data-close-backdrop data-esc>
+    <div class="dialog large" data-click-capture>
+      <div class="dialog-header">
+        <p class="grow-1 flex-row h3 bold">Download Saved Survey</p>
+        <%if(locals.desktop){%>
+          <kbd class="inline"  data-pelem="#close-dialog-esc-down-surv" aria-describedby="close-dialog-esc-down-surv" data-mouse data-popover>ESC</kbd>
+          <div id="close-dialog-esc-down-surv" role="tooltip" class="tooltip body2" data-placement="bottom-end">
+            Press the Escape key to Close the Dialog
+          </div>
+        <%}%>
+        <button class="icon medium close-dialog" type="button" aria-label="Close Dialog">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </div>
+      <div class="dialog-body">
+        <div class="input-group block w-100 mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+          <label for="search-surveys">Search Surveys:</label>
+          <div class="mt-1 text-input block medium">
+            <input 
+            type="search" 
+            class="icon-after" 
+            name="search-surveys" 
+            id="search-surveys" 
+            placeholder="Enter the name or description of a survey to search for..." 
+            hx-get="/projects/create-a-survey/search"
+            hx-trigger="input changed delay:200ms, search"
+            hx-target="#search-surveys-output"
+            hx-indicator="#uuid_4bf81b52-e4bb-46cc-8125-0cc45433c276"
+            >
+            <svg class="icon-after" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+              </path>
+            </svg>
+          </div>
+        </div>
+        <form class="mt-2" id="search-surveys-download-form">
+          <div class="flex-row justify-center t-secondary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Searching Surveys" id="uuid_4bf81b52-e4bb-46cc-8125-0cc45433c276"> 
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <div id="search-surveys-output" style="min-height: 200px;">
+            <div class="alert warning icon medium" role="alert">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+              <p class="alert">
+                The output of the survey search goes here...
+              </p>
+            </div>
+          </div>
+          <div class="flex-row justify-between align-center">
+            <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+            <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                SUBMIT
+            </button>
+          </div>
+        </form>
+      <div class="dialog-footer" role="toolbar">
+        <button class="filled error small close-dialog" type="button" aria-label="Close Dialog">
+          CLOSE DIALOG
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <input type="text" hidden id="survey-uuid" value="<%-locals.survey_uuid%>">
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

@@ -1,0 +1,200 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/utilities-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="utilities-header">
+  <a href="#utilities-header" class="same-page bold">Utility Classes</a>
+</h2>
+<details class="mt-2">
+  <summary>
+    <span class="h6 fw-regular">About Utility Classes</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true">
+    Utility classes allow you to change the display, padding, margin, opacity, width, and border of an element.
+    On this page there is also information on Keyboard Input Elements and horizontal rules.
+  </div>
+</details>
+<section id="utility-classes" class="mt-2">
+<h3 class="h6 bb mt-2">
+  <a href="#utility-classes" class="same-page fw-regular">Utility Classes</a>
+</h3>
+<p class="body1 mt-2 bold">Flex</p>
+<p class="body2 mt-2">
+  <div style="position: relative;" class="body2"><pre class="hz-scroll"><code class="hljs"><span class="hljs-selector-class">.flex-row</span>{<span class="hljs-attribute">display</span>: flex<span class="hljs-meta">!important</span>;<span class="hljs-attribute">flex-direction</span>: row<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.flex-col</span>{<span class="hljs-attribute">display</span>: flex<span class="hljs-meta">!important</span>;<span class="hljs-attribute">flex-direction</span>: column<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.align-center</span>{<span class="hljs-attribute">align-items</span>: center<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.align-start</span> {<span class="hljs-attribute">align-items</span>: flex-start<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.align-end</span> {<span class="hljs-attribute">align-items</span>: flex-end<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.justify-center</span>{<span class="hljs-attribute">justify-content</span>: center<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.justify-start</span>{<span class="hljs-attribute">justify-content</span>: flex-start<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.justify-end</span> {<span class="hljs-attribute">justify-content</span>: flex-end<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.justify-between</span>{<span class="hljs-attribute">justify-content</span>: space-between<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.grow-1</span> {<span class="hljs-attribute">flex-grow</span>: <span class="hljs-number">1</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.grow-0</span> {<span class="hljs-attribute">flex-grow</span>: <span class="hljs-number">0</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.wrap</span> {<span class="hljs-attribute">flex-wrap</span>: wrap<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.gap-1</span> {<span class="hljs-attribute">gap</span>: <span class="hljs-number">4px</span> <span class="hljs-number">4px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.gap-2</span> {<span class="hljs-attribute">gap</span>: <span class="hljs-number">6px</span> <span class="hljs-number">6px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.gap-3</span> {<span class="hljs-attribute">gap</span>: <span class="hljs-number">8px</span> <span class="hljs-number">8px</span><span class="hljs-meta">!important</span>;}</code></pre><button data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button></div>
+</p>
+<p class="body1 mt-2 bold">Other:</p>
+<p class="body2 mt-2">
+  <div style="position: relative;" class="body2"><pre class="hz-scroll"><code class="hljs"><span class="hljs-selector-class">.block</span> {<span class="hljs-attribute">display</span>: block<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.inline</span> {<span class="hljs-attribute">display</span>: inline<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.w-100</span>{<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;}
+<span class="hljs-selector-class">.w-auto</span>{<span class="hljs-attribute">width</span>:auto;}
+<span class="hljs-selector-class">.w-fc</span> {<span class="hljs-attribute">width</span>: fit-content;}
+<span class="hljs-selector-class">.w-sm</span> {<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.w-md</span> {<span class="hljs-attribute">width</span>: <span class="hljs-number">250px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.w-lg</span> {<span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.text-align-left</span> {<span class="hljs-attribute">text-align</span>: left<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.text-align-center</span>{<span class="hljs-attribute">text-align</span>: center<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.text-align-right</span>{<span class="hljs-attribute">text-align</span>: right<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.overflow-hidden</span>{<span class="hljs-attribute">overflow-x</span>: hidden<span class="hljs-meta">!important</span>;<span class="hljs-attribute">overflow-y</span>: hidden<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.opaque</span> {<span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.opaque</span><span class="hljs-selector-pseudo">:hover</span> {<span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.opaque</span><span class="hljs-selector-pseudo">:focus</span> {<span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span><span class="hljs-meta">!important</span>;}</code></pre><button data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button></div>
+</p>
+<p class="body1 mt-2 bold">Border:</p>
+<p class="body2 mt-2">
+  <div style="position: relative;" class="body2"><pre class="hz-scroll"><code class="hljs"><span class="hljs-selector-class">.bb</span> {<span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--divider)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bb-main</span> { <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--text-primary)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.b-all</span> { <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--divider)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.b-all-main</span> {<span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--text-primary)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.brad-0</span> {<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.brad-sm</span> {<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">3px</span> <span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.brad-md</span>, <span class="hljs-selector-class">.brad</span> {<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">6px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.brad-lg</span> {<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">12px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.circular</span> {<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.b-none</span>{<span class="hljs-attribute">border</span>: <span class="hljs-number">0px</span> none transparent <span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.br-0</span> {<span class="hljs-attribute">border-right</span>: <span class="hljs-number">0px</span> transparent none <span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bl-0</span> {<span class="hljs-attribute">border-left</span>: <span class="hljs-number">0px</span> transparent none <span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bt-0</span> {<span class="hljs-attribute">border-top</span>: <span class="hljs-number">0px</span> transparent none <span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bb-0</span> {<span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">0px</span> transparent none <span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.b-2</span> {<span class="hljs-attribute">border-width</span>: <span class="hljs-number">2px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.b-3</span> {<span class="hljs-attribute">border-width</span>: <span class="hljs-number">3px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bl-1</span> {<span class="hljs-attribute">border-left</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--divider)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bl-2</span> {<span class="hljs-attribute">border-left</span>: <span class="hljs-number">2px</span> solid <span class="hljs-built_in">var</span>(--divider)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bl-3</span> {<span class="hljs-attribute">border-left</span>: <span class="hljs-number">3px</span> solid <span class="hljs-built_in">var</span>(--divider)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.b-main</span> {<span class="hljs-attribute">border-color</span>: <span class="hljs-built_in">var</span>(--text-primary)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.b-divider</span> {<span class="hljs-attribute">border-color</span>: <span class="hljs-built_in">var</span>(--divider)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.b-secondary</span> {<span class="hljs-attribute">border-color</span>: <span class="hljs-built_in">var</span>(--text-secondary)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.br-1</span> {<span class="hljs-attribute">border-right</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--divider);}
+<span class="hljs-selector-class">.bt-1</span> {<span class="hljs-attribute">border-top</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--divider)<span class="hljs-meta">!important</span>;}</code></pre><button data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button></div> 
+</p>
+<p class="body1 mt-2 bold">Margin and Padding:</p>
+<p class="body2 mt-2">
+  <div style="position: relative;" class="body2"><pre class="hz-scroll"><code class="hljs"><span class="hljs-comment">/* ------- Margin Utilities ----------- */</span>
+<span class="hljs-selector-class">.m-0</span> {<span class="hljs-attribute">margin</span>: <span class="hljs-number">0px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.mt-1</span> {<span class="hljs-attribute">margin-top</span>: <span class="hljs-number">4px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.mt-2</span> {<span class="hljs-attribute">margin-top</span>: <span class="hljs-number">8px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.mt-3</span> {<span class="hljs-attribute">margin-top</span>: <span class="hljs-number">12px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.mt-4</span> {<span class="hljs-attribute">margin-top</span>: <span class="hljs-number">16px</span>;}
+<span class="hljs-selector-class">.mt-5</span> {<span class="hljs-attribute">margin-top</span>: <span class="hljs-number">20px</span>;}
+<span class="hljs-selector-class">.ml-1</span> {<span class="hljs-attribute">margin-left</span>: <span class="hljs-number">4px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.mr-1</span> {<span class="hljs-attribute">margin-right</span>: <span class="hljs-number">4px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.mr-2</span> {<span class="hljs-attribute">margin-right</span>: <span class="hljs-number">8px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.ml-2</span> {<span class="hljs-attribute">margin-left</span>: <span class="hljs-number">8px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.mr-3</span> {<span class="hljs-attribute">margin-right</span>: <span class="hljs-number">12px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.ml-4</span> {<span class="hljs-attribute">margin-left</span>: <span class="hljs-number">12px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.mr-4</span> {<span class="hljs-attribute">margin-right</span>: <span class="hljs-number">16px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.ml-4</span> {<span class="hljs-attribute">margin-left</span>: <span class="hljs-number">16px</span><span class="hljs-meta">!important</span>;}
+
+<span class="hljs-comment">/* --------- Padding Utilities --------- */</span>
+<span class="hljs-selector-class">.pt-sm</span> {<span class="hljs-attribute">padding-top</span>:<span class="hljs-number">4px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.pt-md</span> {<span class="hljs-attribute">padding-top</span>:<span class="hljs-number">6px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.pt-lg</span>{<span class="hljs-attribute">padding-top</span>:<span class="hljs-number">8px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.pb-sm</span> {<span class="hljs-attribute">padding-bottom</span>:<span class="hljs-number">4px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.pb-md</span> {<span class="hljs-attribute">padding-bottom</span>:<span class="hljs-number">6px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.pb-lg</span>{<span class="hljs-attribute">padding-bottom</span>:<span class="hljs-number">8px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.p-md</span> {<span class="hljs-attribute">padding</span>: <span class="hljs-number">6px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.p-sm</span> {<span class="hljs-attribute">padding</span>: <span class="hljs-number">4px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.p-lg</span> {<span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.p-0</span> {<span class="hljs-attribute">padding</span>: <span class="hljs-number">0px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.pb-1</span> {<span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">4px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.pl-1</span> {<span class="hljs-attribute">padding-left</span>: <span class="hljs-number">4px</span> <span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.pr-1</span> {<span class="hljs-attribute">padding-right</span>: <span class="hljs-number">4px</span> <span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.pl-2</span> {<span class="hljs-attribute">padding-left</span>: <span class="hljs-number">8px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.pr-2</span> {<span class="hljs-attribute">padding-right</span>: <span class="hljs-number">8px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.indent-1</span> {<span class="hljs-attribute">padding-left</span>: <span class="hljs-number">15px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.indent-2</span> {<span class="hljs-attribute">padding-left</span>: <span class="hljs-number">30px</span><span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.indent-3</span> {<span class="hljs-attribute">padding-left</span>: <span class="hljs-number">45px</span> <span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.indent-4</span> {<span class="hljs-attribute">padding-left</span>: <span class="hljs-number">60px</span> <span class="hljs-meta">!important</span>;}</code></pre><button data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button></div>
+</p>
+</section>
+<section id="keyboard-inputs" class="mt-2">
+<h3 class="h6 bb mt-2">
+  <a href="#keyboard-inputs" class="same-page fw-regular">Keyboard Inputs</a>
+</h3>
+<p class="body1 mt-2">
+  Here is an example of a keyboard Input <kbd class="inline">CTRL+K</kbd>. To make sure that the keyboard input will be an inline element, make sure that you add the <span><code class="hljs"><span class="hljs-selector-class">.inline</span></code></span> class to the  <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">kbd</span>&gt;</span></span></code></span> element.
+</p>
+<p class="caption" style="line-height: 1.5;" class="mt-2">
+  The keyboard input will inherit the text size of its wrapper <kbd class="inline">ENTER</kbd>. You will probably need to edit the line-height of the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">kbd</span>&gt;</span></span></code></span> wrapper so the element does not cover up any text.
+</p>
+</section>
+<section id="horizontal-rule" class="mt-2">
+<h3 class="h6 bb mt-2">
+  <a href="#horizontal-rule" class="same-page fw-regular">Horizontal Rule</a>
+</h3>
+<p class="body1 mt-2">
+  Regular HR (hr):
+</p>
+<div class="block mt-1">
+  <hr>
+</div>
+<p class="body1 mt-2 t-tsecondary">
+  Divider HR (hr.divider):
+</p>
+<div class="block mt-1">
+  <hr class="divider">
+</div>
+<p class="body1 mt-2 t-primary">
+  Primary HR (hr.divider):
+</p>
+<div class="block mt-1">
+  <hr class="primary">
+</div>
+<p class="body1 mt-2 t-secondary">
+  Secondary HR (hr.divider):
+</p>
+<div class="block mt-1">
+  <hr class="secondary">
+</div>
+<p class="body1 mt-2 t-error">
+  Error HR (hr.divider):
+</p>
+<div class="block mt-1">
+  <hr class="error">
+</div>
+<p class="body1 mt-2 t-warning">
+  Warning HR (hr.warning):
+</p>
+<div class="block mt-1">
+  <hr class="warning">
+</div>
+<p class="body1 mt-2 t-info">
+  Info HR (hr.info):
+</p>
+<div class="block mt-1">
+  <hr class="info">
+</div>
+<p class="body1 mt-2 t-success">
+  Success HR (hr.success):
+</p>
+<div class="block mt-1">
+  <hr class="success">
+</div>
+<p class="body1 mt-2 bold">
+  Bold HR (hr.bold):
+</p>
+<div class="block mt-1">
+  <hr class="bold">
+</div>
+</section>

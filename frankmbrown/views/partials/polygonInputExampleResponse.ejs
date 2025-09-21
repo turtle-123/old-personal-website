@@ -1,0 +1,45 @@
+<%# 
+PARTIAL ROUTE: partials/polygonInputExampleResponse.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.error (bool): Was there an error?
+- locals.inputNames 
+- locals.inputNames[i]
+- locals.jsonStrings[i]
+%>
+<%if(locals.error){%>
+  <div role="alert" class="alert error icon medium">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Report"><path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z"></path></svg>
+    <p class="alert body2">
+      Something went wrong.
+    </p>
+  </div>
+<%}else if (!!!locals.inputNames.length){%>
+  <p class="h6 text-align-center t-warning fw-regular">
+    Please input a polygon on the Map.
+  </p>
+<%}else{%>
+  <%for(let i = 0; i < locals.inputNames.length; i++){%>
+    <p class="h6 fw-regular bb mt-2">
+      <span class="bold">Input Name:</span> <%=locals.inputNames[i]%>
+    </p>
+    <p class="body1 bold mt-2">
+      GeoJson Transformation:
+    </p>
+    <div style="position: relative;">
+      <pre class="hz-scroll"><code class="hljs"><%-locals.jsonStrings[i]%></code></pre>
+      <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+          <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <span class="body2">
+      This output shows the <span class="t-info bold">Input Name</span> of the polygon input(s), which is the random 
+      name given to the input when the polygon is drawn on the map. <strong>Note: The polygon input(s) will always start with "polygon_"</strong>, and it shows
+      the <span class="t-info bold">Input String</span>, which is how the server receives the polygon input(s).
+    </span>
+    <%}%>
+<%}%>

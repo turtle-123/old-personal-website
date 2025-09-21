@@ -1,0 +1,23 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/interpolate.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title" id="top-of-page">D3.js Interpolate</h1>
+  <p class="mt-2">
+    d3-interpolate provides methods for interpreting between values (numbers, colors, dates, and strings), arrays of values, objects, css transforms, svg transforms, and zoom values. 
+    <br><br>
+    The number linear interpolator is just linear interpolation.
+    <br><br>
+    The string interpolator just linear interpolates between the numbers in each of the input strings.
+    <br><br>
+    The color interpolator allows you to interpolate between rgb, hsl, lab, hcl, and cubehelix colors.
+  </p>
+        
+  <%-include('../../partials/pagePartial')%>
+<%}%>

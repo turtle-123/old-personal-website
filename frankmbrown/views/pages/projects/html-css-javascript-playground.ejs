@@ -1,0 +1,289 @@
+<%# 
+PARTIAL ROUTE: pages/projects/html-css-javascript-playground.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.pageObj
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">HTML, CSS, JavaScript Playground</h1>
+  <p class="mt-2">
+    I created this page because I was tired of going to different websites to test out small snippets of code and because I want to test out the functionality of the code 
+    editors. I probably need to find a way to disable some JavaScript functionality later maybe using Webpack on the server. <br>
+     Reference <a class="secondary link" target="_blank" href="https://www.figma.com/blog/how-we-built-the-figma-plugin-system/">this Figma blog post</a> to see how they handled the challenge of building a plugin system (allowing users to execute code in the browser).
+    <br>
+    Take a look at <a class="secondary link" target="_blank" href="https://github.com/justjake/quickjs-emscripten#quickjs-emscripten">QuickJS emscripten</a>  library for executing user JavaScript on the client using <a class="secondary link" target="_blank" href="https://bellard.org/quickjs/">QuickJS</a>.
+  </p>
+  <div class="tabs mt-3">
+    <ul class="tabs" role="tablist">
+      <li role="presentation">
+        <button id="about-playground" class="tab-button secondary" role="tab" type="button" aria-selected="true" data-tab="0" tabindex="-1">About</button>
+      </li>
+      <li role="presentation">
+        <button id="code-playground" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="1" tabindex="-1">Code</button>
+      </li>
+    </ul>
+  </div>
+  <div class="tab-panels">
+    <div aria-labelledby="about-playground" role="tabpanel" tabindex="0">
+      <section id="why-create" class="mt-3">
+        <h2 class="bold block bb-main h2">
+          <a href="#why-create" class="same-page fw-regular">Why Create HTML, CSS, JavaScript Playground</a>
+        </h2>
+        <p class="mt-2">
+          Allow users to be more creative in what they add to the application rather than just constrain them with 
+          what is available in the Rich Text Editor. <br>
+          Maybe allow users to insert custom HTML, CSS, and maybe JS into code editors in the future.
+        </p>
+      </section>
+    
+    
+      <section id="how-to-use">
+        <h2 class="bold block bb-main h2" id="how-touse-code">
+          <a href="#how-to-use" class="same-page fw-regular">How To Implement <a href="https://codemirror.net/" class="secondary link" target="_blank">CodeMirror</a> Code Editors</a>
+        </h2>
+        <p class="mt-2">
+          The basic structure for implementing the code editor should look like this:
+        </p>
+        <div style="position: relative;" class="mt-1"><pre class="hz-scroll"><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-editor-wrapper</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;ENTER_ID&quot;</span> &gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-theme</span>=<span class="hljs-string">&quot;vscode&quot;</span> <span class="hljs-attr">data-codemirror</span>=<span class="hljs-string">&quot;css&quot;</span> <span class="hljs-attr">data-type</span>=<span class="hljs-string">&quot;mid&quot;</span> <span class="hljs-attr">data-placeholder</span>=<span class="hljs-string">&quot;Hello World&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">summary</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">summary</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;accordion-content&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+            // select for code language
+            // select for editor theme
+            // Checkbox if lang is js or ts
+          <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">details</span>&gt;</span></span></code></pre>
+            <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+                </path>
+              </svg>
+            </button>
+          </div>
+          <p class="mt-1">
+            You can customize the theme, coding language, height, and initial code of the code editor by customizing the <span class="t-info bold">data-theme</span>, <span class="t-info bold">data-codemirror</span>, <span class="t-info bold">data-type</span>, <span class="t-info bold">data-placeholder</span> and attributes, respectively.
+            <br>
+          The coding language and editor theme should be one of the values seen in the sets below:
+          </p>
+          <details aria-label="Allowed Coding Languages and Themes" class="mt-2">
+              <summary>
+                  <span class="h6 fw-regular">Allowed Languages and Themes</span>
+                  <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                  </path>
+                  </svg>
+              </summary>
+              <div class="accordion-content" aria-hidden="true">
+                <div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">VALID_LANGUAGES</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([
+      <span class="hljs-string">&quot;cpp&quot;</span>, <span class="hljs-comment">// lang-cpp</span>
+      <span class="hljs-string">&quot;css&quot;</span>, <span class="hljs-comment">// lang-css</span>
+      <span class="hljs-string">&quot;html&quot;</span>, <span class="hljs-comment">// lang-html</span>
+      <span class="hljs-string">&quot;java&quot;</span>, <span class="hljs-comment">// lang-java</span>
+      <span class="hljs-string">&quot;javascript&quot;</span>, <span class="hljs-comment">// lang-javascript</span>
+      <span class="hljs-string">&quot;markdown&quot;</span>, <span class="hljs-comment">// lang-markdown</span>
+      <span class="hljs-string">&quot;python&quot;</span>,<span class="hljs-comment">// lang-python</span>
+      <span class="hljs-string">&quot;sql&quot;</span>,<span class="hljs-comment">// lang-sql</span>
+      <span class="hljs-string">&quot;typescript&quot;</span>,<span class="hljs-comment">// lang-javascript</span>
+    ] <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span>);
+    <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">VALID_THEMES</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([
+      <span class="hljs-string">&#x27;abcdef&#x27;</span>,
+      <span class="hljs-string">&#x27;abyss&#x27;</span>,
+      <span class="hljs-string">&#x27;androidstudio&#x27;</span>,
+      <span class="hljs-string">&#x27;andromeda&#x27;</span>,
+      <span class="hljs-string">&#x27;atomone&#x27;</span>,
+      <span class="hljs-string">&#x27;aura&#x27;</span>,
+      <span class="hljs-string">&#x27;bbedit&#x27;</span>,
+      <span class="hljs-string">&#x27;basic light&#x27;</span>, <span class="hljs-comment">// import light and basic dark from `basic`</span>
+      <span class="hljs-string">&#x27;basic dark&#x27;</span>, <span class="hljs-comment">// import light and basic dark from `basic`</span>
+      <span class="hljs-string">&#x27;bespin&#x27;</span>,
+      <span class="hljs-string">&#x27;copilot&#x27;</span>,
+      <span class="hljs-string">&#x27;dracula&#x27;</span>,
+      <span class="hljs-string">&#x27;darcula&#x27;</span>,
+      <span class="hljs-string">&#x27;duotone light&#x27;</span>, <span class="hljs-comment">// import duotone light and duotone dark from &#x27;duotone&#x27;</span>
+      <span class="hljs-string">&#x27;duotone dark&#x27;</span>, <span class="hljs-comment">// import duotone light and duotone dark from &#x27;duotone&#x27;</span>
+      <span class="hljs-string">&#x27;eclipse&#x27;</span>,
+      <span class="hljs-string">&#x27;github light&#x27;</span>, <span class="hljs-comment">// import github light and github dark from &#x27;github&#x27;</span>
+      <span class="hljs-string">&#x27;github dark&#x27;</span>, <span class="hljs-comment">// import github light and github dark from &#x27;github&#x27;</span>
+      <span class="hljs-string">&#x27;gruvbox dark&#x27;</span>, <span class="hljs-comment">// import gruvbox dark and gruvbox light from gruvbox-dark</span>
+      <span class="hljs-string">&#x27;gruvbox light&#x27;</span>,
+      <span class="hljs-string">&#x27;material light&#x27;</span>,
+      <span class="hljs-string">&#x27;material dark&#x27;</span>, <span class="hljs-comment">// material </span>
+      <span class="hljs-string">&#x27;monokai&#x27;</span>,
+      <span class="hljs-string">&#x27;monokai dimmed&#x27;</span>, <span class="hljs-comment">//monoky-dimmed</span>
+      <span class="hljs-string">&#x27;kimbie&#x27;</span>,
+      <span class="hljs-string">&#x27;noctis-lilac&#x27;</span>,
+      <span class="hljs-string">&#x27;nord&#x27;</span>,
+      <span class="hljs-string">&#x27;okaidia&#x27;</span>,
+      <span class="hljs-string">&#x27;quietlight&#x27;</span>,
+      <span class="hljs-string">&#x27;red&#x27;</span>,
+      <span class="hljs-string">&#x27;solarized light&#x27;</span>, <span class="hljs-comment">// solarized light &amp;&amp; solarized dark from &#x27;solarized&#x27;</span>
+      <span class="hljs-string">&#x27;solarized dark&#x27;</span>,
+      <span class="hljs-string">&#x27;sublime&#x27;</span>,
+      <span class="hljs-string">&#x27;tokyo-night&#x27;</span>,
+      <span class="hljs-string">&#x27;tokyo-night-storm&#x27;</span>, <span class="hljs-comment">//--</span>
+      <span class="hljs-string">&#x27;tokyo-night-day&#x27;</span>,
+      <span class="hljs-string">&#x27;tomorrow-night-blue&#x27;</span>,
+      <span class="hljs-string">&#x27;white dark&#x27;</span>, <span class="hljs-comment">// both from &#x27;white&#x27;</span>
+      <span class="hljs-string">&#x27;white light&#x27;</span>, <span class="hljs-comment">// both from &#x27;white&#x27;</span>
+      <span class="hljs-string">&#x27;vscode&#x27;</span>,
+      <span class="hljs-string">&#x27;xcode light&#x27;</span>, <span class="hljs-comment">// xcode</span>
+      <span class="hljs-string">&#x27;xcode dark&#x27;</span> <span class="hljs-comment">// xcode</span>
+    ] <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span>);</code></pre>
+            <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+                </path>
+              </svg>
+            </button>
+          </div>
+              </div>
+          </details>
+          <p class="mt-1">
+            The height of the code editors is controlled by the <span class="t-info bold">data-type</span> attribute, which can be set to <strong class="t-secondary">tiny, min, mid, or full</strong> depending on if you want a code editor with a height of <strong class="t-primary">150px, 200px, 250px or an editor with a min height of basically the entire page that expands downward when the user enters in more code. </strong> <em class="fw-regular">I included the tiny, min, and mid sizes because I might want to allow the users to insert custom html and css into lexical code editors as a decorator block.</em>  All editors are held in a code mirror object:
+          </p>
+          <div style="position: relative;" class="mt-1"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">const</span> <span class="hljs-attr">CODE_MIRROR_EDITORS</span>: {[<span class="hljs-attr">index</span>: <span class="hljs-built_in">string</span>]: {<span class="hljs-attr">editor</span>: <span class="hljs-title class_">EditorView</span>, <span class="hljs-attr">language</span>: <span class="hljs-title class_">Compartment</span>, <span class="hljs-attr">theme</span>: <span class="hljs-title class_">Compartment</span>}} = {};</code></pre>
+            <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+                </path>
+              </svg>
+            </button>
+          </div>  
+          <p class="mt-1">
+            Which can be used to change the theme, language, and typescript functionality of the code editors. To be able to edit the theme, 
+            language and typescript functionality of the editors, you must include a  <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span></span></code></span> inside the 
+            <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-editor-wrapper</span>&gt;</span></span></code></span>
+            . The form must have an <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">data-language-select</span> /&gt;</span></span></code></span>
+            and a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">data-theme</span> /&gt;</span></span></code></span> to edit the coding language and theme, respectively, and a 
+            <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">data-typescript</span> /&gt;</span></span></code></span> to edit the typescript functionality of the editor.
+            <span class="bg-error bold">These are not required, however.</span>
+          </p>
+        <h2 class="bold block bb-main h2 mt-4" id="how-to-use-playground" >
+          <a href="#how-to-use-playground" class="same-page fw-regular">How To Use HTML, CSS, JavaScript Playground</a>
+        </h2>
+        <p class="mt-2">
+          The HTML, CSS, JavaScript code below will be inserted inside the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span></span></code></span> tag of the page.
+          Enter HTML, CSS, and JavaScript into the code editors below and click the <strong>Output</strong> tab to see the result. I have included code language customization just to show myself how it works.
+        </p>  
+        <div class="alert outlined warning icon medium mt-2" role="alert">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+          <p class="alert">
+            <span>
+              I haven't implemented <strong class="bold">the output</strong> functionality below yet because I am still thinking about the best way of ensuring the JavaScript of the user is somewhat safe. 
+            </span>
+          </p>
+          <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+          </button>
+        </div>
+      </section>
+  
+    </div>
+    <div aria-labelledby="code-playground" role="tabpanel" tabindex="0" hidden>
+      <section id="editors">
+        <div class="tabs mt-2">
+          <ul class="tabs" role="tablist">
+            <li role="presentation">
+              <button id="html-tab-button" class="tab-button secondary" role="tab" type="button" aria-selected="true" data-tab="0" tabindex="-1">
+                HTML
+              </button>
+            </li>
+            <li role="presentation">
+              <button id="css-tab-button" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="1" tabindex="-1">
+                CSS
+              </button>
+            </li>
+            <li role="presentation">
+              <button id="js-tab-button" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="2" tabindex="-1">
+                JavaScript
+              </button>
+            </li>
+            <li role="presentation">
+              <button id="output-tab-button" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="3" tabindex="-1">
+                Output
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-panels">
+          <div data-editor-wrapper id="html-editor-wrapper" aria-labelledby="html-tab-button" role="tabpanel" tabindex="0">
+            <div data-theme="<%=locals.pageObj.theme%>" data-codemirror="html" data-type="full" id="html-editor" class="mt-2" hidden><h1 class='hello-world'>Hello World</h1>
+<p class='body1 blue'>
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+Officiis officia sed est debitis maiores nobis amet sit enim laboriosam. Possimus mollitia
+non consequatur architecto officia, similique expedita id ratione aut?
+</p></div>
+          </div>
+          <div data-editor-wrapper id="css-editor-wrapper" aria-labelledby="css-tab-button" role="tabpanel" tabindex="0" hidden>
+            <div data-theme="<%=locals.pageObj.theme%>" data-codemirror="css" data-type="full" class="mt-2" hidden>.hello-world {
+  color: red;
+}
+.blue {
+  background-color: blue;
+}</div>
+          </div>
+          <div data-editor-wrapper id="js-editor-wrapper" aria-labelledby="js-tab-button" role="tabpanel" tabindex="0" hidden>
+            <div data-theme="<%=locals.pageObj.theme%>" data-codemirror="javascript" data-type="full" class="mt-2" hidden>console.log('Hello World');</div>
+          </div>
+          <div aria-labelledby="output-tab-button" role="tabpanel" tabindex="0" hidden id="oct-123">
+            <div id="show-output" ></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  
+  <script nonce="<%=locals.jsNonce%>">
+    (function(){
+      const outputButton = document.getElementById('output-tab-button');
+      const outputTab = document.getElementById('show-output');
+      if (outputButton&&outputTab) {
+        outputTab.innerHTML = '';
+        outputTab.insertAdjacentHTML("afterbegin",`<div class="flex-row justify-center htmx-indicator htmx-request" role="progressbar" aria-busy="false" aria-label="Getting Code..."><div class="lds-facebook"><div></div><div></div><div></div></div></div>`);
+        outputButton.onclick = () => {
+          const html = document.querySelector('#html-editor-wrapper div.cm-content[role="textbox"]').innerText;
+          const css = document.querySelector('#css-editor-wrapper div.cm-content[role="textbox"]').innerText;
+          const js = document.querySelector('#js-editor-wrapper div.cm-content[role="textbox"]').innerText;
+          if(typeof html==='string' && typeof js==='string' && typeof css==='string') {
+            function getCsrfToken() {
+              const csrf = document.getElementById('csrf_token');
+              if (csrf) return csrf.value;
+              else return 'csrf-not-found';
+            }
+            fetch('/api/ugc-code',{ method: 'POST', body: JSON.stringify({html,css,js}), headers: {'Content-Type': 'application/json', 'X-CSRF-Token': getCsrfToken() }})
+            .then((res) => {
+              return res.text();
+            })
+            .then(async (resp) => {
+              outputTab.innerHTML='';
+              outputTab.insertAdjacentHTML('afterbegin',resp);
+            })
+            .catch((e) => {
+              console.error(e);
+              outputTab.innerHTML = `<div class="alert error filled medium icon fw-regular mt-2" role="alert">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Report"><path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z"></path></svg>
+  <p class="alert">
+    Something went wrong getting the output of the code. Try reloading the page.
+  </p>
+</div>`;
+            })
+          }
+        }
+      }
+    })()
+  </script>
+
+
+
+  <%-include('../../partials/pagePartial')%>
+  <%}%>

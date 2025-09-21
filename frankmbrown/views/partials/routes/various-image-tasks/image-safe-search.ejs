@@ -1,0 +1,29 @@
+<%# 
+PARTIAL ROUTE: partials/routes/various-image-tasks/image-safe-search.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.response
+- locals.response[i]
+%>
+<%#  Image Safe Search %>
+
+<div class="mt-2 table-wrapper">
+    <table cellspacing="0">
+        <caption class="h3 bold">Image Safe Search Response</caption>
+        <thead>
+            <tr>
+            <th scope="col">Label</th>
+            <th scope="col">Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%for(let i =0; i < locals.response.length; i++){%>
+                <tr>
+                    <td><%=locals.response[i].label%></td>
+                    <td><%=locals.response[i].score%></td>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+</div>

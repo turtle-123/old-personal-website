@@ -1,0 +1,55 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/code-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="code-header">
+  <a href="#code-header"  class="same-page bold">Code</a>
+</h2>
+<details class="mt-2" id="about-code">
+  <summary>
+    <span class="h6 fw-regular">About Code</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true" style="line-height: 2;">
+    I use <a href="https://highlightjs.org/demo" class="secondary link">highlight.js</a> to generate 
+    markup to display code in HTML form. Press <kbd class="inline body2">CTRL+Q</kbd>, press the button below, or press the "Code" button on the navigation sidebar to generate code markup.
+    <div class="flex-row justify-center">
+      <button aria-haspopup="dialog" data-dialog="code-markup-dialog" class="text medium success text">LAUNCH CODE MARKUP DIALOG</button>
+    </div> 
+    All languages that can be highlighted with highlight.js can be used on this site as well. You can generate code 
+    markup in either an inline or block style. If you generate the block style, then the code markup will come with a button that, when clicked, will copy the code 
+    if the code markup to the clipboard of the user.
+    <br>
+    <span class="fw-regular">
+      Reference <a href="https://highlightjs.org/" target="_blank" class="secondary link">hightlight.js</a> for code, and <a href="https://github.com/highlightjs/highlight.js/blob/main/src/styles/vs2015.css" target="_blank" class="secondary link">github</a> for styling.   
+    </span>
+  </div>
+</details>
+<section id="example-code">
+<h3 class="h5 bold bb mt-2">Code Examples:</h3>
+<p class="mt-2 h6 bold">Block Code</p>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre>
+        <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+            </path>
+          </svg>
+        </button>
+      </div>
+<p class="mt-2 h6 bold">Inline Code</p>
+<p class="body1">
+I am going to explain why the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span></code></span> tag should have its style set to: 
+<span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">style</span>=<span class="hljs-string">&quot;overflow-y:hidden&quot;</span></span></span></code></span> when a 
+dialog is open. 
+</p>
+</section>

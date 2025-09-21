@@ -1,0 +1,373 @@
+<%# 
+PARTIAL ROUTE: pages/projects/testing-css-env-variables.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+    <h1 class="page-title">Testing CSS <span class="text-code" style="font-size: inherit;">env</span> Variables</h1>
+
+    <section id="about-page" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#about-page" class="same-page bold">About Page</a>
+        </h2>
+        <p class="mt-2">
+            I have been running into some problems using CSS env variables to try to improve the styling of this site, so I am going to try to learn more about them here and demonstrate their values so that I can see what their values are in different browsers. I specifically run into this problem when open <span class="text-code">&lt;dialog&gt;</span> elements are large on mobile (they are obscured by the bottom navbar), with the floating text edit toolbar in the lexical editor, and with the <span class="text-code">sticky</span> toolbar for the article builder on mobile. I have tried to use the <span class="text-code">safe-area-inset</span>
+        </p>
+        <blockquote class="blockquote mt-2" cite="https://developer.mozilla.org/en-US/docs/Web/CSS/env">
+            The <span class="text-code">env()</span> CSS function can be used to insert the value of a user-agent defined environment variable into you CSS, in a similar fashion to the 
+            <a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/var"><span class="text-code">var()</span></a>
+             function and <a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*">custom properties</a>. The difference is that, as well as being user-agent defined rather than author defined, environment variables are globally scoped to a document, whereas custom properties are scoped to the element(s) on which they are declared.
+            <br>
+            <a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/env">Mozilla Docs</a>
+        </blockquote>
+        <p class="mt-2">
+            These variables were originally provided by the iOS browser to allow developers to place their content in a safe area of the viewport, the <span class="text-code">safe-area-insert-*</span> values defined in the specification can be used to help ensure content is visible event to viewers using non-rectangular displays. 
+            <br>
+            A common issue solved by <span class="text-code">env()</span> is that of device notifications covering up some of the app user interface. By positioning fixed elements using <span class="text-code">env()</span>, you can ensure that they display in a safe area of the viewport.
+            <br>
+            Another use of <span class="text-code">env()</span> is for <a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/env">Progressive Web Apps</a> that use the Window Controls Overlay feature to take advantage of the full application window surface area. Using the <span class="text-code">titlebar-area-*</span> values, you can position elements where the titlebar would have been and ensure that content stays clear of the window controls buttons. 
+        </p>
+    </section>
+
+    <section id="env-variables" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#env-variables" class="same-page bold"><span class="text-code" style="font-size:inherit;">env()</span> Variables</a>
+        </h2>
+        <p class="mt-2">
+            <span class="h3 bold">Reference: </span>
+            <a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/env">Mozilla Docs</a>
+        </p>
+        <ul class="mt-2">
+            <li><span class="text-code">safe-area-inset-top</span>
+              <br>
+              <p>This value defined the distance from the top of the screen which is safe to put content in for non-rectangular displays. For rectangular displays, this is equal to 0.</p>
+            </li>
+            <li><span class="text-code">safe-area-inset-right</span>
+              <br>
+              <p>This value defined the distance from the right of the screen which is safe to put content in for non-rectangular displays. For rectangular displays, this is equal to 0.</p>
+            </li>
+            <li><span class="text-code">safe-area-inset-bottom</span>
+              <br>
+              <p>This value defined the distance from the bottom of the screen which is safe to put content in for non-rectangular displays. For rectangular displays, this is equal to 0.</p>
+            </li>
+            <li><span class="text-code">safe-area-inset-left</span>
+              <br>
+              <p>This value defined the distance from the left of the screen which is safe to put content in for non-rectangular displays. For rectangular displays, this is equal to 0.</p>
+            </li>
+            <li><span class="text-code">titlebar-area-x</span>
+              <br>
+              <p>Useful for PWA installed on Desktop devices. When the desktop PWA uses the <span class="text-code">windows-control-overlay</span> display override value, then it can use these variables to make sure content doesn't overlap with the window control buttons.</p>
+            </li>
+            <li><span class="text-code">titlebar-area-y</span>
+              <br>
+              <p>Useful for PWA installed on Desktop devices. When the desktop PWA uses the <span class="text-code">windows-control-overlay</span> display override value, then it can use these variables to make sure content doesn't overlap with the window control buttons.</p>
+            </li>
+            <li><span class="text-code">titlebar-area-width</span>
+              <br>
+              <p>Useful for PWA installed on Desktop devices. When the desktop PWA uses the <span class="text-code">windows-control-overlay</span> display override value, then it can use these variables to make sure content doesn't overlap with the window control buttons.</p>
+            </li>
+            <li><span class="text-code">titlebar-area-height</span>
+              <br>
+              <p>Useful for PWA installed on Desktop devices. When the desktop PWA uses the <span class="text-code">windows-control-overlay</span> display override value, then it can use these variables to make sure content doesn't overlap with the window control buttons.</p>
+            </li>
+            <li><span class="text-code">keyboard-inset-top</span>
+              <br>
+              <p>These variables provide information about the on-screen virtual keyboard's appearance. They define a rectangle by its top, right, bottom, and left inset from the edge of the viewport.</p>
+            </li>
+            <li><span class="text-code">keyboard-inset-right</span>
+              <br>
+              <p>These variables provide information about the on-screen virtual keyboard's appearance. They define a rectangle by its top, right, bottom, and left inset from the edge of the viewport.</p>
+            </li>
+            <li><span class="text-code">keyboard-inset-bottom</span>
+              <br>
+              <p>These variables provide information about the on-screen virtual keyboard's appearance. They define a rectangle by its top, right, bottom, and left inset from the edge of the viewport.</p>
+            </li>
+            <li><span class="text-code">keyboard-inset-left</span>
+              <br>
+              <p>These variables provide information about the on-screen virtual keyboard's appearance. They define a rectangle by its top, right, bottom, and left inset from the edge of the viewport.</p>
+            </li>
+            <li><span class="text-code">keyboard-inset-width</span>
+              <br>
+              <p>These variables provide information about the on-screen virtual keyboard's appearance. They define a rectangle by its top, right, bottom, and left inset from the edge of the viewport.</p>
+            </li>
+            <li><span class="text-code">keyboard-inset-height</span>
+              <br>
+              <p>These variables provide information about the on-screen virtual keyboard's appearance. They define a rectangle by its top, right, bottom, and left inset from the edge of the viewport.</p>
+            </li>
+        </ul>
+        <p class="mt-2">
+            You can use these variables with fallback values:
+        </p>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs">* {
+  <span class="hljs-attribute">top</span>: <span class="hljs-built_in">env</span>(safe-area-inser-top);
+  <span class="hljs-attribute">bottom</span>: <span class="hljs-built_in">env</span>(safe-area-inset-top, <span class="hljs-number">20px</span>); <span class="hljs-comment">/* Using fallback values */</span>
+}
+</code></pre>
+    <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+        </path>
+    </svg>
+    </button>
+</div>  
+
+
+    <h3 class="bold h3 mt-2">Env Variable Demonstration</h3>
+    <div class="table-wrapper">
+        <table cellspacing="0">
+      <thead>
+        <tr>
+          <th scope="col">Property</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="text-code">safe-area-inset-top</span></td>
+          <td id="cell-sai-top"></td>
+        </tr>
+        <tr>
+            <td><span class="text-code">safe-area-inset-right</span></td>
+            <td id="cell-sai-right"></td>
+        </tr>
+        <tr>
+            <td><span class="text-code">safe-area-inset-bottom</span></td>
+            <td id="cell-sai-bottom"></td>
+        </tr>
+        <tr>
+            <td><span class="text-code">safe-area-inset-left</span></td>
+            <td id="cell-sai-left"></td>
+        </tr>
+        <tr>
+            <td><span class="text-code">titlebar-area-x</span></td>
+            <td id="cell-t-x"></td>
+        </tr>
+        <tr>
+            <td><span class="text-code">titlebar-area-y</span></td>
+            <td id="cell-t-y"></td>
+        </tr>
+        <tr>
+            <td><span class="text-code">titlebar-area-width</span></td>
+            <td id="cell-t-w"></td>
+        </tr>
+        <tr>
+            <td><span class="text-code">titlebar-area-height</span></td>
+            <td id="cell-t-h"></td>
+        </tr>
+        <tr>
+            <td><span class="text-code">keyboard-inset-top</span></td>
+            <td id="cell-k-t"></td>
+        </tr>
+        <tr>
+            <td><span class="text-code">keyboard-inset-right</span></td>
+            <td id="cell-k-r"></td>
+        </tr>
+        <tr>
+            <td><span class="text-code">keyboard-inset-bottom</span></td>
+            <td id="cell-k-b"></td>
+        </tr>
+        <tr>
+            <td><span class="text-code">keyboard-inset-left</span></td>
+            <td id="cell-k-l"></td>
+        </tr>
+        <tr>
+            <td><span class="text-code">keyboard-inset-width</span></td>
+            <td id="cell-k-w"></td>
+        </tr>
+        <tr>
+            <td><span class="text-code">keyboard-inset-height</span></td>
+            <td id="cell-k-h"></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div id="sai-top" style="position: fixed; top: env(safe-area-inset-top); left: 0px; width: 100%; border-bottom: 2px solid red; z-index: 200;">
+    </div>
+    
+    <div id="sai-bottom" style="position: fixed; bottom: env(safe-area-inset-bottom); left: 0px; width: 100%; border-bottom: 2px solid blue; z-index: 200;">
+    </div>
+
+    <div id="sai-left" style="position: fixed; top:0px; left:  env(safe-area-inset-left); height: 100%; border-right: 2px solid green; z-index: 200;">
+    </div>
+
+    <div id="sai-right" style="position: fixed; top:0px; right:  env(safe-area-inset-right); height: 100%; border-right: 2px solid yellow; z-index: 200;">
+    </div>
+
+    <div id="titlebar-area" style="position: fixed; top: env(titlebar-area-y); left: env(titlebar-area-x); background-color: aqua; color: black; z-index: 200; font-weight: bold; text-align: center; width: env(titlebar-area-width); height: env(titlebar-area-height);">
+        TitleBarArea
+    </div>
+    
+    <div id="keyboard-inset" style="position: fixed; top: env(keyboard-inset-top); left: env(keyboard-inset-left); bottom: env(keyboard-inset-bottom); right: env(keyboard-inset-right); background-color: purple; color: white; z-index: 200; font-weight: bold; text-align: center; width: env(keyboard-inset-width); height: env(keyboard-inset-height);">
+        Keyboard Inset
+    </div>
+    <script nonce="<%=locals.jsNonce%>">
+        (() => {
+            const num = setInterval(() => {
+                const titlebarArea = document.getElementById('titlebar-area');
+                const keyboardInset = document.getElementById("keyboard-inset");
+                const safeAreaInsertTop = document.getElementById('sai-top');
+                const safeAreaInsertRight = document.getElementById('sai-right');
+                const safeAreaInsertBottom = document.getElementById('sai-bottom');
+                const safeAreaInsertLeft = document.getElementById('sai-left');
+                if (titlebarArea&&keyboardInset&&safeAreaInsertTop&&safeAreaInsertRight&&safeAreaInsertBottom&&safeAreaInsertLeft){
+                    const titleStyle = getComputedStyle(titlebarArea);
+                    const titleX = titleStyle.getPropertyValue('left');
+                    const titleY = titleStyle.getPropertyValue('top');
+                    const titleWidth = titleStyle.getPropertyValue('width');
+                    const titleHeight = titleStyle.getPropertyValue('height');
+                    const keyboardStyle = getComputedStyle(keyboardInset);
+                    const keyboardTop = keyboardStyle.getPropertyValue('top');
+                    const keyboardLeft = keyboardStyle.getPropertyValue('left');
+                    const keyboardBottom = keyboardStyle.getPropertyValue('bottom');
+                    const keyboardRight = keyboardStyle.getPropertyValue('right');
+                    const keyboardWidth = keyboardStyle.getPropertyValue('width');
+                    const keyboardHeight = keyboardStyle.getPropertyValue('height');
+                    const saiTopStyle = getComputedStyle(safeAreaInsertTop);
+                    const saiTop = saiTopStyle.getPropertyValue('top');
+                    const saiRightStyle = getComputedStyle(safeAreaInsertRight);
+                    const saiRight = saiRightStyle.getPropertyValue('right');
+                    const saiBottomStyle = getComputedStyle(safeAreaInsertBottom);
+                    const saiBottom = saiBottomStyle.getPropertyValue('bottom');
+                    const saiLeftStyle = getComputedStyle(safeAreaInsertLeft);
+                    const saiLeft = saiLeftStyle.getPropertyValue('left');
+                    const cell1 = document.getElementById("cell-sai-top");
+                    const cell2 = document.getElementById("cell-sai-right");
+                    const cell3 = document.getElementById("cell-sai-bottom");
+                    const cell4 = document.getElementById("cell-sai-left");
+                    const cell5 = document.getElementById("cell-t-x");
+                    const cell6 = document.getElementById("cell-t-y");
+                    const cell7 = document.getElementById("cell-t-w");
+                    const cell8 = document.getElementById("cell-t-h");
+                    const cell9 = document.getElementById("cell-k-t");
+                    const cell10 = document.getElementById("cell-k-r");
+                    const cell11 = document.getElementById("cell-k-b");
+                    const cell12 = document.getElementById("cell-k-l");
+                    const cell13 = document.getElementById("cell-k-w");
+                    const cell14 = document.getElementById("cell-k-h");
+                    if (cell1&&cell2&&cell3&&cell4&&cell5&&cell6&&cell7&&cell8&&cell9&&cell10&&cell11&&cell12&&cell13&&cell14) {
+                        cell1.innerText = saiTop;
+                        cell2.innerText = saiRight;
+                        cell3.innerText = saiBottom;
+                        cell4.innerText = saiLeft;
+                        cell5.innerText = titleX;
+                        cell6.innerText = titleY;
+                        cell7.innerText = titleWidth;
+                        cell8.innerText = titleHeight;
+                        cell9.innerText = keyboardTop;
+                        cell10.innerText = keyboardRight;
+                        cell11.innerText = keyboardBottom;
+                        cell12.innerText = keyboardLeft;
+                        cell13.innerText = keyboardWidth;
+                        cell14.innerText = keyboardHeight;
+                    }
+                }
+            },500);
+            document.addEventListener('htmx:afterRequest',(e) => {
+                if (e?.detail?.target?.id==="PAGE") {
+                    clearInterval(num);
+                }
+            });
+        })()
+    </script>
+    </section>
+
+    <section id="vh-and-vw" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#vh-and-vw" class="same-page bold">CSS *vh and *vw</a>
+        </h2>
+        <p class="mt-2">
+            <span class="h3 bold">Reference: </span> <a class="secondary link" target="_blank" href="https://dev.to/frehner/css-vh-dvh-lvh-svh-and-vw-units-27k4">CSS *vh (dvh, lvh, svh) and *vw units</a>
+            <br>
+            <a class="secondary link" target="_blank" href="https://caniuse.com/mdn-css_types_length_viewport_percentage_units_dynamic">Browser Support</a>
+        </p>
+        <p class="mt-2">
+            The <span class="text-code">vh</span> unit, as it originally existed, was defined as <q class="quote">Equal to 1% of the height of the initial contain block</q>. This is fine, except the UI of the browser changes on mobile devices as you scroll to maximize screen space:
+        </p>
+        <div class="table-wrapper mt-1">
+            <table cellspacing="0">
+          <thead>
+            <tr>
+              <th scope="col">Browser UI State</th>
+              <th scope="col">Browser UI</th>
+              <th scope="col"><span class="text-code">100vh</span> in pixels</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>See everything / maximized / first page load / on scroll upward</td>
+              <td><span class="text-code">15px</span></td>
+              <td><span class="text-code">85px</span></td>
+            </tr>
+            <tr>
+                <td>Small / minimized / on scroll downward	</td>
+                <td><span class="text-code">10px</span></td>
+                <td><span class="text-code">90px</span></td>
+              </tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="mt-2">
+            In 2015, Safari / Webkit engineers decided to change the behavior of <span class="text-code">vh</span> units:
+        </p>
+        <blockquote class="blockquote" cite="https://bugs.webkit.org/show_bug.cgi?id=141832">
+            Dynamically updating the height was not working, we had a few choices: drop viewport units on iOS, match the document size like before iOS 8, use the small view size, use the large view size.
+
+            From the data we had, using the larger view size was the best compromise.
+        </blockquote>
+        <p class="mt-2">
+            Chrome / Blink engineers later agreed to so the same. One of the problems with <span class="text-code">vh</span> on mobile devices is that anything that is <span class="text-code">min-height: 100vh</span> is now larger or overflows the screen when you first load a page. A CSS proposal was born to solve this problem in 2019 and it was accepted in 2021. It involves adding the <span class="bold">large</span>, <span class="bold">small</span>, and <span class="bold">dynamic</span> viewport units.
+        </p>
+        <dl>
+            <dt class="h3 bold">Large Viewport Units</dt>
+            <dd><span class="text-code">lvh</span> and <span class="text-code">lvw</span> are defined as <quote class="quote">the viewport size assuming any UA interfaces that are dynamically expanded and retracted to be retracted.</quote></dd>
+            <dd>The size when the browser UI is the smallest and the website content is the largest.</dd>
+            <dt class="h3 bold">Small Viewport Units</dt>
+            <dd><span class="text-code">svh</span><span class="text-code">svw</span> are defined as <quote class="quote">the viewport sized assuming any UA interfaces that are dynamically expanded and retracted to be expaned.</quote></dd>
+            <dd>The size when the browser UI is the largest and the website content is the smallest.</dd>
+            <dt class="h3 bold">Dynamic Viewport Units</dt>
+            <dd><span class="text-code">dvh</span><span class="text-code">dvw</span> are defined as <quote class="quote"></quote>the viewport sized with dynamic consideration of any UA interfaces that are dynamically expanded and retracted.</dd>
+            <dd>The size of the dynamic viewport percentage units are not stable even while the viewport itself is unchanged.</dd>
+            <dd class="bold">Using these units can cause content to resize. Depending on the usage, this can be disturbing to the user and/or costly in terms of performance. <mark>You should only use these units in very rare and specific situations.</mark> </dd>
+            <dt class="h3 bold">Traditional Viewport Units</dt>
+            <dd><span class="text-code">vh</span><span class="text-code">vw</span> are defined as <quote class="quote">thew UA-defined UA-default viewport size</quote></dd>
+        </dl>
+        <h3 class="bold h3 mt-4">View the Below on Mobile Screen to See the Difference Between Heights</h3>
+        <div class="block w-100 mt-3">
+            <span style="width: 24%; display: inline-block; width: 24%; min-height: 50vh; position: relative; border: 4px dashed var(--text-primary); border-radius: 6px; background-color:red;" >
+                <span class="h4 bold text-align-center block"  style="color: black;">50vh</span>
+            </span>
+            <span style="width: 24%; display: inline-block; width: 24%; min-height: 50svh; position: relative; border: 4px dashed var(--text-primary); border-radius: 6px; background-color:blue;" >
+                <span class="h4 bold text-align-center block" style="color: white;">50svh</span>
+            </span>
+            <span style="width: 24%; display: inline-block; width: 24%; min-height: 50lvh; position: relative; border: 4px dashed var(--text-primary); border-radius: 6px; background-color:green;" >
+                <span class="h4 bold text-align-center block" style="color: black;">50lvh</span>
+            </span>
+            <span style="width: 24%; display: inline-block; width: 24%; min-height: 50dvh; position: relative; border: 4px dashed var(--text-primary); border-radius: 6px; background-color:yellow;" >
+                <span class="h4 bold text-align-center block" style="color: black;">50dvh</span>
+            </span>
+        </div>
+        <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+          <label for="key-in">Keyboard Input for Testing Size Change For Inputs:</label>
+          <div class="text-input block medium">
+              <input 
+              type="text" 
+              name="key-in" 
+              id="key-in" 
+              class="medium icon-before mt-1" 
+              spellcheck="true" 
+              autocapitalize="off"
+              placeholder="Click here to see how units respond to focused input..."
+              >
+              <svg class="icon-before" viewBox="0 0 384 512" title="t" focusable="false" inert tabindex="-1"><path d="M32 32C14.3 32 0 46.3 0 64S14.3 96 32 96H160V448c0 17.7 14.3 32 32 32s32-14.3 32-32V96H352c17.7 0 32-14.3 32-32s-14.3-32-32-32H192 32z"></path></svg>
+              <%# Buttons and SVGs %>
+          </div>
+        </div>
+    </section>
+    <%-include('../../partials/pagePartial')%>
+<%}%>
+        

@@ -1,0 +1,76 @@
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+    <h1 class="page-title">WebGL</h1>
+
+    <section id="about-page" class="mt-4">
+        <div class="flex-row bb-thick justify-between">
+          <h2 class="bold h2">
+            <a href="#about-page" class="same-page bold">
+              About Page
+            </a>
+          </h2>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#about-page-hide">
+            <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div id="about-page-hide">
+            <p class="mt-2">
+                I decided that I wanted to know more about WebGL, so I am creating this page to house some WebGL projects as I go through a WebGL tutorial. The tutorial that I am going through can be seen <a class="secondary link" target="_blank" href="https://youtu.be/kB0ZVUrI4Aw">here</a>.
+            </p>
+        </div>
+      </section>
+  
+  
+      <section id="notes-page" class="mt-4">
+          <div class="flex-row bb-thick justify-between">
+            <h2 class="bold h2">
+              <a href="#notes-page" class="same-page bold">
+                Notes on WebGL
+              </a>
+            </h2>
+            <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#notes-page-hide">
+              <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+              <span data-hide="">HIDE</span>
+              <span data-show="" hidden="">SHOW</span>
+            </button>
+          </div>
+          <div id="notes-page-hide">
+            <h4 class="h4 bold mt-3">WebGL Notes</h4><ul class="mt-3" start="1"><li><p class="body1 mt-3"><strong class="bolder">WebGL Overview</strong></p><ul class="mt-3" start="1"><li>WebGL allows front-end, client-side applications to use OpenGL ES (specifically, the 2.0 standard).</li><li>It's a combination of JavaScript and graphics programming.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">WebGL Setup</strong></p><ul class="mt-3" start="1"><li>Requires an HTML5 <span class="text-code">&lt;canvas&gt;</span> element.</li><li>You obtain an OpenGL context from the canvas, which is the state machine for OpenGL operations.</li><li>Initialization in WebGL is simpler than in C++ or other languages.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Graphics Pipeline</strong></p><ul class="mt-3" start="1"><li>Data loading in WebGL from the internet can be slower than from a local hard drive.</li><li>The general pipeline involves:<ul class="mt-3" start="1"><li>Updating global variables for the graphics card.</li><li>Drawing, typically using triangles.</li><li>Vertex shader: Transforms 3D coordinates to 2D screen space (from -1 to 1 on both axes). Can also pass other vertex data (e.g., color).</li><li>Rasterization: Fills in the triangles (determines pixels and their properties).</li><li>Fragment shader: Determines the color of each pixel.</li><li>Frame buffer (skipped over).</li></ul></li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Coordinate Systems</strong></p><ul class="mt-3" start="1"><li>WebGL's Y-axis goes from bottom to top, unlike some other graphics APIs.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Shaders</strong></p><ul class="mt-3" start="1"><li>Vertex shaders use <span class="text-code">attribute</span> for input parameters and <span class="text-code">varying</span> for output parameters.</li><li><span class="text-code">GL_Position</span> is a special variable in vertex shaders to set the vertex position.</li><li>Fragment shaders use <span class="text-code">varying</span> for input and <span class="text-code">GL_FragColor</span> for output.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Buffers</strong></p><ul class="mt-3" start="1"><li>Vertex data is stored in buffers on the GPU.</li><li><span class="text-code">gl.createBuffer()</span>, <span class="text-code">gl.bindBuffer()</span>, and <span class="text-code">gl.bufferData()</span> are used to manage these buffers.</li><li><span class="text-code">gl.vertexAttribPointer()</span> defines the layout of vertex attributes.</li><li><span class="text-code">gl.enableVertexAttribArray()</span> enables attributes for use.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Drawing</strong></p><ul class="mt-3" start="1"><li><span class="text-code">gl.drawArrays()</span> is used to draw primitives (usually triangles).</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Clearing the Canvas</strong></p><ul class="mt-3" start="1"><li><span class="text-code">gl.clearColor()</span> sets the clear color.</li><li><span class="text-code">gl.clear()</span> clears the color and depth buffers.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Programs</strong></p><ul class="mt-3" start="1"><li>A program in OpenGL consists of a vertex shader and a fragment shader.</li><li><span class="text-code">gl.createProgram()</span>, <span class="text-code">gl.attachShader()</span>, and <span class="text-code">gl.linkProgram()</span> are used to create and link programs.</li><li><span class="text-code">gl.useProgram()</span> activates a program.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Uniforms</strong></p><ul class="mt-3" start="1"><li>Uniforms are global variables that stay the same for all vertices and fragments.</li><li>Used to pass matrices (e.g., world, view, projection) to shaders.</li><li>Accessed in JavaScript using <span class="text-code">gl.getUniformLocation()</span> and set with functions like <span class="text-code">gl.uniformMatrix4fv()</span>.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Matrices</strong></p><ul class="mt-3" start="1"><li>Matrices (4x4) are used for transformations (translation, rotation, scale).</li><li>The order of matrix multiplication is important.</li><li>External libraries (e.g., GL Matrix) can be used for matrix operations.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">3D Concepts</strong></p><ul class="mt-3" start="1"><li>Points in 3D space are represented as 4D vectors (the 4th component being 1 for positions).</li><li>View transform simulates a camera (position, target, up direction).</li><li>Projection matrix transforms 3D camera space to 2D screen space.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Index Arrays</strong></p><ul class="mt-3" start="1"><li>Index arrays (<span class="text-code">gl.ELEMENT_ARRAY_BUFFER</span>) are used to draw complex geometry by specifying the order of vertices.</li><li><span class="text-code">gl.drawElements()</span> is used instead of <span class="text-code">gl.drawArrays()</span> when using index arrays.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Textures</strong></p><ul class="mt-3" start="1"><li>Textures are applied to 3D objects by mapping image coordinates (UV coordinates, ranging from 0 to 1) to triangle vertices.</li><li>Texture parameters (<span class="text-code">gl.texParameteri()</span>) control wrapping (how the texture repeats) and filtering (how pixels are sampled).</li><li><span class="text-code">gl.createTexture()</span>, <span class="text-code">gl.bindTexture()</span>, and <span class="text-code">gl.texImage2D()</span> are used to load and configure textures.</li><li>Cross-origin images may cause security errors; using a local server can resolve this.</li><li><span class="text-code">gl.activeTexture()</span> selects the texture unit.</li><li><span class="text-code">gl.uniform1i()</span> is used to set the sampler.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Lighting</strong></p><ul class="mt-3" start="1"><li>Phong lighting model (ambient, diffuse, specular).</li><li>Ambient light: Simulates general illumination.</li><li>Diffuse light: Depends on the angle of the surface to the light source (dot product of normal and light direction).</li><li>Normal vectors: Vectors perpendicular to the surface.</li><li>Lighting calculations can be done per-vertex or per-fragment (per-fragment is more accurate).</li><li>Structs can be used to organize lighting data in shaders.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Loading External Files</strong></p><ul class="mt-3" start="1"><li>AJAX (<span class="text-code">XMLHttpRequest</span>) is used to load shaders and other resources asynchronously.</li><li>Callback functions are used to handle asynchronous results.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Mandelbrot Fractal</strong></p><ul class="mt-3" start="1"><li>Fragment shaders can be used to generate complex visuals like the Mandelbrot fractal.</li><li>Each pixel's color is calculated independently within the shader.</li><li>Limitations in floating-point precision (32-bit floats in WebGL) can introduce visual artifacts when zooming in very close.</li></ul></li><li><p class="body1 mt-3"><strong class="bolder">Additional WebGL Features (mentioned)</strong></p><ul class="mt-3" start="1"><li>Vertex skinning</li><li>Bump mapping</li><li>Blending textures</li><li>Video textures</li><li>Webcam input</li></ul></li></ul>
+          </div>
+        </section>
+
+        <section id="tutorial-1" class="mt-4">
+            <h2 class="bold bb-thick h2">
+              <a href="#tutorial-1" class="same-page bold">
+                Tutorial 1
+              </a>
+            </h2>
+
+            <div style="position: relative; max-width: 450px; max-height: 450px; margin: 6px auto;" id="web-gl-tut-1">
+              <button data-fullscreen-btn="" data-el="#web-gl-tut-1" type="button" class="icon medium fullscreen-btn" aria-label="Enter / Exit Fullscreen">
+                  <svg data-enter="" focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="Fullscreen"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>
+                  <svg data-exit="" hidden="" focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="FullscreenExit"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"></path></svg>
+                </button>
+                <div id="gui-container" style="position:absolute;top:0px;left:0px;"></div>
+              <canvas id="web-gl-tut-1-canvas" width="450" height="450"></canvas>
+            </div>
+            <div class="mt-2">
+              <img 
+              width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+              height="<%-locals.desktop?436:(locals.tablet?362:288)%>" 
+              style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 11 / 9 !important; height: auto;"
+              srcset="https://image.storething.org/frankmbrown%2F7fc79c73-adfb-41e8-8f34-4114e472e9cd-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F7fc79c73-adfb-41e8-8f34-4114e472e9cd-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F7fc79c73-adfb-41e8-8f34-4114e472e9cd-desktop.jpeg 650w" 
+              sizes="(max-width: 550px) 288px, ((min-width: 550px) and (max-width: 1200px)) 362px, (min-width: 1200px) 436px" 
+              src="https://image.storething.org/frankmbrown%2F7fc79c73-adfb-41e8-8f34-4114e472e9cd-desktop.jpeg" 
+              alt="Diagram Used in Tutorial Video" 
+              />
+            </div>
+        </section>
+
+
+        <script nonce="<%=locals.jsNonce%>" type="module" defer src="/static/js/constant/webgl-tutorial-1.js"></script>
+
+    <%-include('../../partials/pagePartial')%>
+  <%}%>

@@ -1,0 +1,339 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/popovers-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="popovers-header">
+  <a href="#popovers-header"  class="same-page bold">Popovers</a>
+</h2>
+<details class="mt-2">
+  <summary>
+    <span class="h6 fw-regular">About Popovers</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true">
+    Popovers are basically all absolutely positioned elements except for custom select menus.
+    <br>
+    This design library uses <a href="https://floating-ui.com/" class="secondary link" target="_blank">Floating UI</a>
+    to create popovers, except for dialogs and snackbars. Dialogs are always centered on the screen using the native 
+    HTML <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dialog</span>&gt;</span></span></code></span> component, and 
+    snackbars are positioned so they will always be shown at the top of the screen.
+    <br>
+    <div role="alert" class="alert warning outlined mt-2 icon small">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Notes"><path d="M3 18h12v-2H3v2zM3 6v2h18V6H3zm0 7h18v-2H3v2z"></path></svg>
+      <p class="alert body2">
+        <div>
+          For popover elements, the elements that <span class="t-info bold">data-pelem</span> targets, you can include <span><code class="hljs"><span class="hljs-selector-class">.o-sm</span> <span class="hljs-selector-class">.o-lg</span> <span class="hljs-selector-class">.o-xs</span></code></span> classes which change the size of the offset to be 6px, 12px, and 4px respectively. The default offset is 8px.
+        </div>
+      </p>
+    </div>
+  </div>
+</details>
+
+<p class="card el-2 rounded mt-2 p-lg">
+  <span>
+  If you want the popup to stay open even after the element that is initiated the popup is blurred, then you can add a 
+  <span class="t-info bold">data-force-close</span> attribute to the element that triggers the popup, the element with the <span class="bold t-info">data-pelem</span> attribute, and it will remove the listeners 
+  for <span class="t-info focus">focusout</span> and <span class="t-info focus">blur</span>, which normally close the popup, with a listener for a click on the 
+  <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span></code></span> or 
+  <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dialog&quot;</span>&gt;</span></span></code></span> element. 
+</span>
+</p>
+
+
+<section id="dialogs" class="mt-3">
+<h3 class="h6 bold block bb">
+  <a href="#dialogs" class="same-page fw-regular">Dialogs</a>
+</h3>
+<details class="mt-2">
+  <summary>
+    <span class="h6 fw-regular">About Dialogs</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true">
+    <p class="body1">
+      Dialogs can be launched programmatically, via a button click, or by some combination of keydown events.
+      <br>
+      Each button that opens a dialog should have the following attributes:  <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">aria-haspopup</span>=<span class="hljs-string">&quot;dialog&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">data-dialog</span>=<span class="hljs-string">&quot;id of dialog&quot;</span>&gt;</span></span></code></span>. 
+      <br>
+      When a dialog is opened a <span><code class="hljs"><span class="hljs-selector-class">.dialog-open</span></code></span> class is added to the 
+      <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span></code></span> tags to prevent scrolling of the main page.
+      <br>
+      There are various attributes that can be included on the dialog to enforce some kind of behavior. These attributes can be seen below:
+      <dl>
+        <dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"> <span class="hljs-attr">data-close-backdrop</span></span> </span></code></span></dt>
+        <dd>Including this attribute on the dialog will mean that the dialog closes when the escape button is clicked.</dd>
+        <dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"> <span class="hljs-attr">data-esc</span></span> </span></code></span></dt>
+        <dd><span class="bold">On Desktop,</span> this button will close the open dialog when the <kbd class="inline">ESC</kbd> key is pressed.</dd>
+      </dl> 
+      <span class="t-warning block mt-2">
+        The <span><code class="hljs"><span class="hljs-selector-class">.close-dialog</span></code></span> class can be added to buttons so that they close the closest 
+        dialog on click.
+      </span>
+      Most dialogs (not #image-dialog) will have a single child element - a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dialog&quot;</span>&gt;</span></span></code></span> - that has a small, medium, or large
+      class. 
+      <br>
+      This child element should usually have three children elements with the following format (unless you want to customize it):
+      <div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dialog-header&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dialog-body&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dialog-footer&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;toolbar&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></code></pre><button data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button></div>
+    </p>
+  </div>
+</details>
+
+<p class="body1 mt-2 bold">Dialog Examples:</p>
+
+<div class="flex-row align-center justify-begin mt-2">
+  <button class="icon-text transparent medium" type="button" aria-label="Launch Search Dialog" aria-haspopup="dialog" data-dialog="search-dialog">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Search"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+    <span>SEARCH DIALOG</span>
+  </button>
+</div>
+
+<div class="flex-row align-center justify-center mt-2">
+  <button class="icon-text outlined warning medium" type="button" aria-label="Launch Code Markup Dialog" aria-haspopup="dialog" data-dialog="code-markup-dialog">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Code"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"></path></svg>
+    <span>CODE DIALOG</span>
+  </button>
+</div>
+
+<div class="flex-row align-center justify-end mt-2">
+  <button class="icon-text filled error medium" type="button" aria-label="Launch Math Markup Dialog" aria-haspopup="dialog" data-dialog="math-markup-dialog">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Percent"><path d="M7.5 11C9.43 11 11 9.43 11 7.5S9.43 4 7.5 4 4 5.57 4 7.5 5.57 11 7.5 11zm0-5C8.33 6 9 6.67 9 7.5S8.33 9 7.5 9 6 8.33 6 7.5 6.67 6 7.5 6zM4.0025 18.5832 18.59 3.9955l1.4142 1.4143L5.4167 19.9974zM16.5 13c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5zm0 5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path></svg>
+    <span>MATH DIALOG</span>
+  </button>
+</div>
+
+</section>
+<section id="tooltips" class="mt-3">
+<h3 class="h6 bold block bb">
+  <a href="#tooltips" class="same-page fw-regular">Tooltips</a>
+</h3>
+<p class="body1 mt-2">
+  Elements that have tooltips should have the <span class="t-info bold">data-popover</span> boolean attribute as well as a <span class="t-info bold">data-pelem</span> attribute equal to a query selector string that can be used to find the tooltip.
+  If the tooltip is initiated by a mouse over event, the element with the tooltip should have the <span class="t-warning bold">data-mouse</span> boolean attribute, else if the tooltip is 
+  initiated by a focus event, the tooltip should have a <span class="t-error bold">data-click</span> boolean attribute.
+  <br>
+  The tooltip itself should have a <span class="t-info bold">data-placement</span> attribute equal to a <a href="https://floating-ui.com/docs/tutorial#placements" target="_blank" class="secondary link"> valid placement value</a>.
+  The tooltip should have a <span class="t-info bold">role="tooltip"</span>.
+  <br>
+  All tooltips should have the <span><code class="hljs"><span class="hljs-selector-class">.tooltip</span></code></span> plus a class which controls the text size, e.g. <span><code class="hljs"><span class="hljs-selector-class">.body2</span></code></span>.
+  <div class="alert info medium icon mt-2" role="alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Lightbulb"><path d="M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9v1zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"></path></svg>
+    <p class="alert body2">
+      <div>
+        If you know the id of the tooltip, you can place an <strong>aria-describedby</strong> attribute on the element with a tooltip and set it equal to the id of the tooltip.
+      </div>
+    </p>
+  </div>
+</p>
+<p class="body1 mt-2 bold">Tooltip Examples:</p>
+
+<div class="flex-row justify-between mt-2 align-center">
+  <button role="presentation" type="button" class="outlined large transparent w-100" aria-label="Top Start" aria-describedby="example-tool-1" data-pelem="#example-tool-1" data-popover data-mouse data-click>
+    Top-Start
+  </button>
+  <div role="tooltip" class="tooltip caption" id="example-tool-1" data-placement="top-start">
+    Example Tooltip 1
+  </div>
+  <button role="presentation" type="button" class="outlined large w-100 info" aria-label="Top" aria-describedby="example-tool-2" data-pelem="#example-tool-2" data-popover data-mouse data-click>
+    Top
+  </button>
+  <div role="tooltip" class="tooltip caption" id="example-tool-2" data-placement="top">
+    Example Tooltip 2
+  </div>
+  <button role="presentation" type="button" class="outlined large w-100 success" aria-label="Top End" aria-describedby="example-tool-3" data-pelem="#example-tool-3" data-popover data-mouse data-click>
+    Top-End
+  </button>
+  <div role="tooltip" class="tooltip caption" id="example-tool-3" data-placement="top-end">
+    Example Tooltip 3
+  </div>
+</div>
+<div class="flex-row justify-between mt-2 align-center">
+  <div class="flex-col justify-between align-start">
+    <button role="presentation" type="button" class="outlined large w-100 secondary mt-2" aria-label="Left Start" aria-describedby="example-tool-4" data-pelem="#example-tool-4" data-popover data-mouse data-click>
+     Left-Start
+    </button>
+    <div role="tooltip" class="tooltip caption" id="example-tool-4" data-placement="left-start">
+      Example Tooltip 4
+    </div>
+    <button role="presentation" type="button" class="outlined large w-100 error mt-2" aria-label="Left" aria-describedby="example-tool-5" data-pelem="#example-tool-5" data-popover data-mouse data-click>
+      Left
+    </button>
+    <div role="tooltip" class="tooltip caption" id="example-tool-5" data-placement="left">
+      Example Tooltip 5
+    </div>
+    <button role="presentation" type="button" class="outlined large w-100 primary mt-2" aria-label="Left End" aria-describedby="example-tool-6" data-pelem="#example-tool-6" data-popover data-mouse data-click>
+      Left-End
+    </button>
+    <div role="tooltip" class="tooltip caption" id="example-tool-6" data-placement="left-end">
+    Example Tooltip 6
+  </div>
+  </div>
+  
+  <div class="flex-col justify-between align-end">
+    <button role="presentation" type="button" class="outlined large transparent w-100 mt-2" aria-label="Right Start" aria-describedby="example-tool-7" data-pelem="#example-tool-7" data-popover data-mouse data-click>
+      Right-Start
+    </button>
+    <div role="tooltip" class="tooltip caption" id="example-tool-7" data-placement="right-start">
+      Example Tooltip 7
+    </div>
+    <button role="presentation" type="button" class="outlined large w-100 info mt-2" aria-label="Right" aria-describedby="example-tool-8" data-pelem="#example-tool-8" data-popover data-mouse data-click>
+      Right
+    </button>
+    <div role="tooltip" class="tooltip caption" id="example-tool-8" data-placement="right">
+      Example Tooltip 8
+    </div>
+    <button role="presentation" type="button" class="outlined large w-100 secondary mt-2" aria-label="Right End" aria-describedby="example-tool-9" data-pelem="#example-tool-9" data-popover data-mouse data-click>
+      Right-End
+    </button>
+    <div role="tooltip" class="tooltip caption" id="example-tool-9" data-placement="right-end">
+      Example Tooltip 9
+    </div>
+  </div>
+</div>
+<div class="flex-row justify-between mt-2 align-center">
+  <button role="presentation" type="button" class="outlined large w-100 success" aria-label="Bottom Start" aria-describedby="example-tool-10" data-pelem="#example-tool-10" data-popover data-mouse data-click>
+    Bottom-Start
+  </button>
+  <div role="tooltip" class="tooltip caption" id="example-tool-10" data-placement="bottom-start">
+    Example Tooltip 10
+  </div>
+  <button role="presentation" type="button" class="outlined large w-100 error" aria-label="Bottom" aria-describedby="example-tool-11" data-pelem="#example-tool-11" data-popover data-mouse data-click>
+    Bottom
+  </button>
+  <div role="tooltip" class="tooltip caption" id="example-tool-11" data-placement="bottom">
+    Example Tooltip 11
+  </div>
+  <button role="presentation" type="button" class="outlined large w-100 warning" aria-label="Bottom End" aria-describedby="example-tool-12" data-pelem="#example-tool-12" data-popover data-mouse data-click>
+    Bottom-End
+  </button>
+  <div role="tooltip" class="tooltip caption" id="example-tool-12" data-placement="bottom-end">
+    Example Tooltip 12
+  </div>
+</div>
+</section>
+<section id="menus" class="mt-3">
+<h3 class="h6 bold block bb">
+  <a href="#menus" class="same-page fw-regular">Menus</a>
+</h3>
+<p class="body1 mt-2">
+  Menus are basically just tooltips with different styling (They share the same data-* attributes). Instead of the <span><code class="hljs"><span class="hljs-selector-class">.tooltip</span></code></span> class, you should 
+  use the <span><code class="hljs"><span class="hljs-selector-class">.floating-menu</span></code></span> class. It is probably best to not use the 
+  <span class="t-info bold">data-mouse</span> attribute for menus, since menus are supposed to contain more information than a tooltip, and its better to have that information more securely open.
+  <br>
+  <span class="block t-warning">For images in menus, they should have the <span><code class="hljs"><span class="hljs-selector-class">.no-click</span></code></span> class.</span>
+</p>
+<p class="body1 mt-2 bold">Menu Examples:</p>
+<p class="body1 mt-2">
+  The longest mountain range on Earth is called the mid-ocean ridge. <button type="button" aria-haspopup="dialog" class="icon small secondary" aria-label="More Information" data-popover data-pelem="#floating-menu-example" data-click><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Info"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+</p>
+<div id="floating-menu-example" role="tooltip" class="floating-menu" data-placement="top-end">
+    <span class="h6 bold block p-sm bb">Mid-Ocean Ridge</span>
+    <img src="https://image.storething.org/frankmbrown/largest-mountain-range.jpg" style="width: 300px;" class="mt-2 no-click">
+    <p class="body2 mt-2" style="max-width: 500px;">
+      The longest mountain range on Earth is called the mid-ocean ridge. Spanning 40,389 miles around the globe, it's truly a global landmark. About 90 percent of the mid-ocean ridge system is under the ocean.
+    </p>
+</div>
+</section>
+<section id="snackbars" class="mt-3">
+<h3 class="h6 bold block bb">
+  <a href="#snackbars" class="same-page fw-regular">Snackbars</a>
+</h3>
+<p class="body1 mt-2">
+  The element that triggers the snackbar should have a <span class="t-info bold">data-selem</span> attribute that is equal to a query selector string that allows the client side JavaScript to find the snackbar element. When this element is clicked, 
+  the snackbar has its <span class="t-info bold">aria-hidden</span> attribute set to false, which allows the user to see the snackbar at the top of the screen. The snackbar should have a <span class="t-info bold">role="alert"</span>.
+  <br>
+  The snackbar <strong class="italic">can</strong> include a <span class="t-info bold">data-snacktime</span> attribute which should be equal to the number of milliseconds for which you want the snackbar to be visible. After this time, the snackbar will be removed from the screen.
+  <br>
+  If you want a button to close the snackbar, include the <span class="t-info bold">data-close-snackbar</span> attribute on the button. When clicked, this button will get the closest <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;snackbar&quot;</span>&gt;</span></span></code></span> element and set its <span class="t-info bold">aria-hidden</span> attribute to true.
+  <br>
+  Should probably include <span class="t-info bold">aria-haspopup="true"</span> on elements that have a snackbar popup unless the snackbar has a <span class="t-info bold">data-snacktime</span> attribute.
+</p>
+<p class="body1 mt-2 bold">Snackbar Examples:</p>
+
+<p class="t-success body1 block" aria-haspopup="true" style="cursor: pointer;" data-snackbar data-selem="#snack-success-example">Success Snackbar (Click Me):</p>
+<div id="snack-success-example" class="snackbar success" aria-hidden="true" role="alert"  data-snacktime="1000">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Draw"><path d="m18.85 10.39 1.06-1.06c.78-.78.78-2.05 0-2.83L18.5 5.09c-.78-.78-2.05-.78-2.83 0l-1.06 1.06 4.24 4.24zm-5.66-2.83L4 16.76V21h4.24l9.19-9.19-4.24-4.25zM19 17.5c0 2.19-2.54 3.5-5 3.5-.55 0-1-.45-1-1s.45-1 1-1c1.54 0 3-.73 3-1.5 0-.47-.48-.87-1.23-1.2l1.48-1.48c1.07.63 1.75 1.47 1.75 2.68zM4.58 13.35C3.61 12.79 3 12.06 3 11c0-1.8 1.89-2.63 3.56-3.36C7.59 7.18 9 6.56 9 6c0-.41-.78-1-2-1-1.26 0-1.8.61-1.83.64-.35.41-.98.46-1.4.12-.41-.34-.49-.95-.15-1.38C3.73 4.24 4.76 3 7 3s4 1.32 4 3c0 1.87-1.93 2.72-3.64 3.47C6.42 9.88 5 10.5 5 11c0 .31.43.6 1.07.86l-1.49 1.49z"></path></svg>
+  <p class="alert">This is a success colored snackbar. That closes in 1 second.</p>
+  <button data-close-snackbar="" class="icon medium" type="button" aria-label="Close Snackbar">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+  </button>
+</div>
+
+<p class="t-error body1 block" aria-haspopup="true" style="cursor: pointer;" data-snackbar data-selem="#snack-error-example">Error Snackbar (Click Me):</p>
+<div id="snack-error-example" class="snackbar error" aria-hidden="true" role="alert"  data-snacktime="2000">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Merge"><path d="M6.41 21 5 19.59l4.83-4.83c.75-.75 1.17-1.77 1.17-2.83v-5.1L9.41 8.41 8 7l4-4 4 4-1.41 1.41L13 6.83v5.1c0 1.06.42 2.08 1.17 2.83L19 19.59 17.59 21 12 15.41 6.41 21z"></path></svg>
+  <p class="alert">This is an error colored snackbar. That closes in 2 seconds.</p>
+  <button data-close-snackbar="" class="icon medium" type="button" aria-label="Close Snackbar">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+  </button>
+</div>
+
+<p class="t-warning body1 block" aria-haspopup="true" style="cursor: pointer;" data-snackbar data-selem="#snack-warning-example">Warning Snackbar (Click Me):</p>
+<div id="snack-warning-example" class="snackbar warning" aria-hidden="true" role="alert"  data-snacktime="3000">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Water"><path d="M21.98 14H22h-.02zM5.35 13c1.19 0 1.42 1 3.33 1 1.95 0 2.09-1 3.33-1 1.19 0 1.42 1 3.33 1 1.95 0 2.09-1 3.33-1 1.19 0 1.4.98 3.31 1v-2c-1.19 0-1.42-1-3.33-1-1.95 0-2.09 1-3.33 1-1.19 0-1.42-1-3.33-1-1.95 0-2.09 1-3.33 1-1.19 0-1.42-1-3.33-1-1.95 0-2.09 1-3.33 1v2c1.9 0 2.17-1 3.35-1zm13.32 2c-1.95 0-2.09 1-3.33 1-1.19 0-1.42-1-3.33-1-1.95 0-2.1 1-3.34 1-1.24 0-1.38-1-3.33-1-1.95 0-2.1 1-3.34 1v2c1.95 0 2.11-1 3.34-1 1.24 0 1.38 1 3.33 1 1.95 0 2.1-1 3.34-1 1.19 0 1.42 1 3.33 1 1.94 0 2.09-1 3.33-1 1.19 0 1.42 1 3.33 1v-2c-1.24 0-1.38-1-3.33-1zM5.35 9c1.19 0 1.42 1 3.33 1 1.95 0 2.09-1 3.33-1 1.19 0 1.42 1 3.33 1 1.95 0 2.09-1 3.33-1 1.19 0 1.4.98 3.31 1V8c-1.19 0-1.42-1-3.33-1-1.95 0-2.09 1-3.33 1-1.19 0-1.42-1-3.33-1-1.95 0-2.09 1-3.33 1-1.19 0-1.42-1-3.33-1C3.38 7 3.24 8 2 8v2c1.9 0 2.17-1 3.35-1z"></path></svg>
+  <p class="alert">This is a warning colored snackbar. That closes in 3 seconds.</p>
+  <button data-close-snackbar="" class="icon medium" type="button" aria-label="Close Snackbar">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+  </button>
+</div>
+
+<p class="t-info body1 block" aria-haspopup="true" style="cursor: pointer;" data-snackbar data-selem="#snack-info-example">Info Snackbar (Click Me):</p>
+<div id="snack-info-example" class="snackbar info" aria-hidden="true" role="alert" data-snacktime="4000">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Iron"><path d="M21 6c-1.66 0-3 1.34-3 3v4c0 .55-.45 1-1 1v-4c0-1.66-1.34-3-3-3h-4c-1.66 0-3 1.34-3 3h2c0-.55.45-1 1-1h4c.55 0 1 .45 1 1v1H6c-2.21 0-4 1.79-4 4v3h15v-2c1.66 0 3-1.34 3-3V9c0-.55.45-1 1-1h1V6h-1z"></path></svg>
+  <p class="alert">This is an info colored snackbar. That closes in 4 seconds.</p>
+  <button data-close-snackbar="" class="icon medium" type="button" aria-label="Close Snackbar">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+  </button>
+</div>
+
+<p class="body1 block" style="cursor: pointer;" data-snackbar data-selem="#snack-secondary-example">Secondary Background Snackbar (probably best for getting inputs) (Click Me):</p>
+
+<div id="snack-secondary-example" class="snackbar secondary" role="alert" aria-hidden="true">
+  <div class="block">
+    <div class="flex-row justify-start align-center gap-2 w-100">
+      <div 
+      class="input-group grow-1" 
+      data-hover="false"
+      data-focus="false"
+      data-error="false"
+      data-blurred="false"
+      >
+        <label for="example-snackbar-input" hidden>Example snackbar Input</label>
+        <div class="text-input block medium">
+            <input 
+            name="example-snackbar-input" 
+            id="example-snackbar-input" 
+            type="text"
+            autocomplete="off"
+            class="medium"
+            placeholder="Example Snackbar Input..."
+            maxlength="10"
+            pattern="{4.50}"
+            spellecheck="off"
+            autocapitalize="off"
+            />
+        </div>
+    </div>
+    <button class="grow-0 text error small" data-close-snackbar type="button" aria-label="Close Snackbar">
+      CLOSE
+    </button>
+  </div>
+  <p class="body2 mt-1" style="color: var(--text-primary);">
+    Here is an example of a more complex snackbar.
+  </p>
+</div>
+
+</section>

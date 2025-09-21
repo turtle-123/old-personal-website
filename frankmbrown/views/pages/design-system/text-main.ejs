@@ -1,0 +1,171 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/text-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="text-header">
+  <a href="#text-header"  class="same-page bold">Text</a>
+</h2>
+<details class="mt-2">
+  <summary>
+    <span class="h6 fw-regular">About Text</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true">
+    Text size, color, background color, font-weight, decoration, style, and position can be customized using utility classes 
+    and semantic html elements. See examples below to see how text can be customized.
+  </div>
+</details>
+<section id="text-size" class="mt-2">
+<h3 class="h6 bold bb"><a href="#text-size" class="same-page fw-regular">Text Size</a></h3>
+<div class="alert info small filled body2" role="alert">
+  <p class="alert">
+    <strong>NOTE:</strong> 
+    Make sure to not skip heading levels in application code.
+  </p>
+</div>
+<p class="body2 mt-1">
+  The text sizing classes: .h1, .h2, .h3, .h4, .h5, .h6, .body1, .body2, .caption, they change the font-size, font-weight, line-height, margin, and letter-spacing of their contents.
+  <br>
+  <strong class="bold">Nothing is important, so everything can be overridden.</strong>
+  <br>
+  We set .body1 as the default text styling for div, p, and span. We set the .h1 as the default styling for h1, ...(other heading elements), ans .caption as the default styling for small.
+</p>
+<h1 class="h1">Heading 1 (h1, .h1)</h1>
+<h2 class="h2">Heading 2 (h2, .h2)</h2>
+<h3 class="h3">Heading 3 (h3, .h3)</h3>
+<h4 class="h4">Heading 4 (h4, .h4)</h4>
+<h5 class="h5">Heading 5 (h5, .h5)</h5>
+<h6 class="h6">Heading 6 (h6, .h6)</h6>
+<p class="body1">Body 1 (p, span, div, .body1)</p>
+<p class="body2">Body 2 (.body2)</p>
+<small class="caption">This is some caption text. (.caption, small)</small>
+</section>
+<section id="text-weight-decoration" class="mt-2">
+<h3 class="h6 bold bb"><a href="#text-weight-decoration" class="same-page fw-regular">Text Weight and Decoration</a></h3>
+<p class="body1 fw-thin mt-1">Here is some thin text. (.fw-thin)</p>
+<p class="body1 mt-1">Here is some normal text. (.fw-normal, .norm-text)</p>
+<p class="body1 fw-regular mt-1">Here is some text that has font weight slightly bolder than the normal font-weight of 400. (.fw-regular) </p>
+<p class="body1 bold mt-1">Here is some bold text. (.bold)</p>
+  <b class="bold">Here is some bold text. (b, .bold)</b>
+<p></p>
+<div class="alert small outlined info mt-2" role="alert">
+  <p class="body2">
+    <strong>Note: </strong>The bold (b) element should be used for things like keywords in a summary, product names in a review, or other spans of text that would typically be boldfaced.
+  </p>
+</div>
+<p class="body1 mt-2">
+  <strong class="bolder">Here is some bolder text. (strong, .bolder)</strong>
+</p>
+<div class="alert small filled warning mt-2" role="alert">
+  <p class="body2">
+    <strong>Note: </strong>The strong (strong) element should be used to indicated that its contents have special importance.
+  </p>
+</div>
+<p class="body1 mt-2">
+  <u class="underline">Here is some underlined text.(u, .underline)</u>
+</p>
+
+<div class="alert small outlined warning mt-2" role="alert">
+  <p class="body2">
+    <strong>Note: </strong>The u element should not be used for presentation purposes or to denote titles of books. Valid use cases include:
+    annotating spelling errors, applying a proper name mark to denote proper names in Chinese text, and other forms of annotation.
+  </p>
+</div>
+
+<p class="body1 mt-1">
+  <em class="italic">Here is some italic text. (em, i, .italic)</em>
+</p>
+
+<p class="body2 mt-1 t-tsecondary">
+  The "i" element represents a range of text that is set off from the normal text for some reason, such as idiomatic text, technical terms, and taxonomical designations, among others.
+</p>
+
+<p class="body2 mt-1 t-primary">
+  The "em" element Marks text that has stress emphasis. The `em` element can be nested, with each nesting level indicating a greater degree of emphasis.
+</p>
+<p class="body1 mt-1">
+  <s class="strikethrough">Here is some text that is strikethrough-ed. (s, .strikethrough)</s>
+</p>
+<p class="mt-1 t-success body2">
+  Use the 's' element to represent things that are no longer relevant or no longer accurate.
+</p>
+<p class="body1 mt-1">
+  <u>
+    <s>
+      Here is some underlined and strikedthrough text. (u&gt;s,s&gt;u .underline-strikethrough)
+    </s>
+  </u>
+</p>
+<p class="body1">
+  Here is an example of subscript (sub, .sub): H<sub>2</sub>0.
+</p>
+<p class="body1">
+  Here is an example of superscript (sup, .sup): x<sup>2</sup> + y<sup>2</sup> = z<sup>2</sup>. <br>
+<strong class="bold t-info">Note:</strong> 
+<span class="t-info">
+  You might want to use superscript for citations in articles.
+</span>
+</p>
+</section>
+<section id="text-highlighting" class="mt-2">
+<h3 class="h6 bold bb"><a href="#text-highlighting" class="same-page fw-regular">Highlighted Text</a></h3>
+<div class="alert warning small body2 mt-1 icon" role="alert">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Highlight"><path d="m6 14 3 3v5h6v-5l3-3V9H6v5zm5-12h2v3h-2V2zM3.5 5.88l1.41-1.41 2.12 2.12L5.62 8 3.5 5.88zm13.46.71 2.12-2.12 1.41 1.41L18.38 8l-1.42-1.41z"></path></svg>
+  <p class="alert">
+    <span>
+      Below, you see examples of the <strong>mark</strong> element being used. 
+      The mark element represents text which is marked or highlighted for reference or 
+      notation purposes due to the marked passage's relevance in the enclosing context. <br>
+      The classes below set the background color of only a mark element.
+    </span>
+  </p>
+</div>
+<p class="body1 mt-2">
+  <mark>Here is some regular highlighted text. (mark)</mark>
+</p>
+<p class="body1 mt-1">
+  <mark class="primary">Here is some primary highlighted text. (mark.primary)</mark>
+</p>
+<p class="body1 mt-1">
+  <mark class="secondary">Here is some secondary highlighted text. (mark.secondary)</mark>
+</p>
+<p class="body1 mt-1">
+  <mark class="error">Here is some error highlighted text. (mark.error)</mark>
+</p>
+<p class="body1 mt-1">
+  <mark class="success">Here is some success highlighted text. (mark.success)</mark>
+</p>
+<p class="body1 mt-1">
+  <mark class="warning">Here is some warning highlighted text. (mark.warning)</mark>
+</p>
+<p class="body1 mt-1">
+  <mark class="info">Here is some info highlighted text (mark.info)</mark>
+</p>
+<p class="body1 mt-1">
+  <mark class="b-secondary">Here is some info highlighted text (mark.info)</mark>
+</p>
+<p class="body1 mt-1">
+  <mark class="disabled">Here is some info highlighted text (mark.info)</mark>
+</p>
+</section>
+<section id="text-colors" class="mt-2">
+<h3 class="h6 bold bb"><a href="#text-colors" class="same-page fw-regular">Text Colors</a></h3>
+<p class="body2 t-info fw-regular">
+  The classes below edit the color css property and mark the set value as important.
+</p>
+<p class="body1">Here is some normal text.</p>
+<p class="body1 t-primary">Here is some primary text. (.t-primary)</p>
+<p class="body1 t-secondary">Here is some secondary text. (.t-secondary)</p>
+<p class="body1 t-error">Here is some error text. (.t-error)</p>
+<p class="body1 t-success">Here is some success text. (.t-success)</p>
+<p class="body1 t-warning">Here is some warning text. (.t-warning)</p>
+<p class="body1 t-info">Here is some info text. (.t-info)</p>
+<p class="body1 t-tsecondary">Here is some text-secondary text. (.t-tsecondary)</p>
+<p class="body1 t-disabled">Here is some disabled text. (.t-disabled)</p>
+</section>

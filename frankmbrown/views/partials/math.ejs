@@ -1,0 +1,92 @@
+<%# 
+PARTIAL ROUTE: partials/math.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.userError
+- locals.error
+- locals.errorMessage
+- locals.copyHtmlId
+- locals.snackbarId
+- locals.block
+- locals.htmlString
+- locals.copyInputId
+- locals.input
+%>
+<%if(locals.userError){%>
+  <p class="mt-2 h6 t-error block text-align-center bold">
+    Please Enter a Valid Input
+  </p>
+<%}else if (locals.error){%>
+  <%if(locals.errorMessage){%>
+    <p class="mt-2 h6 t-error block text-align-center bold">
+      <%=locals.errorMessage%>
+    </p>
+  <%}else {%>
+    <p class="mt-2 h6 t-warning block text-align-center bold">
+      Sorry, something went wrong on our side.
+    </p>
+  <%}%>
+<%}else{%>  
+  <div class="flex-row align-center justify-start p-sm">
+    <div role="tooltip" data-placement="top" class="tooltip caption" id="copy-html-math-tooltip">
+      Copy HTML of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace linebreak="newline"></mspace><mi>T</mi><mi>e</mi><mi>X</mi><mspace linebreak="newline"></mspace></mrow><annotation encoding="application/x-tex">\\TeX\\</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="mspace"></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span><span class="mspace"></span></span></span> Expression
+    </div>
+    <button 
+    aria-haspopup="true" 
+    aria-label="Copy HTML Math Element" 
+    class="toggle-button large" 
+    data-copy-el 
+    data-el="#<%=locals.copyHtmlId%>" 
+    data-snackbar 
+    data-selem="#<%=locals.snackbarId%>"
+    data-popover 
+    data-mouse
+    data-pelem="#copy-html-math-tooltip"
+    aria-describedby="copy-html-math-tooltip"
+    >
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="HtmlSharp"><path d="M3.5 9H5v6H3.5v-2.5h-2V15H0V9h1.5v2h2V9zm15 0H12v6h1.5v-4.5h1V14H16v-3.51h1V15h1.5V9zM11 9H6v1.5h1.75V15h1.5v-4.5H11V9zm13 6v-1.5h-2.5V9H20v6h4z"></path></svg>
+    </button>
+    <div 
+    id="<%=locals.snackbarId%>" 
+    class="snackbar dialog-snackbar success" 
+    aria-hidden="true" 
+    data-snacktime="4000"
+    >
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CheckCircleSharp"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+          <p class="p-sm">
+            HTML Elements with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace linebreak="newline"></mspace><mi>T</mi><mi>e</mi><mi>X</mi><mspace linebreak="newline"></mspace></mrow><annotation encoding="application/x-tex">\\TeX\\</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="mspace"></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span><span class="mspace"></span></span></span> code copied to clipboard!
+          </p>
+          <button aria-label="Close Snackbar" class="icon medium" type="button" data-close-snackbar>
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CloseSharp"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+          </button>
+    </div>
+  </div>
+  <div style="margin: 0.25rem; position: relative;">
+    <%if(locals.block){%>
+      <div id="<%=locals.copyHtmlId%>" class="katex-block" style="position: relative;">
+        <%-locals.htmlString%>
+        <button 
+        type="button" 
+        data-snackbar 
+        data-selem="#copy-math-success-dialog" 
+        data-copy-input 
+        data-input="<%=locals.copyInputId%>"
+        aria-haspopup="true"
+        class="toggle-button dark small" style="position: absolute; top: 3px; right: 3px; z-index: 2;"
+        aria-label="Copy TeX Expression"
+        >
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+            </path>
+          </svg>
+          <input hidden type="text" name="<%=locals.copyInputId%>" id="<%=locals.copyInputId%>" value="<%=locals.input%>" />
+        </button>
+      </div>     
+    <%}else{%>
+      <span id="<%=locals.copyHtmlId%>" class="inline-katex">
+        <%-locals.htmlString%>
+      </span>
+    <%}%>
+  </div>
+<%}%>

@@ -1,0 +1,38 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/indicators-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="indicators-header">
+  <a href="#indicators-header"  class="same-page bold">Indicators</a>
+</h2>
+<section id="about_indicators" class="mt-2">
+<h3 class="h6 bb bold">About Indicators</h3>
+<p class="mt-2 body1">
+  I use the indicators from <a href="https://loading.io/css/" target="_blank" class="link secondary">Pure CSS Loaders</a>.
+  The three indicators below are the indicators that I chose to include in the default version of the design system.
+  You can change them with others without affecting other parts of the application. 
+  <br/><br>
+  Note that indicators should be wrapped in a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;progressbar&quot;</span> <span class="hljs-attr">aria-busy</span>=<span class="hljs-string">&quot;false|true&quot;</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;(Something) Indicator&quot;</span>&gt;</span></span></code></span> element. A
+  ria-busy="true" => the request is currently taking place.
+  <br><br>
+  The client side JavaScript will take care of changing aria-busy based on the status of the request. <strong>If the indicator should be hidden initially, then it should have the </strong>
+  <span><code class="hljs"><span class="hljs-selector-class">.htmx-indicator</span></code></span> <strong>class</strong>.
+  <br/>
+  Note: To remove / hide the element that triggered the request during the request, include the <span class="t-info bold">data-remove</span> attribute on the element.
+</p>
+<p class="body1 mt-2 bold">Indicator 1 (46px)</p>
+<div class="flex-row justify-center t-primary" role="progressbar" aria-busy="true" aria-label="Example Indicator 1">
+  <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>
+<p class="body1 mt-2 bold">Indicator 2 (30px)</p>
+<div class="flex-row justify-center t-secondary" role="progressbar" aria-busy="true" aria-label="Example Indicator 2">
+  <div class="lds-dual-ring"></div>
+</div>
+<p class="body1 mt-2 bold">Indicator 3 (70px)</p>
+<div class="flex-row justify-center t-tsecondary" role="progressbar" aria-busy="true" aria-label="Example Indicator 3">
+  <div class="lds-facebook"><div></div><div></div><div></div></div>
+</div>
+</section>

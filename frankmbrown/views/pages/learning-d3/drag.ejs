@@ -1,0 +1,18 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/drag.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+<h1 class="page-title" id="top-of-page">D3.js Drag</h1>
+        
+<p>
+  Drag-and-drop is a popular interaction method for manipulating spatial elements: move the pointer to an object, press and hold to grab it, “drag” the object to a new location, and release to “drop”. D3’s drag behavior provides a flexible abstraction for drag-and-drop. For example, you can drag nodes in a force-directed graph:
+</p>
+        
+  <%-include('../../partials/pagePartial')%>
+<%}%>

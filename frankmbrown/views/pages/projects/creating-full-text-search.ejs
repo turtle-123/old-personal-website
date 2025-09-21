@@ -1,0 +1,135 @@
+<%# 
+PARTIAL ROUTE: pages/projects/creating-full-text-search.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  <h1 class="page-title" style="font-size: 1.8rem">Creating Full Text Search For The Website Using 
+    <a style="font-weight: inherit; font-size: inherit;" href="https://www.postgresql.org/" class="secondary link" target="_blank">PostgreSQL</a>
+    and Maybe
+    <a style="font-weight: inherit; font-size: inherit;" href="https://en.wikipedia.org/wiki/Word_embedding" class="secondary link" target="_blank">Word Embeddings</a>
+  </h1>
+
+  <section id="why" class="mt-2">
+    <h2 class="h2 bold bb">
+      <a href="#why" class="same-page fw-regular">Why Implement Search</a>
+    </h2>
+    <p class="mt-2">
+      I got tired of trying to create the <a hx-push-url="true" class="primary link" href="/projects/create-svg" hx-target="#PAGE" hx-get="/projects/create-svg" hx-indicator="#page-transition-progress">SVG editor</a>, and it seems like it is going to be a little bit more difficult than I thought, so I decided to try to implement search for this site to get something done. 
+      <br>
+      I have also tried to implement search in the past, and would like to try and make it faster.
+      <br>
+      I also need to figure out the best way to implement Lexical with search.
+    </p>
+    <div class="mt-2">
+      I am using 
+    <ol class="inline" style="display: inline;">
+      <li><a href="https://xata.io/blog/postgres-full-text-search-engine" class="secondary link" target="_blank">Part 1</a> and </li> 
+      <li><a href="https://xata.io/blog/postgres-full-text-search-postgres-vs-elasticsearch" class="secondary link" target="_blank">Part 2</a></li>
+    </ol>
+      of this xata.io blog to guide me. Also,
+      <a href="https://medium.com/geekculture/comprehend-tsvector-and-tsquery-in-postgres-for-full-text-search-1fd4323409fc" class="secondary link" target="_blank">this Medium blog article </a>has some good tips.
+    </div>
+  </section>
+
+  <style>
+    #terms>dl>dt {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    #terms>dl>dd {
+
+    }
+  </style>
+  <section id="terms" class="mt-2">
+    <h2 class="h2 bold bb">
+      <a href="#terms" class="same-page fw-regular">Key Terms</a>
+    </h2>
+    <dl style="line-height: 1.5;">
+      <dt>tsvector</dt>
+      <dd>tsvector is a PostgreSQL data type that stores a sorted list of lexemes</dd>
+      <dt>lexeme</dt>
+      <dd>A lexeme is a string, like a token, but it has been normalized so that different forms of the word are made (e.g., removing prefixes and suffixes from words and removing too common words - e.g. I, to, an - from the string ). Below is an example that shows a English text string being converted to a <span class="text-code">tsvector</span>.</dd>
+<div style="position: relative;" class="mt-2"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> unnest(to_tsvector(<span class="hljs-string">&#x27;english&#x27;</span>,
+<span class="hljs-string">&#x27;I&#x27;&#x27;m going to make him an offer he can&#x27;&#x27;t refuse. Refusing is not an option.&#x27;</span>));
+
+lexeme | positions | weights
+<span class="hljs-comment">--------+-----------+---------</span>
+go     | {<span class="hljs-number">3</span>}       | {D}
+m      | {<span class="hljs-number">2</span>}       | {D}
+make   | {<span class="hljs-number">5</span>}       | {D}
+offer  | {<span class="hljs-number">8</span>}       | {D}
+<span class="hljs-keyword">option</span> | {<span class="hljs-number">17</span>}      | {D}
+refus  | {<span class="hljs-number">12</span>,<span class="hljs-number">13</span>}   | {D,D}
+(<span class="hljs-number">6</span> <span class="hljs-keyword">rows</span>)
+
+    </code></pre>
+        <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+            </path>
+          </svg>
+        </button>
+      </div>
+      <dt>tsquery</dt>
+      <dd>
+        The <span class="text-code">tsquery</span> datatype is used to represent a normalized query.
+      </dd>
+      <dt>
+        <abbr style="font-size: inherit;font-weight: inherit;" title="Generalized Inverted Index">GIN</abbr> (Generlized Inverted Index)
+      </dt>
+      <dd>
+        GIN is designed for handling cases where the items to be indexed are composite values, and the queries to be handled by the index need to search for element values that appear within the composite items. This means that GIN can be used for more than just text search, notably for JSON querying.
+      </dd>
+      <dt>
+        <a href="https://www.postgresql.org/docs/current/textsearch-controls.html#TEXTSEARCH-RANKING" target="_blank" class="secondary link" style="font-size: inherit;font-weight: inherit;">ts_rank</a>
+      </dt>
+      <dd>
+        PostgreSQL provides two predefined ranking functions, which take into account lexical, proximity, and structural information; that is, they consider how often the query terms appear in the document, how close together the terms are in the document, and how important is the part of the document where they occur. However, the concept of relevancy is vague and very application-specific. Different applications might require additional information for ranking, e.g., document modification time. The built-in ranking functions are only examples. You can write your own ranking functions and/or combine their results with additional factors to fit your specific needs.
+
+        The two ranking functions mentioned are <span class="text-code">ts_rank</span> and <span class="text-code">ts_rank_cd</span>. The difference between them is that while they both take into account the frequency of the term, ts_rank_cd also takes into account the proximity of matching lexemes to each other.
+      </dd>
+    </dl>
+  </section>
+
+  <section id="things-to-remember" class="mt-2">
+    <h2 class="h2 bold bb">
+      <a href="#things-to-remember" class="same-page fw-regular">Things to remember</a>
+    </h2>
+    <ul>
+      <li>
+        Using <span class="text-code">ts-vector</span> in PostgreSQL, each word has its 
+        <span class="bold">position</span>, the position of the word in the original string, and <span class="bold">weight</span> recorded. 
+      </li>
+      <li>
+        To find the different language configurations that you can use for <span class="text-code">to_tsvector</span>, run the following:
+      </li>
+      <div role="listitem" class="mt-1">
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">SELECT</span> cfgname <span class="hljs-keyword">FROM</span> pg_ts_config;</code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>
+      </div>
+      <li>
+        There are functions like <span class="text-code">to_tsquery</span>, <span class="text-code">plainto_tsquery</span>,<span class="text-code">websearch_to_tsquery</span> that are helpful in converting user-written text into a proper tsquery, primarily by normalizing words appearing in the text.
+      </li>
+      <li>
+        You don't have to only rank search results by word frequency (<span class="text-code">ts_rank</span>), you can also takeinto account other variables by coming up with an algorithm. This is called <strong>Relevancy Tuning</strong>.
+      </li>
+      <li>
+        You can have a typo tolerance / use fuzzy search for a query that may have some misspelled words by creating a <a href="https://www.postgresql.org/docs/current/rules-materializedviews.html" class="secondary link" target="_blank">Materialized View</a> of all the lexems in the database and then correcting the spelling of a word when the <a class="secondary link" href="https://en.wikipedia.org/wiki/Levenshtein_distance" target="_blank">Levenshtein distance</a> is less than some value (3 or 2 is good). <strong>Should probably try to find a node module that can do this faster.</strong>
+      </li>
+      <li>
+        Use <strong>Faceted Search</strong> to allow users to only search for a certain type of information.
+      </li>
+    </ul>
+  </section>
+  <%-include('../../partials/pagePartial')%>
+<%}%>

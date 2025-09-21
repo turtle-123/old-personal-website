@@ -1,0 +1,17 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/geo.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title" id="top-of-page">D3.js Geo</h1>
+  <p>
+    D3 uses spherical GeoJSON to represent geographic features in JavaScript. D3 supports a wide variety of common and unusual map projections. And because D3 uses spherical geometry to represent data, you can apply any aspect to any projection by rotating geometry.
+  </p>
+  
+  <%-include('../../partials/pagePartial')%>
+<%}%>

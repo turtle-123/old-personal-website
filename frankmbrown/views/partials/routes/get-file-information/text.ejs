@@ -1,0 +1,36 @@
+<%# 
+PARTIAL ROUTE: partials/routes/get-file-information/text.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.size
+- locals.extension
+- locals.contentType
+- locals.charset
+%>
+<%#
+size,
+extension,
+contentType,
+charset
+url
+openAiResponse
+%>
+
+<div class="mt-2">
+    <h3 class="h3 bold bb-main">
+        Document Information
+    </h3>
+    <p class="mt-1">
+        <span class="bold">Size:</span> <%=locals.size%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Extension:</span> <%=locals.extension%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Content-Type:</span> <%=locals.contentType%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Charset:</span> <%=locals.charset%>
+    </p>
+</div> 

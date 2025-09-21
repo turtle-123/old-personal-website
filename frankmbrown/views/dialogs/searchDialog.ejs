@@ -1,0 +1,294 @@
+<%# 
+PARTIAL ROUTE: dialogs/searchDialog.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.phone (boolean): Is the user's device a phone?
+%>
+ <%if(locals.phone!==true){%>
+  <div style="display: none;" hidden class="dialog-wrapper" id="search-dialog"  data-close-backdrop data-esc>
+    <div class="dialog large" style="max-height: 100vh!important; height: 600px;" data-click-capture>
+  
+      <div class="dialog-body">
+        <form id="search-dialog-form" method="get" action="/search" hx-trigger="submit" 
+        hx-target="#search-main-target"
+        hx-swap="innerHTML"
+        hx-indicator="#search-loading-ind"
+        hx-get="/search"
+        style="position: sticky; top: -1px; background-color: var(--secondary-background); opacity: 1; z-index: 100; padding: 10px 0px;"
+        >
+          <div class="input-group block grow-1 bb" style="padding: 8px 0px;" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+            <label for="search-application" class="disabled" hidden>Search This Application:</label>
+            <div class="text-input block medium">
+                <input 
+                hx-trigger="input changed delay:200ms, search"
+                hx-include="#search-dialog-form"
+                hx-target="#search-main-target"
+                hx-swap="innerHTML"
+                hx-indicator="#search-loading-ind"
+                hx-get="/search"
+                name="search-application"
+                id="search-application" class="medium icon-after" placeholder="Enter your search..." autocomplete="off" autocapitalize="off" spellcheck="true" maxlength="250" type="search">
+                <svg class="icon-after" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Search">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                    </path>
+                </svg>
+            </div>
+          </div>
+          <details aria-label="Customize Search" class="mt-1 flat" style="background: var(--background);">
+              <summary>
+                  <span class="h6 fw-regular grow-1">Customize Search</span>
+                  <button data-click-capture type="button" class="small filled secondary" hx-get="/search" href="/search" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">
+                    GOTO ADVANCED SEARCH
+                  </button>
+                  <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                  </path>
+                  </svg>
+              </summary>
+              <div class="accordion-content" aria-hidden="true" style="background: var(--background);">
+                <div class="flex-row gap-3 wrap">
+                  <label class="checkbox">
+                    <input type="checkbox" class="secondary" name="search-blog"  checked>
+                    Search Blog
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="info" name="search-notes"  checked>
+                    Search Notes
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="warning" name="search-ideas"  checked>
+                    Search Ideas
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="error" name="search-markdown-notes"  checked>
+                    Search Markdown Notes
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="primary" name="search-jupyternb"  checked>
+                    Search Jupyter Notebooks
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="success" name="search-wotd"  checked>
+                    Search Daily Reading
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="secondary" name="search-tex-notes"  checked>
+                    Search Tex Notes
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="info" name="search-surveys"  checked>
+                    Search Surveys
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="warning" name="search-goodreads"  checked>
+                    Search Goodreads
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="error" name="search-letterboxd"  checked>
+                    Search Letterboxd
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="primary" name="search-games"  checked>
+                    Search Games
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="success" name="search-3d-designs"  checked>
+                    Search 3d Designs
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="secondary" name="search-users"  checked>
+                    Search Users
+                  </label>
+                </div>
+                <fieldset class="mt-1">
+                  <legend class="bold">Search Type</legend>
+                  <div class="flex-row align-center wrap gap-2">
+                    <label class="radio">
+                      <input type="radio" name="search_type" value="default" checked class="secondary">
+                      Default
+                    </label>
+                    <label class="radio">
+                      <input type="radio" name="search_type" value="semantic" class="info">
+                      Semantic Search
+                    </label>
+                    <label class="radio">
+                      <input type="radio" name="search_type" value="string_match" class="warning">
+                      String Match
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+          </details>
+  
+          <div id="search-loading-ind" class="flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Searching Indicator">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          
+        </form>
+        <div id="search-main-target" style="min-height: 200px; overflow-x: hidden;">
+          <div class="alert filled warning icon medium mt-2" role="alert">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+            <p class="alert">
+              Search must be at least one character long.
+            </p>
+            <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-footer" role="toolbar">
+        <button class="filled error small close-dialog" type="button" aria-label="Close Dialog">
+          CLOSE DIALOG
+        </button>
+      </div>
+    </div>
+  </div>
+<%}else{%>
+  <div style="display: none;" hidden class="dialog-wrapper whole" id="search-dialog" data-close-backdrop data-esc>
+    <div class="dialog whole" style="min-height: 600px; max-height: 100vh;" data-click-capture>
+  
+      <div class="dialog-body">
+        <form id="search-dialog-form" method="get" action="/search" hx-trigger="submit" 
+        hx-target="#search-main-target"
+        hx-swap="innerHTML"
+        hx-indicator="#search-loading-ind"
+        hx-get="/search"
+        style="position: sticky; top: -1px; background-color: var(--secondary-background); opacity: 1; z-index: 100; padding: 10px 0px;"
+        >
+          <div class="flex-row align-center justify-start">
+            <div class="input-group block grow-1 bb" style="padding: 8px 0px;" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+              <label for="search-application" class="disabled" hidden>Search This Application:</label>
+              <div class="text-input block medium">
+                  <input 
+                  hx-trigger="input changed delay:200ms, search"
+                  hx-include="#search-dialog-form"
+                  hx-target="#search-main-target"
+                  hx-swap="innerHTML"
+                  hx-indicator="#search-loading-ind"
+                  hx-get="/search"
+                  name="search-application"
+                  id="search-application" class="medium icon-after" placeholder="Enter your search..." autocomplete="off" autocapitalize="off" spellcheck="true" maxlength="250" type="search">
+                  <svg class="icon-after" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Search">
+                      <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                      </path>
+                  </svg>
+              </div>
+            </div>
+            <button class="icon medium close-dialog" type="button" aria-label="Close Dialog">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+            </button>
+          </div>
+          
+          <details aria-label="Customize Search" class="mt-1 flat" style="background: var(--background);">
+              <summary>
+                  <span class="h6 fw-regular grow-1">Customize Search</span>
+                  <button data-click-capture type="button" class="small filled secondary" hx-get="/search" href="/search" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">
+                    GOTO ADVANCED SEARCH
+                  </button>
+                  <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                  </path>
+                  </svg>
+              </summary>
+              <div class="accordion-content" aria-hidden="true" style="background: var(--background);">
+                <div class="flex-row gap-3 wrap">
+                  <label class="checkbox">
+                    <input type="checkbox" class="secondary" name="search-blog"  checked>
+                    Search Blog
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="info" name="search-notes"  checked>
+                    Search Notes
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="warning" name="search-ideas"  checked>
+                    Search Ideas
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="error" name="search-markdown-notes"  checked>
+                    Search Markdown Notes
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="primary" name="search-jupyternb"  checked>
+                    Search Jupyter Notebooks
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="success" name="search-wotd"  checked>
+                    Search Daily Reading
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="secondary" name="search-tex-notes"  checked>
+                    Search Tex Notes
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="info" name="search-surveys"  checked>
+                    Search Surveys
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="warning" name="search-goodreads"  checked>
+                    Search Goodreads
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="error" name="search-letterboxd"  checked>
+                    Search Letterboxd
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="primary" name="search-games"  checked>
+                    Search Games
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="success" name="search-3d-designs"  checked>
+                    Search 3d Designs
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" class="secondary" name="search-users"  checked>
+                    Search Users
+                  </label>
+                </div>
+                <fieldset class="mt-1">
+                  <legend class="bold">Search Type</legend>
+                  <div class="flex-row align-center wrap gap-2">
+                    <label class="radio">
+                      <input type="radio" name="search_type" value="default" checked class="secondary">
+                      Default
+                    </label>
+                    <label class="radio">
+                      <input type="radio" name="search_type" value="semantic" class="info">
+                      Semantic Search
+                    </label>
+                    <label class="radio">
+                      <input type="radio" name="search_type" value="string_match" class="warning">
+                      String Match
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+          </details>
+  
+          <div id="search-loading-ind" class="flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Searching Indicator">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          
+        </form>
+        <div id="search-main-target" style="min-height: 200px; overflow-x: hidden;">
+          <div class="alert filled warning icon medium mt-2" role="alert">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+            <p class="alert">
+              Search must be at least one character long.
+            </p>
+            <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-footer" role="toolbar">
+        <button class="filled error small close-dialog" type="button" aria-label="Close Dialog">
+          CLOSE DIALOG
+        </button>
+      </div>
+    </div>
+  </div>
+<%}%>

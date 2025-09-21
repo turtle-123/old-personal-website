@@ -1,0 +1,74 @@
+ <div style="display: none;" hidden class="dialog-wrapper" id="lex-embed-reddit" data-close-backdrop data-esc>
+  <div class="dialog medium" style="min-height: 375px; height: auto!important;" data-click-capture>
+    <div class="dialog-header">
+      <p class="grow-1 flex-row h3 bold">Embed Reddit Comment</p>
+      <%if(locals.desktop===true){%>
+        <kbd class="inline" style="margin-right: 4px;"  data-pelem="#close-dialog-esc-lex-embed-reddit" aria-describedby="close-dialog-esc-lex-embed-reddit" data-mouse data-popover>ESC</kbd>
+        <div id="close-dialog-esc-lex-embed-reddit" role="tooltip" class="tooltip body2" data-placement="bottom-end">
+          Press the Escape key to Close the Dialog
+        </div>
+      <%}%>
+      <button class="icon medium close-dialog" type="button" aria-label="Close Dialog">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+      </button>
+    </div>
+    <div class="dialog-body">
+      <details class="mt-2 flat" style="background-color: var(--background);" aria-label="About Inserting Youtube Content">
+        <summary>
+          <span class="h6 fw-regular">Embedding Reddit Comments</span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+            <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+            </path>
+          </svg>
+        </summary>
+        <div class="accordion-content" aria-hidden="true" style="background-color:var(--background);">
+          <ol class="body2">
+            <li>Click on the <span class="bold">Share</span> button below a comment.</li>
+            <li>Click on the <span class="bold">Embed</span> option in the pop up menu.</li>
+            <li>Click on the <span class="bold">Copy Code</span> button on the resulting page.</li>
+            <li>Paste the embed code into the textarea below.</li>
+          </ol>
+        </div>
+      </details>
+      <form method="dialog" class="mt-2">
+        <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+          <label for="reddit-embed-code">Reddit Embed Code:</label>
+          <div class="mt-1 text-input block medium disabled">
+              <textarea 
+              name="reddit-embed-code" 
+              id="reddit-embed-code" 
+              placeholder="Enter the embed code generated using the process above." 
+              rows="5" 
+              minlength="1" 
+              spellcheck="true"
+              autocomplete="off"
+              autocapitalize="off"
+              ></textarea>
+          </div>
+        </div>
+        <div class="mt-2 flex-row justify-between align-center">
+          <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+          <button type="submit" class="icon-text filled success medium" aria-label="Embed Content Form Submit">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+            SUBMIT
+          </button>
+        </div>
+        <div class="mt-1 alert filled error icon medium" data-embed-error role="alert" hidden>
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Report"><path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z"></path></svg>
+          <p class="alert">
+            Something went wrong embedding the Reddit comment. Try reloading the page or embedding a different comment. 
+          </p>
+        </div>
+      </form>
+    </div>
+    <div class="dialog-footer no-pad" role="toolbar">
+      <button class="filled error small close-dialog" type="button" aria-label="Close Dialog">
+        CLOSE DIALOG
+      </button>
+    </div>
+  </div>
+</div>
+<button data-embed-reddit data-mouse-down type="button" data-dialog="lex-embed-reddit" class="icon-text medium social-media reddit" >
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Reddit"><path d="M22 12.14a2.19 2.19 0 0 0-3.71-1.57 10.93 10.93 0 0 0-5.86-1.87l1-4.7 3.27.71a1.56 1.56 0 1 0 .16-.76l-3.64-.77c-.11-.02-.22 0-.29.06-.09.05-.14.14-.16.26l-1.11 5.22c-2.33.07-4.43.78-5.95 1.86A2.2 2.2 0 0 0 4.19 10a2.16 2.16 0 0 0-.9 4.15 3.6 3.6 0 0 0-.05.66c0 3.37 3.92 6.12 8.76 6.12s8.76-2.73 8.76-6.12c0-.21-.01-.44-.05-.66A2.21 2.21 0 0 0 22 12.14M7 13.7c0-.86.68-1.56 1.54-1.56s1.56.7 1.56 1.56a1.56 1.56 0 0 1-1.56 1.56c-.86.02-1.54-.7-1.54-1.56m8.71 4.14C14.63 18.92 12.59 19 12 19c-.61 0-2.65-.1-3.71-1.16a.4.4 0 0 1 0-.57.4.4 0 0 1 .57 0c.68.68 2.14.91 3.14.91s2.47-.23 3.14-.91a.4.4 0 0 1 .57 0c.14.16.14.41 0 .57m-.29-2.56c-.86 0-1.56-.7-1.56-1.56a1.56 1.56 0 0 1 1.56-1.56c.86 0 1.58.7 1.58 1.56a1.6 1.6 0 0 1-1.58 1.56z"></path></svg>
+  Embed Reddit Comment
+</button>

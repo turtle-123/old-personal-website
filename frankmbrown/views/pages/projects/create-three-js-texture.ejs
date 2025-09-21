@@ -1,0 +1,131 @@
+<%# 
+PARTIAL ROUTE: pages/projects/create-three-js-texture.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+  <h1 class="page-title">
+    Create <a href="https://threejs.org/" style="font-size: inherit; font-weight: inherit;" class="secondary link" target="_blank">ThreeJS</a> Texture
+  </h1>
+  <section id="why" class="mt-2">
+    <h2 class="bold bb-thick h2">
+      <a href="#why" class="same-page fw-regular">About Creating Texture</a>
+    </h2>
+    <p class="mt-2">
+
+    </p>
+  </section>
+  
+  <section id="create-texture" class="mt-2">
+    <h2 class="bold bb-thick h2">
+      <a href="#create-texture" class="same-page fw-regular">Create Texture</a>
+    </h2>
+    <div class="mt-2">
+      <div id="three-js-create-texture"></div>
+    </div>
+  </section>
+  
+  <script type="module" nonce="<%=locals.jsNonce%>">
+    import * as THREE from 'three';
+    import { OrbitControls } from '/static/three/jsm/controls/OrbitControls.js'
+    let theta = 0;
+    let INTERSECTED;
+    // init
+    const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
+    camera.position.z = 1;
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color( 0xff00ff);
+    scene.backgroundBlurriness = 0.2;
+    scene.backgroundIntensity = 0.1;
+    scene.backgroundRotation = (0,1,0);
+    const fog = new THREE.Fog();
+    fog.color = new THREE.Color(0x000000);
+    fog.far = 1000;
+    fog.near = 2;
+    scene.fog = fog;
+    const axesHelper = new THREE.AxesHelper(6);
+    axesHelper.setColors(0x000000,0xffffff,0x00ffff);
+    scene.add(axesHelper);
+    const geometry = new THREE.BoxGeometry( 1, 0.2, 1);
+
+    const material = new THREE.MeshNormalMaterial();
+
+    // light
+    const light = new THREE.SpotLight();
+    light.position.set(20, 20, 20)
+    light.castShadow = true;
+    scene.add(light);
+
+    // Use raycaster to handle pointer events
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+
+
+    const mesh = new THREE.Mesh( geometry, material );
+    scene.add( mesh );
+    const renderer = new THREE.WebGLRenderer( { antialias: true } );
+    const element = document.getElementById('three-js-create-texture');
+    if (element) {
+      function onResize() {
+        renderer.setSize( element.offsetWidth, 500 );
+        renderer.setPixelRatio( element.offsetWidth / 500);
+      }
+      const resizeObserver = new ResizeObserver(onResize);
+      resizeObserver.observe(element,{box:"border-box"});
+      
+      renderer.setSize( element.offsetWidth, 500 );
+      renderer.setAnimationLoop( animation );
+
+      element.appendChild( renderer.domElement );
+      const controls = new OrbitControls(camera, renderer.domElement)
+      controls.enableDamping = true;
+
+      // animation
+      function animation( time ) {
+        theta += 0.1;
+        camera.position.x = radius * Math.sin( THREE.MathUtils.degToRad( theta ) );
+				camera.position.y = radius * Math.sin( THREE.MathUtils.degToRad( theta ) );
+				camera.position.z = radius * Math.cos( THREE.MathUtils.degToRad( theta ) );
+        camera.lookAt( scene.position );
+        camera.updateMatrixWorld();
+
+        raycaster.setFromCamera( pointer, camera );
+
+				const intersects = raycaster.intersectObjects( scene.children, false );
+
+        if ( intersects.length > 0 ) {
+          if ( INTERSECTED != intersects[ 0 ].object ) {
+            if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+            INTERSECTED = intersects[ 0 ].object;
+            INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+            INTERSECTED.material.emissive.setHex( 0xff0000 );
+          }
+        } else {
+          if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+          INTERSECTED = null;
+
+        }
+
+        mesh.rotation.x = time / 2000;
+        mesh.rotation.y = time / 1000;
+
+        renderer.render( scene, camera );
+      }
+    }
+    function onPointerMove( event ) {
+      pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+      pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    }
+
+    document.addEventListener( 'mousemove', onPointerMove );
+  </script>
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>
+  

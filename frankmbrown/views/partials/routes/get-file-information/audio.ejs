@@ -1,0 +1,113 @@
+<%# 
+PARTIAL ROUTE: partials/routes/get-file-information/audio.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.audio_format
+- locals.audio_format_long
+- locals.size
+- locals.duration
+- locals.start_time
+- locals.bit_rate
+- locals.num_streams
+- locals.probe_score
+- locals.tags
+- locals.streams
+- locals.streams[i]
+%>
+<%# 
+type ProbedAudioData = {
+  audio_format:string|undefined,
+  audio_format_long:string|undefined,
+  size:number|undefined,
+  duration:number|undefined,
+  start_time:number|undefined,
+  bit_rate:number|undefined,
+  num_streams:number|undefined,
+  probe_score:number|undefined,
+  tags:string,
+  streams:AudioStreamData[]
+}
+type AudioStreamData = {
+  codec_name: string|undefined,
+  codec_name_long: string|undefined,
+  codec_type: string|undefined,
+  codec_time_base: string|undefined,
+  sample_rate: number|undefined,
+  channels: number|undefined,
+  start_time: number|undefined,
+  duration: number|undefined,
+  bit_rate: number|undefined,
+}
+  url
+%>
+<div class="mt-2">
+    <h3 class="h3 bold bb-main">
+        Audio Information
+    </h3>
+
+    <p class="mt-1">
+        <span class="bold">Audio Format:</span> <%=locals.audio_format%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Audio Format Long:</span> <%=locals.audio_format_long%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Size:</span> <%=locals.size%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Duration:</span> <%=locals.duration%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Start Time:</span> <%=locals.start_time%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Bit Rate:</span> <%=locals.bit_rate%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Number of Streams:</span> <%=locals.num_streams%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Probe Score:</span> <%=locals.probe_score%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Tags:</span> <%=locals.tags%>
+    </p>
+    <h4 class="h4 bold bb-thick mt-2">
+        Streams:
+    </h4>
+    <div class="mt-2">
+        <%for(let i =0; i < locals.streams.length; i++){%>
+            <h5 class="h5 bold bb">
+                Stream <%=i+1%>
+            </h5>
+            <p class="mt-2">
+                <span class="bold">Codec Name:</span> <%=locals.streams[i].codec_name%>
+            </p>
+            <p class="mt-2">
+                <span class="bold">Codec Name Long:</span> <%=locals.streams[i].codec_name_long%>
+            </p>
+            <p class="mt-2">
+                <span class="bold">Codec Type:</span> <%=locals.streams[i].codec_type%>
+            </p>
+            <p class="mt-2">
+                <span class="bold">Codec Time Base:</span> <%=locals.streams[i].codec_time_base%>
+            </p>
+            <p class="mt-2">
+                <span class="bold">Sample Rate:</span> <%=locals.streams[i].sample_rate%>
+            </p>
+            <p class="mt-2">
+                <span class="bold">Channels:</span> <%=locals.streams[i].channels%>
+            </p>
+            <p class="mt-2">
+                <span class="bold">Start Time:</span> <%=locals.streams[i].start_time%>
+            </p>
+            <p class="mt-2">
+                <span class="bold">Duration:</span> <%=locals.streams[i].duration%>
+            </p>
+            <p class="mt-2">
+                <span class="bold">Stream Bit Rate:</span> <%=locals.streams[i].bit_rate%>
+            </p>
+        <%}%>
+    </div>
+</div>

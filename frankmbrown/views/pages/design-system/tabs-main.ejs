@@ -1,0 +1,312 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/tabs-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="tabs-header">
+  <a href="#tabs-header"  class="same-page bold">Tabs</a>
+</h2>
+<details class="mt-2">
+  <summary>
+    <span class="h6 fw-regular">About Tabs</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="false">
+    <span class="fw-regular">
+      This section includes a Stepper, Mobile Stepper (like), and Tabs Component.
+    </span>
+    <br>
+    <span class="h6 bold bb block">Stepper</span>
+    <p class="mt-1 block">
+      Steppers consist of multiple "steps" which need to be completed by the user in 
+      pursuit of completing some larger task. The version of a stepper in this design system assumes that 
+      you want to touch the server every time the user completes some subtask (a step). 
+      <br>
+      Steppers consist of a wrapper <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;stepper-container&quot;</span>&gt;</span></span></code></span>, 
+      an <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ol</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;stepper&quot;</span>&gt;</span></span></code></span>, 
+      and list items which either contain an svg + a span denoting what the task is about or just an svg that draws the line between two steps.
+      <br>
+      Each list item in the ordered list has an <span class="t-info bold">aria-current</span> attribute that communicates which step the user is currently working on.
+      <br>
+      All list items that are prior to the aria-current="step" should have a <span class="t-info bold">data-complete</span>attribute on them, which sets their color / fill to be <span><code class="hljs"><span class="hljs-selector-tag">var</span>(<span class="hljs-attr">--secondary</span>)</code></span>.
+      <br>
+      <span class="t-info fw-regular">Since we assume that you want to touch the server in between completion of steps, there really is no client-side JavaScript that applies to the Stepper.</span>
+    </p>
+    <span class="h6 bold bb block mt-2">Mobile Stepper</span>
+    <p class="mt-1 block">
+      When new content is loaded, the client side JavaScript gets all <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mobile-stepper&quot;</span>&gt;</span></span></code></span> elements, 
+      and:
+    </p>
+    <ol>
+      <li>adds a <span class="t-info bold">keydown</span> listener to the wrapper div</li>
+      <li>checks if they have <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">data-step-back</span>&gt;</span></span></code></span> and <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">data-step-forward</span>&gt;</span></span></code></span> buttons. If they do, listeners are added to the buttons to change the current tab when clicked.</li>
+      <li>gets all tabs (<span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;tab&quot;</span>&gt;</span></span></code></span>), and adds click listeners to them to change tabs when clicked. </li>
+      <li>gets the tab panels (the next element sibling of the mobile stepper wrapper), and sets their visibility based on which tab has an <span class="t-info bold">aria-selected</span> attribute equal to true</li>
+      <li>sets disabled the forward button and back button based on whether or not the current tab is the first or last tab</li>
+    </ol>
+    <span class="h6 bold bb block mt-2">Tabs</span>
+    <p class="mt-1 block">
+      The JavaScript for the tabs is basically the same as the JavaScript for the Mobile Stepper except for the fact that 
+      the Tabs hav no forward and back buttons.
+    </p>
+    <div class="alert warning mt-2 filled small body2 icon">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+      <p class="alert body2">
+        Make sure that the number of tab panels is equal to the number of tabs. If this is not the case, there will be an error.
+      </p>
+    </div>
+    <span class="h6 bold bb block mt-2">JavaScript for Tabs</span>
+    <div class="mt-1 block">
+      <span class="body1 bold block bb mt-2">Changing Tabs</span>
+      Here is the process for changing tabs:
+      <ol>
+        <li>
+          Get the currently selected tab's index (based on the order of tabs inside the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span></code></span>), and get the tabindex of the newly selected tab.
+        </li>
+        <li>
+          Set the styling and <span class="t-info bold">aria-selected</span> attributes of the tabs and set the visibility of the tabpanels - look into the <span><code class="hljs"><span class="hljs-keyword">function</span> <span class="hljs-title function_">switchTabs</span>(<span class="hljs-params"></span>)</code></span> of the shared JavaScript code.
+        </li>
+      </ol>
+      <span class="body1 bold block bb mt-2">Handling Keydown</span>
+      Due to accessability reasons, this design system allows you to navigate tabs using the forward and back arrow keys.
+    </div>  
+    <span class="h6 bold bb block mt-2">Accessability</span>
+    <p class="mt-1 block">
+      Look into the examples below for the aria-roles, roles, and data-attributes that re required for tabs. 
+      <br>
+      The <a href="https://cauldron.dequelabs.com/components/Stepper" class="secondary link" target="_blank">Cauldron Docs</a> are the reference for Stepper Accessability, and 
+      <a href="https://www.youtube.com/watch?v=fI9VM5zzpu8" class="secondary link">this youtube video</a> is the reference for tabs accessability.
+    </p>
+  </div>
+</details>
+<section id="stepper" class="mt-2">
+<h3 class="h6 bold bb"><a href="#stepper" class="same-page fw-regular">Stepper</a></h3>
+<div class="stepper-container mt-2">
+  <ol class="stepper">
+    <li aria-current="step">
+      <svg class="t-normal body2" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="QuestionAnswerSharp"><path d="M22 6h-3v9H6v3h12l4 4V6zm-5 7V2H2v15l4-4h11z"></path></svg>
+      <span class="body1 text-align-center">Enter Poll Questions</span>
+    </li>
+    <li class="stepper-divider" aria-current="false">
+      <svg class="stepper-divider" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="HorizontalRuleSharp"><path fill-rule="evenodd" d="M4 11h16v2H4z"></path></svg>
+    </li>
+    <li aria-current="false">
+      <svg class="t-normal body2" focusable="false" inert viewBox="0 0 24 24" data-testid="RadioButtonCheckedSharpIcon">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z">
+        </path>
+        <circle cx="12" cy="12" r="5">
+        </circle>
+      </svg>
+      <span class="body1 text-align-center">Select Communities</span>
+    </li>
+    <li class="stepper-divider" aria-current="false">
+      <svg class="stepper-divider" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="HorizontalRuleSharp"><path fill-rule="evenodd" d="M4 11h16v2H4z"></path></svg>
+    </li>
+    <li aria-current="false">
+      <svg class="t-normal body2" focusable="false" inert viewBox="0 0 24 24" data-testid="PublishSharpIcon">
+        <path d="M5 4v2h14V4H5zm0 10h4v6h6v-6h4l-7-7-7 7z"></path>
+      </svg>
+      <span class="body1 text-align-center">Review And Submit</span>
+    </li>
+  </ol>
+</div>
+<div class="stepper-container mt-4">
+  <ol class="stepper">
+    <li aria-current="false" data-complete="">
+      <svg class="t-normal body2" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="QuestionAnswerSharp"><path d="M22 6h-3v9H6v3h12l4 4V6zm-5 7V2H2v15l4-4h11z"></path></svg>
+      <span class="body1 text-align-center">Enter Poll Questions</span>
+    </li>
+    <li class="stepper-divider" aria-current="false" data-complete="">
+      <svg class="stepper-divider" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="HorizontalRuleSharp"><path fill-rule="evenodd" d="M4 11h16v2H4z"></path></svg>
+    </li>
+    <li aria-current="step">
+      <svg class="t-normal body2" focusable="false" inert viewBox="0 0 24 24" data-testid="RadioButtonCheckedSharpIcon">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z">
+        </path>
+        <circle cx="12" cy="12" r="5">
+        </circle>
+      </svg>
+      <span class="body1 text-align-center">Select Communities</span>
+    </li>
+    <li class="stepper-divider" aria-current="false">
+      <svg class="stepper-divider" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="HorizontalRuleSharp"><path fill-rule="evenodd" d="M4 11h16v2H4z"></path></svg>
+    </li>
+    <li aria-current="false">
+      <svg class="t-normal body2" focusable="false" inert viewBox="0 0 24 24" data-testid="PublishSharpIcon">
+        <path d="M5 4v2h14V4H5zm0 10h4v6h6v-6h4l-7-7-7 7z"></path>
+      </svg>
+      <span class="body1 text-align-center">Review And Submit</span>
+    </li>
+  </ol>
+</div>
+<div class="stepper-container mt-4">
+  <ol class="stepper">
+    <li aria-current="false" data-complete="">
+      <svg class="t-normal body2" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="QuestionAnswerSharp"><path d="M22 6h-3v9H6v3h12l4 4V6zm-5 7V2H2v15l4-4h11z"></path></svg>
+      <span class="body1 text-align-center">Enter Poll Questions</span>
+    </li>
+    
+    <li class="stepper-divider" aria-current="false" data-complete="">
+      <svg class="stepper-divider" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="HorizontalRuleSharp"><path fill-rule="evenodd" d="M4 11h16v2H4z"></path></svg>
+    </li>
+    <li aria-current="false" data-complete="">
+      <svg class="t-normal body2" focusable="false" inert viewBox="0 0 24 24" data-testid="RadioButtonCheckedSharpIcon">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z">
+        </path>
+        <circle cx="12" cy="12" r="5">
+        </circle>
+      </svg>
+      <span class="body1 text-align-center">Select Communities</span>
+    </li>
+    <li class="stepper-divider" aria-current="false" data-complete="">
+      <svg class="stepper-divider" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="HorizontalRuleSharp"><path fill-rule="evenodd" d="M4 11h16v2H4z"></path></svg>
+    </li>
+    <li aria-current="step">
+      <svg class="t-normal body2" focusable="false" inert viewBox="0 0 24 24" data-testid="PublishSharpIcon">
+        <path d="M5 4v2h14V4H5zm0 10h4v6h6v-6h4l-7-7-7 7z"></path>
+      </svg>
+      <span class="body1 text-align-center">Review And Submit</span>
+    </li>
+  </ol>
+</div>
+</section>
+<section id="mobile-stepper" class="mt-2">
+<h3 class="h6 bold bb"><a href="#mobile-stepper" class="same-page fw-regular">Mobile Stepper</a></h3>
+<div class="mobile-stepper mt-2">
+  <button disabled="" tabindex="-1" class="icon medium mr-1" aria-label="Previous Tab" data-step-back="">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowLeft"><path d="M15.41 16.59 10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path></svg>
+  </button>
+  <ul class="mobile-stepper" role="tablist">
+    <li role="presentation">
+      <button id="tab-1" class="icon filled tiny secondary" role="tab" type="button" aria-selected="true" data-tab="0"></button>
+    </li>
+    <li role="presentation">
+      <button id="tab-2" class="icon filled tiny t-secondary" role="tab" type="button" aria-selected="false" data-tab="1"></button>
+    </li>
+    <li role="presentation">
+      <button id="tab-3" class="icon filled tiny t-secondary" role="tab" type="button" aria-selected="false" data-tab="2"></button>
+    </li>
+    <li role="presentation">
+      <button id="tab-4" class="icon filled tiny t-secondary" role="tab" type="button" aria-selected="false" data-tab="3"></button>
+    </li>
+    <li role="presentation">
+      <button id="tab-5" class="icon filled tiny t-secondary" role="tab" type="button" aria-selected="false" data-tab="4"></button>
+    </li>
+  </ul>
+  <button tabindex="-1" class="icon medium ml-1" aria-label="Next Tab" data-step-forward="">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowRightSharp"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path></svg>
+  </button>
+</div>
+<div class="tab-panels">
+  <div aria-labelledby="tab1" role="tabpanel" class="h6 text-align-center t-primary mt-4">
+    Here is the first tab panel. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad cupiditate ullam, libero beatae velit inventore dolor minima ipsam dicta esse non exercitationem quidem qui deleniti maxime dolorem officia odio minus.
+  </div>
+  <div aria-labelledby="tab2" role="tabpanel" class="h6 text-align-center t-secondary mt-4" hidden="">
+    Here is the second tab panel. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic quidem quaerat similique? Sunt in natus, unde libero, qui officia rem quis facilis suscipit quasi ipsum magnam aspernatur voluptates voluptatum perferendis?''
+  </div>
+  <div aria-labelledby="tab3" role="tabpanel" class="h6 text-align-center t-warning mt-4" hidden="">
+    Here is the third tab panel. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae ducimus dolore placeat quasi quos autem soluta, ab qui est enim optio ea nam! Nesciunt aliquid nulla quaerat! Delectus, quisquam praesentium.
+  </div>
+  <div aria-labelledby="tab4" role="tabpanel" class="h6 text-align-center t-info mt-4" hidden="">
+    Here is the fourth tab panel. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eius mollitia debitis explicabo dolor reiciendis ullam a aspernatur. Obcaecati sit non iusto ipsum vero eaque ab consectetur impedit optio dolorum.
+  </div>
+  <div aria-labelledby="tab5" role="tabpanel" class="h6 text-align-center t-error mt-4" hidden="">
+    Here is the fifth tab panel. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque, laborum itaque. Fuga accusamus, libero nobis commodi dolorum voluptas sint impedit nam, distinctio dignissimos aut quidem voluptate cumque quas unde tempora?
+  </div>
+</div>
+<p class="mt-2 block bold">
+  Image Carousel Example:
+</p>
+<div class="mobile-stepper mt-3">
+  <button disabled="" tabindex="-1" class="icon medium mr-1" aria-label="Previous Tab" data-step-back="">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowLeft"><path d="M15.41 16.59 10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path></svg>
+  </button>
+  <ul class="mobile-stepper" role="tablist">
+    <li role="presentation">
+      <button id="tab-1" class="icon filled tiny secondary" role="tab" type="button" aria-selected="true" data-tab="0"></button>
+    </li>
+    <li role="presentation">
+      <button id="tab-2" class="icon filled tiny t-secondary" role="tab" type="button" aria-selected="false" data-tab="1"></button>
+    </li>
+    <li role="presentation">
+      <button id="tab-3" class="icon filled tiny t-secondary" role="tab" type="button" aria-selected="false" data-tab="2"></button>
+    </li>
+    <li role="presentation">
+      <button id="tab-4" class="icon filled tiny t-secondary" role="tab" type="button" aria-selected="false" data-tab="3"></button>
+    </li>
+  </ul>
+  <button tabindex="-1" class="icon medium ml-1" aria-label="Next Tab" data-step-forward="">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowRightSharp"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path></svg>
+  </button>
+</div>
+<div class="tab-panels">
+  <div aria-labelledby="tab100" role="tabpanel" class="h6 text-align-center t-primary mt-4">
+    <img class="m-auto" src="https://image.storething.org/frankmbrown/example-1.jpg" alt="Example Picture 1" data-text="Here is an example picture" />
+  </div>
+  <div aria-labelledby="tab200" role="tabpanel" class="h6 text-align-center t-secondary mt-4" hidden="">
+    <img class="m-auto" src="https://image.storething.org/frankmbrown/example-2.jpg" alt="Example Picture 2" data-text="Here is an example picture" />
+  </div>
+  <div aria-labelledby="tab300" role="tabpanel" class="h6 text-align-center t-warning mt-4" hidden="">
+    <img class="m-auto" src="https://image.storething.org/frankmbrown/example-3.jpg" alt="Example Picture 3" data-text="Here is an example picture" />
+  </div>
+  <div aria-labelledby="tab400" role="tabpanel" class="h6 text-align-center t-info mt-4" hidden="">
+    <img class="m-auto" src="https://image.storething.org/frankmbrown/example-4.jpg" alt="Example Picture 4" data-text="Here is an example picture" />
+  </div>
+</div>
+</section>
+<section id="tabs" class="mt-2">
+<h3 class="h6 bold bb"><a href="#tabs" class="same-page fw-regular">Tabs</a></h3>
+<div class="tabs mt-2">
+  <ul class="tabs" role="tablist">
+    <li role="presentation">
+      <button id="tab-11" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="0" tabindex="-1">Tab 1</button>
+    </li>
+    <li role="presentation">
+      <button id="tab-21" class="tab-button secondary" role="tab" type="button" aria-selected="true" data-tab="1" tabindex="-1">Tab 2</button>
+    </li>
+    <li role="presentation">
+      <button id="tab-31" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="2" tabindex="-1">Tab 3</button>
+    </li>
+    <li role="presentation">
+      <button id="tab-41" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="3" tabindex="-1">Tab 4</button>
+    </li>
+    <li role="presentation">
+      <button id="tab-51" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="4" tabindex="-1">Tab 5</button>
+    </li>
+  </ul>
+</div>
+<div class="tab-panels">
+  <div aria-labelledby="tab11" role="tabpanel" class="h6 text-align-center t-primary mt-4" tabindex="0" hidden="">
+    Here is the first tab panel. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad cupiditate ullam, libero beatae velit inventore dolor minima ipsam dicta esse non exercitationem quidem qui deleniti maxime dolorem officia odio minus.
+  </div>
+  <div aria-labelledby="tab21" role="tabpanel" class="h6 text-align-center t-secondary mt-4" tabindex="0">
+    Here is the second tab panel. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic quidem quaerat similique? Sunt in natus, unde libero, qui officia rem quis facilis suscipit quasi ipsum magnam aspernatur voluptates voluptatum perferendis?''
+  </div>
+  <div aria-labelledby="tab31" role="tabpanel" class="h6 text-align-center t-warning mt-4" tabindex="0" hidden="">
+    Here is the third tab panel. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae ducimus dolore placeat quasi quos autem soluta, ab qui est enim optio ea nam! Nesciunt aliquid nulla quaerat! Delectus, quisquam praesentium.
+  </div>
+  <div aria-labelledby="tab41" role="tabpanel" class="h6 text-align-center t-info mt-4" tabindex="0" hidden="">
+    Here is the fourth tab panel. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia eius mollitia debitis explicabo dolor reiciendis ullam a aspernatur. Obcaecati sit non iusto ipsum vero eaque ab consectetur impedit optio dolorum.
+  </div>
+  <div aria-labelledby="tab51" role="tabpanel" class="h6 text-align-center t-error mt-4" tabindex="0" hidden="">
+    Here is the fifth tab panel. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque, laborum itaque. Fuga accusamus, libero nobis commodi dolorum voluptas sint impedit nam, distinctio dignissimos aut quidem voluptate cumque quas unde tempora?
+  </div>
+</div>
+</section>
+
+<div class="alert info filled mt-2 icon medium" role="alert">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ViewCarousel"><path d="M2 7h4v10H2V7zm5 12h10V5H7v14zM18 7h4v10h-4V7z"></path></svg>
+  <p class="alert">
+    <span>
+      Check out the <a class="primary link" hx-get="/projects/design-system/media" href="/projects/design-system/media" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">Media Page for the Design System</a> to see examples of carousels.
+    </span>
+</p>
+  <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+  </button>
+</div>

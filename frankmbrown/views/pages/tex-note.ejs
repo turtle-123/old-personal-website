@@ -1,0 +1,68 @@
+<%# 
+PARTIAL ROUTE: pages/tex-note.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.note_title
+- locals.note_description
+- locals.note_resource_link
+- locals.note_resource_link_title
+- locals.dateAddedTimeString
+- locals.dateAddedSpanText
+- locals.dateCompletedTimeString
+- locals.dateCompletedSpanText
+- locals.html
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+    <article id="MAIN_ARTICLE"  style="max-width: 100%; overflow-x: hidden;">
+        <h1 class="page-title"><%=locals.note_title%></h1>
+
+        <p class="mt-2">
+            <%=locals.note_description%>
+        </p>
+
+        <p class="mt-1">
+            <span class="bold">Reference</span> <a class="secondary link" target="_blank" href="<%=locals.note_resource_link%>"><%=locals.note_resource_link_title%></a>
+        </p>
+        <div class="flex-row justify-end mt-1">
+            <a href="<%=locals.path_to_download%>" download="<%=locals.filename%>"  class="button icon-text medium filled info">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Download"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path></svg>
+                DOWNLOAD TEX
+              </a>
+        </div>
+        <div class="mt-2 bb-main flex-row justify-between" style="padding-bottom: 4px; border-bottom-width: 3px;">
+            <div class="flex-column align-center gap-2" style="width: fit-content;">
+            <span class="bold">Date Created:</span>
+            <time data-date-format="MM/DD/YYYY" datetime="<%=locals.dateAddedTimeString%>">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CalendarToday">
+                <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z">
+                </path>
+                </svg>
+                <span><%=locals.dateAddedSpanText%></span>
+            </time>
+            </div>
+            <div class="flex-column align-center gap-2" style="width: fit-content;">
+            <span class="bold">Last Edited:</span>
+            <time data-date-format="MM/DD/YYYY" datetime="<%=locals.dateCompletedTimeString%>">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Edit"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
+                <span><%=locals.dateCompletedSpanText%></span>
+            </time>
+            </div>
+        </div>
+        <%-include('../partials/share-like-comment')%>
+
+        
+
+        <div class="mt-2">
+            <%-locals.html%>
+        </div>
+    </article>
+
+
+    <%-include('../partials/comment')%>
+
+    <%-include('../partials/pagePartial')%>
+<%}%>  

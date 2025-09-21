@@ -1,0 +1,17 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/path.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+<h1 class="page-title" id="top-of-page">D3.js Path</h1>
+  <p>
+    You can use the d3 path constructor to create a path that you can then set as the 
+    <span class="t-info bold">d</span> attribute on the path HTML Element.
+  </p>
+  <%-include('../../partials/pagePartial')%>
+<%}%>

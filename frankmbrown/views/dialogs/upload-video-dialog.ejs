@@ -1,0 +1,57 @@
+<%# 
+
+%>
+<%# Dialog that allows users to record videos %>
+<div style="display: none;" hidden class="dialog-wrapper whole" id="upload-video-dialog" data-close-backdrop data-esc>
+    <div class="dialog whole" data-click-capture>
+      <div class="dialog-header">
+        <p class="grow-1 flex-row h3 bold">Record Video</p>
+        <%if(locals.desktop===true){%> 
+          <kbd class="inline" style="margin-right: 4px;"  data-pelem="#close-dialog-esc-close-record-video" aria-describedby="close-dialog-esc-close-record-video" data-mouse data-popover>ESC</kbd>
+          <div id="close-dialog-esc-close-record-video" role="tooltip" class="tooltip body2" data-placement="bottom-end">
+            Press the Escape key to Close the Dialog
+          </div>
+          <%}%>
+        <button class="icon medium close-dialog" type="button" aria-label="Close Dialog">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </div>
+      <div class="dialog-body">
+        <form hidden method="dialog" data-main id="upload-video-form">
+          <div style="position:relative; height:100%;">
+            <video id="take-video-video"  muted playsinline webkit-playsinline autoplay></video>
+            <button type="button" id="take-video-button" aria-label="Take Image"></button>
+            <span data-time class="video-time">0:00</span>
+            <div class="flex-row justify-end mt-2">
+              <button data-switch-camera hidden type="button" class="icon medium" aria-label="Turn Camera Towards Self">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Cameraswitch"><path d="M16 7h-1l-1-1h-4L9 7H8c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-4 7c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"></path><path d="m8.57.51 4.48 4.48V2.04c4.72.47 8.48 4.23 8.95 8.95h2C23.34 3.02 15.49-1.59 8.57.51zm2.38 21.45c-4.72-.47-8.48-4.23-8.95-8.95H0c.66 7.97 8.51 12.58 15.43 10.48l-4.48-4.48v2.95z"></path></svg>
+              </button>
+            </div>
+          </div>        
+          <input name="can-upload-multiple-video" type="text" hidden data-multiple value="false" />
+          <div data-actions hidden class="flex-row align-center justify-end gap-2 mt-2">
+            <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+            <button data-preview type="button" aria-label="Preview Video(s)" class="info filled icon-text medium">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="RemoveRedEye"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+              Preview
+            </button>
+            <button data-submit type="submit" aria-label="Submit Video(s)" class="success filled icon-text medium">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+              SUBMIT
+            </button>
+          </div>
+        </form>
+        <output form="upload-video-form" hidden class="block mt-2"></output>
+        <div data-loader class="block" hidden>
+          <div class="flex-row justify-center t-primary" role="progressbar" aria-busy="false" aria-label="Getting Media Stream">
+            <div class="lds-facebook"><div></div><div></div><div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-footer" role="toolbar">
+        <button class="filled error small close-dialog" type="button" aria-label="Close Dialog">
+          CLOSE DIALOG
+        </button>
+      </div>
+    </div>
+</div>

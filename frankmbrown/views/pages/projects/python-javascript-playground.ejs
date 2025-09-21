@@ -1,0 +1,115 @@
+<%# 
+PARTIAL ROUTE: pages/projects/python-javascript-playground.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.codeTheme
+%>
+
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+     
+    <h1 class="page-title">Python JavaScript Sandbox</h1>
+
+    <section id="why-create-this-page" class="mt-4">
+      <div class="flex-row bb-thick justify-between">
+        <h2 class="bold h2">
+          <a href="#why-create-this-page" class="same-page bold">
+            Why Create This Page
+          </a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#hide-why-crate-sand">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+
+      <div id="hide-why-crate-sand">
+        <p class="mt-2">
+            I wanted to create this page because I oftentimes go to different website to run a small snippet of JavaScript or Python code that I want to test out, and I would rather just do it here. Also, by creating this sandbox, I can provide access to some libraries that other sandboxes usually don't allow or at least require you to load - which can be frustrating. This page also gives me the opportunity to find out more about sandboxing user-supplied (untrusted) code.
+        </p>
+        <h3 class="h3 bold mt-3 bb-thick">
+            About the Sandbox
+        </h3>
+        <h4 class="h4 mt-2 fw-regular">
+            JavaScript Sandbox
+        </h4>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <h4 class="h4 mt-2 fw-regular">
+            Python Sandbox
+        </h4>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+      </div>
+    </section>
+
+
+    <section id="js-sandbox" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#js-sandbox" class="same-page bold">
+            JavaScript Sandbox
+          </a>
+        </h2>
+
+        <form class="mt-4" hx-post="/projects/python-javascript-playground/javascript" hx-indicator="#ind_973a6777-64a2-4133-9423-41453cfb34a4" hx-target="#tar_c9225c9d-ac40-4ec3-bfa3-b356c90bbfa0" hx-trigger="submit" hx-swap="innerHTML">
+          <div data-editor-wrapper id="js-editor-wrapper" style="min-height: 300px;">
+            <div data-theme="<%=locals.codeTheme%>" data-codemirror="javascript" data-type="mid" id="js-editor" class="mt-2" hidden>function main() {
+  console.log("Hello World");
+  return 0;
+}</div></div>
+
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_973a6777-64a2-4133-9423-41453cfb34a4">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_c9225c9d-ac40-4ec3-bfa3-b356c90bbfa0"></output>
+
+    </section>
+
+    <section id="python-sandbox" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#python-sandbox" class="same-page bold">
+            Python Sandbox
+          </a>
+        </h2>
+
+        <form class="mt-4" hx-post="/projects/python-javascript-playground/python" hx-indicator="#ind_c6e1ad14-b4a2-4081-86cc-08951504f8f1" hx-target="#tar_58e6bfed-ea32-43ed-af81-0b7aa532b147" hx-trigger="submit" hx-swap="innerHTML">
+          <div data-editor-wrapper id="python-editor-wrapper" style="min-height: 300px;">
+            <div data-theme="<%=locals.codeTheme%>" data-codemirror="python" data-type="mid" id="python-editor" class="mt-2" hidden>def func():
+  print("Hello World")
+  return 0</div></div>
+
+
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-info htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_c6e1ad14-b4a2-4081-86cc-08951504f8f1">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_58e6bfed-ea32-43ed-af81-0b7aa532b147"></output>
+
+    </section>
+
+    <%-include('../../partials/pagePartial')%>
+<%}%> 

@@ -1,0 +1,86 @@
+{
+    "author": "Frank Brown",
+    "background_color": "#ffffff",
+    "categories": ["Notes","Technology","Prpgramming","Personal Development","Reading"],
+    "description": "Personal website for Frank McKee Brown. I created this site to host some notes and software projects.",
+    "developer": {
+      "name": "Frank Brown",
+      "url": "https://frankmbrown.net"
+    },
+    "display": "standalone",
+    "display_override": ["fullscreen"],
+    "icons": [
+      {
+        "src": "https://cdn.storething.org/frankmbrown/asset/192x192.png",
+        "type": "image/png",
+        "sizes": "192x192",
+        "purpose": "any"
+      },
+      {
+        "src": "https://cdn.storething.org/frankmbrown/asset/192x192-maskable.png",
+        "type": "image/png",
+        "sizes": "192x192",
+        "purpose": "maskable"
+      },
+      {
+        "src": "https://cdn.storething.org/frankmbrown/asset/512x512.png",
+        "type": "image/png",
+        "sizes": "512x512",
+        "purpose": "any"
+      },
+      {
+        "src": "https://cdn.storething.org/frankmbrown/asset/512x512-maskable.png",
+        "type": "image/png",
+        "sizes": "512x512",
+        "purpose": "maskable"
+      }
+    ],
+    "id": "https://frankmbrown.net",
+    "launch_handler": {
+      "client_mode": "auto"
+    },
+    "name": "frankmbrown.net",
+    "orientation": "portrait-primary",
+    "short_name": "FMB.net",
+    "shortcuts": [
+      {
+        "name": "Notes",
+        "short_name": "Notes",
+        "url": "/note"
+      },
+      {
+        "name": "Projects",
+        "short_name": "Projects",
+        "url": "/projects"
+      },
+      {
+        "name": "Jupyter Notebooks",
+        "short_name": "Jupyter Notebooks",
+        "url": "/jupyter-notebooks"
+      },
+      {
+        "name": "Markdown Notes",
+        "short_name": "Markdown Notes",
+        "url": "/markdown-notes"
+      },
+      {
+        "name": "Daily Reading",
+        "short_name": "Daily Reading",
+        "url": "/daily-reading"
+      },
+      {
+        "name": "Links",
+        "short_name": "Links",
+        "url": "/links"
+      },
+      {
+        "name": "Quotes",
+        "short_name": "Quotes",
+        "url": "/quotes"
+      }
+    ],
+    "start_url": "https://frankmbrown.net",
+    "theme_color": "#272727",
+    "trial_tokens": ["AsggaQ9+fd/LXpXoLwv9P+YdXOiR0m4VhdSq0X8Ig4h0WX4wkwFtuLxo8d5m5SHEpynMp9tKYrJLHav0clNO8QUAAABgeyJvcmlnaW4iOiJodHRwczovL2ZyYW5rbWJyb3duLm5ldDo0NDMiLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElGb3JFeHRlbnNpb24iLCJleHBpcnkiOjE3NjA0ODYzOTl9","Ark4Xg9K93j8P2sferl8KrJjde8zyHMoCdk9F2sUnPAAYIjwRS5pqIv5RZGZ7rxR/Am/tI5DOYCe5bGxMOsMvAwAAABXeyJvcmlnaW4iOiJodHRwczovL2ZyYW5rbWJyb3duLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJhbnNsYXRpb25BUEkiLCJleHBpcnkiOjE3NTMxNDI0MDB9","Aj6pnOnQb1Wp6l3/n5pxRvIKXQSIU8o5ZcrLvLk4WWwU75drUNoC6/xirt1SSQgF6Hjd2NOSMJYdiPaaVnm7fgoAAABdeyJvcmlnaW4iOiJodHRwczovL2ZyYW5rbWJyb3duLm5ldDo0NDMiLCJmZWF0dXJlIjoiTGFuZ3VhZ2VEZXRlY3Rpb25BUEkiLCJleHBpcnkiOjE3NDk1OTk5OTl9","Aldj2Nz33Pwdku/k50Wbm3hWsqCMtcpT9Jl2DBEibw96lhUGKlNuK/9jOO1Kcfm1WMoI4PPdkrUr8/AH/GjCxwEAAABbeyJvcmlnaW4iOiJodHRwczovL2ZyYW5rbWJyb3duLm5ldDo0NDMiLCJmZWF0dXJlIjoiQUlTdW1tYXJpemF0aW9uQVBJIiwiZXhwaXJ5IjoxNzUzMTQyNDAwfQ=="]
+  }
+  

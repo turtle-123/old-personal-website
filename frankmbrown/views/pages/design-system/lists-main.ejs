@@ -1,0 +1,352 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/lists-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="lists-header">
+  <a href="#lists-header"  class="same-page bold">Lists</a>
+</h2>
+<details class="mt-2" id="about-lists">
+  <summary>
+    <span class="h6 fw-regular">About Lists</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true">
+    There are three types of lists that I styled with this design system: 
+    <ol>
+      <li>
+        Unordered Lists <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span></code></span>
+        <ul class="first">
+          <li>Unordered lists are designed to be able to go 5 levels deep with unique list-style types, but you need to add <span><code class="hljs"><span class="hljs-selector-class">.first</span> <span class="hljs-selector-class">.second</span> <span class="hljs-selector-class">.third</span></code></span> ... classes to the nested lists.</li>
+          <li>
+            Unordered lists can have the 
+            <span><code class="hljs"><span class="hljs-selector-class">.accordion</span></code></span> class added to them to remove initial padding. 
+          </li>
+          <li>Unordered Lists can have the <span><code class="hljs"><span class="hljs-selector-class">.none</span></code></span> class added to them to remove the list-style-type styling.</li>
+          <li>Unordered Lists can have the <span><code class="hljs"><span class="hljs-selector-class">.condensed</span></code></span> class added to them to condense the padding.</li>
+        </ul>
+      </li>
+      <li>
+        Ordered Lists <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ol</span>&gt;</span></span></code></span>
+        <ul class="first">
+          <li>Ordered lists are designed to be able to go 5 levels deep with unique list-style types, but you need to add <span><code class="hljs"><span class="hljs-selector-class">.first</span> <span class="hljs-selector-class">.second</span> <span class="hljs-selector-class">.third</span></code></span> ... classes to the nested lists.</li>
+          <li>
+            Ordered lists can have the 
+            <span><code class="hljs"><span class="hljs-selector-class">.accordion</span></code></span> class added to them to remove initial padding. 
+          </li>
+          <li>Ordered Lists can have the <span><code class="hljs"><span class="hljs-selector-class">.none</span></code></span> class added to them to remove the list-style-type styling.</li>
+          <li>Ordered Lists can have the <span><code class="hljs"><span class="hljs-selector-class">.condensed</span></code></span> class added to them to condense the padding.</li>
+        </ul>
+      </li>
+      <li>
+        Description Lists <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dl</span>&gt;</span></span></code></span>
+        <ul class="first">
+          <li>
+            Description lists are design to go one level deep.
+          </li>
+          <li>
+            Each list item in a description list should have a Description Term (<span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dt</span>&gt;</span></span></code></span>) and 
+            at least one Description Details (<span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dd</span>&gt;</span></span></code></span>) element.
+          </li>
+          <li>
+            The Description Term element can have its default italic styling removed from it by adding the <span><code class="hljs"><span class="hljs-selector-class">.normal-text</span></code></span> class to it.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Navigation Lists <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span>&gt;</span></span></code></span>
+        <ul class="first">
+          <li>
+            Navigation Lists should primarily be used for navigation that occurs within the same application.
+          </li>
+          <li>
+            Navigation lists are primarily used for breadcrumbs and sidebar navigation in this design system.
+          </li>
+          <li>
+            Navigation lists can have their list-styling removed by adding the <span><code class="hljs"><span class="hljs-selector-class">.none</span></code></span> class to them.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Menus <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">menu</span>&gt;</span></span></code></span>
+        <ul class="first">
+          <li>
+            Menu Lists are primarily designed to be used in a toolbar role <span class="t-info bold">role="toolbar"</span>
+            role in this design system. They are primarily used as footers for dialogs (<span class="t-error bold">ERROR</span> / <span class="t-success bold">SUBMIT</span> buttons) and for the toolbar for toggle button groups.
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</details>
+<div id="example-lists" class="mt-2">
+<h3 class="h6 bold bb">
+  <a href="#example-lists" class="same-page fw-regular">List Examples</a>
+</h3>
+<section  id="unordered-list">
+  <h4 class="h3 bold mt-2 bb" >
+    <a href="#unordered-list" class="same-page fw-regular">Unordered Lists</a>
+  </h4>
+  <p class="body1 bold mt-2">Normal:</p>
+  <ul class="first">
+    <li>
+      First Level
+      <ul class="second">
+        <li>
+          Second Level
+          <ul class="third">
+            <li>
+              Third Level
+              <ul class="fourth">
+                <li>
+                  Fourth Level
+                </li>
+                <ul class="fifth">
+                  <li>
+                    Fifth Level
+                  </li>
+                </ul>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p class="body1 bold mt-2">Condensed:</p>
+  <ul class="first">
+    <li>
+      First Condensed Level
+      <ul class=" condensed second">
+        <li>
+          Second Condensed Level
+          <ul class="third condensed ">
+            <li>
+              Third Condensed Level
+              <ul class="fourth condensed ">
+                <li>
+                  Fourth Condensed Level
+                </li>
+                <ul class="fifth condensed">
+                  <li>
+                    Fifth Condensed Level
+                  </li>
+                </ul>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p class="body1 bold mt-2">None:</p>
+  <ul class="first none">
+    <li>
+      First None Level
+      <ul class=" none second ">
+        <li>
+          Second None Level
+          <ul class="third none ">
+            <li>
+              Third None Level
+              <ul class="fourth none ">
+                <li>
+                  Fourth None Level
+                </li>
+                <ul class="fifth none">
+                  <li>
+                    Fifth None Level
+                  </li>
+                </ul>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <ul class="first none">
+    <li>
+      First None Level
+      <ul class=" none second ">
+        <li>
+          Second None Level
+          <ul class="third none ">
+            <li>
+              Third None Level
+              <ul class="fourth none ">
+                <li>
+                  Fourth None Level
+                </li>
+                <ul class="fifth none">
+                  <li>
+                    Fifth None Level
+                  </li>
+                </ul>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p class="body1 bold mt-2">Inline Lists:</p>
+  <ul class="inline">
+    <li>first inline,</li><li>second inline,</li><li>third inline,</li><li>fourth inline,</li>
+  </ul>
+</section>
+<section id="ordered-list">
+  <h4 class="h3 bold mt-2 bb" >
+    <a href="#ordered-list" class="same-page fw-regular">Ordered Lists</a>
+  </h4>
+  <p class="body1 bold mt-2">Normal:</p>
+  <ol class="first">
+    <li>
+      First Level
+      <ol class="second">
+        <li>
+          Second Level
+          <ol class="third">
+            <li>
+              Third Level
+              <ol class="fourth">
+                <li>
+                  Fourth Level
+                </li>
+                <ol class="fifth">
+                  <li>
+                    Fifth Level
+                  </li>
+                </ol>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+  <p class="body1 bold mt-2">Condensed:</p>
+  <ol class="first">
+    <li>
+      First Condensed Level
+      <ol class="condensed second">
+        <li>
+          Second Condensed Level
+          <ol class="third condensed ">
+            <li>
+              Third Condensed Level
+              <ol class="fourth condensed ">
+                <li>
+                  Fourth Condensed Level
+                </li>
+                <ol class="fifth condensed">
+                  <li>
+                    Fifth Condensed Level
+                  </li>
+                </ol>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+  <p class="body1 bold mt-2">None:</p>
+  <ol class="first none">
+    <li>
+      First None Level
+      <ol class=" none second ">
+        <li>
+          Second None Level
+          <ol class="third none ">
+            <li>
+              Third None Level
+              <ol class="fourth none ">
+                <li>
+                  Fourth None Level
+                </li>
+                <ol class="fifth none">
+                  <li>
+                    Fifth None Level
+                  </li>
+                </ol>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+  <ol class="first none">
+    <li>
+      First None Level
+      <ol class=" none second ">
+        <li>
+          Second None Level
+          <ol class="third none ">
+            <li>
+              Third None Level
+              <ol class="fourth none ">
+                <li>
+                  Fourth None Level
+                </li>
+                <ol class="fifth none">
+                  <li>
+                    Fifth None Level
+                  </li>
+                </ol>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+  <p class="body1 bold mt-2">Inline Lists:</p>
+  <ol class="inline">
+    <li>first inline,</li><li>second inline,</li><li>third inline,</li><li>fourth inline,</li>
+  </ol>
+</section>
+<section id="definition-list">
+  <h4 class="h3 bold mt-2 bb" >
+    <a href="#definition-list" class="same-page fw-regular">Definition Lists</a>
+  </h4>
+  <dl>
+    <dt class="t-error">Apples</dt>
+    <dd>Apples are red</dd>
+    <dd>Apples are a fruit</dd>
+    <dt class="t-warning normal-text">Bananas</dt>
+    <dd>Bananas are yellow</dd>
+  </dl> 
+
+</section>
+<section id="navigation-list">
+  <h4 class="h3 bold mt-2 bb" >
+    <a href="#navigation-list" class="same-page fw-regular">Navigation Lists</a>
+  </h4>
+  <div class="alert warning outlined mt-2 icon medium" role="alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="RemoveRedEye"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+    <p class="alert">
+      See the breadcrumbs page and the navigation sidebar of this page to see examples of custom navigation lists. 
+    </p>
+  </div>
+</section>
+<section id="menu-list">
+  <h4 class="h3 bold mt-2 bb" >
+    <a href="#menu-list" class="same-page fw-regular">Menu Lists</a>
+  </h4>
+  <menu role="toolbar" class="flex-row w-100 justify-between align-center p-md bt-1">
+    <button aria-label="Close Something example" role="presentation" type="button" class="error filled medium">
+      CLOSE
+    </button>
+    <button aria-label="Submit Something example" role="presentation" type="button" class="success filled medium">
+      SUBMIT
+    </button>
+  </menu>
+</section>
+</div>

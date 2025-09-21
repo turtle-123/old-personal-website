@@ -1,0 +1,228 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/DESIGN_SYSTEM_HEADER.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h1 class="page-title">My Design System</h1>
+<section id="introduction">
+  <h2 class="h2 bold bb mt-4">Why I Created a Design System</h2>
+  <p class="body1 mt-2">
+    I was using
+    <a href="https://mui.com/" class="secondary link" target="_blank">Material UI</a> for a project, and the bundle size, combined with the
+    <a href="https://cssinjs.org/" class="secondary link" target="_blank">css-in-js</a> approach to styling, resulted in an application that
+    was difficult to render on the server and that had a pretty poor initial load time. I wanted to create a design
+    system that was similar to Material UI / <a href="https://flutter.dev/" class="secondary link" target="_blank">Flutter</a> but that emphasized semantic HTML and a small bundle size.
+  </p>
+  <p class="body1 mt-2">
+    Also, when creating a Rich Text Editor with
+    <a href="https://lexical.dev/" class="secondary link" target="_blank">Lexical</a>, I found that it was best to not use highly abstracted components, so I tried to create a library
+    of simple components that
+    can be easily rendered on the server and that 
+    doesn't use too much CSS and JavaScript.
+  </p>
+  <p class="body1 mt-2">
+    In summary, the goal of the design system is to create a look that is comparable to other 
+    popular design libraries used today
+    while minimizing load time, bundle size, and complexity.
+  </p>
+</section>
+
+<section id="assumptions" class="mt-3">
+  <h2 class="h2 bold bb w-100 fw-regular">
+    <a href="#assumptions" class="same-page bold">Assumptions</a>
+  </h2>
+  <p class="body1 mt-2">
+    <div role="alert" class="alert outlined icon medium warning">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+      <p class="alert body2">
+        <strong>NOTE:</strong>
+        <span>
+          This design system uses CSS and JavaScript that are tied together -
+          i.e., some classes are required for components' JavaScript to work correctly. 
+          The design system bundles and transpiles client-side JavaScript using 
+          <a href="https://webpack.js.org/" class="secondary link inline" target="_blank">webpack</a>, 
+          which is why you might want to download the JavaScript and CSS files from the 
+          <a href="#resources" class="primary link">resources</a>
+          section and tweak them / re-transpile them for your own use. If you make changes to the CSS, I recommend you use <a href="https://github.com/postcss/postcss" target="_blank" class="secondary link">PostCSS</a> so your changes 
+          will appear the same across all browsers.
+        </span>
+      </p>
+    </div>
+    <div class="mt-3">
+      The design system assumes that:
+    </div> 
+  </p>
+  <ul>
+    <li>
+      you want to use 
+      <a href="https://htmx.org/docs/" class="secondary link">HTMX</a>
+      to create a 
+      <abbr title="Single Page Application">SPA</abbr> (Single Page Application),
+    </li>
+    <li>
+      you want to use 
+      semantic html, but that you want to style components primarily with CSS classes and inline styling, 
+    </li>
+    <li>
+      your <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" class="secondary link" target="_blank">Content Security Policy</a> allows for inline styling,
+    </li>
+    <li>
+      you want to use 
+      <a href="https://floating-ui.com/" class="secondary link" target="_blank">Floating UI</a>
+      for tooltips, menus, dropdowns, and the like, 
+    </li>
+    <li>
+      you want to have slightly different layouts for desktop and mobile,
+    </li>
+    <li>
+      you want to prioritize mobile devices (you want the application that you show the user to always be similar to the mobile device view),
+    </li>
+    <li>
+      you do not want to listen to 
+      <a href="https://medium.com/@ibalajisankar/resize-event-issue-in-mobile-phones-874a8fc8c036" class="secondary link" target="_blank">
+        resize events on mobile</a> 
+    </li>
+  </ul>
+</section>
+
+<section id="how-to-learn-more" class="mt-3">
+  <h2 class="h2 bold bb w-100">
+    <a href="#how-to-learn-more" class="same-page bold">Explore the Design System</a>
+  </h2>
+  <p class="body1 mt-1">
+    If you are looking for information about specific components or utility classes, use the 
+    links in the list below to find more information about those aspects of the system. Each aspect of the 
+    design system should describe the styling, accessability, and JavaScript concerns that go along with it.
+  </p>
+  <p class="body1 mt-1">
+    If you are looking to learn more about the design system and the decisions made, continue reading below or navigate to the 'General' page for the design system.
+  </p>
+  <p class="body1 mt-2">If you want the code, navigate to the <a href="#resources" class="primary link">resources</a> section.
+  </p>
+  <div class="alert filled error icon medium mt-2" role="alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Report"><path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z"></path></svg>
+    <p class="alert" class="bdoy2">
+      Note that I am still working on documenting the design system. I got tired of writing the documentation and wanted to move onto other things. I will come back and finish / improve the documentation eventually.
+    </p>
+  </div>
+</section>
+
+<section class="card el-2 p-md mt-3" id="navigate-components">
+  <h3 class="h5 fw-regular bb w-100">Components and Utility Classes</h3>
+  <nav class="none w-100">
+    <ul class="none body1 flex-row gap-3 wrap mt-1 w-100">
+      <li>
+        <a href="/projects/design-system/accordions" class="button primary text" hx-push-url="true" hx-get="/projects/design-system/accordions" hx-target="#subpage" hx-indicator="#subpage-indicator">Accordions</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/alerts" class="button secondary text" hx-push-url="true" hx-get="/projects/design-system/alerts" hx-target="#subpage" hx-indicator="#subpage-indicator">Alerts</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/boolean-inputs" class="button secondary text" hx-push-url="true" hx-get="/projects/design-system/boolean-inputs" hx-target="#subpage" hx-indicator="#subpage-indicator">Boolean Inputs</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/breadcrumbs" class="button primary text" hx-push-url="true" hx-get="/projects/design-system/breadcrumbs" hx-target="#subpage" hx-indicator="#subpage-indicator">Breadcrumbs</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/buttons" class="button secondary text" hx-push-url="true" hx-get="/projects/design-system/buttons" hx-target="#subpage" hx-indicator="#subpage-indicator">Buttons</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/code" class="button primary text" hx-push-url="true" hx-get="/projects/design-system/code" hx-target="#subpage" hx-indicator="#subpage-indicator">Code</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/fixed-content" class="button secondary text" hx-push-url="true" hx-get="/projects/design-system/fixed-content" hx-target="#subpage" hx-indicator="#subpage-indicator">Fixed Content</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/indicators" class="button primary text" hx-push-url="true" hx-get="/projects/design-system/indicators" hx-target="#subpage" hx-indicator="#subpage-indicator">Indicators</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/links" class="button primary text" hx-push-url="true" hx-get="/projects/design-system/links" hx-target="#subpage" hx-indicator="#subpage-indicator">Links</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/lists" class="button secondary text" hx-push-url="true" hx-get="/projects/design-system/lists" hx-target="#subpage" hx-indicator="#subpage-indicator">Lists</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/math" class="button primary text" hx-push-url="true" hx-get="/projects/design-system/math" hx-target="#subpage" hx-indicator="#subpage-indicator">Math</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/media" class="button secondary text" hx-push-url="true" hx-get="/projects/design-system/media" hx-target="#subpage" hx-indicator="#subpage-indicator">Media</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/other-inputs" class="button secondary text" hx-push-url="true" hx-get="/projects/design-system/other-inputs" hx-target="#subpage" hx-indicator="#subpage-indicator">Other Inputs</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/popovers" class="button primary text" hx-push-url="true" hx-get="/projects/design-system/popovers" hx-target="#subpage" hx-indicator="#subpage-indicator">Popovers</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/select-inputs" class="button secondary text" hx-push-url="true" hx-get="/projects/design-system/select-inputs" hx-target="#subpage" hx-indicator="#subpage-indicator">Select Inputs</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/surfaces" class="button primary text" hx-push-url="true" hx-get="/projects/design-system/surfaces" hx-target="#subpage" hx-indicator="#subpage-indicator">Surfaces</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/svgs" class="button secondary text" hx-push-url="true" hx-get="/projects/design-system/svgs" hx-target="#subpage" hx-indicator="#subpage-indicator">SVGs</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/tables" class="button primary text" hx-push-url="true" hx-get="/projects/design-system/tables" hx-target="#subpage" hx-indicator="#subpage-indicator">Tables</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/tabs" class="button secondary text" hx-push-url="true" hx-get="/projects/design-system/tabs" hx-target="#subpage" hx-indicator="#subpage-indicator">Tabs</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/text" class="button primary text" hx-push-url="true" hx-get="/projects/design-system/text" hx-target="#subpage" hx-indicator="#subpage-indicator">Text</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/text-inputs" class="button secondary text" hx-push-url="true" hx-get="/projects/design-system/text-inputs" hx-target="#subpage" hx-indicator="#subpage-indicator">Text Inputs</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/time" class="button secondary text" hx-push-url="true" hx-get="/projects/design-system/time" hx-target="#subpage" hx-indicator="#subpage-indicator">Time</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/utilities" class="button primary text" hx-push-url="true" hx-get="/projects/design-system/utilities" hx-target="#subpage" hx-indicator="#subpage-indicator">Utility Classes</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/general" class="button warning text" hx-push-url="true" hx-get="/projects/design-system/general" hx-target="#subpage" hx-indicator="#subpage-indicator">General Info</a>
+      </li>
+      <li>
+        <a href="/projects/design-system/google-maps" hx-get="/projects/design-system/google-maps" class="button icon-text medium success outlined" hx-push-url="true" hx-get="/projects/design-system/google-maps" hx-target="#PAGE" hx-indicator="#page-transition-progress">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Map"><path d="m20.5 3-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"></path></svg>
+          <span>
+            Google Maps JavaScript
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="/projects/design-system/lexical-rich-text-editor" hx-get="/projects/design-system/lexical-rich-text-editor" class="button medium icon-text info outlined" hx-push-url="true" hx-get="/projects/design-system/lexical" hx-target="#PAGE" hx-indicator="#page-transition-progress">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Facebook"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m13 2h-2.5A3.5 3.5 0 0 0 12 8.5V11h-2v3h2v7h3v-7h3v-3h-3V9a1 1 0 0 1 1-1h2V5z"></path></svg>
+          <span>
+            Lexical Rich Text Editor
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div role="alert" class="alert mt-2 info icon small">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Info"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>
+    <p class="alert">
+      <strong class="bolder body1">NOTE:</strong>
+      <span class="body2">
+        <em class="bold">Popovers</em> includes tooltips, dropdowns, dialogs, and menus - basically everything that is shown on mouseover or focus or everything that is in the <a href="https://developer.mozilla.org/en-US/docs/Glossary/Top_layer" target="_blank" class="secondary link">top-layer</a>.
+        <em class="bold">Media</em> includes images, video, and audio.
+        <em class="bold">Surfaces</em> includes cards, quotes, and asides.
+        <em class="bold">Other Inputs</em> includes toggle buttons.
+        <em class="bold">Tabs</em> includes tabs, steppers, and mobile steppers.
+        <em class="bold">Fixed Content</em> includes the navbar, footer, sidebars, drawers, and Floating Action Buttons.
+      </span>
+    </p>
+    <button class="icon medium close-alert" type="button" aria-label="Close Alert">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+    </button>
+  </div>
+</section>
+
+<div class="mt-4 flex-row justify-center t-primary htmx-indicator" id="subpage-indicator" role="progressbar" aria-label="Subpage Indicator" aria-busy="true">
+  <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>

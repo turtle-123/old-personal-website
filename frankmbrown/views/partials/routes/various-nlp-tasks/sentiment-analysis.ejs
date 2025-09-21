@@ -1,0 +1,31 @@
+<%# 
+PARTIAL ROUTE: partials/routes/various-nlp-tasks/sentiment-analysis.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.response
+- locals.response[i]
+%>
+<%# 
+Sentiment Analysis NLP Response
+%>
+
+<div class="table-wrapper mt-2">
+    <table cellspacing="0">
+        <caption class="h3 bold">Sentiment Analysis Results</caption>
+    <thead>
+        <tr>
+        <th scope="col">Label</th>
+        <th scope="col">Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%for(let i = 0; i < locals.response.length; i++){%>
+            <tr>
+                <td><%=locals.response[i].label%></td>
+                <td><%=locals.response[i].score%></td>
+            </tr>
+        <%}%>
+    </tbody>
+    </table>
+</div>

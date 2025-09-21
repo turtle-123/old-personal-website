@@ -1,0 +1,44 @@
+<%# 
+PARTIAL ROUTE: /comment/add/:id
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.comment_id string
+%>
+
+<div data-comment-form style="border-width: 2px 0px; border-color: var(--text-primary);" class="block">
+    <form hx-trigger="submit" hx-post="/comment/add/<%=locals.comment_id%>" data-loading="Submitting Comment..." class="mt-2" hx-target="#output-<%-locals.comment_id%>" hx-swap="innerHTML">
+        <div class="flex-row justify-end">
+            <button type="button" data-remove-form class="icon small filled error" aria-label="Delete Comment Form">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Delete"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+            </button>
+        </div>
+        <%-locals.commentLexical%>
+
+        <div class="flex-row justify-end mt-1">
+            <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                SUBMIT
+            </button>
+        </div>
+    </form>
+    <output class="block mt-2" id="output-<%-locals.comment_id%>">
+
+    </output>
+    <script nonce="<%=locals.jsNonce%>">
+        (() => {
+            const currentScript = document.currentScript;
+            if (currentScript) {
+                const commentForm = currentScript.closest('div[data-comment-form]');
+                if (commentForm) {
+                    const lexicalWrapper = commentForm.querySelector('div.lexical-wrapper');
+                    const b = commentForm.querySelector('button[data-remove-form]');
+                    if (b&&lexicalWrapper) b.addEventListener('click',() => {
+                        commentForm.remove();
+                        window.clearEditor(lexicalWrapper.id);
+                    });
+                }
+            }
+        })()
+        </script>
+</div>

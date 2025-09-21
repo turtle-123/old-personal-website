@@ -1,0 +1,273 @@
+<section id="id_564cf02f-591f-4809-aba8-c1ce3f7f0619" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_564cf02f-591f-4809-aba8-c1ce3f7f0619" class="same-page bold">Attribution Reporting API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_eec841ee-399a-4de7-b156-afb6e659637f">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_eec841ee-399a-4de7-b156-afb6e659637f" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Attribution_Reporting_API">Attribution Reporting API Reference</a></li></ul>
+        <blockquote cite="https://developer.mozilla.org//en-US/docs/Web/API/Attribution_Reporting_API" class="blockquote mt-2">
+            The <strong>Attribution Reporting API</strong> enables developers to measure conversions - for example when a user clicks on an ad embedded on one site an then proceeds to purchase the item on the vendor's site - and then access reports on those conversions. It does this without relying on third-party tracking cookie.
+        </blockquote>
+        <p class="mt-2">
+            The Attribution Reporting API provides a way to measure ad conversion in a way that protects user privacy. The Attribution API works through a combination of headers, JavaScript (<span class="text-code">fetch</span> and attributes), and anchor/image/iframe tags.
+        </p>
+        <div class="flex-row mt-1 justify-center">
+            <img 
+            width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+            height="<%-locals.desktop?373:(locals.tablet?310:246)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 176 / 123 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2F186cd984-65da-4840-8e82-a82215cd0a0e-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F186cd984-65da-4840-8e82-a82215cd0a0e-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F186cd984-65da-4840-8e82-a82215cd0a0e-desktop.jpeg 650w" 
+            sizes="(max-width: 550px) 246px, ((min-width: 550px) and (max-width: 1200px)) 310px, (min-width: 1200px) 373px" 
+            src="https://image.storething.org/frankmbrown%2F186cd984-65da-4840-8e82-a82215cd0a0e-desktop.jpeg" 
+            alt="Attribution Reporting API" 
+            />
+        </div>
+        <div class="mt-2" style="padding: 3px; border-top: 5px groove lightseagreen; border-right: 4px double cadetblue; border-bottom: 4px groove lightgoldenrodyellow; border-left: 4px inset linen; border-radius: 4px 3px 2px 4px;">
+            I am not going to implement the Attribution Reporting API because I don't plan on using ads anytime soon.
+        </div>
+    </div>
+</section>
+<section id="id_61f29677-4282-4d98-b4bb-fecaf6fa3f6c" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_61f29677-4282-4d98-b4bb-fecaf6fa3f6c" class="same-page bold">Audio Output Devices API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_fe3884b7-cbc0-40fe-b7c5-0da4035cde57">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_fe3884b7-cbc0-40fe-b7c5-0da4035cde57" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Audio_Output_Devices_API">Audio Output Devices API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2" cite="https://developer.mozilla.org//en-US/docs/Web/API/Audio_Output_Devices_API">
+            The <strong>Audio Output Devices API</strong> allows web applications to prompt users bout what output devices should be used for audio playback.
+            <br>
+            Operating systems commonly allow users to specify that audio should be played from speakers, a Bluetooth headset, or some other audio output device. This API allows application to provide the same functionality within a web page.
+        </blockquote>
+        <p class="mt-2">
+            The API provides the <span class="text-code">MediaDevices.selectAudioOutput()</span> method that allows users to select their desired audio output from those that are allowed by the <span class="text-code">speaker-selection</span> directive of the <span class="text-code">Permissions-Policy</span> HTTP header fro the document. The selected device then has user permission, allowing it to be enumerated with <span class="text-code">MediaDevices.enumerateDevices()</span> and set as the audio output using <span class="text-code">HTMLMediaElement.setSinkId()</span>. 
+        </p>
+        <div class="mt-2" style="padding: 3px; border-top: 5px solid lightslategray; border-right: 2px dotted white; border-bottom: 5px dashed lime; border-left: 2px solid orangered; border-radius: 2px 3px 4px 3px;">
+            The area below will show the output of  <span class="text-code">navigator.mediaDevices.selectAudioOutput</span>, if it exists in the window context.
+        </div>
+        <output class="block" id="media-devices-output">
+            
+        </output>
+    </div>
+</section>
+<section id="id_ef5398b6-e7f2-4cf0-ac57-53dfbffd587a" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_ef5398b6-e7f2-4cf0-ac57-53dfbffd587a" class="same-page bold">Background Fetch API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_c3baac96-f831-4028-ade0-0836fb314fc7">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_c3baac96-f831-4028-ade0-0836fb314fc7" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Background_Fetch_API">Background Fetch API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2" cite="https://developer.mozilla.org//en-US/docs/Web/API/Background_Fetch_API">
+            The <strong>Background Fetch API</strong> provides a method for managing downloads that may take a significant amount of time such as movies, audio files, and software.
+        </blockquote>
+        <p class="mt-2">
+            When a user needs to download large files, this presents a problem in that the user needs to stay connected to the page for the download to complete. If they lose connectivity, close the page, or navigate away from the page, the download stops. The <a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Background_Synchronization_API">BackgroundSynchronization API</a> provides a way for Service Workers to defer processing until a user is connected; however it can't be used for long running tasks such as downloading a large file. The BackgroundFetch API solves this problem. It creates a way for a web developer to tell the browser to perform some fetches in the background. The browser then performs the fetches in a user-visible way, displaying progress to the user and giving them a method to cancel the download. Once the download is complete, the browser then opens the service worker, at which point in your application can do something with the response. 
+        </p>
+        <div class="mt-2" style="padding: 3px; border-top: 5px inset white; border-right: 3px dotted lawngreen; border-bottom: 3px hidden lightseagreen; border-left: 3px inset palegoldenrod; border-radius: 2px 4px 4px 2px;">
+            I don't have a use yet for the Background Fetch API, but it should be used to download large files (I have no large files that I need to download right now).
+        </div>        
+
+    </div>
+</section>
+<section id="id_9c20226c-bbf6-4887-9d26-3162b5c8229a" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_9c20226c-bbf6-4887-9d26-3162b5c8229a" class="same-page bold">Background Sync</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_71d5fd8e-7a9e-4e86-9b24-e70a4435eac1">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_71d5fd8e-7a9e-4e86-9b24-e70a4435eac1" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Background_Synchronization_API">Background Sync Reference</a></li></ul>
+        <blockquote class="blockquote mt-2" cite="https://developer.mozilla.org//en-US/docs/Web/API/Background_Synchronization_API">
+            The <strong>Background Synchronization API</strong> enables a web app to defer tasks so that they can be run in a service worker once the user has a stable network connection.
+        </blockquote>
+        <p class="mt-2">
+            This API allows web applications to defer server synchonization work to their service worker to handle at a later time, if the device is offline. For example, an email client application could let its users compose and send messages at any time, even when the device has no network connection. The application frontend registers a sync request and the service worker gets alerted when the network is present again and handles the sync. The <span class="text-code"><a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/SyncManager">SyncManager</a></span> interface is available through <span class="text-code">ServiceWorkerRegistration.sync</span>.
+        </p>
+        <div class="mt-2" style="padding: 3px; border-top: 4px hidden darkturquoise; border-right: 2px none ivory; border-bottom: 5px outset darksalmon; border-left: 5px double olivedrab; border-radius: 4px 2px 2px 4px;">
+        <p>
+            <strong>Possible Use Cases:</strong>
+        </p>
+        <ul class="mt-1">
+            <li>Submitting articles / comments after regaining network connection.</li>
+            <li>Checking for changes in an article and using the ServiceWorker to check for changes to know if to reload the page / reload metrics on the article / comments.</li>
+        </ul>
+        </div>
+    </div>
+</section>
+<section id="id_a94d2e41-e438-4118-a3f3-88477167e463" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_a94d2e41-e438-4118-a3f3-88477167e463" class="same-page bold">Background Task</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_713a29b3-c638-4476-96be-0028f5d44d58">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_713a29b3-c638-4476-96be-0028f5d44d58" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Background_Tasks_API">Background Task Reference</a></li></ul>
+        <blockquote class="blockquote mt-2" cite="https://developer.mozilla.org//en-US/docs/Web/API/Background_Tasks_API">
+            The <strong>Cooperative Scheduling of Background Tasks API</strong> (also referred to as the Background Tasks API or the <span class="text-code">requestIdCallback()</span> API) provides the ability to queue tasks to be executed automatically by the user-agent when it determines that there is free time to do so. 
+        </blockquote>
+        <p class="mt-2">
+            Because event handling and screen updates are two of the most obvious ways users notice performance issues, it's important for your code to be a good citizen of the Web and help prevent stalls in the execution loop/ <span class="text-code">Window.requestIdCallback()</span> makes it possible to become actively engaged in helping to ensure that the browser's event loop runs smoothly, by allowing the browser to tell your code how much time it can safely use without causing the system to lag. 
+        </p>
+        <h3 class="h4 mt-2 strong">How To Use:</h3>
+        <ul>
+            <li>Use idle callbacks for tasks which don't have high priority.</li>
+            <li>Idle callbacks should do their best not to overrun the time alloted.</li>
+            <li>Avoid making changes to the DOM within your idle callback.</li>
+            <li>Avoid tasks whose run time can't be predicted. </li>
+            <li>Use timeouts only when you need to.</li>
+        </ul>
+    </div>
+</section>
+<section id="id_481eb64c-4b98-499c-a0a9-44cd121707e5" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_481eb64c-4b98-499c-a0a9-44cd121707e5" class="same-page bold">Badging API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_a596797b-d1de-425f-9a17-a26a81f3a847">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_a596797b-d1de-425f-9a17-a26a81f3a847" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Badging_API">Badging API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2" cite="https://developer.mozilla.org//en-US/docs/Web/API/Badging_API">
+            The <strong>Badging API</strong> gives web developers a method of setting a badge on a document or application, to act as a notification that state has changed without displaying a more distracting notification. A common use case for this would be an application with a messaging feature displaying a badge on the app icon to show that new messages have arrived. Web developers frequently update document favicons or titles in order to indicate status. The Badging API provides a more elegant way to show status, by providing a method which has meaning to the user agent and can therefore be displayed in a way that matches the rest of the UI. 
+        </blockquote>
+        <p class="mt-2">
+            Two Types of badges:
+        </p>
+        <ul>
+            <li>Document badges, which are typically shown in the browser tab near or on the page icon.</li>
+            <li>App badges, which are associated with the icon of an installed web app. These may display on the app icon in the dock, shelf, or home screen depending on the device in use.</li>
+        </ul>
+        <p class="mt-2">
+            A bade icon can have three possible values:
+        </p>
+        <ol>
+            <li><span class="text-code">nothing</span> Indicates that no badge is currently set. A badge can be in this state due to it being cleared by the application, or being reset by the user.</li>
+            <li><span class="text-code">flag</span> Indicating that the badge is set, but has no specific data to diaply. A badge will be in this state id the application has set a badge, but passed no value.</li>
+            <li><span class="text-code">an integer</span> A value passed when setting the badge., This value will never be 0.</li>
+        </ol>
+        <p class="mt-2">
+            A badge is set with the methods <span class="text-code">setAppBadge()</span>. Badges are cleared with the <span class="text-code">clearAppBadge()</span> methods. 
+        </p>
+        
+    </div>
+</section>
+<section id="id_37ceea62-0d02-46e5-83f7-491ec2a52726" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_37ceea62-0d02-46e5-83f7-491ec2a52726" class="same-page bold">Barcode Detection API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_d352dece-057e-4bda-a40a-9597c50e377d">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_d352dece-057e-4bda-a40a-9597c50e377d" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Barcode_Detection_API">Barcode Detection API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2" cite="https://developer.mozilla.org//en-US/docs/Web/API/Barcode_Detection_API">
+            The Barcode Detection API detects linear and two-dimensional barcodes in images. 
+        </blockquote>
+        <p class="mt-2">
+            Support for barcode recognition within web apps unlocks a variety of use cases through supported barcode formats. QR codes can be used for online payments, web navigation or establishing social media connections. Aztec codes can be used to scan boarding passes and shopping apps can use EAN or UPC barcodes to compare prices of physical items. 
+        </p>
+        
+    </div>
+</section>
+<section id="id_4258547d-b48e-49b3-b76b-e31ed396ac02" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_4258547d-b48e-49b3-b76b-e31ed396ac02" class="same-page bold">Battery API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_c45dabb7-e76b-4b9c-b556-71fbd1555fd0">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_c45dabb7-e76b-4b9c-b556-71fbd1555fd0" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Battery_Status_API">Battery API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Battery Status API</strong>, more often referred to as the <strong>Battery API</strong>, provides information about the system's battery charge level and lets you be notified by events that are sent when the battery level or charging status change. This can be used to adjust your app's resource usage to reduce battery train when the battery is low, or to save changes before the battery runs out in order to prevent data loss. 
+        </blockquote>
+        
+    </div>
+</section>
+<section id="id_54d7e491-9fcc-4787-8762-9a52643bf525" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_54d7e491-9fcc-4787-8762-9a52643bf525" class="same-page bold">Beacon</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_7bb2b66e-af10-483f-b428-c75e85db792f">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_7bb2b66e-af10-483f-b428-c75e85db792f" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Beacon_API">Beacon Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <span class="text-code">Beacon</span> API is used to send an asynchronous and non-blocking request to a web server. Unlike requests made using XMLHttpRequest or the Fetch API, the browser guarantees to initiate beacon requests before the page is unloaded and to run them to completion. 
+        </blockquote>
+        <p class="mt-2">
+            The main use case for the Beacon API is to send analytics such as client-side events or session data to the server. Because beacon requests are both asynchronous and guaranteed to be sent, they combine good performance characteristics and reliability.
+        </p>
+        
+    </div>
+</section>
+<section id="id_59c59b86-6286-40ca-b190-6cdd2ebd4c61" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_59c59b86-6286-40ca-b190-6cdd2ebd4c61" class="same-page bold">Bluetooth API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_8fc48a80-371b-48e6-8f03-4f247caf4890">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_8fc48a80-371b-48e6-8f03-4f247caf4890" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_Bluetooth_API">Bluetooth API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Web Bluetooth API provides the ability to connect and interact with Bluettoth Low Energy peripherals. 
+        </blockquote>
+        <p class="mt-">
+            The Web Bluetooth API can only be used in a secure context. Access to the API is controlled by the Permissions Policy directive bluetooth. The default allowlist for the bluetooth policy is <span class="text-code">self</span>, whch enables Bluettoth usage in same-origin nested frames but prevents access by third-party content by default. In order to use the freature, the user must first grant explicit permission (they will not be prompted for access for other reasons).
+        </p>
+        
+    </div>
+</section>
+<section id="id_2fc87a08-de9c-4564-8871-0223ca3e56f0" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_2fc87a08-de9c-4564-8871-0223ca3e56f0" class="same-page bold">Broadcast Channel API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_ae2bf0f7-a8c5-4aa9-9306-58d5d84ace2d">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_ae2bf0f7-a8c5-4aa9-9306-58d5d84ace2d" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Broadcast_Channel_API">Broadcast Channel API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Broadcast Channel API</strong> allows basic communication between browsing contexts (that is, <em>windows, tabs, frames</em>, or <em>iframes</em>) and workers on the same origin.
+        </blockquote>
+        <p class="mt-2">
+            By creating a <span class="text-code">BroadcastChannel</span> object, you can receive messages that are posted to it. You don;t have to maintain a reference to the frames or workers you wish to communicate with: they can "subscibe" to the frames or workers you wish to communicate with: they can "subscribe" to a particular channel by constructing their own <span class="text-code">BroadcastChannel</span> with the same name and having bi-directional communication between all of them.
+        </p>
+        <div class="flex-row mt-1 justify-center">
+            <img 
+            width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+            height="<%-locals.desktop?371:(locals.tablet?308:245)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 176 / 123 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2Fd1cb82c6-ea0f-44a0-9626-8d064eecd238-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2Fd1cb82c6-ea0f-44a0-9626-8d064eecd238-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2Fd1cb82c6-ea0f-44a0-9626-8d064eecd238-desktop.jpeg 650w" 
+            sizes="(max-width: 550px) 245px, ((min-width: 550px) and (max-width: 1200px)) 308px, (min-width: 1200px) 371px" 
+            src="https://image.storething.org/frankmbrown%2Fd1cb82c6-ea0f-44a0-9626-8d064eecd238-desktop.jpeg" 
+            alt="Broadcast Channel" 
+            />
+        </div>
+        <p class="mt-2">
+            The Broadcast Channel API's self-contained interface allows cross-context communication. It can be used to detect user actions in other tabs within a same origin, like when the user logs in or out. 
+        </p>
+        
+    </div>
+</section>

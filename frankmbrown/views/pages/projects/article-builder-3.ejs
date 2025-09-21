@@ -1,0 +1,90 @@
+<%# 
+PARTIAL ROUTE: pages/projects/article-builder-3.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+    <h1 class="page-title">
+      Article Builder v3
+    </h1>
+
+    <section id="why-build" class="mt-2">
+      <h2 class="bold bb-thick h2">
+        <a href="#why-build" class="same-page fw-regular">Article Builder v3</a>
+
+      </h2>
+      <p class="mt-2">
+        The first article builder page was an attempt at letting the user build an article using the entire page. This was to allow the user to have a <a class="secondary link" target="_blank" href="https://www.microsoft.com/en-us/microsoft-365/word">Word</a>-like or <a class="secondary link" target="_blank" href="https://www.google.com/docs/about/">Google Docs</a>-like experience. It didn't have a great UI and it would be difficult to add a html/css/javascript editor to the Lexical Editor while still keeping what we care most about the rich text editor - <span class="bold t-info">the ability of readers to highlight certain sections of the article and comment specifically on that section.</span> The point of the first iteration of the article builder was to keep the toolbar in view at all times. 
+      </p>
+      <p class="mt-2">
+        The second article builder was an attempt at letting the user create smaller sections of an article and then add, remove, and rearrange the sections with drag and drop functionality. I think this version works better at smaller screen sizes and it is what I will be copying with this third iteration of the article builder.
+      </p>
+    </section>
+
+    <section id="new-article-builder-requirements" class="mt-2">
+      <h2 class="bold bb-thick h2 flex-row align-center justify-between">
+        <a href="#new-article-builder-requirements" class="same-page fw-regular">New Article Builder Requirements</a>
+        
+      </h2>
+      <ul>
+        <li>
+          This article builder should look like the second version except instead of a add / remove button. Each <i>"section"</i> should have an <span class="t-primary fw-regular">add editor</span>, add <span class="t-secondary fw-regular">HTML/CSS/JavaScript</span>, and <span class="t-error fw-regular">remove section</span> buttons.
+        </li>
+        <li>
+          The tabs for the HTML / CSS / JavaScript editor should be hidden when the editor is not focused. <span class="t-info fw-regular">Listen for the focusin events.</span>
+        </li>
+        <li>
+          When submitted, the lexical state for each lexical editor should be serialized to JSON and stored in an array and each html/css/js <span class="t-bold">"Custom Code"</span> section should be stored as html: string, css: string, javascript: string. See the object below
+        </li>
+<div style="position: relative;" class="mt-1"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">type</span> <span class="hljs-title class_">ArticleBuilderToPost</span> = (<span class="hljs-title class_">StringifiedLexicalState</span>|{
+<span class="hljs-attr">html</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">css</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">js</span>: <span class="hljs-built_in">string</span>
+})[];</code></pre>
+        <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+            </path>
+          </svg>
+        </button>
+      </div>
+        <li>
+          Since I am the only one using the article builder for now, I don't need to worry about sand-boxing the javascript. I just need to post the html / css / js to the server and get back the js with a nonce.
+        </li>
+      </ul>
+    </section>
+
+    <section id="things-to-keep-inmind" class="mt-2">
+      <h2 class="bold bb-thick h2">
+        <a href="#things-to-keep-inmind" class="same-page fw-regular">Things To Keep In Mind</a>
+      </h2>
+      
+      <div class="alert filled warning icon medium mt-2" role="alert">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+        <p class="alert">
+          <span>
+            To include a <span class="bolder">Article Builder v3</span> and associated code on the page, include a form with the attribute <span class="bolder">data-article-builder-final</span> .
+          </span>  
+        </p>
+        <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </div>
+      <ul class="t-warning fw-regular">
+        <li>
+          There can only be one article builder v3 per page due to the fact the sort container must have the same id as all of the sections, and it is more trouble than its worth (probably) to make that work.
+        </li>
+      </ul>
+    </section>
+
+    <section id="article-builder-implementation" class="mt-2">
+      <h2 class="bold bb-main">
+        <a href="#article-builder-implementation" class="same-page h5 bold">Article Builder Implementation</a>
+      </h2>
+      <%-include('../../forms/article-builder-form')%>
+    </section>
+    
+    <%-include('../../partials/pagePartial')%>
+<%}%>

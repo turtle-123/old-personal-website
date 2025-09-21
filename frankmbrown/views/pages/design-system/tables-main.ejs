@@ -1,0 +1,477 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/tables-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="tables-header">
+  <a href="#tables-header"  class="same-page bold">Tables</a>
+</h2>
+<details class="mt-2">
+  <summary>
+    <span class="h6 fw-regular">About Tables</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true">
+    All tables should be wrapped in a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;table-wrapper&quot;</span>&gt;</span></span></code></span> element 
+    so that overflow from the table in the x-direction is handled by an appropriately sized horizontal scrollbar.
+    <br>
+    Tables come in two sizes: normal (no class) and <span><code class="hljs"><span class="hljs-selector-class">.small</span></code></span>.
+    <br>
+    Below, you can see examples of tables with captions, without captions, with and without <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">tfoot</span>&gt;</span></span></code></span> elements, 
+    and with banded columns and banded rows.
+    <br>
+    All table cells have a relative position, so you can add absolutely positioned buttons to them for a Rich Text Editor.
+    <br>
+    <span class="t-info fw-regular">
+      The decision was made to not make the table responsive given that the presentation of the data is more important than the presentation of the entire table.
+    </span>
+  </div>
+
+</details>
+<section aria-label="Tables" class="mt-4" id="tables-example">
+<h3 class="h4 bb-main mt-2">
+  <a href="#tables-example" class="same-page bold">Tables Example</a>
+</h3>
+<div class="table-wrapper mt-2">
+  <table cellspacing="0">
+    <thead>
+      <tr><th scope="col">Activities</th>
+      <th scope="col">Monday</th>
+      <th scope="col">Tuesday</th>
+      <th scope="col">Wednesday</th>
+      <th scope="col">Thursday</th>
+      <th scope="col">Friday</th>
+      <th scope="col">Saturday</th>
+      <th scope="col">Sunday</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <th scope="row">Wake Up:</th>
+        <td>800</td>
+        <td>600</td>
+        <td>900</td>
+        <td>800</td>
+        <td>700</td>
+        <td>700</td>
+        <td>900</td>
+      </tr>
+      <tr>
+        <th scope="row">Class:</th>
+        <td>Math</td>
+        <td>Science</td>
+        <td>English</td>
+        <td>Math</td>
+        <td>Science</td>
+        <td>History</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <th scope="row">Bed:</th>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2400</td>
+        <td>2400</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table-wrapper mt-3">
+  <table cellspacing="0">
+    <caption>Table 2: A Table With A Caption</caption>
+    <thead>
+      <tr><th scope="col">Activities</th>
+      <th scope="col">Monday</th>
+      <th scope="col">Tuesday</th>
+      <th scope="col">Wednesday</th>
+      <th scope="col">Thursday</th>
+      <th scope="col">Friday</th>
+      <th scope="col">Saturday</th>
+      <th scope="col">Sunday</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <th scope="row">Wake Up:</th>
+        <td>800</td>
+        <td>600</td>
+        <td>900</td>
+        <td>800</td>
+        <td>700</td>
+        <td>700</td>
+        <td>900</td>
+      </tr>
+      <tr>
+        <th scope="row">Class:</th>
+        <td>Math</td>
+        <td>Science</td>
+        <td>English</td>
+        <td>Math</td>
+        <td>Science</td>
+        <td>History</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <th scope="row">Bed:</th>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2400</td>
+        <td>2400</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table-wrapper mt-3">
+  <table cellspacing="0">
+    <caption>Table 3: A Table With A Caption And Footer</caption>
+    <thead>
+      <tr>
+        <th scope="col">Activities</th>
+        <th scope="col">Monday</th>
+        <th scope="col">Tuesday</th>
+        <th scope="col">Wednesday</th>
+        <th scope="col">Thursday</th>
+        <th scope="col">Friday</th>
+        <th scope="col">Saturday</th>
+        <th scope="col">Sunday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Wake Up:</th>
+        <td>800</td>
+        <td>600</td>
+        <td>900</td>
+        <td>800</td>
+        <td>700</td>
+        <td>700</td>
+        <td>900</td>
+      </tr>
+      <tr>
+        <th scope="row">Class:</th>
+        <td>Math</td>
+        <td>Science</td>
+        <td>English</td>
+        <td>Math</td>
+        <td>Science</td>
+        <td>History</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <th scope="row">Bed:</th>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2400</td>
+        <td>2400</td>
+      </tr>
+      </tbody><tfoot>
+        <tr>
+          <th scope="row" colspan="7">
+            Overall:
+          </th>
+          <td class="h6">
+            Pretty Good
+          </td>
+        </tr>
+      </tfoot>
+    
+  </table>
+</div>
+<div class="table-wrapper mt-3">
+  <table cellspacing="0" class="small">
+    <caption>Table 4: Small Table With Caption</caption>
+    <thead>
+      <tr><th scope="col">Activities</th>
+      <th scope="col">Monday</th>
+      <th scope="col">Tuesday</th>
+      <th scope="col">Wednesday</th>
+      <th scope="col">Thursday</th>
+      <th scope="col">Friday</th>
+      <th scope="col">Saturday</th>
+      <th scope="col">Sunday</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <th scope="row">Wake Up:</th>
+        <td>800</td>
+        <td>600</td>
+        <td>900</td>
+        <td>800</td>
+        <td>700</td>
+        <td>700</td>
+        <td>900</td>
+      </tr>
+      <tr>
+        <th scope="row">Class:</th>
+        <td>Math</td>
+        <td>Science</td>
+        <td class="bg-error">English</td>
+        <td>Math</td>
+        <td>Science</td>
+        <td>History</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <th scope="row">Bed:</th>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2400</td>
+        <td>2400</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table-wrapper mt-3">
+  <table cellspacing="0" class="banded-row">
+    <caption>Table 5: A Table With Banded Rows</caption>
+    <thead>
+      <tr>
+        <th scope="col">Activities</th>
+        <th scope="col">Monday</th>
+        <th scope="col">Tuesday</th>
+        <th scope="col">Wednesday</th>
+        <th scope="col">Thursday</th>
+        <th scope="col">Friday</th>
+        <th scope="col">Saturday</th>
+        <th scope="col">Sunday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Wake Up:</th>
+        <td>800</td>
+        <td>600</td>
+        <td>900</td>
+        <td>800</td>
+        <td>700</td>
+        <td>700</td>
+        <td>900</td>
+      </tr>
+      <tr>
+        <th scope="row">Class:</th>
+        <td>Math</td>
+        <td>Science</td>
+        <td>English</td>
+        <td>Math</td>
+        <td>Science</td>
+        <td>History</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <th scope="row">Bed:</th>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2400</td>
+        <td>2400</td>
+      </tr>
+      </tbody><tfoot>
+        <tr>
+          <th scope="row" colspan="7">
+            Overall:
+          </th>
+          <td>
+            Pretty Good
+          </td>
+        </tr>
+      </tfoot>
+    
+  </table>
+</div>
+<div class="table-wrapper mt-3">
+  <table cellspacing="0" class="banded-col">
+    <caption>Table 6: A Table With Banded Columns:</caption>
+    <thead>
+      <tr>
+        <th scope="col">Activities</th>
+        <th scope="col">Monday</th>
+        <th scope="col">Tuesday</th>
+        <th scope="col">Wednesday</th>
+        <th scope="col">Thursday</th>
+        <th scope="col">Friday</th>
+        <th scope="col">Saturday</th>
+        <th scope="col">Sunday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Wake Up:</th>
+        <td>800</td>
+        <td>600</td>
+        <td>900</td>
+        <td>800</td>
+        <td>700</td>
+        <td>700</td>
+        <td>900</td>
+      </tr>
+      <tr>
+        <th scope="row">Class:</th>
+        <td>Math</td>
+        <td>Science</td>
+        <td>English</td>
+        <td>Math</td>
+        <td>Science</td>
+        <td>History</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <th scope="row">Bed:</th>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2400</td>
+        <td>2400</td>
+      </tr>
+      </tbody><tfoot>
+        <tr>
+          <th scope="row" colspan="7">
+            Overall:
+          </th>
+          <td>
+            Pretty Good
+          </td>
+        </tr>
+      </tfoot>
+    
+  </table>
+</div>
+<div class="table-wrapper mt-3">
+  <table cellspacing="0" class="banded-row odd">
+    <caption>Table 7: A Table With Odd Banded Rows</caption>
+    <thead>
+      <tr>
+        <th scope="col">Activities</th>
+        <th scope="col">Monday</th>
+        <th scope="col">Tuesday</th>
+        <th scope="col">Wednesday</th>
+        <th scope="col">Thursday</th>
+        <th scope="col">Friday</th>
+        <th scope="col">Saturday</th>
+        <th scope="col">Sunday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Wake Up:</th>
+        <td>800</td>
+        <td>600</td>
+        <td>900</td>
+        <td>800</td>
+        <td>700</td>
+        <td>700</td>
+        <td>900</td>
+      </tr>
+      <tr>
+        <th scope="row">Class:</th>
+        <td>Math</td>
+        <td>Science</td>
+        <td>English</td>
+        <td>Math</td>
+        <td>Science</td>
+        <td>History</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <th scope="row">Bed:</th>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2400</td>
+        <td>2400</td>
+      </tr>
+      </tbody><tfoot>
+        <tr>
+          <th scope="row" colspan="7">
+            Overall:
+          </th>
+          <td>
+            Pretty Good
+          </td>
+        </tr>
+      </tfoot>
+    
+  </table>
+</div>
+<div class="table-wrapper mt-3">
+  <table cellspacing="0" class="banded-col odd">
+    <caption>Table 8: A Table With Odd Banded Columns:</caption>
+    <thead>
+      <tr>
+        <th scope="col">Activities</th>
+        <th scope="col">Monday</th>
+        <th scope="col">Tuesday</th>
+        <th scope="col">Wednesday</th>
+        <th scope="col">Thursday</th>
+        <th scope="col">Friday</th>
+        <th scope="col">Saturday</th>
+        <th scope="col">Sunday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Wake Up:</th>
+        <td>800</td>
+        <td>600</td>
+        <td>900</td>
+        <td>800</td>
+        <td>700</td>
+        <td>700</td>
+        <td>900</td>
+      </tr>
+      <tr>
+        <th scope="row">Class:</th>
+        <td>Math</td>
+        <td>Science</td>
+        <td>English</td>
+        <td>Math</td>
+        <td>Science</td>
+        <td>History</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <th scope="row">Bed:</th>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2200</td>
+        <td>2400</td>
+        <td>2400</td>
+      </tr>
+      </tbody><tfoot>
+        <tr>
+          <th scope="row" colspan="7">
+            Overall:
+          </th>
+          <td>
+            Pretty Good
+          </td>
+        </tr>
+      </tfoot>
+    
+  </table>
+</div>
+
+
+</section>

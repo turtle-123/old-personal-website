@@ -1,0 +1,38 @@
+<%# 
+locals.jsNonce
+%>
+<div id="notifications-card" class="card block rounded el-2 p-md mt-2" style="max-width: var(--max-width-toc);">
+    <div data-click-capture class="flex-row justify-start align-center gap-3 bb w-100">
+      <span class="h6 bold">Notifications</span>
+      <button type="button" class="icon medium" aria-label="Hide / Show Notifications" data-hide-show data-el="#notifications-inners">
+        <svg data-arrow focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowDown"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>
+      </button>
+      <div class="flex-row justify-end grow-1 p-sm">
+        <div id="notification-spinner" class="flex-row w-100 justify-end">
+          <div class="flex-row justify-end t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Getting Notifications">
+          <div class="lds-dual-ring"></div>
+          </div>
+        </div>
+
+        <span id="notification-connected-span" class="flex-row align-center gap-2"  title="Connected" hidden>
+          <svg class="t-success caption" viewBox="0 0 640 512" title="wifi" focusable="false" inert tabindex="-1"><path d="M54.2 202.9C123.2 136.7 216.8 96 320 96s196.8 40.7 265.8 106.9c12.8 12.2 33 11.8 45.2-.9s11.8-33-.9-45.2C549.7 79.5 440.4 32 320 32S90.3 79.5 9.8 156.7C-2.9 169-3.3 189.2 8.9 202s32.5 13.2 45.2 .9zM320 256c56.8 0 108.6 21.1 148.2 56c13.3 11.7 33.5 10.4 45.2-2.8s10.4-33.5-2.8-45.2C459.8 219.2 393 192 320 192s-139.8 27.2-190.5 72c-13.3 11.7-14.5 31.9-2.8 45.2s31.9 14.5 45.2 2.8c39.5-34.9 91.3-56 148.2-56zm64 160a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z"></path></svg>
+        </span>
+        <span id="notification-disconnected-span" title="Disconnected" class="flex-row align-center gap-2">
+          <svg class="t-error caption" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="WifiOff"><path d="M22.99 9C19.15 5.16 13.8 3.76 8.84 4.78l2.52 2.52c3.47-.17 6.99 1.05 9.63 3.7l2-2zm-4 4c-1.29-1.29-2.84-2.13-4.49-2.56l3.53 3.53.96-.97zM2 3.05 5.07 6.1C3.6 6.82 2.22 7.78 1 9l1.99 2c1.24-1.24 2.67-2.16 4.2-2.77l2.24 2.24C7.81 10.89 6.27 11.73 5 13v.01L6.99 15c1.36-1.36 3.14-2.04 4.92-2.06L18.98 20l1.27-1.26L3.29 1.79 2 3.05zM9 17l3 3 3-3c-1.65-1.66-4.34-1.66-6 0z"></path></svg>
+        </span>
+
+      </div>
+    </div>
+    <div id="notifications-inners" style="max-height: 250px; overflow-y: auto; scrollbar-width: none;">
+      <div class="flex-row w-100 justify-center mt-1">
+        <button hidden type="button" class="icon-text small filled info" id="subscribe-to-notifications" aria-label="ARIA LABEL">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Notifications"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path></svg>
+          SHOW NOTIFICATIONS
+        </button>
+      </div>
+      
+      <div id="notifications-div"></div>
+      
+    </div>
+</div>
+

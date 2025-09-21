@@ -1,0 +1,62 @@
+<%# 
+PARTIAL ROUTE: pages/admin/admin-view-image.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.frankmbrownHTML
+- locals.civgaugeHTML
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">View frankmbrown.net Images</h1>
+  <p class="mt-2">
+    View and delete image files from the s3 bucket.
+  </p>
+
+  <section id="image-files" class="mt-2">
+    <h2 class="bold bb-thick h2">
+      <a href="#image-files" class="same-page fw-regular">Image Files</a>
+    </h2>
+    <fieldset class="mt-3">
+      <legend class="h6 bold">Image List Type</legend>
+      <div class="flex-row gap-3 align-center">
+        <label class="radio">
+          <input type="radio" name="image-list-type" value="standard" class="secondary" checked>
+          Standard
+        </label>
+        <label class="radio">
+          <input type="radio" name="image-list-type" value="standard" class="secondary">
+          Quilted
+        </label>
+        <label class="radio">
+          <input type="radio" name="image-list-type" value="standard" class="secondary">
+          Woven
+        </label>
+        <label class="radio">
+          <input type="radio" name="image-list-type" value="standard" class="secondary">
+          Masonry
+        </label>
+      </div>
+    </fieldset>
+    <section id="frankmbrown-images" class="mt-2">
+        <h3 class="bold bb-thick h2">
+          <a href="#frankmbrown-images" class="same-page fw-regular">FrankMBrown.net Images</a>
+        </h3>
+        <div id="frankmbrown-images" class="mt-4" style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 12px 12px; align-items: center;">
+          <%-locals.frankmbrownHTML%>
+        </div>
+    </section>
+    <section id="civgauge-images" class="mt-2">
+      <h3 class="bold bb-thick h2">
+        <a href="#civgauge-images" class="same-page fw-regular">Civgauge.io Images</a>
+      </h3>
+      <div id="civgauge-images" class="mt-4" style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 12px 12px; align-items: center;">
+        <%-locals.civgaugeHTML%>
+      </div>
+  </section>
+</section>
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

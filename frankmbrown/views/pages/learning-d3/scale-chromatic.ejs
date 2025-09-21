@@ -1,0 +1,22 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/scale-chromatic.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+<h1 class="page-title" id="top-of-page">D3.js Scale Chromatic</h1>
+        
+<p>
+  This module provides sequential, diverging and categorical color schemes designed to work with d3-scale’s d3.scaleOrdinal and d3.scaleSequential. Most of these schemes are derived from Cynthia A. Brewer’s ColorBrewer. Since ColorBrewer publishes only discrete color schemes, the sequential and diverging scales are interpolated using uniform B-splines.
+</p>
+
+<p>
+  Allows you to produce sequential color schemes.
+</p>
+        
+  <%-include('../../partials/pagePartial')%>
+<%}%>

@@ -1,0 +1,70 @@
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+    <h1 class="page-title"><%-locals.title%></h1>
+
+    <p class="mt-2">
+        <%=locals.pageObj.description%>
+    </p>
+
+    <div class="mt-2 bb-main flex-row justify-between" style="padding-bottom: 4px; border-bottom-width: 3px;">
+    <div class="flex-column align-center gap-2" style="width: fit-content;">
+        <span class="bold">Date Created:</span>
+        <time data-date-format="MM/DD/YYYY" datetime="<%=locals.pageObj.date_created%>">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CalendarToday">
+            <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z">
+            </path>
+        </svg>
+        <span><%=locals.pageObj.date_created_str%></span>
+        </time>
+    </div>
+    </div>
+    <%-include('../partials/share-like-comment')%>
+
+    <section id="about-design" class="mt-4">
+        <div class="flex-row bb-thick justify-between">
+          <h2 class="bold h2">
+            <a href="#about-design" class="same-page bold">
+              About the Design
+            </a>
+          </h2>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#about-design-hide">
+            <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div class="mt-2" id="about-design-hide">
+          <%-locals.pageObj.articleHTML%>
+        </div>
+      </section>
+
+    <section id="design-sect" class="mt-4">
+        <h2 class="bold bb-thick h2">
+        <a href="#design-sect" class="same-page bold">
+            Design
+        </a>
+        </h2>
+        <div class="mt-1 flex-row justify-end">
+          <a download href="/download<%-locals.path%>" class="button medium icon-text outlined warning" id="download-asset">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Download"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path></svg>
+            DOWNLOAD DESIGN
+          </a>
+        </div>
+        <div class="mt-2">
+            <div id="extra-html" class="mt-2"><%-locals.extra_html%></div>
+            <div style="position: relative; max-width: 400px; max-height: 400px; margin: 6px auto;" class="mt-2" id="main-canvas-wrapper">
+                    <button data-fullscreen-btn="" data-el="#main-canvas-wrapper" type="button" class="icon medium fullscreen-btn" aria-label="Enter / Exit Fullscreen">
+                        <svg data-enter="" focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="Fullscreen"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>
+                        <svg data-exit="" hidden="" focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="FullscreenExit"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"></path></svg>
+                    </button>
+                    <canvas id="main-canvas" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <script id="js-game" nonce="<%=locals.jsNonce%>" defer src="<%-locals.game_javascript%>" type="module"></script>
+
+    <%-include('../partials/comment')%>
+
+    <%-include('../partials/pagePartial')%>
+<%}%>

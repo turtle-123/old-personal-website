@@ -1,0 +1,428 @@
+<%# 
+PARTIAL ROUTE: pages/projects/various-image-tasks.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.desktop?650:(locals
+- locals.desktop?231:(locals
+- locals.desktop?305:(locals
+- locals.desktop?260:(locals
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+     
+    <h1 class="page-title">Various Image Tasks</h1>
+
+    <section id="why-create-page" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#why-create-page" class="same-page bold">
+            Why Create This Page
+          </a>
+        </h2>
+
+        <p class="mt-2">
+            I want to create this page to test out various tasks that need to be accomplished with Machine learning models with respect to images. Some of these tasks include:
+        </p>
+        <ul>
+            <li class="h4" style="margin-top:0.25rem;"><a class="secondary link" target="_blank" href="https://huggingface.co/docs/transformers/en/tasks/image_feature_extraction">Image Feature Extraction</a></li>
+            <li class="h4" style="margin-top:0.25rem;"><a class="secondary link" target="_blank" href="https://huggingface.co/docs/transformers/main/en/tasks/image_captioning">Image Captioning</a></li>
+            <li class="h4" style="margin-top:0.25rem;">Image Safe Search</li>
+            <li class="h4" style="margin-top:0.25rem;">Text to Image Generation</li>
+            <li class="h4" style="margin-top:0.25rem;"><a class="secondary link" target="_blank" href="https://huggingface.co/tasks/depth-estimation">Depth Estimation</a></li>
+            <li class="h4" style="margin-top:0.25rem;"><a class="secondary link" target="_blank" href="https://en.wikipedia.org/wiki/Object_detection">Object Detection</a></li>
+            <li class="h4" style="margin-top:0.25rem;"><a class="secondary link" target="_blank" href="https://en.wikipedia.org/wiki/Image_segmentation">Image Segmentation</a></li>
+            <li class="h4" style="margin-top:0.25rem;"><a class="secondary link" target="_blank" href="https://web.stanford.edu/class/ee368/Handouts/Lectures/2019_Winter/12-KeyPointDetection.pdf">Keypoint Detection</a></li>
+            <li class="h4" style="margin-top:0.25rem;"><a class="secondary link" target="_blank" href="https://huggingface.co/docs/transformers/en/model_doc/trocr">Optical Character Recognition</a></li>
+        </ul>
+    </section>
+
+    <section id="image-feature-extraction" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#image-feature-extraction" class="same-page bold">
+            Image Feature Extraction
+          </a>
+        </h2>
+        <blockquote class="blcokquote mt-2">
+          Image Feature extraction is the task of extracting semantically meaningful features given an image., This has many use cases, including similarity and image retrieval. Moreover, most computer vision models can be used for image feature extraction, whether one can remove the task specific head (image classification, object detection, etc.) and get the features. These features are very useful on a higher level: edge detection, corner detection and so on. 
+        </blockquote>
+        <p class="mt-2">
+          I am using the <a class="secondary link" target="_blank" href="https://huggingface.co/google/vit-base-patch16-384">google/vit-base-patch16-384</a> model for image feature extraction. The <q class="quote">Vision Transformer (<abbr title="Vision Transformer">ViT</abbr>) model pre-trained on Imagenet-21k (14 million images, 21,843 classes) at resolution 224x224, and fine-tuned on ImageNet 2012 (1 million images, 1,000 classes) at resolution 384x384.</q> This model is a transformer encoder model (BERT-like) pretrained on a large collection of images in a supervised fashion. 
+        </p>
+        <p style="border: 4px red solid; padding: 4px; border-radius: 4px;" class="mt-2">
+          Upload an image in the form below and submit the form to perform image feature extraction.
+        </p>
+        
+        <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-image-tasks/feature-extraction" hx-indicator="#ind_2507eff5-884b-4179-8393-e2e781e98af9" hx-target="#tar_77c7d12b-c1a1-4919-9032-d60d36f6e085" hx-trigger="submit" hx-swap="innerHTML">
+          <label for="image-file" class="bold mt-2">Image File:</label>
+          <input data-ignore-change data-image-input type="file" accept="image/*" name="image-file" class="mt-1 primary">
+          <output class="block" for="image-file"></output>
+          
+          <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-info htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_2507eff5-884b-4179-8393-e2e781e98af9">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_77c7d12b-c1a1-4919-9032-d60d36f6e085"></output>
+    </section>
+
+    <section id="image-captioning" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#image-captioning" class="same-page bold">
+            Image Captioning
+          </a>
+        </h2>
+        <blockquote cite="https://huggingface.co/docs/transformers/main/en/tasks/image_captioning" class="blockquote mt-2">
+          Image captioning is the task of predicting a caption for a given image. Common real world applications of it include aiding visually impaired people that can help them navigate through different situations. Therefore, image captioning helps to improve content accessibility for people by describing images to them.
+        </blockquote>
+        <p class="mt-2">
+          I use the <a class="secondary link" target="_blank" href="https://huggingface.co/Salesforce/blip-image-captioning-large">Salesforce/blip-image-captioning-large</a> model for image captioning. This model proposes BLIP, <q class="quote">a new VLP framework which transfers flexibly to both vision-language understanding and generation tasks.  effectively utilizes the noisy web data by bootstrapping the captions, where a captioner generates synthetic captions and a filter removes the noisy ones.</q>
+        </p>
+        <p style="border: 4px blue dashed; padding: 4px; border-radius: 4px;" class="mt-2">
+          Upload an image in the form below and submit the form to get an AI-generated caption for the image.
+        
+        </p>
+
+        <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-image-tasks/image-captioning" hx-indicator="#ind_186c7835-d013-4ce4-8aac-482165d451e0" hx-target="#tar_6eec0eee-9d26-4801-a12d-da6a6e661c70" hx-trigger="submit" hx-swap="innerHTML">
+          <label for="image-file" class="bold mt-2">Image File:</label>
+          <input data-ignore-change data-image-input type="file" accept="image/*" name="image-file" class="mt-1 primary">
+          <output class="block" for="image-file"></output>
+          
+          <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-warning htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_186c7835-d013-4ce4-8aac-482165d451e0">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_6eec0eee-9d26-4801-a12d-da6a6e661c70"></output>
+
+    </section>
+
+    <section id="image-safe-search" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#image-safe-search" class="same-page bold">
+            Image Safe Search
+          </a>
+        </h2>
+        <p class="mt-2">
+          Image safe search is important for sites and applications that intend to promote content to people of all ages. It is the task of finding inappropriate content in an image and flagging that inappropriate content. 
+        </p>
+        <p class="mt-2">
+          I use the <a class="secondary link" target="_blank" href="https://huggingface.co/Falconsai/nsfw_image_detection">Falconsai/nsfw_image_detection</a> model to detect not safe for work images. If you intend to have a lot of people uploading images to your site, then most external APIs that detect inappropriate images for you are cost-prohibitive:
+        </p>
+        <img 
+        width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+        height="<%-locals.desktop?231:(locals.tablet?192:152)%>" 
+        style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 19 !important; height: auto;"
+        srcset="https://image.storething.org/frankmbrown%2Ff3aab420-b5c4-4680-9835-d48dd1a1682d-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2Ff3aab420-b5c4-4680-9835-d48dd1a1682d-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2Ff3aab420-b5c4-4680-9835-d48dd1a1682d-desktop.jpeg 650w" 
+        sizes="(max-width: 550px) 152px, ((min-width: 550px) and (max-width: 1200px)) 192px, (min-width: 1200px) 231px" 
+        src="https://image.storething.org/frankmbrown%2Ff3aab420-b5c4-4680-9835-d48dd1a1682d-desktop.jpeg" 
+        alt="Google Safe Search Pricing" 
+        />
+        <p class="mt-2">
+          This Fine-Tuned <abbr title="Vision Transformer">ViT</abbr> is a variant of the transformer encoder architecture, similar to BERT, that has been adapted for image classification tasks. <q class="quote">The overall objective of [the] training process was to impart the model with a deep understanding of visual cues, ensuring its robustness and competence in tacking the specific task of NSFW image classification.</q> This model is intended to be used for <strong><abbr title="Not Safe For Work">NSFW</abbr> Image Classification</strong>. It has been fine-tuned for this purpose, making it suitable for filtering explicit or inappropriate content in various applications. 
+        </p>
+        <p style="border: 4px green dotted; padding: 4px; border-radius: 4px;" class="mt-2">
+          Upload an image in the form below and submit the form to perform image safe search.
+        
+        </p>
+        
+        <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-image-tasks/image-safe-search" hx-indicator="#ind_72e217d5-5d14-451b-90b4-ebe3329cf550" hx-target="#tar_22f392b2-c33b-4f29-8900-19467e36e85c" hx-trigger="submit" hx-swap="innerHTML">
+          <label for="image-file" class="bold mt-2">Image File:</label>
+          <input data-ignore-change data-image-input type="file" accept="image/*" name="image-file" class="mt-1 secondary">
+          <output class="block" for="image-file"></output>
+          
+          <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-error htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_72e217d5-5d14-451b-90b4-ebe3329cf550">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_22f392b2-c33b-4f29-8900-19467e36e85c"></output>
+
+    </section>
+
+    <section id="tti-gen" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#tti-gen" class="same-page bold">
+            Text to Image Generation
+          </a>
+        </h2>
+        <blockquote class="blockquote mt-2">
+          Text-to-image is the task of generating images from input text. These pipelines can also be used to modify and edit images based on text prompts.  
+        </blockquote>
+        <img 
+        width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+        height="<%-locals.desktop?305:(locals.tablet?253:201)%>" 
+        style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 176 / 101 !important; height: auto;"
+        srcset="https://image.storething.org/frankmbrown%2Fe8552951-3128-42a3-b591-46a85a68d399-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2Fe8552951-3128-42a3-b591-46a85a68d399-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2Fe8552951-3128-42a3-b591-46a85a68d399-desktop.jpeg 650w" 
+        sizes="(max-width: 550px) 201px, ((min-width: 550px) and (max-width: 1200px)) 253px, (min-width: 1200px) 305px" 
+        src="https://image.storething.org/frankmbrown%2Fe8552951-3128-42a3-b591-46a85a68d399-desktop.jpeg" 
+        alt="Text to Image" 
+        />
+        <p class="mt-2">
+          Text to image models that are comparable to that provided by large tech companies today are impossible to run cheaply on a rented GPU. They are also not very cheap even when calling through an API. I recommend <a class="secondary link" target="_blank" href="https://openai.com/index/dall-e-3/">OpenAI's DALL·E 3</a> model for text-to-image generation though, having used it a few times.
+        </p>
+    </section>
+
+    <section id="depth-est" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#depth-est" class="same-page bold">
+            Depth Estimation
+          </a>
+        </h2>
+        <blockquote cite="https://huggingface.co/tasks/depth-estimation" class="mt-2 blockquote">
+          Depth estimation is the task of predicting depth of objects present in an image. 
+        </blockquote>
+        <img 
+        width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+        height="<%-locals.desktop?260:(locals.tablet?216:172)%>" 
+        style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 88 / 43 !important; height: auto;"
+        srcset="https://image.storething.org/frankmbrown%2Fb0a4f19b-44df-45ed-b07c-0ab9d75b8182-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2Fb0a4f19b-44df-45ed-b07c-0ab9d75b8182-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2Fb0a4f19b-44df-45ed-b07c-0ab9d75b8182-desktop.jpeg 650w" 
+        sizes="(max-width: 550px) 172px, ((min-width: 550px) and (max-width: 1200px)) 216px, (min-width: 1200px) 260px" 
+        src="https://image.storething.org/frankmbrown%2Fb0a4f19b-44df-45ed-b07c-0ab9d75b8182-desktop.jpeg" 
+        alt="Depth Estimation" 
+        />
+        <p class="mt-2">
+          I am using the <a class="secondary link" target="_blank" href="https://huggingface.co/Intel/dpt-large">Intel/dpt-large</a> model for depth estimation. The model was trained on 1.4 million million images for monocular depth estimation. It was first introduced in the paper <a class="secondary link" target="_blank" href="https://huggingface.co/Intel/dpt-large">Vision Transformers for Dense Prediction</a>.
+        </p>
+        <p style="border: 4px black double; padding: 4px; border-radius: 4px;" class="mt-2">
+          Upload an image in the form below and submit the form to perform depth estimation.
+        
+        </p>
+        
+        <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-image-tasks/depth-estimation" hx-indicator="#ind_1df3c227-993e-4687-83e1-e7585801dce8" hx-target="#tar_0260a19f-c887-4745-8711-2310913f41ab" hx-trigger="submit" hx-swap="innerHTML"> 
+          <label for="image-file" class="bold mt-2">Image File:</label>
+          <input data-ignore-change data-image-input type="file" accept="image/*" name="image-file" class="mt-1 success">
+          <output class="block" for="image-file"></output>
+          
+          <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_1df3c227-993e-4687-83e1-e7585801dce8">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_0260a19f-c887-4745-8711-2310913f41ab"></output>
+
+    </section>
+
+    <section id="obj-detect" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#obj-detect" class="same-page bold">
+            Object Detection
+          </a>
+        </h2>
+        <blockquote cite="https://huggingface.co/docs/transformers/en/tasks/object_detection" class="mt-2 blockquote">
+          Object detection is the computer vision task of detecting instances (such as humans, buildings, or cars) in an image. Object detection models receive an image as input and output coordinates of the bounding boxes and associated labels of the detected objects. An image can contain multiple objects, each with its own bounding box and a label (e.g. it can have a car and a building), and each object can be present in different parts of an image (e.g. the image can have several cars). This task is commonly used in autonomous driving for detecting things like pedestrians, road signs, and traffic lights. Other applications include counting objects in images, image search, and more.
+        </blockquote>
+        <p class="mt-2">
+          I use the <a class="secondary link" target="_blank" href="https://huggingface.co/facebook/detr-resnet-50">facebook/detr-resnet-50</a> model for object detection. The <q class="quote"><abbr title="Detection Transformer">DETR</abbr> model [was] trained end-to-end on COCO 2018 object detection (118k annotated images).</q> The model is an encoder-decoder transformer with a convolutional backbone. Two heads are added on top of the decoder outputs in order to perform object detection: a linear layer for class labels and a <abbr title="Multi-Layer Perceptron">MLP</abbr> for the bounding boxes. Yu can use the raw model for object detection.
+        </p>
+        <p style="border: 4px orange groove; padding: 4px; border-radius: 4px;" class="mt-2">
+          Upload an image in the form below and submit the form to perform object detection.
+        
+        </p>
+        
+        <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-image-tasks/object-detection" hx-indicator="#ind_c7001d46-b27a-4a3c-8d73-cb0b0996a0cf" hx-target="#tar_2aa27fcf-32dd-456d-b83c-652c494eb8ea" hx-trigger="submit" hx-swap="innerHTML"> 
+          <label for="image-file" class="bold mt-2">Image File:</label>
+          <input data-ignore-change data-image-input type="file" accept="image/*" name="image-file" class="mt-1 primary">
+          <output class="block" for="image-file"></output>
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+            <label for="threshold">Threshold:</label>
+            <div class="mt-1 number-input medium">
+                <input 
+                type="number" 
+                min="0.01" 
+                max="0.99"
+                step="0.01" 
+                value="0.9" 
+                name="threshold" 
+                placeholder="Enter Threshold..." 
+                autocomplete="off" 
+                spellcheck="false" 
+                autocapitalize="off"
+                required
+                >
+                <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+          </div>
+          <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-secondary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_c7001d46-b27a-4a3c-8d73-cb0b0996a0cf">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_2aa27fcf-32dd-456d-b83c-652c494eb8ea"></output>
+
+    </section>
+
+    <section id="image-seg" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#image-seg" class="same-page bold">
+            Image Segmentation
+          </a>
+        </h2>
+        <blockquote class="blockquote mt-2" cite="https://en.wikipedia.org/wiki/Image_segmentation">
+          In digital image processing and computer vision, <strong>image segmentation</strong> is teh proces sof partitioning a digital image into multiple <strong>image segments</strong>, also known as <strong>image regions</strong> or <strong>image objects</strong>. The goal of image segmentation is to simplify and/or change the representation of an image into something that is more meaningful and easier to analyze.  
+        </blockquote>
+        <p class="mt-2">
+          I am using the <a class="secondary link" target="_blank" href="https://huggingface.co/nvidia/segformer-b1-finetuned-ade-512-512">nvidia/segformer-b1-finetuned-ade-512-512</a> model for image segmentation. The <q class="quote">SegFormer model [was] fine-tuned on ASE20k at resolution 512x512. </q> It consists of a hierarchical Transformer encoder and a lightweight all-MLP decode head to achieve great results on semantic segmentation benchmarks. You can use the raw model for semantic segmentation. 
+        </p>
+        
+        <p style="border: 4px purple ridge; padding: 4px; border-radius: 4px;" class="mt-2">
+          Upload an image in the form below and submit the form to perform image segmentation.
+        
+        </p>
+        
+        <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-image-tasks/image-segmentation" hx-indicator="#ind_6a530b36-f48f-4daa-badc-acc18b75d30e" hx-target="#tar_b61e4567-cfee-49bf-a571-0ddc542a2219" hx-trigger="submit" hx-swap="innerHTML"> 
+          <label for="image-file" class="bold mt-2">Image File:</label>
+          <input data-ignore-change data-image-input type="file" accept="image/*" name="image-file" class="mt-1 secondary">
+          <output class="block" for="image-file"></output>
+          
+          <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-success htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_6a530b36-f48f-4daa-badc-acc18b75d30e">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_b61e4567-cfee-49bf-a571-0ddc542a2219"></output>
+
+    </section>
+
+    <section id="key-detc" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#key-detc" class="same-page bold">
+            Keypoint Detection
+          </a>
+        </h2>
+        <p class="mt-2">
+          Many applications benefit from features localized in <span id="cop_html_24980071763112477" class="inline-katex">
+            <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>
+            </span> ( <em>image registration, panorama stitching, motion estimation + tracking, recognition, ...</em>). Desirable properties of keypoint detector: Accurate localization, invariance against shift, rotation, scale, brightness change. Robustness against noise, high repeatability.
+        </p>
+        <p class="mt-2">
+          I am using the <a class="secondary link" target="_blank" href="https://huggingface.co/magic-leap-community/superpoint">magic-leap-community/superpoint</a> model for keypoint detection. <q class="quote">This model is the result of a self-supervised training of a fully-convolutional network for interest point detection and description. The model is able to detect interest points that are repeatable under homographic transformations and provide a descriptor for each point. </q>
+        </p>
+        
+        <p style="border: 4px brown inset; padding: 4px; border-radius: 4px;" class="mt-2">
+          Upload an image in the form below and submit the form to perform keypoint detection.
+        </p>
+        
+        <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-image-tasks/keypoint-detection" hx-indicator="#ind_e924ef16-d8fc-434d-ba9b-f04a4520b4b2" hx-target="#tar_42617024-49d4-4347-9886-25b69b3c4a31" hx-trigger="submit" hx-swap="innerHTML"> 
+          <label for="image-file" class="bold mt-2">Image File:</label>
+          <input data-ignore-change data-image-input type="file" accept="image/*" name="image-file" class="mt-1 success">
+          <output class="block" for="image-file"></output>
+          
+          <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-error htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_e924ef16-d8fc-434d-ba9b-f04a4520b4b2">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_42617024-49d4-4347-9886-25b69b3c4a31"></output>
+
+    </section>
+
+    <section id="ocr-task" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#ocr-task" class="same-page bold">
+            Optical Character Recognition
+          </a>
+        </h2>
+        <blockquote class="mt-2 blockquote" cite="https://en.wikipedia.org/wiki/Optical_character_recognition">
+          <strong>Optical character recognition</strong> or <strong>Optical Character Reader</strong> (<strong>OCR</strong>) is the electronic or mechanical conversion of images of types, handwritten, or printed text into machine-encoded text, whether from a scanned document, a photo of a document, a scene photo (for example, the text on signs and billboards in a landscape photo) or from subtitle text superimposed on an image (for example: from a television broadcast). 
+        </blockquote>
+        <p class="mt-2">
+          OCR models that have the ability to accurately capture the text of a large document or image require a GPU to be run, so I am not going to demonstrate the functionality here.
+        </p>
+    </section>
+
+    <section id="open-ai-moderation" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#open-ai-moderation" class="same-page bold">
+            Open AI Moderation API
+          </a>
+        </h2>
+        <blockquote cite="https://platform.openai.com/docs/guides/moderation" class="mt-2">
+          The <a class="secondary link" target="_blank" href="https://platform.openai.com/docs/guides/moderation">moderations</a> endpoint is a tool you can use to check whether text or images are potentially harmful. Once harmful content is identified, developers can take corrective action like filtering content or intervening with user accounts creating offending content. The moderation endpoint if free to use. 
+        </blockquote>
+        <p class="mt-2">
+          The models available for this endpoint are:
+        </p>
+        <ul>
+          <li><span class="text-code">omni-moderation-latest</span>: This model and all snapshots support more categorization options and multi-modal inputs.
+          </li>
+          <li><span class="text-code">text-moderation-latest</span>: Older model that supports only text inputs and fewer input categorizations. The newer omni-moderation models will be the best choice for new applications.
+          </li>
+        </ul>
+        <p class="mt-2" style="padding: 4px; border: 4px yellow; border-style: dotted; border-radius: 4px;">
+          Upload an image below and submit the form to see what the free open ai moderations API says about the content.
+        </p>
+        <form hx-encoding="multipart/form-data" class="mt-4" hx-post="/projects/various-image-tasks/openai" hx-indicator="#ind_e00954fd-00bc-40d1-95b6-daef690940fa" hx-target="#tar_5f9a217e-965d-4900-beb5-e089e3c1ddca" hx-trigger="submit" hx-swap="innerHTML">
+          <label for="image-file" class="bold mt-2">Upload Image:</label>
+          <input data-ignore-change data-image-input type="file" id="image-file" accept="image/*" name="image-file" class="mt-1 secondary">
+          <output class="block" for="image-file"></output>
+
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_e00954fd-00bc-40d1-95b6-daef690940fa">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_5f9a217e-965d-4900-beb5-e089e3c1ddca"></output>
+    </section>
+
+    <%-include('../../partials/pagePartial')%>
+<%}%>

@@ -1,0 +1,424 @@
+<%# 
+PARTIAL ROUTE: pages/daily-reading.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.toDoHTML
+- locals.auth>
+- locals.createArticleHTML
+- locals.completedHTML
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+    <h1 class="page-title" id="about-site">Daily Reading</h1>
+    <section id="new-about-this-page" class="mt-4">
+      <div class="flex-row bb-thick justify-between align-center">
+        <h2 class="bold h2">
+          <a href="#new-about-this-page" class="same-page bold"><span class="t-success bold">(NEW) About this Page</span></a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#new-abt-hide">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+      <div id="new-abt-hide">
+        <p class="mt-2">
+          Previously, I had been using this page to take notes on different wikipedia articles every day. I lost my streak when I decided to read some books on machine learning / natural language processing / AI (see the <a class="primary link" hx-get="/jupyter-notebooks" href="/jupyter-notebooks" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">Jupyter Notebooks Entries for August / September 2024</a> ) and also a few of the entries on <a class="primary link" hx-get="/note/185/Mortimer%20Adler's%20Reading%20List" href="/note/185/Mortimer%20Adler's%20Reading%20List" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">Mortimer Adler's reading list</a>. I could have continued the streak during this time, but time was limited and the upcoming articles that I had planned didn't really interest me that much. 
+        </p>
+        <p class="mt-2">
+          After reading <a class="secondary link" target="_blank" href="https://www.amazon.com/How-Read-Book-Classic-Intelligent/dp/0671212095/ref=sr_1_1?crid=2W57CEVQJSD8Q&dib=eyJ2IjoiMSJ9.6-6-qY9HiFB0FeLlvZd8D55ytMHLXNwcWqIdvH-_e0_OBRfAfdHrE_alqgFHIiG6UFReInqBMlezAzS8navAlZZyj1A_ep_U46lYlJnNovaa7yWlSQmA3MyW0hurlYhdoQ7cl2kpTLZA2rEQ9s4jHGJ4IBKdEX27upy5BO9I2miUVf3DT_FC0OrxIC5aU3mHMg1Wl4lY2yyMg2707P7ia50XhjcU3MLDSXL7yhXTMTo.k0i2tvpqbkXyiCL3K5ar8l1LQtHXmO3nUKl6SYnlOyc&dib_tag=se&keywords=how+to+read+a+book+adler&qid=1728400548&sprefix=how+to+read+a+book+adler%2Caps%2C161&sr=8-1">How To Read a Book: The Classic Guide to Intelligent Reading</a>, I have decided to try to focus on reading higher quality material, and as a result, I have decided to no longer include only Wikipedia articles on this page. Instead, I will use this page to document my notes on blog posts, shorter works, or chapters of larger works (or anything that interests me or that I think is worth reading). I will try to find something new every day. 
+        </p>
+      </div>
+    </section>
+
+    <section id="about-this-page" class="mt-4">
+      <div class="flex-row bb-thick justify-between align-center">
+        <h2 class="bold h2">
+          <a href="#about-this-page" class="same-page bold ">
+            <span class="t-error bold">
+              (OLD) About This Page
+            </span>
+          </a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#about-hide">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+      <div id="about-hide">
+        <p class="mt-2">
+            <strong class="bolder">What was the Impetus for Creating This Page?</strong>
+            <br>
+            Sometimes when I am reading things from books or more specifically textbooks, like I have been doing lately to try to learn more about Computer Science and Software Engineering, the book goes into a topic with a level of detail that I currently don't care about but may want to learn more about in the future. I thought that I might create this page so that I can set aside the topic for now, and in the future, return to the topic to learn more about it by reading a Wikipedia article on it (there are Wikipedia articles on most technology topics).
+        </p>
+        <p class="mt-2">
+            <strong class="bolder">What Do I Want to Accomplish with This Page</strong>
+            <br>
+            While the impetus to create this page was to go in depth on software / technology concepts, I know that I don't always want to read about those topics. Reading only about technology or topics related to computers can get boring, so I expect to be reading about some historical events and maybe some biographies as well.
+        </p>
+        <style>
+            .tw-w-w {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+            @media screen and (max-width:600px) {
+                .tw-w-w {
+                    min-height: 600px;
+                }
+            }
+            @media screen and (min-width:600px) {
+                .tw-w-w {
+                    min-height: 670px;
+                }
+            }
+        </style>
+        <p class="mt-2">
+            <strong class="bolder">Wikipedia as a Source</strong>
+            <br>
+            <a class="secondary link" target="_blank" href="https://en.wikipedia.org/wiki/Wikipedia:Wikipedia_is_not_a_reliable_source#:~:text=Wikipedia%20is%20not%20a%20reliable%20source%20for%20citations%20elsewhere%20on,in%20progress%2C%20or%20simply%20incorrect.">
+                Wikipedia itself claims that it is not a good source dur to the user-generated content that is on the site.</a> However, I don't plan to be reading about recent events, which usually contain the most controversial pieces of information, on the site, and I think I am able to tell when a piece of information seems off.
+        </p>
+      </div>
+    </section>
+
+    <section id="search-daily-reading" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#search-daily-reading" class="same-page bold">
+            Search Daily Reading
+          </a>
+        </h2>
+        <p class="mt-2">
+          Search daily reading articles by title using the search box below.
+        </p>
+        <div class="input-group block w-100 mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+          <label for="daily-reading-search-title">Search Article by Title:</label>
+          <div class="mt-1 text-input block medium">
+            <input 
+            type="search" 
+            class="icon-after" 
+            name="daily-reading-search-title" 
+            id="daily-reading-search-title" 
+            placeholder="Enter Daily Reading Article Title"
+            
+            hx-trigger="input changed delay:200ms, search" hx-target="#tar_2db3150c-35e5-49b6-8b3d-49821d3cb45a" hx-swap="innerHTML" hx-indicator="#ind_813a6514-6e39-4143-9192-60179d8665ed" hx-get="/daily-reading/search"
+            >
+            <svg class="icon-after" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+              </path>
+            </svg>
+          </div>
+        </div>
+          <div class="mt-2 flex-row justify-center t-info htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_813a6514-6e39-4143-9192-60179d8665ed">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <output id="tar_2db3150c-35e5-49b6-8b3d-49821d3cb45a" class="mt-2 block" style="min-height: 200px; max-height: 400px; overflow-y: auto;">
+            <div class="alert info filled medium icon" role="alert">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Search"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+              <p class="alert">
+                Search daily reading articles by typing a title into the search box above. See results here... 
+              </p>
+            </div>
+          </output>
+    </section>
+
+    <section id="upcoming-wikipedia" class="mt-4">
+      <div class="flex-row bb-thick justify-between align-center">
+        <h2 class="bold h2">
+          <a href="#upcoming-wikipedia" class="same-page bold">Upcoming Articles</a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#upcoming-hide">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+      <div id="upcoming-hide">
+        <div class="mt-3 grid-notes" style="max-height: 400px; overflow-y: auto; border-radius: 6px; border: 2px solid var(--text-secondary); padding: 3px;">
+            <%-locals.toDoHTML%>
+        </div>
+        <%if(locals.auth>=3){%>
+            <section id="add-up" class="mt-4">
+              <div class="flex-row bb-thick justify-between align-center">
+                <h3 class="bold h3">
+                  <a href="#add-up" class="same-page bold">Add Upcoming </a>
+                </h3>
+                <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#add-upcoming-hide">
+                  <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+                  <span data-hide="">HIDE</span>
+                  <span data-show="" hidden="">SHOW</span>
+                </button>
+                
+                
+              </div>
+              <div id="add-upcoming-hide">
+                <form hx-post="/daily-reading/upcoming" hx-trigger="submit" hx->
+                    <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+                      <label for="topic-name">Topic Name:</label>
+                      <div class="text-input block medium">
+                          <input 
+                          type="text" 
+                          name="topic-name" 
+                          id="topic-name" 
+                          class="medium icon-before mt-1" 
+                          required
+                          placeholder="Enter the title of the topic..." 
+                          maxlength="200"
+                          minlength="1"
+                          spellcheck="true" 
+                          autocapitalize="off"
+                          >
+                          <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Title"><path d="M5 4v3h5.5v12h3V7H19V4z"></path></svg>
+                          <%# Buttons and SVGs %>
+                      </div>
+                    </div>
+                    <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+                      <label for="topic-interest">What Interested You About This:</label>
+                      <div class="mt-1 text-input block medium disabled">
+                          <textarea 
+                          name="topic-interest" 
+                          id="topic-interest" 
+                          placeholder="Enter what interested you about this topic / why you want to learn about it..." 
+                          rows="5" 
+                          style="resize: vertical!important;"
+                          maxlength="500" 
+                          minlength="1" 
+                          spellcheck="true"
+                          autocomplete="off"
+                          autocapitalize="off"
+                          ></textarea>
+                      </div>
+                      <p class="char-counter" data-input="topic-interest">
+                          <span class="min-counter body2" data-val="1" aria-hidden="false">more characters required</span>
+                          <span class="max-counter body2" data-val="500" aria-hidden="true">Characters Remaining</span>
+                      </p>
+                    </div>
+                    <p class="t-warning fw-regular">
+                        The topic image should be 600x1200 (wxh).
+                    </p>
+                    <label for="topic-image" class="bold mt-2">Topic Image:</label>
+                    <input data-image-input type="file" id="topic-image" accept="image/*" name="topic-image" class="mt-1 secondary">
+                    <output class="block" for="topic-image"></output>
+                    <div class="flex-row justify-between mt-3">
+                        <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                        <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                            SUBMIT
+                        </button>
+                      </div>
+                </form>
+                </div>
+            </section>
+        <%}%>
+        
+      </div>
+    </section>
+
+ <%if(locals.auth>=3){%>
+      <section id="update-article-sect" class="mt-4">
+        <div class="flex-row bb-thick justify-between align-center">
+          <h2 class="bold h2">
+            <a href="#update-article-sect" class="same-page bold">Update Article</a>
+          </h2>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#update-art-hide">
+            <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div id="update-art-hide">
+          <p class="mt-2">
+            Update a Daily reading article that is currently in the database. Upload a downloaded lexical state - like that what you get from the article builder download button - and this function will update that article in the database, reset the cache for daily reading articles, and return the replaced article (in case something goes wrong).
+          </p>
+          <div class="flex-row justify-center t-primary htmx-indicator mt-2" role="progressbar" aria-busy="false" aria-label="Updating Article" id="wiki-upd-ind">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <form hx-post="/daily-reading/update" class="mt-2" hx-encoding="multipart/form-data" hx-indicator="#wiki-upd-ind" hx-target="this" hx-swap="outerHTML">
+            <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+              <label for="wikipedia-article-id">Wikipedia Article ID:</label>
+              <div class="mt-1 number-input medium">
+                  <input 
+                  type="number" 
+                  value="1" 
+                  name="wikipedia-article-id" 
+                  id="wikipedia-article-id" 
+                  placeholder="INPUT_PLACEHOLDER" 
+                  autocomplete="off" 
+                  spellcheck="false" 
+                  autocapitalize="off"
+                  >
+                  <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                      <svg focusable="false" inert viewBox="0 0 24 24">
+                          <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                          </path>
+                      </svg>
+                  </button>
+                  <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                      <svg focusable="false" inert viewBox="0 0 24 24">
+                          <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                          </path>
+                      </svg>
+                  </button>
+              </div>
+            </div>
+              <label for="upload-lexical-wiki" class="bold mt-2">Upload Lexical File:</label>
+              <input type="file" id="upload-lexical-wiki" accept=".lexical" name="upload-lexical-wiki" class="mt-1 primary">
+              <output class="block" for="upload-image-example"></output>
+              <div class="flex-row justify-between mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT UPDATE
+                </button>
+              </div>
+          </form>
+        </div>
+      </section>
+
+
+      <section id="add-art" class="mt-4">
+        <div class="flex-row bb-thick justify-between align-center">
+          <h2 class="bold h2">
+            <a href="#add-art" class="same-page bold">Add Article</a>
+          </h2>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#add-art-hide">
+            <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div id="add-art-hide">
+          <form id="submit-article-form" hx-post="/daily-reading" data-dialog="Submitting Wikipedia" hx-target="#submit-article-form-output" hx-trigger="submit" hx-swap="innerHTML">
+              <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="article-id">Article ID:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      name="article-id" 
+                      id="article-id" 
+                      placeholder="Enter the id of the article to post the wikipedia article for..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      >
+                      <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+                <%-locals.createArticleHTML%>
+                <div class="flex-row justify-between mt-3">
+                  <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                  <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                      SUBMIT
+                  </button>
+                </div>
+          </form>
+          <output form="submit-article-form" id="submit-article-form-output">
+
+          </output>
+        </div>
+      </section>
+
+      <section id="add-old-daily-read" class="mt-4">
+        <div class="flex-row bb-thick justify-between">
+          <h2 class="bold h2">
+            <a href="#add-old-daily-read" class="same-page bold">
+              Add Old Daily Reading Post
+            </a>
+          </h2>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#naigate-to-older-post-dect">
+            <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <p class="mt-2" id="naigate-to-older-post-dect">
+          <a class="primary link" hx-get="/daily-reading/old" href="/daily-reading/old" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">Navigate to this page</a>
+           to add a daily reading post for a certain day (usually a day in the past).
+        </p>
+      </section>
+<%}%>
+
+
+    <section id="articles-wiki" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#articles-wiki" class="same-page bold">Articles</a>
+        </h2>
+
+        <div class="body1 bold mt-1" id="order-by-articles">Order By:</div>
+      <div class="mt-1 flex-row justify-start">
+        <div class="select">
+          <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="order-by-articles-drop" aria-labelledby="order-by-articles" class="select" aria-label="Order By" data-popover data-pelem="#order-by-articles-drop" data-click aria-expanded="false" style="min-width: 150px;">
+            <span class="body1"><%=locals?.order_by?.order_by_str%></span>
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+          </button>
+          <div tabindex="0" id="order-by-articles-drop" role="listbox" class="select-menu o-xs" data-placement="bottom">
+            <input type="text" hidden value="<%=locals?.order_by?.order_by_value%>" name="order-by-select" id="order-by-select" hx-get="<%=locals.path%>" hx-include="this" hx-push-url="true" hx-target="#articles-inner" hx-indicator="#change-art-order-ind">
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-new")%>" data-val="last-edit-new">
+              Last Edited (New)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-old")%>" data-val="last-edit-old">
+              Last Edited (Old)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-new")%>" data-val="date-created-new">
+              Date Created (New)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-old")%>" data-val="date-created-old">
+              Date Created (Old) 
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-likes")%>" data-val="num-likes">
+              Number of Likes
+            </button> 
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-comments")%>" data-val="num-comments">
+              Number of Comments
+            </button> 
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-views")%>" data-val="num-views">
+              Number of Views
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-annotations")%>" data-val="num-annotations">
+              Number of Annotations
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-row justify-center t-primary htmx-indicator" role="progressbar" id="change-art-order-ind" aria-busy="false" aria-label="Changing Order of Articles">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+
+      <div class="mt-1" id="articles-inner">
+          <%-locals.completedHTML%>
+      </div>
+    </section>
+
+    
+    <div id="likes-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+      Likes
+    </div>
+    <div id="comments-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+      Comments
+    </div>
+    <div id="annotations-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+      Annotations
+    </div>
+    <div id="views-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+      Views
+    </div>
+    
+    <%-include('../partials/pagePartial')%>
+<%}%>

@@ -1,0 +1,152 @@
+<%# 
+PAGE ROUTE: /
+PAGE DESCRIPTION: /
+PAGE KEYOWRDS: [/]
+PAGE IMAGE: 
+PAGE VARIABLES:
+-------------------------
+- locals.hello (number): 
+- locals.world (string|undefined): 
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  <h1 class="page-title">Testing Select Implementations</h1>
+  <section id="about-page" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#about-page" class="same-page bold">
+          About Page
+        </a>
+      </h2>
+      <p class="mt-2">
+        I created this page because I don't like my current select implementation and am looking at replacing it in the future. I am going to test out different vanilla JS select implementations here to see which one I think is the best. 
+      </p>
+  </section>
+
+  <section id="read-me" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#read-me" class="same-page bold">
+          Read Me
+        </a>
+      </h2>
+
+      <p class="mt-2">
+        After testing vanilla javascript select libraries, I found that none of them really suits my needs. Instead, I am going to build out all of the functionality that these select components purport to have in my own custom select.  
+      </p>
+
+      <section id="mult-select" class="mt-4">
+        <div class="flex-row bb-thick justify-between">
+          <h3 class="bold h3">
+            <a href="#mult-select" class="same-page bold">
+              Multiple Select
+            </a>
+          </h3>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#mult-select-hide">
+            <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="search-select" class="mt-4">
+        <div class="flex-row bb-thick justify-between">
+          <h3 class="bold h3">
+            <a href="#search-select" class="same-page bold">
+              Search Select
+            </a>
+          </h3>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#search-select-hide">
+            <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div id="search-select-hide">
+
+        </div>
+  </section>
+
+  <section id="select-2" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#select-2" class="same-page bold">
+          Select2
+        </a>
+      </h2>
+      <ul class="mt-1">
+        <li><a class="secondary link" target="_blank" href="https://select2.org/">Select 2</a></li>
+      </ul>
+      <p class="mt-2">
+        Select2 gives you a customizable select box with support for searching, tagging, remote data sets, infinite scrolling, and many other highly used options. It has remote data support - searching large lists with AJAX. It is fully skinnable (customizable). Allows for dynamic item creation and has full browser support. 
+      </p>
+
+      <div class="alert warning mt-2 icon medium" role="alert">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+        <p class="alert">
+          I decided not to use select2 because it requires the use of jquery.
+        </p>
+      </div>
+
+  </section>
+
+  <section id="tom-select" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#tom-select" class="same-page bold">
+          Tom Select 
+        </a>
+      </h2>
+      <ul class="mt-1">
+        <li><a class="secondary link" target="_blank" href="https://tom-select.js.org/">Tom Select</a></li>
+      </ul>
+      <blockquote class="blockquote mt-2">
+        Tom Select is a dynamic, fraework agnostic, and lightweight (~16kb gzipped) &lt;select&gt; UI control. With autocomplete and native-feeling keyboard navigation, it's useful for tagging, contact lists, country selectors, and so on. Tom Select was forked from <a class="secondary link" target="_blank" href="https://tom-select.js.org/docs/selectize.js/">selectize.js</a> with four main objectives: modernizing the code base, decoupling from jQuery, expanding functionality, and addressing issue backlogs. 
+      </blockquote>
+
+      <select id="sel_d4e5e735-ff9f-4b20-a50f-fefwefew" data-tom-select name="select-2-first">
+        <option value="alabama">Alabama</option>
+        <option value="alabama">Georgia</option>
+        <option value="alabama">Alaska</option>
+      </select>
+  </section>
+
+  <section id="nice-select-2" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#nice-select-2" class="same-page bold">
+          Nice Select 2
+        </a>
+      </h2>
+      <ul class="mt-1">
+        <li><a class="secondary link" target="_blank" href="https://bluzky.github.io/nice-select2/">Nice Select 2</a></li>
+      </ul>
+      <p class="mt-2">
+        A lightweight vanilla JavaScript library that replaces native select elements with customizable dropdowns. You can specify alternate text for each display option, include searchable options, and more.  
+      </p>
+
+      <select id="efewfwefwe-ff9f-4b20-a50f-fefwefew"  data-nice-select-2 name="select-2-first">
+        <option value="alabama">Alabama</option>
+        <option value="alabama">Georgia</option>
+        <option value="alabama">Alaska</option>
+      </select>
+  </section>
+
+  <section id="slim-select" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#slim-select" class="same-page bold">
+          Slim Select
+        </a>
+      </h2>
+      <ul class="mt-1">
+        <li><a class="secondary link" target="_blank" href="https://slimselectjs.com/">Slim Select</a></li>
+      </ul>
+      <p class="mt-2">
+        No dependencies, 30kb - 5kb gzipped, single select, multiple select, addable options, HTML options, advanced search, tabbable, style inheritance, and typescript. 
+      </p>
+
+      <select id="dfsdfffffffffrfe-ff9f-4b20-a50f-fefwefew"  data-slim-select-2 name="select-2-first">
+        <option value="alabama">Alabama</option>
+        <option value="alabama">Georgia</option>
+        <option value="alabama">Alaska</option>
+      </select>
+
+
+  </section>
+  <%-include('../../partials/pagePartial')%>
+<%}%>

@@ -1,0 +1,547 @@
+<%# 
+PARTIAL ROUTE: pages/projects/create-gradient.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  <h1 class="page-title">Create Gradients</h1>
+  <section id="why-create">
+    <h2 class="bold bb-thick h2 mt-2" id="create-gradient">
+      <a href="#why-create" class="same-page fw-regular">Why Create </a>
+    </h2>
+    <p class="mt-2">
+      <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span>&gt;</span></span></code></span> elements - like 
+      <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">circle</span>&gt;</span>, <span class="hljs-tag">&lt;<span class="hljs-name">rect</span>&gt;</span>, and <span class="hljs-tag">&lt;<span class="hljs-name">ellipse</span>&gt;</span> ...</span></code></span> can have a 
+      reference to a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">linearGradient</span>&gt;</span> or <span class="hljs-tag">&lt;<span class="hljs-name">radialGradient</span>&gt;</span></span></code></span> as their <span class="t-info bold">fill</span> attribute, so I wanted to create 
+      a system where users can create gradients, save the gradients (not yet implemented, but the gradients should be saved as an svg and parsed client side), nad then use the gradients 
+      when creating svgs / svg animations on the <a href="/projects/create-svg" class="primary link">Create SVG</a> page.
+    </p>
+  </section>
+  <h2 class="bold bb-thick h2 mt-2" id="create-gradient">
+    <a href="#create-gradient" class="same-page fw-regular">Create Gradient</a>
+  </h2>
+  <p class="mt-1 body1">
+    See the MDN Web Docs for more information about svg <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/radialGradient" class="secondary link" target="_blank">Radial Gradients</a> and 
+    <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/linearGradient" target="_blank" class="secondary link">Linear Gradients</a>. 
+    In the form below, edit the various inputs to change the appearance of the gradient. <span class="t-info bold">SUBMIT</span> the form to save the gradient. For more information on 
+    transformation types, see the <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform" tabindex="-1" target="_blank" class="secondary link">MDN docs on transformation types</a>.
+  </p>
+  <form id="create-gradient-form">
+    <div class="flex-row gap-2 justify-start align-center">
+      <fieldset class="grow-1 flex-row align-center wrap gap-3">
+        <legend class="h6 bold">Gradient Type</legend>
+        <label class="radio">
+          <input type="radio" name="gradient-type" value="linear" class="info">
+          Linear
+        </label>
+        <label class="radio">
+          <input type="radio" name="gradient-type" value="radial" class="info" checked>
+          Radial
+        </label>
+      </fieldset>
+      <output  form="create-gradient-form" class="mt-2" style="align-self: stretch;">
+        <svg width="250px" height="250px" style="border: 3px ridge var(--text-primary);">
+          <defs>
+            <radialGradient id="example-radial-gradient" cx="50%" cy="50%" fx="50%" fy="50%" fr="0%" r="50%" spreadMethod="pad">
+              <stop id="ex-stop-1" offset="0%" stop-color="#FF0000" stop-opacity="1" />
+              <stop id="ex-stop-2" offset="100%" stop-color="#0000FF" stop-opacity="1" />
+            </radialGradient>
+            <linearGradient id="example-linear-gradient" x1="0%" x2="100%" y1="0%" y2="0%" spreadMethod="pad">
+              <stop id="ex-stop-3" offset="0%" stop-color="#FF0000" stop-opacity="1" />
+              <stop id="ex-stop-4" offset="50%" stop-color="#0000FF" stop-opacity="1" />
+              <stop id="ex-stop-5" offset="100%" stop-color="#00FF00" stop-opacity="1" />
+            </linearGradient>
+          </defs>
+          <rect id="rect-to-change" x="0" y="0" width="100%" height="100%" rx="0" ry="0" fill="url('#example-radial-gradient')"></rect>
+        </svg>
+      </output>
+    </div>
+  </form>
+  <form id="create-gradient-radial">
+    <div class="flex-row align-center">
+      <div class="input-group block grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="radial-gradient-cx">cx:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="-100" 
+            max="100" 
+            value="50" 
+            name="radial-gradient-cx" 
+            id="radial-gradient-cx" 
+            placeholder="50" 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+      <div class="input-group block grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="radial-gradient-cy">cy:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="-100" 
+            max="100" 
+            value="50" 
+            name="radial-gradient-cy" 
+            id="radial-gradient-cy" 
+            placeholder="50" 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row align-center mt-1">
+      <div class="input-group block grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="radial-gradient-fx">fx:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="-100" 
+            max="100" 
+            value="50" 
+            name="radial-gradient-fx" 
+            id="radial-gradient-fx" 
+            placeholder="50" 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+      <div class="input-group block grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="radial-gradient-fy">fy:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="-100" 
+            max="100" 
+            value="50" 
+            name="radial-gradient-fy" 
+            id="radial-gradient-fy" 
+            placeholder="50" 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row align-center mt-1">
+      <div class="input-group block grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="radial-gradient-fr">fr:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="0" 
+            max="100" 
+            value="0" 
+            name="radial-gradient-fr" 
+            id="radial-gradient-fr" 
+            placeholder="0" 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+      <div class="input-group block grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="radial-gradient-r">r:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="0" 
+            max="100" 
+            value="50" 
+            name="radial-gradient-r" 
+            id="radial-gradient-r" 
+            placeholder="50" 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+    </div>
+    <fieldset id="radial-spread-rad-fs" class="flex-row align-center mt-1 gap-3 wrap">
+      <legend class="h6 bold">Spread Method:</legend>
+      <label class="radio">
+        <input type="radio" name="radial-spread-method" value="pad" class="secondary" checked>
+          Pad
+      </label>
+      <label class="radio">
+        <input type="radio" name="radial-spread-method" value="reflect" class="secondary">
+          Reflect
+      </label>
+      <label class="radio">
+        <input type="radio" name="radial-spread-method" value="repeat" class="secondary">
+          Repeat
+      </label>
+    </fieldset>
+    <div class="flex-row align-center justify-between mt-1 bb">
+      <p class="h6 bold ">Add Transforms:</p>
+      <button type="button" class="icon-text medium warning text" id="hide-radial-transform-btn">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span>HIDE</span>
+      </button>
+    </div>
+    
+    <fieldset>
+      <legend class="h6 bold">Transformation Type:</legend>
+      <div class="flex-row align-center gap-3 wrap">
+        <label class="radio">
+          <input type="radio" name="radial-transform-type" value="matrix" class="primary" checked>
+          Matrix
+        </label>
+        <label class="radio">
+          <input type="radio" name="radial-transform-type" value="translate" class="primary">
+          Translate
+        </label>
+        <label class="radio">
+          <input type="radio" name="radial-transform-type" value="scale" class="primary">
+          Scale
+        </label>
+        <label class="radio">
+          <input type="radio" name="radial-transform-type" value="rotate" class="primary">
+          Rotate
+        </label>
+        <label class="radio">
+          <input type="radio" name="radial-transform-type" value="skewX" class="primary">
+          SkewX
+        </label>
+        <label class="radio">
+          <input type="radio" name="radial-transform-type" value="skewY" class="primary">
+          SkewY
+        </label>
+        <button id="radial-add-transform" class="icon-text filled info small">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Add"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+          ADD TRANSFORM
+        </button>
+      </div>
+      <div class="block mt-2" id="radial-transforms-container"></div>
+    </fieldset>
+    <div data-stop-container class="block mt-2 p-md" style="border: 2px solid var(--text-primary); border-radius: 6px;">
+      <div class="flex-row align-center justify-between mt-1 bb">
+        <p class="h6 bold ">Add Stops:</p>
+        <button type="button" class="icon-text medium warning text" id="hide-radial-stops-btn">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span>HIDE</span>
+        </button>
+      </div>
+      <div class="flex-row justify-end">
+        <button type="button" class="icon medium" data-add-stop><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Add"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg></button>
+      </div>
+      <div id="radial-stop-list" class="block mt-1" data-stop-list>
+        <div class="flex-column w-100 gap-2 mt-1 p-md" data-stop="" style="border: 2px solid var(--divider); border-radius: 6px;"><div class="flex-row align-center justify-start gap-2 w-100"><div class="input-group block grow-1" data-hover="false"><label for="stop_off_id_ex-stop-1">Stop Offset:</label><div class="mt-1 number-input medium"><input type="number" name="stop_off_id_ex-stop-1" id="stop_off_id_ex-stop-1" autocomplete="off" spellcheck="false" autocapitalize="off" required="" step="1" min="0" max="100" value="0"><button class="icon large" type="button" aria-label="Increase Input" data-increase=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"></path></svg></button><button class="icon large" type="button" aria-label="Decrease Input" data-decrease=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg></button></div></div><div class="block"><label class="body2" for="stop_color_ex-stop-1">Stop Color:</label><div class="flex-row align-center justify-begin gap-2"><input type="color" data-coloris value="#FF0000" name="stop_color_ex-stop-1" id="stop_color_ex-stop-1" style="margin-top: 2px;"><span class="body2">#FF0000</span></div></div></div><div class="flex-row align-center justify-start gap-2 w-100 mt-1"><div class="input-group block grow-1"><label for="stop_opacity_ex-stop-1">Stop Opacity:</label><div class="mt-1 number-input medium"><input type="number" name="stop_opacity_ex-stop-1" id="stop_opacity_ex-stop-1" autocomplete="off" spellcheck="false" autocapitalize="off" step="0.1" min="0" max="1" value="1"><button class="icon large" type="button" aria-label="Increase Input" data-increase=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"></path></svg></button><button class="icon large" type="button" aria-label="Decrease Input" data-decrease=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg></button></div></div><button class="icon medium" type="button" data-delete-stop="ex-stop-1"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Delete"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg></button></div></div>
+        <div class="flex-column w-100 gap-2 mt-1 p-md" data-stop="" style="border: 2px solid var(--divider); border-radius: 6px;"><div class="flex-row align-center justify-start gap-2 w-100"><div class="input-group block grow-1" data-hover="false"><label for="stop_off_id_ex-stop-2">Stop Offset:</label><div class="mt-1 number-input medium"><input type="number" name="stop_off_id_ex-stop-2" id="stop_off_id_ex-stop-2" autocomplete="off" spellcheck="false" autocapitalize="off" required="" step="1" min="0" max="100" value="100"><button class="icon large" type="button" aria-label="Increase Input" data-increase=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"></path></svg></button><button class="icon large" type="button" aria-label="Decrease Input" data-decrease=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg></button></div></div><div class="block"><label class="body2" for="stop_color_ex-stop-2">Stop Color:</label><div class="flex-row align-center justify-begin gap-2"><input type="color" data-coloris value="#0000FF" name="stop_color_ex-stop-2" id="stop_color_ex-stop-2" style="margin-top: 2px;"><span class="body2">#0000FF</span></div></div></div><div class="flex-row align-center justify-start gap-2 w-100 mt-1"><div class="input-group block grow-1"><label for="stop_opacity_ex-stop-2">Stop Opacity:</label><div class="mt-1 number-input medium"><input type="number" name="stop_opacity_ex-stop-2" id="stop_opacity_ex-stop-2" autocomplete="off" spellcheck="false" autocapitalize="off" step="0.1" min="0" max="1" value="1"><button class="icon large" type="button" aria-label="Increase Input" data-increase=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"></path></svg></button><button class="icon large" type="button" aria-label="Decrease Input" data-decrease=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg></button></div></div><button class="icon medium" type="button" data-delete-stop="ex-stop-2"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Delete"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg></button></div></div>
+      </div>
+    </div>
+    
+    <div class="mt-3 flex-row justify-between">
+      <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+      <button type="submit" aria-label="Submit" class="info filled icon-text medium">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+        SUBMIT
+      </button>
+    </div>
+  </form>
+  <form id="create-gradient-linear" hidden>
+    <div class="flex-row align-center">
+      <div class="input-group block grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="linear-gradient-x1">x1:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="-100" 
+            max="100" 
+            value="0" 
+            name="linear-gradient-x1" 
+            id="linear-gradient-x1" 
+            placeholder="0" 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+      <div class="input-group block grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="linear-gradient-y1">y1:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="-100" 
+            max="100" 
+            value="0" 
+            name="linear-gradient-y1" 
+            id="linear-gradient-y1" 
+            placeholder="0" 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row align-center mt-1">
+      <div class="input-group block grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="linear-gradient-x2">x2:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="-100" 
+            max="100" 
+            value="100" 
+            name="linear-gradient-x2" 
+            id="linear-gradient-x2" 
+            placeholder="100" 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+      <div class="input-group block grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="linear-gradient-y2">y2:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="-100" 
+            max="100" 
+            value="0" 
+            name="linear-gradient-y2" 
+            id="linear-gradient-y2" 
+            placeholder="0" 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+    </div>
+    <fieldset id="linear-spread-rad-fs" class="flex-row align-center mt-1 gap-3 wrap">
+      <legend class="h6 bold">Spread Method:</legend>
+      <label class="radio">
+        <input type="radio" name="linear-spread-method" value="pad" class="secondary" checked>
+          Pad
+      </label>
+      <label class="radio">
+        <input type="radio" name="linear-spread-method" value="reflect" class="secondary">
+          Reflect
+      </label>
+      <label class="radio">
+        <input type="radio" name="linear-spread-method" value="repeat" class="secondary">
+          Repeat
+      </label>
+    </fieldset>
+    <div class="flex-row align-center justify-between mt-1 bb">
+      <p class="h6 bold ">Add Transforms:</p>
+      <button type="button" class="icon-text medium warning text" id="hide-linear-transform-btn">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span>HIDE</span>
+      </button>
+    </div>
+    <fieldset>
+      <legend class="h6 bold">Transformation Type:</legend>
+      <div class="flex-row align-center gap-3 wrap">
+        <label class="radio">
+          <input type="radio" name="linear-transform-type" value="matrix" class="primary" checked>
+          Matrix
+        </label>
+        <label class="radio">
+          <input type="radio" name="linear-transform-type" value="translate" class="primary">
+          Translate
+        </label>
+        <label class="radio">
+          <input type="radio" name="linear-transform-type" value="scale" class="primary">
+          Scale
+        </label>
+        <label class="radio">
+          <input type="radio" name="linear-transform-type" value="rotate" class="primary">
+          Rotate
+        </label>
+        <label class="radio">
+          <input type="radio" name="linear-transform-type" value="skewX" class="primary">
+          SkewX
+        </label>
+        <label class="radio">
+          <input type="radio" name="linear-transform-type" value="skewY" class="primary">
+          SkewY
+        </label>
+        <button id="linear-add-transform" class="icon-text filled info small">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Add"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+          ADD TRANSFORM
+        </button>
+      </div>
+      <div class="block mt-2" id="linear-transforms-container"></div>
+    </fieldset>
+    <div data-stop-container class="block mt-2 p-md" style="border: 2px solid var(--text-primary); border-radius: 6px;">
+      <div class="flex-row align-center justify-between mt-1 bb">
+        <p class="h6 bold ">Add Stops:</p>
+        <button type="button" class="icon-text medium warning text" id="hide-linear-stops-btn">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span>HIDE</span>
+        </button>
+      </div>
+      <div class="flex-row justify-end">
+        <button type="button" class="icon medium" data-add-stop><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Add"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg></button>
+      </div>
+      <div id="linear-stop-list" class="block mt-1" data-stop-list>
+        <div class="flex-column w-100 gap-2 mt-1 p-md" data-stop="" style="border: 2px solid var(--divider); border-radius: 6px;"><div class="flex-row align-center justify-start gap-2 w-100"><div class="input-group block grow-1"><label for="stop_off_id_ex-stop-3">Stop Offset:</label><div class="mt-1 number-input medium"><input type="number" name="stop_off_id_ex-stop-3" id="stop_off_id_ex-stop-3" autocomplete="off" spellcheck="false" autocapitalize="off" required="" step="1" min="0" max="100" value="0"><button class="icon large" type="button" aria-label="Increase Input" data-increase=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"></path></svg></button><button class="icon large" type="button" aria-label="Decrease Input" data-decrease=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg></button></div></div><div class="block"><label class="body2" for="stop_color_ex-stop-3">Stop Color:</label><div class="flex-row align-center justify-begin gap-2"><input type="color" data-coloris value="#FF0000" name="stop_color_ex-stop-3" id="stop_color_ex-stop-3" style="margin-top: 2px;"><span class="body2">#FF0000</span></div></div></div><div class="flex-row align-center justify-start gap-2 w-100 mt-1"><div class="input-group block grow-1" data-hover="false"><label for="stop_opacity_ex-stop-3">Stop Opacity:</label><div class="mt-1 number-input medium"><input type="number" name="stop_opacity_ex-stop-3" id="stop_opacity_ex-stop-3" autocomplete="off" spellcheck="false" autocapitalize="off" step="0.1" min="0" max="1" value="1"><button class="icon large" type="button" aria-label="Increase Input" data-increase=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"></path></svg></button><button class="icon large" type="button" aria-label="Decrease Input" data-decrease=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg></button></div></div><button class="icon medium" type="button" data-delete-stop="ex-stop-3"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Delete"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg></button></div></div>
+        <div class="flex-column w-100 gap-2 mt-1 p-md" data-stop="" style="border: 2px solid var(--divider); border-radius: 6px;"><div class="flex-row align-center justify-start gap-2 w-100"><div class="input-group block grow-1"><label for="stop_off_id_ex-stop-4">Stop Offset:</label><div class="mt-1 number-input medium"><input type="number" name="stop_off_id_ex-stop-4" id="stop_off_id_ex-stop-4" autocomplete="off" spellcheck="false" autocapitalize="off" required="" step="1" min="0" max="100" value="50"><button class="icon large" type="button" aria-label="Increase Input" data-increase=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"></path></svg></button><button class="icon large" type="button" aria-label="Decrease Input" data-decrease=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg></button></div></div><div class="block"><label class="body2" for="stop_color_ex-stop-4">Stop Color:</label><div class="flex-row align-center justify-begin gap-2"><input type="color" data-coloris value="#0000FF" name="stop_color_ex-stop-4" id="stop_color_ex-stop-4" style="margin-top: 2px;"><span class="body2">#0000FF</span></div></div></div><div class="flex-row align-center justify-start gap-2 w-100 mt-1"><div class="input-group block grow-1"><label for="stop_opacity_ex-stop-4">Stop Opacity:</label><div class="mt-1 number-input medium"><input type="number" name="stop_opacity_ex-stop-4" id="stop_opacity_ex-stop-4" autocomplete="off" spellcheck="false" autocapitalize="off" step="0.1" min="0" max="1" value="1"><button class="icon large" type="button" aria-label="Increase Input" data-increase=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"></path></svg></button><button class="icon large" type="button" aria-label="Decrease Input" data-decrease=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg></button></div></div><button class="icon medium" type="button" data-delete-stop="ex-stop-4"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Delete"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg></button></div></div>
+        <div class="flex-column w-100 gap-2 mt-1 p-md" data-stop="" style="border: 2px solid var(--divider); border-radius: 6px;"><div class="flex-row align-center justify-start gap-2 w-100"><div class="input-group block grow-1"><label for="stop_off_id_ex-stop-5">Stop Offset:</label><div class="mt-1 number-input medium"><input type="number" name="stop_off_id_ex-stop-5" id="stop_off_id_ex-stop-5" autocomplete="off" spellcheck="false" autocapitalize="off" required="" step="1" min="0" max="100" value="100"><button class="icon large" type="button" aria-label="Increase Input" data-increase=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"></path></svg></button><button class="icon large" type="button" aria-label="Decrease Input" data-decrease=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg></button></div></div><div class="block"><label class="body2" for="stop_color_ex-stop-5">Stop Color:</label><div class="flex-row align-center justify-begin gap-2"><input type="color" data-coloris value="#00FF00" name="stop_color_ex-stop-5" id="stop_color_ex-stop-5" style="margin-top: 2px;"><span class="body2">#00FF00</span></div></div></div><div class="flex-row align-center justify-start gap-2 w-100 mt-1"><div class="input-group block grow-1"><label for="stop_opacity_ex-stop-5">Stop Opacity:</label><div class="mt-1 number-input medium"><input type="number" name="stop_opacity_ex-stop-5" id="stop_opacity_ex-stop-5" autocomplete="off" spellcheck="false" autocapitalize="off" step="0.1" min="0" max="1" value="1"><button class="icon large" type="button" aria-label="Increase Input" data-increase=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"></path></svg></button><button class="icon large" type="button" aria-label="Decrease Input" data-decrease=""><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg></button></div></div><button class="icon medium" type="button" data-delete-stop="ex-stop-5"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Delete"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg></button></div></div>
+      </div>
+    </div>
+    <div class="mt-3 flex-row justify-between">
+      <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+      <button type="submit" aria-label="Submit" class="info filled icon-text medium">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+        SUBMIT
+      </button>
+    </div>
+  </form>
+
+  <p class="bold bb-thick h2 bold w-100 mt-2">
+    Saved Gradients:
+  </p>
+  <div class="flex-row gap-2 align-center" style="gap: 8px 4px;">
+    <div id="saved-radial-gradients" class="flex-row wrap gap-2 align-center grow-1" hx-trigger="load" hx-get="/projects/create-gradient/all?type=radial" hx-swap="innerHTML" hx-indicator="#get-radial-gradients-ind" >
+      <div class="flex-row justify-center t-secondary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Getting Gradients..." id="get-radial-gradients-ind" style="margin: 10px auto;">
+      <div class="lds-dual-ring"></div>
+      </div>
+    </div>
+    <div id="saved-linear-gradients" class="flex-row wrap gap-2 align-center grow-1" hx-trigger="load" hx-get="/projects/create-gradient/all?type=linear" hx-swap="innerHTML" hx-indicator="#get-linear-gradients-ind">
+      <div class="flex-row justify-center t-secondary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Getting Gradients..." id="get-linear-gradients-ind" style="margin: 10px auto;">
+        <div class="lds-dual-ring"></div>
+      </div>
+    </div>
+  </div>
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>
+  

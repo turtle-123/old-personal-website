@@ -1,0 +1,751 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/text-inputs-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.spellcheck
+%>
+<h2 class="bold bb-thick h2" id="inputs-header">
+  <a href="#text-inputs-header" class="same-page bold">Text Inputs</a>
+</h2>
+<section id="inputs-introduction">
+  <h3 hidden="hidden">Inputs Introduction</h3>
+  <div class="alert info medium icon mt-2">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Info">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z">
+          </path>
+      </svg>
+      <p class="alert">
+          All text-like inputs (text, email, tel, number, password) should be wrapped in a structure like the one seen
+          below.
+      </p>
+  </div>
+</section>
+<section class="mt-2" id="example-text-input-code-section">
+  <h3 hidden="hidden">Example Code</h3>
+  <div style="position: relative;">
+      <pre class="hz-scroll"><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> 
+<span class="hljs-attr">class</span>=<span class="hljs-string">&quot;input-group block&quot;</span> 
+<span class="hljs-attr">data-hover</span>=<span class="hljs-string">&quot;false&quot;</span>
+<span class="hljs-attr">data-focus</span>=<span class="hljs-string">&quot;false&quot;</span>
+<span class="hljs-attr">data-error</span>=<span class="hljs-string">&quot;false&quot;</span>
+<span class="hljs-attr">data-blurred</span>=<span class="hljs-string">&quot;false&quot;</span>
+&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;input-name&quot;</span>&gt;</span>Input Name<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-input block medium&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> 
+      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;input-name&quot;</span> 
+      <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;input-name&quot;</span> 
+      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>
+      <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">&quot;off&quot;</span>
+      <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;medium mt-1 icon-after-2&quot;</span>
+      <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Placeholder&quot;</span>
+      <span class="hljs-attr">maxlength</span>=<span class="hljs-string">&quot;10&quot;</span>
+      <span class="hljs-attr">pattern</span>=<span class="hljs-string">&quot;^{4.50}$&quot;</span>
+      <span class="hljs-attr">spellecheck</span>=<span class="hljs-string">&quot;off&quot;</span>
+      <span class="hljs-attr">autocapitalize</span>=<span class="hljs-string">&quot;off&quot;</span>
+      /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-after&quot;</span> <span class="hljs-attr">focusable</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;-1&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Search&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;Something&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-after second&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">focusable</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;-1&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Search&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></code></pre><button data-snackbar
+          data-selem="#copy-code-success" data-copy-prev class="toggle-button small"
+          style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert
+              viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+              <path
+                  d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+              </path>
+          </svg></button>
+  </div>
+</section>
+<section id="javascript-for-inputs" class="mt-2">
+    <h3 class="h5 bb t-warning bold flex-row">
+      <span class="flex-row grow-1">
+          <a href="#javascript-for-inputs" class="same-page bold">Javascript for Inputs</a>
+      </span>
+      <button type="Button" aria-label="Hide Text Below" data-hide-show data-el="#js-text" class="icon medium">
+         <svg data-show focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowDown"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>
+         <svg data-hide hidden style="transform: rotate(180deg);" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowDown"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>
+      </button>
+    </h3>
+    <div id="js-text" hidden>
+      <p class="body1 mt-1">
+          When new content is loaded, the client side javascript gets all <span><code
+                  class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>
+          and <span><code
+                  class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span>
+          elements, and then:
+      </p>
+      <ol>
+          <li>
+              initializes them,
+              <ol class="second">
+                  <li>
+                      This involves setting the appropriate background size for range
+                      <span><code
+                              class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+                      as well as setting the value for the <span><code
+                              class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">output</span>&gt;</span></span></code></span>s
+                      for the range <span><code
+                              class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s,
+                  </li>
+              </ol>
+          </li>
+          <li>
+              adds a focus event listener to the <span><code
+                      class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+              that are not readonly,
+              <ol class="second">
+                  <li>
+                      gets the parent element node of the parent element node of the input and if the element is a div
+                      that contains the <span><code
+                              class="hljs"><span class="hljs-selector-class">.input-group</span></code></span> class, sets
+                      the <span class="t-info bold">data-focus</span> attribute to true,
+                  </li>
+              </ol>
+          </li>
+          <li>
+              adds a blur event listener to the <span><code
+                      class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+              that are not readonly,
+              <ol class="second">
+                  <li>
+                      gets the parent element node of the parent element node of the input and if the element is a div
+                      that contains the <span><code
+                              class="hljs"><span class="hljs-selector-class">.input-group</span></code></span> class, sets
+                      the <span class="t-info bold">data-blurred</span> attribute to true and the <span
+                          class="t-info bold">data-focus</span> attribute to false,
+                  </li>
+              </ol>
+          </li>
+          <li>
+              adds a change event listener to the <span><code
+                      class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+              that are not readonly and adds an 'input' event listener to <span><code
+                      class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span>s
+              and range inputs,
+              <ol class="second">
+                  <li>
+                      Checks whether classlist of the input contains <span><code
+                              class="hljs"><span class="hljs-selector-class">.chip</span></code></span>, then return if it
+                      does.
+                  </li>
+                  <li>
+                      gets the id, name, type, current length of the input (if the input.value has a length), the
+                      minlength and maxlength attribute of the input,
+                  </li>
+                  <li>
+                      checks whether the last change is currently being debounced, cancels the debounced function,
+                  </li>
+                  <li>
+                      creates a debounced function that:
+                      <ol class="third">
+                          <li>checks whether there is a character counter for the input, and if there is, set the <span
+                                  class="t-info bold">data-val</span> attributes of the minlength and maxlength spans</li>
+                          <li>checks whether the input is a range input, and if it is, sets the background size for the
+                              range input and sets the value of the output element that corresponds to the range input
+                          </li>
+                      </ol>
+                  </li>
+                  <li>
+                      checks whether the input is a range input and if it is, creates a debounced function to blur the
+                      range input in 50ms.
+                  </li>
+              </ol>
+          </li>
+          <li>
+              adds a mouseover event listener to the <span><code
+                      class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+              that are not readonly,
+              <ol class="second">
+                  <li>
+                      gets the parent element node of the parent element node of the input and if the element is a div
+                      that contains the <span><code
+                              class="hljs"><span class="hljs-selector-class">.input-group</span></code></span> class, sets
+                      the <span class="t-info bold">data-hover</span> attribute to true.
+                  </li>
+              </ol>
+          </li>
+          <li>
+              adds a mouseout event listener to the <span><code
+                      class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+              that are not readonly,
+              <ol class="second">
+                  <li>
+                      gets the parent element node of the parent element node of the input and if the element is a div
+                      that contains the <span><code
+                              class="hljs"><span class="hljs-selector-class">.input-group</span></code></span> class, sets
+                      the <span class="t-info bold">data-hover</span> attribute to false.
+                  </li>
+              </ol>
+          </li>
+      </ol>
+    </div>
+</section>
+<section id="text-inputs" class="mt-2">
+  <h3 class="h5 bold bb">
+    <a href="#text-inputs" class="same-page bold">Text Inputs</a>
+    </h3>
+  <details class="mt-2">
+      <summary>
+          <span class="h6 fw-regular">
+              About Text Inputs
+          </span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content" aria-hidden="true">
+          <p class="h6 bold">Attributes:</p>
+          All text inputs should have a <span><code
+                  class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span></span></code></span>
+          with a <span class="t-info bold">for</span>
+          attribute that matches the <span class="t-info bold">name</span> and <span class="t-info bold">id</span>
+          attributes of the input. The label can be <span class="t-info bold">hidden</span> if you don't want it to
+          affect the layout.
+          <br>
+          All text inputs should have the following attributes:
+          <dl>
+              <dt class="normal-text">
+                  <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">autocomplete</span></span></span></code></span>
+              </dt>
+              <dd>Use one of the values from the <a
+                      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete"
+                      class="secondary link" target="_blank">mozilla docs</a>. Use the value of <span
+                      class="t-info bold">off</span> if you don't want autocomplete.</dd>
+
+              <dt class="normal-text">
+                  <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">form</span></span></span></code></span>
+              </dt>
+              <dd>The <span class="t-info bold">id</span> of the form that encompasses this input.</dd>
+
+              <dt class="normal-text">
+                  <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">disabled</span></span></span></code></span>
+              </dt>
+              <dd>Include this boolean attribute on the input if it is disabled.</dd>
+              <dd class="t-warning fw-regular">Also include a disabled class on the label element if the input is
+                  disabled.</dd>
+              <dt class="normal-text">
+                  <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">maxlength</span></span></span></code></span>
+              </dt>
+              <dd>The maxlength (in chars) of the text input.</dd>
+              <dt class="normal-text">
+                  <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">name</span></span></span></code></span>
+              </dt>
+              <dd>Should equal the <span class="t-info bold">id</span> of the text input.</dd>
+              <dt class="normal-text">
+                  <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">pattern</span></span></span></code></span>
+              </dt>
+              <dd>The <abbr title="Regular Expression">RegEx</abbr> (<a
+                      href="https://en.wikipedia.org/wiki/Regular_expression" class="secondary link"
+                      target="_blank">Regular Expression</a>) that the text input should conform to.</dd>
+              <dt class="normal-text">
+                  <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">readonly</span></span></span></code></span>
+              </dt>
+              <dd>Include if the text input is read-only.</dd>
+              <dt class="normal-text">
+                  <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">required</span></span></span></code></span>
+              </dt>
+              <dd>Include if the text-like input is required.</dd>
+              <dt class="normal-text">
+                  <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">type</span></span></span></code></span>
+              </dt>
+              <dd>The type of the text inputs will usually be <span class="t-info bold">text</span>, <span
+                      class="t-info bold">email</span>, <span class="t-info bold">url</span>, and <span
+                      class="t-info bold">search</span>. </dd>
+              <dt class="normal-text">
+                  <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">value</span></span></span></code></span>
+              </dt>
+              <dd>The initial value of the text input.</dd>
+              <dt class="normal-text">
+                  <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">placeholder</span></span></span></code></span>
+              </dt>
+              <dd>A placeholder for the input.</dd>
+              <dt class="normal-text">
+                  <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">autocapitalize</span></span></span></code></span>
+              </dt>
+              <dd>Include if you want your input to be <a class="secondary link" target="_blank"
+                      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize">capitalized
+                      in some way</a>. </dd>
+              <dt class="normal-text">
+                  <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">spellcheck</span></span></span></code></span>
+              </dt>
+              <dd>Include if you want the input to be checked for spelling. If you don't want the input to be checked
+                  for spelling, set to <span class="t-info bold">false</span>. </dd>
+          </dl>
+          <br>
+          <p class="h6 bold mt-2">Styling:</p>
+          Text inputs can include the <span><code
+                  class="hljs"><span class="hljs-selector-class">.icon-after</span></code></span> class to include an
+          svg icon at the end of the text input block. The svg itself should include the <span><code
+                  class="hljs"><span class="hljs-selector-class">.icon-after</span></code></span> class. The SVG
+          should be the next element sibling of the input in the DOM.
+          <strong class="t-warning">NOTE:</strong> To include multiple icons / buttons at the end of the text input,
+          include the <span><code class="hljs"><span class="hljs-selector-class">.second</span></code></span> and
+          <span><code class="hljs"><span class="hljs-selector-class">.third</span></code></span> classes on the icons.
+          <br>
+          <br>
+          Text inputs can include the <span><code
+                  class="hljs"><span class="hljs-selector-class">.icon-before</span></code></span> class to include an
+          svg icon at the beginning of the text input block. The svg itself should include the <span><code
+                  class="hljs"><span class="hljs-selector-class">.icon-before</span></code></span> class. The SVG
+          should be the next element sibling of the input in the DOM.
+      </div>
+  </details>
+  <form id="example-text-inputs">
+      <p class="h6 bold mt-2">Text Inputs:</p>
+      <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+          <label for="username">Username*:</label>
+          <div class="text-input block medium">
+              <input type="text" autocomplete="username" name="username" id="username" class="medium icon-before mt-1"
+                  required placeholder="Enter your username..." maxlength="50" pattern="(?!Anonymous$).{4,50}"
+                  spellcheck="false" autocapitalize="off" />
+              <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1"
+                  title="AccountCircleSharp">
+                  <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z">
+                  </path>
+              </svg>
+              <%# Buttons and SVGs %>
+          </div>
+      </div>
+      <p class="h6 bold mt-2">Email Inputs:</p>
+      <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+          <label for="email">Email*:</label>
+          <div class="text-input block medium">
+              <input name="email" id="email" type="email" autocomplete="email" required
+                  placeholder="Enter your email..." class="mt-1 icon-before medium" maxlength="250"
+                  autocapitalize="off"
+                  spellcheck="false" />
+              <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1"
+                  title="Email">
+                  <path
+                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z">
+                  </path>
+              </svg>
+          </div>
+      </div>
+      <p class="h6 bold mt-2">Search Inputs:</p>
+      <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+          <label for="search-example">Search Example:</label>
+          <div class="text-input block medium">
+              <input name="search-example" id="search-example" class="mt-1 medium icon-after"
+                  placeholder="Enter your search..." autocomplete="off" autocapitalize="off" spellcheck="false"
+                  maxlength="250" type="search" />
+              <svg class="icon-after" focusable="false" inert viewBox="0 0 24 24" tabindex="-1"
+                  title="Search">
+                  <path
+                      d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                  </path>
+              </svg>
+          </div>
+      </div>
+      <p class="h6 bold mt-2">URL Inputs:</p>
+      <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+          <label for="news-link">News Link:</label>
+          <div class="text-input block medium">
+              <input name="news-link" id="news-link" class="mt-1 medium icon-before"
+                  placeholder="Enter the url of the news article..." autocomplete="off" autocapitalize="off"
+                  spellcheck="false" type="url" pattern="(https?|ftp):\/\/[^\s\/$.?#].[^\s]*" />
+              <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1"
+                  title="Link">
+                  <path
+                      d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z">
+                  </path>
+              </svg>
+          </div>
+      </div>
+      <p class="h6 bold mt-2">Readonly Example:</p>
+      <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+          <label for="secret-access-key">Secret Access Key:</label>
+          <div class="text-input block medium">
+              <input name="secret-access-key" id="secret-access-key" class="mt-1 medium icon-after-3"
+                  placeholder="Enter the url of the news article..." autocomplete="off" autocapitalize="off" readonly
+                  spellcheck="false" type="password" value="sBZE5UcHbDpV9Wnzrbx7" />
+              <button class="icon-after icon medium" data-vis-switch type="button" aria-label="Change Visibility">
+                  <svg focusable="false" inert viewBox="0 0 24 24">
+                      <path
+                          d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z">
+                      </path>
+                  </svg>
+                  <svg hidden="" focusable="false" inert viewBox="0 0 24 24">
+                      <path
+                          d="M12 6.5c2.76 0 5 2.24 5 5 0 .51-.1 1-.24 1.46l3.06 3.06c1.39-1.23 2.49-2.77 3.18-4.53C21.27 7.11 17 4 12 4c-1.27 0-2.49.2-3.64.57l2.17 2.17c.47-.14.96-.24 1.47-.24zM3.42 2.45 2.01 3.87l2.68 2.68C3.06 7.83 1.77 9.53 1 11.5 2.73 15.89 7 19 12 19c1.52 0 2.97-.3 4.31-.82l3.43 3.43 1.41-1.41L3.42 2.45zM12 16.5c-2.76 0-5-2.24-5-5 0-.77.18-1.5.49-2.14l1.57 1.57c-.03.18-.06.37-.06.57 0 1.66 1.34 3 3 3 .2 0 .38-.03.57-.07L14.14 16c-.65.32-1.37.5-2.14.5zm2.97-5.33c-.15-1.4-1.25-2.49-2.64-2.64l2.64 2.64z">
+                      </path>
+                  </svg>
+              </button>
+              <button class="icon-after second icon medium" type="button" aria-label="Copy Input" data-copy-input
+                  data-input="secret-access-key" data-snackbar data-selem="#copy-secret-access-key-success"
+                  aria-describedby="copy-secret-access-key-success"
+                  >
+                  <svg focusable="false" inert viewBox="0 0 24 24">
+                      <path d="M16 1H2v16h2V3h12V1zm5 4H6v18h15V5zm-2 16H8V7h11v14z">
+                      </path>
+                  </svg>
+              </button>
+              <button class="icon-after third icon medium" type="button" aria-label="Regenerate Input"
+                  data-regenerate-value data-input="secret-access-key" data-snackbar
+                  data-selem="#regen-secret-access-key-success"
+                  aria-describedby="regen-secret-access-key-success"
+                  >
+                  <svg focusable="false" inert viewBox="0 0 24 24">
+                      <path
+                          d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z">
+                      </path>
+                  </svg>
+              </button>
+              <div id="copy-secret-access-key-success" class="snackbar success" aria-hidden="true" aria-hidden="true"
+                  data-snacktime="4000" role="alert">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Check">
+                      <path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                  </svg>
+                  <p class="p-sm">Secret Access Key copied to clipboard!</p>
+                  <button class="icon medium" type="button" data-close-snackbar="" aria-label="Close Snackbar">
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CloseSharp">
+                          <path
+                              d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z">
+                          </path>
+                      </svg>
+                  </button>
+              </div>
+              <div id="regen-secret-access-key-success" class="snackbar success" aria-hidden="true" aria-hidden="true"
+                  data-snacktime="4000" role="alert">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Check">
+                      <path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                  </svg>
+                  <p class="p-sm">Regenerated secret access key!</p>
+                  <button class="icon medium" type="button" data-close-snackbar="" aria-label="Close Snackbar">
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CloseSharp">
+                          <path
+                              d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z">
+                          </path>
+                      </svg>
+                  </button>
+              </div>
+          </div>
+      </div>
+      <div role="alert" class="alert warning outlined mt-1 icon medium" tabindex="-1">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Key">
+              <path
+                  d="M21 10h-8.35C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H13l2 2 2-2 2 2 4-4.04L21 10zM7 15c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z">
+              </path>
+          </svg>
+          <p class="alert body2">
+              <strong>Note:</strong>
+              <span>
+                  For the secret access key input, see the "Buttons" section to see how visibility change, copy input,
+                  and regenerate value happens. <br>
+                  To include multiple icons at the end of the input, you can add .icon-after-2/.icon-after-3 to the
+                  input's classList, and you can add .second and .third to the second and third icons / buttons that
+                  are adjacent to the input.
+              </span>
+          </p>
+          <button class="close-alert icon large" type="button" aria-label="Close Alert">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close">
+                  <path
+                      d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                  </path>
+              </svg>
+          </button>
+      </div>
+      <p class="h6 bold mt-2">Disabled:</p>
+      <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+          <label for="embed-youtube-video" class="disabled">Embed Youtube Video:</label>
+          <div class="text-input block medium">
+              <input name="embed-youtube-video" id="embed-youtube-video" autocapitalize="off" autocomplete="off"
+                  spellcheck="false" class="icon-before medium mt-1"
+                  placeholder="Enter the url of the YouTube video..." type="url"
+                  pattern="(https?|ftp):\/\/[^\s\/$.?#].[^\s]*" disabled />
+              <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1"
+                  title="YouTube">
+                  <path
+                      d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z">
+                  </path>
+              </svg>
+          </div>
+      </div>
+  </form>
+</section>
+<section id="password-inputs" class="mt-2">
+  <h3 class="h5 bold bb">
+    <a href="#password-inputs" class="same-page bold">Password / Password-like Inputs</a>
+    </h3>
+  <details class="mt-2">
+      <summary>
+          <span class="h6 fw-regular">
+              About Password / Password-like Inputs
+          </span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content" aria-hidden="true">
+          Password inputs are the same as normal text inputs in every way except for the fact that
+          the password text is hidden on the client and the password input has a <span class="t-info bold">type</span>
+          of
+          password - which usually should have the ability to be toggled.
+      </div>
+  </details>
+  <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+      <label for="password">Password*:</label>
+      <div class="text-input block medium">
+          <input name="password" id="password" class="mt-1 medium icon-after" placeholder="Enter your password..."
+              autocomplete="current-password" autocapitalize="off" spellcheck="false" type="password" required />
+          <button class="icon-after icon medium" data-vis-switch type="button" aria-label="Change Visibility">
+              <svg focusable="false" inert viewBox="0 0 24 24">
+                  <path
+                      d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z">
+                  </path>
+              </svg>
+              <svg hidden="" focusable="false" inert viewBox="0 0 24 24">
+                  <path
+                      d="M12 6.5c2.76 0 5 2.24 5 5 0 .51-.1 1-.24 1.46l3.06 3.06c1.39-1.23 2.49-2.77 3.18-4.53C21.27 7.11 17 4 12 4c-1.27 0-2.49.2-3.64.57l2.17 2.17c.47-.14.96-.24 1.47-.24zM3.42 2.45 2.01 3.87l2.68 2.68C3.06 7.83 1.77 9.53 1 11.5 2.73 15.89 7 19 12 19c1.52 0 2.97-.3 4.31-.82l3.43 3.43 1.41-1.41L3.42 2.45zM12 16.5c-2.76 0-5-2.24-5-5 0-.77.18-1.5.49-2.14l1.57 1.57c-.03.18-.06.37-.06.57 0 1.66 1.34 3 3 3 .2 0 .38-.03.57-.07L14.14 16c-.65.32-1.37.5-2.14.5zm2.97-5.33c-.15-1.4-1.25-2.49-2.64-2.64l2.64 2.64z">
+                  </path>
+              </svg>
+          </button>
+      </div>
+  </div>
+</section>
+
+<section id="textarea-inputs" class="mt-2">
+  <h3 class="h5 bold bb">
+    <a href="#textarea-inputs" class="same-page bold">Textarea Inputs</a>
+  </h3>
+  <details class="mt-2">
+      <summary>
+          <span class="h6 fw-regular">
+              About Textarea Inputs
+          </span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content" aria-hidden="true">
+          The <span><code
+                  class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span>
+          element accepts many of the same attributes as text inputs -
+          <code
+              class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">autocomplete</span></span></span></code>,
+          <code
+              class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">spellcheck</span></span></span></code>,
+          <code
+              class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">required</span></span></span></code>,
+          <code
+              class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">readonly</span></span></span></code>,
+          <code
+              class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">placeholder</span></span></span></code>,
+          <code
+              class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">disabled</span></span></span></code>,
+          <code
+              class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">form</span></span></span></code>,
+          and <code
+              class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">maxlength</span></span></span></code>.
+          <br>
+          The <span><code
+                  class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span>
+          element
+          also accepts a <code
+              class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">minlength</span></span></span></code>
+          attribute,
+          a <code
+              class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">rows</span></span></span></code>
+          attribute,
+          and a <code
+              class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">cols</span></span></span></code>
+          attribute - which are self-explanatory.
+          <br />
+          Some things to keep in mind for <span><code
+                  class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span>
+          elements:
+          <ul>
+              <li>
+                  The <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span>
+                  element does not have a <code
+                      class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">value</span></span></span></code>
+                  attribute, the
+                  initial value of the textarea is set by putting content inside the <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span>
+                  tags.
+              </li>
+              <li>
+                  The <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span>
+                  element can have a character counter in the bottom right hand corner of the textarea. See code
+                  below.
+              </li>
+              <li>
+                  If the <span><code
+                          class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span>
+                  has a char counter, make sure to include the <span><code
+                          class="hljs"><span class="hljs-selector-class">.t-disabled</span></code></span> class on the
+                  character counter.
+              </li>
+          </ul>
+      </div>
+  </details>
+
+  <p class="h6 bold mt-2">Example Text Area Code:</p>
+  <div style="position: relative;">
+      <pre class="hz-scroll"><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;input-group block mt-1&quot;</span> <span class="hljs-attr">data-hover</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">data-focus</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">data-error</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">data-blurred</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span> 
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;example-textarea-input&quot;</span>&gt;</span>Something Description:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mt-1 text-input block medium disabled&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> 
+      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;example-textarea-input&quot;</span> 
+      <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;example-textarea-input&quot;</span> 
+      <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Placeholder&quot;</span> 
+      <span class="hljs-attr">rows</span>=<span class="hljs-string">&quot;10&quot;</span> 
+      <span class="hljs-attr">maxlength</span>=<span class="hljs-string">&quot;200&quot;</span> 
+      <span class="hljs-attr">minlength</span>=<span class="hljs-string">&quot;50&quot;</span> 
+      <span class="hljs-attr">spellcheck</span>=<span class="hljs-string">&quot;false&quot;</span>
+      <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">&quot;off&quot;</span>
+      <span class="hljs-attr">autocapitalize</span>=<span class="hljs-string">&quot;off&quot;</span>
+      &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;char-counter&quot;</span> <span class="hljs-attr">data-input</span>=<span class="hljs-string">&quot;example-textarea-input&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;min-counter body2&quot;</span> <span class="hljs-attr">data-val</span>=<span class="hljs-string">&quot;50&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span>more characters required<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;max-counter body2&quot;</span> <span class="hljs-attr">data-val</span>=<span class="hljs-string">&quot;200&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>Characters Remaining<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></code></pre><button data-snackbar
+          data-selem="#copy-code-success" data-copy-prev class="toggle-button small"
+          style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert
+              viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+              <path
+                  d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+              </path>
+          </svg></button>
+  </div>
+  <p class="body1 bold mt-2">Example Text Area:</p>
+  <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+      <label for="example-code-input">Example Code Input:</label>
+      <div class="mt-1 text-input block medium disabled">
+          <textarea name="example-code-input" id="example-code-input" placeholder="#include <stdio.h>
+int main(){
+  printf(&quot;Hello, World!&quot;);
+  return 0;
+}" rows="10" minlength="1" maxlength="1000" spellcheck="false" autocomplete="off" autocapitalize="off"
+              style="font-family: monospace!important;"></textarea>
+      </div>
+      <p class="char-counter t-disabled" data-input="example-code-input">
+          <span class="max-counter body2" data-val="1000" aria-hidden="false">Characters Remaining</span>
+      </p>
+  </div>
+  <div class="alert mt-1 small warning outlined" role="alert">
+      Note that the aria-hidden attributes control the visibility of the max length / min length spans of the
+      character counter.
+  </div>
+  <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+      <label for="example-math-markup">Generate Math Markup:</label>
+      <div class="mt-1 text-input block medium disabled">
+          <textarea name="example-math-markup" id="example-math-markup"
+              placeholder="Enter the TeX code that you want transformed to HTML..." rows="10" maxlength="200"
+              minlength="1" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+      </div>
+      <p class="char-counter t-disabled" data-input="example-math-markup">
+          <span class="min-counter body2" data-val="1" aria-hidden="false">more characters required</span>
+          <span class="max-counter body2" data-val="200" aria-hidden="true">Characters Remaining</span>
+      </p>
+  </div>
+  <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+      <label for="harmful-content-desc" class="disabled">Harmful Content Description:</label>
+      <div class="mt-1 text-input block medium disabled">
+          <textarea name="harmful-content-desc" id="harmful-content-desc"
+              placeholder="Enter a description of the harmful content..." rows="10" maxlength="200" minlength="50"
+              spellcheck="<%=Boolean(locals.spellcheck===true)?true:false%>" autocomplete="off" autocapitalize="off" disabled></textarea>
+      </div>
+      <p class="char-counter t-disabled" data-input="harmful-content-desc">
+          <span class="min-counter body2" data-val="50" aria-hidden="false">more characters required</span>
+          <span class="max-counter body2" data-val="200" aria-hidden="true">Characters Remaining</span>
+      </p>
+  </div>
+</section>
+
+<section id="number-inputs" class="mt-2">
+  <h3 class="h5 bold bb">
+    <a href="#number-inputs" class="same-page bold">Number Inputs</a>
+  </h3>
+  <details class="mt-2">
+      <summary>
+          <span class="h6 fw-regular">
+              About Number Inputs
+          </span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content" aria-hidden="true">
+          Number inputs are mostly the same as normal text inputs except they can have a
+          <code
+              class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">max</span></span></span></code>
+          and
+          <code
+              class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">min</span></span></span></code>
+          attribute. Number inputs
+          should come with an increase button and a decrease button that increment / decrement the number input. I
+          believe this helps usability - especially on mobile devices (the keyboard won't have to open up).
+          <br>
+          You can see an example of a number input below.
+      </div>
+  </details>
+  <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+      <label for="max-polls-per-day-input">Max Polls Per Day:</label>
+      <div class="mt-1 number-input medium">
+          <input type="number" min="0" max="100" value="0" name="max-polls-per-day-input" id="max-polls-per-day-input"
+              placeholder="Enter the maximum number of polls per day" autocomplete="off" spellcheck="false"
+              autocapitalize="off">
+          <button class="icon large" data-increase="" aria-label="Increase Input">
+              <svg focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                  </path>
+              </svg>
+          </button>
+          <button class="icon large" data-decrease="" aria-label="Decrease Input">
+              <svg focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                  </path>
+              </svg>
+          </button>
+      </div>
+  </div>
+  <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+      <label for="max-number-questions" class="disabled">Max Number of Questions:</label>
+      <div class="mt-1 number-input medium">
+          <input type="number" min="0" max="100" value="0" name="max-number-questions" id="max-number-questions"
+              placeholder="Enter the maximum number of questions per poll" autocomplete="off" spellcheck="false"
+              autocapitalize="off" disabled>
+          <button disabled class="icon large" data-increase="" aria-label="Increase Input">
+              <svg focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                  </path>
+              </svg>
+          </button>
+          <button disabled class="icon large" data-decrease="" aria-label="Decrease Input">
+              <svg focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                  </path>
+              </svg>
+          </button>
+      </div>
+  </div>
+  <p class="mt-2 body2 t-warning">Note that if the number input is disabled, then the buttons that go with the number
+      input should have the disabled attribute added to them.</p>
+</section>

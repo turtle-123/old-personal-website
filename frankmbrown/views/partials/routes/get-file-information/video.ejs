@@ -1,0 +1,167 @@
+<%# 
+PARTIAL ROUTE: partials/routes/get-file-information/video.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.video_format
+- locals.video_format_long
+- locals.size
+- locals.duration
+- locals.width
+- locals.height
+- locals.start_time
+- locals.bit_rate
+- locals.num_streams
+- locals.probe_score
+- locals.tags
+- locals.streams
+- locals.streams[i]
+%>
+<%# 
+type ProbedVideoData = {
+  video_format:string|undefined,
+  video_format_long:string|undefined,
+  size:number|undefined,
+  duration:number|undefined,
+  start_time:number|undefined,
+  bit_rate:number|undefined,
+  num_streams:number|undefined,
+  probe_score:number|undefined,
+  tags:string,
+  streams:VideoStreamData[],
+  width:number|undefined,
+  height:number|undefined,
+  audio_codec:string|undefined,
+  video_codec:string|undefined
+}
+type VideoStreamData = {
+  codec_name: string|undefined,
+  codec_name_long: string|undefined,
+  profile: string|undefined,
+  codec_type: string|undefined,
+  codec_time_base: string|undefined,
+  width: number|undefined,
+  height: number|undefined,
+  coded_width: number|undefined,
+  coded_height: number|undefined,
+  display_aspect_ratio: string|undefined,
+  display_aspect_ratio_height: number|undefined,
+  display_aspect_ratio_width: number|undefined,
+  r_frame_rate: string|undefined,
+  avg_frame_rate: string|undefined,
+  time_base: string|undefined,
+  frames: string|undefined,
+  start_time: number|undefined,
+  duration: number|undefined,
+  bit_rate: number|undefined,
+}
+  url
+%>
+<div class="mt-2">
+    <h3 class="h3 bold bb-main">
+        Video Information
+    </h3>
+
+    <p class="mt-1">
+        <span class="bold">Video Format:</span> <%=locals.video_format%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Video Format Long:</span> <%=locals.video_format_long%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Size:</span> <%=locals.size%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Duration:</span> <%=locals.duration%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Width:</span> <%=locals.width%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Height:</span> <%=locals.height%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Start Time:</span> <%=locals.start_time%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Bit Rate:</span> <%=locals.bit_rate%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Number of Streams:</span> <%=locals.num_streams%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Probe Score:</span> <%=locals.probe_score%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Tags:</span> <%=locals.tags%>
+    </p>
+    <h4 class="h4 bold bb-thick mt-2">
+        Streams:
+    </h4>
+    <div class="mt-2">
+        <%for(let i =0; i < locals.streams.length; i++){%>
+            <h5 class="h5 bold bb">
+                Stream <%=i+1%>
+            </h5>
+            <p class="mt-1">
+                <span class="bold">Codec Name:</span> <%=locals.streams[i].codec_name%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Codec Name Long:</span> <%=locals.streams[i].codec_name_long%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Profile:</span> <%=locals.streams[i].profile%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Codec Type:</span> <%=locals.streams[i].codec_type%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Codec Time Base:</span> <%=locals.streams[i].codec_time_base%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Width:</span> <%=locals.streams[i].width%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Height:</span> <%=locals.streams[i].height%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Coded Width:</span> <%=locals.streams[i].coded_width%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Coded Height:</span> <%=locals.streams[i].coded_height%>
+            </p>
+            
+            <p class="mt-1">
+                <span class="bold">Display Aspect Ratio:</span> <%=locals.streams[i].display_aspect_ratio%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Display Aspect Ratio Height:</span> <%=locals.streams[i].display_aspect_ratio_height%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Display Aspect Ratio Width:</span> <%=locals.streams[i].display_aspect_ratio_width%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">R Frame Rate:</span> <%=locals.streams[i].r_frame_rate%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Average Frame Rate:</span> <%=locals.streams[i].avg_frame_rate%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Time Base:</span> <%=locals.streams[i].time_base%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Frames:</span> <%=locals.streams[i].frames%>
+            </p>
+
+            <p class="mt-1">
+                <span class="bold">Start Time:</span> <%=locals.streams[i].start_time%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Duration:</span> <%=locals.streams[i].duration%>
+            </p>
+            <p class="mt-1">
+                <span class="bold">Stream Bit Rate:</span> <%=locals.streams[i].bit_rate%>
+            </p>
+        <%}%>
+    </div>
+</div>

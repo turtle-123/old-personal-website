@@ -1,0 +1,151 @@
+<%# 
+PARTIAL ROUTE: pages/about.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title" id="about-site">About frankmbrown.net</h1>
+
+  <section id="about-net" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#about-net" class="same-page bold">About</a>
+      </h2>
+      <section id="top">
+        <p class="mt-2 body1 text-align-left">
+          The primary reason for starting this site was for me to have a place to keep my notes (things that I may want to remember and maybe come back to) 
+          with me not having to look around for them. I haven't tried services like <a href="https://www.notion.so/product?utm_source=google&utm_campaign=2075789710&utm_medium=80211061601&utm_content=500427479647&utm_term=notion&targetid=kwd-312974742&gad_source=1&gclid=CjwKCAiAjfyqBhAsEiwA-UdzJN4QxfHT-AkaHCN3c7MEUhGPbAytyt5N0kQqZNqOyPKdlvJXLXYS8BoC7PcQAvD_BwE" class="secondary link" target="_blank">Notion</a>, but I really didn't want to have to learn how to use another company's product only to eventually stop using it - that seems like a waste of time, so I created this site, where I can implement anything I want.
+        </p>
+        <p class="mt-2 body1">
+          I also thought it would be a good place to host 
+          <a href="/projects"  hx-push-url="true" hx-get="/projects" hx-target="#PAGE" hx-indicator="#page-transition-progress" class="primary link">software and other projects</a>, 
+          document some other things I may work on, and test software in a production environment.
+        </p>
+        <p class="body1 mt-2">
+          I haven't decided yet whether or not I want to write a <a href="/blog" hx-push-url="true" hx-get="/blog" hx-target="#PAGE" hx-indicator="#page-transition-progress" class="primary link">blog</a>, but if I do, I'll preface 
+          whatever I say by adding a disclaimer that:
+        </p>
+      </section>
+      <blockquote id="plato-quote">
+        All I know is that I know nothing
+      </blockquote>
+      <cite class="block">
+        <a href="https://en.wikipedia.org/wiki/I_know_that_I_know_nothing" target="_blank" class="secondary link">Plato / Socrates </a>
+      </cite>
+      <section id="bottom">
+        <p class="body1 mt-2">
+          so that I don't have to give the disclaimer about everything I say. I'm at least a little skeptical of all my own opinions, but
+          mentioning that I'm not sure about something every couple lines 
+          would make for a poor blog post. Based on the philosophy I've read, most of them don't think anything can be 
+          <a href="https://en.wikipedia.org/wiki/Epistemology" target="_blank" class="secondary link">known</a>
+          anyway, so if you read my blog, just take everything you read with a grain of salt.
+        </p>
+        <p class="body1 mt-2">
+          Right now, this site hosts 
+          <a href="/projects/design-system" hx-push-url="true" hx-get="/projects/design-system" hx-target="#PAGE" hx-indicator="#page-transition-progress" class="primary link">my design system</a>,
+          <a href="/projects/design-system/google-maps" hx-push-url="true" hx-get="/projects/design-system/google-maps" hx-target="#PAGE" hx-indicator="#page-transition-progress"  class="primary link">an implementation of the google maps JavaScript API</a> to be used with HTMX <abbr title="Single Page Application">SPA</abbr>s (Single Page Applications),
+          and a <a href="/utilities" hx-push-url="true" hx-get="/utilities" hx-target="#PAGE" hx-indicator="#page-transition-progress"  class="primary link">utilities page</a> where I plan to implement some things 
+          that I want to do often but don't want to rewrite the scripts for each time - <em>this was the reason for the <span id="copy_math_htmldtc3ztazhmw" class="inline-katex">
+            <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>a</mi><mi>T</mi><mi>e</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span>
+          </span> to HTML and code to HTML functionality implemented on this site.</em>
+        </p>
+        <p class="body1 mt-2">
+          The theme of the site should be fully customizable - try clicking the the 
+          settings icon in the top-right hand corner of the page. 
+        </p>
+        <div role="alert" class="alert error filled icon medium mt-1">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Settings"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"></path></svg>
+          <p class="alert">
+            Note that you have to either accept or deny cookies in order to customize settings.
+          </p>
+          <button class="icon medium close-alert" type="button" aria-label="Close Alert">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+          </button>
+        </div>
+        <p class="mt-2 body1">
+          I haven't gotten around to it yet, but if the site ever grows so large - as in having enough information - that it warrants search functionality and if I ever decide to allow comments on blog posts, then I will implement search for the site, create a rich text editor for comments for the site, implement login functionality, and set up a <a href="https://en.wikipedia.org/wiki/RSS" class="secondary link" target="_blank">RSS feed</a>. I am already working on 
+          a <a href="https://lexical.dev/" class="secondary link" target="_blank">Lexical</a> rich text editor for building very customizable articles, and I will add that to the site soon.
+        </p>
+        <p class="mt-2 body1">
+          I'm not sure how often I will come back and update this page, so if you want to see the latest changes to the site, just look around.
+        </p>
+      </section>
+  </section>
+  
+  
+  <section id="links-about" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#links-about" class="same-page bold">Links</a>
+      </h2>
+      <div class="mt-2 flex-row justify-start gap-2 align-center wrap">
+        <a href="mailto:fmb201704@gmail.com" target="_blank" class="button icon-text large" style="background-color: var(--primary); color: var(--button-contrast-text)">
+          <svg style="fill: var(--button-contrast-text);" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Email"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+          Email Me
+        </a>
+        <a href="https://www.linkedin.com/in/frank-brown-660236171/" target="_blank" class="button icon-text large" style="background-color: #0a66c2; color: white;">
+          <svg style="fill: white;" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="LinkedIn"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg>
+          LinkedIn
+        </a>
+    
+        <a href="https://github.com/turtle-123" target="_blank" class="button icon-text large" style="background-color: #2b3137; color: white;">
+          <svg style="fill: white;" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="GitHub"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg>
+          Github
+        </a>
+      </div>
+  </section>
+
+  
+
+  <section id="applicatiuon-hotkeys" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#application-hotkeys" class="same-page bold">Application Hotkeys:</a>
+      </h2>
+      <ul class="none" id="hot-keys-site" style="padding-left: 4px;">
+        <li class="mt-2 body2 fw-regular" style="line-height: 2;">
+          <strong>Application Hotkeys:</strong>
+        </li>
+        <li class="mt-2 body2 fw-regular" style="line-height: 2;">
+          <kbd class="inline body2">CTRL+K</kbd> - Search
+        </li>
+        <li class="mt-4 body2 fw-regular" style="line-height: 2;">
+          <kbd class="inline body2">CTRL+Q</kbd> - Generate Code Markup 
+        </li>
+        <li class="mt-4 body2 fw-regular" style="line-height: 2;">
+          <kbd class="inline body2">CTRL+M</kbd> - Generate Math Markup
+        </li>
+        <li class="mt-4 body2 fw-regular" style="line-height: 2;">
+          <kbd class="inline body2">ALT+E</kbd> - Settings
+        </li>
+        <li class="mt-4 body2 pb-lg fw-regular" style="line-height: 2;">
+          <kbd class="inline body2">ESC</kbd> - Close Dialog
+        </li>
+        <li class="mt-4 body2 pb-lg fw-regular" style="line-height: 2;">
+          <kbd class="inline body2">CTRL+=</kbd> - Increase Application Size
+        </li>
+        <li class="mt-4 body2 pb-lg fw-regular" style="line-height: 2;">
+          <kbd class="inline body2">CTRL+-</kbd> - Decrease Application Size
+        </li>
+        <li class="mt-4 body2 pb-lg fw-regular" style="line-height: 2;">
+          <kbd class="inline body2">CTRL+1</kbd> - Toggle Light / Dark Mode
+        </li>
+        <li class="mt-2 body2 fw-regular" style="line-height: 2;">
+          <strong>Article Builder Hotkeys:</strong>
+        </li>
+        <li class="mt-4 body2 pb-lg fw-regular" style="line-height: 2;">
+          <kbd class="inline body2">CTRL+S</kbd> - Save Article (If Composing)
+        </li>
+        <li class="mt-4 body2 pb-lg fw-regular" style="line-height: 2;">
+          <kbd class="inline body2">CTRL+H</kbd> - Collapse All Sections
+        </li>
+        <li class="mt-4 body2 pb-lg fw-regular" style="line-height: 2;">
+          <kbd class="inline body2">CTRL+O</kbd> - Open All Sections
+        </li>
+      </ul>
+  </section>
+
+
+  <%-include('../partials/pagePartial')%>
+  <%}%>

@@ -1,0 +1,27 @@
+<%# 
+PARTIAL ROUTE: partials/breadcrumbs.ejs
+PARTIAL DESCRIPTION: Breadcrumbs to show at the bottom of the page
+LOCAL VARIABLES:
+----------------------------------
+- locals.breadcrumbs ({item: sting, name: string}[]): Breadcrumbs to show at the bottom of the page
+%>
+<nav class="breadcrumbs body2 flex-row grow-1" id="page-breadcrumbs" hx-swap-oob="outerHTML">
+  <ul>
+    <%for(let i = 0; i < locals.breadcrumbs.length; i++){%>
+      <li>
+        <a 
+        href="<%=locals.breadcrumbs[i].item%>" 
+        class="secondary link" 
+        style="color: var(--text-primary)!important;"
+        hx-get="<%=locals.breadcrumbs[i].item%>" 
+        hx-target="#PAGE" 
+        hx-indicator="#page-transition-progress" 
+        hx-push-url="true"
+        <%-Boolean(i===0)?'style="padding-left: 0px!important;"':''%>
+        >
+          <%=locals.breadcrumbs[i].name%>
+        </a>
+      </li>
+    <%}%>
+  </ul> 
+</nav>

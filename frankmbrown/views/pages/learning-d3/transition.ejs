@@ -1,0 +1,18 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/transition.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+<h1 class="page-title" id="top-of-page">D3.js Transition</h1>
+          
+  <p>
+    A transition is a selection-like interface for animating changes to the DOM. Instead of applying changes instantaneously, transitions smoothly interpolate the DOM from its current state to the desired target state over a given duration.
+  </p>
+        
+  <%-include('../../partials/pagePartial')%>
+<%}%>

@@ -1,0 +1,18 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/brush.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+  <h1 class="page-title" id="top-of-page">D3.js Brush</h1>
+   
+  <p>
+    Brushing is the interactive specification a one- or two-dimensional selected region using a pointing gesture, such as by clicking and dragging the mouse. Brushing is often used to select discrete elements, such as dots in a scatterplot or files on a desktop. It can also be used to zoom-in to a region of interest, or to select continuous regions for cross-filtering data or live histograms:
+  </p>
+        
+  <%-include('../../partials/pagePartial')%>
+<%}%>

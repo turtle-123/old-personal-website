@@ -1,0 +1,106 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EDITOR_THEME = void 0;
+exports.EDITOR_THEME = {
+    heading: {
+        h1: 'h1',
+        h2: 'h2',
+        h3: 'h3',
+        h4: 'h4',
+        h5: 'h5',
+        h6: 'h6'
+    },
+    text: {
+        bold: 'bolder',
+        italic: 'italic',
+        underline: 'underline',
+        strikethrough: 'strikethrough',
+        underlineStrikethrough: 'underline-strikethrough',
+        superscript: 'superscript',
+        subscript: 'subscript',
+        code: 'text-code'
+    },
+    paragraph: 'lex-p',
+    ltr: 'ltr',
+    rtl: 'rtl',
+    placeholder: 'placeholder',
+    quote: 'blockquote',
+    link: 'lexical-link',
+    code: 'lexical-code hz-scroll',
+    codeHighlight: {
+        atrule: 'lexical-tokenAttr',
+        attr: 'lexical-tokenAttr',
+        boolean: 'lexical-tokenProperty',
+        builtin: 'lexical-codeBuiltIn',
+        cdata: 'lexical-tokenComment',
+        char: 'lexical-tokenSelector',
+        class: 'lexical-codeClass',
+        'class-name': 'lexical-tokenFunction',
+        comment: 'lexical-tokenComment',
+        constant: 'lexical-tokenProperty',
+        deleted: 'lexical-codeDeleted',
+        doctype: 'lexical-codeTag',
+        entity: 'lexical-tokenOperator',
+        function: 'lexical-tokenFunction',
+        important: 'lexical-tokenVariable',
+        inserted: 'lexical-tokenSelector',
+        keyword: 'lexical-tokenAttr',
+        namespace: 'lexical-tokenVariable',
+        number: 'lexical-codeNumber',
+        operator: 'lexical-tokenOperator',
+        prolog: 'lexical-tokenComment',
+        property: 'lexical-tokenProperty',
+        punctuation: 'lexical-tokenPunctuation',
+        regex: 'lexical-codeRegex',
+        selector: 'lexical-tokenSelector',
+        string: 'lexical-codeString',
+        symbol: 'lexical-tokenProperty',
+        tag: 'lexical-codeTag',
+        url: 'lexical-codeLink',
+        variable: 'lexical-tokenVariable'
+    },
+    list: {
+        numberDepth: [
+            'first',
+            'second',
+            'third',
+            'fourth',
+            'fifth'
+        ],
+        bulletDepth: [
+            'first',
+            'second',
+            'third',
+            'fourth',
+            'fifth'
+        ],
+        checkDepth: [
+            'check-l-first',
+            'check-l-second',
+            'check-l-third',
+            'check-l-fourth',
+            'check-l-fifth'
+        ],
+        nested: {
+            listitem: 'nested-list-item'
+        },
+        checklist: 'rte-checklist',
+        listitemChecked: 'rte-li-checked',
+        listitemUnchecked: 'rte-li-unchecked',
+    },
+    table: 'rte-table',
+    tableAddColumns: 'rte-tableAddColumns',
+    tableAddRows: 'rte-tableAddRows',
+    tableCell: 'rte-tableCell',
+    tableCellActionButton: 'rte-tableCellActionButton',
+    tableCellActionButtonContainer: 'rte-tableCellActionButtonContainer',
+    tableCellEditing: 'rte-tableCellEditing',
+    tableCellHeader: 'rte-tableCellHeader',
+    tableCellPrimarySelected: 'rte-tableCellPrimarySelected',
+    tableCellResizer: 'rte-tableCellResizer',
+    tableCellSelected: 'rte-tableCellSelected',
+    tableCellSortedIndicator: 'rte-tableCellSortedIndicator',
+    tableResizeRuler: 'rte-tableCellResizeRuler',
+    tableSelected: 'rte-tableSelected',
+    tableSelection: 'rte-tableSelection'
+};

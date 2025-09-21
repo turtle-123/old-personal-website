@@ -1,0 +1,44 @@
+<%# 
+PAGE ROUTE: /ai-tools/ai-chat
+PAGE DESCRIPTION: /
+PAGE KEYOWRDS: [/]
+PAGE IMAGE: 
+PAGE VARIABLES:
+-------------------------
+- locals.hello (number): 
+- locals.world (string|undefined): 
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    <div class="flex-row justify-between align-center navbar-sticky-transition bb-thick" style="opacity: 1; background: var(--background); top: var(--navbar-height); position: sticky; z-index: 10;">
+        <h1 class="bold h2" >
+            AI Chat
+        </h1>
+        <%-locals.select_html%>
+    </div>
+    <div style="position: relative;">
+        <div style="min-height: 80vh; padding-bottom: 20px;" id="ai-page-chat-body">
+            <%-locals.chat_html%>
+        </div>
+        <div style="position: sticky; bottom: 0px; left: 0px; width: 100%; background-color: var(--background); z-index: 4;">
+            <button style="position: absolute; bottom: 0px; right: 0px; z-index: 3; border-radius:0px;" type="button" id="submit-ai-chat-button" aria-label="Submit" class="success filled icon-text medium">
+                <svg focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                SUBMIT
+            </button>
+            <div style="position: absolute; bottom: 0px; left: 0px; z-index: 3;" class="flex-row">
+                <button style="border-radius:0px;" type="button" id="new-ai-chat-button" class="warning filled icon-text medium">
+                  <svg focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="Add"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+                  NEW CHAT
+                </button>
+                <button style="border-radius:0px;" type="button" id="page-copy-ai-chat-link" aria-label="Submit" class="info filled icon-text medium">
+                  <svg viewBox="0 0 448 512" title="copy" focusable="false" inert="" tabindex="-1"><path d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H96V128H64z"></path></svg>
+                  LINK
+                </button>
+              </div>
+            <div style="position: relative; max-width: min(800px,100%); margin: auto;">
+                <%-locals.chat_box%>
+            </div>
+        </div>
+    </div>
+    <div id="replace-with-nothing" hidden></div>
+    <%-include('../../partials/pagePartial')%>
+<%}%>

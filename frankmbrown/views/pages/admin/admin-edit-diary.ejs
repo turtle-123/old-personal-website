@@ -1,0 +1,23 @@
+<%# 
+PARTIAL ROUTE: pages/admin/admin-edit-diary.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.pageObj
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">Edit Diary Post</h1>
+
+  <section id="edit-diary-section" class="mt-2">
+      <h2 class="bold bb-thick h2">
+        <a href="#edit-diary-section" class="same-page fw-regular">Edit Diary</a>
+      </h2>
+
+      <%-locals.pageObj.innerHTML%>
+  </section>
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

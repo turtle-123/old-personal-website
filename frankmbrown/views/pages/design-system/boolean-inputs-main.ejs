@@ -1,0 +1,419 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/boolean-inputs-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="inputs-header">
+  <a href="#boolean-inputs-header" class="same-page bold">Boolean Inputs</a>
+</h2>
+<section id="javascript-for-inputs" class="mt-2">
+  <h3 class="h5 bb t-warning bold flex-row">
+    <span class="flex-row grow-1">
+        <a href="#javascript-for-inputs" class="same-page bold">Javascript for Inputs</a>
+    </span>
+    <button type="Button" aria-label="Hide Text Below" data-hide-show data-el="#js-text" class="icon medium">
+       <svg data-show focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowDown"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>
+       <svg data-hide hidden style="transform: rotate(180deg);" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowDown"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>
+    </button>
+  </h3>
+  <div id="js-text" hidden>
+    <p class="body1 mt-1">
+        When new content is loaded, the client side javascript gets all <span><code
+                class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>
+        and <span><code
+                class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span>
+        elements, and then:
+    </p>
+    <ol>
+        <li>
+            initializes them,
+            <ol class="second">
+                <li>
+                    This involves setting the appropriate background size for range
+                    <span><code
+                            class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+                    as well as setting the value for the <span><code
+                            class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">output</span>&gt;</span></span></code></span>s
+                    for the range <span><code
+                            class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s,
+                </li>
+            </ol>
+        </li>
+        <li>
+            adds a focus event listener to the <span><code
+                    class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+            that are not readonly,
+            <ol class="second">
+                <li>
+                    gets the parent element node of the parent element node of the input and if the element is a div
+                    that contains the <span><code
+                            class="hljs"><span class="hljs-selector-class">.input-group</span></code></span> class, sets
+                    the <span class="t-info bold">data-focus</span> attribute to true,
+                </li>
+            </ol>
+        </li>
+        <li>
+            adds a blur event listener to the <span><code
+                    class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+            that are not readonly,
+            <ol class="second">
+                <li>
+                    gets the parent element node of the parent element node of the input and if the element is a div
+                    that contains the <span><code
+                            class="hljs"><span class="hljs-selector-class">.input-group</span></code></span> class, sets
+                    the <span class="t-info bold">data-blurred</span> attribute to true and the <span
+                        class="t-info bold">data-focus</span> attribute to false,
+                </li>
+            </ol>
+        </li>
+        <li>
+            adds a change event listener to the <span><code
+                    class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+            that are not readonly and adds an 'input' event listener to <span><code
+                    class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span>s
+            and range inputs,
+            <ol class="second">
+                <li>
+                    Checks whether classlist of the input contains <span><code
+                            class="hljs"><span class="hljs-selector-class">.chip</span></code></span>, then return if it
+                    does.
+                </li>
+                <li>
+                    gets the id, name, type, current length of the input (if the input.value has a length), the
+                    minlength and maxlength attribute of the input,
+                </li>
+                <li>
+                    checks whether the last change is currently being debounced, cancels the debounced function,
+                </li>
+                <li>
+                    creates a debounced function that:
+                    <ol class="third">
+                        <li>checks whether there is a character counter for the input, and if there is, set the <span
+                                class="t-info bold">data-val</span> attributes of the minlength and maxlength spans</li>
+                        <li>checks whether the input is a range input, and if it is, sets the background size for the
+                            range input and sets the value of the output element that corresponds to the range input
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    checks whether the input is a range input and if it is, creates a debounced function to blur the
+                    range input in 50ms.
+                </li>
+            </ol>
+        </li>
+        <li>
+            adds a mouseover event listener to the <span><code
+                    class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+            that are not readonly,
+            <ol class="second">
+                <li>
+                    gets the parent element node of the parent element node of the input and if the element is a div
+                    that contains the <span><code
+                            class="hljs"><span class="hljs-selector-class">.input-group</span></code></span> class, sets
+                    the <span class="t-info bold">data-hover</span> attribute to true.
+                </li>
+            </ol>
+        </li>
+        <li>
+            adds a mouseout event listener to the <span><code
+                    class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+            that are not readonly,
+            <ol class="second">
+                <li>
+                    gets the parent element node of the parent element node of the input and if the element is a div
+                    that contains the <span><code
+                            class="hljs"><span class="hljs-selector-class">.input-group</span></code></span> class, sets
+                    the <span class="t-info bold">data-hover</span> attribute to false.
+                </li>
+            </ol>
+        </li>
+    </ol>
+  </div>
+</section>
+
+<section id="radio-groups" class="mt-2">
+  <h3 class="h5 bold bb">
+    <a href="#radio-groups" class="same-page bold">Radio Groups</a>
+  </h3>
+  <details class="mt-2">
+      <summary>
+          <span class="h6 fw-regular">
+              About Radio Groups
+          </span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content" aria-hidden="true">
+          Radio groups should be contained in a <span><code
+                  class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span>&gt;</span></span></code></span>
+          element that has a
+          <span><code
+                  class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">legend</span>&gt;</span></span></code></span>.
+          <mark>Each radio input in a radio group should have the same <span class="t-info bold">name</span> attribute,</mark>
+          but each radio input should have a distinct id and value where value=id.
+          <br>
+          You can add a default radio option by adding the checked attribute to a radio input.
+          <br>
+          Below, you can see examples of radio inputs with different fieldset styling and radio styling. The radio
+          inputs come in colors for
+          <span class="t-primary">primary</span>,
+          <span class="t-secondary">secondary</span>,
+          <span class="t-warning">warning</span>,
+          <span class="t-info">info</span>,
+          <span class="t-success">success</span>, and
+          <span class="t-error">error</span>, and they come in three different sizes: <span
+              class="body2">small</span>, <span class="body1">medium (default)</span>, and <span
+              class="h6">large</span>.
+      </div>
+  </details>
+  <form id="radio-groups">
+      <fieldset>
+          <legend class="h6 bold">Favorite Color</legend>
+          <p class="caption t-warning" tabindex="-1">
+              The radio group does not have any classes for the fieldset. The legend has the <span><code class="hljs"><span class="hljs-selector-class">.h6</span><span class="hljs-selector-class">.bold</span></code></span> class added to it.
+          </p>
+          <label class="radio mt-2">
+            <input 
+            type="radio" 
+            id="Primary" 
+            name="favorite-color" 
+            value="Primary" 
+            class="primary" 
+            />
+            Primary
+          </label>
+          <label class="radio mt-2">
+              <input type="radio" id="Secondary" name="favorite-color" value="Secondary" class="secondary" />
+              Secondary
+          </label>
+          <label class="radio mt-2">
+              <input type="radio" id="Error" name="favorite-color" value="Error" class="error" />
+              Error
+          </label>
+          <label class="radio mt-2">
+              <input type="radio" id="Warning" name="favorite-color" class="warning" value="Warning" />
+              Warning
+          </label>
+          <label class="radio mt-2">
+              <input type="radio" id="Info" name="favorite-color" class="info" value="Info" />
+              Info
+          </label>
+          <label class="radio mt-2">
+              <input type="radio" id="Success" name="favorite-color" class="success" value="Success" />
+              Success
+          </label>
+          <label class="radio disabled mt-2">
+              <input disabled type="radio" id="Disabled" class="disabled" name="favorite-color" value="Disabled" />
+              Disabled
+          </label>
+      </fieldset>
+      <fieldset class="checkbox mt-2">
+          <legend class="h6 bold">Favorite Size</legend>
+          <p class="mt-1 caption t-warning" tabindex="-1">
+              The fieldset has the <span><code class="hljs"><span class="hljs-selector-class">.checkbox</span></code></span> class. The legend has the <span><code class="hljs"><span class="hljs-selector-class">.h6</span><span class="hljs-selector-class">.bold</span></code></span> class added to it.
+          </p>
+          <label class="small radio primary mt-3">
+              <input type="radio" class="radio" value="Normal" id="Normal" name="Favorite-Size">
+              Normal
+          </label>
+          <label class="radio medium primary mt-3">
+              <input type="radio" class="radio" value="Medium" id="Medium" name="Favorite-Size">
+              Medium
+          </label>
+          <label class="large radio primary mt-3">
+              <input type="radio" class="radio" value="Large" id="Large" name="Favorite-Size">
+              Large
+          </label>
+      </fieldset>
+  </form>
+  <div class="alert mt-3 warning icon small" role="alert">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+      <p class="alert body2">
+          <strong>Note:</strong>
+          <span>To add color to the radio groups, add the .primary/.secondary/... classes to the radio input and to change the size, add .medium/.large to the wrapper label.</span>
+      </p>
+  </div>
+</section>
+
+<section id="checkbox-inputs" class="mt-2">
+  <h3 class="h5 bold bb">
+    <a href="#radio-groups" class="same-page bold">Checkboxes</a>
+    </h3>
+  <details class="mt-2">
+      <summary>
+          <span class="h6 fw-regular">
+              About Checkboxes
+          </span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content" aria-hidden="true">
+          Some things to note:
+          <ul>
+              <li>
+                  To add a size to  a checkbox input, add <span><code class="hljs"><span class="hljs-selector-class">.medium</span></code></span> or <span><code class="hljs"><span class="hljs-selector-class">.large</span></code></span> to the 
+                  <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span></span></code></span> wrapper.
+              </li>
+              <li>
+                  To add a color to the checkbox, add <span><code class="hljs"><span class="hljs-selector-class">.primary</span></code></span>/<span><code class="hljs"><span class="hljs-selector-class">.secondary</span></code></span>, ... to the checkbox input itself. Available colors are shown below. If the input is disabled, then the wrapper label 
+                  should have the <span><code class="hljs"><span class="hljs-selector-class">.disabled</span></code></span> class added to it.
+              </li>
+              <li>
+                  All checkboxes should have a <span class="t-info bold">name</span> and <span class="t-info bold">id</span> attribute that are equal to each other and unique.
+              </li>
+              <li class="t-warning fw-regular">
+                  Note that on the server, if a checkbox is not checked, then the input will not be shown in the decoded form.
+              </li>
+          </ul>
+      </div>
+  </details>
+  <form id="checkbox-inputs" class="mt-2">
+      <fieldset class="checkbox">
+          <legend class="h6 bold">Liked Colors:</legend>
+          <label class="checkbox">
+              <input type="checkbox" class="primary" name="Primary-check" id="Primary-check">
+              Primary
+          </label>
+          <label class="checkbox mt-1">
+              <input type="checkbox" class="secondary" name="Secondary-check" id="Secondary-check">
+              Secondary
+          </label>
+          <label class="checkbox mt-1">
+              <input type="checkbox" class="success" name="Success-check" id="Success-check">
+              Success
+          </label>
+          <label class="checkbox mt-1">
+              <input type="checkbox" class="error" name="Error-check" id="Error-check">
+              Error
+          </label>
+          <label class="checkbox mt-1">
+              <input type="checkbox" class="warning" name="Warning-check" id="Warning-check">
+              Warning
+          </label>
+          <label class="checkbox mt-1">
+              <input type="checkbox" class="info" name="Info-check" id="Info-check">
+              Info
+          </label>
+          <label class="checkbox disabled mt-1">
+              <input type="checkbox" disabled class="success" name="Disabled-check" id="Disabled-check">
+              Disabled
+          </label>
+      </fieldset>
+      <fieldset class="checkbox">
+          <legend class="h6 bold">Favorite Sizes:</legend>
+          <label class="checkbox">
+              <input type="checkbox" class="primary" name="Normal-check" id="Normal-check">
+              Normal
+          </label>
+          <label class="checkbox medium mt-2">
+              <input type="checkbox" class="primary" name="Medium-check" id="Medium-check">
+              Medium
+          </label>
+          <label class="checkbox large mt-2">
+              <input type="checkbox" class="primary" name="Large-check" id="Large-check">
+              Large
+          </label>
+      </fieldset>
+  </form>
+</section>
+
+<section id="chip-inputs" class="mt-2">
+  <h3 class="h5 bold bb">
+    <a href="#chip-inputs" class="same-page bold">Chips</a>
+    </h3>
+  <details class="mt-2">
+      <summary>
+          <span class="h6 fw-regular">
+              About Chips
+          </span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content" aria-hidden="true">
+          Chips are just checkbox inputs with different styling. Similar to checkboxes, each checkbox input 
+          should have a <span class="t-info bold">name</span> and <span class="t-info bold">id</span> that match each other, and they should have the checked boolean attribute added to them 
+          if you want them to be initially 'checked'.
+          <span class="block fw-regular t-warning">
+              What separates chip inputs from normal checkbox inputs is the fact that to add different colors to the 
+              chip input, you add the <span><code class="hljs"><span class="hljs-selector-class">.primary</span></code></span>/... class to 
+              the wrapper label, not the checkbox input <em class="bold">and</em> the fact that the chip inputs have some custom JavaScript, explained below. 
+              <br>
+              <strong>ALSO</strong>, if the chip is initially unchecked, then a <span><code class="hljs"><span class="hljs-selector-class">.unchecked</span></code></span> class should be added to the wrapper label.
+          </span>
+          <span class="h6 block mt-1 bold">Chips JavaScript</span>
+          <span class="block">
+              For the chips, we add click listeners to the label itself and listen for a click event on it to 
+              toggle the  <span><code class="hljs"><span class="hljs-selector-class">.unchecked</span></code></span> class and to properly handle click events - since the checkbox is hidden.
+          </span>
+      </div>
+  </details>
+  <form id="chip-inputs" class="mt-2">
+      <fieldset class="chip">
+          <legend hidden>Favorite Chip Colors</legend>
+          <label class="chip">
+            <input type="checkbox" class="chip" id="primary-chip" name="primary-chip" checked>
+            Primary Chip
+            <svg focusable="false" viewBox="0 0 24 24" inert>
+              <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z">
+              </path>
+            </svg>
+          </label>
+          <label class="chip secondary">
+            <input type="checkbox" class="chip" id="secondary-chip" name="secondary-chip" checked>
+            Secondary Chip
+            <svg focusable="false" viewBox="0 0 24 24" inert>
+              <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z">
+              </path>
+            </svg>
+          </label>
+          <label class="chip error">
+            <input type="checkbox" class="chip" id="error-chip" name="error-chip" checked>
+            Error Chip
+            <svg focusable="false" viewBox="0 0 24 24" inert>
+              <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z">
+              </path>
+            </svg>
+          </label>
+          <label class="chip warning">
+            <input type="checkbox" class="chip" id="warning-chip" name="warning-chip" checked>
+            Warning Chip
+            <svg focusable="false" viewBox="0 0 24 24" inert>
+              <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z">
+              </path>
+            </svg>
+          </label>
+          <label class="chip success">
+            <input type="checkbox" class="chip" id="success-chip" name="success-chip" checked>
+            Success Chip
+            <svg focusable="false" viewBox="0 0 24 24" inert>
+              <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z">
+              </path>
+            </svg>
+          </label>
+          <label class="chip info">
+              <input type="checkbox" class="chip" id="info-chip" name="info-chip" checked>
+              Info Chip
+              <svg focusable="false" viewBox="0 0 24 24" inert>
+                <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z">
+                </path>
+              </svg>
+            </label>
+          <label class="chip disabled">
+            <input type="checkbox" disabled class="chip" id="disabled-chip" name="disabled-chip">
+            Disabled Chip
+            <svg focusable="false" viewBox="0 0 24 24" inert>
+              <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z">
+              </path>
+            </svg>
+          </label>
+        </fieldset>
+  </form>
+</section>

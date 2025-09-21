@@ -1,0 +1,395 @@
+<%# 
+PARTIAL ROUTE: pages/projects/markdown-to-html.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.auth>
+- locals.pageObj
+- locals.image_url
+- locals.auth<3
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+<h1 class="page-title">Markdown To HTML Viewer</h1>
+
+
+<section id="why-create-this" class="mt-4" style="max-width: 1300px; margin: 8px auto;">
+  <div class="flex-row bb-thick justify-between align-center">
+    <h2 class="bold h2">
+      <a href="#why-create-this" class="same-page fw-regular">Why Add This</a>
+    </h2>
+    <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#why-create-this-sect">
+      <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+      <span data-hide="">HIDE</span>
+      <span data-show="" hidden="">SHOW</span>
+    </button>
+  </div>  
+  <div id="why-create-this-sect">
+    <p class="mt-2">
+      I'm getting tired of writing large markdown files in VS code only to not know what the resulting HTML will look like <ins>(actually, there are a couple good extensions for this - I use <a class="secondary link" target="_blank" href="https://shd101wyy.github.io/markdown-preview-enhanced/#/">the Markdown Preview Enhanced extension</a>)</ins>, so I created this page with <a class="secondary link" target="_blank" href="https://codemirror.net/">codemirror</a> and <a class="secondary link" target="_blank" href="https://github.com/markedjs/marked">marked js</a> that shows what the resulting HTML will look like when markdown is transformed to HTML and put in the form of my design system.  
+    </p>
+    <p class="mt-2">
+      As mentioned above, there are actually good extensions for rendering markdown to HTML, but I want to keep track of my notes on this website, and I also need to be  able to translate my <a href="/projects/design-system/lexical-rich-text-editor" hx-get="/projects/design-system/lexical-rich-text-editor" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true" class="primary link" aria-disabled="false">Lexical Implementation</a> from and to Markdown, so I went ahead and tried to create this.
+    </p>
+    <p class="mt-2">
+      I haven't finished implementing this. I need to learn more about / get better at regular expressions before trying to add more features to the markdown parser, but I wanted to move on to different things, so this is its current state.
+    </p>
+  </div>
+</section>
+
+<section id="things-to-keep-in-mind" style="max-width: 1300px; margin: 8px auto;">
+  <div class="flex-row bb-thick justify-between align-center">
+    <h2 class="bold h2">
+      <a href="#things-to-keep-in-mind" class="same-page fw-regular">Things to Keep In Mind</a>
+    </h2>
+    <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#things-keep-sect">
+      <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+      <span data-hide="">HIDE</span>
+      <span data-show="" hidden="">SHOW</span>
+    </button>
+  </div>
+
+  <div id="things-keep-sect">
+    <p class="mt-2">
+      This is a custom implementation of Markdown, and there are custom features beyond the <a class="secondary link" target="_blank" href="https://www.markdownguide.org/cheat-sheet/#basic-syntax">Basic Syntax</a>.
+    </p>
+
+    <section id="katex-eqs" class="mt-4">
+        <div class="flex-row bb-thick justify-between align-center">
+          <h3 class="bold h6">
+            <a href="#katex-eqs" class="same-page fw-regular">Katex / Equations</a>
+          </h3>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#abt-katex-render">
+            <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div class="mt-2" id="abt-katex-render">
+          <p>
+            The <a class="secondary link" target="_blank" href="https://www.npmjs.com/package/marked-katex-extension">marked katex extension</a> allows you to render katex code inline and with a block element. To render elements inline, wrap the katex expression in single dollar signs ($).
+          </p>
+          <code class="lexical-code hz-scroll ltr" spellcheck="false" data-highlight-language="markdown" style="text-align: left;" data-gutter="1" dir="ltr"><span data-frank-text="true">$x^{2}+y^{2}=z^{2}$</span></code>
+          <p class="mt-2">
+            Results in: <span id="cop_html_3354232091316873" class="inline-katex">
+              <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>y</mi><mn>2</mn></msup><mo>=</mo><msup><mi>z</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">x^{2}+y^{2}=z^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0085em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>
+              </span>
+          </p>
+          <p class="mt-2">
+            You can render block Katex elements by wrapping the expression in double dollar signs or a fenced block with an info string of math. If you use the double dollar sign, the katex will be rendered in the primary text color and will inherit the page background, else the katex expression will be rendered with a white background, black text, and will be able to be copied.
+          </p>
+          <code class="lexical-code hz-scroll ltr" spellcheck="false" data-highlight-language="markdown" style="text-align: left;" data-gutter="1" dir="ltr"><span data-frank-text="true">$$x^{2}+y^{2}=z^{2}$$</span></code>
+          <span class="katex-display"><span class="katex"><span class="katex-mathml"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>y</mi><mn>2</mn></msup><mo>=</mo><msup><mi>z</mi><mn>2</mn></msup></mrow>x^{2}+y^{2}=z^{2}</math></span><span aria-hidden="true" class="katex-html"><span class="base"><span style="height:0.9474em;vertical-align:-0.0833em;" class="strut"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span style="height:0.8641em;" class="vlist"><span style="top:-3.113em;margin-right:0.05em;"><span style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span style="margin-right:0.2222em;" class="mspace"></span><span class="mbin">+</span><span style="margin-right:0.2222em;" class="mspace"></span></span><span class="base"><span style="height:1.0585em;vertical-align:-0.1944em;" class="strut"></span><span class="mord"><span style="margin-right:0.03588em;" class="mord mathnormal">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span style="height:0.8641em;" class="vlist"><span style="top:-3.113em;margin-right:0.05em;"><span style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span style="margin-right:0.2778em;" class="mspace"></span><span class="mrel">=</span><span style="margin-right:0.2778em;" class="mspace"></span></span><span class="base"><span style="height:0.8641em;" class="strut"></span><span class="mord"><span style="margin-right:0.04398em;" class="mord mathnormal">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span style="height:0.8641em;" class="vlist"><span style="top:-3.113em;margin-right:0.05em;"><span style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></span>
+
+          <code class="lexical-code hz-scroll ltr" spellcheck="false" data-highlight-language="markdown" style="text-align: left;" data-gutter="1
+2
+3" dir="ltr"><span class="lexical-tokenPunctuation" data-frank-text="true">```</span><span data-frank-text="true">math</span><br><span data-frank-text="true">	</span><span data-frank-text="true">	</span><span data-frank-text="true">x^{2}+y^{2}=z^{2}</span><br><span class="lexical-tokenPunctuation" data-frank-text="true">```</span></code>
+<div id="cop_html_4970373095392411" class="katex-block" style="position: relative;">
+  <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>y</mi><mn>2</mn></msup><mo>=</mo><msup><mi>z</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">x^{2}+y^{2}=z^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0585em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></span>
+    <button type="button" data-snackbar="" data-selem="#copy-math-success" data-copy-input="" data-input="cop_inp_40527841979137724" aria-haspopup="true" class="toggle-button dark small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-label="Copy TeX Expression">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+        </path>
+      </svg>
+      <input hidden="" type="text" name="cop_inp_40527841979137724" id="cop_inp_40527841979137724" value="x^{2}+y^{2}=z^{2}">
+    </button>
+  </div>
+        </div>
+      </section>
+
+      <section id="extended-tabs" class="mt-4">
+        <div class="flex-row bb-thick justify-between align-center">
+          <h3 class="bold h6">
+            <a href="#extended-tabs" class="same-page fw-regular">Extended Tables</a>
+          </h3>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#abt-ext-tabs">
+            <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div id="abt-ext-tabs">
+          <p class="mt-2">
+            The <a class="secondary link" target="_blank" href="https://www.npmjs.com/package/marked-extended-tables">marked-extended-tables</a> plugin allows for cells that span multiple columns / rows and for multi-row headers.
+          </p>
+          <div class="alert warning icon medium filled mt-1" role="alert">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+            <p class="alert">
+              For some reason, this is not working properly right now.
+            </p>
+            <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+            </button>
+          </div>
+          <p class="body1 mt-2 bold">Column Spanning:</p>
+          <code class="lexical-code hz-scroll ltr" spellcheck="false" data-highlight-language="markdown" dir="ltr" style="text-align: left;" data-gutter="1
+          2
+          3"><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span data-frank-text="true"> H1      </span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span data-frank-text="true"> H2      </span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span data-frank-text="true"> H3      </span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><br><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span class="lexical-tokenPunctuation" data-frank-text="true">---------</span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span class="lexical-tokenPunctuation" data-frank-text="true">---------</span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span class="lexical-tokenPunctuation" data-frank-text="true">---------</span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><br><span data-frank-text="true">| This cell spans 3 columns |||</span></code>
+
+
+          <p class="body1 mt-2 bold">Row Spanning:</p>
+<code class="lexical-code hz-scroll ltr" spellcheck="false" data-highlight-language="markdown" dir="ltr" data-gutter="1
+2
+3
+4
+5"><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span data-frank-text="true"> H1           </span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span data-frank-text="true"> H2      </span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><br><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span class="lexical-tokenPunctuation" data-frank-text="true">--------------</span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span class="lexical-tokenPunctuation" data-frank-text="true">---------</span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><br><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span data-frank-text="true"> This cell    </span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span data-frank-text="true"> Cell A  </span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><br><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span data-frank-text="true"> spans three ^</span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span data-frank-text="true"> Cell B  </span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><br><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span data-frank-text="true"> rows        ^</span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span><span data-frank-text="true"> Cell C  </span><span class="lexical-tokenPunctuation" data-frank-text="true">|</span></code>
+
+          <p class="body1 mt-2 bold">Multi-row Headers:</p>
+          <code class="lexical-code hz-scroll ltr" spellcheck="false" data-highlight-language="markdown" dir="ltr" data-gutter="1
+          2
+          3
+          4"><span data-frank-text="true">| This header spans two   || Header A |</span><br><span data-frank-text="true">| columns </span><span class="lexical-tokenPunctuation" data-frank-text="true">*</span><span data-frank-text="true">and</span><span class="lexical-tokenPunctuation" data-frank-text="true">*</span><span data-frank-text="true"> two rows ^|| Header B |</span><br><span data-frank-text="true">|-------------|------------|----------|</span><br><span data-frank-text="true">| Cell A      | Cell B     | Cell C   |</span></code>
+
+
+        </div>
+      </section>
+
+      <section id="foots-notes" class="mt-4">
+        <div class="flex-row bb-thick justify-between align-center">
+          <h3 class="bold h6">
+            <a href="#foots-notes" class="same-page fw-regular">Footnotes</a>
+          </h3>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#abt-foots">
+            <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div id="abt-foots">
+          The <a class="secondary link" target="_blank" href="https://www.npmjs.com/package/marked-footnote">marked-footnote</a> extension allows you to use <a class="secondary link" target="_blank" href="https://www.markdownguide.org/extended-syntax/#footnotes">markdown footnotes</a>. See an example of markdown footnotes in the default text in the editor below.
+        </div>
+      </section>
+
+      <section id="md-to-do" class="mt-4">
+        <div class="flex-row bb-thick justify-between align-center">
+          <h3 class="bold h6">
+            <a href="#md-to-do" class="same-page fw-regular">To Do</a>
+          </h3>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#">
+            <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div id="md-to-do" class="mt-2">
+          I haven't decided yet whether or not I want to try to implement markdown so lexical state could be translated from markdown / to markdown correctly. If I did that, I would have to add a lot of code to the current marked implementation (if I wanted to do it properly and not just render most of the lexical state as HTML).
+          <br>
+          At the very least, I should try to implement the rest of what is included in the <a class="secondary link" target="_blank" href="https://www.markdownguide.org/extended-syntax/">extended markdown syntax</a>.
+          <br>
+          Also, for the code editor below, and for the website in general, I should probably implement better <kbd class="inline body2">CTRL+F</kbd> search functionality. (Regex Search and styling).
+          <br>
+          Also, the parsing is pretty slow right now, which needs to be improved.
+        </div>
+      </section>
+  </div>
+</section>
+
+<section id="markdwn-editor" class="mt-4" style="max-width: 1300px; margin: 8px auto;">
+    <h2 class="bold bb-thick h2"  style="max-width: 1000px; margin: 0px auto;">
+      <a href="#markdown-editor" class="same-page fw-regular">Markdown Editor</a>
+    </h2>
+    <div class="tabs mt-2">
+      <ul class="tabs" role="tablist">
+        <li role="presentation">
+          <button id="markdown-editor" class="tab-button secondary" role="tab" type="button" aria-selected="true" data-tab="0" tabindex="-1">Markdown Editor</button>
+        </li>
+        <li role="presentation">
+          <button id="view-markdown-html" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="1" tabindex="-1">View HTML</button>
+        </li>
+        <%if(locals.auth>=3){%>
+          <li role="presentation">
+            <button id="retrieve-markdown-html" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="2" tabindex="-1">Retrieve Markdown</button>
+          </li>
+        <%}%>
+      </ul>
+    </div>
+    <div class="tab-panels">
+      <div aria-labelledby="markdown-editor" role="tabpanel"  tabindex="0">
+        <form <%-locals.pageObj.hxParameters%> id="submit-markdown-form">
+          <div data-editor-wrapper id="markdown-input">
+            <div data-theme="<%=locals.pageObj.theme%>" style="min-height: 600px;" data-codemirror="markdown" data-type="full" class="mt-2" hidden><%=locals.pageObj.markdown%></div>
+          </div>
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+            <label for="markdown-title">Markdown Title:</label>
+            <div class="text-input block medium">
+                <input 
+                type="text" 
+                name="markdown-title" 
+                id="markdown-title" 
+                class="medium icon-before mt-1" 
+                required
+                placeholder="Enter the title for the markdown info..." 
+                maxlength="200"
+                minlength="1" 
+                spellcheck="true" 
+                autocapitalize="off"
+                value="<%=locals.pageObj.title%>"
+                >
+                <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="AccountCircleSharp">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z">
+                    </path>
+                </svg>
+                <%# Buttons and SVGs %>
+            </div>
+          </div>
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+            <label for="markdown-description">Markdown Description:</label>
+            <div class="mt-1 text-input block medium disabled">
+                <textarea 
+                name="markdown-description" 
+                id="markdown-description" 
+                placeholder="Enter a description of the markdown notes..." 
+                rows="5" 
+                maxlength="500" 
+                minlength="10" 
+                spellcheck="true"
+                autocomplete="off"
+                autocapitalize="off"
+                ><%=locals.pageObj.description%></textarea>
+            </div>
+            <p class="char-counter" data-input="markdown-description">
+              <span class="min-counter body2" data-val="10" aria-hidden="false">more characters required</span>
+              <span class="max-counter body2" data-val="500" aria-hidden="true">Characters Remaining</span>
+            </p>
+          </div>
+          <fieldset class="mt-2">
+            <legend class="h6 bold">Design System</legend>
+            <div class="flex-row wrap align-center gap-3">
+              <label class="radio">
+              <input type="radio" name="design-system" value="default" class="secondary" 
+              <%-Boolean(locals.pageObj.design_system==='default')?'checked':''%>>
+                Default
+              </label>
+              <label class="radio">
+              <input type="radio" name="design-system" value="my-design-system" class="secondary"
+              <%-Boolean(locals.pageObj.design_system==='my-design-system')?'checked':''%>
+              >
+              My Design System
+              </label>
+            </div>
+          </fieldset>
+          <fieldset class="mt-2">
+            <legend class="h6 bold">Options</legend>
+            <div class="flex-row gap-3 align-center wrap">
+              <label class="checkbox">
+                <input type="checkbox" class="secondary" name="breaks" value="on" <%-Boolean(locals.pageObj.breaks)?'checked':''%>>
+                breaks
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" class="info" name="gfm" value="on" <%-Boolean(locals.pageObj.gfm)?'checked':''%>>
+                Github Flavored Markdown
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" class="warning" name="pedantic" value="on" <%-Boolean(locals.pageObj.pedantic)?'checked':''%>>
+                pedantic
+              </label>
+            </div>
+          </fieldset>
+          <%if(typeof locals.image_url==="string"){%>
+            <label for="markdown=note-image" class="bold mt-2">Markdown Note Image:</label>
+            <input data-image-input data-default-value="<%=locals.image_url%>" type="file" id="markdown=note-image" accept="image/*" name="markdown=note-image" class="mt-1 info">
+            <output class="block" for="markdown=note-image"></output>
+          <%}else{%>
+            <label for="markdown=note-image" class="bold mt-2">Markdown Note Image:</label>
+            <input data-image-input type="file" id="markdown=note-image" accept="image/*" name="markdown=note-image" class="mt-1 info">
+            <output class="block" for="markdown=note-image"></output>
+          <%}%>
+          <input type="text" hidden id="markdown-id" name="markdown-id" value="<%=locals.pageObj.noteID%>">
+          <%if(locals.auth>=3){%>
+            <div class="flex-row justify-center">
+              <label class="checkbox large mt-2">
+              <input type="checkbox" class="error medium" value="on" name="markdown-publish" <%-Boolean(locals.pageObj.publish)?'checked':''%>>
+                Publish
+              </label>
+            </div>
+          <%}%>
+          <div class="flex-row justify-between mt-2">
+            <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+            <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+            SUBMIT 
+            </button>
+          </div>
+        </form>
+      </div>
+      <div aria-labelledby="view-markdown-html" role="tabpanel" id="output-html" tabindex="0" hidden>
+        <div class="tabs mt-2">
+          <ul class="tabs" role="tablist">
+            <li role="presentation">
+              <button id="mob-prev" class="tab-button secondary" role="tab" type="button" aria-selected="true" data-tab="0" tabindex="-1">
+                Mobile
+              </button>
+            </li>
+            <li role="presentation">
+              <button id="tab-prev" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="1" tabindex="-1">
+                Tablet
+              </button>
+            </li>
+            <li role="presentation">
+              <button id="desk-prev" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="2" tabindex="-1">
+                Desktop
+              </button>
+            </li>
+          </ul>
+
+
+        </div>
+        <div class="tab-panels" style="background-color: var(--secondary-background);">
+          <div aria-labelledby="mob-prev" role="tabpanel" tabindex="0">
+            <div style="padding: 8px 0px;overflow-x:auto;" class="hz-scroll">
+              <article id="preview-mobile-md" role="presentation" class="preview-editor-mobile hz-scroll" data-preview-mobile="">
+      
+              </article>
+            </div>
+          </div>
+          <div aria-labelledby="tab-prev" role="tabpanel" tabindex="0" hidden="">
+            <div style="padding: 8px 0px;overflow-x:auto;" class="hz-scroll">
+              <article id="preview-tablet-md" role="presentation" class="preview-editor-tablet hz-scroll" data-preview-tablet="">
+      
+              </article>
+            </div>
+          </div>
+          <div aria-labelledby="desk-prev" role="tabpanel" tabindex="0" hidden="">
+            <div style="padding: 8px 0px;overflow-x:auto;" class="hz-scroll">
+              <article id="preview-desktop-md" role="presentation" class="preview-editor-desktop hz-scroll" data-preview-desktop="">
+      
+              </article>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <%if(locals.auth>=3){%>
+        <div aria-labelledby="retrieve-markdown-html" role="tabpanel"  tabindex="0" hidden>
+          <div class="flex-row justify-end mt-2">
+            <button hx-push-url="true" hx-get="/projects/markdown-to-html" hx-target="#PAGE" hx-swap="innerHTML" hx-indicator="#page-transition-progress" hx-trigger="click" type="button" class="medium icon-text text warning" aria-label="Return to Default Page">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardReturn"><path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z"></path></svg>
+              RETURN TO DEFAULT PAGE
+            </button>
+          </div>
+          <div class="mt-1">
+            <%-locals.pageObj.notesList%>
+          </div>
+        </div>
+      <%}%>
+    </div>
+</section>
+  
+
+  <%if(locals.auth<3){%>
+    <script nonce="<%=locals.jsNonce%>">
+      (function(){
+        const form = document.getElementById('submit-markdown-form');
+        if (form) form.addEventListener('submit',(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+        })
+      })()
+    </script>
+  <%}%>
+  <%-include('../../partials/pagePartial')%>
+<%}%>

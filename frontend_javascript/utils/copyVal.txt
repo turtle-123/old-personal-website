@@ -1,0 +1,290 @@
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\article-builder-final\index.ts
+  74,82:     const htmlCodeEditor =  nextElementSibling.querySelector<HTMLDivElement>('div[data-codemirror="html"]');
+  75,80:     const cssCodeEditor = nextElementSibling.querySelector<HTMLDivElement>('div[data-codemirror="css"]');
+  77,70:       const htmlWrapper = htmlCodeEditor.closest<HTMLDivElement>('div[data-editor-wrapper]'); 
+  78,68:       const cssWrapper = cssCodeEditor.closest<HTMLDivElement>('div[data-editor-wrapper]'); 
+  97,80:   const articleTitle = form.querySelector<HTMLInputElement>('input[type="text"][data-article-title]');
+  98,74:   const descriptionEl = form.querySelector<HTMLTextAreaElement>('textarea[data-article-description]');
+  99,80:   const imageInputEl = form.querySelector<HTMLInputElement>('input[type="file"][data-article-image]');
+  100,77:   const versionEl = form.querySelector<HTMLInputElement>('input[type="text"][data-article-version]');
+  101,88:   const articleBuilderSections = Array.from(form.querySelectorAll<HTMLElement>('section[data-article-builder]'));
+  158,66:   const mobileOutput = output.querySelector<HTMLElement>('article[data-preview-mobile]');
+  159,66:   const tabletOutput = output.querySelector<HTMLElement>('article[data-preview-tablet]');
+  160,67:   const desktopOutput = output.querySelector<HTMLElement>('article[data-preview-desktop]');
+  235,70:       const mobileOutput = output.querySelector<HTMLElement>('article[data-preview-mobile]');
+  236,70:       const tabletOutput = output.querySelector<HTMLElement>('article[data-preview-tablet]');
+  237,71:       const desktopOutput = output.querySelector<HTMLElement>('article[data-preview-desktop]');
+  387,69:       const outputDiv = tabPanels.querySelector<HTMLDivElement>('div[data-code-output-div]')
+  403,53:   const section = this.closest<HTMLElement>('section[data-article-builder]')
+  410,81:     const codeEditors = Array.from(section.querySelectorAll<HTMLDivElement>('div[data-editor-wrapper]'));
+  433,65:         const button = form.querySelector('button[type="submit"][data-submit="save"]');
+  446,55:   const outputCodeButtons = f.querySelectorAll('button[data-output-code]');
+  450,85:   const articleBuilderSections = Array.from(f.querySelectorAll<HTMLElement>('section[data-article-builder]'));
+  452,68:     const delButton = sect.querySelector<HTMLButtonElement>('button[data-delete-section]');
+  459,67:   const previewButton = f.querySelector<HTMLButtonElement>('button[data-preview-article]');
+  466,73:       const editButton = output.querySelector<HTMLButtonElement>('button[data-edit-article]');
+  474,76:   const forms = Array.from(document.querySelectorAll<HTMLFormElement>('form[data-article-builder-final]'));
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\code-editors\index.ts
+  355,72:     const editor = editorObj.wrapper.querySelector<HTMLDivElement>('div[data-codemirror]');
+  700,60:   const editors = Array.from(document.querySelectorAll('div[data-codemirror]'))
+  707,52:     const wrapper = el.closest<HTMLDivElement>('div[data-editor-wrapper]');
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\create-gradient\index.ts
+  121,76:     const stops = Array.from(stopList.querySelectorAll<HTMLDivElement>('div[data-stop]'));
+  137,86:     const transforms = Array.from(transformsDiv.querySelectorAll<HTMLDivElement>('div[data-transform]'));
+  602,54:   const container = this.closest<HTMLDivElement>('div[data-grad-container]')
+  613,124:     obj.attributes = { 'hx-delete': `/projects/create-gradient/${svg_id}`, 'hx-trigger': 'click', 'hx-target': 'closest div[data-grad-container]', 'hx-swap': 'outerHTML' };
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\create-gradient\sharedCreateSVG.ts
+  147,62:   const editStopContainer = this.closest<HTMLDivElement>('div[data-stop]');
+  185,58:   const stopContainer = this.closest<HTMLDivElement>('div[data-stop-container]');
+  188,54:     const stopList = stopContainer.querySelector('div[data-stop-list]');
+  221,46:   const stopWrapper = form.querySelector('div[data-stop-container]');
+  223,79:     const stops = Array.from(stopWrapper.querySelectorAll<HTMLDivElement>('div[data-stop]'));
+  230,46:   const stopWrapper = form.querySelector('div[data-stop-container]');
+  232,79:     const addStopButton = stopWrapper.querySelector<HTMLButtonElement>('button[data-add-stop]');
+  237,79:         const deleteStopButton = stop.querySelector<HTMLButtonElement>('button[data-delete-stop]'); 
+  400,100:     const transformContainers = Array.from(transformContainer.querySelectorAll<HTMLDivElement>('div[data-transform]'));
+  532,63:   const transformContainer = this.closest<HTMLDivElement>('div[data-transform]');
+  598,100:     const transformContainers = Array.from(transformContainer.querySelectorAll<HTMLDivElement>('div[data-transform]'));
+  602,87:       const deleteTransformButton = container.querySelector<HTMLButtonElement>('button[data-delete-transform]');
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\create-poll\index.ts
+  89,75:     const lexicalEditors = Array.from(sectionWrapper.querySelectorAll('div[data-rich-text-editor]'));
+  98,78:     const optionIDs = new Set(Array.from(sectionWrapper.querySelectorAll('div[data-option]')).map((obj)=>obj.id).filter((val)=>val!==null) as string[]);
+  119,57:     const editPollQuestion = question.querySelector('div[data-edit-poll-question]');
+  153,77:     const questionTypeEl = question.querySelector<HTMLButtonElement>('button[data-question-type]');
+  157,74:         const middleOptionDiv = option.querySelector<HTMLDivElement>('div[data-option-middle]');
+  193,51:   const option = this.closest<HTMLDivElement>('div[data-option]');
+  195,78:     const options = Array.from(question.querySelectorAll<HTMLDivElement>('div[data-option]'));
+  243,91:           const questionTypeButton = questions[i].querySelector<HTMLButtonElement>('button[data-question-type]');
+  328,85:           const questionToRenderInside = question.querySelector<HTMLDivElement>('div[data-question-content]');
+  442,80:       const options = Array.from(question.querySelectorAll<HTMLDivElement>('div[data-option]'));
+  447,83:         const deleteOptionButton = option.querySelector<HTMLButtonElement>('button[data-delete-option]');
+  452,62:         const optionTypeButton = option.querySelector('button[data-option-type]');
+  457,85:       const deleteQuestionButton = question.querySelector<HTMLButtonElement>('button[data-delete-poll]');
+  462,83:       const questionTypeButton = question.querySelector<HTMLButtonElement>('button[data-question-type]');
+  465,87:       const collapseQuestionButton = question.querySelector<HTMLButtonElement>('button[data-hide-question]');
+  468,82:       const addQuestionButton = question.querySelector<HTMLButtonElement>('button[data-add-question]');
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\create-poll\poll-checkbox.ts
+  59,78:     const options = Array.from(question.querySelectorAll<HTMLDivElement>('div[data-option]'));
+  113,76:   const options = Array.from(question.querySelectorAll<HTMLDivElement>('div[data-option]'));
+  175,76:   const options = Array.from(question.querySelectorAll<HTMLDivElement>('div[data-option]'));
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\create-poll\poll-multiple-choice.ts
+  82,78:     const options = Array.from(question.querySelectorAll<HTMLDivElement>('div[data-option]'));
+  143,76:   const options = Array.from(question.querySelectorAll<HTMLDivElement>('div[data-option]'));
+  205,76:   const options = Array.from(question.querySelectorAll<HTMLDivElement>('div[data-option]'));
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\create-poll\sharedPoll.ts
+  893,49:   const option = el.closest<HTMLDivElement>('div[data-option]');
+  903,46:     const typeEl = this.querySelector('button[data-question-type]');
+  942,80:     const editPollQuestion = questionElement.querySelector<HTMLDivElement>('div[data-edit-poll-question]');
+  1075,78:         const typeButton =  question.querySelector<HTMLButtonElement>('button[data-question-type]');
+  1093,73:     const typeButton = question.querySelector<HTMLButtonElement>('button[data-question-type]');
+  1275,65:   const questionRTE = questionEl.querySelector<HTMLElement>('div[data-rich-text-editor][data-poll-question]');
+  1316,72:     const questionContent = question.querySelector<HTMLDivElement>('div[data-question-content]');
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\create-svg\index.ts
+  1471,64:   const container = document.querySelector<HTMLDivElement>('div[data-pixi-container]');
+  1553,79:   const hideShowButtons = document.querySelectorAll<HTMLButtonElement>('button[data-hide-show-section]')
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\css-sprite-builder\index.ts
+  303,96:       const addLineDashSegmentBtn = nextElementSibling.querySelector<HTMLButtonElement>('button[data-add-line-dash-segment]');
+  304,99:       const removeLineDashSegmentBtn = nextElementSibling.querySelector<HTMLButtonElement>('button[data-remove-line-dash-segment]');
+  367,102:     const removeLineDashSegments = Array.from(grandParent.querySelectorAll<HTMLButtonElement>('button[data-remove-line-dash-segment]'));
+  374,55:   const inputGroup = this.closest<HTMLDivElement>('div[data-line-dash-segment]');
+  425,97:     const buttons = (e.detail.target as HTMLElement).querySelectorAll<HTMLButtonElement>('button[data-scroll]');
+  975,52:   const wrapper = this.closest<HTMLDivElement>('div[data-path-operation]');
+  992,92:     const pathOperationsWrappers = Array.from(wrapper.querySelectorAll<HTMLDivElement>('div[data-path-operation]'));
+  1291,54:   const container = this.closest<HTMLDivElement>('div[data-added-element]');
+  1542,88:       const deleteButtons = Array.from(pathOperationsContainer.querySelectorAll('button[data-delete-operation]'));
+  1554,81:   const lineDashDetails = document.querySelectorAll<HTMLDetailsElement>('details[data-line-dash-details]');
+  1556,74:     const addLineDashButton = el.querySelector<HTMLButtonElement>('button[data-add-line-dash]');
+  1557,77:     const removeLineDashButton = el.querySelector<HTMLButtonElement>('button[data-remove-line-dash]');
+  1558,81:     const addLineDashSegmentButton = el.querySelector<HTMLButtonElement>('button[data-add-line-dash-segment]'); // data-add-line-dash-segment
+  1559,99:     const removeLineDashSegmentButtons = Array.from(el.querySelectorAll<HTMLButtonElement>('button[data-remove-line-dash-segment]')); // data-add-line-dash-segment
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\drag-and-drop\index.ts
+  64,77:   const dragContainers = Array.from(document.querySelectorAll<HTMLElement>('[data-drag-container]'));
+  65,70:   const dragEls = Array.from(document.querySelectorAll<HTMLElement>('[data-drag-el]'));
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\lexical-implementation\index.ts
+  87,80:   const editEditors = Array.from(document.querySelectorAll<HTMLDivElement>('div[data-rich-text-editor][data-type="full"]'));
+  88,83:   const articleEditors = Array.from(document.querySelectorAll<HTMLDivElement>('div[data-rich-text-editor][data-type="article"]'));
+  89,88:   const pollQuestionEditors = Array.from(document.querySelectorAll<HTMLDivElement>('div[data-rich-text-editor][data-type="poll-question"]'))
+  90,69:   .concat( Array.from(document.querySelectorAll<HTMLDivElement>('div[data-rich-text-editor][data-type="poll-short-blog"]')));
+  91,88:   const pollResponseEditors = Array.from(document.querySelectorAll<HTMLDivElement>('div[data-rich-text-editor][data-type="poll-option"]'))
+  92,68:   .concat(Array.from(document.querySelectorAll<HTMLDivElement>('div[data-rich-text-editor][data-type="range-description"]')));
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\media-upload\index.ts
+  861,72:     const texts = Array.from(el.querySelectorAll<HTMLSpanElement>('span[data-error]'));
+  1062,52:       const backButton = this.querySelector('button[data-previous="true"]');
+  1063,52:       const nextButton = this.querySelector('button[data-next="true"]');
+  1076,107:       const oldDetails = (this.parentElement as HTMLDivElement).querySelector<HTMLDetailsElement>('details[data-photo-text][data-index="'.concat(String(currentIndexStr)).concat('"]'));
+  1077,107:       const newDetails = (this.parentElement as HTMLDivElement).querySelector<HTMLDetailsElement>('details[data-photo-text][data-index="'.concat(String(newIndex)).concat('"]'));
+  1094,52:       const backButton = this.querySelector('button[data-previous="true"]');
+  1095,52:       const nextButton = this.querySelector('button[data-next="true"]');
+  1108,107:       const oldDetails = (this.parentElement as HTMLDivElement).querySelector<HTMLDetailsElement>('details[data-photo-text][data-index="'.concat(String(currentIndexStr)).concat('"]'));
+  1109,107:       const newDetails = (this.parentElement as HTMLDivElement).querySelector<HTMLDetailsElement>('details[data-photo-text][data-index="'.concat(String(newIndex)).concat('"]'));
+  1118,36:   const wrapper = this.closest('div[data-wrapper="true"]');
+  1167,70:             const wrapper = output.querySelector<HTMLDivElement>('div[data-wrapper="true"]');
+  1489,59:   const closestWrapper = this.closest<HTMLDivElement>('div[data-media-output-wrapper]');
+  1550,72:     const texts = Array.from(el.querySelectorAll<HTMLSpanElement>('span[data-error]'));
+  1786,72:     const texts = Array.from(el.querySelectorAll<HTMLSpanElement>('span[data-error]'));
+  2053,97:   const imageUpload = Array.from(document.querySelectorAll<HTMLInputElement>('input[type="file"][data-image-input]'));
+  2055,97:   const audioUpload = Array.from(document.querySelectorAll<HTMLInputElement>('input[type="file"][data-audio-input]'));
+  2056,97:   const videoUpload = Array.from(document.querySelectorAll<HTMLInputElement>('input[type="file"][data-video-input]'));
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\media-upload\recordMedia.ts
+  142,67:     const multiple = dialog.querySelector<HTMLInputElement>('input[data-multiple]');
+  143,68:     const preview = dialog.querySelector<HTMLButtonElement>('button[data-preview]');
+  146,61:     const loader = dialog.querySelector<HTMLDivElement>('div[data-loader]');
+  149,62:     const actions = dialog.querySelector<HTMLDivElement>('div[data-actions]');
+  150,79:     const switchCameraButton = dialog.querySelector<HTMLButtonElement>('button[data-switch-camera]');
+  182,67:     const multiple = dialog.querySelector<HTMLInputElement>('input[data-multiple]');
+  183,68:     const preview = dialog.querySelector<HTMLButtonElement>('button[data-preview]');
+  186,61:     const loader = dialog.querySelector<HTMLDivElement>('div[data-loader]');
+  189,61:     const time = dialog.querySelector<HTMLSpanElement>('span[data-time]');
+  190,62:     const actions = dialog.querySelector<HTMLDivElement>('div[data-actions]');
+  222,67:     const multiple = dialog.querySelector<HTMLInputElement>('input[data-multiple]');
+  223,68:     const preview = dialog.querySelector<HTMLButtonElement>('button[data-preview]');
+  226,61:     const loader = dialog.querySelector<HTMLDivElement>('div[data-loader]');
+  229,61:     const time = dialog.querySelector<HTMLSpanElement>('span[data-time]');
+  230,62:     const actions = dialog.querySelector<HTMLDivElement>('div[data-actions]');
+  231,79:     const switchCameraButton = dialog.querySelector<HTMLButtonElement>('button[data-switch-camera]');
+  1167,99:     const imageInputs = Array.from(document.querySelectorAll<HTMLInputElement>('input[type="file"][data-image-input]'));
+  1168,99:     const audioInputs = Array.from(document.querySelectorAll<HTMLInputElement>('input[type="file"][data-audio-input]'));
+  1169,99:     const videoInputs = Array.from(document.querySelectorAll<HTMLInputElement>('input[type="file"][data-video-input]'));
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\personal-website\code.ts
+  134,86:   const highlightInputs = Array.from(document.querySelectorAll<HTMLFormElement>('form[data-highlight-js-form]'));
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\personal-website\math.ts
+  156,90:   const katexInputs = Array.from(document.querySelectorAll<HTMLTextAreaElement>('textarea[data-katex-input]'));
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\three-js-test\index.ts
+  416,41:   const form = output.querySelector('div[data-form]') as HTMLDivElement;
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\warn-users-navigate-away\index.ts
+  112,54:   const warnFormElement = document.querySelector('div[data-warn-form-progress]');
+  132,76:   const codeEditors = Array.from(form.querySelectorAll<HTMLDivElement>('div[data-editor-wrapper]'));
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\article-builder.ts
+  138,65:   const sections = Array.from(document.querySelectorAll('section[data-article-builder]'));
+  139,40:   const section = this.closest('section[data-article-builder]');
+  148,76:   const deleteSectionButtons = Array.from(document.querySelectorAll('button[data-delete-section]'));
+  200,88:   const mobileWrapper = document.querySelector('section#article-preview-section article[data-preview-mobile]');
+  201,88:   const tabletWrapper = document.querySelector('section#article-preview-section article[data-preview-tablet]');
+  202,89:   const desktopWrapper = document.querySelector('section#article-preview-section article[data-preview-desktop]');
+  274,88:   const mobileWrapper = document.querySelector('section#article-preview-section article[data-preview-mobile]');
+  275,88:   const tabletWrapper = document.querySelector('section#article-preview-section article[data-preview-tablet]');
+  276,89:   const desktopWrapper = document.querySelector('section#article-preview-section article[data-preview-desktop]');
+  279,67:     const editors = Array.from(mobileWrapper.querySelectorAll('div[data-rich-text-editor]'));
+  287,67:     const editors = Array.from(tabletWrapper.querySelectorAll('div[data-rich-text-editor]'));
+  295,68:     const editors = Array.from(desktopWrapper.querySelectorAll('div[data-rich-text-editor]'));
+  310,76:   const deleteSectionButtons = Array.from(document.querySelectorAll('button[data-delete-section]'));
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\desktop.ts
+  170,90:       const openDialogs = Array.from(document.querySelectorAll<HTMLDialogElement>('dialog[data-esc][open]'));
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\googleMaps.ts
+  549,64:   const geographies = Array.from(section.querySelectorAll('span[data-show-geography="true"]'));
+  701,55:     const closeWindow = document.querySelector('button[data-close-map-window]');
+  702,58:     const deleteGeometry = document.querySelector('button[data-delete-geometry]');
+  707,62:         const deleteGeometry = document.querySelector('button[data-delete-geometry]');
+  716,59:         const closeWindow = document.querySelector('button[data-close-map-window]');
+  895,68:     const elementsToAdd = Array.from(section.querySelectorAll('span[data-show-geography="true"]'));
+  954,84:       const geographiesToRemove = Array.from(children[from]?.querySelectorAll('span[data-show-geography="true"]'));
+  956,79:       const geographiesToAdd = Array.from(children[to]?.querySelectorAll('span[data-show-geography="false"]'));
+
+C:\Users\fmb20\Desktop\CODE\personal-website-project\functionality\src\js\shared.ts
+  69,44: htmx.config.disableSelector="[hx-disable], [data-hx-disable]"
+  395,64:     const indicator = dialog.querySelector<HTMLDivElement>('div[data-indicator]');
+  445,62:   const indicator = dialog.querySelector<HTMLDivElement>('div[data-indicator]');
+  447,63:   const textEl = dialog.querySelector<HTMLParagraphElement>('p[data-text]');
+  474,65:     const textEl = dialog.querySelector<HTMLParagraphElement>('p[data-text]');
+  488,38:     document.querySelectorAll("button[data-dialog]")
+  517,38:     document.querySelectorAll("dialog[data-close-backdrop]")
+  877,38:     document.querySelectorAll("button[data-vis-switch]")
+  919,38:     document.querySelectorAll("button[data-regenerate-value]")
+  966,38:     document.querySelectorAll("button[data-copy-input]")
+  1013,38:     document.querySelectorAll("button[data-increase]")
+  1060,38:     document.querySelectorAll("button[data-decrease]")
+  1172,18:           "button[data-default]"
+  1195,63:   const buttons = Array.from(document.querySelectorAll("button[data-toggle]"));
+  1258,38:     document.querySelectorAll("button[data-combobox-option]")
+  1511,39:   const audioWrapper = el.closest("div[data-audio-wrapper]");
+  1524,39:   const videoWrapper = el.closest("div[data-video-wrapper]");
+  1598,76:         mediaElement?.parentElement?.querySelector<HTMLInputElement>("input[data-sound]");
+  1679,59:   const onCaptionSVG = this.querySelector<SVGElement>('svg[data-on]');
+  1680,60:   const offCaptionSVG = this.querySelector<SVGElement>('svg[data-off]');
+  1703,47:   const onClosedCaption = b.querySelector('svg[data-on]');
+  1704,48:   const offClosedCaption = b.querySelector('svg[data-off]');
+  1731,50:   const mainControls = wrapper.querySelector("div[data-main-controls]");
+  1768,68:   const ellapsedSpan = wrapper.querySelector<HTMLSpanElement>("span[data-ellapsed]");
+  1769,69:   const remainingSpan = wrapper.querySelector<HTMLSpanElement>("span[data-remaining]");
+  1770,75:   const ellapsedIndicator = wrapper.querySelector<HTMLInputElement>("input[data-time]");
+  1819,46:     const warnText = wrapper.querySelector("p[data-warn-text]");
+  1876,47:     const errorText = wrapper.querySelector("p[data-error-text]");
+  2011,68:   const timeSlider = wrapper.querySelector<HTMLInputElement>('input[data-time]');
+  2037,12:     "button[data-mute-button]"
+  2210,62:     const closedCaptionButton = wrapper.querySelector('button[data-closed-captions]');
+  2245,59:       const playAudio = audioWrapper.querySelector("button[data-play]");
+  2249,60:       const pauseAudio = audioWrapper.querySelector("button[data-pause]");
+  2253,61:       const replayAudio = audioWrapper.querySelector("button[data-replay]");
+  2257,63:       const audioTimeRange = audioWrapper.querySelector("input[data-time]");
+  2262,16:         "button[data-mute-button]"
+  2267,64:       const audioSoundRange = audioWrapper.querySelector("input[data-sound]");
+  2271,62:       const playBackSpeed = audioWrapper.querySelector("input[data-playback]");
+  2276,88:       const closedCaptionButton = audioWrapper.querySelector<HTMLButtonElement>('button[data-closed-captions]');
+  2325,59:       const playAudio = videoWrapper.querySelector("button[data-play]");
+  2329,60:       const pauseAudio = videoWrapper.querySelector("button[data-pause]");
+  2333,61:       const replayAudio = videoWrapper.querySelector("button[data-replay]");
+  2337,63:       const videoTimeRange = videoWrapper.querySelector("input[data-time]");
+  2342,16:         "button[data-mute-button]"
+  2347,64:       const videoSoundRange = videoWrapper.querySelector("input[data-sound]");
+  2351,62:       const playBackSpeed = videoWrapper.querySelector("input[data-playback]");
+  2356,88:       const closedCaptionButton = videoWrapper.querySelector<HTMLButtonElement>('button[data-closed-captions]');
+  2358,16:         "button[data-fullscreen]"
+  2716,87:       const buttons = Array.from(popoverEl.querySelectorAll<HTMLButtonElement>('button[data-close-menu]'));
+  2793,87:       const buttons = Array.from(popoverEl.querySelectorAll<HTMLButtonElement>('button[data-close-menu]'));
+  2846,32:     document.querySelectorAll("[data-popover]")
+  2923,58:   const buttons = Array.from(document.querySelectorAll("*[data-snackbar]"));
+  2950,38:     document.querySelectorAll("button[data-close-snackbar]")
+  3045,54:     const enter = this.querySelector<SVGElement>('svg[data-enter]');
+  3046,53:     const exit = this.querySelector<SVGElement>('svg[data-exit]');
+  3060,92:   const fullscreenButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('button[data-fullscreen-btn]'));
+  3097,63:   const buttons = Array.from(document.querySelectorAll("button[data-scroll]"));
+  3125,38:     document.querySelectorAll("button[data-copy-prev]")
+  3212,70:   const navBackButtons = Array.from(document.querySelectorAll('button[data-nav-back]'));
+  3221,70:   const navBackButtons = Array.from(document.querySelectorAll('button[data-nav-forward]'));
+  3236,40:   const showMore = this.querySelector("[data-show]");
+  3237,40:   const showLess = this.querySelector("[data-hide]");
+  3238,50:   const arrow = this.querySelector<HTMLElement>('[data-arrow]');
+  3270,38:     document.querySelectorAll("button[data-hide-show]")
+  3304,63:   const buttons = Array.from(document.querySelectorAll("button[data-copy-el]"));
+  3329,58:   const removeButtons = document.querySelectorAll('button[data-remove-el]');
+  3344,47:   const backButton = div.querySelector("button[data-step-back]");
+  3345,50:   const forwardButton = div.querySelector("button[data-step-forward]");
+  3541,51:       const backButton = div.querySelector("button[data-step-back]");
+  3542,54:       const forwardButton = div.querySelector("button[data-step-forward]");
+  3694,33:     document.querySelectorAll("*[data-click-capture]")
+  3739,38:     document.querySelectorAll("button[data-drawer-button]")
+  3762,33:     document.querySelectorAll('*[data-close-drawer=""]')
+  3780,49:   const editors = document.querySelectorAll('div[data-rich-text-editor]');
+  3806,86:   const threeJSComponents = Array.from(document.querySelectorAll<HTMLDivElement>('div[data-three-js]'));
+  3967,70:   const removeStyleTags = Array.from(document.querySelectorAll('style[data-remove="true"]'));
+  3993,93:     const popoverEls = Array.from((targetEl as HTMLElement).querySelectorAll<HTMLElement>('*[data-pelem]'))
+  4102,91:           const editorWrappers = Array.from(elementDispatchedRequest.querySelectorAll('div[data-editor-wrapper]'));
+  4154,82:     const codeMirrorEditors = Array.from(el.querySelectorAll<HTMLDivElement>('div[data-editor-wrapper]'));
+  4178,82:     const codeMirrorEditors = Array.from(el.querySelectorAll<HTMLDivElement>('div[data-editor-wrapper]'));
+  4413,99:     const imageUpload = Array.from(document.querySelectorAll<HTMLInputElement>('input[type="file"][data-image-input]'));
+  4414,99:     const audioUpload = Array.from(document.querySelectorAll<HTMLInputElement>('input[type="file"][data-audio-input]'));
+  4415,99:     const videoUpload = Array.from(document.querySelectorAll<HTMLInputElement>('input[type="file"][data-video-input]'));
+  4426,64:     const dragElements = Array.from(document.querySelectorAll('[data-drag-el]'));
+  4438,72:     const codeMirrorEditors = Array.from(document.querySelectorAll('div[data-codemirror]'))
+  4455,97:     const articleBuilderFinalForms = Array.from(document.querySelectorAll<HTMLFormElement>('form[data-article-builder-final]'));
+  4471,56:     const warnFormElement = document.querySelector('div[data-warn-form-progress]');

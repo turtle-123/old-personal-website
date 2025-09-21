@@ -1,0 +1,193 @@
+<%# 
+PAGE ROUTE: /
+PAGE DESCRIPTION: /
+PAGE KEYOWRDS: [/]
+PAGE IMAGE: 
+PAGE VARIABLES:
+-------------------------
+- locals.hello (number): 
+- locals.world (string|undefined): 
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  <h1 class="page-title">Frank's Electronics and Robotics Projects</h1>
+
+  <section id="about-this-page" class="mt-4">
+    <div class="flex-row bb-thick justify-between">
+      <h2 class="bold h2">
+        <a href="#about-this-page" class="same-page bold">
+          About this Page
+        </a>
+      </h2>
+      <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#electronics-and-robotics-hide-show">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+      </button>
+    </div>
+
+    <div class="mt-2" id="electronics-and-robotics-hide-show">
+        <p>
+            I created this page to document electronics and robotics projects that I hope to work on in the future. As I am writing this, I haven't written about or completed an electronics / robotics project since the creation of this page, but I plan to get back into it after getting back into 3D printing. I first got into electronics after realizing during my mechanical engineering degree that if I ever wanted to build something, I would need a better knowledge of electronics and controls. This led me to choose as my technical electives in my major: mechatronics, the basics of sensor applications, and the mechanics of electronics packaging. 
+        </p>
+        <aside class="right aside" class="mt-2">
+            Eventhough the sensors class was mainly theoretical, I still enjoyed it since it taught me about semiconductor manufacturing, micro-electrical mechanical sensors, and how to derive the Schrödinger equation.
+        </aside>
+        <p class="mt-2">
+            While the basics of sensor applications and mechanics of electronics packaging classes were mainly theoretical, the mechatronics class was more hands on. In the mechatronics class, we completed many projects coding microcontrollers to complete some task. Our final project was coding a PIC microcontroller in BASIC to control an LCD display and a stepper motor. This mechatronics class led me to try and learn more about electronics outside of class. I have mainly used and still mainly use <a class="secondary link" target="_blank" href="https://www.arduino.cc/">Arduino</a> to complete electronics projects, but I am considering, in the future, getting back into utilizing <a class="secondary link" target="_blank" href="https://www.raspberrypi.com/">Rasberry PI</a>s because of the more advanced sensors and computing that can be done with them. A project that I have had in mind for the future would be a live camera on my 3D printer that transmits video and gcode to this site which would then display the 3D printer along with a Three.js rendering of the printer, showing the print in real time, but I will probably need a Pi camera sensor for that. 
+        </p>
+    </div>
+  </section>
+
+  <%if(locals.auth>=3){%>
+    <section id="add-electronics-robotics-project" class="mt-4 ">
+      <div class="flex-row bb-thick justify-between">
+        <h2 class="bold h2">
+          <a href="#add-electronics-robotics-project" class="same-page bold">
+            Add Electonics or Robotics Project
+          </a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#add-proj-hide-show">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+
+      <div id="add-proj-hide-show" class="mt-2">
+        <form class="mt-4" hx-post="/electronics-robotics" data-loading="Uploading Electronics / Robotics Project..." hx-target="#tar_9fc13669-464a-47e4-a705-8dcf63816c66" hx-trigger="submit" hx-swap="innerHTML">
+            <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+              <label for="project-name">Project Name:</label>
+              <div class="text-input block medium">
+                  <input 
+                  type="text" 
+                  name="project-name" 
+                  id="project-name" 
+                  class="medium icon-before mt-1" 
+                  required
+                  placeholder="Enter the name of the project" 
+                  maxlength="200"
+                  minlength="1"  
+                  spellcheck="true" 
+                  autocapitalize="off"
+                  >
+                  <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="AccountCircleSharp">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z">
+                      </path>
+                  </svg>
+                  <!-- Buttons and SVGs -->
+              </div>
+            </div>
+            <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+              <label for="project-desc">Project Description:</label>
+              <div class="mt-1 text-input block medium disabled">
+                  <textarea 
+                  name="project-desc" 
+                  id="project-desc" 
+                  placeholder="Enter the description of the project..." 
+                  rows="5" 
+                  maxlength="500" 
+                  minlength="1" 
+                  spellcheck="true"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  style="resize: vertical!important; min-height: 150px;"
+                  ></textarea>
+              </div>
+              <p class="char-counter" data-input="project-desc">
+                  <span class="min-counter body2" data-val="1" aria-hidden="false">more characters required</span>
+                  <span class="max-counter body2" data-val="500" aria-hidden="true">Characters Remaining</span>
+              </p>
+            </div>
+            <label for="project-image" class="bold mt-2">Upload Project Image:</label>
+            <input data-image-input type="file" id="project-image" accept="image/*" name="project-image" class="mt-1 secondary">
+            <output class="block" for="project-image"></output>
+
+            <%-locals.articleHTML%>
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+          </form>
+          <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_b7d04740-1771-44b6-bc67-5caed8826749">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <output id="tar_9fc13669-464a-47e4-a705-8dcf63816c66" class="block mt-2">
+
+          </output>
+      </div>
+    </section>
+  <%}%>
+
+  <section id="elec-rob-projects" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#elec-rob-projects" class="same-page bold">
+            Projects
+        </a>
+      </h2>
+       <div class="body1 bold mt-2" id="order-by-articles">Order By:</div>
+        <div class="mt-1 flex-row justify-start">
+            <div class="select">
+            <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="order-by-articles-drop" aria-labelledby="order-by-articles" class="select" aria-label="Order By" data-popover data-pelem="#order-by-articles-drop" data-click aria-expanded="false" style="min-width: 150px;">
+                <span class="body1"><%=locals?.order_by?.order_by_str%></span>
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+            </button>
+            <div tabindex="0" id="order-by-articles-drop" role="listbox" class="select-menu o-xs" data-placement="bottom">
+                <input type="text" hidden value="<%=locals?.order_by?.order_by_value%>" name="order-by-select" id="order-by-select" hx-get="<%=locals.path%>" hx-include="this" hx-push-url="true" hx-target="#articles-inner" hx-indicator="#change-art-order-ind">
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-new")%>" data-val="last-edit-new">
+                Last Edited (New)
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-old")%>" data-val="last-edit-old">
+                Last Edited (Old)
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-new")%>" data-val="date-created-new">
+                Date Created (New)
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-old")%>" data-val="date-created-old">
+                Date Created (Old) 
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-likes")%>" data-val="num-likes">
+                Number of Likes
+                </button> 
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-comments")%>" data-val="num-comments">
+                Number of Comments
+                </button> 
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-views")%>" data-val="num-views">
+                Number of Views
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-annotations")%>" data-val="num-annotations">
+                Number of Annotations
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="rating")%>" data-val="rating">
+                    Rating
+                </button>
+            </div>
+            </div>
+        </div>
+        <div id="articles-inner" class="mt-2">
+            <%-locals.previews%>
+        </div>
+  </section>
+
+  
+  <div id="likes-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+    Likes
+  </div>
+  <div id="comments-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+    Comments
+  </div>
+  <div id="annotations-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+    Annotations
+  </div>
+  <div id="views-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+    Views
+  </div>
+  <div id="rating-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+    Rating
+  </div>
+  
+  
+  <%-include('../partials/pagePartial')%>
+<%}%>

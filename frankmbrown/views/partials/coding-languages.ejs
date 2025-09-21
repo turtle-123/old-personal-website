@@ -1,0 +1,38 @@
+<%# 
+PARTIAL ROUTE: partials/coding-languages.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.error
+- locals.emptyInput
+- locals.noLanguagesFound
+- locals.arr
+- locals.inputID
+%>
+<%if(locals.error){%>
+  <p class="body1 t-error p-sm text-align-center block" tabindex="-1">
+    Something went wrong.
+  </p>
+<%}else if(locals.emptyInput){%>
+  <p class="body1 t-warning fw-regular p-sm text-align-center block" tabindex="-1">
+    Enter the coding language you want to use for highlighting your code.
+  </p>
+<%}else if(locals.noLanguagesFound){%>
+  <p class="body1 t-warning p-sm fw-regular text-align-center block" tabindex="-1">
+    There were no coding languages found related to your input.
+  </p>
+<%}else{%>
+  <%for(let i = 0 ; i < locals.arr.length; i++){%>
+      <button 
+      tabindex="-1" 
+      data-combobox-option
+      data-input="<%=locals.inputID%>"
+      role="option"
+      aria-selected="false"
+      class="select-option body1"
+      data-val="<%=arr[i].language%>"
+      >
+      <%=arr[i].language%>
+      </button>
+  <%}%>
+<%}%>

@@ -1,0 +1,452 @@
+<%# 
+PARTIAL ROUTE: pages/projects/google-maps.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.geographies[i]
+- locals.geographies
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  <h1 class="page-title">My Design System Google Maps Implementation</h1>
+
+  <section id="introduction"  class="mt-3">
+    <h2 class="bold bb-thick h2 block">
+      <a href="#introduction" class="same-page fw-regular">Introduction</a>
+    </h2>
+    <p class="mt-2 body1">
+      I tried to create an implementation of the
+      <a href="https://developers.google.com/maps/documentation/javascript/overview" class="secondary link" target="_blank">Google Maps JavaScript API</a>
+      that only requires the user of the JavaScript 
+      to include certain HTML markup on the page for the maps to work correctly. 
+      I wanted to do this to make implementing maps easier and quicker. Also, 
+      there were some problems using the API with 
+      <a href="https://htmx.org/docs/" class="secondary link" target="_blank">HTMX</a>
+      , and I didn't have a library like 
+      <a href="https://www.npmjs.com/package/@react-google-maps/api" class="secondary link" target="_blank">React Google Maps</a> 
+      to do most of the work of implementing the library for me, 
+      so I tried to implement it myself.
+    </p>
+  </section>
+
+  <section id="assumptions" class="mt-3">
+    <h2 class="bold bb-thick h2 block">
+      <a href="#assumptions" class="same-page fw-regular">Assumptions</a>
+    </h2>
+    <p class="mt-2 body1">
+      This implementation assumes that:
+    </p>
+    <ul>
+      <li>you want to use HTMX to create a <abbr title="Single Page Application">SPA</abbr> (Single Page Application),</li>
+      <li>
+        you want to use the maps JavaScript API for three main purposes:
+        <ol>
+          <li>
+            to display <a href="https://geojson.org/" class="secondary link" target="_blank">GeoJson</a> and markers,
+          </li>
+          <li>
+            to accept a <abbr title="An input with a center defined by a latitude and longitude and a radius">circle input</abbr> (an input with a radius and a center (latitude and longitude)), 
+          </li>
+          <li>
+            and to accept a GeoJson polygon input.
+          </li>
+        </ol>
+      </li>
+      <li>
+       and you want to use the <a href="https://developers.google.com/maps/documentation/javascript/load-maps-js-api#dynamic-library-import" target="_blank" class="secondary link">Dynamic Library Import</a> to load Google Maps.
+        <ul>
+          <li>
+            Your <abbr title="Content Security Policy">CSP</abbr> (Content Security Policy) 
+            allows for inline scripts with 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src" class="secondary link" target="_blank">nonces</a>.
+          </li>
+        </ul>
+      </li>
+      <li class="t-warning fw-regular">
+        The Dynamic Library Import method of loading the google maps library has caused some issues with reloading maps after page change. I am going to try to switch to the 
+        <a class="secondary link" target="_blank" href="https://developers.google.com/maps/documentation/javascript/load-maps-js-api#js-api-loader">NPM js-api-loader package to see if that solves the issue. </a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="javascript"  class="mt-3">
+    <h2 class="bold bb-thick h2 block">
+      <a href="#javascript" class="same-page fw-regular">JavaScript</a>
+    </h2>
+    <p class="mt-2 body1">
+      Currently, the transpiled JavaScript for this implementation 
+      of the Google Maps API is 25kB. The 'main' JavaScript for the application lazy loads the 
+      JavaScript the first time a 
+      <span><code class="hljs"><span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[id^<span class="hljs-string">&quot;google-map&quot;</span>]</span>, <span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[id^=<span class="hljs-string">&quot;circle_google_map&quot;</span>]</span>, or <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[id^=<span class="hljs-string">&quot;draw_google_map&quot;</span>]</span> </code></span> 
+      is encountered on the page. These maps are then added to a maps object with their ids being the keys for their representation in the object. 
+      <strong class="t-warning">
+        This means that the ids for the maps 
+        should be unique per page, and they should be valid javascript variable names.
+      </strong>
+      The maps are then handled differently based on what the id for the div starts with:
+      <ul>
+        <li>
+          <span><code class="hljs"><span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[id^=<span class="hljs-string">&quot;google_map&quot;</span>]</span></code></span>
+          <ul class="second">
+            <li>
+              The code looks for any <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span></code></span>s that have the attribute 
+              <span class="t-info bold">data-show-geography</span> set to "true" and then checks the <span class="t-info bold">data-type</span> of the 
+              <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span></code></span>.
+              <ul class="third">
+                <li>
+                  If the type is set to <span class="t-success bold">geojson</span>, 
+                  the JavaScript code gets the <span class="t-info bold">data-geojson</span> attribute of the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span></code></span> and attempts to load it on the map.
+                </li>
+                <li>
+                  If the type is set to <span class="t-success bold">marker</span>, then the JavaScript code gets the <span class="t-info bold">data-center</span> 
+                  attribute of the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span></code></span>, which should be equal to a stringified { lat, lng } object, 
+                  and adds a marker to the map at that position. The marker can have an <em>optional</em> <span class="t-info bold">data-label</span> attribute that would be used to add a label to the marker.
+                </li>
+              </ul>
+            </li>
+            <div role="listitem" style="margin: 0.25rem 0;">
+              <div role="alert" class="alert warning icon medium filled">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="AddLocation"><path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm4 8h-3v3h-2v-3H8V8h3V5h2v3h3v2z"></path></svg>
+                <p class="alert body2">
+                  <span>
+                    Each geography that should be added to the map should be in the same <strong>section</strong> as the map.
+                  </span>
+                </p>
+              </div>
+            </div>
+            <li>
+              The code fits the map to bounds defined by the outermost bounds of each <span class="t-info bold">data-bounds</span> attribute for geographies in the same <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span></span></code></span> as the map.  
+            </li>
+            <li>
+              The code sets the center of the map to be the average of all <span class="t-info bold">data-center</span> attributes of each Geography in the same <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span></span></code></span> as the map.  
+            </li>
+            <div role="listitem" style="margin: 0.25rem 0;">
+              <div role="alert" class="alert info icon medium filled">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Tab"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h10v4h8v10z"></path></svg>
+                <p class="alert body2">
+                  <span>
+                    The JavaScript code listens for tab changes on the page, and sets the <span class="t-info bold">data-show-geography</span>
+                    attribute of the geography to true or false based on whether the tab was traveled from or to.
+                  </span>
+                </p>
+              </div>
+            </div>
+          </ul>
+        </li>
+        <li>
+          <span><code class="hljs"><span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[id^=<span class="hljs-string">&quot;circle_google_map&quot;</span>]</span></code></span>
+          <ul class="second">
+            <li>
+              Circle google map inputs are designed to get a circle input from the user - an input with a latitude and longitude center and a radius. The reasons this was included in the implementation are:
+              <ol>
+                <li>
+                  Unlike polygon geography inputs, circle inputs don't have a large size (they could reasonably be included in a query string)
+                </li>
+                <li>  
+                  It would be faster - if you wanted to filter something based on geometry - to query a postgres database with a <a href="https://postgis.net/" target="_blank" class="secondary link">Postgis</a> extension using a circle than it would to look for an intersection based on a polygon input
+                </li>
+              </ol>
+            </li>
+            <li>
+              Circle Inputs can include a <span class="t-info bold">data-bounds</span> attribute which would set <em class="bold">strict</em> bounds for the map (as opposed to fitting the map to a certain area).
+            </li>
+            <li>
+              Circle Inputs can include a <span class="t-info bold">data-max-input</span> attribute which would define the maximum number of circles that the map would allow only a certain amount of 
+              circles to be added to the map. If a <span class="t-info bold">data-max-input</span> attribute is included, then 
+              a <span class="t-info bold">data-snackbar-el</span> attribute should be included and it should equal a css query string that would be used to find the snackbar whenever the max number of inputs is exceeded.
+            </li>
+            <li class="t-error fw-regular">
+              Circle inputs can be removed from the map by double clicking the shape and confirming its removal. 
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span><code class="hljs"><span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[id^=<span class="hljs-string">&quot;draw_google_map&quot;</span>]</span></code></span>
+          <ul class="second">
+            <li>
+              Polygon inputs have basically the same concerns as circle inputs. I may add a <span class="t-info bold">data-max-length</span> attribute check later to check for polygons that have too many latitude / longitude pairs - this could cause issues if the user inputs something too large, but I have not yet.
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </p>
+  </section>
+
+  <div class="alert warning icon medium mt-2" role="alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Map"><path d="m20.5 3-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"></path></svg>
+    <p class="alert">
+      Some of these are wrong since I accidentally deleted them from image database.  
+    </p>
+    <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+    </button>
+  </div>
+
+  <section id="example-show-geography"  class="mt-3">
+    <h2 class="bold bb-thick h2 block">
+      <a href="#example-show-geography" class="same-page fw-regular">Example Showing Geography</a>
+    </h2>
+    <div id="google_map_example" style="height: 250px; width: 95%; margin: 0.5rem auto;"></div>
+    
+    <details class="mt-2" aria-label="Hidden Geography Markup for Tab Panel 1" style="width: 95%; margin: 8px auto!important;">
+      <summary>
+        <span class="h6 fw-regular">Hidden Geography Markup for Tab Panel 1</span>
+        <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+          <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+          </path>
+        </svg>
+      </summary>
+      <div class="accordion-content" aria-hidden="true">
+        <div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>
+<span class="hljs-attr">data-info-window</span>=<span class="hljs-string">&quot;#</span></span></span><span class="language-vbscript">&lt;%=i%&gt;</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">-info-window&quot;</span>
+<span class="hljs-attr">data-bounds</span>=<span class="hljs-string">&quot;</span></span></span><span class="language-vbscript">&lt;%=locals.geographies[i].bounds%&gt;</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>
+<span class="hljs-attr">data-geojson</span>=<span class="hljs-string">&quot;https://image.storething.org/frankmbrown/</span></span></span><span class="language-vbscript">&lt;%=locals.geographies[i].geojson%&gt;</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>
+<span class="hljs-attr">data-center</span>=<span class="hljs-string">&quot;</span></span></span><span class="language-vbscript">&lt;%=locals.geographies[i].center%&gt;</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>
+<span class="hljs-attr">data-show-geography</span>=<span class="hljs-string">&quot;</span></span></span><span class="language-vbscript">&lt;%=Boolean(i===<span class="hljs-number">0</span>)?<span class="hljs-comment">&#x27;true&#x27;:&#x27;false&#x27;%&gt;</span></span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>
+<span class="hljs-attr">data-type</span>=<span class="hljs-string">&quot;geojson&quot;</span>
+<span class="hljs-attr">hidden</span>
+&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span>
+<span class="hljs-attr">data-info-window</span>=<span class="hljs-string">&quot;#</span></span></span><span class="language-vbscript">&lt;%=i%&gt;</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">-info-window-marker&quot;</span>
+<span class="hljs-attr">data-center</span>=<span class="hljs-string">&quot;</span></span></span><span class="language-vbscript">&lt;%=locals.geographies[i].center%&gt;</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>
+<span class="hljs-attr">data-show-geography</span>=<span class="hljs-string">&quot;</span></span></span><span class="language-vbscript">&lt;%=Boolean(i===<span class="hljs-number">0</span>)?<span class="hljs-comment">&#x27;true&#x27;:&#x27;false&#x27;%&gt;</span></span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>
+<span class="hljs-attr">data-label</span>=<span class="hljs-string">&quot;</span></span></span><span class="language-vbscript">&lt;%=i+<span class="hljs-number">1</span>%&gt;</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>
+<span class="hljs-attr">data-type</span>=<span class="hljs-string">&quot;marker&quot;</span>
+&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span></code></pre>
+        <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+            </path>
+          </svg>
+        </button>
+                </div>
+      </div>
+    </details>
+    
+    <div class="mobile-stepper mt-3">
+      <button disabled="" tabindex="-1" class="icon medium mr-1" aria-label="Previous Tab" data-step-back="" type="button">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowLeft"><path d="M15.41 16.59 10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path></svg>
+      </button>
+      <ul class="mobile-stepper" role="tablist">
+        <%for(let i=0;i<locals.geographies.length;i++){%>
+          <li role="presentation">
+            <button id="tab-<%=i%>" aria-label="<%=locals.geographies[i].display_name%>" 
+              class="icon filled tiny <%=Boolean(i===0)?'secondary':'t-secondary'%>" role="tab" type="button" 
+              aria-selected="<%=Boolean(i===0)?'true':'false'%>" 
+              data-tab="<%=i%>">
+            </button>
+          </li>
+        <%}%>
+      </ul>
+      <button tabindex="-1" class="icon medium ml-1" aria-label="Next Tab" data-step-forward="" type="button">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowRightSharp"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path></svg>
+      </button>
+    </div>
+    <div class="tab-panels">
+      <%for(let i=0;i<locals.geographies.length;i++){%>
+        <div aria-labelledby="tab-<%=i%>" role="tabpanel" <%-Boolean(i!==0)?'hidden':''%>>
+          
+          <h3 class="h5 fw-regular block mt-4 bb" style="padding-bottom: 4px;">
+            <%=locals.geographies[i].display_name%>
+          </h3>
+          <p class="mt-3 body1 text-align-left">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam magnam qui repudiandae nisi nulla ab labore dolore sit voluptatum. Doloremque officiis commodi ab nulla, saepe impedit esse eum assumenda nobis!
+          </p>
+          <p class="mt-2 body1 text-align-left">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae excepturi at iste dolorum dignissimos id labore qui, adipisci expedita voluptas esse magni aut quis asperiores ullam numquam ipsa quo incidunt?
+          </p>
+          <span
+          data-info-window="#<%=i%>-info-window"
+          data-bounds="<%=locals.geographies[i].bounds%>"    
+          data-geojson="https://geography.storething.org/civgauge/<%=locals.geographies[i].geojson%>"
+          data-center="<%=locals.geographies[i].center%>"
+          data-show-geography="<%=Boolean(i===0)?'true':'false'%>"
+          data-type="geojson"
+          hidden
+          ></span>
+          <span
+          data-info-window="#<%=i%>-info-window-marker"
+          data-center="<%=locals.geographies[i].center%>"
+          data-show-geography="<%=Boolean(i===0)?'true':'false'%>"
+          data-label="<%=i+1%>"
+          data-type="marker"
+          ></span>
+        </div>
+      <%}%>
+    </div>
+  </section>
+  
+  <section id="example-drawing-circles" class="mt-3">
+    <h2 class="bold bb-thick h2 block">
+      <a href="#example-drawing-circles" class="same-page fw-regular">Example Drawing Circles</a>
+    </h2>
+    <div 
+    id="circle_google_map_example2" 
+    data-max-input="3"
+    data-inputs="#circle_inputs_div" 
+    data-snackbar-el="#circle-snackbar-el" 
+    data-bounds="<%=JSON.stringify({"north" : 35.008028, "south" : 30.223334, "east" : -84.88908, "west" : -88.473227})%>" 
+    data-center="<%=JSON.stringify({"lat" : -86.6811535, "lng" : 32.615681})%>" 
+    style="height: 250px; width: 80%; margin: 0.5rem auto;"></div>
+    <form 
+    id="circle-example-form" 
+    hx-post="/api/circle-example" 
+    hx-target="#circle-example-target" 
+    hx-indicator="#circle-input-indicator" 
+    hx-swap="innerHTML" 
+    hx-boost="false" 
+    hx-trigger="submit">
+      <div id="circle_inputs_div" hidden aria-hidden="true"></div>
+      <div class="flex-row align-center justify-end" style="margin: 0.5rem auto; max-width: 90%;">
+        <button type="submit" aria-label="Get Circle Input Output" class="medium icon-text success filled">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+          <span>
+            GET FORM OUTPUT
+          </span>
+        </button>
+      </div>
+    </form>
+    <div 
+    class="flex-row justify-center t-primary htmx-indicator" 
+    role="progressbar" 
+    aria-busy="false" 
+    aria-label="Indicator for Circle Input"
+    id="circle-input-indicator"
+    >
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div id="circle-example-target" aria-live="polite"></div>
+    <div class="delete-geometry-popup" hidden aria-hidden="true">
+      <p class="h6 fw-regular block text-align-center">
+        Are you sure you want to delete this geometry input?
+      </p>
+      <div class="flex-row align-center justify-between mt-3">
+        <button data-close-window aria-label="Close Popup" type="button" class="warning outlined medium">
+          CLOSE WINDOW
+        </button>
+        <button data-delete-geometry aria-label="Delete Geometry" type="button" class="success outlined medium">
+          CONFIRM
+        </button>
+      </div>
+    </div>
+    
+    <div id="circle-snackbar-el" data-snacktime="7000" class="snackbar error" aria-hidden="true">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Map"><path d="m20.5 3-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"></path></svg>
+      <p class="p-sm">
+        There are only 3 distinct circles allowed for this input.
+      </p>
+      <button class="icon medium" type="button" data-close-snackbar aria-label="Close Snackbar">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CloseSharp"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+      </button>
+    </div>
+
+  </section>
+
+  <section id="example-drawing-polygons" class="mt-3">
+    <h2 class="bold bb-thick h2 block">
+      <a href="#example-drawing-polygons" class="same-page fw-regular">Example Drawing Polygons</a>
+    </h2>
+    <div 
+    id="draw_google_map_example3" 
+    data-max-input="5"
+    data-inputs="#polygon-inputs-div" 
+    data-snackbar-el="#polygon-snackbar-el"
+    data-bounds="<%=JSON.stringify({"north" : 41.760592, "south" : 37.771742, "east" : -84.784579, "west" : -88.097892})%>" 
+    data-center="<%=JSON.stringify({"lat" : -86.4412355, "lng" : 39.766167})%>" 
+    style="height: 250px; width: 80%; margin: 0.5rem auto;"></div>
+    <form 
+    id="polygon-example-form"  
+    hx-post="/api/polygon-example" 
+    hx-target="#polygon-example-target" 
+    hx-indicator="#polygon-input-indicator" 
+    hx-swap="innerHTML" 
+    hx-boost="false" 
+    hx-trigger="submit"
+    >
+      <div id="polygon-inputs-div"></div>
+      <div class="flex-row align-center justify-end" style="margin: 0.5rem auto; max-width: 90%;">
+        <button type="submit" aria-label="Get Polygon Input Output" class="medium icon-text success filled">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+          <span>
+            GET FORM OUTPUT
+          </span>
+        </button>
+      </div>
+    </form>
+    <div 
+    class="flex-row justify-center t-primary htmx-indicator" 
+    role="progressbar" 
+    aria-busy="false" 
+    aria-label="Indicator for Circle Input"
+    id="polygon-input-indicator"
+    >
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div id="polygon-example-target" aria-live="polite"></div>
+
+    <div id="polygon-snackbar-el" data-snacktime="7000" class="snackbar error" aria-hidden="true">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Map"><path d="m20.5 3-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"></path></svg>
+      <p class="p-sm">
+        There are only 5 distinct polygons allowed for this input.
+      </p>
+      <button class="icon medium" type="button" data-close-snackbar aria-label="Close Snackbar">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CloseSharp"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+      </button>
+    </div>
+
+  </section>
+
+  <section id="download-code" class="mt-3">
+    <h2 class="bold bb-thick h2 block">
+      <a href="#download-code" class="same-page fw-regular">Download Code</a>
+    </h2>
+
+    <div class="mt-3 flex-row justify-center align-center">
+      <a download href="/static/download/google-map.js" hx-boost="false" class="button primary icon-text medium filled primary">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FileDownload"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></svg>
+        <span>
+          Download Code
+        </span>
+      </a>
+    </div>
+
+  </section>
+
+
+  <section id="to-do">
+    <h2 class="bold bb-thick h2 block">
+      <a href="#to-do" class="same-page fw-regular">To Do</a>
+    </h2>
+    <ol class="mt-3">
+      <li class="mt-2">
+        Maybe add something that rounds the geojson coordinates for the polygon input to only 6 or 7 decimal places. As seen 
+        <a href="https://en.wikipedia.org/wiki/Decimal_degrees#Precision" class="secondary link" target="_blank">on the Wikipedia page for decimal degrees</a>,
+        a latitude and longitude pair rounded off to 7 decimal places would have a maximum uncertainty of 11.1 millimeters.
+      </li>
+      <li class="mt-2">
+        There is a bug where sometimes the drawing mode cannot be changed back to a state where you can draw on the map. This needs to be fixed. This happens when the page with a map is navigated to, 
+        the navigated away from, and then navigated back to. In this google maps implementation, I have tried:
+        <ul>
+          <li class="mt-2">
+            Deleting the map instances before navigating away from the page while also removing all the innerHTML of the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></code></span>s that contain maps and removing the 
+            <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span></span></code></span> and 
+            <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span></span></code></span> tags 
+            that the Google Maps JavaScript API injects in the page, 
+          </li>
+          <li class="mt-2">
+            preserving the  <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span></span></code></span> and 
+            <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span></span></code></span> tags 
+            that the Google Maps JavaScript API injects in the page while deleting the map objects in the custom client-side JavaScript so they are reloaded when the maps are encountered again.
+            <mark>This is the current behavior.</mark>
+          </li>
+        </ul>
+      </li>
+      <li class="mt-2">
+        Add an event listener on each <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span></span></code></span>
+        that contains a map to listen for a custom Event called 'RemoveAllGeography' - or something - that would remove all geographies (markers, polygons, and circles) from the map.
+      </li>
+    </ol>
+  </section>
+  <%-include('../../partials/pagePartial')%>
+  <%}%>

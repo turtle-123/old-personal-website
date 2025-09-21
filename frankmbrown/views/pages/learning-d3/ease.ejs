@@ -1,0 +1,18 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/ease.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+  <h1 class="page-title" id="top-of-page">D3.js Ease</h1>
+          
+  <p>
+    Given the specified normalized time t, typically in the range [0,1], returns the “eased” time tʹ, also typically in [0,1]. 0 represents the start of the animation and 1 represents the end. A good implementation returns 0 if t = 0 and 1 if t = 1. For example, to apply easeCubic easing:
+  </p>        
+    
+  <%-include('../../partials/pagePartial')%>
+<%}%>

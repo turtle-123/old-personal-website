@@ -1,0 +1,29 @@
+<%# 
+PARTIAL ROUTE: partials/onThisPage.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.tableOfContents
+%>
+<% if (locals.tableOfContents.length >= 1) {%>
+  <nav class="table-of-contents mt-1" id="TABLE_OF_CONTENTS" hx-swap-oob="outerHTML">
+    <ul class="none no-scrollbar" style="max-height: var(--max-width-toc); overflow-y: auto; max-height: 250px; scrollbar-width: none;">
+      <%for(let i = 0; i< locals.tableOfContents.length; i++){%>
+        <li>
+          <a 
+          href="#<%=tableOfContents[i].id%>" 
+          class="button icon-text medium transparent toc" 
+          data-close-drawer
+          style="max-width: 100%;"
+          >
+            <span style="max-width: none;"><%=tableOfContents[i].text%></span>
+          </a>
+        </li>
+      <%}%>
+    </ul>
+  </nav>
+<%}else{%>
+  <div class="h6 bold text-align-center mt-2" id="TABLE_OF_CONTENTS" hx-swap-oob="outerHTML">
+    No Table of Contents Items
+  </div>
+<%}%>

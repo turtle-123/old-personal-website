@@ -1,0 +1,18 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/dsv.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+  <h1 class="page-title" id="top-of-page">D3.js DSV</h1>
+  
+  <p>
+    This module provides a parser and formatter for delimiter-separated values, most commonly comma-separated values (CSV) or tab-separated values (TSV). These tabular formats are popular with spreadsheet programs such as Microsoft Excel, and are often more space-efficient than JSON. This implementation is based on RFC 4180.
+  </p>
+        
+  <%-include('../../partials/pagePartial')%>
+<%}%>

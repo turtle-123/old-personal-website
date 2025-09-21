@@ -1,0 +1,26 @@
+<%# Dialog to remind user to save article before leaving page %>
+<div style="display: none;" hidden class="dialog-wrapper" id="confirm-dialog">
+    <div class="dialog large" data-click-capture>
+      <div class="dialog-header">
+        <p class="grow-1 flex-row h3 bold t-warning">
+          Warning
+        </p>
+      </div>
+      <div class="dialog-body">
+        <div class="alert mt-2 icon medium filled warning" role="alert" style="margin-bottom: 0.5rem;">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+          <p class="alert">
+            You have made some unsaved changes. Are you sure you want to lose your progress and leave this page?
+          </p>
+        </div>
+      </div>
+      <div class="dialog-footer no-pad" role="toolbar">
+        <button data-cancel class="filled error icon-medium" type="button" aria-label="Close Dialog">
+          CANCEL
+        </button>
+        <button autofocus data-confirm class="filled success icon-medium" type="button" aria-label="Close Dialog">
+          CONFIRM
+        </button>
+      </div>
+    </div>
+</div>

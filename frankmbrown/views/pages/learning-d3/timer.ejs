@@ -1,0 +1,18 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/timer.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+  <h1 class="page-title" id="top-of-page">D3.js Timer</h1>
+    
+  <p>
+    This module provides an efficient queue capable of managing thousands of concurrent animations, while guaranteeing consistent, synchronized timing with concurrent or staged animations. Internally, it uses requestAnimationFrame for fluid animation (if available), switching to setTimeout for delays longer than 24ms.
+  </p>
+        
+  <%-include('../../partials/pagePartial')%>
+<%}%>

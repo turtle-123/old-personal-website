@@ -1,0 +1,2249 @@
+<%# 
+PARTIAL ROUTE: pages/projects/creating-css-sprite-builder.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.settings[locals
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+  <h1 class="page-title">
+    Creating A CSS Sprite Builder for <a style="font-size: inherit; font-weight: inherit;" class="secondary link" target="_blank" href="https://fonts.google.com/icons">Material Icons</a>
+  </h1>
+  
+  <div class="alert error filled medium icon" role="alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+    <p class="alert">
+      This isn't finished yet. I decided to move on and work on other things. 
+    </p>
+    <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+    </button>
+  </div>
+
+  <section id="why-create-this" class="mt-2">
+      <h2 class="bold bb-thick h2">
+        <a href="#why-create-this" class="same-page fw-regular">Why Create This</a>
+      </h2>
+      <p class="mt-2">
+        While my design system can't really utilize svg sprites because of the ability to change application size and the customization of svg colors,
+        I wanted to build a simplistic sprite builder with material icons in case I ever create a site in the future that is more static and where speed is really important or just to see the best way to create a CSS Sprite. To learn about the advantage of using CSS Sprites, read <a class="secondary link" target="_blank" href="https://css-tricks.com/css-sprites/">this CSS Sprites article.</a>
+      </p>
+  </section>
+
+  <section id="how-to-use" class="mt-2">
+    <h2 class="bold bb-thick h2">
+      <a href="#how-to-use" class="same-page fw-regular">How To Use Sprite Builder</a>
+    </h2>
+    <ol>
+      <li>
+        Search the name of the Material icon that you want to add to the CSS Sprite.
+        Click on the icon in the results that you want to add to the sprite.
+      </li>
+      <li>
+        Edit the color and width/height of the icon that you want to add to the sprite. 
+      </li>
+      <li>
+        Add the icon to the sprite.
+      </li>
+      <li>
+        Continue adding icons to the sprite until all the icons that you want to add to the CSS sprite are included in the sprite (view a preview of the sprite <a class="primary link" href="#current-sprite">in the Current Sprite Section</a>.)
+      </li>
+      <li>
+        To delete an svg, click on the svg on the canvas and click delete.
+      </li>
+      <li>
+        Once finished, click download.
+      </li>
+    </ol>
+  </section>
+  <div class="alert warning outlined icon medium mt-2" role="alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+    <p class="alert">
+      <span>
+        <strong>Transparent Stroke</strong> and <strong>Transparent Fill</strong> communicate whether the <span class="text-code">&lt;canvas&gt;</span> context 
+        <span class="text-code">.stroke()</span> and <span class="text-code">.fill()</span> methods will be called respectively. 
+      </span>
+  </p>
+    <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+    </button>
+  </div>
+
+  <section id="search-icons" class="mt-2">
+    <div class="bb-main flex-row justify-between">
+      <h2 class="bold h2">
+        <a href="#search-icons" class="same-page fw-regular">Search Icons</a>
+      </h2>
+      <button type="button" class="small icon-text text warning" data-hide-show data-el="#search-icons-main-container">
+        <svg data-arrow focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide>HIDE</span>
+        <span data-show hidden>SHOW</span>
+      </button>
+    </div>
+    <div id="search-icons-main-container">
+      <form hx-post="/api/search-icons" hx-trigger="submit" hx-target="#icon-results" hx-swap="innerHTML"
+      hx-indicator="#indicator-search-icons" 
+      id="search-icons-form"
+      >
+      <input type="text" hidden readonly name="no-copy" value="true" />
+    <div class="input-group block w-100 mt-1" data-hover="false" data-focus="false" data-error="false"
+      data-blurred="false">
+      <label for="search-icons-input">Search Icons:</label>
+      <div class="mt-1 text-input block medium">
+        <input type="search" class="icon-after" name="search-icons-input" id="search-icons-input"
+          placeholder="Search Icons..." hx-trigger="keyup changed delay:200ms, search"
+          hx-include="#search-icons-form" hx-post="/api/search-icons" hx-target="#icon-results" hx-swap="innerHTML"
+          hx-indicator="#indicator-search-icons" />
+        <svg class="icon-after" focusable="false" inert viewBox="0 0 24 24">
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+          </path>
+        </svg>
+      </div>
+    </div>
+    <fieldset class="checkbox mt-1">
+      <legend class="h6 fw-regular">Include:</legend>
+      <div class="flex-row justify-start wrap align-center gap-3">
+        <label class="checkbox">
+          <input type="checkbox" name="Filled" value="Filled"  checked 
+          hx-post="/api/search-icons" 
+          hx-trigger="change" 
+          hx-target="#icon-results" 
+          hx-swap="innerHTML"
+          hx-indicator="#indicator-search-icons" 
+          hx-include="search-icons-form"/>
+          Filled
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" class="secondary" name="Outlined" value="Outlined"  checked 
+          hx-post="/api/search-icons" 
+          hx-trigger="change" 
+          hx-target="#icon-results" 
+          hx-swap="innerHTML"
+          hx-indicator="#indicator-search-icons" 
+          hx-include="search-icons-form"/>
+          Outlined
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" class="warning" name="Rounded" value="Rounded"  checked 
+          hx-post="/api/search-icons" 
+          hx-trigger="change" 
+          hx-target="#icon-results" 
+          hx-swap="innerHTML"
+          hx-indicator="#indicator-search-icons" 
+          hx-include="search-icons-form"/>
+          Rounded
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" class="success" name="Sharp" value="Sharp"  checked 
+          hx-post="/api/search-icons" 
+          hx-trigger="change" 
+          hx-target="#icon-results" 
+          hx-swap="innerHTML"
+          hx-indicator="#indicator-search-icons" 
+          hx-include="search-icons-form"/>
+          Sharp
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" class="error" name="TwoTone" value="TwoTone"  checked 
+          hx-post="/api/search-icons" 
+          hx-trigger="change" 
+          hx-target="#icon-results" 
+          hx-swap="innerHTML"
+          hx-indicator="#indicator-search-icons" 
+          hx-include="search-icons-form"/>
+          Two Tone
+        </label>
+      </div>
+    </fieldset>
+      </form>
+  
+      <div class="flex-row justify-center t-info htmx-indicator" role="progressbar" aria-busy="false" aria-label="Searching Icons..." id="indicator-search-icons">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <div class="mt-1" id="icon-results" style="height: 300px; max-height: 300px; overflow-y: auto;">
+      <p class="h6 bold text-align-center">
+        Search Results
+      </p>
+      </div>
+    </div>
+   
+
+  </section>
+
+  <section id="current-sprite" class="mt-4">
+    <div class="bb-main flex-row justify-between">
+      <h2 class="bold h2">
+        <a href="#current-sprite" class="same-page fw-regular">Current Sprite</a>
+      </h2>
+      <button type="button" class="small icon-text text warning" data-hide-show data-el="#canvas-container">
+        <svg data-arrow focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide>HIDE</span>
+        <span data-show hidden>SHOW</span>
+      </button>
+    </div>
+    <div id="canvas-container" class="text-align-center">
+      <canvas></canvas>
+    </div>
+  </section>
+
+  <section id="edit-icon-add-to-sprite" class="mt-2">
+    <h2 class="bold bb-thick h2">
+      <a href="#edit-icon-add-to-sprite" class="same-page fw-regular">Edit CSS Sprite</a>
+    </h2>
+    <style>
+      .indent-1 {
+        padding-left: 10px;
+      }
+    </style>
+    <section id="css-sprite-background" class="mt-2 indent-1">
+      <div class="bb-main flex-row justify-between">
+        <h3 class="bold h6">
+          <a href="#css-sprite-background" class="same-page fw-regular">CSS Sprite Background</a>
+        </h3>
+        <button type="button" class="small icon-text text warning" data-hide-show data-el="#edit-css-background-container">
+          <svg data-arrow focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide>HIDE</span>
+          <span data-show hidden>SHOW</span>
+        </button>
+      </div>
+      <div id="edit-css-background-container">
+        <form id="css-sprite-background-form" class="mt-2">
+          <label class="checkbox medium">
+            <input type="checkbox" class="primary" checked name="css-background-transparent" id="css-background-transparent">
+            Transparent
+          </label>
+
+        </form>
+        <output form="css-sprite-background-form" class="hz-scroll block text-align-center mt-2 p-sm" style="max-height: 400px; overflow-y: auto; border: 1px solid var(--divider);">
+          <p class="body1 bold block text-align-left">CSS Sprite Background Preview:</p>
+          <canvas style="margin: 0px auto;" height="100" width="300"></canvas>
+        </output>
+      </div>
+    </section>
+    <section id="add-svg-spite" class="mt-4 indent-1">
+      <div class="bb-main flex-row justify-between">
+        <h3 class="bold h6">
+          <a href="#add-svg-sprite" class="same-page fw-regular">Add SVG To Sprite</a>
+        </h3>
+        <button type="button" class="small icon-text text warning" data-hide-show data-el="#add-cvg-sprite-container">
+          <svg data-arrow focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide>HIDE</span>
+          <span data-show hidden>SHOW</span>
+        </button>
+      </div>
+      <div id="add-cvg-sprite-container">
+        <form id="add-svg-to-sprite">
+          <div class="flex-row align-center mt-1">
+            <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+              <label for="svg-width-height">SVG Width And Height (px):</label>
+              <div class="mt-1 number-input medium">
+                  <input 
+                  type="number" 
+                  min="0"  
+                  value="30" 
+                  name="svg-width-height" 
+                  id="svg-width-height" 
+                  placeholder="Enter SVG width and height..." 
+                  autocomplete="off" 
+                  spellcheck="false" 
+                  autocapitalize="off"
+                  >
+                  <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                      <svg focusable="false" inert viewBox="0 0 24 24">
+                          <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                          </path>
+                      </svg>
+                  </button>
+                  <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                      <svg focusable="false" inert viewBox="0 0 24 24">
+                          <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                          </path>
+                      </svg>
+                  </button>
+              </div>
+            </div>
+            <div class="grow-1">
+              <label class="body2" for="svg-fill">SVG Fill Color:</label>
+              <div class="flex-row justify-begin align-center gap-2">
+                <input type="color" data-coloris name="svg-fill" id="svg-fill" value="<%=locals.settings[locals.settingsMode].primary%>" style="margin-top: 2px;">
+                <span class="body2"><%=locals.settings[locals.settingsMode].primary%></span>
+              </div>
+              <label class="checkbox mt-1">
+                <input type="checkbox" class="primary" name="fill_transparent_svg" id="fill_transparent_svg">
+                Transparent
+              </label>
+            </div>
+            <div class="grow-1">
+              <label class="body2" for="svg-stroke">SVG Stroke Color:</label>
+              <div class="flex-row justify-begin align-center gap-2">
+                <input type="color" data-coloris name="svg-stroke" id="svg-stroke" value="<%=locals.settings[locals.settingsMode].secondary%>" style="margin-top: 2px;">
+                <span class="body2"><%=locals.settings[locals.settingsMode].secondary%></span>
+              </div>
+              <label class="checkbox mt-1">
+                <input type="checkbox" class="secondary" name="stroke_transparent_svg" id="stroke_transparent_svg">
+                Transparent
+              </label>
+            </div>
+          </div>
+          <div class="flex-row gap-2 align-center mt-1">
+            <div class="grow-1">
+              <label for="stroke-color-canvas-svg-opacity">Stroke Opacity:</label>
+              <input name="stroke-color-canvas-svg-opacity" id="stroke-color-canvas-svg-opacity" type="range" min="0" max="1" value="1" step="0.01" style="background-size: 100% 100%;">
+              <output for="stroke-color-canvas-svg-opacity" hidden>100</output>
+            </div>
+            <div class="grow-1">
+              <label for="fill-color-canvas-svg-opacity">Fill Opacity:</label>
+              <input name="fill-color-canvas-svg-opacity" id="fill-color-canvas-svg-opacity" type="range" min="0" max="1" value="1" class="primary" step="0.01" style="background-size: 100% 100%;">
+              <output for="fill-color-canvas-svg-opacity" hidden>100</output>
+            </div>
+          </div>
+          <details data-line-dash-details aria-label="Edit Line Style for canvas element..." class="mt-2">
+            <summary>
+                <span class="h6 fw-regular">Edit Line Style</span>
+                <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                  </path>
+                </svg>
+            </summary>
+            <div class="accordion-content" aria-hidden="true">
+              <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                <label for="line_width_svg">Line Width:</label>
+                <div class="mt-1 number-input medium">
+                    <input 
+                    type="number" 
+                    min="0" 
+                    value="1" 
+                    name="line_width_svg" 
+                    id="line_width_svg" 
+                    placeholder="Enter the width of the lines use for stroke..." 
+                    autocomplete="off" 
+                    spellcheck="false" 
+                    autocapitalize="off"
+                    >
+                    <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                        <svg focusable="false" inert viewBox="0 0 24 24">
+                            <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                            </path>
+                        </svg>
+                    </button>
+                    <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                        <svg focusable="false" inert viewBox="0 0 24 24">
+                            <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+              </div>
+              <fieldset data-line-cap class="mt-2">
+                <legend class="h6 bold">Line Cap</legend>
+                <div class="flex-row align-center gap-3">
+                  <label class="radio">
+                    <input type="radio" name="line-cap-style_svg" value="butt" class="primary" checked>
+                    butt
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="line-cap-style_svg" value="round" class="primary">
+                    round
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="line-cap-style_svg" value="square" class="primary">
+                    square
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset data-line-join class="mt-2">
+                <legend class="h6 bold">Line Join</legend>
+                <div class="flex-row align-center gap-3">
+                  <label class="radio">
+                    <input type="radio" name="line-join-style_svg" value="round" class="secondary">
+                    round
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="line-join-style_svg" value="bevel" class="secondary">
+                    bevel
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="line-join-style_svg" value="miter" class="secondary" checked>
+                    miter
+                  </label>
+                </div>
+              </fieldset>
+              <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                <label for="miter-limit_svg">Miter Limit:</label>
+                <div class="mt-1 number-input medium">
+                    <input 
+                    type="number" 
+                    min="0.1" 
+                    value="10.0"
+                    step="0.1" 
+                    name="miter-limit_svg" 
+                    id="miter-limit_svg" 
+                    placeholder="Enter the miter limit..." 
+                    autocomplete="off" 
+                    spellcheck="false" 
+                    autocapitalize="off"
+                    >
+                    <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                        <svg focusable="false" inert viewBox="0 0 24 24">
+                            <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                            </path>
+                        </svg>
+                    </button>
+                    <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                        <svg focusable="false" inert viewBox="0 0 24 24">
+                            <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+              </div>
+              <div class="flex-row justify-end mt-2">
+                <button type="button" class="icon-text medium info filled" data-add-line-dash>
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="LineWeight"><path d="M3 17h18v-2H3v2zm0 3h18v-1H3v1zm0-7h18v-3H3v3zm0-9v4h18V4H3z"></path></svg>
+                  ADD LINE DASH
+                </button>
+              </div>
+              
+            </div>
+          </details>
+        
+          <details aria-label="Add Shadow for canvas element..." class="mt-2">
+            <summary>
+                <span class="h6 fw-regular">Add Shadow</span>
+                <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                  </path>
+                </svg>
+            </summary>
+            <div class="accordion-content" aria-hidden="true">
+              <div class="flex-row gap-3 align-center">
+                <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="shadowBlur_svg">Shadow Blur:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      min="0" 
+                      value="0" 
+                      name="shadowBlur_svg" 
+                      id="shadowBlur_svg" 
+                      placeholder="Enter the shadow blur for the canvas element..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      >
+                      <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+                <div style="flex-shrink: 0;">
+                  <label class="body2" for="shadowColor_svg">Shadow Color:</label>
+                  <div class="flex-row justify-begin align-center gap-2">
+                    <input type="color" data-coloris name="shadowColor_svg" id="shadowColor_svg" value="<%=locals.settings[locals.settingsMode].secondary%>" style="margin-top: 2px;">
+                    <span class="body2"><%=locals.settings[locals.settingsMode].secondary%></span>
+                  </div>
+                  <label class="checkbox mt-1">
+                    <input type="checkbox" class="secondary" name="transparent_shadow_svg" id="transparent_shadow_svg">
+                    Transparent
+                  </label>
+                </div>
+              </div>
+              <div class="flex-row gap-3 mt-2 align-center">
+                <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="shadowOffsetX_svg">Shadow Offset X:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      value="0" 
+                      name="shadowOffsetX_svg" 
+                      id="shadowOffsetX_svg" 
+                      placeholder="Enter the shadow offset X..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      >
+                      <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+                <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="shadowOffsetY_svg">Shadow Offset Y:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      value="0" 
+                      name="shadowOffsetY_svg" 
+                      id="shadowOffsetY_svg" 
+                      placeholder="Enter the shadow offset Y" 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      >
+                      <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+          <div class="flex-row justify-between mt-2">
+            <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+            <button type="submit" aria-label="Submit" class="info filled icon-text medium">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Add"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+              ADD SVG
+            </button>
+          </div>
+        </form>
+        <output form="add-svg-to-sprite" class="hz-scroll block text-align-center mt-2 p-sm" style="max-height: 400px; overflow-y: auto; border: 1px solid var(--divider);">
+          <p class="body1 bold block text-align-left">CSS Sprite SVG Preview:</p>
+          <canvas style="margin: 0px auto;" height="100" width="300"></canvas>
+        </output>
+      </div>
+    </section>
+    <section id="add-image-css-sprite" class="mt-4 indent-1">
+      <div class="bb-main flex-row justify-between">
+        <h3 class="bold h6">
+          <a href="#add-image-css-sprite" class="same-page fw-regular">Add Image To CSS Sprite</a>
+        </h3>
+        <button type="button" class="small icon-text text warning" data-hide-show data-el="#add-image-css-sprite-container">
+          <svg data-arrow focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide>HIDE</span>
+          <span data-show hidden>SHOW</span>
+        </button>
+      </div>
+      <div id="add-image-css-sprite-container">
+        <form id="add-image-css-sprite-form">
+          <label for="upload-image-css-sprite" class="bold mt-2">Upload Image File:</label>
+          <input data-image-input type="file" id="upload-image-css-sprite" accept="image/*" name="upload-image-css-sprite" class="mt-1 secondary">
+          <output class="block" for="upload-image-css-sprite"></output>
+          
+          <div class="flex-row mt-2 justify-between">
+            <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+            <button type="submit" aria-label="Submit" class="primary filled icon-text medium">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Add"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+              ADD IMAGE
+            </button>
+          </div>
+        </form>
+        <output form="add-image-css-sprite-form" class="hz-scroll block text-align-center mt-2 p-sm" style="max-height: 400px; overflow-y: auto; border: 1px solid var(--divider);">
+          <p class="body1 bold block text-align-left">CSS Sprite Image Preview:</p>
+          <canvas style="margin: 0px auto;" height="100" width="300"></canvas>
+        </output>
+      </div>
+    </section>
+    <section id="add-text-css-sprite" class="mt-4 indent-1">
+      <div class="bb-main flex-row justify-between">
+        <h3 class="bold h6">
+          <a href="#add-text-css-sprite" class="same-page fw-regular">Add Text To CSS Sprite</a>
+        </h3>
+        <button type="button" class="small icon-text text warning" data-hide-show data-el="#add-text-css-sprite-container">
+          <svg data-arrow focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide>HIDE</span>
+          <span data-show hidden>SHOW</span>
+        </button>
+      </div>
+      <div id="add-text-css-sprite-container">
+        <form id="canvas-add-text-form">
+          <div class="flex-row align-center gap-2">
+            <div class="input-group grow-1 mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+              <label for="canvas-text-input">Canvas Text:</label>
+              <div class="text-input block medium">
+                  <input 
+                  type="text" 
+                  value="Hello World"
+                  name="canvas-text-input" 
+                  id="canvas-text-input" 
+                  class="medium mt-1" 
+                  required
+                  placeholder="Enter Canvas Text..." 
+                  minlength="1" 
+                  spellcheck="false" 
+                  autocapitalize="off"
+                  >
+              </div>
+            </div>
+            <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+              <label for="canvas-text-input-size">Text Size (px):</label>
+              <div class="mt-1 number-input medium">
+                  <input 
+                  type="number" 
+                  min="0"  
+                  value="16" 
+                  name="canvas-text-input-size" 
+                  id="canvas-text-input-size" 
+                  placeholder="Enter the size of the canvas text in px..." 
+                  autocomplete="off" 
+                  spellcheck="false" 
+                  autocapitalize="off"
+                  >
+                  <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                      <svg focusable="false" inert viewBox="0 0 24 24">
+                          <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                          </path>
+                      </svg>
+                  </button>
+                  <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                      <svg focusable="false" inert viewBox="0 0 24 24">
+                          <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                          </path>
+                      </svg>
+                  </button>
+              </div>
+            </div>
+          </div>
+          <div class="flex-row gap-2 align-center mt-1">
+            <div class="grow-1">
+              <div class="body1 bold" id="font-fam-lab-id">Font Family:</div>
+              <div class="mt-1 flex-row justify-center">
+                <div class="select">
+                  <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="font-fam-lab-drop-id" aria-labelledby="font-fam-lab-id" class="select" aria-label="Select Font Family for Canvas Text" data-popover data-pelem="#font-fam-lab-drop-id" data-click aria-expanded="false">
+                    <span class="body1">Anuphan (sans-serif)</span>
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+                  </button>
+                  <div tabindex="0" id="font-fam-lab-drop-id" role="listbox" class="select-menu o-xs" data-placement="bottom">
+                    <input type="text" hidden value="option-1" name="font-family-canvas-text" id="font-family-canvas-text">
+                    <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val="Anuphan, sans-serif;">
+                      Anuphan, sans-serif;
+                    </button>
+                    <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val="arial">
+                      Arial (sans-serif)
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="verdana">
+                      Verdana (sans-serif)
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="tahoma">
+                      Tahoma (sans-serif)
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="trebuchet ms">
+                      Trebuchet MS (sans-serif)
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="times new roman">
+                      Times New Roman (serif)
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="georgia">
+                      Georgia (serif)
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="garamond">
+                      Garamond (serif)
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="courier new">
+                      Courier New (monospace)
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="brush script mt">
+                      Brush Script MT (cursive)
+                      </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grow-1">
+              <label class="body2" for="fill-color-canvas-text">Fill Color:</label>
+              <div class="flex-row justify-begin align-center gap-2">
+                <input type="color" data-coloris name="fill-color-canvas-text" id="fill-color-canvas-text" value="<%=locals.settings[locals.settingsMode].primary%>" style="margin-top: 2px;">
+                <span class="body2"><%=locals.settings[locals.settingsMode].primary%></span>
+              </div>
+              <label class="checkbox mt-1">
+                <input type="checkbox" class="primary" name="fill_transparent_text" id="fill_transparent_text">
+                Transparent
+              </label>
+            </div>
+            <div class="grow-1">
+              <label class="body2" for="fill-color-canvas-stroke">Stroke Color:</label>
+              <div class="flex-row justify-begin align-center gap-2">
+                <input type="color" data-coloris name="fill-color-canvas-stroke" id="fill-color-canvas-stroke" value="<%=locals.settings[locals.settingsMode].secondary%>" style="margin-top: 2px;">
+                <span class="body2"><%=locals.settings[locals.settingsMode].secondary%></span>
+              </div>
+              <label class="checkbox mt-1">
+                <input type="checkbox" class="secondary" name="stroke_transparent_text" id="stroke_transparent_text">
+                Transparent
+              </label>
+            </div>
+          </div>
+          <div class="flex-row gap-2 align-center mt-1">
+            <div class="grow-1">
+              <label for="stroke-color-canvas-text-opacity">Stroke Opacity:</label>
+              <input name="stroke-color-canvas-text-opacity" id="stroke-color-canvas-text-opacity" type="range" min="0" max="1" value="1" step="0.01" style="background-size: 100% 100%;">
+              <output for="stroke-color-canvas-text-opacity" hidden>100</output>
+            </div>
+            <div class="grow-1">
+              <label for="fill-color-canvas-text-opacity">Fill Opacity:</label>
+              <input name="fill-color-canvas-text-opacity" id="fill-color-canvas-text-opacity" type="range" min="0" max="1" value="1" class="primary" step="0.01" style="background-size: 100% 100%;">
+              <output for="fill-color-canvas-text-opacity" hidden>100</output>
+            </div>
+          </div>
+          <fieldset class="mt-2">
+            <legend class="bold body1">Text Rendering:</legend>
+            <div class="flex-row align-center gap-3 wrap">
+              <label class="radio">
+                <input type="radio" name="canvas-text-rendering" value="auto" class="info" checked>
+                auto
+              </label>
+              <label class="radio">
+                <input type="radio" name="canvas-text-rendering" value="auto" class="info">
+                optimizeSpeed
+              </label>
+              <label class="radio">
+                <input type="radio" name="canvas-text-rendering" value="auto" class="info">
+                optimizeLegibility
+              </label>
+              <label class="radio">
+                <input type="radio" name="canvas-text-rendering" value="auto" class="info">
+                geometricPrecision
+              </label>
+            </div>
+          </fieldset>
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+            <label for="canvas-text-word-spacing">Word Spacing:</label>
+            <div class="mt-1 number-input medium">
+                <input 
+                type="number" 
+                min="0"  
+                value="0" 
+                name="canvas-text-word-spacing" 
+                id="canvas-text-word-spacing" 
+                placeholder="Enter the word spacing for the canvas text..." 
+                autocomplete="off" 
+                spellcheck="false" 
+                autocapitalize="off"
+                >
+                <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+          </div>
+          <details data-line-dash-details aria-label="Edit Line Style for canvas element..." class="mt-2">
+            <summary>
+                <span class="h6 fw-regular">Edit Line Style</span>
+                <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                  </path>
+                </svg>
+            </summary>
+            <div class="accordion-content" aria-hidden="true">
+              <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                <label for="line_width_text">Line Width:</label>
+                <div class="mt-1 number-input medium">
+                    <input 
+                    type="number" 
+                    min="0" 
+                    value="1" 
+                    name="line_width_text" 
+                    id="line_width_text" 
+                    placeholder="Enter the width of the lines use for stroke..." 
+                    autocomplete="off" 
+                    spellcheck="false" 
+                    autocapitalize="off"
+                    >
+                    <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                        <svg focusable="false" inert viewBox="0 0 24 24">
+                            <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                            </path>
+                        </svg>
+                    </button>
+                    <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                        <svg focusable="false" inert viewBox="0 0 24 24">
+                            <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+              </div>
+              <fieldset data-line-cap class="mt-2">
+                <legend class="h6 bold">Line Cap</legend>
+                <div class="flex-row align-center gap-3">
+                  <label class="radio">
+                    <input type="radio" name="line-cap-style_text" value="butt" class="primary" checked>
+                    butt
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="line-cap-style_text" value="round" class="primary">
+                    round
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="line-cap-style_text" value="square" class="primary">
+                    square
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset data-line-join class="mt-2">
+                <legend class="h6 bold">Line Join</legend>
+                <div class="flex-row align-center gap-3">
+                  <label class="radio">
+                    <input type="radio" name="line-join-style_text" value="round" class="secondary">
+                    round
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="line-join-style_text" value="bevel" class="secondary">
+                    bevel
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="line-join-style_text" value="miter" class="secondary" checked>
+                    miter
+                  </label>
+                </div>
+              </fieldset>
+              <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                <label for="miter-limit_text">Miter Limit:</label>
+                <div class="mt-1 number-input medium">
+                    <input 
+                    type="number" 
+                    min="0.1" 
+                    value="10.0"
+                    step="0.1" 
+                    name="miter-limit_text" 
+                    id="miter-limit_text" 
+                    placeholder="Enter the miter limit..." 
+                    autocomplete="off" 
+                    spellcheck="false" 
+                    autocapitalize="off"
+                    >
+                    <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                        <svg focusable="false" inert viewBox="0 0 24 24">
+                            <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                            </path>
+                        </svg>
+                    </button>
+                    <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                        <svg focusable="false" inert viewBox="0 0 24 24">
+                            <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+              </div>
+              <div class="flex-row justify-end mt-2">
+                <button type="button" class="icon-text medium info filled" data-add-line-dash>
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="LineWeight"><path d="M3 17h18v-2H3v2zm0 3h18v-1H3v1zm0-7h18v-3H3v3zm0-9v4h18V4H3z"></path></svg>
+                  ADD LINE DASH
+                </button>
+              </div>
+            </div>
+          </details>
+        
+          <details aria-label="Add Shadow for canvas element..." class="mt-2">
+            <summary>
+                <span class="h6 fw-regular">Add Shadow</span>
+                <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                  </path>
+                </svg>
+            </summary>
+            <div class="accordion-content" aria-hidden="true">
+              <div class="flex-row gap-3 align-center">
+                <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="shadowBlur_text">Shadow Blur:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      min="0" 
+                      value="0" 
+                      name="shadowBlur_text" 
+                      id="shadowBlur_text" 
+                      placeholder="Enter the shadow blur for the canvas element..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      >
+                      <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+                <div style="flex-shrink: 0;">
+                  <label class="body2" for="shadowColor_text">Shadow Color:</label>
+                  <div class="flex-row justify-begin align-center gap-2">
+                    <input type="color" data-coloris name="shadowColor_text" id="shadowColor_text" value="<%=locals.settings[locals.settingsMode].secondary%>" style="margin-top: 2px;">
+                    <span class="body2"><%=locals.settings[locals.settingsMode].secondary%></span>
+                  </div>
+                  <label class="checkbox mt-1">
+                    <input type="checkbox" class="secondary" name="transparent_shadow_text" id="transparent_shadow_text">
+                    Transparent
+                  </label>
+                </div>
+              </div>
+              <div class="flex-row gap-3 mt-2 align-center">
+                <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="shadowOffsetX_text">Shadow Offset X:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      value="0" 
+                      name="shadowOffsetX_text" 
+                      id="shadowOffsetX_text" 
+                      placeholder="Enter the shadow offset X..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      >
+                      <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+                <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="shadowOffsetY_text">Shadow Offset Y:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      value="0" 
+                      name="shadowOffsetY_text" 
+                      id="shadowOffsetY_text" 
+                      placeholder="Enter the shadow offset Y" 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      >
+                      <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+          <div class="mt-2 flex-row justify-between">
+            <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+            <button type="submit" aria-label="Submit" class="secondary filled icon-text medium">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Add"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+              ADD TEXT
+            </button>
+          </div>
+        </form>
+        <output form="canvas-add-text-form" class="hz-scroll block text-align-center mt-2 p-sm" style="max-height: 400px; overflow-y: auto; border: 1px solid var(--divider);">
+          <p class="body1 bold block text-align-left">CSS Sprite Text Preview:</p>
+          <canvas style="margin: 0px auto;" height="100" width="300"></canvas>
+        </output>
+      </div>
+      
+    </section>
+    <section id="add-shape-css-sprite" class="mt-4 indent-1">
+      <div class="bb-main flex-row justify-between">
+        <h3 class="bold h6">
+          <a href="#add-shape-css-sprite" class="same-page fw-regular">Add Shape To CSS Sprite</a>
+        </h3>
+        <button type="button" class="small icon-text text warning" data-hide-show data-el="#add-shape-css-sprite-container">
+          <svg data-arrow focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide>HIDE</span>
+          <span data-show hidden>SHOW</span>
+        </button>
+      </div>
+      
+      <div id="add-shape-css-sprite-container">
+        <div class="tabs mt-2">
+          <ul class="tabs" role="tablist">
+            <li role="presentation">
+              <button id="draw-rect-tab-button" class="tab-button secondary" role="tab" type="button" aria-selected="true" data-tab="0" tabindex="-1">
+                Rectangle
+              </button>
+            </li>
+            <li role="presentation">
+              <button id="draw-path-tab-button" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="1" tabindex="-1">
+                Path
+              </button>
+            </li>
+            <li role="presentation">
+              <button id="draw-ellipse-tab-button" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="2" tabindex="-1">
+                Ellipse
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-panels">
+          <div aria-labelledby="draw-rect-tab-button" role="tabpanel" tabindex="0">
+            <form id="css-sprite-add-rectangle-form">
+              <label class="checkbox mt-2 medium">
+                <input type="checkbox" class="primary" name="draw-rect-rounded-checkbox" id="draw-rect-rounded-checkbox">
+                Rounded
+              </label>
+              <div class="flex-row gap-2">
+                <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="draw-rect-width">Width:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      min="0"
+                      value="100" 
+                      name="draw-rect-width" 
+                      id="draw-rect-width" 
+                      placeholder="Enter the width for the rectangle..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      >
+                      <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+                <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="draw-rect-height">Height:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      min="0"
+                      value="100" 
+                      name="draw-rect-height" 
+                      id="draw-rect-height" 
+                      placeholder="Enter the height of the rectangle..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      >
+                      <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row mt-1 gap-2">
+                <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="draw-rect-top-left-border-radius">Top Left Border Radius:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      min="0"
+                      value="0" 
+                      name="draw-rect-top-left-border-radius" 
+                      id="draw-rect-top-left-border-radius" 
+                      placeholder="Enter the top left border radius for the rectangle..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      disabled
+                      >
+                      <button disabled class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button disabled class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+                <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="draw-rect-top-right-border-radius">Top Right Border Radius:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      min="0"
+                      value="0" 
+                      name="draw-rect-top-right-border-radius" 
+                      id="draw-rect-top-right-border-radius" 
+                      placeholder="Enter the top right border radius for the rectangle..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      disabled
+                      >
+                      <button disabled class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button disabled class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row mt-1 gap-2">
+                <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="draw-rect-bottom-left-border-radius">Bottom Left Border Radius:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      min="0"
+                      value="0" 
+                      name="draw-rect-bottom-left-border-radius" 
+                      id="draw-rect-bottom-left-border-radius" 
+                      placeholder="Enter the bottom left border radius for the rectangle..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      disabled
+                      >
+                      <button disabled class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button disabled class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+                <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="draw-rect-bottom-right-border-radius">Bottom Right Border Radius:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      min="0"
+                      value="0" 
+                      name="draw-rect-bottom-right-border-radius" 
+                      id="draw-rect-bottom-right-border-radius" 
+                      placeholder="Enter the bottom right border radius for the rectangle..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      disabled
+                      >
+                      <button disabled class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button disabled class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                <label for="draw-rect-rotate">Rotate (deg):</label>
+                <div class="mt-1 number-input medium">
+                    <input 
+                    type="number" 
+                    min="0"
+                    max="360"
+                    value="0" 
+                    name="draw-rect-rotate" 
+                    id="draw-rect-rotate" 
+                    placeholder="Enter the rotation for the rectangle in degrees..." 
+                    autocomplete="off" 
+                    spellcheck="false" 
+                    autocapitalize="off"
+                    >
+                    <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                        <svg focusable="false" inert viewBox="0 0 24 24">
+                            <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                            </path>
+                        </svg>
+                    </button>
+                    <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                        <svg focusable="false" inert viewBox="0 0 24 24">
+                            <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+              </div>
+              <div class="flex-row gap-3 align-center mt-2">
+                <div style="flex-shrink: 0;">
+                  <label class="body2" for="draw-rect-fill-color">Fill Color:</label>
+                  <div class="flex-row justify-begin align-center gap-2">
+                    <input type="color" data-coloris name="draw-rect-fill-color" id="draw-rect-fill-color" value="#90caf9" style="margin-top: 2px;">
+                    <span class="body2">#90caf9</span>
+                  </div>
+                  <label class="checkbox mt-1">
+                    <input type="checkbox" class="primary" name="fill_transparent_rect" id="fill_transparent_rect">
+                    Transparent
+                  </label>
+                </div>
+                <div class="grow-1">
+                  <label for="draw-rect-fill-opacity">Fill Opacity:</label>
+                  <input name="draw-rect-fill-opacity" id="draw-rect-fill-opacity" type="range" min="0" max="1" value="1" step="0.01" style="background-size: 50% 100%;">
+                  <output class="hidden" for="draw-rect-fill-opacity" hidden="">50</output>
+                </div>
+              </div>
+              <div class="flex-row gap-3 align-center mt-2">
+                <div style="flex-shrink: 0;">
+                  <label class="body2" for="draw-rect-stroke-color">Stroke Color:</label>
+                  <div class="flex-row justify-begin align-center gap-2">
+                    <input type="color" data-coloris name="draw-rect-stroke-color" id="draw-rect-stroke-color" value="#ab47bc" style="margin-top: 2px;">
+                    <span class="body2">#ab47bc</span>
+                  </div>
+                  <label class="checkbox mt-1">
+                    <input type="checkbox" class="secondary" name="stroke_transparent_rect" id="stroke_transparent_rect">
+                    Transparent
+                  </label>
+                </div>
+                <div class="grow-1">
+                  <label for="draw-rect-stroke-opacity">Stroke Opacity:</label>
+                  <input name="draw-rect-stroke-opacity" id="draw-rect-stroke-opacity" type="range" min="0" max="1" value="1" class="primary" step="0.01" style="background-size: 50% 100%;">
+                  <output class="hidden" for="draw-rect-stroke-opacity" hidden="">50</output>
+                </div>
+              </div>
+              <details data-line-dash-details aria-label="Edit Line Style for canvas element..." class="mt-2">
+                <summary>
+                    <span class="h6 fw-regular">Edit Line Style</span>
+                    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                      </path>
+                    </svg>
+                </summary>
+                <div class="accordion-content" aria-hidden="true">
+                  <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                    <label for="line_width_rect">Line Width:</label>
+                    <div class="mt-1 number-input medium">
+                        <input 
+                        type="number" 
+                        min="0" 
+                        value="1" 
+                        name="line_width_rect" 
+                        id="line_width_rect" 
+                        placeholder="Enter the width of the lines use for stroke..." 
+                        autocomplete="off" 
+                        spellcheck="false" 
+                        autocapitalize="off"
+                        >
+                        <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                            <svg focusable="false" inert viewBox="0 0 24 24">
+                                <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                            <svg focusable="false" inert viewBox="0 0 24 24">
+                                <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                  </div>
+                  <fieldset data-line-cap class="mt-2">
+                    <legend class="h6 bold">Line Cap</legend>
+                    <div class="flex-row align-center gap-3">
+                      <label class="radio">
+                        <input type="radio" name="line-cap-style_rect" value="butt" class="primary" checked>
+                        butt
+                      </label>
+                      <label class="radio">
+                        <input type="radio" name="line-cap-style_rect" value="round" class="primary">
+                        round
+                      </label>
+                      <label class="radio">
+                        <input type="radio" name="line-cap-style_rect" value="square" class="primary">
+                        square
+                      </label>
+                    </div>
+                  </fieldset>
+                  <fieldset data-line-join class="mt-2">
+                    <legend class="h6 bold">Line Join</legend>
+                    <div class="flex-row align-center gap-3">
+                      <label class="radio">
+                        <input type="radio" name="line-join-style_rect" value="round" class="secondary">
+                        round
+                      </label>
+                      <label class="radio">
+                        <input type="radio" name="line-join-style_rect" value="bevel" class="secondary">
+                        bevel
+                      </label>
+                      <label class="radio">
+                        <input type="radio" name="line-join-style_rect" value="miter" class="secondary" checked>
+                        miter
+                      </label>
+                    </div>
+                  </fieldset>
+                  <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                    <label for="miter-limit_rect">Miter Limit:</label>
+                    <div class="mt-1 number-input medium">
+                        <input 
+                        type="number" 
+                        min="0.1" 
+                        value="10.0"
+                        step="0.1" 
+                        name="miter-limit_rect" 
+                        id="miter-limit_rect" 
+                        placeholder="Enter the miter limit..." 
+                        autocomplete="off" 
+                        spellcheck="false" 
+                        autocapitalize="off"
+                        >
+                        <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                            <svg focusable="false" inert viewBox="0 0 24 24">
+                                <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                            <svg focusable="false" inert viewBox="0 0 24 24">
+                                <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                  </div>
+                  <div class="flex-row justify-end mt-2">
+                    <button type="button" class="icon-text medium info filled" data-add-line-dash>
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="LineWeight"><path d="M3 17h18v-2H3v2zm0 3h18v-1H3v1zm0-7h18v-3H3v3zm0-9v4h18V4H3z"></path></svg>
+                      ADD LINE DASH
+                    </button>
+                  </div>
+                </div>
+              </details>
+            
+              <details aria-label="Add Shadow for canvas element..." class="mt-2">
+                <summary>
+                    <span class="h6 fw-regular">Add Shadow</span>
+                    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                      </path>
+                    </svg>
+                </summary>
+                <div class="accordion-content" aria-hidden="true">
+                  <div class="flex-row gap-3 align-center">
+                    <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                      <label for="shadowBlur_rect">Shadow Blur:</label>
+                      <div class="mt-1 number-input medium">
+                          <input 
+                          type="number" 
+                          min="0" 
+                          value="0" 
+                          name="shadowBlur_rect" 
+                          id="shadowBlur_rect" 
+                          placeholder="Enter the shadow blur for the canvas element..." 
+                          autocomplete="off" 
+                          spellcheck="false" 
+                          autocapitalize="off"
+                          >
+                          <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                          <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                      </div>
+                    </div>
+                    <div style="flex-shrink: 0;">
+                      <label class="body2" for="shadowColor_rect">Shadow Color:</label>
+                      <div class="flex-row justify-begin align-center gap-2">
+                        <input type="color" data-coloris name="shadowColor_rect" id="shadowColor_rect" value="<%=locals.settings[locals.settingsMode].secondary%>" style="margin-top: 2px;">
+                        <span class="body2"><%=locals.settings[locals.settingsMode].secondary%></span>
+                      </div>
+                      <label class="checkbox mt-1">
+                        <input type="checkbox" class="secondary" name="transparent_shadow_rect" id="transparent_shadow_rect">
+                        Transparent
+                      </label>
+                    </div>
+                  </div>
+                  <div class="flex-row gap-3 mt-2 align-center">
+                    <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                      <label for="shadowOffsetX_rect">Shadow Offset X:</label>
+                      <div class="mt-1 number-input medium">
+                          <input 
+                          type="number" 
+                          value="0" 
+                          name="shadowOffsetX_rect" 
+                          id="shadowOffsetX_rect" 
+                          placeholder="Enter the shadow offset X..." 
+                          autocomplete="off" 
+                          spellcheck="false" 
+                          autocapitalize="off"
+                          >
+                          <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                          <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                      </div>
+                    </div>
+                    <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                      <label for="shadowOffsetY_rect">Shadow Offset Y:</label>
+                      <div class="mt-1 number-input medium">
+                          <input 
+                          type="number" 
+                          value="0" 
+                          name="shadowOffsetY_rect" 
+                          id="shadowOffsetY_rect" 
+                          placeholder="Enter the shadow offset Y" 
+                          autocomplete="off" 
+                          spellcheck="false" 
+                          autocapitalize="off"
+                          >
+                          <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                          <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </details>
+              <div class="flex-row justify-between mt-2">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="primary filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Add"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+                  ADD RECTANGLE
+                </button>
+              </div>
+            </form>
+            <output form="css-sprite-add-rectangle-form" class="hz-scroll block text-align-center mt-2 p-sm" style="max-height: 400px; overflow-y: auto; border: 1px solid var(--divider);">
+              <p class="body1 bold block text-align-left">CSS Sprite Rectangle Preview:</p>
+              <canvas style="margin: 0px auto;" height="100" width="300"></canvas>
+            </output>
+  
+          </div>
+          <div aria-labelledby="draw-path-tab-button" role="tabpanel" tabindex="0" hidden>
+            <form id="css-sprite-add-path-form">
+              <fieldset>
+                <legend class="body1 bold">Add Operation:</legend>
+                <div class="flex-row gap-3 wrap">
+                  <label class="radio">
+                    <input type="radio" name="draw-path-add-operation" value="moveTo" class="secondary" checked>
+                    moveTo
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="draw-path-add-operation" value="lineTo" class="secondary" >
+                    lineTo
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="draw-path-add-operation" value="bezierCurveTo" class="secondary" >
+                    bezierCurveTo
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="draw-path-add-operation" value="quadraticCurveTo" class="secondary" >
+                    quadraticCurveTo
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="draw-path-add-operation" value="arc" class="secondary" >
+                    arc
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="draw-path-add-operation" value="arcTo" class="secondary" >
+                    arcTo
+                  </label>
+                  <button type="button" class="info filled icon-text small" id="add-path-operation-button">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Add"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+                    ADD OPERATION
+                  </button>
+                </div>
+              </fieldset>
+              <div data-drag-container id="path-operations-container">
+  
+              </div>
+              <div class="flex-row gap-3 align-center mt-2">
+                <div style="flex-shrink: 0;">
+                  <label class="body2" for="draw-path-fill-color">Fill Color:</label>
+                  <div class="flex-row justify-begin align-center gap-2">
+                    <input type="color" data-coloris name="draw-path-fill-color" id="draw-path-fill-color" value="<%=locals.settings[locals.settingsMode].primary%>" style="margin-top: 2px;">
+                    <span class="body2"><%=locals.settings[locals.settingsMode].primary%></span>
+                  </div>
+                  <label class="checkbox mt-1">
+                    <input type="checkbox" class="primary" name="fill_transparent_path" id="fill_transparent_path">
+                    Transparent
+                  </label>
+                </div>
+                <div class="grow-1">
+                  <label for="draw-path-fill-opacity">Fill Opacity:</label>
+                  <input name="draw-path-fill-opacity" id="draw-path-fill-opacity" type="range" min="0" max="1" value="1" step="0.01" style="background-size: 100% 100%;">
+                  <output class="hidden" for="draw-path-fill-opacity" hidden="">1</output>
+                </div>
+              </div>
+              <div class="flex-row gap-3 align-center mt-2">
+                <div style="flex-shrink: 0;">
+                  <label class="body2" for="draw-path-stroke-color">Stroke Color:</label>
+                  <div class="flex-row justify-begin align-center gap-2">
+                    <input type="color" data-coloris name="draw-path-stroke-color" id="draw-path-stroke-color" value="<%=locals.settings[locals.settingsMode].secondary%>" style="margin-top: 2px;">
+                    <span class="body2"><%=locals.settings[locals.settingsMode].secondary%></span>
+                  </div>
+                  <label class="checkbox mt-1">
+                    <input type="checkbox" class="secondary" name="stroke_transparent_path" id="stroke_transparent_path">
+                    Transparent
+                  </label>
+                </div>
+                <div class="grow-1">
+                  <label for="draw-path-stroke-opacity">Stroke Opacity:</label>
+                  <input name="draw-path-stroke-opacity" id="draw-path-stroke-opacity" type="range" min="0" max="1" value="1" class="primary" step="0.01" style="background-size: 100% 100%;">
+                  <output class="hidden" for="draw-path-stroke-opacity" hidden="">1</output>
+                </div>
+              </div>
+              <details data-line-dash-details aria-label="Edit Line Style for canvas element..." class="mt-2">
+                <summary>
+                    <span class="h6 fw-regular">Edit Line Style</span>
+                    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                      </path>
+                    </svg>
+                </summary>
+                <div class="accordion-content" aria-hidden="true">
+                  <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                    <label for="line_width_path">Line Width:</label>
+                    <div class="mt-1 number-input medium">
+                        <input 
+                        type="number" 
+                        min="0" 
+                        value="1" 
+                        name="line_width_path" 
+                        id="line_width_path" 
+                        placeholder="Enter the width of the lines use for stroke..." 
+                        autocomplete="off" 
+                        spellcheck="false" 
+                        autocapitalize="off"
+                        >
+                        <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                            <svg focusable="false" inert viewBox="0 0 24 24">
+                                <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                            <svg focusable="false" inert viewBox="0 0 24 24">
+                                <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                  </div>
+                  <fieldset data-line-cap class="mt-2">
+                    <legend class="h6 bold">Line Cap</legend>
+                    <div class="flex-row align-center gap-3">
+                      <label class="radio">
+                        <input type="radio" name="line-cap-style_path" value="butt" class="primary" checked>
+                        butt
+                      </label>
+                      <label class="radio">
+                        <input type="radio" name="line-cap-style_path" value="round" class="primary">
+                        round
+                      </label>
+                      <label class="radio">
+                        <input type="radio" name="line-cap-style_path" value="square" class="primary">
+                        square
+                      </label>
+                    </div>
+                  </fieldset>
+                  <fieldset data-line-join class="mt-2">
+                    <legend class="h6 bold">Line Join</legend>
+                    <div class="flex-row align-center gap-3">
+                      <label class="radio">
+                        <input type="radio" name="line-join-style_path" value="round" class="secondary">
+                        round
+                      </label>
+                      <label class="radio">
+                        <input type="radio" name="line-join-style_path" value="bevel" class="secondary">
+                        bevel
+                      </label>
+                      <label class="radio">
+                        <input type="radio" name="line-join-style_path" value="miter" class="secondary" checked>
+                        miter
+                      </label>
+                    </div>
+                  </fieldset>
+                  <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                    <label for="miter-limit_path">Miter Limit:</label>
+                    <div class="mt-1 number-input medium">
+                        <input 
+                        type="number" 
+                        min="0.1" 
+                        value="10.0"
+                        step="0.1" 
+                        name="miter-limit_path" 
+                        id="miter-limit_path" 
+                        placeholder="Enter the miter limit..." 
+                        autocomplete="off" 
+                        spellcheck="false" 
+                        autocapitalize="off"
+                        >
+                        <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                            <svg focusable="false" inert viewBox="0 0 24 24">
+                                <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                            <svg focusable="false" inert viewBox="0 0 24 24">
+                                <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                  </div>
+                  <div class="flex-row justify-end mt-2">
+                    <button type="button" class="icon-text medium info filled" data-add-line-dash>
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="LineWeight"><path d="M3 17h18v-2H3v2zm0 3h18v-1H3v1zm0-7h18v-3H3v3zm0-9v4h18V4H3z"></path></svg>
+                      ADD LINE DASH
+                    </button>
+                  </div>
+                </div>
+              </details>
+            
+              <details aria-label="Add Shadow for canvas element..." class="mt-2">
+                <summary>
+                    <span class="h6 fw-regular">Add Shadow</span>
+                    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                      </path>
+                    </svg>
+                </summary>
+                <div class="accordion-content" aria-hidden="true">
+                  <div class="flex-row gap-3 align-center">
+                    <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                      <label for="shadowBlur_path">Shadow Blur:</label>
+                      <div class="mt-1 number-input medium">
+                          <input 
+                          type="number" 
+                          min="0" 
+                          value="0" 
+                          name="shadowBlur_path" 
+                          id="shadowBlur_path" 
+                          placeholder="Enter the shadow blur for the canvas element..." 
+                          autocomplete="off" 
+                          spellcheck="false" 
+                          autocapitalize="off"
+                          >
+                          <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                          <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                      </div>
+                    </div>
+                    <div style="flex-shrink: 0;">
+                      <label class="body2" for="shadowColor_path">Shadow Color:</label>
+                      <div class="flex-row justify-begin align-center gap-2">
+                        <input type="color" data-coloris name="shadowColor_path" id="shadowColor_path" value="<%=locals.settings[locals.settingsMode].secondary%>" style="margin-top: 2px;">
+                        <span class="body2"><%=locals.settings[locals.settingsMode].secondary%></span>
+                      </div>
+                      <label class="checkbox mt-1">
+                        <input type="checkbox" class="secondary" name="transparent_shadow_path" id="transparent_shadow_path">
+                        Transparent
+                      </label>
+                    </div>
+                  </div>
+                  <div class="flex-row gap-3 mt-2 align-center">
+                    <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                      <label for="shadowOffsetX_path">Shadow Offset X:</label>
+                      <div class="mt-1 number-input medium">
+                          <input 
+                          type="number" 
+                          value="0" 
+                          name="shadowOffsetX_path" 
+                          id="shadowOffsetX_path" 
+                          placeholder="Enter the shadow offset X..." 
+                          autocomplete="off" 
+                          spellcheck="false" 
+                          autocapitalize="off"
+                          >
+                          <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                          <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                      </div>
+                    </div>
+                    <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                      <label for="shadowOffsetY_path">Shadow Offset Y:</label>
+                      <div class="mt-1 number-input medium">
+                          <input 
+                          type="number" 
+                          value="0" 
+                          name="shadowOffsetY_path" 
+                          id="shadowOffsetY_path" 
+                          placeholder="Enter the shadow offset Y" 
+                          autocomplete="off" 
+                          spellcheck="false" 
+                          autocapitalize="off"
+                          >
+                          <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                          <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </details>
+              <div class="flex-row justify-between mt-2">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="primary filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Add"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+                  ADD PATH
+                </button>
+              </div>
+            </form>
+            <output form="css-sprite-add-path-form" class="hz-scroll block text-align-center mt-2 p-sm" style="max-height: 400px; overflow-y: auto; border: 1px solid var(--divider);">
+              <p class="body1 bold block text-align-left">CSS Sprite Path Preview:</p>
+              <canvas style="margin: 0px auto;" height="100" width="300"></canvas>
+            </output>
+          </div>
+          <div aria-labelledby="draw-ellipse-tab-button" role="tabpanel" tabindex="0" hidden>
+            <form id="css-sprite-add-ellipse-form">
+              <div class="flex-row gap-2 align-center">
+                <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="draw-ellipse-radius-x">Radius X:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      min="0"  
+                      value="50" 
+                      name="draw-ellipse-radius-x" 
+                      id="draw-ellipse-radius-x" 
+                      placeholder="Enter the x-radius of the ellipse..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      >
+                      <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+                <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="draw-ellipse-radius-y">Radius Y:</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      min="0" 
+                      value="50" 
+                      name="draw-ellipse-radius-y" 
+                      id="draw-ellipse-radius-y" 
+                      placeholder="Enter the y-radius of the ellipse..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      >
+                      <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                <label for="draw-ellipse-rotation">Rotation (deg):</label>
+                <div class="mt-1 number-input medium">
+                    <input 
+                    type="number" 
+                    min="0" 
+                    max="360" 
+                    value="0" 
+                    name="draw-ellipse-rotation" 
+                    id="draw-ellipse-rotation" 
+                    placeholder="Enter the rotation of the ellipse..." 
+                    autocomplete="off" 
+                    spellcheck="false" 
+                    autocapitalize="off"
+                    >
+                    <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                        <svg focusable="false" inert viewBox="0 0 24 24">
+                            <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                            </path>
+                        </svg>
+                    </button>
+                    <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                        <svg focusable="false" inert viewBox="0 0 24 24">
+                            <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+              </div>
+              <div class="flex-row gap-2 align-center mt-2">
+                <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="draw-ellipse-start-angle">Start Angle (deg):</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      min="0" 
+                      max="360" 
+                      value="0" 
+                      name="draw-ellipse-start-angle" 
+                      id="draw-ellipse-start-angle" 
+                      placeholder="Enter the start angle of the ellipse..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      >
+                      <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+                <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                  <label for="draw-ellipse-end-angle">End Angle (deg):</label>
+                  <div class="mt-1 number-input medium">
+                      <input 
+                      type="number" 
+                      min="0" 
+                      max="360" 
+                      value="360" 
+                      name="draw-ellipse-end-angle" 
+                      id="draw-ellipse-end-angle" 
+                      placeholder="Enter the end angle of the ellipse..." 
+                      autocomplete="off" 
+                      spellcheck="false" 
+                      autocapitalize="off"
+                      >
+                      <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                      <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                          <svg focusable="false" inert viewBox="0 0 24 24">
+                              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                              </path>
+                          </svg>
+                      </button>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row gap-3 align-center mt-2">
+                <div style="flex-shrink: 0;">
+                  <label class="body2" for="draw-ellipse-fill-color">Fill Color:</label>
+                  <div class="flex-row justify-begin align-center gap-2">
+                    <input type="color" data-coloris name="draw-ellipse-fill-color" id="draw-ellipse-fill-color" value="<%=locals.settings[locals.settingsMode].primary%>" style="margin-top: 2px;">
+                    <span class="body2"><%=locals.settings[locals.settingsMode].primary%></span>
+                  </div>
+                  <label class="checkbox mt-1">
+                    <input type="checkbox" class="primary" name="fill_transparent_ellipse" id="fill_transparent_ellipse">
+                    Transparent
+                  </label>
+                </div>
+                <div class="grow-1">
+                  <label for="draw-ellipse-fill-opacity">Fill Opacity:</label>
+                  <input name="draw-ellipse-fill-opacity" id="draw-ellipse-fill-opacity" type="range" min="0" max="1" value="1" step="0.01" style="background-size: 50% 100%;">
+                  <output class="hidden" for="draw-ellipse-fill-opacity" hidden>50</output>
+                </div>
+              </div>
+              <div class="flex-row gap-3 align-center mt-2">
+                <div style="flex-shrink: 0;">
+                  <label class="body2" for="draw-ellipse-stroke-color">Stroke Color:</label>
+                  <div class="flex-row justify-begin align-center gap-2">
+                    <input type="color" data-coloris name="draw-ellipse-stroke-color" id="draw-ellipse-stroke-color" value="<%=locals.settings[locals.settingsMode].secondary%>" style="margin-top: 2px;">
+                    <span class="body2"><%=locals.settings[locals.settingsMode].secondary%></span>
+                  </div>
+                  <label class="checkbox mt-1">
+                    <input type="checkbox" class="secondary" name="stroke_transparent_ellipse" id="stroke_transparent_ellipse">
+                    Transparent
+                  </label>
+                </div>
+                <div class="grow-1">
+                  <label for="draw-ellipse-stroke-opacity">Stroke Opacity:</label>
+                  <input name="draw-ellipse-stroke-opacity" id="draw-ellipse-stroke-opacity" type="range" min="0" max="1" value="1" class="primary" step="0.01" style="background-size: 50% 100%;">
+                  <output class="hidden" for="draw-ellipse-stroke-opacity" hidden>50</output>
+                </div>
+              </div>
+              <details data-line-dash-details aria-label="Edit Line Style for canvas element..." class="mt-2">
+                <summary>
+                    <span class="h6 fw-regular">Edit Line Style</span>
+                    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                      </path>
+                    </svg>
+                </summary>
+                <div class="accordion-content" aria-hidden="true">
+                  <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                    <label for="line_width_ellipse">Line Width:</label>
+                    <div class="mt-1 number-input medium">
+                        <input 
+                        type="number" 
+                        min="0" 
+                        value="1" 
+                        name="line_width_ellipse" 
+                        id="line_width_ellipse" 
+                        placeholder="Enter the width of the lines use for stroke..." 
+                        autocomplete="off" 
+                        spellcheck="false" 
+                        autocapitalize="off"
+                        >
+                        <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                            <svg focusable="false" inert viewBox="0 0 24 24">
+                                <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                            <svg focusable="false" inert viewBox="0 0 24 24">
+                                <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                  </div>
+                  <fieldset data-line-cap class="mt-2">
+                    <legend class="h6 bold">Line Cap</legend>
+                    <div class="flex-row align-center gap-3">
+                      <label class="radio">
+                        <input type="radio" name="line-cap-style_ellipse" value="butt" class="primary" checked>
+                        butt
+                      </label>
+                      <label class="radio">
+                        <input type="radio" name="line-cap-style_ellipse" value="round" class="primary">
+                        round
+                      </label>
+                      <label class="radio">
+                        <input type="radio" name="line-cap-style_ellipse" value="square" class="primary">
+                        square
+                      </label>
+                    </div>
+                  </fieldset>
+                  <fieldset data-line-join class="mt-2">
+                    <legend class="h6 bold">Line Join</legend>
+                    <div class="flex-row align-center gap-3">
+                      <label class="radio">
+                        <input type="radio" name="line-join-style_ellipse" value="round" class="secondary">
+                        round
+                      </label>
+                      <label class="radio">
+                        <input type="radio" name="line-join-style_ellipse" value="bevel" class="secondary">
+                        bevel
+                      </label>
+                      <label class="radio">
+                        <input type="radio" name="line-join-style_ellipse" value="miter" class="secondary" checked>
+                        miter
+                      </label>
+                    </div>
+                  </fieldset>
+                  <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                    <label for="miter-limit_ellipse">Miter Limit:</label>
+                    <div class="mt-1 number-input medium">
+                        <input 
+                        type="number" 
+                        min="0.1" 
+                        value="10.0"
+                        step="0.1" 
+                        name="miter-limit_ellipse" 
+                        id="miter-limit_ellipse" 
+                        placeholder="Enter the miter limit..." 
+                        autocomplete="off" 
+                        spellcheck="false" 
+                        autocapitalize="off"
+                        >
+                        <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                            <svg focusable="false" inert viewBox="0 0 24 24">
+                                <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                            <svg focusable="false" inert viewBox="0 0 24 24">
+                                <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                  </div>
+                  <div class="flex-row justify-end mt-2">
+                    <button type="button" class="icon-text medium info filled" data-add-line-dash>
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="LineWeight"><path d="M3 17h18v-2H3v2zm0 3h18v-1H3v1zm0-7h18v-3H3v3zm0-9v4h18V4H3z"></path></svg>
+                      ADD LINE DASH
+                    </button>
+                  </div>
+                </div>
+              </details>
+            
+              <details aria-label="Add Shadow for canvas element..." class="mt-2">
+                <summary>
+                    <span class="h6 fw-regular">Add Shadow</span>
+                    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                      </path>
+                    </svg>
+                </summary>
+                <div class="accordion-content" aria-hidden="true">
+                  <div class="flex-row gap-3 align-center">
+                    <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                      <label for="shadowBlur_ellipse">Shadow Blur:</label>
+                      <div class="mt-1 number-input medium">
+                          <input 
+                          type="number" 
+                          min="0" 
+                          value="0" 
+                          name="shadowBlur_ellipse" 
+                          id="shadowBlur_ellipse" 
+                          placeholder="Enter the shadow blur for the canvas element..." 
+                          autocomplete="off" 
+                          spellcheck="false" 
+                          autocapitalize="off"
+                          >
+                          <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                          <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                      </div>
+                    </div>
+                    <div style="flex-shrink: 0;">
+                      <label class="body2" for="shadowColor_ellipse">Shadow Color:</label>
+                      <div class="flex-row justify-begin align-center gap-2">
+                        <input type="color" data-coloris name="shadowColor_ellipse" id="shadowColor_ellipse" value="<%=locals.settings[locals.settingsMode].secondary%>" style="margin-top: 2px;">
+                        <span class="body2"><%=locals.settings[locals.settingsMode].secondary%></span>
+                      </div>
+                      <label class="checkbox mt-1">
+                        <input type="checkbox" class="secondary" name="transparent_shadow_ellipse" id="transparent_shadow_ellipse">
+                        Transparent
+                      </label>
+                    </div>
+                  </div>
+                  <div class="flex-row gap-3 mt-2 align-center">
+                    <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                      <label for="shadowOffsetX_ellipse">Shadow Offset X:</label>
+                      <div class="mt-1 number-input medium">
+                          <input 
+                          type="number" 
+                          value="0" 
+                          name="shadowOffsetX_ellipse" 
+                          id="shadowOffsetX_ellipse" 
+                          placeholder="Enter the shadow offset X..." 
+                          autocomplete="off" 
+                          spellcheck="false" 
+                          autocapitalize="off"
+                          >
+                          <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                          <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                      </div>
+                    </div>
+                    <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+                      <label for="shadowOffsetY_ellipse">Shadow Offset Y:</label>
+                      <div class="mt-1 number-input medium">
+                          <input 
+                          type="number" 
+                          value="0" 
+                          name="shadowOffsetY_ellipse" 
+                          id="shadowOffsetY_ellipse" 
+                          placeholder="Enter the shadow offset Y" 
+                          autocomplete="off" 
+                          spellcheck="false" 
+                          autocapitalize="off"
+                          >
+                          <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                          <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                              <svg focusable="false" inert viewBox="0 0 24 24">
+                                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                                  </path>
+                              </svg>
+                          </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </details>
+              <div class="flex-row justify-between mt-2">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="primary filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Add"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+                  ADD ELLIPSE
+                </button>
+              </div>
+              
+            </form>
+            <output form="css-sprite-add-ellipse-form" class="hz-scroll block text-align-center mt-2 p-sm" style="max-height: 400px; overflow-y: auto; border: 1px solid var(--divider);">
+              <p class="body1 bold block text-align-left">CSS Sprite Ellipse Preview:</p>
+              <canvas style="margin: 0px auto;" height="100" width="300"></canvas>
+            </output>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <hr class="bold" style="margin: 1rem 0rem;">
+
+  <div class="flex-row align-center justify-end">
+    <button disabled id="download-css-sprite" type="button" aria-label="Submit" class="success filled icon-text large">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Download"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path></svg>
+      DOWNLOAD SPRITE
+    </button>
+  </div>
+
+  <div id="added-css-sprite-elements">
+
+  </div>
+
+  
+
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>
+  
+
+
+
+

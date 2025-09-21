@@ -1,0 +1,23 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/scale.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+<h1 class="page-title" id="top-of-page">D3.js Scale</h1>
+        
+<p>
+  Scales map a dimension of abstract data to a visual representation. Although most often used for encoding data as position, say to map time and temperature to a horizontal and vertical position in a scatterplot, scales can represent virtually any visual encoding, such as color, stroke width, or symbol size. Scales can also be used with virtually any type of data, such as named categorical data or discrete data that requires sensible breaks.
+</p>
+
+<p>
+  You can use the d3 scale data to get functions that allow you to appropriate place data inside the svg.
+</p>
+
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

@@ -1,0 +1,19 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/hierarchy.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+<h1 class="page-title" id="top-of-page">D3.js Hierarchy</h1>
+        
+        <p>
+          Many datasets are intrinsically hierarchical: geographic entities, such as census blocks, census tracts, counties and states; the command structure of businesses and governments; file systems; software packages. And even non-hierarchical data may be arranged hierarchically as with k-means clustering or phylogenetic trees. A good hierarchical visualization facilitates rapid multiscale inference: micro-observations of individual elements and macro-observations of large groups.
+
+
+        </p>
+  <%-include('../../partials/pagePartial')%>
+<%}%>

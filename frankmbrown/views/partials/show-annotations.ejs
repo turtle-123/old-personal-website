@@ -1,0 +1,47 @@
+<div>
+    <div class="flex-row justify-center t-warning htmx-indicator" role="progressbar" aria-busy="false" aria-label="Getting annotations...">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div class="mt-1 flex-row justify-start">
+      <div class="select">
+        <button style="min-width:150px;" type="button" role="combobox" aria-haspopup="listbox" aria-controls="annotate-sort-drop" class="select" aria-label="Sort Annotation By" data-popover data-pelem="#annotate-sort-drop" data-click aria-expanded="false">
+          <span class="body1"><%=locals.annotation_sort_by_text%></span>
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+        </button>
+        <div tabindex="0" id="annotate-sort-drop" role="listbox" class="select-menu o-xs" data-placement="bottom">
+          <input 
+          type="text" 
+          hidden 
+          value="<%-locals.annotation_sort_by%>" 
+          name="annotate-sort-input"
+          hx-get="<%=locals.path%>"
+          id="annotate-sort-input"
+          hx-trigger="change"
+          hx-include="#annotation-search-options-form, #search-annotations-searchbox, #show-annotations, #annotate-sort-input, #search-comments-searchbox, #search-comments-options-form, #comment-sort-by"
+          hx-target="#annotation-inners"
+          hx-swap="innerHTML"
+          hx-indicator="#annotation-sort-ind"
+          >
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=locals.annotation_sort_by==="best"%>" data-val="best">
+            Best
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=locals.annotation_sort_by==="new"%>" data-val="new">
+            New
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=locals.annotation_sort_by==="recommended-1"%>" data-val="recommended-1">
+            Recommended 1
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=locals.annotation_sort_by==="recommended-2"%>" data-val="recommended-2">
+            Recommended 2
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row justify-center t-warning htmx-indicator" id="annotation-sort-ind" role="progressbar" aria-busy="false" aria-label="Changing Annotation Sort">
+    <div class="lds-dual-ring"></div>
+    </div>
+    <div id="annotation-inners" style="min-height: 50px; height: auto; max-height: 300px; overflow-y: auto; scrollbar-width: none; border: 2px solid var(--text-secondary); margin-top: 2px; border-radius: 2px; resize: vertical!important;">
+          <%-locals.annotations_html%>
+    </div>
+  </div>
+

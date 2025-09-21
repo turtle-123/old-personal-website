@@ -1,0 +1,165 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/alerts-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="alerts-header">
+  <a href="#alerts-header" class="same-page bold">Alerts</a>
+</h2>
+<details class="mt-2" id="alert-about">
+  <summary>
+    <span class="h6 fw-regular">About Alerts</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true">
+    <span class="h6 bold block bb">CSS</span>
+    There are three type of alerts, each with the option to have an icon or not have an icon, to be collapsable or not collapsable, to be small medium or large, and to have a 
+    <span class="t-success">success</span>, <span class="t-error">error</span>, <span class="t-warning">warning</span>, or <span class="t-info">info</span> themed background:
+    <span class="block w-100 bold">Types of Alerts:</span>
+    <ul>
+      <li>  
+        Normal - No Class Needed
+      </li>
+      <li>
+        Filled - <span><code class="hljs"><span class="hljs-selector-class">.filled</span></code></span>
+      </li>
+      <li>
+        Outlined - <span><code class="hljs"><span class="hljs-selector-class">.outlined</span></code></span>
+      </li>
+    </ul>
+    <span class="block w-100 bold">Alert Sizes:</span>
+    <ul>  
+      <li>Small - <span><code class="hljs"><span class="hljs-selector-class">.small</span></code></span></li>
+      <li>Medium - No Class Needed, <em class="bold">unless</em> icon included, then <span><code class="hljs"><span class="hljs-selector-class">.medium</span></code></span> </li>
+      <li>Large - <span><code class="hljs"><span class="hljs-selector-class">.large</span></code></span></li>
+    </ul>
+    <span class="block w-100 bold">With or Without Icon:</span>
+    <ul>
+      <li>
+        With Icon - <span><code class="hljs"><span class="hljs-selector-class">.icon</span></code></span>
+      </li>
+      <li>
+        Without Icon - No Class Needed
+      </li>
+      <li>
+        With Icon Reverse - <span><code class="hljs"><span class="hljs-selector-class">.icon-after</span></code></span>: places the icon at the end of the flex-row.
+      </li>
+    </ul>
+    <span class="block w-100 bold">Alert Themes</span>
+    <ul>
+      <li class="t-success">
+        Success - <span><code class="hljs"><span class="hljs-selector-class">.success</span></code></span>
+      </li>
+      <li class="t-error">
+        Error - <span><code class="hljs"><span class="hljs-selector-class">.error</span></code></span>
+      </li>
+      <li class="t-warning">
+        Warning - <span><code class="hljs"><span class="hljs-selector-class">.warning</span></code></span>
+      </li>
+      <li class="t-info">
+        Info - <span><code class="hljs"><span class="hljs-selector-class">.info</span></code></span>
+      </li>
+    </ul>
+    <span class="h6 bold block bb">JavaScript</span>
+    The JavaScript that applies to alerts only applies to collapsable alerts. For buttons that should close an alert, make
+    sure to add the <span><code class="hljs"><span class="hljs-selector-class">.close-alert</span></code></span> class to the button.
+    <br/>
+    When clicked, the button should add a class to the wrapper div to make the animation more smooth, and then it will remove the alert from the DOM.
+    <span class="h6 bold block bb">Accessability</span>
+    <span class="bg-warning">
+      Make sure to add role="alert" to the wrapper <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></code></span>s 
+      for the alert.
+    </span>
+  </div>
+
+</details>
+<section id="alert-types" class="mt-2">
+<h3 class="h6 bb">Alert Types</h3>
+<div class="alert success" role="alert">
+  Here is an example of a normal success alert.
+</div>
+<div class="alert error filled large mt-2 fw-regular" role="alert">
+  Here is an example of a large filled error alert.
+</div>
+<div class="alert warning outlined small mt-2" role="alert">
+  Here is an example of an small outlined warning alert.
+</div>
+</section>
+<div class="alert warning mt-2 icon medium" role="alert">
+<svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="WarningAmber"><path d="M12 5.99 19.53 19H4.47L12 5.99M12 2 1 21h22L12 2z"></path><path d="M13 16h-2v2h2zm0-6h-2v5h2z"></path></svg>
+<p class="alert">
+  <strong>NOTE:</strong>
+  <span>If you include an icon, then you should include a size class (.small, .medium, or .large).</span>
+</p>
+</div>
+<section id="alert-sizes" class="mt-2">
+<h3 class="h6 bb">Alert Sizes</h3>
+<div class="alert info large outlined mt-2" role="alert">
+  Here is an example of a large outlined info alert.
+</div>
+<div class="alert warning filled mt-2 fw-regular" role="alert">
+  Here is an example of a medium filled alert.
+</div>
+<div class="alert success small outlined mt-2" role="alert">
+  Here is an example of a small success outlined alert.
+</div>
+</section>
+<section id="alert-icons" class="mt-2">
+<h3 class="h6 bb">Alert With Icons</h3>
+<div class="alert error filled medium icon fw-regular mt-2" role="alert">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Report"><path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z"></path></svg>
+  <p class="alert">
+    <span>
+      Here is an example of a filled error alert with an icon. When the alert is filled, you should use <strong>.fw-regular</strong> to make text more readable.
+    </span>
+  </p>
+</div>
+<div class="alert large success outlined mt-2 icon" role="alert">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Check"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
+  <p class="alert h6">
+    Here is an example of a large success outlined alert with an icon. 
+  </p>
+</div>
+<div class="alert info medium icon-after icon mt-2" role="alert">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Map"><path d="m20.5 3-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"></path></svg>
+  <p class="alert">
+    Here is an example of a medium alert with the .icon-after class, which places the icon at the end of the alert.
+  </p>
+</div>
+</section>
+<section id="alert-collapsable" class="mt-2">
+<h3 class="h6 bb">Collapsable Alerts</h3>
+<div class="alert warning fw-regular filled icon medium mt-2" role="alert">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+  <p class="alert">
+    Here is an example of a medium filled warning alert icon that can be collapsed.
+  </p>
+  <button aria-label="Close Alert" class="icon medium close-alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+  </button>
+</div>
+<div class="alert error outlined small icon mt-2" role="alert">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Tornado"><path d="M20.11 8 23 3H1l2.89 5zM7.95 15 12 22l4.05-7zm11-5H5.05l1.74 3h10.42z"></path></svg>
+  <p class="alert">
+    Here is an example of a small error outlined alert that can be closed.
+  </p>
+  <button aria-label="Close Alert" class="icon small close-alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+  </button>
+</div>
+<div class="success mt-2 alert large icon" role="alert">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Celebration"><path d="m2 22 14-5-9-9zm12.53-9.47 5.59-5.59c.49-.49 1.28-.49 1.77 0l.59.59 1.06-1.06-.59-.59c-1.07-1.07-2.82-1.07-3.89 0l-5.59 5.59 1.06 1.06zm-4.47-5.65-.59.59 1.06 1.06.59-.59c1.07-1.07 1.07-2.82 0-3.89l-.59-.59-1.06 1.07.59.59c.48.48.48 1.28 0 1.76zm7 5-1.59 1.59 1.06 1.06 1.59-1.59c.49-.49 1.28-.49 1.77 0l1.61 1.61 1.06-1.06-1.61-1.61c-1.08-1.07-2.82-1.07-3.89 0zm-2-6-3.59 3.59 1.06 1.06 3.59-3.59c1.07-1.07 1.07-2.82 0-3.89l-1.59-1.59-1.06 1.06 1.59 1.59c.48.49.48 1.29 0 1.77z"></path></svg>
+  <p class="alert">
+    <strong>NOTE:</strong>
+    Here is an example of a large success alert with an icon that can be collapsed. Note: The p.alert is a flex-column.
+  </p>
+  <button aria-label="Close Alert" class="close-alert icon large">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+  </button>
+</div>
+</section>

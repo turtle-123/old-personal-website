@@ -1,0 +1,43 @@
+<%# 
+PARTIAL ROUTE: pages/admin/admin-home.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.pageObj
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+    <h1 class="page-title">Admin Job Search</h1>
+  
+    
+    <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+      <label for="INPUT_ID">Job Title:</label>
+      <div class="text-input block medium">
+          <input 
+          type="text" 
+          autocomplete="AUTOCOMPLETE" 
+          name="INPUT_ID" 
+          id="INPUT_ID" 
+          class="medium icon-before mt-1" 
+          required="ENTER REQUIRED"
+          placeholder="INPUT PLACEHOLDER" 
+          maxlength="INPUT MAXLENGTH"
+          minlength="INPUT MINLENGTH" 
+          pattern="INPUT_PATTERN" 
+          spellcheck="true" 
+          autocapitalize="off"
+          >
+          <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="AccountCircleSharp">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z">
+              </path>
+          </svg>
+          <!-- Buttons and SVGs -->
+      </div>
+    </div>
+
+
+      
+    <%-include('../../partials/pagePartial')%>
+  <%}%>

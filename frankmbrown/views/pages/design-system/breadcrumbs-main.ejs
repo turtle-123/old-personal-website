@@ -1,0 +1,56 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/breadcrumbs-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="breadcrumbs-header">
+  <a href="#breadcrumbs-header"  class="same-page bold">Breadcrumbs</a>
+</h2>
+<details class="mt-2" id="about-breadcrumbs">
+  <summary>
+    <span class="h6 fw-regular">About Breadcrumbs</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true">
+    <span class="block h6 bold">CSS</span>
+    The breadcrumbs are a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span>&gt;</span></span></code></span> element
+    since breadcrumbs are used for application navigation. The max-width for each list item in the nav element 
+    is 100px. 
+    <span class="block h6 bold">Accessability</span>
+    The breadcrumb for the page that you are currently on should have an aria-current="page" attribute on it to indicate to the screen reader that you are currently on "this" page.
+    <span class="block h6 bold">Search Engine Optimization</span>
+    Breadcrumbs for a page should be included in the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span></code></span> element 
+    using <a href="https://developers.google.com/search/docs/appearance/structured-data/breadcrumb" class="secondary link">this structured data markup</a>.
+  </div>
+</details>
+<div class="alert warning icon medium mt-2 outlined" role="alert">
+<svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+<p class="alert">
+  <strong>NOTE:</strong>
+<span>Breadcrumbs don't have much styling applied to them, so they are one of the more easily customizable components.</span>
+</p>
+</div>
+<section id="breadcrumbs-example" class="mt-2">
+<h2 class="h2 bb">Breadcrumbs Example</h2>
+<nav class="breadcrumbs body2" style="margin-bottom: 1rem;">
+  <ul>
+    <li>
+      <a href="/"  class="secondary link">Home</a>
+    </li>
+    <li>
+      <a href="/my-design-system" class="secondary link">My Design System</a>
+    </li>
+    <li>
+      <a href="/my-design-system/breadcrumbs" aria-current="page" class="secondary link">Breadcrumbs</a>
+    </li>
+  </ul>
+</nav>
+<div class="block">
+  <span style="visibility: hidden; min-height: 100px;">Hello World</span>
+</div>
+</section>

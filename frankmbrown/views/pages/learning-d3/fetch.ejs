@@ -1,0 +1,18 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/fetch.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+  <h1 class="page-title" id="top-of-page">D3.js Fetch</h1>
+  
+  <p>
+    This module provides convenient parsing on top of Fetch. For example, to load a text file:
+  </p>
+        
+  <%-include('../../partials/pagePartial')%>
+<%}%>

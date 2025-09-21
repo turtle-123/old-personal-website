@@ -1,0 +1,519 @@
+<%# 
+PARTIAL ROUTE: pages/projects/create-svg.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+<h1 class="page-title">Creating an Advanced SVG Maker</h1>
+  <div class="alert error filled icon medium" role="alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+    <p class="alert">
+      Note that this is not done yet, so you can't really use it for anything yet.
+    </p>
+    <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+    </button>
+  </div>
+  <section id="about-the-svg-editor" class="mt-2">
+    <h2 class="flex-row align-center justify-between bb-main" style="padding-bottom: 4px;">
+      <a href="#about-the-svg-editor" class="same-page fw-regular h5 bold">About the Editor</a>
+      <button data-hide-show-section="about-editor-content" type="button" class="icon-text medium warning text">
+        <svg style="transform: rotate(180deg);" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span>HIDE</span>
+      </button>
+    </h2>
+    <div id="about-editor-content" class="mt-1" style="padding-left: 10px;">
+      <section id="general-e-c">
+        <h3 class="flex-row align-center justify-between bb" style="padding-bottom: 4px;">
+          <a href="#general-e-c" class="same-page fw-regular h6 bold">General</a>
+          <button data-hide-show-section="general-c-c" type="button" class="icon-text medium warning text">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span>HIDE</span>
+          </button>
+        </h3>
+        <div class="indent-1 mt-1" id="general-c-c">
+          <p class="body1 bold">Why</p>
+          <p class="body1 mt-1">
+            I'm trying to make a SVG editor with advanced functionality using <a href="https://pixijs.com/" class="secondary link" target="_blank">PixiJs.</a> I haven't found a SVG editor that I find simple, that allows users to animate components, and that exports <strong>simple</strong> SVGs - <span class="t-info fw-regular">if you look at other SVG editors, they mostly export svgs by only utilizing paths.</span>
+            <span class="block bold">References:</span>
+          </p>
+          <ul>
+            <li>
+              <a class="secondary link" href="https://pixijs.download/release/docs/index.html" target="_blank">Here are the docs for Pixi JS</a>
+              <ul class="second">
+                <li>
+                  <a class="secondary link" style="color: var(--info)!important" target="_blank" href="https://pixijs.download/release/docs/PIXI.Graphics.html">PIXI.Graphics Docs</a>
+                </li>
+                <li>
+                  <a class="secondary link" style="color: var(--info)!important" target="_blank" href="https://pixijs.download/release/docs/PIXI.Text.html">PIXI.Text Docs</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="https://pixijs.com/playground" class="secondary link" target="_blank">Here are some examples</a>
+            </li>
+          </ul>
+          <p class="bold body1 mt-1">Requirements:</p>
+          <ul>
+            <li>
+              Users should be able to create <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span>&gt;</span></span></code></span> elements that contain all of the most commonly used <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span>&gt;</span></span></code></span> elements: 
+              <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">circle</span>&gt;</span>, <span class="hljs-tag">&lt;<span class="hljs-name">rect</span>&gt;</span>, <span class="hljs-tag">&lt;<span class="hljs-name">ellipse</span>&gt;</span>, <span class="hljs-tag">&lt;<span class="hljs-name">path</span>&gt;</span>, <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span>&gt;</span>, <span class="hljs-tag">&lt;<span class="hljs-name">polygon</span>&gt;</span>, <span class="hljs-tag">&lt;<span class="hljs-name">text</span>&gt;</span></span></code></span>
+            </li>
+            <li>
+              Users should be able to edit the background color, border, width, height and viewBox of the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span>&gt;</span></span></code></span> element that is created with this editor. <span class="t-warning fw-regular">The positions should be put into the proper scale when the user submits the form.</span>
+            </li>
+            <li>  
+              Users should be able to utilize <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">radialGradient</span>&gt;</span></span></code></span> and <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">linearGradient</span>&gt;</span></span></code></span> elements for the background and border colors of the shapes.
+            </li>
+            <li>
+              Users should be able to add animation to the SVG editor by adding frames and editing the appearance of the SVG editor at those frames. The <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">animate</span>&gt;</span></span></code></span> component should be utilized for this. <span class="t-warning fw-regular">If an element exists in one frame, but not others, then the element should be assigned an opacity of 0 for those other frames instead of being removed.</span>
+            </li>
+            <li>
+              User should be able to add images eventually. 
+            </li>
+            <li>
+              Add the ability to select and manipulate multiple elements at once.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="line-smoothing" class="mt-2">
+        <h3 class="flex-row align-center justify-between bb" style="padding-bottom: 4px;">
+          <a href="#line-smoothing" class="same-page fw-regular h6 bold">Line Smoothing</a>
+          <button data-hide-show-section="line-smoothing-section" type="button" class="icon-text medium warning text">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span>HIDE</span>
+          </button>
+        </h3>
+        <div class="indent-1 mt-1" id="line-smoothing-section">
+          <p class="body1">
+            <span class="fw-regular">Below are some options for smoothing the 'lines' (paths) drawn on the canvas (<a class="secondary link" target="_blank" href="https://stackoverflow.com/questions/40685351/approximate-a-list-of-points-with-a-short-list-of-b%C3%A9zier-curves">
+              Reference</a>):</span>
+          </p>
+          <ul>
+            <li>
+              <a class="secondary link" target="_blank" href="https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm">Ramer-Douglas Peucker Algorithm</a>
+            </li>
+            <li>
+              <a class="secondary link" target="_blank" href="https://medium.com/phcacique/chaikins-algorithm-for-drawing-curves-7d19b2e0e209">Chaikins Algorithm For Drawing Curves</a>
+            </li>
+            <li class="secondary link">
+              <a class="secondary link" target="_blank" href="https://github.com/soswow/fit-curve">Schneider algorithm</a>
+            </li>
+            <li >
+              Using least square fitting with B-spline to produce a single B-spline curve.
+              <ul class="second">
+                <li>
+                  <a class="secondary link" target="_blank" href="https://www.geometrictools.com/Documentation/BSplineCurveLeastSquaresFit.pdf">Reference 1</a>
+                </li>
+                <li>
+                  <a class="secondary link" target="_blank" href="https://core.ac.uk/download/pdf/36730496.pdf">Reference 2</a>
+                </li>
+              </ul>
+              
+            </li>
+          </ul>
+          <p class="body1 mt-2">
+            I ended up going with the Schneider Algorithm because it was easy to implement and the results looked pretty good. I still need to figure out 
+            a way to determine when a line vs when a bezier curve should be drawn, given that lines and bezier curves can be drawn in the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">path</span>&gt;</span></span></code></span> element. <b class="t-warning">Note that we are drawing cubic, not quadratic bezier curves.</b> Arcs can only be drawn using the path element, but I have decided to not to include that for now due to the fact that you would have to determine, for a path, when to draw a line vs bezier curve vs an arc and I haven't figured out a way to do that yet. 
+          </p>
+        </div>
+
+      </section>
+      
+      <section id="to-do" class="mt-2">
+        <h3 class="flex-row align-center justify-between bb" style="padding-bottom: 4px;">
+          <a href="#to-do" class="same-page fw-regular h6 bold">TO DO</a>
+          <button data-hide-show-section="to-do-section" type="button" class="icon-text medium warning text">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span>HIDE</span>
+          </button>
+        </h3>
+        <div class="indent-1 mt-1" id="to-do-section">
+          <ul>
+            <li>
+              Add the ability to edit the lines and fills of elements, delete elements, and move / resize / rotate / transform rotate. When the user selects an element, the element should appear selected 
+            </li>
+            <li>
+              Add the ability to add different frames
+            </li>
+            <li>
+              There should be a number input for each frame that dictates when the frame should appear in seconds. The first frame should always appear at 0. Each number input should have a max value = 180 sec (the max length of the SVG animation at the current time).
+            </li>
+            <li>
+              Figure out when to draw straight lines vs when to draw bezier curves vs when to draw arcs when a user creates a path element.
+            </li>
+            <li>
+              Add the ability to add images.
+            </li>
+            <li>
+              Add undo and redo functionality.
+            </li>
+          </ul>
+        </div>
+      </section>
+      
+
+    </div>
+    </section>
+
+      
+    <section id="create-the-svg" class="mt-4 hz-scroll">
+      <h2 class="flex-row align-center justify-between bb-main" style="padding-bottom: 4px;">
+        <a href="#create-the-svg" class="same-page fw-regular h5 bold">Create the Scalable Vector Graphic</a>
+      </h2>
+      <div class="toggle-button-group mt-2" role="toolbar">
+        <div data-popover data-pelem="#tool-man-el" data-mouse>
+          <button type="button" class="toggle-button" id="manipulate-mode" aria-label="Manipulate Elements">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="BackHand"><path d="M13 24c-3.26 0-6.19-1.99-7.4-5.02l-3.03-7.61c-.31-.79.43-1.58 1.24-1.32l.79.26c.56.18 1.02.61 1.24 1.16L7.25 15H8V3.25C8 2.56 8.56 2 9.25 2s1.25.56 1.25 1.25V12h1V1.25c0-.69.56-1.25 1.25-1.25S14 .56 14 1.25V12h1V2.75c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25V12h1V5.75c0-.69.56-1.25 1.25-1.25S21 5.06 21 5.75V16c0 4.42-3.58 8-8 8z"></path></svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#tool-add-circ" data-mouse>
+          <button id="add-circle" type="button" class="toggle-button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="AddCircle"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#tool-add-rect" data-mouse>
+          <button id="add-rectangle" type="button" class="toggle-button">
+            <svg viewBox="0 0 24 24" tabindex="-1" focusable="false">
+              <rect x="5%" y="15%" width="90%" height="70%" rx="0" ry="0" stroke="var(--text-primary)" stroke-width="2" fill="transparent" style="fill:transparent!important;"></rect>
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+            </svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#tool-add-ellip" data-mouse>
+          <button id="add-ellipse" type="button" class="toggle-button">
+            <svg viewBox="0 0 24 24" tabindex="-1" focusable="false">
+              <ellipse cx="50%" cy="50%" rx="46%" ry="34%" fill="transparent" stroke="var(--text-primary)" stroke-width="2" style="fill:transparent!important;"></ellipse>
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+            </svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#tool-add-lin" data-mouse>
+          <button id="add-line" type="button" class="toggle-button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="EditOff"><path d="m12.126 8.125 1.937-1.937 3.747 3.747-1.937 1.938zM20.71 5.63l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75L20.71 7a1 1 0 0 0 0-1.37zM2 5l6.63 6.63L3 17.25V21h3.75l5.63-5.62L18 21l2-2L4 3 2 5z"></path></svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#toll-add-plin" data-mouse>
+          <button id="add-polyline" type="button" class="toggle-button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Polyline"><path d="M15 16v1.26l-6-3v-3.17L11.7 8H16V2h-6v4.9L7.3 10H3v6h5l7 3.5V22h6v-6z"></path></svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#tool-add-pa" data-mouse>
+          <button id="add-path" type="button" class="toggle-button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Route"><path d="M19 15.18V7c0-2.21-1.79-4-4-4s-4 1.79-4 4v10c0 1.1-.9 2-2 2s-2-.9-2-2V8.82C8.16 8.4 9 7.3 9 6c0-1.66-1.34-3-3-3S3 4.34 3 6c0 1.3.84 2.4 2 2.82V17c0 2.21 1.79 4 4 4s4-1.79 4-4V7c0-1.1.9-2 2-2s2 .9 2 2v8.18c-1.16.41-2 1.51-2 2.82 0 1.66 1.34 3 3 3s3-1.34 3-3c0-1.3-.84-2.4-2-2.82z"></path></svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#tool-add-po" data-mouse>
+          <button id="add-polygon" class="toggle-button" type="button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Draw"><path d="m18.85 10.39 1.06-1.06c.78-.78.78-2.05 0-2.83L18.5 5.09c-.78-.78-2.05-.78-2.83 0l-1.06 1.06 4.24 4.24zm-5.66-2.83L4 16.76V21h4.24l9.19-9.19-4.24-4.25zM19 17.5c0 2.19-2.54 3.5-5 3.5-.55 0-1-.45-1-1s.45-1 1-1c1.54 0 3-.73 3-1.5 0-.47-.48-.87-1.23-1.2l1.48-1.48c1.07.63 1.75 1.47 1.75 2.68zM4.58 13.35C3.61 12.79 3 12.06 3 11c0-1.8 1.89-2.63 3.56-3.36C7.59 7.18 9 6.56 9 6c0-.41-.78-1-2-1-1.26 0-1.8.61-1.83.64-.35.41-.98.46-1.4.12-.41-.34-.49-.95-.15-1.38C3.73 4.24 4.76 3 7 3s4 1.32 4 3c0 1.87-1.93 2.72-3.64 3.47C6.42 9.88 5 10.5 5 11c0 .31.43.6 1.07.86l-1.49 1.49z"></path></svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#tool-add-te" data-mouse>
+          <button id="add-text" type="button" class="toggle-button">
+            <svg tabindex="-1" focusable="false" inert viewBox="0 0 24 24"><path d="M.99 19h2.42l1.27-3.58h5.65L11.59 19h2.42L8.75 5h-2.5zm4.42-5.61L7.44 7.6h.12l2.03 5.79zM20 11h3v2h-3v3h-2v-3h-3v-2h3V8h2z"></path></svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#tool-add-anim" data-mouse>
+          <button id="add-animation" type="button" class="toggle-button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Animation"><path d="M15 2c-2.71 0-5.05 1.54-6.22 3.78-1.28.67-2.34 1.72-3 3C3.54 9.95 2 12.29 2 15c0 3.87 3.13 7 7 7 2.71 0 5.05-1.54 6.22-3.78 1.28-.67 2.34-1.72 3-3C20.46 14.05 22 11.71 22 9c0-3.87-3.13-7-7-7zM9 20c-2.76 0-5-2.24-5-5 0-1.12.37-2.16 1-3 0 3.87 3.13 7 7 7-.84.63-1.88 1-3 1zm3-3c-2.76 0-5-2.24-5-5 0-1.12.37-2.16 1-3 0 3.86 3.13 6.99 7 7-.84.63-1.88 1-3 1zm4.7-3.3c-.53.19-1.1.3-1.7.3-2.76 0-5-2.24-5-5 0-.6.11-1.17.3-1.7.53-.19 1.1-.3 1.7-.3 2.76 0 5 2.24 5 5 0 .6-.11 1.17-.3 1.7zM19 12c0-3.86-3.13-6.99-7-7 .84-.63 1.87-1 3-1 2.76 0 5 2.24 5 5 0 1.12-.37 2.16-1 3z"></path></svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#tool-cl-edi" data-mouse>
+          <button id="clear-editor" type="button" class="toggle-button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Clear"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#tool-del-els" data-mouse>
+          <button id="delete-shape" type="button" class="toggle-button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Delete"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#tool-undo-svg-e" data-mouse>
+          <button id="undo-last-change" type="button" class="toggle-button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Undo"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"></path></svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#tool-redo-svg-e" data-mouse>
+          <button id="redo-last-change" type="button" class="toggle-button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Redo"><path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"></path></svg>
+          </button>
+        </div>
+        <div data-popover data-pelem="#tool-redit-svg" data-mouse>
+          <button class="toggle-button" data-dialog="edit-svg-element" type="button" class="toggle-button">
+            <svg focusable="false" inert tabindex="-1" viewBox="0 0 24 24">
+              <rect x="2.5%" y="2.5%" width="95%" height="95%" rx="10%" ry="10%" fill="transparent" stroke="var(--text-primary)" stroke-width="2">
+              </rect>
+              <path fill="transparent" stroke-width="1.5" stroke="var(--text-primary)" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div data-pixi-container style="height: 300px; border: 2px solid currentColor; margin: 0px auto;" class="hz-scroll"></div>
+
+    </section>
+    <section id="animations" class="bg-card p-md">
+      <h2 class="h2 bold bb">Frames:</h2>
+      <div class="flex-row gap-3 wrap mt-1" id="change-animation-frame"></div>
+      <label for="animation-duration" class="mt-2 disabled">Animation Duration (s):</label>
+      <div class="flex-row align-center gap-3 mt-2">
+        <input disabled name="animation-duration" class="grow-1" id="animation-duration" disabled type="range" min="0" max="180" value="10" step="1" style="background-size: 6% 100%;">
+        <output for="animation-duration" class="h6 fw-regular" style="position: relative; bottom: 2px;">10</output><span  style="position: relative; bottom: 2px;" class="h6 fw-regular">sec</span>
+      </div>
+    </section>
+    <section id="customize-editor">
+      <details aria-label="Customize SVG Editor" class="flat">
+        <summary>
+            <span class="h6 fw-regular">Customize SVG Editor</span>
+            <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+            <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+            </path>
+            </svg>
+        </summary>
+        <div class="accordion-content" style="background-color: var(--background);" aria-hidden="true">
+          <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+            <label for="bezier-curve-error">Bezier Curve Error:</label>
+            <div class="mt-1 number-input medium">
+                <input 
+                type="number" 
+                min="0" 
+                value="50" 
+                name="bezier-curve-error" 
+                id="bezier-curve-error" 
+                placeholder="Enter the error squared value to use for the Algorithm for Automatically Fitting Digitized Curves" 
+                autocomplete="off" 
+                spellcheck="false" 
+                autocapitalize="off"
+                >
+                <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+          </div>
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+            <label for="INPUT_NAME">INPUT_LABEL:</label>
+            <div class="mt-1 number-input medium">
+                <input 
+                type="number" 
+                min="MIN_INPUT" 
+                max="100" 
+                value="DEFAULT_VALUE" 
+                name="INPUT_NAME" 
+                id="INPUT_NAME" 
+                placeholder="INPUT_PLACEHOLDER" 
+                autocomplete="off" 
+                spellcheck="false" 
+                autocapitalize="off"
+                >
+                <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+          </div>
+        </div>
+    </details>
+    </section>
+    <section id="edit-shapes">
+      <div hidden class="edit-shape-container" id="edit-circle-container">
+        <p class="h5 bold">
+          Edit Circle
+        </p>
+        <div class="flex-row gap-2 align-center justify-start">
+          <div class="grow-1">
+            <label class="body2 bold" for="circle-bg-color">Background Color:</label>
+            <div class="flex-row justify-begin align-center gap-2">
+              <input type="color" data-coloris name="circle-bg-color" id="circle-bg-color" value="#000000" style="margin-top: 2px;">
+              <span class="body2">DEFAULT_VALUE</span>
+            </div>
+          </div>
+          <div class="grow-1">
+            <label class="body2 bold" for="circle-fill-color">Fill Color:</label>
+            <div class="flex-row justify-begin align-center gap-2">
+              <input type="color" data-coloris name="circle-fill-color" id="circle-fill-color" value="#FFFFFF" style="margin-top: 2px;">
+              <span class="body2">DEFAULT_VALUE</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex-row gap-2 mt-2 align-center justify-start">
+          <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+            <label for="circle-center-x" class="body2 bold">Center X:</label>
+            <div class="mt-1 number-input medium">
+                <input 
+                type="number" 
+                name="circle-center-x" 
+                id="circle-center-x" 
+                placeholder="Enter the x-coordinate of the circle center" 
+                autocomplete="off" 
+                spellcheck="false" 
+                autocapitalize="off"
+                >
+                <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+          </div>
+          <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+            <label for="circle-center-y" class="body2 bold">Center Y:</label>
+            <div class="mt-1 number-input medium">
+                <input 
+                type="number" 
+                name="circle-center-y" 
+                id="circle-center-y" 
+                placeholder="Enter the y-coordinate of the circle center" 
+                autocomplete="off" 
+                spellcheck="false" 
+                autocapitalize="off"
+                >
+                <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+          </div>
+        </div>
+        
+  
+      </div>
+      <div hidden class="edit-shape-container" id="edit-rectangle-container">
+        <p class="h5 bold">
+          Edit Rectangle
+        </p>
+
+      </div>
+      <div hidden class="edit-shape-container" id="edit-ellipse-container">
+        <p class="h5 bold">
+          Edit Ellipse
+        </p>
+
+      </div>
+      <div hidden class="edit-shape-container" id="edit-line-container">
+        <p class="h5 bold">
+          Edit Line
+        </p>
+
+      </div>
+      <div hidden class="edit-shape-container" id="edit-polyline-container">
+        <p class="h5 bold">
+          Edit Polyline
+        </p>
+
+      </div>
+      <div hidden class="edit-shape-container" id="edit-polygon-container">
+        <p class="h5 bold">
+          Edit Polygon
+        </p>
+
+      </div>
+      <div hidden class="edit-shape-container" id="edit-path-container">
+        <p class="h5 bold">
+          Edit Path
+        </p>
+
+      </div>
+      <div hidden class="edit-shape-container" id="edit-text-container">
+        <p class="h5 bold">
+          Edit Text
+        </p>
+
+      </div>
+    </section>
+    <section id="tooltips-for-svg">
+      <div class="tooltip caption" role="tooltip" id="tool-man-el" data-placement="top">
+        Manipulate Elements
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-add-circ" data-placement="top">
+        Add Circle
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-add-rect" data-placement="top">
+        Add Rectangle
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-add-ellip" data-placement="top">
+        Add Ellipse
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-add-lin" data-placement="top">
+        Add Line
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-add-plin" data-placement="top">
+        Add Polyline
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-add-pa" data-placement="top">
+        Add Path
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-add-po" data-placement="top">
+        Add Polygon
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-add-te" data-placement="top">
+        Add Text
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-add-anim" data-placement="top">
+        Add Animation
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-cl-edi" data-placement="top">
+        Clear Editor
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-del-els" data-placement="top">
+        Delete Element
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-undo-svg-e" data-placement="top">
+        Undo
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-redo-svg-e" data-placement="top">
+        Redo
+      </div>
+      <div class="tooltip caption" role="tooltip" id="tool-redit-svg" data-placement="top">
+        Edit SVG
+      </div>
+    </section>
+      
+      <div id="copy-nack-svg-href" class="snackbar success" aria-hidden="true" role="alert" data-snacktime="4000">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CheckSharp"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"></path></svg>
+        <p class="p-sm">
+          Copied gradient / svg href to clipboard.
+        </p>
+        <button class="icon medium" type="button" data-close-snackbar aria-label="Close Snackbar">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CloseSharp"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+        </button>
+      </div>
+  
+  <%-include('../../partials/pagePartial')%>
+<%}%>

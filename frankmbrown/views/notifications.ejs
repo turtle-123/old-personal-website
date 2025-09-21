@@ -1,0 +1,61 @@
+<%# 
+PARTIAL ROUTE: partials/notifications.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.phone
+%>
+
+<style>
+  * {
+    --max-width-toc: 400px;
+  }
+</style>
+
+<%if(locals.phone===false){%>
+  <aside class="notification drawer right lg" id="notification-sidebar" aria-hidden="true" >
+    <div class="flex-row justify-begin align-center">
+      <button class="icon medium" type="button" data-close-drawer="" aria-label="Close Drawer">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowRight"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path></svg>
+      </button>
+    </div>
+    <div id="table-of-contents" class="card block rounded el-2 p-md no-scrollbar" style="max-width: var(--max-width-toc); margin-top: calc(0.5rem + 1px);">
+      <div data-click-capture class="flex-row justify-start align-center gap-3 bb w-100">
+        <span class="h6 bold">Table of Contents</span>
+        <button type="button" class="icon medium" aria-label="Hide / Show Table of Contents" data-hide-show data-el="#TABLE_OF_CONTENTS">
+          <svg data-arrow focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowDown"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>
+        </button>
+      </div>
+      <div class="flex-row justify-center t-primary htmx-indicator" id="this-page-indicator" role="progressbar" aria-busy="true" aria-label="Table of Contents Indicator">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <%-include('./partials/onThisPage')%>
+    </div>
+    <%-include('./partials/article-annotation')%>
+    <%-include('./partials/notifications-partial')%>
+    
+  </aside>
+  <%}else{%>
+  <aside class="notification drawer lg right" id="notification-sidebar" data-click-capture aria-hidden="true">
+    <div class="flex-row justify-begin align-center" style="margin-top: 0.5rem;">
+      <button class="icon large" type="button" data-close-drawer="" aria-label="Close Drawer">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowRight"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path></svg>
+      </button>
+    </div>
+    <div id="table-of-contents" class="card block rounded el-2 p-md mt-1">
+      <div data-click-capture  class="flex-row justify-start align-center gap-3 bb w-100">
+        <span class="h6 bold">Table of Contents</span>
+        <button type="button" class="icon medium" aria-label="Hide or Show Table of Contents Hotkeys" data-hide-show data-el="#TABLE_OF_CONTENTS">
+          <svg data-arrow focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowDown"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>
+        </button>
+      </div>
+      <div class="flex-row justify-center t-primary htmx-indicator" id="this-page-indicator" role="progressbar" aria-busy="true" aria-label="Table of Contents Indicator">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <%-include('./partials/onThisPage')%>
+    </div>
+    <%-include('./partials/article-annotation')%>
+    <%-include('./partials/notifications-partial')%>
+   
+  </aside>
+<%}%>

@@ -1,0 +1,60 @@
+<%# 
+PARTIAL ROUTE: dialogs/imageDialog.ejs
+PARTIAL DESCRIPTION: Dialog to use so that the users can view images nd pinch zoom...
+LOCAL VARIABLES:
+----------------------------------
+- locals.desktop (bool): Is the user's device desktop?
+%>
+<div style="display: none;" hidden class="dialog-wrapper" id="image-dialog" data-esc>
+  <div class="flex-row justify-end align-center">
+    <span class="grow-0 flex-row align-center">
+      <%if(locals.desktop===true){%>
+        <kbd class="kbd mr-1" data-popover data-pelem="#close-image-dialog-tooltip" aria-describedby="close-image-dialog-tooltip" data-mouse>ESC</kbd>
+        <div class="tooltip body2" style="color: var(--text-primary);" role="tooltip" id="close-image-dialog-tooltip" data-placement="bottom">
+          Press ESC to Close the Dialog
+        </div>
+      <%}%>     
+      <button aria-label="Close Image Dialog" class="icon medium close-dialog" title="Close Image Dialog" type="button">
+        <svg class="t-normal" focusable="false" inert viewBox="0 0 24 24">
+          <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z">
+          </path>
+        </svg>
+      </button>
+    </span>
+  </div>
+  <p id="image-modal-text" class="h3 bold text-align-center" style="color: white!important;"></p>
+  <img src="" alt="" id="image-modal-image" class="mt-2 no-click">
+  <p class="body1 text-align-center" style="max-width: 600px; margin: 6px auto; color: white!important;" id="image-modal-additional-description"></p>
+  <details id="report-image" class="mt-2 medium p-md">
+    <summary>
+      <span class="t-warning h6 bold">
+        Report Inappropriate Content
+      </span>
+      <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+        <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+        </path>
+      </svg>
+    </summary>
+    <div class="accordion-content" aria-hidden="true">
+      <form id="inappropriate-image-form">
+        <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+          <label for="harmful-image-desc" class="disabled" hidden>Report Inappropriate Image:</label>
+          <div class="mt-1 text-input block medium disabled">
+              <textarea name="harmful-image-desc" id="harmful-image-desc" placeholder="Enter a description of why this image is inappropriate..." rows="10" maxlength="200" minlength="50" spellcheck="true" autocomplete="off" autocapitalize="off" disabled=""></textarea>
+          </div>
+          <p class="char-counter t-disabled" data-input="harmful-image-desc" tabindex="-1">
+              <span class="min-counter body2" data-val="50" aria-hidden="false" tabindex="-1">more characters required</span>
+              <span class="max-counter body2" data-val="200" aria-hidden="true" tabindex="-1">Characters Remaining</span>
+          </p>
+        </div>
+        <div class="mt-2 flex-row w-100 align-center justify-end" tabindex="-1">
+          <button aria-label="Submit Form" type="submit" disabled="disabled" class="icon-text medium success">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+            <span>SUBMIT</span>
+          </button>
+        </div>
+        
+      </form>
+    </div>
+  </details>
+</div>

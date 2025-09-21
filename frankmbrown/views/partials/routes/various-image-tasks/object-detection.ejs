@@ -1,0 +1,58 @@
+<%# 
+PARTIAL ROUTE: partials/routes/various-image-tasks/object-detection.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.imageHTML
+- locals.label_to_color
+- locals.label_to_color[i][0]
+- locals.label_to_color[i][1]
+- locals.response
+- locals.response[i]
+%>
+<%#  Object Detection %>
+
+<h3 class="h3 bold mt-2 bb">Object Detection Response</h3>
+
+<%-locals.imageHTML%>
+
+<div class="table-wrapper mt-2">
+    <table cellspacing="0">
+        <caption class="h3 bold">Border Box Color To Label</caption>
+        <thead>
+            <tr>
+                <th scope="col">Label</th>
+                <th scope="col">Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%for(let i =0; i < locals.label_to_color.length; i++){%>
+                <tr>
+                    <td><%=locals.label_to_color[i][0]%></td>
+                    <td style="background-color: <%-locals.label_to_color[i][1]%>;"><%=locals.label_to_color[i][1]%></td>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+</div>
+<div class="table-wrapper mt-2">
+    <table cellspacing="0">
+        <caption class="h3 bold">Object Detection Information</caption>
+        <thead>
+            <tr>
+                <th scope="col">Box</th>
+                <th scope="col">Label</th>
+                <th scope="col">Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%for(let i =0; i < locals.response.length; i++){%>
+                <tr>
+                    <td><%=locals.response[i].box%></td>
+                    <td><%=locals.response[i].label%></td>
+                    <td><%=locals.response[i].score%></td>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+</div>

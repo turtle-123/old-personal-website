@@ -1,0 +1,20 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/quadtree.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+<h1 class="page-title" id="top-of-page">D3.js Quadtree</h1>
+      
+<p>
+  A quadtree recursively partitions two-dimensional space into squares, dividing each square into four equally-sized squares. Each distinct point exists in a unique leaf node; coincident points are represented by a linked list. Quadtrees can accelerate various spatial operations, such as the Barnes–Hut approximation for computing many-body forces, collision detection, and searching for nearby points.
+
+
+</p>
+        
+  <%-include('../../partials/pagePartial')%>
+<%}%>

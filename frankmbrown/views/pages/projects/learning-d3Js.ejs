@@ -1,0 +1,356 @@
+<%# 
+PARTIAL ROUTE: pages/projects/learning-d3Js.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  <h1 id="page-header" class="page-title">Learning <a href="https://d3js.org/" class="secondary link" style="font-size: inherit!important; font-weight: inherit!important;" target="_blank">D3.js</a></h1>
+  
+  <section id="on-this-page" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#on-this-page" class="same-page fw-regular">On This Page</a>
+      </h2>
+      <p class="mt-2">
+        The amount of stuff to learn regarding <a class="secondary link" target="_blank" href="https://d3js.org/">d3.js</a> turned out to be much larger than anything that should fit onto one page, so I decided to split up the information onto different pages. Use the links below to see different examples of d3 functionality.
+      </p>
+      <p class="mt-2">
+        Below the links section, you should see examples of d3.js used to visualize example poll data - which is why I learned d3.js in the first place.
+      </p>
+  </section>
+  <style>
+    @media screen and (min-width:800px) {
+      .grid-wrapper {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      }
+      .grid-wrapper>li {
+        padding-right: 20px;
+      }
+    }
+    
+  </style>
+  <section id="d3-visualization" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#d3-visualization" class="same-page fw-regular">D3 Visualization</a>
+    </h2>
+    <ul class="grid-wrapper">
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/axes" href="/projects/learning-d3-js/axes" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Axes</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/chords" href="/projects/learning-d3-js/chords" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Chords</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/color" href="/projects/learning-d3-js/color" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Color</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/interpolate" href="/projects/learning-d3-js/interpolate" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Interpolate</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/contour" href="/projects/learning-d3-js/contour" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Contour</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/delaunay" href="/projects/learning-d3-js/delaunay" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Delaunay</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/force" href="/projects/learning-d3-js/force" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Force</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/geo" href="/projects/learning-d3-js/geo" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Geo</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/hierarchy" href="/projects/learning-d3-js/hierarchy" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Hierarchy</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/path" href="/projects/learning-d3-js/path" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Path</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/polygon" href="/projects/learning-d3-js/polygon" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Polygon</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/quadtree" href="/projects/learning-d3-js/quadtree" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Quadtree</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/scale" href="/projects/learning-d3-js/scale" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Scale</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/scale-chromatic" href="/projects/learning-d3-js/scale-chromatic" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Scale Chromatic</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/selection" href="/projects/learning-d3-js/selection" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Selection</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/shape" href="/projects/learning-d3-js/shape" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Shape</a></li>
+    </ul>
+  </section>
+
+  <section id="d3-animation" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#d3-animation" class="same-page fw-regular">D3 Animation</a>
+    </h2>
+    <ul class="grid-wrapper">
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/ease" href="/projects/learning-d3-js/ease" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Ease</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/timer" href="/projects/learning-d3-js/timer" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Timer</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/transition" href="/projects/learning-d3-js/transition" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Transition</a></li>
+    </ul>
+  </section>
+
+  <section id="d3-interaction" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#d3-interaction" class="same-page fw-regular">D3 Interaction</a>
+    </h2>
+    <ul class="grid-wrapper">
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/brush" href="/projects/learning-d3-js/brush" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Brush</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/dispatch" href="/projects/learning-d3-js/dispatch" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Dispatch</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/drag" href="/projects/learning-d3-js/drag" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Drag</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/zoom" href="/projects/learning-d3-js/zoom" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Zoom</a></li>
+    </ul>
+  </section>
+
+  <section id="d3-data" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#d3-data" class="same-page fw-regular">D3 Data</a>
+    </h2>
+    <ul class="grid-wrapper">
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/array" href="/projects/learning-d3-js/array" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Array</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/dsv" href="/projects/learning-d3-js/dsv" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js DSV</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/fetch" href="/projects/learning-d3-js/fetch" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Fetch</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/format" href="/projects/learning-d3-js/format" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Format</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/random" href="/projects/learning-d3-js/random" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Random</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/time" href="/projects/learning-d3-js/time" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Time</a></li>
+      <li><a class="primary link" hx-push-url="true" hx-get="/projects/learning-d3-js/time-format" href="/projects/learning-d3-js/time-format" hx-target="#PAGE" hx-indicator="#page-transition-progress">D3.js Time Format</a></li>
+    </ul>
+  </section>
+
+  <section id="poll-questions-data-show" class="mt-4">
+    <div class="flex-row bb-main justify-between align-center">
+      <h2 class="bold h5">
+        <a href="#poll-questions-data-show" class="same-page fw-regular">Poll Question Responses </a>
+      </h2>
+      <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#poll-question-responses">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+      </button>
+      
+    </div>
+    <div id="poll-question-responses">
+      <section id="color-question" class="mt-4">
+        <h3 class="bold bb-main h6">
+          <a href="#color-question" class="same-page fw-regular">Color Question</a>
+        </h3>
+        <ul>
+          <li>
+            <strong>Things to Remember</strong>
+            <ul class="second">
+              <li>
+                User can respond with a color input.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        
+    
+      </section>
+    
+      <section id="short-answer-question" class="mt-4">
+          <h3 class="bold bb-main h6">
+            <a href="#short-answer-question" class="same-page fw-regular">Short Answer Question</a>
+          </h3>
+          <ul>
+            <li>
+              <strong>Things to Remember</strong>
+              <ul class="second">
+                <li>
+                  The user can respond with unformatted text in a text box. 
+                </li>
+              </ul>
+            </li>
+          </ul>
+    
+    
+      </section>
+    
+      <section id="date-question" class="mt-4">
+        <h3 class="bold bb-main h6">
+          <a href="#date-question" class="same-page fw-regular">Date Question</a>
+        </h3>
+        <ul>
+          <li>
+            <strong>Things to Remember</strong>
+            <ul class="second">
+              <li>
+                The poll creator can specify minimum and maximum dates. Dates include a day, month and year.
+              </li>
+            </ul>
+          </li>
+        </ul>
+    
+    
+      </section>
+      <section id="paragraph-question" class="mt-4">
+        <h3 class="bold bb-main h6">
+          <a href="#paragraph-question" class="same-page fw-regular">Paragraph Question</a>
+        </h3>
+        <ul>
+          <li>
+            <strong>Things to Remember</strong>
+            <ul class="second">
+              <li>
+                The poll creator can specify minimum and maximum dates. Dates include a day, month and year.
+              </li>
+            </ul>
+          </li>
+        </ul>
+    
+    
+      </section>
+      <section id="datetime-question" class="mt-4">
+        <h3 class="bold bb-main h6">
+          <a href="#datetime-question" class="same-page fw-regular">Datetime Question</a>
+        </h3>
+        <ul>
+          <li>
+            <strong>Things to Remember</strong>
+            <ul class="second">
+              <li>
+                The poll creator can specify minimum and maximum datetimes. Datetimes include a day, month year, hour, minute, and second.
+              </li>
+            </ul>
+          </li>
+        </ul>
+    
+    
+      </section>
+      <section id="short-blog-question" class="mt-4">
+        <h3 class="bold bb-main h6">
+          <a href="#short-blog-question" class="same-page fw-regular">Short Blog Question</a>
+        </h3>
+        <ul>
+          <li>
+            <strong>Things to Remember</strong>
+            <ul class="second">
+              <li>
+                  User can respond with a short blog that includes less than 500 characters.
+              </li>
+            </ul>
+          </li>
+        </ul>
+    
+    
+      </section>
+      <section id="time-question" class="mt-4">
+        <h3 class="bold bb-main h6">
+          <a href="#time-question" class="same-page fw-regular">Time Question</a>
+        </h3>
+        <ul>
+          <li>
+            <strong>Things to Remember</strong>
+            <ul class="second">
+              <li>
+                Poll creator can specify maximum and minimum times. Times include hour, minute, and second.
+              </li>
+            </ul>
+          </li>
+        </ul>
+    
+    
+      </section>
+      <section id="multiple-choice-question" class="mt-4">
+        <h3 class="bold bb-main h6">
+          <a href="#multiple-choice-question" class="same-page fw-regular">Multiple Choice Question</a>
+        </h3>
+        <ul>
+          <li>
+            <strong>Things to Remember</strong>
+            <ul class="second">
+              <li>
+                Option can be a short blog, image, audio recording, or video recording. User can only choose one option out of many.
+              </li>
+            </ul>
+          </li>
+        </ul>
+    
+    
+      </section>
+      <section id="image-question" class="mt-4">
+        <h3 class="bold bb-main h6">
+          <a href="#image-question" class="same-page fw-regular">Image Question</a>
+        </h3>
+        <ul>
+          <li>
+            <strong>Things to Remember</strong>
+            <ul class="second">
+              <li>
+                User can respond with an image.
+              </li>
+            </ul>
+          </li>
+        </ul>
+    
+    
+      </section>
+      <section id="checkbox-question" class="mt-4">
+        <h3 class="bold bb-main h6">
+          <a href="#checkbox-question" class="same-page fw-regular">Checkbox Question</a>
+        </h3>
+        <ul>
+          <li>
+            <strong>Things to Remember</strong>
+            <ul class="second">
+                <li>
+                  Same as multiple choice question except the user can respond with multiple answers.
+                </li>
+            </ul>
+          </li>
+        </ul>
+    
+    
+    
+      </section>
+      <section id="audio-question" class="mt-4">
+        <h3 class="bold bb-main h6">
+          <a href="#audio-question" class="same-page fw-regular">Audio Question</a>
+        </h3>
+        <ul>
+          <li>
+            <strong>Things to Remember</strong>
+            <ul class="second">
+              <li>
+                User can respond with an audio recording.
+              </li>
+            </ul>
+          </li>
+        </ul>
+    
+    
+      </section>
+      <section id="range-question" class="mt-4">
+        <h3 class="bold bb-main h6">
+          <a href="#range-question" class="same-page fw-regular">Range Question</a>
+        </h3>
+        <ul>
+          <li>
+            <strong>Things to Remember</strong>
+            <ul class="second">
+              <li>
+                There are minimum, maximum, and step inputs. At certain points in the range, the user can add a description for what that point means.
+              </li>
+            </ul>
+          </li>
+        </ul>
+    
+    
+      </section>
+      <section id="video-question" class="mt-4">
+        <h3 class="bold bb-main h6">
+          <a href="#video-question" class="same-page fw-regular">Video Question</a>
+        </h3>
+        <ul>
+          <li>
+            <strong>Things to Remember</strong>
+            <ul class="second">
+              <li>
+                User can respond with a video.
+              </li>
+            </ul>
+          </li>
+        </ul>
+    
+      </section>
+      <section id="rank-question" class="mt-4">
+        <h3 class="bold bb-main h6">
+          <a href="#rank-question" class="same-page fw-regular">Rank Question</a>
+        </h3>
+        <ul>
+          <li>
+            <strong>Things to Remember</strong>
+            <ul class="second">
+              <li>
+                User can respond with ranking the options (which can be image, audio, video, or a short blog.)
+              </li>
+            </ul>
+          </li>
+        </ul>
+    
+    
+      </section>
+    </div>
+      
+  </section>
+  
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

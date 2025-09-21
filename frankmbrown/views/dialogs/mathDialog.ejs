@@ -1,0 +1,87 @@
+<%# 
+PARTIAL ROUTE: dialogs/mathDialog.ejs
+PARTIAL DESCRIPTION: Dialog to generate math
+LOCAL VARIABLES:
+----------------------------------
+- locals.desktop (bool): Is the user's Device desktop?
+%>
+<div style="display: none;" hidden class="dialog-wrapper" id="math-markup-dialog"  data-close-backdrop data-esc>
+  <div class="dialog large" data-click-capture>
+    <div class="dialog-header">
+      <p class="grow-1 flex-row h3 bold">Generate Math Markup</p>
+      <%if(locals.desktop===true){%>
+        <kbd class="inline" style="margin-right: 4px;"  data-pelem="#close-dialog-esc-math" aria-describedby="close-dialog-esc-math" data-mouse data-popover>ESC</kbd>
+        <div id="close-dialog-esc-math" role="tooltip" class="tooltip body2" data-placement="bottom-end">
+          Press the Escape key to Close the Dialog
+        </div>
+      <%}%>
+      <button class="icon medium close-dialog" type="button" aria-label="Close Dialog">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+      </button>
+    </div>
+    <div class="dialog-body">
+      <form id="generate-math-markup-form">
+        <div tabindex="-1" class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+          <label for="math-markup-dialog-input"><span id="random_id_math_ret_9n5ji9iubyt" class="inline-katex">
+            <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>e</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span></span> Input:</label>
+          <div class="mt-1 text-input block medium disabled" tabindex="-1">
+              <textarea data-katex-input name="math-markup-dialog-input" id="math-markup-dialog-input" placeholder="Write your TeX code here..." rows="6" spellcheck="false" autocomplete="off" autocapitalize="off" style="font-family: monospace!important; resize: vertical!important;"></textarea>
+          </div>
+          <p class="char-counter t-disabled" data-input="math-markup-dialog-input" tabindex="-1">
+            <span class="min-counter body2" data-val="1" aria-hidden="false">Character Required</span>
+            <span class="max-counter body2" data-val="300" aria-hidden="true">Characters Remaining</span>
+          </p>
+        </div>
+        <div class="flex-row align-start justify-start gap-3" tabindex="-1">
+          <fieldset class="grow-1">
+            <legend class="body1 bold">Display Style:</legend>
+            <label class="radio">
+              <input type="radio" id="block-math-dialog" name="math-display-style" value="block-math-dialog" class="primary" checked>
+              Block
+            </label>
+            <label class="radio mt-3">
+              <input type="radio" id="inline-math-dialog" name="math-display-style" value="inline-math-dialog" class="primary">
+              Inline
+            </label>
+          </fieldset>
+          <fieldset class="grow-1 checkbox">
+            <legend class="body1 bold">Customize:</legend>
+            <label class="checkbox">
+              <input type="checkbox" class="secondary" name="leqno-dialog" id="leqno-dialog">
+              leqno
+            </label>
+            <label class="checkbox mt-1">
+              <input type="checkbox" class="secondary" name="fleqn-dialog" id="fleqn-dialog">
+              fleqn
+            </label>
+          </fieldset>
+        </div>
+        <div class="flex-row mt-1 justify-end align-center">
+          <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+        </div>
+      </form>
+
+      <div class="flex-row justify-center t-primary mt-2 htmx-indicator" role="progressbar" aria-busy="true" aria-label="Math Dialog Indicator" id="math-dialog-indicator">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <output form="generate-math-markup-form" id="math-dialog-results">
+        
+      </output>
+
+      <div class="snackbar dialog-snackbar success" aria-hidden="true" id="copy-math-success-dialog">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Percent"><path d="M7.5 11C9.43 11 11 9.43 11 7.5S9.43 4 7.5 4 4 5.57 4 7.5 5.57 11 7.5 11zm0-5C8.33 6 9 6.67 9 7.5S8.33 9 7.5 9 6 8.33 6 7.5 6.67 6 7.5 6zM4.0025 18.5832 18.59 3.9955l1.4142 1.4143L5.4167 19.9974zM16.5 13c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5zm0 5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path></svg>
+        <p class="p-sm">Copied <span id="random_id_math_ret_mcxibz6t1se" class="inline-katex">
+          <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>e</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span></span> code to clipboard.</p>
+        <button class="icon medium" type="button" data-close-snackbar aria-label="Close Snackbar">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CloseSharp"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="dialog-footer" role="toolbar">
+      <button class="filled error small close-dialog" type="button" aria-label="Close Dialog">
+        CLOSE DIALOG
+      </button>
+    </div>
+    
+  </div>
+</div>

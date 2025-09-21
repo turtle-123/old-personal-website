@@ -1,0 +1,185 @@
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+    <h1 class="page-title">Frank's Goodreads</h1>
+
+    <section id="ai-tools-about" class="mt-4">
+        <div class="flex-row bb-thick justify-between">
+            <h2 class="bold h2">
+            <a href="#ai-tools-about" class="same-page bold">
+                About This Page
+            </a>
+            </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#hide-show-about">
+            <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div class="mt-2" id="hide-show-about">
+            <p class="mt-2">
+                <a class="secondary link" target="_blank" href="https://www.goodreads.com/">Goodreads</a> is a website that helps people find and share books they love. It's a social cataloging site where users can:
+             </p>
+             <ul>
+                 <li><span class="bold">Track Reading:</span> Record books they've read or want to read.</li>
+                 <li><span class="bold">Rate Books:</span> Leave reviews and comments on books.</li>
+                 <li><span class="bold">Discover New Books:</span> Search for books by title or author, or browse lists of new releases.</li>
+                 <li><span class="bold">Connect with Other Readers:</span> Join book clubs, groups, or discussions.</li>
+                 <li><span class="bold">Create Lists:</span> Organize books into lists by topic, genre, or other criteria. </li>
+                 <li><span class="bold">Follow Authors:</span> Stay updated on author's work and revies.</li>
+             </ul>
+             <p class="mt-2">
+                 <span class="bold h4">Why Am I Creating This?</span>
+                 <br>
+                 I am creating this page because I would prefer to keep my book reviews on this site rather than create a good reads account. I feel like it will force me to have more acccountability when trying to read more vs creating a goodreads account, for which I may forget the login information or just forget about the existance of the account altogether. Hopefully, by creating this page and the <a class="primary link" hx-get="/letterboxd" href="/letterboxd" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">letterboxd page</a> on this site, I will eventually read more than I watch.   
+             </p>
+
+             <p class="mt-2">
+                <span class="bold h4">About the Posts</span>
+                <br>
+                I will probably mention what happens in the book or summarize the book in each of these posts - <strong class="t-warning">so if you don't want to know what happens, do not read them.</strong>. After summarizing the book, I will explain what I took from it, what I thought was interesting, and why I liked the book or didn't like it. 
+            </p>
+
+            <p class="mt-2">
+                <span class="bold h4">How does the Rating Work?</span>
+                <br>
+                I think I am gping to rate based on a combinaton of how much I learned + how much I enjoyed reading it + some other factors. I will probably explain the rating in the post. 
+            </p>
+        </div>
+    </section>
+
+    <%if(locals.auth>=3){%>
+        <section id="add-review" class="mt-4">
+            <h2 class="bold bb-thick h2">
+              <a href="#add-review" class="same-page bold">
+                Add Review
+              </a>
+            </h2>
+            <form hx-target="#submit-review-target" hx-trigger="submit" hx-post="/goodreads" data-loading="Submitting goodreads review...">
+                <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+                <label for="book-name">Book Name:</label>
+                <div class="text-input block medium">
+                    <input 
+                    type="text" 
+                    name="book-name" 
+                    id="book-name" 
+                    class="medium icon-before mt-1" 
+                    required
+                    placeholder="Enter the name of the book.." 
+                    maxlength="200"
+                    minlength="1"  
+                    spellcheck="true" 
+                    autocapitalize="off"
+                    >
+                    <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Book"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"></path></svg>
+                </div>
+                </div>
+                <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+                <label for="book-desc">Book/Article Description:</label>
+                <div class="mt-1 text-input block medium disabled">
+                    <textarea 
+                    name="book-desc" 
+                    id="book-desc" 
+                    placeholder="Enter the description for the book or article..." 
+                    rows="5" 
+                    maxlength="1000" 
+                    minlength="1" 
+                    spellcheck="true"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    ></textarea>
+                </div>
+                <p class="char-counter" data-input="book-desc">
+                    <span class="min-counter body2" data-val="1" aria-hidden="false">more characters required</span>
+                    <span class="max-counter body2" data-val="1000" aria-hidden="true">Characters Remaining</span>
+                </p>
+                </div>
+                <%-include('../partials/rating')%>
+                <label for="image-book" class="bold mt-2">Upload Book Image:</label>
+                <input data-image-input type="file" required id="image-book" accept="image/*" name="image-book" class="mt-1 secondary">
+                <output class="block" for="image-book"></output>
+                <%-locals.createArticleHTML%>
+                <div class="mt-2 flex-row justify-between">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+                </div>
+            </form>
+            <div class="block nt-2" id="submit-review-target">
+
+            </div>
+        </section>
+    <%}%>
+
+    <section id="reviews" class="mt-4">
+        <h2 class="bold bb-thick h2">
+            <a href="#reviews" class="same-page bold">
+                Reviews
+            </a>
+        </h2>
+
+        <div class="body1 bold mt-2" id="order-by-articles">Order By:</div>
+        <div class="mt-1 flex-row justify-start">
+            <div class="select">
+            <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="order-by-articles-drop" aria-labelledby="order-by-articles" class="select" aria-label="Order By" data-popover data-pelem="#order-by-articles-drop" data-click aria-expanded="false" style="min-width: 150px;">
+                <span class="body1"><%=locals?.order_by?.order_by_str%></span>
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+            </button>
+            <div tabindex="0" id="order-by-articles-drop" role="listbox" class="select-menu o-xs" data-placement="bottom">
+                <input type="text" hidden value="<%=locals?.order_by?.order_by_value%>" name="order-by-select" id="order-by-select" hx-get="<%=locals.path%>" hx-include="this" hx-push-url="true" hx-target="#articles-inner" hx-indicator="#change-art-order-ind">
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-new")%>" data-val="last-edit-new">
+                Last Edited (New)
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-old")%>" data-val="last-edit-old">
+                Last Edited (Old)
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-new")%>" data-val="date-created-new">
+                Date Created (New)
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-old")%>" data-val="date-created-old">
+                Date Created (Old) 
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-likes")%>" data-val="num-likes">
+                Number of Likes
+                </button> 
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-comments")%>" data-val="num-comments">
+                Number of Comments
+                </button> 
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-views")%>" data-val="num-views">
+                Number of Views
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-annotations")%>" data-val="num-annotations">
+                Number of Annotations
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-annotations")%>" data-val="rating">
+                    Rating
+                </button>
+            </div>
+            </div>
+        </div>
+        <div id="articles-inner" class="mt-2">
+            <%-locals.previews%>
+        </div>
+    </section>
+
+
+
+    <div id="likes-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+        Likes
+      </div>
+      <div id="comments-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+        Comments
+      </div>
+      <div id="annotations-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+        Annotations
+      </div>
+      <div id="views-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+        Views
+      </div>
+      <div id="rating-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+        Rating
+      </div>
+
+    <%-include('../partials/pagePartial')%>
+<%}%>

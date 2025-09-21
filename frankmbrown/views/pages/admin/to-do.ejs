@@ -1,0 +1,28 @@
+<div class="mt-2" style="padding: 4px; border-radius: 6px; border: 2px solid var(--text-primary);" data-to-do-wrapper>
+    <div class="lexical-wrapper" data-rich-text-editor data-type="comment" data-editable="false" id="to-do-<%-locals.id%>-editor" data-max-height="400" style="max-height: 400px;">
+        <%-locals.html%>
+    </div>
+    <div class="flex-row justify-between align-center">
+        <span class="flex-row align-center gap-3">
+            <button type="button" class="error filled icon small" aria-label="Delete To Do" title="Delete To Do" hx-trigger="click" hx-target="closest div[data-to-do-wrapper]" hx-swap="outerHTML" data-loading="Deleting To Do..." hx-delete="/admin/to-dos/<%-locals.id%>">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Delete"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+            </button>
+            <button type="button" class="warning filled icon small" aria-label="Edit to Do" title="Edit to Do" hx-trigger="click" hx-target="closest div[data-to-do-wrapper]" hx-swap="outerHTML" data-loading="Getting Edit to Do..." hx-get="/admin/to-dos/<%-locals.id%>/edit">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Edit"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
+            </button>
+            <button type="button" class="success filled icon small" aria-label="Mark as Completed" title="Mark as Completed" hx-trigger="click" hx-target="closest div[data-to-do-wrapper]" hx-swap="outerHTML" data-loading="Marking To Do Complete..." hx-get="/admin/to-dos/<%-locals.id%>/complete">
+                <svg viewBox="0 0 448 512" title="check" focusable="false" inert tabindex="-1"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg>
+            </button>
+        </span>
+        <span>
+            <time data-date-format="MM/DD/YYYY, h:m:s A" datetime="<%-locals.datetime_str%>">
+              <svg <%-locals.error?'class="t-error"':''%> focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CalendarToday">
+                <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z">
+                </path>
+              </svg>
+              <span <%-locals.error?'class="t-error"':''%>><%-locals.date_str%></span>
+            </time>
+        </span>
+    </div>
+
+</div>

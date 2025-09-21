@@ -1,0 +1,253 @@
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    <h1 class="page-title">Handbook of Data Visualization Notes</h1>
+
+    <section id="what-is-this" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#what-is-this" class="same-page bold">
+            What Is This
+          </a>
+        </h2>
+        <p class="mt-2">
+            I am going to read <em>Handbook of Data Visualization</em> by Chun-houh Chen, Woldgang Hardle, and Antony Unwin to:
+        </p>
+        <ol class="mt-1">
+            <li>Practice working with Bokeh. I need to work with Bokeh when showing poll results.</li>
+            <li>Get a lot of different examples of Bokeh code so that I can better fine tune LLMs for showing text-to-sql results for poll results.</li>
+            <li>Learn more about data visualization.</li>
+        </ol>
+        <h3 class="bold h3 bb mt-2">
+            What Is This Book?
+        </h3>
+        <p class="mt-2">
+            This book contains a <q>collection of chapters by experts in the field to present readers with an up-to-date and comprehensive overview of the state of the art [of data visualization].</q> It is the third volume of the Handbook of Computational Statistics. This book takes graphics for data visualization seriously. The differences between graphics for presentation and graphics for exploration lie in their form and practice - presentation graphics are generally static and a single graphic is drawn to summarize information presented. <q>Presnetation graphics are like proofs of mathematical theorems, they may give no hint as to how a result was reached, but they should offer comprehensive support for its conclusion.</q> Exploratory graphics are used for looking for results. They are not intended for presentation. Data Visualization expresses the idea that it involves more than just representing data in a graphical form.
+        </p>
+        <blockquote class="blockquote mt-2">
+            The information behind the display should be revealed in a good display; the graphic should aid readers in seeing the structure of the data.
+        </blockquote>
+        <p class="mt-1">
+            The handbook is divided into three sections: <a href="#" class="same-page fw-regular"></a>
+        </p>
+        <ol class="mt-1">
+            <li><a href="#princips" class="same-page fw-regular">Principles</a></li>
+            <li><a href="#methods" class="same-page fw-regular">Methodology</a></li>
+            <li><a href="#apps" class="same-page fw-regular">Applications</a></li>
+        </ol>
+    </section>
+
+    <section id="bokeh-notes" class="mt-4">
+      <div class="flex-row bb-thick justify-between">
+        <h2 class="bold h2">
+          <a href="#bokeh-notes" class="same-page bold">
+            Bokeh Notes
+          </a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#bokeh-note-hide">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+
+      <div id="bokeh-note-hide" class="mt-2">
+        <p>
+            In this section I am going to be keeping track of some of my notes on Bokeh to remind myself of important things when making charts for display on the web.
+        </p>
+        <ul class="mt-1">
+            <li>Set <span class="text-code">sizing_mode="stretch_width"</span> when creating a <span class="text-code">figure</span> to make sure that the plot does not overflow x and y.</li>
+            <li>You should also set the <span class="text-code">max_width</span> and <span class="text-code">max_height</span>/ <span class="text-code">height</span> to a max of 500px and 400px respectively (maybe could do something different for desktop).</li>
+            <li>You should use the <a class="secondary link" target="_blank" href="https://docs.bokeh.org/en/2.4.3/docs/user_guide/embed.html#components"><span class="text-code">components</span></a> function to produce a script and div for your plot. You should set the div to have a <span class="text-code fw-regular">min-height</span> of the <span class="text-code">min_height</span> of the plot to prevent Cumulative Layout Shift.</li>
+            <li>Use a histogram for multiple choice / checkbox questions. Use a barchart as well for checkbox questions. </li>
+            <li>Use a piechart for answering the question of what percentage of people responded to a survey question.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="princips" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#princips" class="same-page bold">
+            Principles
+          </a>
+        </h2>
+
+        <section id="brief-his" class="mt-4">
+          <div class="flex-row bb-thick justify-between">
+            <h2 class="bold h3">
+              <a href="#brief-his" class="same-page bold">
+                Brief History of Data Visualization
+              </a>
+            </h2>
+            <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#brief-his-hide">
+              <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+              <span data-hide="">HIDE</span>
+              <span data-show="" hidden="">SHOW</span>
+            </button>
+          </div>
+          <div id="brief-his-hide">
+            <p class="mt-2">
+                Graphic representation of quantitative information has deep roots. 
+            </p>
+            <img 
+            width="<%-locals.desktop?500:(locals.tablet?385:270)%>" 
+            height="<%-locals.desktop?367:(locals.tablet?305:242)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 135 / 121 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2F479fc10e-1775-4481-83bd-e02b4989f1e9-mobile.jpeg 270w, https://image.storething.org/frankmbrown%2F479fc10e-1775-4481-83bd-e02b4989f1e9-tablet.jpeg 385w, https://image.storething.org/frankmbrown%2F479fc10e-1775-4481-83bd-e02b4989f1e9-desktop.jpeg 500w" 
+            sizes="(max-width: 550px) 242px, ((min-width: 550px) and (max-width: 1200px)) 305px, (min-width: 1200px) 367px" 
+            src="https://image.storething.org/frankmbrown%2F479fc10e-1775-4481-83bd-e02b4989f1e9-desktop.jpeg" 
+            alt="" 
+            />
+            <p class="mt-1">
+                The earliest seeds of visualization arose in geometric diagrams, in tables of the positions of stars and other celestial bodies, and in the making of maps to aid in navigation and exploration. Among the earliest graphical depictions of quantitative information is an anonyous 10th-century multiple time-series graph of the changing position of the seven most prominent bodies over space and time. In the 14th century, the ide of plotting a theoretical function and the logical relation between tabulating values and plotting them appeared. By the 16th century, techiques and instruments for precise observation and measurement of physical quantities and geonetric and celestial position were well developed. Among the most important problems of the 17th century were those concerned with physical measurement - of time, distance and space - for astronomy, surveying, map making, navigtion and territorial expansion. This century also saw great new growth in theory and the dawn of practial application - the rise of analytic geometry and coordinate systems, theories of errors of measurement and estimation, the birth of probability theory, and the beggings of demographic statistics and political arithmetic - the study of population, land tazes, values of goods, etc. for the purpose of understanding the wealth of the state. 
+            </p>
+            <p class="mt-2">
+                With some rudiments of statistical theory, data of iunterest and importance, and the diea of graphic representation at least somewhat established, the 18th century witnessed the expansion of these aspects to new domains and new graphical forms. William Playfair (1759-1823) is widely considered the inventor of most of the graphical forms used today - first the line graph and bar chart, later the piechart and circle graph.  
+            </p>
+            <p class="mt-2">
+                With the fertilizaton provided by the previous innovations of design and technique, the first half of the 19th century witnessed and explosive growth in statistical graphics and thematic mapping, at a rate which would not be equalled until modern times. In statistical graphicsm all of the modern forms of data display were invented: bar and piecharts, histograms, line graphs and time-series plots, contour plotes, scatter plots, and so forth. The use of graphs began to become recognized in some official circles for economic and state planning in the mid 19th century. By the mid-1800s, all the conditions for the raphid growth of visualizatioon had been established - a "perfect storm" for data graphics, Official state offices were established throughout Europe, in recognition of the growing importance of numerical information for social planning, industriailzation, commerce and transportation. 
+            </p>
+            <p class="mt-2">
+                If the late 1800s were the'golden age' of statistical graphics and thematic cartography, the early s can be called the 'modern dark ages' of visualization. Data visualization began to rise from dormancy in the mid-1960s. 
+            </p>
+          </div>
+
+        </section>
+
+        <section id="goog-graph" class="mt-4">
+          <div class="flex-row bb-thick justify-between">
+            <h3 class="bold h3">
+              <a href="#goog-graph" class="same-page bold">
+                Good Grpahics?
+              </a>
+            </h3>
+            <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#goog-graph-hide">
+              <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+              <span data-hide="">HIDE</span>
+              <span data-show="" hidden="">SHOW</span>
+            </button>
+          </div>
+          <div id="goog-graph-hide">
+              <p class="mt-2">
+                  This chapter discusses drawing good graphics to visualize the information in data. A good graphic will convey information, but a graphic is always part of a larger whole, the context, which provides its relevance. Histograms or boxplots are right for continuous variables, while barcharts or piecharts are appropriate for categorical variables. There are barcharts, piecharts, histograms, dotplots, boxplots, scatterplots, roseplots, mosaicplots, and many other kinds of data display. The choice depends on the type of data to be displayed and on what it is to be shown. 
+              </p>
+              <p class="mt-2">
+                Defining the scale for the axis for a categorical variable is a matter of choosing an informative ordering. This may depend on what the categories represent or on their relative sizes. For a continuous variable, it is more difficult. The endpoints, divisions, and tick marks have to be chosen. Unless the limits are set by the meaning of the data (grade from 0 to 100), it is good practice to extend the scales beyond the oberved limits and to use readily understandable round values. There is no obligatory requirement to include zero in a scale, but there should always be a reason for not doing so. 
+              </p>
+              <p class="mt-2">
+                Guides may be drawn on a plot as a form of annotation and are useful for emphasizing particular issues, say which values are positive or negative. Sloping guides highlight deviations from linearity. 
+              </p>
+              <p class="mt-2">
+                Ideally, captions should fully explain the graphic they accompany, including giving the source for the data. Relying on explainations in the surrounding text rarely works. Captions should outine information in the graphic and a more detailed description should be able to be found under the text. Annotations are used to highlight particular deatures of a grapgic, For reasons of space there cannot be many of them and they should be used sparingly. Keep graphics and text on the same page. Graphics should be large enough for the reader to see the information in them clearly and not much larger. 
+              </p>
+              <p class="mt-2">
+                Parallel coordinate plots are valuable for displaying large numbers of continuous variables simultaneously. 
+              </p>
+              <img 
+              width="<%-locals.desktop?603:(locals.tablet?464:326)%>" 
+              height="<%-locals.desktop?555:(locals.tablet?461:366)%>" 
+              style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 163 / 183 !important; height: auto;"
+              srcset="https://image.storething.org/frankmbrown%2F48d9e371-3cf0-4836-be17-04f63356603f-mobile.jpeg 326w, https://image.storething.org/frankmbrown%2F48d9e371-3cf0-4836-be17-04f63356603f-tablet.jpeg 464w, https://image.storething.org/frankmbrown%2F48d9e371-3cf0-4836-be17-04f63356603f-desktop.jpeg 603w" 
+              sizes="(max-width: 550px) 366px, ((min-width: 550px) and (max-width: 1200px)) 461px, (min-width: 1200px) 555px" 
+              src="https://image.storething.org/frankmbrown%2F48d9e371-3cf0-4836-be17-04f63356603f-desktop.jpeg" 
+              alt="Parallel Coordinate Plot" 
+              />
+              <p class="mt-2">
+                Yo,e setoes are special because of the strict ordering of the data, and good displays respect temporal ordering. Time scales have to be carefully chosen. The choice of time origin is particularly important, as anyone who looks at the advertised performance of financial funds will know. 
+              </p>
+          </div>
+        </section>
+        <section id="stat-graph" class="mt-4">
+          <div class="flex-row bb-thick justify-between">
+            <h3 class="bold h3">
+              <a href="#stat-graph" class="same-page bold">
+                Static Graphics
+              </a>
+            </h3>
+            <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#stat-graph-hide">
+              <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+              <span data-hide="">HIDE</span>
+              <span data-show="" hidden="">SHOW</span>
+            </button>
+          </div>
+          <div id="stat-graph-hide">
+             <p class="mt-2">
+              Static dispalys of information continue to be the primary graphical method for the display and analysis of data. This is true for presentation purposes, where the vast majority of data diaplys produced for articles and reports are still static in nature ans for data exploration, where many impirtantand statistical duscveries have been made based simply on static displays. 
+             </p>
+             <img 
+              width="<%-locals.desktop?505:(locals.tablet?389:273)%>" 
+              height="<%-locals.desktop?500:(locals.tablet?415:330)%>" 
+              style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 137 / 165 !important; height: auto;"
+              srcset="https://image.storething.org/frankmbrown%2F5062764a-d87d-40b1-8d26-d76d384c244b-mobile.jpeg 273w, https://image.storething.org/frankmbrown%2F5062764a-d87d-40b1-8d26-d76d384c244b-tablet.jpeg 389w, https://image.storething.org/frankmbrown%2F5062764a-d87d-40b1-8d26-d76d384c244b-desktop.jpeg 505w" 
+              sizes="(max-width: 550px) 330px, ((min-width: 550px) and (max-width: 1200px)) 415px, (min-width: 1200px) 500px" 
+              src="https://image.storething.org/frankmbrown%2F5062764a-d87d-40b1-8d26-d76d384c244b-desktop.jpeg" 
+              alt="Basic Plot" 
+              />
+              <p class="mt-2">
+                A good example of a graphics system that proides sensivle defaults is the Trellis system. There is a common set of 'graphical parameters' that can be applied to almost any graphical output to affect the appearance of the output. This set includes such things as line color, fill color, line width, line style, and so on. At the lowest level, a plot is simply basic graphical shapes and text, so these must be available. In addition, there must be some way to define coordinate sustems so that graphical elements can be conveniently positioned in sensible locations to make up a ploy. 
+              </p>
+          </div>
+        </section>
+        <section id="data-vis-graph" class="mt-4">
+          <div class="flex-row bb-thick justify-between">
+            <h3 class="bold h3">
+              <a href="#data-vis-graph" class="same-page bold">
+                Data Visualization Through Their Graph Representations
+              </a>
+            </h3>
+            <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#data-vis-graph-hide">
+              <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+              <span data-hide="">HIDE</span>
+              <span data-show="" hidden="">SHOW</span>
+            </button>
+          </div>
+          <div id="data-vis-graph-hide">
+             <p class="mt-2">
+              Graphs are useful entities since they can represent relationships between sets of objects. They are used to model complex systems (e.g., computer and transportation networks) and to visualize relationshops (social networks). In statistics and data analaysis, we usually encounter them as dendograms in cluster analysis, trees in classificiation and regression, and as path diagrams in structural equation models and Bayesian belief diagrams. 
+             </p>
+             <p>
+              <strong>This chapter goes deep into drawing graph representations of data. This may be something that I want to return to in the future, but not something that I need right now. </strong>
+             </p>
+          </div>
+        </section>
+
+        <section id="high-d-data-vis" class="mt-4">
+          <div class="flex-row bb-thick justify-between">
+            <h3 class="bold h3">
+              <a href="#high-d-data-vis" class="same-page bold">
+                Data Visualization Through Their Graph Representations
+              </a>
+            </h3>
+            <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#high-d-data-vis-hide">
+              <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+              <span data-hide="">HIDE</span>
+              <span data-show="" hidden="">SHOW</span>
+            </button>
+          </div>
+          <div id="high-d-data-vis-hide">
+             <p class="mt-2">
+              One of the biggest challenges in data visualization is to find general representations of data that can display the multivariate structure of more than two variables. 
+             </p>
+          </div>
+        </section>
+
+    </section>
+
+    <section id="methods" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#methods" class="same-page bold">
+            Methodology
+          </a>
+        </h2>
+
+    </section>
+
+
+    <section id="apps" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#apps" class="same-page bold">
+            Applications
+          </a>
+        </h2>
+
+    </section>
+
+    <%-include('../../partials/pagePartial')%>
+<%}%>

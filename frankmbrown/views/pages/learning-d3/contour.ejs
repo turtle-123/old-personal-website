@@ -1,0 +1,185 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/contour.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+<h1 class="page-title" id="top-of-page">D3.js Contour</h1>
+      
+  <p class="mt-2">
+    D3.js allows you to compute contour polygons by applying a <a class="secondary link" target="_blank" href="https://en.wikipedia.org/wiki/Marching_squares">marhcing squares</a> algorithm to a rectangular grid of numeric values (matrix). 
+  </p>
+  
+  <div class="alert warning filled mt-2 icon medium" role="alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+    <p class="alert">
+      I was going to use d3.js contours to create a contour map for the densitry of red, green, or blue values at a certain pixel given an image, but I decided to not do that and just do pixel manipulation instead.   
+    </p>
+    <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+    </button>
+  </div>
+
+  <div>
+    <label for="upload-image-contour" class="bold mt-2">Upload Image For Contour:</label>
+    <input data-prevent-default data-image-input type="file" id="upload-image-contour" accept="image/*" name="upload-image-contour" class="mt-1 secondary">
+    <output class="block" for="upload-image-contour">
+  </div>
+  <div id="container" class="flex-row justify-center"></div>
+ </output>
+
+ 
+
+ 
+
+ <script nonce="<%=locals.jsNonce%>" type="module">
+    import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+    const container = document.getElementById('container');
+    const input = document.getElementById('upload-image-contour');
+    var IMAGE_DATA = null;
+    var RED_DATA = [];
+    var GREEN_DATA = [];
+    var BLUE_DATA = [];
+    var width = 0, height = 0;
+    if (input&&container&&input.parentElement) {
+      function getRangeInput(type) {
+        const div = document.createElement('div');
+        if (type==="red") {
+          div.setAttribute('data-red-threshold','')
+          const red = /*html*/`<p class="h6 bold bb-main mt-2">Red Contour:</p><div id="red-contour-container"></div>`;
+        div.insertAdjacentHTML('afterbegin',red);
+        } else if (type==="green") {
+          div.setAttribute('data-blue-threshold','')
+          const blue = /*html*/`<p class="h6 bold bb-main mt-2">Blue Contour:</p><div id="blue-contour-container"></div>`;
+        div.insertAdjacentHTML('afterbegin',blue);
+        } else if (type==="blue") {
+          div.setAttribute('data-green-threshold','')
+          const green = /*html*/`<p class="h6 bold bb-main mt-2">Green Contour:</p><div id="green-contour-container"></div>`;
+        div.insertAdjacentHTML('afterbegin',green);
+        }
+        return div;
+      }
+      function handleMediaUploadComplete(e) {
+        if (e && e.detail && e.detail.uploads && Array.isArray(e.detail.uploads)) {
+          const url = e.detail.uploads[0].url;
+          const id = e.target.id;
+          console.log(url);
+          const output = document.querySelector(`output[for="${id}"]`);
+          if (url&&output) {
+            output.innerHTML = '';
+            const image1 = new Image();
+            image1.setAttribute('crossorigin','');
+            image1.src = url;
+            image1.onload = () => {
+              const widthPre = image1.naturalWidth;
+              const heightPre = image1.naturalHeight;
+              if (!!!widthPre||!!!heightPre) return;
+              const heightOverWidth = heightPre/widthPre;
+              if (heightPre>widthPre) {
+                if (heightPre>400) {
+                  height = 400;
+                  width = Math.floor(400/heightOverWidth);
+                } else {
+                  width = Math.floor(widthPre);
+                  height = Math.floor(heightPre);
+                }
+              } else {
+                if (widthPre>400) {
+                  width = 400;
+                  height = Math.floor(400*heightOverWidth);
+                } else {
+                  width = Math.floor(widthPre);
+                  height = Math.floor(heightPre);
+                }
+              }
+              image1.width = width;
+              image1.height = height;
+              const mainImageTitle = document.createElement('p');
+              mainImageTitle.className="h6 bold bb-main mt-2";
+              mainImageTitle.innerText="Main Image:";
+              const canvas = document.createElement('canvas');
+              canvas.width = width;
+              canvas.height = height;
+              canvas.className="mt-2";
+              canvas.style.cssText="display:block;margin:auto;";
+              output.append(mainImageTitle,canvas);
+              console.log(canvas);
+              const ctx = canvas.getContext('2d');
+              if(ctx) {
+                ctx.drawImage(image1,0,0,width,height);
+                const scannedImage = ctx.getImageData(0,0,width,height);
+                IMAGE_DATA = scannedImage;
+                RED_DATA = structuredClone(scannedImage);
+                GREEN_DATA = structuredClone(scannedImage);
+                BLUE_DATA = structuredClone(scannedImage);
+                for (let i = 0; i < IMAGE_DATA.data.length; i+=4) {
+                  [RED_DATA.data[i],RED_DATA.data[i+1],RED_DATA.data[i+2],RED_DATA.data[i+3]] = [IMAGE_DATA.data[i],0,0,255];
+                  [GREEN_DATA.data[i],GREEN_DATA.data[i+1],GREEN_DATA.data[i+2],GREEN_DATA.data[i+3]] = [0,IMAGE_DATA.data[i+1],0,255];
+                  [BLUE_DATA.data[i],BLUE_DATA.data[i+1],BLUE_DATA.data[i+2],BLUE_DATA.data[i+3]] = [0,0,IMAGE_DATA.data[i+2],255];
+                }
+                console.log(RED_DATA)
+                const red = getRangeInput('red');
+                const green = getRangeInput('green');
+                const blue = getRangeInput('blue');
+                output.append(red,green,blue);
+                const redContainer = document.getElementById('red-contour-container');
+                const blueContainer = document.getElementById('blue-contour-container');
+                const greenContainer = document.getElementById('green-contour-container');
+                
+                if (redContainer) {
+                  const redCanvas = document.createElement('canvas');
+                  redCanvas.width = width;
+                  redCanvas.height = height;
+                  redCanvas.className="mt-2";
+                  redCanvas.style.cssText="display:block;margin:auto;";
+                  redContainer.append(mainImageTitle,redCanvas);
+                  const ctx = redCanvas.getContext('2d');
+                  if(ctx) {
+                    ctx.drawImage(image1,0,0,width,height);
+                    ctx.putImageData(RED_DATA,0,0);
+                  }
+                }
+                if (blueContainer) {
+                  const blueCanvas = document.createElement('canvas');
+                  blueCanvas.width = width;
+                  blueCanvas.height = height;
+                  blueCanvas.className="mt-2";
+                  blueCanvas.style.cssText="display:block;margin:auto;";
+                  blueContainer.append(mainImageTitle,blueCanvas);
+                  const ctx = blueCanvas.getContext('2d');
+                  if(ctx) {
+                    ctx.drawImage(image1,0,0,width,height);
+                    const imageDataBlue = ctx.getImageData(0,0,width,height);
+                    ctx.putImageData(BLUE_DATA,0,0);
+                  }
+                }
+                if (greenContainer) {
+                  const greenCanvas = document.createElement('canvas');
+                  greenCanvas.width = width;
+                  greenCanvas.height = height;
+                  greenCanvas.className="mt-2";
+                  greenCanvas.style.cssText="display:block;margin:auto;";
+                  greenContainer.append(mainImageTitle,greenCanvas);
+                  const ctx = greenCanvas.getContext('2d');
+                  if(ctx) {
+                    ctx.drawImage(image1,0,0,width,height);
+                    const imageDataGreen = ctx.getImageData(0,0,width,height);
+                    ctx.putImageData(GREEN_DATA,0,0);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      input.addEventListener('media-upload-complete',handleMediaUploadComplete)
+    }
+ </script>
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

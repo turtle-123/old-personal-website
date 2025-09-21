@@ -1,0 +1,145 @@
+<%# 
+PARTIAL ROUTE: pages/test.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.isPhone?'checked':''
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">Test</h1>
+
+  <form hx-post="/test">
+    <label class="checkbox large">
+      <input type="checkbox" <%-locals.isPhone?'checked':''%> class="primary" name="phone-only" id="phone-only" value="checked">
+      Phone Only
+    </label>
+    <div class="flex-row mt-3 justify-between align-center">
+      <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+      <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+        SUBMIT
+      </button>
+    </div>
+  </form>
+  
+  <form hx-post="/test/run" hx-target="#hyatjdbys" hx-swap="innerHTML" hx-indicator="#jkfbwkjfbkjfbwekj">
+    <p class="mt-2">
+      Run the test function.
+    </p>
+    <div class="flex-row mt-3 justify-between align-center">
+      <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+      <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+        SUBMIT
+      </button>
+    </div>
+  </form>
+  <div class="flex-row justify-center t-info htmx-indicator mt-2" id="jkfbwkjfbkjfbwekj" role="progressbar" aria-busy="false" aria-label="INDEICATOR LABEL">
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+  </div>
+  <output id="hyatjdbys"></output>
+
+<section id="" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#" class="same-page bold">
+        Test Something
+      </a>
+    </h2>
+    <div id="insert-svg-herer">
+      
+    </div>
+    <script nonce="<%=locals.jsNonce%>" src="/static/js/constant/test.js"></script>
+</section>
+
+<section id="test-markdown-lexical" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#test-markdown-lexical" class="same-page bold">
+        Test of HTML to Markdown
+      </a>
+    </h2>
+
+    <form id="test-html-to-markdown">
+      <%-locals.fullLexicalEditor%>
+      <div class="mt-2 flex-row justify-end align-center">
+        <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+            SUBMIT
+        </button>
+      </div>
+    </form>
+    <output class="block" id="output-test-html-to-markdown-form"></output>
+</section>
+
+<section id="markdown-to-lexical" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#markdown-to-lexical" class="same-page bold">
+        Test of Markdown to Lexical
+      </a>
+    </h2>
+
+    <form id="test-markdown-to-lexical" class="mt-2">
+      <div data-editor-wrapper id="markdown-to-lexical-editor" >
+        <div data-theme="vscode" data-codemirror="markdown" data-type="mid"># Hello World
+- Hello World</div>
+      </div>
+
+      <div class="mt-2 flex-row justify-end align-center">
+        <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+            SUBMIT
+        </button>
+      </div>
+
+    </form>
+
+    <output class="block" id="output-test-markdown-to-lexical-form">
+      <div class="lexical-wrapper" data-rich-text-editor data-type="full" data-editable="false" id="example-out-lexical"></div>
+    </output>
+</section>
+
+<script nonce="<%=locals.jsNonce%>">
+(() => {
+  const lexicalToMarkdown = document.getElementById('test-html-to-markdown');
+  lexicalToMarkdown.addEventListener('submit',async (e) => {
+    e.preventDefault();
+    const markdown = await window.editorToChatMessage('test-editor');
+    if (markdown) {
+      const output = document.getElementById('output-test-html-to-markdown-form');
+      if (output) {
+        const pre = document.createElement('pre');
+        pre.classList.add('hz-scroll');
+        pre.style.cssText="background-color: var(--secondary-background); color: var(--primary-text); font: monospace; padding: 4px; margin-top: 6px; overflow-x: auto;";
+        pre.innerText = markdown.markdown;
+        output.innerHTML = pre.outerHTML;
+        output.scrollIntoView();
+      }
+    } else {
+      document.dispatchEvent(new CustomEvent('DISPATCH_SNACKBAR',{ detail: { severity: "error", message: "Something went wrong getting the markdown for the lexical editor." }}));
+    }
+  })
+
+  const markdownToLexical = document.getElementById('test-markdown-to-lexical');
+  markdownToLexical.addEventListener('submit',async (e) => {
+    e.preventDefault();
+    const editorText = window.getCodeMirrorEditorText('markdown-to-lexical-editor');
+    if (editorText) {
+      const html = await window.markdownToHTMLAi(editorText);
+      console.log(html);
+      window.updateLexicalInstanceWithHtml('example-out-lexical',html);
+    } else {
+      document.dispatchEvent(new CustomEvent('DISPATCH_SNACKBAR',{ detail: { severity: "error", message: "Something went wrong getting the editor text from the codemirror editor." }}));
+    }
+  })
+})()
+</script>
+
+
+
+
+
+  <%-include('../partials/pagePartial')%>
+<%}%>
+

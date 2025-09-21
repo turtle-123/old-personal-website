@@ -1,0 +1,71 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/links-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="links-header">
+  <a href="#links-header"  class="same-page bold">Links</a>
+</h2>
+<details class="mt-2" id="about-links">
+  <summary>
+    <span class="h6 fw-regular">About Links</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true">
+    <span class="bold h6 block">CSS</span>
+    Links can primary be styled by adding the <span><code class="hljs"><span class="hljs-selector-class">.primary</span><span class="hljs-selector-class">.link</span></code></span> and <span><code class="hljs"><span class="hljs-selector-class">.secondary</span><span class="hljs-selector-class">.link</span></code></span> to the 
+    <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span>&gt;</span></span></code></span> tag. <br>
+    Links that link to somewhere on the current page can have the <span><code class="hljs"><span class="hljs-selector-class">.same-page</span></code></span> class added to them.
+    <br>
+    Links for the table of contents (On This Page) surface should have the <span><code class="hljs"><span class="hljs-selector-class">.toc</span></code></span> add to them.
+    <span class="bold h6 block">JavaScript</span>
+    When new content is loaded, the default JavaScript gets all links on the page that have an 
+    <span class="t-info bold">hx-target</span> attribute that are equal to <em class="bold">#PAGE</em>
+    or begin with <em class="bold">#subpage</em> and sets them to disabled if their <span class="t-info bold">hx-get</span>
+    attribute is equal to the current page location.
+    <span class="bold h6 block">Search Engine Optimization</span>
+    Links that are entered in by the user should have a <a href="https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links" class="secondary link" target="_blank">rel attribute of 'nofollow'</a>.
+  </div>
+</details>
+<div class="alert info outlined medium icon mt-2" role="alert">
+<svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Info"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>
+<p class="alert">
+  <strong>NOTE:</strong>
+  <span class="block">
+    Links can be styled the same way buttons can be styled by adding a <em class="bold">.button</em>
+    class to the anchor tag (plus the other classes for styling the button).  
+  </span>
+</p>
+</div>
+<section id="link-examples" class="mt-2">
+<h3 class="h6 bold bb block">
+<a href="#link-examples" class="same-page bold">Link Examples</a>
+</h3>
+<p class="body1 mt-2">Primary Link:</p>
+<div class="w-100 flex-row justify-center align-center">
+<a href="https://www.espn.com/" target="_blank" class="primary link">Primary Link</a>
+</div>
+<p class="body1 mt-2">Secondary Link:</p>
+<div class="w-100 flex-row justify-center align-center">
+<a href="https://www.espn.com/" target="_blank" class="secondary link">Secondary Link</a>
+</div>
+<p class="body1 mt-2">Same Page Link:</p>
+<div class="w-100 flex-row justify-center align-center">
+<a href="#link-examples" class="h6 same-page">Same Page Link</a>
+</div>
+<span class="block t-warning mt-1 w-100 text-align-left">
+<strong>NOTE:</strong> You should add the <span><code class="hljs"><span class="hljs-selector-class">.bold</span></code></span> class to same-page links that uou want to be bold.
+</span>
+<p class="body1 mt-2">Citation Link:</p>
+<div class="w-100 flex-row justify-center align-center">
+<a class="secondary link" href="#citations">Citation Like Link Using Sup Element <sup>[1]</sup></a>
+</div>
+<div style="border-top: 1px solid var(--divider); margin: 1rem 0px;" class="block" id="citations">
+Here is a section where you could keep citations
+</div>
+</section>

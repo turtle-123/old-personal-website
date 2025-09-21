@@ -1,0 +1,87 @@
+<%# 
+PARTIAL ROUTE: pages/admin/admin-article.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.pageObj
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title"><%=locals.pageObj.title%></h1>
+
+  <section id="search_instances" class="mt-4">
+    <div class="flex-row bb-main justify-between align-center">
+      <h2 class="bold h2">
+        <a href="#search_instances" class="same-page bold">Search        </a>
+      </h2>
+      <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#search-notes-body">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+      </button>
+    </div>
+    <div id="search-notes-body">
+      <div class="input-group block w-100 mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="search-notes-title">Search By Title:</label>
+        <div class="mt-1 text-input block medium">
+          <input 
+          type="search" 
+          class="icon-after" 
+          name="search-notes-title" 
+          id="search-notes-title" 
+          placeholder="Search by Title" 
+          hx-trigger="input changed delay:200ms, search" 
+          hx-target="#search-note-tit-res" hx-swap="innerHTML" hx-indicator="#search-notes-ind" hx-get="/admin/note/search" 
+          >
+          <svg class="icon-after" focusable="false" inert viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+            </path>
+          </svg>
+        </div>
+      </div>
+      <div class="flex-row justify-center t-info htmx-indicator mt-3" role="progressbar" aria-busy="false" id="search-notes-ind" aria-label="Searching notes by title">
+        <div class="lds-dual-ring"></div>
+      </div>
+      <div class="mt-3" id="search-note-tit-res" style="max-height: 300px; overflow-y: auto;">
+        <div class="alert info filled medium icon" role="alert">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+          <p class="alert">
+              Search for an entry by title in the search box above and see the results here...
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="edit-article" class="mt-2">
+      <h2 class="bold bb-thick h2">
+        <a href="#edit-article" class="same-page fw-regular"><%=locals.pageObj.edit%></a>
+      </h2>
+      <style>
+        .grid-notes {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+          gap: 1rem;
+          flex-wrap: wrap;
+        }
+      </style>
+      <div id="search-post-results" class="grid-notes">
+        <%-locals.pageObj.articlePostsPreview%>
+      </div>
+  </section>
+
+  <section id="create-article" class="mt-3">
+    <h2 class="bold bb-thick h2">
+      <a href="#create-article" class="same-page fw-regular"><%=locals.pageObj.createNew%></a>
+    </h2>
+    <div id="reloading-article-form-indicator" class="flex-row justify-center t-secondary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Reload Article Form Indicator">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <%-locals.pageObj.createPost%>
+  </section>
+  <%-include('../../partials/pagePartial')%>
+<%}%>

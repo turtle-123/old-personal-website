@@ -1,0 +1,82 @@
+<%# 
+PARTIAL ROUTE: partials/routes/various-nlp-tasks/named-entity-recognition.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.str
+- locals.response
+- locals.response[i]
+%>
+<style>
+    .ner-o {background-color:aqua; color: black;}
+    .ner-b-misc {background-color:red; color: white;}
+    .ner-i-misc {background-color:yellow; color: black;}
+    .ner-b-per {background-color:pink; color: black;}
+    .ner-i-per {background-color:green; color: white;}
+    .ner-b-org {background-color:blue; color: white;}
+    .ner-i-org {background-color: purple; color: white;}
+    .ner-b-loc {background-color:orange; color: black;}
+    .ner-i-loc {background-color:yellowgreen; color: black;}
+</style>
+<h3 class="h3 bold bb mt-2">Named Entity Recognition Response:</h3>
+<%-locals.str%>
+<h4 class="h4 bold mt-2">
+    Reference:
+</h4>
+<div class="mt-1">
+    <div>
+        <span class="ner-o">O</span>: Outside of a Named Entity
+    </div>
+    <div>
+        <span class="ner-b-misc">B-MISC</span>: Beginning of a miscellaneous entity right after another miscellaneous entity
+    </div>
+    <div>
+        <span class="ner-i-misc">I-MISC</span>: Miscellaneous entity
+    </div>
+    <div>
+        <span class="ner-b-per">B-PER</span>: Beginning of a person's name right after another person's name
+    </div>
+    <div>
+        <span class="ner-i-per">I-PER</span>: Person's name
+    </div>
+    <div>
+        <span class="ner-b-org">B-ORG</span>: Beginning of an organization right after another organization
+    </div>
+    <div>
+        <span class="ner-i-org">I-ORG</span>: organization
+    </div>
+    <div>
+        <span class="ner-b-loc">B-LOC</span>: Beginning of a location right after another location
+    </div>
+    <div>
+        <span class="ner-i-loc">I-LOC</span>: Location
+    </div>
+</div>
+<div class="table-wrapper mt-2">
+    <table cellspacing="0">
+        <caption class="h4 bold">NER Information</caption>
+        <thead>
+            <tr>
+            <th scope="col">Entity</th>
+            <th scope="col">Score</th>
+            <th scope="col">Index</th>
+            <th scope="col">Word</th>
+            <th scope="col">Start</th>
+            <th scope="col">End</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%for(let i =0; i < locals.response.length; i++){%>
+                <tr>
+                    <td><%=locals.response[i].entity%></td>
+                    <td><%=locals.response[i].score%></td>
+                    <td><%=locals.response[i].index%></td>
+                    <td><%=locals.response[i].word%></td>
+                    <td><%=locals.response[i].start%></td>
+                    <td><%=locals.response[i].end%></td>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+</div>
+

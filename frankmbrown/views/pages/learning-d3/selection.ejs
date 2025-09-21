@@ -1,0 +1,19 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/selection.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+<h1 class="page-title" id="top-of-page">D3.js Selection</h1>
+        
+<p>
+  Selections allow powerful data-driven transformation of the document object model (DOM): set attributes, styles, properties, HTML or text content, and more. Using the data join’s enter and exit selections, you can also add or remove elements to correspond to data.
+</p>
+
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

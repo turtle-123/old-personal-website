@@ -1,0 +1,98 @@
+<%# 
+PARTIAL ROUTE: pages/projects/image-editor.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.phone
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+      
+    <h1 class="page-title">Create a Chart</h1>
+
+    <section id="why-create-this-page" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#why-create-this-page" class="same-page bold">
+            Why Create This Page
+          </a>
+        </h2>
+        <p class="mt-2">
+            I am creating this page to make it easier to make charts using <a class="secondary link" target="_blank" href="https://bokeh.org/">Bokeh</a> or <a class="secondary link" target="_blank" href="https://mpld3.github.io/index.html">mpld3</a>. I want to be able to easily create charts with these two libraries and either:
+        </p>
+        <ol>
+            <li>Copy the HTML output, or</li>
+            <li>
+                Save the chart for use in a rich text editor (comment / article post).
+                <ul>
+                    <li>
+                        The reason why charts need to be inserted to the rich text editor this way is to protect against <a class="secondary link" target="_blank" href="https://owasp.org/www-community/attacks/xss/">cross site scripting attacks</a> - I need some way to verify that the JavaScript associated with the chart is not doing anything malicious. 
+                    </li>
+                </ul>
+
+            </li>
+        </ol>
+    </section>
+
+    <section id="upload-files" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#upload-files" class="same-page bold">
+            Upload Files
+          </a>
+        </h2>
+        <%if(locals.auth>=1){%>
+            
+        <%}else{%>
+            <p class="mt-2 t-warning fw-regular">
+                You must be logged in to upload files and subsequently use those files (data / images / etc.) to create charts. Either <a class="primary link" hx-get="/login" href="/login" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">login</a> or <a class="primary link" hx-get="/create-account" href="/create-account" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">create an account</a> to create a chart using uploaded files. 
+            </p>
+        <%}%>
+    </section>
+
+    <section id="code-editor" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#code-editor" class="same-page bold">
+            Python Code Editor
+          </a>
+        </h2>
+        <p class="mt-2">
+            Use the code editor below to create a chart 
+        </p>
+        <form class="mt-2" hx-post="/create-a-chart/create-chart" hx-indicator="#ind_07aacfe8-fa27-4eaa-bd21-350f5a59311c" hx-target="#tar_2d201a54-7979-4c07-898b-3c59f36963ca" hx-trigger="submit" hx-swap="innerHTML">
+          <div data-editor-wrapper id="python-code-editor">
+             <div data-theme="vscode" data-codemirror="python" style="min-height: 300px;" data-type="mid">p = figure(width=700,height=500,title="My Age Since 2010")
+data = {
+  "years": np.arange(2010,2025),
+  "age": np.arange(11,26)
+}
+p.line(data["years"],data["age"],line_color="red",line_dash="dashed",legend_label="My Age Through the Years")
+p.y_range.start = 0
+p.xaxis.axis_label = "Year"
+p.yaxis.axis_label = "Age"</div>
+          </div>      
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+          </form>
+    </section>
+
+    <section id="output" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#output" class="same-page bold">
+            Output
+          </a>
+        </h2>
+        <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_c6df3924-143e-463d-870a-b013d9c059f1">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+        <output class="mt-2" id="tar_2d201a54-7979-4c07-898b-3c59f36963ca">
+
+        </output>
+    </section>
+    <%-include('../../partials/pagePartial')%>
+<%}%>

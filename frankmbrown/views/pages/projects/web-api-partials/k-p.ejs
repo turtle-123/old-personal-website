@@ -1,0 +1,508 @@
+<section id="id_b2177272-07f5-4dc5-b02e-0b5d716658aa" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_b2177272-07f5-4dc5-b02e-0b5d716658aa" class="same-page bold">Launch Handler API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_ed4cfa34-752c-412a-9d8d-6ec27a297aae">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_ed4cfa34-752c-412a-9d8d-6ec27a297aae" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Launch_Handler_API">Launch Handler API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Launch Handler API</strong> allows developes to control how a progressive web app is launched - for example if it creates a new one, and the app's launch target URL is handled. 
+        </blockquote>
+        <p class="mt-2">
+            You can specify launch behavior by adding the <span class="text-code">launch_handler</span> field to your web app manifest file. This has one sub-field, <span class="text-code">client_mode</span>, which contains a string value specifying how the app should be launched and navigated to.
+        </p>
+         
+    </div>
+</section>
+<section id="id_89363f2b-1ea6-46ff-875b-37b83f14b2fb" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_89363f2b-1ea6-46ff-875b-37b83f14b2fb" class="same-page bold">Local Font Access API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_66e4b63d-6131-499a-99c8-accb87959d45">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_66e4b63d-6131-499a-99c8-accb87959d45" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Local_Font_Access_API">Local Font Access API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Local Font Access API</strong> provides a mechanism to access the user's locally installed font data - this includes higher-level details such as names, styles, and families, as well as the raw bytes of underlying font files. 
+        </blockquote>
+        <p class="mt-2">
+            High-end design tools have historically been difficult to deliver on teh web, due to challenges in accurate font enumeration and accessing low-level font data (for example, to apply filters and transformations). Current apps often rely on workarounds such as asking users to upload their fonts to a server where they are processed to get raw byte data or installing a separate local program to provide additional capabilities.
+        </p>
+        <p class="mt-2">
+            The Local Font Access API has been created to address these problems. The <span class="text-code">Window.queryLocalFonts()</span> method provides access to an array of locally installed fonts, each represented by a <span class="text-code">FontData</span> object instance. <span class="text-code">FontData</span> has several properties providing access to names, styles, and families. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_ffbf293e-5f7b-4163-ad83-90e0ddbccb3e" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_ffbf293e-5f7b-4163-ad83-90e0ddbccb3e" class="same-page bold">Media Capabilities API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_86564376-d9f1-4fdd-8720-be71121f750e">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_86564376-d9f1-4fdd-8720-be71121f750e" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Media_Capabilities_API">Media Capabilities API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Media Capabilities API</strong> allows developers to determine decoding and encoding abilities of the device, exposing information such as whether media is supported and whether playback should be smooth and power efficient, with real time feedback about playback to better enable adaptive streaming, and access to display property information.
+        </blockquote>   
+        <p class="mt-2">
+            There are a myriad of video and audio codecs. Different browsers support different media types and new media types are always being developed. With the Media capabilities API, developers can ensure each user is getting the best bitrate and storage savings for their browser, device and OS capabilities. The Media Capabilities API enables determining which codecs are supported and how performant a media file will be in terms of smoothness and power efficiency. The Media API provides abilities to display property information such as supported color gamut, dynamic range abilities, and real-time feedback about the playback.
+        </p>
+         
+    </div>
+</section>
+<section id="id_f71b3fbe-8a09-47f5-b13c-2412466814bb" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_f71b3fbe-8a09-47f5-b13c-2412466814bb" class="same-page bold">Media Capture and Stream</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_424100d1-5aa4-4b75-90f6-44eb56b02c03">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_424100d1-5aa4-4b75-90f6-44eb56b02c03" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Media_Capture_and_Streams_API">Media Capture and Stream Reference</a></li>
+        <li><a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API/Constraints">Capabilities, Constraints, and Settings of Media Streams</a></li>
+        </ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Media Capture and Streams API</strong>  (aka <strong>Media Streams API</strong> or <strong>MediaStream API</strong>) is an API related to <a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API">WebRTC</a> which provides support for streaming audio and video data.
+        </blockquote>
+        <p class="mt-2">
+            It provides interfaces and methods for working with the streams and their constituent tracks, the constraints associated with data formats, the succes and error callbacks when using the data asynchronously abd the events that are fired during the process. The API is based on the manipualtion of the <span class="text-code">MediaStream</span> object representing a flux of audio- or video-related data. A <span class="text-code">MediaStream</span> consists of zero or more <span class="text-code">MediaStreamTrack</span> objects, representing various audio or video <strong>tracks</strong>. Each <span class="text-code">MediaStreamTrack</span> may have one or more <strong>channels</strong>. The channel representing reprsents the smallest unit of a media stream, such as an audio signal associated with a given speaker, like <em>left</em> or <em>right</em> in a stereo audio track. 
+        </p>
+        <p class="mt-2">
+            <span class="text-code">MediaStream</span> objects have a single <strong>input</strong> and a single <strong>output</strong>. A <span class="text-code">MediaStream</span> object generated by <span class="text-code">getUserMedia()</span> is called <em>local</em>, and has its source input one of the user's cameras or microphones.  
+        </p>
+         
+    </div>
+</section>
+<section id="id_d8ca6f4f-7929-4fe8-8501-fee6f55ccc91" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_d8ca6f4f-7929-4fe8-8501-fee6f55ccc91" class="same-page bold">Media Session API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_4e2eb0d0-9a3a-4bfa-9b64-a23cea60234a">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_4e2eb0d0-9a3a-4bfa-9b64-a23cea60234a" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Media_Session_API">Media Session API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>MediaSession API</strong> provides a way to customize media notifications. It does this by providing metadata for displaying by the user agent for the media your web app is playing. It also provides action handlers that the browser can use to access platform media keys such as hardware keys found on keyboards, remote controls, and software keys found in notification areas and on lock screens of mobile devices. So you can seamlessly control web-provided media via your device, when when not looking at the web page. The aim is to allow users to know what is playing and to control it, without needing to open the specific page that launched it. To be able to support the Media Session API, a browser first needs a mechanism by which to access and be controlled by the OS-level media controls. 
+        </blockquote>
+        <p class="mt-2">
+            The <span class="text-code">MediaMetadata</span> interface lets a website provide rich metadata to the platform UI for media that is playing. This metadata includes the title, artist (creator) name, album (collection), artwork, and chapter information. The platform can show this metadata in media centers, notifications, device lock screens, and so on.
+        </p>
+        <p class="mt-2">
+            The <span class="text-code">MediaSession</span> interface lets users control the playback of media through user-agent defined interface elements. Interactions with these elements trigger action handlers on the web page playing the media. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_42bfbc06-9918-4a6c-883b-5707f74c1308" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_42bfbc06-9918-4a6c-883b-5707f74c1308" class="same-page bold">Media Source Extensions</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_9d4df833-0914-45d9-b460-55d29d06e4c8">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_9d4df833-0914-45d9-b460-55d29d06e4c8" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Media_Source_Extensions_API">Media Source Extensions Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Media Source API</strong>, formally known as <strong>Media Source Extensions</strong> (<abbr title="Media Source Extensions">MSE</abbr>) provides functionality enabling plugin-free web-based streaming media. Using MSE, media streams can be created via JavaScript, and played using <span class="text-code">&lt;audio&gt;</span> and <span class="text-code">&lt;video&gt;</span> elements. 
+        </blockquote>
+        <p class="mt-2">
+            MSE allows us to replace the usual single progressive <span class="text-code">src</span> URI ded to media elements with a reference to a <span class="text-code">MediaSource</span> object, which is a container for information like the ready state for media being played, and references to multiple <span class="text-code">SourceBuffer</span> objects that represent the different chunks of media that make up the entire stream.
+        </p>
+        <p class="mt-2">
+            If you do not require explicit control of video quality over time, the rate at which content is fetched, or the rate at which memory is evicted, then the <span class="text-code">&lt;video&gt;</span> and <span class="text-code">&lt;audio&gt;</span> tags may well be a simple and adequate solution. 
+        </p>
+        <p class="mt-2">
+            Dynamic-Adaptive Streaming over HTTP (DASH) is a protocol for specifying how adaptive content should be fetched. It is effectively a layer built on top of MSE for building adaptive bitrate streaming clients. While there are other protocols available, DASH has the most platform support. DASH moves lots of logic out of the network protocol and into the client side application logic, using the simpler HTTP protocol to fetch files. One can support DASH with a simple static file server, which is also great for CDNs. This is in direct contrast with previous streaming solutions that require expensive licenses for proprietary non-standard client/server protocol implementations. The two most common use cases for DASH involve watching content "on demand" or "live". On demand allows a developer to take their time transcoding the assets into multiple resolutions of various quality. Live profile content can introduce latency due to its transcoding and broadcasting, so DASH is not suitable for real time communication like WebRTC is. 
+        </p>
+
+         
+    </div>
+</section>
+<section id="id_20cb7f98-6d2c-4bbc-89a2-2b190b5656bb" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_20cb7f98-6d2c-4bbc-89a2-2b190b5656bb" class="same-page bold">MediaStream Recording</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_052e17b1-5abe-42a7-af45-34f0d81d9431">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_052e17b1-5abe-42a7-af45-34f0d81d9431" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/MediaStream_Recording_API">MediaStream Recording Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>MediaStream Recording API</strong>, sometimes referred to as the <em>Media Recording API</em> or the <em>MediaRecorder API</em>, is closely affiliated with the Media Capture and Streams API and the WebRTC API. The MediaStreamRecording API makes it possible to capture the data generated by <span class="text-code">MediaStream</span> or <span class="text-code">HTMLMediaElement</span> object for analysis, processing, or saving to disk. 
+        </blockquote>
+        <p class="mt-2">
+            The MediaStream Recording API is comprised of a single major interface, <span class="text-code">MediaRecorder</span>, which does all the work of taking the data from a <span class="text-code">MediaStream</span> and delivering it to your for processing. The data is delivered by a series of <span class="text-code">dataavailable</span> events, already in the format you specify when creating the <span class="text-code">MediaRecorder</span>. <br>
+            <strong>Process of Recording a Stream:</strong>
+        </p>
+        <ol>
+            <li>Set up a MediaStream or HTMLMediaElement to serve as the source of the media data.</li>
+            <li>Create a <span class="text-code">MediaRecorder</span> object, specifying the source stream and any desired options.</li>
+            <li>Set <span class="text-code">ondataavailable</span> to an event handler for the <span class="text-code">dataavailable</span> event; this will be called whenever data is available for you.</li>
+            <li>Once the source media is playing and you've reached the point where you're ready to record video, call <span class="text-code">MediaRecorder.start()</span> to begin recording.</li>
+            <li>Your <span class="text-code">dataavailable</span> event handler called every time ther's data ready for you to do with as you will; the event has a <span class="text-code">data</span> attribute whose value is a <span class="text-code">Blob</span> that contains the media data.</li>
+            <li>Recording stops automatically when the source media stops playing.</li>
+            <li>You can stop recording at any time by calling <span class="text-code">MediaRecorder.stop()</span>.</li>
+        </ol>
+         
+    </div>
+</section>
+<section id="id_a84145f6-aa5b-45d0-a401-ba5776008561" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_a84145f6-aa5b-45d0-a401-ba5776008561" class="same-page bold">Navigation API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_e8ba6ee1-e528-4751-b631-828a19eccd5a">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_e8ba6ee1-e528-4751-b631-828a19eccd5a" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Navigation_API">Navigation API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Navigation API</strong> provides the ability to initiate, intercept, and manage browser navigation actions. It can also examine an application's history entries. This is a successor to previous web platform features such as the History API and window.location. [This API is aimed at the needs of single-page applications (SPAs).] 
+        </blockquote>
+        <p class="mt02">
+            The Navigation API is accessed via the <span class="text-code">Window,navigation</span> property, which returns a reference to a global <span class="text-code">Navigation</span> object. Each <span class="text-code">window</span> object has its own corresponding <span class="text-code">navigation</span> instance. The <span class="text-code">navigation</span> interface has several associated events, the most notable being the <span class="text-code">navigate</span> event. This is fired when any type of navigation is initiated, meaning that you can control all page navigations from one central place, ideal for routing functionality in SPA frameworks. Ad the user navigates through your application, each new location navigates to results in the creation of a navigation history entry. Each history entry is represented by a distinct <span class="text-code">NavigationHistoryEntry</span> object instance. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_3abaac34-5fcc-434d-b675-5a900df354da" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_3abaac34-5fcc-434d-b675-5a900df354da" class="same-page bold">Network Information API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_66adbead-fdbf-4be3-a2d7-22834f903a2e">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_66adbead-fdbf-4be3-a2d7-22834f903a2e" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Network_Information_API">Network Information API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Network Information API</strong> provides information about the system's connection in terms of general connection type (e.g., 'wifi',  'cellular', etc.). This can be used to select high definition content or low definition content based on the user's connection. 
+        </blockquote>
+        <p class="mt-2">
+            The interface consists of a single <span class="text-code">NetworkInformation</span> object, an instance of which is returned by the <span class="text-code">Navigator.connection</span> property or the <span class="text-code">WorkerNavigator.connection</span> property. The connection object is useful for deciding whether to preload resources that take large amounts of bandwidth or memory. This example would be called soon after page load to check for a connection type where preloading video may not be desirable.
+        </p>
+         
+    </div>
+</section>
+<section id="id_b8ac502c-002b-4d82-9c6b-90e7cae0c04c" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_b8ac502c-002b-4d82-9c6b-90e7cae0c04c" class="same-page bold">Page Visibility API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_dcc60e27-0708-4fa5-93d3-f74c4a1c1a5c">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_dcc60e27-0708-4fa5-93d3-f74c4a1c1a5c" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Page_Visibility_API">Page Visibility API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Page Visibility API provides events you can watch for to know when a document becomes visible or hidden, as well as features to look at the current visibility state of the page. This is especially useful for saving resources and improving performance by letting a page avoid performing unnecessary tasks when the document isn't visible.  
+        </blockquote>
+        <p class="mt-2">
+            When the user minimized the window, switches to another tab, or the document is entirely obscured by another window, the API sends a <span class="text-code">visibilitychange</span> event to let listeners know the state of the page has changed. You can detect event and perform some actions or behave differently. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_78380e72-abb7-4d5b-bbb0-916ba09c1842" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_78380e72-abb7-4d5b-bbb0-916ba09c1842" class="same-page bold">Payment Handler API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_3a41b944-e4a9-467f-8bc6-d844cdf34597">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_3a41b944-e4a9-467f-8bc6-d844cdf34597" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Payment_Handler_API">Payment Handler API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Payment Handler API provides a standardized set of functionality for web applications to directly handle payments, rather than having to be redirected to a separate site for payment handling.
+        </blockquote>
+        <p class="mt-2">
+            When a merchant website initiates payment via the Payment Request API, the Payment Handler API handles discovery of applicable payment apps, presenting them as choices to the user, opening a payment handler window once a choice has been made to allow the user to enter their payment details, and handling the payment transaction with the payment app. Communication with payment apps is handled via Service Workers. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_30b12b8c-516d-4b96-a8bf-3bc26168b41a" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_30b12b8c-516d-4b96-a8bf-3bc26168b41a" class="same-page bold">Payment Request API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_a4cde46b-daf6-4852-bb7d-70c216994d15">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_a4cde46b-daf6-4852-bb7d-70c216994d15" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Payment_Request_API">Payment Request API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Payment Request API</strong> provides a consistent user experience for merchants and users. It is not a new way of paying for things; instead, it's a way for users to select their preferred way of paying for things and make that information available to a merchant. 
+        </blockquote>
+        <p class="mt-2">
+            The <strong>Payment Request API</strong> is meant to reduce the steps needed to complete payment online, potentially doing away with checkout forms. It aims to make the checkout process more accessible by having payment apps store a suer's details, which are passed along to a merchant, hopefully without requiring an HTML form.
+        </p>
+         
+    </div>
+</section>
+<section id="id_15dd0019-9013-48c4-8681-9a554bdf6a7f" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_15dd0019-9013-48c4-8681-9a554bdf6a7f" class="same-page bold">Performance API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_d1cbb70f-b224-431a-ae13-f349061859fe">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_d1cbb70f-b224-431a-ae13-f349061859fe" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Performance_API">Performance API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Performance APU is a group of standards used to measure the performance of web applications. 
+        </blockquote>
+        <p class="mt-2">
+            To ensure web applications are fast, it's important to measure and analyze various performance metrics. The Performance API provides important built-in metrics and the ability to add your own measurements to the browser's performance timeline. The performance timeline contains high precision timestamps and can be displayed in developer tools. Each performance metric is represented by a single <span class="text-code">PerformanceEntry</span>. A performance entry has a <span class="text-code">name</span>, a <span class="text-code">duration</span>, a <span class="text-code">startup</span>, and a <span class="text-code">type</span>. All performance metrics extend the <span class="text-code">PerformanceEntry</span> interface and qualify it further. 
+        </p>
+        <div class="flex-row justify-center">
+            <img 
+            width="<%-locals.desktop?454:(locals.tablet?350:245)%>" 
+            height="<%-locals.desktop?600:(locals.tablet?498:396)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 41 / 66 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2F1d995541-0a24-4e32-b879-ab7472207faf-mobile.jpeg 245w, https://image.storething.org/frankmbrown%2F1d995541-0a24-4e32-b879-ab7472207faf-tablet.jpeg 350w, https://image.storething.org/frankmbrown%2F1d995541-0a24-4e32-b879-ab7472207faf-desktop.jpeg 454w" 
+            sizes="(max-width: 550px) 396px, ((min-width: 550px) and (max-width: 1200px)) 498px, (min-width: 1200px) 600px" 
+            src="https://image.storething.org/frankmbrown%2F1d995541-0a24-4e32-b879-ab7472207faf-desktop.jpeg" 
+            alt="Performance Entry" 
+            />
+        </div>
+         
+    </div>
+</section>
+<section id="id_bec41f11-075b-4781-b8e6-06d4025f0328" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_bec41f11-075b-4781-b8e6-06d4025f0328" class="same-page bold">Periodic Background Sync</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_ab290384-1b4d-43c8-a92f-022a190d6d31">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_ab290384-1b4d-43c8-a92f-022a190d6d31" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_Periodic_Background_Synchronization_API">Periodic Background Sync Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Web Periodic Background Synchronization API</strong> provides a way to register tasks to be run in a service worker at periodic intervals with network connectivity. These tasks are referred to as periodic background sync requests. 
+        </blockquote>
+        <p class="mt-2">
+            The Periodic Background Sync API allows web applications to alert their service worker to make any updates, at a periodic time interval. Uses may include fetching latest content whilst a device is connected to Wi-Fi, or allowing background updates to an application. The <span class="text-code">PeriodicSyncManager</span> interface is available through <span class="text-code">ServiceWorkerRegistration.periodicSync</span>. A unique tag identifier is set to 'name' the sync event, which can the be listened for within the <span class="text-code">ServiceWorker</span> object.
+        </p>
+         
+    </div>
+</section>
+<section id="id_ca43d1a3-9518-435b-88b6-715216e98bc9" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_ca43d1a3-9518-435b-88b6-715216e98bc9" class="same-page bold">Permissions API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_133179c7-deb8-4427-9e99-94f7ed4610d5">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_133179c7-deb8-4427-9e99-94f7ed4610d5" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Permissions_API">Permissions API Reference</a></li>
+        <li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Permissions_API#permission-aware_apis">List of Permission-aware APIs</a></li>
+        </ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Permissions API</strong> provides a consistent programmatic way to query the status of API permissions attributed to the current context, such as a web page or worker. For example, it can be used to determine if permission to access a particular feature or API has been granted, denied, or requires specific user permission. 
+        </blockquote>
+        <p class="mt-2">
+            The Permissions API provides the tools to allows developers to implement a consistent user experience for working with permissions. The permissions from this APU effectively aggregate all security restrictions for the context, including any requirement for an API to be used in a secure context, Permissions-Policy restrictions applied to the document, requirements for user interaction, and user prompts. The <span class="text-code">permissions</span> policy has been made available on the <span class="text-code">Navigator</span> object, both i the standard browsing context and the worker context, and returns a <span class="text-code">Permissions</span> object that provides access to the Permissions API functionality. Once you have this object you can then use the <span class="text-code">Permissions.query()</span> method to return a promise that resolves with the <span class="text-code">PermissionsStatus</span> for a specific API. 
+        </p>
+        <p class="mt-2">
+            If the permission status is <span class="text-code">prompt</span>, the user must acknowledge a prompt to grant access to this feature. The mechanism that triggers this prompt will depend on the specific API - it is not defined as part of the Permissions API. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_bd82e069-55b1-4646-97a3-0f2eb5429e99" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_bd82e069-55b1-4646-97a3-0f2eb5429e99" class="same-page bold">Picture-in-Picture API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_c716d470-1e2c-4064-ab7e-988e3e3785df">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_c716d470-1e2c-4064-ab7e-988e3e3785df" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Picture-in-Picture_API">Picture-in-Picture API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Picture-in-Picture API</strong> allow websites to create a floating, always on top video window. This allows users to continue consuming media while they interact with other sites or applications on their device. 
+        </blockquote>
+        <p class="mt-2">
+            The Picture-in-Picture API adds methods to the <span class="text-code">HTMLVideoElement</span> and <span class="text-code">Document</span> interfaces to allow toggling out of the floating video window. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_c581155a-5ba7-452c-838a-8eb8e27e0999" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_c581155a-5ba7-452c-838a-8eb8e27e0999" class="same-page bold">Pointer Event</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_a7a8d419-2bd3-46e4-a95d-953120be6ae7">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_a7a8d419-2bd3-46e4-a95d-953120be6ae7" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Pointer_events">Pointer Event Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            Much of today's web content assumes the user's pointing device will be a mouse. However, since many devices support other types of pointing input devices, such as pen/stylus and touch surfaces, extensions to teh existing pointing device event models are needed. <a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Pointer_events#pointer_event">Pointer events</a> address that need. 
+        </blockquote>
+        <p class="mt-2">
+            Pointer events are DOM events that are fired for a pointing device, They are designed to create a single DOM event model to handle pointing input devices such as a mouse, pen/stylus, or touch (such as one or more fingers). The <a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Pointer_events#pointer">pointer</a> is a hardware-agnostic device that can target a specific set of screen coordinates. Having a single event model for pointers can simplify creating websites and applications and provide a good user experience regardless of the user's hardware. The events needed to handle generic pointer input are analogous to mouse events (<span class="text-code">mousedown</span>/<span class="text-code">pointerdown</span>,<span class="text-code">mousemove</span>/<span class="text-code">pointermove</span>,etc.). A pointer event contains the usual properties present in mouse events in addition to new properties for other forms of input: pressure, contact geometry, titlt, etc. 
+        </p>
+        <h3 class="h4 bold mt-2">Terminology</h3>
+        <dl>    
+            <dt class="h5">active button state</dt>
+            <dd>The condition when a pointer has a non-zero value for the <span class="text-code">buttons</span> property.</dd>
+            <dt class="h5">active pointer</dt>
+            <dd>Any pointer that can produce events. A pointer is considered active if it can still produce further events.</dd>
+            <dt class="h5">digitizer</dt>
+            <dd>A sensing device with a surface that can detect content. Most commonly, the sensing device is a touch-enabled screen that can sense input from an input device such as a pen, stylus, or finger. Some sensing devices can detect the close proximity of the input device, and the state is expressed as a hover following the mouse. </dd>
+            <dt class="h5">hit test</dt>
+            <dd>The process the browser uses to determine a target element for a pointer event. Typically, this is determined by considering the pointer's location and the virtual layout of elements in a document.</dd>
+            <dt class="h5">pointer</dt>
+            <dd>A hardware-agnostic representation of input devices that can target a specific coordinate (or set of coordinates) on a screen. Examples of pointer input devices are mouse, pen/stylus, and touch contacts. </dd>
+            <dt class="h5">pointer capture</dt>
+            <dd>Pointer capture allows the events for a pointer to be retargeted to a a particular element other than the normal hit test result of the pointer's location.</dd>
+            <dt class="h5">pointer event</dt>
+            <dd>A DOM event fired for a pointer</dd>
+        </dl>
+        <p class="mt-2">
+            For scenarios where there can be multiple pointers, the application uses the <span class="text-code">isPrimary</span> property to identify a master pointer among a set of <em>active pointers</em> for each pointer type. The <span class="text-code">touch-action</span> CSS property is used to specify whether or not the browser should apply its default touch behavior to a region.
+        </p>
+         
+    </div>
+</section>
+<section id="id_b1e26148-453a-4c0c-adb1-a258d4039e62" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_b1e26148-453a-4c0c-adb1-a258d4039e62" class="same-page bold">Pointer Lock API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_73968ed5-dbef-49d2-ad55-3f2bbc6f8ae5">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_73968ed5-dbef-49d2-ad55-3f2bbc6f8ae5" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Pointer_Lock_API">Pointer Lock API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Pointer Lock API</strong> provides input methods based on the movement of the mouse over time, not just the absolute position of the mouse cursor in the viewport. It gives you access to raw mouse movement, locks the target of mouse events to a single element, eliminates limits on how far mouse movement can go in a single direction, and removes the cursor from view. It is ideal for 3D games. 
+        </blockquote>
+        <p class="mt-2">
+            The API is useful for any application that requires significant mouse input to control movements. Pointer lock lets you access mouse events even when the cursor goes past the boundary of the browser or screen. Pointer lock is different from pointe capture in that it is persistent, it is not limited by browser or screen boundaries, it continues to send events regardless of mouse button state and it hides the cursor.
+        </p>
+         
+    </div>
+</section>
+<section id="id_9fd51ee4-4f94-435f-baed-41709c330423" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_9fd51ee4-4f94-435f-baed-41709c330423" class="same-page bold">Popover API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_c94c78d8-19d3-435c-b879-b0e8c789cdb9">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_c94c78d8-19d3-435c-b879-b0e8c789cdb9" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Popover_API">Popover API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Popover API</strong> provides developers with a standard, consistent, flexible mechanism for displaying content on top of other page content. Popover content can be controlled using HTML attributes or via JavaScript. 
+        </blockquote>
+        <p class="mt-2">
+            Two types of popovers:
+        </p>
+        <ul>
+            <li><strong>modal</strong>, meaning that while a popover is shown, the rest of the page is rendered non-interactive until the popover is actioned on some way (for example, an important choice is made)</li>
+            <li><strong>non-modal</strong>, meaning that the rest of the page can be interacted with while the popover is being shown</li>
+        </ul>
+        <p class="mt-2">
+            Popovers created using the Popover API are always non-modal. Typical use cases for the popover API include user-interactive elements like action menus, custom "toast" notifications, form element suggestions, content pickers, or teaching UI. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_3c04e2ed-d807-42de-8655-7befbce4a5f5" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_3c04e2ed-d807-42de-8655-7befbce4a5f5" class="same-page bold">Presentation API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_afe851d8-b339-423a-8c9f-2d37d11fe713">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_afe851d8-b339-423a-8c9f-2d37d11fe713" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Presentation_API">Presentation API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Presentation API lets a user agent (such as a Web browser) effectively display web content through large presentation devices such as projects and network connected televisions. 
+        </blockquote>
+        <img 
+        width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+        height="<%-locals.desktop?263:(locals.tablet?218:174)%>" 
+        style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 176 / 87 !important; height: auto;"
+        srcset="https://image.storething.org/frankmbrown%2Fb6844971-9244-4139-96c3-076e68cad3df-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2Fb6844971-9244-4139-96c3-076e68cad3df-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2Fb6844971-9244-4139-96c3-076e68cad3df-desktop.jpeg 650w" 
+        sizes="(max-width: 550px) 174px, ((min-width: 550px) and (max-width: 1200px)) 218px, (min-width: 1200px) 263px" 
+        src="https://image.storething.org/frankmbrown%2Fb6844971-9244-4139-96c3-076e68cad3df-desktop.jpeg" 
+        alt="Presentation API" 
+        />
+        <p class="mt-2">
+            In general, a web page uses the Presentation Controller API to specify the web content to be rendered on presentation device and initiate teh presentation session. With Presentation Receiver API, the presenting web content obtains the session status. 
+        </p>
+        <ul>
+            <li>For 1-UA mode devices, both pages are are loaded by the same user agent. However, rendering result of the receiver page will be sent to the presentation device via supported remote rendering protocol.</li>
+            <li>For 2-UA mode device, the receiver page is loaded directly on the presentation device. Controlling user agent communications with presentation device via supported presentation control protocol, to control the presentation session and transmit the message between two pages.</li>
+        </ul>
+         
+    </div>
+</section>
+<section id="id_2c653ac0-f501-4f2e-8a0e-2464c0e39c35" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_2c653ac0-f501-4f2e-8a0e-2464c0e39c35" class="same-page bold">Prioritized Task Scheduling API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_2a1fd18a-ac9d-42ab-a8b1-f827e816355c">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_2a1fd18a-ac9d-42ab-a8b1-f827e816355c" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Prioritized_Task_Scheduling_API">Prioritized Task Scheduling API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Prioritized Task Scheduling API</strong> provides a standardized way to prioritize all tasks belonging to an application, whether they are defined in a website develop's code or in third-party libraries and frameworks. 
+        </blockquote>
+        <p class="t-2">
+            The <a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Prioritized_Task_Scheduling_API#task_priorities">task priorities</a> are very coarse-grained and based around whether tasks block user interaction or otherwise impact the user experience, or can run in the background. Developers and frameworks may implement more fine-grained prioritization schemes within the broad categories defined by the API. The Prioritized Task Scheduling API is available in both window and worker threads using the <span class="text-code">scheduler</span> property on the global object. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_5c44d8e6-0f3f-46b4-a82f-2a90530135e9" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_5c44d8e6-0f3f-46b4-a82f-2a90530135e9" class="same-page bold">Push API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_f7edaa17-192a-4d02-ba48-a116ccdb0148">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_f7edaa17-192a-4d02-ba48-a116ccdb0148" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Push_API">Push API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Push API</strong> gives web applications the ability to receive messages pushed to them from a server, whether or not the web app is in thr foreground, or even currently loaded, on a user agent. This lets developers deliver asynchronous notifications and updates to users that opt in, resulting in better engagement with timely new content. 
+        </blockquote>
+        <p class="mt-2">
+            For an app to receive push messages, it has to have an active service worker. When the service worker is active, it can subscribe to push notifications, using <span class="text-code">PushManager.subscribe()</span>. The resulting <span class="text-code">PushSubscription</span> includes all the information that the application needs to send a push message: an endpoint and the encryption key needed for sending data. The service worker will e started as necessary to handle incoming push messages, which are delivered to the <span class="text-code">onpush</span> event handler. This allows apps to react to push messages being received, for example, by displaying a notification (using <span class="text-code">ServiceWorkerRegistration.showNotification()</span>).   
+        </p>
+        <p class="mt-2">
+            Each subscription is unique to a service worker. The endpoint for the subscription is a unique <a class="secondary link" target="_blank" href="https://www.w3.org/TR/capability-urls/">capability URL</a>: knowledge of the endpoint is all that is necessary to send a message to your application. The endpoint URL therefore needs to be kept secret, or other applications might be able tos end push messages to your application.  
+        </p>
+        <p class="mt-2">
+            Activating a service worker to deliver push message can result in increased resource usage, particularly of the battery. 
+        </p>
+         
+    </div>
+</section>

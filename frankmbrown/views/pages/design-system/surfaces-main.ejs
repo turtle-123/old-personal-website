@@ -1,0 +1,207 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/surfaces-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="surfaces-header">
+  <a href="#surfaces-header"  class="same-page bold">Surfaces</a>
+</h2>
+<details class="mt-2">
+  <summary>
+    <span class="h6 fw-regular">About Surfaces</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true">
+    Surfaces are cards, colored backgrounds, quotes, block quotes, and asides - 
+    basically anything that deviates from the normal background color. 
+    <br/>
+    <span class="block h6 bold mt-1">Cards</span>
+    Cards can be either a normal element, like a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></code></span>, or they can be a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span></span></code></span>.
+    There are three different elevations for cards: <span><code class="hljs"><span class="hljs-selector-class">.el1</span> <span class="hljs-selector-class">.el2</span> <span class="hljs-selector-class">.el3</span> </code></span>, which have a slightly 
+    different box-shadow and background color.
+    <span class="block h6 bold mt-1">Colored Backgrounds</span>
+    They change the color of the background and the text within the colored background. Here are the options:
+    <div style="position: relative;" class="mt-1 body2"><pre class="hz-scroll"><code class="hljs"><span class="hljs-selector-class">.bg-trans</span>{<span class="hljs-attribute">background-color</span>: transparent<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bg-primary</span>{<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--primary)<span class="hljs-meta">!important</span>;<span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--button-contrast-text)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bg-secondary</span>{<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--secondary)<span class="hljs-meta">!important</span>;<span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--button-contrast-text)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bg-error</span>{<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--error)<span class="hljs-meta">!important</span>;<span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--button-contrast-text)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bg-warning</span>{<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--warning)<span class="hljs-meta">!important</span>;<span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--button-contrast-text)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bg-info</span>{<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--info)<span class="hljs-meta">!important</span>;<span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--button-contrast-text)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bg-success</span>{<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--success)<span class="hljs-meta">!important</span>;<span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--button-contrast-text)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bg-tsecondary</span>{<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--text-secondary)<span class="hljs-meta">!important</span>;<span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--button-contrast-text)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bg-disabled</span> {<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--disabled)<span class="hljs-meta">!important</span>;<span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--text-disabled)<span class="hljs-meta">!important</span>;}
+<span class="hljs-selector-class">.bg-card</span> {<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--secondary-background)<span class="hljs-meta">!important</span>;}
+</code></pre><button data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button></div>
+<span class="block h6 bold mt-1">Quotes</span>
+For quotes, there are inline quotes, which are implemented by utilizing the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">q</span>&gt;</span>
+</span></code></span> element or by using the class <span><code class="hljs"><span class="hljs-selector-class">.quote</span>
+</code></span>, and there are block quotes, which are implemented by using the <span><code class="hljs"><span class="hljs-selector-class">.blockquote</span></code></span> class or the 
+<span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">blockquote</span>&gt;</span></span></code></span> element.
+The blockquote takes up its own line(s), and the quote is an inline element.
+<span class="block h6 bold mt-1">Asides</span>
+Asides are surfaces which should be the direct child of a block element and that only take up a portion of the width of the screen.
+Asides are implemented by using the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span></span></code></span> element, and 
+they only take up a certain percentage of the width of their parent block element. Aside elements can have a 
+<span><code class="hljs"><span class="hljs-selector-class">.left</span></code></span> or <span><code class="hljs"><span class="hljs-selector-class">.right</span></code></span> class which controls which way they float.
+<div class="alert warning outlined small icon mt-1" role="alert">
+<svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Details"><path d="M12 3 2 21h20L12 3zm1 5.92L18.6 19H13V8.92zm-2 0V19H5.4L11 8.92z"></path></svg>
+<p class="alert">
+  <span>
+    Block elements that contain an aside need a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span></code></span> element width either 
+    a <span><code class="hljs"><span class="hljs-selector-class">.left</span></code></span> or <span><code class="hljs"><span class="hljs-selector-class">.right</span></code></span> class and a <span><code class="hljs"><span class="hljs-selector-class">.clear</span></code></span> class to be their last element child for their formatting to work correctly.
+  </span>
+</p>
+</div>
+  </div>
+</details>
+<section id="cards" class="mt-2">
+<h3 class="h6 bb"><a href="#cards" class="same-page fw-regular">Cards</a></h3>
+<p class="body1 bold mt-1">Cards .el1</p>
+<div class="card el-1 mt-3 rounded outlined">
+  <p class="h6 w-100 text-align-left bold p-md">Div .el-1 Card Title</p>
+  <p class="body1 mt-1 p-sm">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor possimus delectus, cupiditate tempora sunt corrupti totam. Alias, ex sapiente. Eveniet fugiat odio unde tenetur qui rem, quia dolores consectetur nesciunt!
+  </p>
+  <menu role="presentation"  class="bt-1 p-sm w-100 flex-row justify-begin align-center caption">
+    Here is a card footer
+  </menu>
+</div>
+<button class="card el-1 mt-3 rounded" type="button" aria-label="Card el1 Example">
+  <p class="h6 w-100 text-align-left bold">Button .el-1 Card Title</p>
+  <p class="body1 mt-1 p-sm">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor possimus delectus, cupiditate tempora sunt corrupti totam. Alias, ex sapiente. Eveniet fugiat odio unde tenetur qui rem, quia dolores consectetur nesciunt!
+  </p>
+  <menu role="presentation"  class="bt-1 p-sm w-100 flex-row justify-begin align-center caption">
+    Here is a card footer
+  </menu>
+</button>
+<p class="body1 bold mt-2">Cards .el2</p>
+<div class="card el-2 mt-3 rounded">
+  <p class="h6 w-100 text-align-left bold p-md">Div .el-2 Card Title</p>
+  <p class="body1 mt-1 p-sm">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor possimus delectus, cupiditate tempora sunt corrupti totam. Alias, ex sapiente. Eveniet fugiat odio unde tenetur qui rem, quia dolores consectetur nesciunt!
+  </p>
+  <menu role="presentation"  class="bt-1 p-sm w-100 flex-row justify-begin align-center caption">
+    Here is a card footer
+  </menu>
+</div>
+<button class="card el-2 mt-3 rounded outlined main" type="button" aria-label="Card el1 Example">
+  <p class="h6 w-100 text-align-left bold">Button .el-2 Card Title</p>
+  <p class="body1 mt-1 p-sm">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor possimus delectus, cupiditate tempora sunt corrupti totam. Alias, ex sapiente. Eveniet fugiat odio unde tenetur qui rem, quia dolores consectetur nesciunt!
+  </p>
+  <menu role="presentation"  class="bt-1 p-sm w-100 flex-row justify-begin align-center caption">
+    Here is a card footer
+  </menu>
+</button>
+<p class="body1 bold mt-2">Cards .el3</p>
+<div class="card el-3 mt-3 rounded outlined">
+  <p class="h6 w-100 text-align-left bold p-md">Div .el-3 Card Title</p>
+  <p class="body1 mt-1 p-sm">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor possimus delectus, cupiditate tempora sunt corrupti totam. Alias, ex sapiente. Eveniet fugiat odio unde tenetur qui rem, quia dolores consectetur nesciunt!
+  </p>
+  <menu role="presentation"  class="bt-1 p-sm w-100 flex-row justify-begin align-center caption">
+    Here is a card footer
+  </menu>
+</div>
+<button class="card el-3 mt-3 rounded" type="button" aria-label="Card el1 Example">
+  <p class="h6 w-100 text-align-left bold">Button .el-2 Card Title</p>
+  <p class="body1 mt-1 p-sm">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor possimus delectus, cupiditate tempora sunt corrupti totam. Alias, ex sapiente. Eveniet fugiat odio unde tenetur qui rem, quia dolores consectetur nesciunt!
+  </p>
+  <menu role="presentation"  class="bt-1 p-sm w-100 flex-row justify-begin align-center caption">
+    Here is a card footer
+  </menu>
+</button>
+<div class="alert info small body2 mt-3" role="alert">
+  <p class="alert">
+    <strong>NOTE:</strong>
+    <span>The border radii of the cards and the absence / presence of borders can be explained by the <span><code class="hljs"><span class="hljs-selector-class">.rounded</span> <span class="hljs-selector-class">.outlined</span> and <span class="hljs-selector-class">.main</span></code></span> classes for the cards.</span>
+  </p>
+</div>
+</section>
+<section id="colored-backgrounds" class="mt-2">
+<h3 class="h6 bb"><a href="#colored-backgrounds" class="same-page fw-regular">Colored Backgrounds</a></h3>
+<p class="body1 mt-1 bold">Enforced Transparent Background:</p>
+<div class="block body2 brad-md bg-trans p-sm">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem accusantium consectetur totam est similique, quasi, voluptates mollitia ullam dignissimos omnis enim eum ipsum inventore tempore voluptate pariatur cum. Fugit, labore.
+</div>
+<p class="body1 mt-1 bold t-primary">Primary Background:</p>
+<div class="block body2 brad-md bg-primary p-sm">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem accusantium consectetur totam est similique, quasi, voluptates mollitia ullam dignissimos omnis enim eum ipsum inventore tempore voluptate pariatur cum. Fugit, labore.
+</div>
+<p class="body1 mt-1 bold t-secondary">Secondary Background:</p>
+<div class="block body2 brad-md bg-secondary p-sm">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem accusantium consectetur totam est similique, quasi, voluptates mollitia ullam dignissimos omnis enim eum ipsum inventore tempore voluptate pariatur cum. Fugit, labore.
+</div>
+<p class="body1 mt-1 bold t-error">Error Background:</p>
+<div class="block body2 brad-md bg-error p-sm">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem accusantium consectetur totam est similique, quasi, voluptates mollitia ullam dignissimos omnis enim eum ipsum inventore tempore voluptate pariatur cum. Fugit, labore.
+</div>
+<p class="body1 mt-1 bold t-warning">Warning Background:</p>
+<div class="block body2 brad-md bg-warning p-sm">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem accusantium consectetur totam est similique, quasi, voluptates mollitia ullam dignissimos omnis enim eum ipsum inventore tempore voluptate pariatur cum. Fugit, labore.
+</div>
+<p class="body1 mt-1 bold t-info">Info Background:</p>
+<div class="block body2 brad-md bg-info p-sm">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem accusantium consectetur totam est similique, quasi, voluptates mollitia ullam dignissimos omnis enim eum ipsum inventore tempore voluptate pariatur cum. Fugit, labore.
+</div>
+<p class="body1 mt-1 bold t-success">Success Background:</p>
+<div class="block body2 brad-md bg-success p-sm">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem accusantium consectetur totam est similique, quasi, voluptates mollitia ullam dignissimos omnis enim eum ipsum inventore tempore voluptate pariatur cum. Fugit, labore.
+</div>
+<p class="body1 mt-1 bold t-tsecondary">Secondary Text Background:</p>
+<div class="block body2 brad-md bg-tsecondary p-sm">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem accusantium consectetur totam est similique, quasi, voluptates mollitia ullam dignissimos omnis enim eum ipsum inventore tempore voluptate pariatur cum. Fugit, labore.
+</div>
+<p class="body1 mt-1 bold t-disabled">Disabled Background:</p>
+<div class="block body2 brad-md bg-disabled p-sm">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem accusantium consectetur totam est similique, quasi, voluptates mollitia ullam dignissimos omnis enim eum ipsum inventore tempore voluptate pariatur cum. Fugit, labore.
+</div>
+<p class="body1 mt-1 bold">Card Background:</p>
+<div class="block body2 brad-md bg-card p-sm">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem accusantium consectetur totam est similique, quasi, voluptates mollitia ullam dignissimos omnis enim eum ipsum inventore tempore voluptate pariatur cum. Fugit, labore.
+</div>
+</section>
+<section id="quotes"class="mt-2">
+<h3 class="h6 bb"><a href="#quotes" class="same-page fw-regular">Quotes</a></h3>
+<p class="body1 bold mt-2">Quote-Like Surface:</p>
+<p class="quote-like bg-card p-md mt-1">
+  Here is a quopte like surface that I saw somewhere - I included it because I thought it looked cool.
+  <br>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione consectetur ea sit similique earum repellendus fuga ullam doloremque consequatur. Vitae itaque facilis nihil magni ipsa ad ea nostrum mollitia architecto.
+</p>
+<p class="body1 bold mt-2">Inline Quote:</p>
+<p class="body2">
+  Walt Disney once said that the <q>way to get started is to quit talking and begin doing</q>
+</p>
+<p class="body1 bold mt-2">Block Quote:</p>
+<blockquote>
+  Do you wish to rise? Begin by descending. You plan a tower that will pierce the clouds? Lay first the foundation of humility.
+  <br>
+  <cite><a href="https://www.marylake.com/augustinians/quotes-of-st-augustine" class="secondary link">St Augustine</a></cite>
+</blockquote>
+
+</section>
+<section id="asides" class="mt-2">
+<h3 class="h6 bb"><a href="#asides" class="same-page fw-regular">Asides</a></h3>
+<p class="h6 mt-1 bold">Left Aside:</p>
+<p class="body1 mt-1">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nulla eius similique, error facilis et deserunt inventore architecto quae sunt, nam, 
+  <aside class="left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta corporis nisi laudantium? Non optio vero unde dolore voluptates! Voluptas, ullam! Error blanditiis perspiciatis quibusdam incidunt ratione molestias maxime at iste.</aside>
+  exercitationem fugiat fuga autem iusto facere tenetur ad quidem! Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, ducimus quidem nihil consectetur hic tenetur dicta eveniet, maxime sint minima assumenda deserunt aliquid ea, quos veritatis eligendi iste tempore molestias!
+  <span class="clear left"></span>
+</p>
+<p class="h6 mt-1 bold">Right Aside:</p>
+<p class="body1 mt-1">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nulla eius similique, error facilis et deserunt inventore architecto quae sunt, nam, 
+  <aside class="right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta corporis nisi laudantium? Non optio vero unde dolore voluptates! Voluptas, ullam! Error blanditiis perspiciatis quibusdam incidunt ratione molestias maxime at iste.</aside>
+  exercitationem fugiat fuga autem iusto facere tenetur ad quidem! Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, ducimus quidem nihil consectetur hic tenetur dicta eveniet, maxime sint minima assumenda deserunt aliquid ea, quos veritatis eligendi iste tempore molestias!
+  <span class="clear right"></span>
+</p>
+</section>

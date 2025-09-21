@@ -1,0 +1,329 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/buttons-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="buttons-header">
+  <a href="#buttons-header"  class="same-page bold">Buttons</a>
+</h2>
+<details class="mt-2">
+  <summary>
+    <span class="h6 fw-regular">About Buttons</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true">
+    <span class="bold h6 block bb">
+      CSS
+    </span>
+    There are three main types of styling buttons:
+    <ul>
+      <li>Filled - <span><code class="hljs"><span class="hljs-selector-class">.filled</span></code></span></li>
+      <li>Outlined - <span><code class="hljs"><span class="hljs-selector-class">.outlined</span></code></span></li>
+      <li>Text - <span><code class="hljs"><span class="hljs-selector-class">.text</span></code></span></li>
+      <li>Icon Text - <span><code class="hljs"><span class="hljs-selector-class">.icon-text</span></code></span></li>
+    </ul>
+    Within these three types, you can add color by adding the 
+    <span class="t-primary fw-regular">primary</span>,
+    <span class="t-secondary fw-regular">secondary</span>,
+    <span class="t-error fw-regular">error</span>,
+    <span class="t-success fw-regular">success</span>,
+    <span class="t-warning fw-regular">warning</span>,
+    or <span class="t-info fw-regular">info</span> classes.
+    <br/>
+    There are 3 sizes of buttons - <em class="bold">small, medium and large</em> plus <em class="bold">tiny</em> for icon buttons.
+    <div class="alert warning filled mt-2 icon medium">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+      <p class="alert body2">
+        <strong>NOTE:</strong>
+        <span>
+          You can add .collapse-(xs|sm|md|lg) to an icon-text button so that the text in the span collapses at a certain breakpoint.
+        </span>
+      </p>
+    </div>
+    <span class="bold h6 block bb mt-2">
+      Accessability
+    </span>
+    <div class="block">
+      Here are some things to keep in mind in terms of accessability of buttons:
+      <ul>
+        <li>
+          Always add an <span class="t-info bold">aria-label</span> attribute to the button.
+        </li>
+        <li>
+          Always add the <span class="t-info bold">disabled</span> attribute to the button if it is disabled.
+        </li>
+        <li>
+          Add a tooltip to the button if it is unclear about what the button does. 
+        </li>
+        <li>
+          Buttons should have a <span class="t-info bold">type</span> of button unless they submit / reset a form in which case they should
+          have a type of <span class="t-info bold">submit</span> and <span class="t-info bold">reset</span> respectively.
+        </li>
+      </ul>
+    </div>
+    <span class="bold h6 block bb">
+      JavaScript
+    </span>
+    You can add functionality to buttons by giving them certain <span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-</span></span></span></code></span>
+    attributes. Those attributes and their functionalities are explained below.
+    <dl class="body2">
+      <dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-dialog</span></span></span></code></span></dt>
+      <dd>This attribute communities that a button has a dialog that it should open when clicked. The value of the data-dialog attribute should equal the id of the dialog that it will open.</dd>
+      <dd>These buttons should have an <strong class="t-info bold">aria-haspopup="dialog"</strong> attribute.</dd>
+      <dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-vis-switch</span></span></span></code></span></dt>
+      <dd>This attribute should be used on a button that is used to toggle the <em class="t-primary bold">type</em> of a password / hidden input.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-regenerate-value</span></span></span></code></span></dt></dt>
+      <dd>Regenerates the value of an input field when clicked. The input which has its value regenerated is specified by the <span class="t-info bold">data-input</span> property on the button.</dd>
+      <dd>The way the input is regenerated can be altered per-input name in the regenerateInputValue function in the shared.js file.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-copy-input</span></span></span></code></span></dt></dt>
+      <dd>When this button is clicked, a listener runs which gets the value of <span class="t-info bold">data-input</span> on the button and copies the value of that input (the name of the input is specified by data-input)</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-increase</span></span></span></code></span></dt></dt>
+      <dd>Increases the value of a number input for inputs of type number.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-decrease</span></span></span></code></span></dt></dt>
+      <dd>Decreases the value of a number input for inputs of type number.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-default</span></span></span></code></span></dt></dt>
+      <dd>For toggle button groups, if there is a default button that should be selected, then this button should have the data-default attribute.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-toggle</span></span></span></code></span></dt></dt>
+      <dd>For toggle buttons, toggles the selected state of the button.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-combobox-option</span></span></span></code></span></dt></dt>
+      <dd>For combobox option buttons, changes the value of the combobox when clicked.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-mute-button</span></span></span></code></span></dt></dt>
+      <dd>For HTML5 Media Elements (Audio And Video), mutes and un-mutes audio when clicked.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-play</span></span></span></code></span></dt></dt>
+      <dd>For HTML5 Media Elements (Audio And Video), play the media when clicked.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-pause</span></span></span></code></span></dt></dt>
+      <dd>For HTML5 Media Elements (Audio And Video), pause the media when clicked.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-replay</span></span></span></code></span></dt></dt>
+      <dd>For HTML5 Media Elements (Audio And Video), replay the media when clicked.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-type="full"screen</span></span></span></code></span></dt></dt>
+      <dd>For the HTML Video Element, use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API" class="link secondary" target="_blank">Fullscreen API</a> to toggle fullscreen mode.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-snackbar</span></span></span></code></span></dt></dt>
+      <dd>On click, show the snackbar that is identified by the <span class="t-info bold">data-selem</span> attribute on the button.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-close-snackbar</span></span></span></code></span></dt></dt>
+      <dd>Close the parent snackbar of the element.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-scroll</span></span></span></code></span></dt></dt>
+      <dd>When clicked, get the <span class="t-info bold">data-to</span> attribute on the button which should be formatted (<em>x</em>,<em>y</em>) and the window will scroll to x,y.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-copy-prev</span></span></span></code></span></dt></dt>
+      <dd>When clicked, gets the previous element sibling and copies the innerText of that sibling.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-hide-show</span></span></span></code></span></dt></dt>
+      <dd>When clicked, gets the value defined by data-el on the button, searches for an element using this value and query selector, and changes the display (block/none) of that element.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-copy-el</span></span></span></code></span></dt></dt>
+      <dd>When clicked, gets an element using the query selector string defined by the data-el attribute on the button, and copies the innerHTML / outerHTML of that element depending on whether the element found using the query selector string has the <span class="bold t-info">data-inner</span> attribute.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-step-back</span></span></span></code></span></dt></dt>
+      <dd>Switches tabs / mobile steppers backward.</dd>
+      <dt class="normal-text"><dt class="normal-text"><span><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-step-forward</span></span></span></code></span></dt></dt>
+      <dd>Switches tabs / mobile steppers forward.</dd>
+    </dl>
+  </div>
+</details>
+<div class="alert info outlined medium icon mt-2" role="alert">
+<svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Info"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>
+<p class="alert">
+  <strong>NOTE:</strong>
+  <span class="block">
+    Links can be styled the same way buttons can be styled by adding a <em class="bold">.button</em>
+    class to the anchor tag (plus the other classes for styling the button).  
+  </span>
+</p>
+</div>
+
+
+<section id="button_styles" class="mt-4">
+<h3 class="h5 bold bb">Button Styles</h3>
+<p class="h6 bold block mt-3">Icon Buttons:</p>
+<div class="flex-row justify-start wrap gap-3 align-center mt-2 w-100">
+  <button type="button" aria-label="Random" class="icon small">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Home"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
+  </button>
+  <button type="button" aria-label="Random" class="icon medium outlined warning">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Router"><path d="m20.2 5.9.8-.8C19.6 3.7 17.8 3 16 3s-3.6.7-5 2.1l.8.8C13 4.8 14.5 4.2 16 4.2s3 .6 4.2 1.7zm-.9.8c-.9-.9-2.1-1.4-3.3-1.4s-2.4.5-3.3 1.4l.8.8c.7-.7 1.6-1 2.5-1 .9 0 1.8.3 2.5 1l.8-.8zM19 13h-2V9h-2v4H5c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zM8 18H6v-2h2v2zm3.5 0h-2v-2h2v2zm3.5 0h-2v-2h2v2z"></path></svg>
+  </button>
+  <button type="button" aria-label="Random" class="icon medium primary filled">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Check"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
+  </button>
+  <button type="button" aria-label="Random" class="icon outlined success large">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FeedSharp"><path d="M16 3H3v18h18V8l-5-5zM7 7h5v2H7V7zm10 10H7v-2h10v2zm0-4H7v-2h10v2zm-2-4V5l4 4h-4z"></path></svg>
+  </button>
+  <button type="button" aria-label="Random" class="icon medium filled error">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Router"><path d="m20.2 5.9.8-.8C19.6 3.7 17.8 3 16 3s-3.6.7-5 2.1l.8.8C13 4.8 14.5 4.2 16 4.2s3 .6 4.2 1.7zm-.9.8c-.9-.9-2.1-1.4-3.3-1.4s-2.4.5-3.3 1.4l.8.8c.7-.7 1.6-1 2.5-1 .9 0 1.8.3 2.5 1l.8-.8zM19 13h-2V9h-2v4H5c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zM8 18H6v-2h2v2zm3.5 0h-2v-2h2v2zm3.5 0h-2v-2h2v2z"></path></svg>
+  </button>
+  <button type="button" aria-label="Random" class="icon medium filled error" disabled>
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Php"><path d="M13 9h1.5v6H13v-2.5h-2V15H9.5V9H11v2h2V9zm-5 1.5v1c0 .8-.7 1.5-1.5 1.5h-2v2H3V9h3.5c.8 0 1.5.7 1.5 1.5zm-1.5 0h-2v1h2v-1zm15 0v1c0 .8-.7 1.5-1.5 1.5h-2v2h-1.5V9H20c.8 0 1.5.7 1.5 1.5zm-1.5 0h-2v1h2v-1z"></path></svg>    </button>
+</div>
+<p class="h6 bold block mt-3">Icon Text Buttons:</p>
+<p class="caption t-warning">Make sure to add <em class="bold">.transparent</em> to icon-text buttons that are like text.</p>
+<div class="flex-row justify-start wrap gap-3 align-center mt-2 w-100">
+  <button type="button" aria-label="Random" class="icon-text transparent small">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Home"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
+    <span>Home</span>
+  </button>
+  <button type="button" aria-label="Random" class="icon-text medium outlined warning">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Router"><path d="m20.2 5.9.8-.8C19.6 3.7 17.8 3 16 3s-3.6.7-5 2.1l.8.8C13 4.8 14.5 4.2 16 4.2s3 .6 4.2 1.7zm-.9.8c-.9-.9-2.1-1.4-3.3-1.4s-2.4.5-3.3 1.4l.8.8c.7-.7 1.6-1 2.5-1 .9 0 1.8.3 2.5 1l.8-.8zM19 13h-2V9h-2v4H5c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zM8 18H6v-2h2v2zm3.5 0h-2v-2h2v2zm3.5 0h-2v-2h2v2z"></path></svg>
+    <span>Router</span>
+  </button>
+  <button type="button" aria-label="Random" class="icon-text medium primary filled">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Check"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
+    <span>Checkmark</span>
+  </button>
+  <button type="button" aria-label="Random" class="icon-text outlined success large">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FeedSharp"><path d="M16 3H3v18h18V8l-5-5zM7 7h5v2H7V7zm10 10H7v-2h10v2zm0-4H7v-2h10v2zm-2-4V5l4 4h-4z"></path></svg>
+    <span>Page</span>
+  </button>
+  <button type="button" aria-label="Random" class="icon-text medium filled error">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Router"><path d="m20.2 5.9.8-.8C19.6 3.7 17.8 3 16 3s-3.6.7-5 2.1l.8.8C13 4.8 14.5 4.2 16 4.2s3 .6 4.2 1.7zm-.9.8c-.9-.9-2.1-1.4-3.3-1.4s-2.4.5-3.3 1.4l.8.8c.7-.7 1.6-1 2.5-1 .9 0 1.8.3 2.5 1l.8-.8zM19 13h-2V9h-2v4H5c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zM8 18H6v-2h2v2zm3.5 0h-2v-2h2v2zm3.5 0h-2v-2h2v2z"></path></svg>
+    <span>Router</span>
+  </button>
+  <button type="button" aria-label="Random" class="icon-text medium filled error" disabled>
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Php"><path d="M13 9h1.5v6H13v-2.5h-2V15H9.5V9H11v2h2V9zm-5 1.5v1c0 .8-.7 1.5-1.5 1.5h-2v2H3V9h3.5c.8 0 1.5.7 1.5 1.5zm-1.5 0h-2v1h2v-1zm15 0v1c0 .8-.7 1.5-1.5 1.5h-2v2h-1.5V9H20c.8 0 1.5.7 1.5 1.5zm-1.5 0h-2v1h2v-1z"></path></svg>    
+    <span>PHP Disabled</span>
+  </button>
+</div>
+
+<p class="h6 bold block mt-3">Text Buttons:</p>
+<div class="flex-row justify-start wrap gap-3 align-center mt-2 w-100">
+  <button type="button" aria-label="Random" class="text transparent small">
+    HOME
+  </button>
+  <button type="button" aria-label="Random" class="medium outlined warning">
+    ROUTER
+  </button>
+  <button type="button" aria-label="Random" class="medium primary filled">
+    CHECKMARK
+  </button>
+  <button type="button" aria-label="Random" class="outlined success large">
+    PAGE
+  </button>
+  <button type="button" aria-label="Random" class="medium filled error">
+    ROUTER
+  </button>
+  <button type="button" aria-label="Random" class="text medium filled error" disabled>
+   PHP DISABLED
+  </button>
+</div>
+
+<p class="h6 bold block mt-3">Icon-Text Collapsable Buttons:</p>
+<div class="flex-row justify-start wrap gap-3 align-center mt-2 w-100">
+  <button type="button" aria-label="Random" class="icon-text transparent small collapse-xs">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Home"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
+    <span>EXTRA SMALL</span>
+  </button>
+  <button type="button" aria-label="Random" class="icon-text medium outlined warning collapse-sm">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Router"><path d="m20.2 5.9.8-.8C19.6 3.7 17.8 3 16 3s-3.6.7-5 2.1l.8.8C13 4.8 14.5 4.2 16 4.2s3 .6 4.2 1.7zm-.9.8c-.9-.9-2.1-1.4-3.3-1.4s-2.4.5-3.3 1.4l.8.8c.7-.7 1.6-1 2.5-1 .9 0 1.8.3 2.5 1l.8-.8zM19 13h-2V9h-2v4H5c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zM8 18H6v-2h2v2zm3.5 0h-2v-2h2v2zm3.5 0h-2v-2h2v2z"></path></svg>
+    <span>SMALL</span>
+  </button>
+  <button type="button" aria-label="Random" class="icon-text medium primary filled collapse-md">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Check"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
+    <span>MEDIUM</span>
+  </button>
+  <button type="button" aria-label="Random" class="icon-text outlined success large collapse-lg">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FeedSharp"><path d="M16 3H3v18h18V8l-5-5zM7 7h5v2H7V7zm10 10H7v-2h10v2zm0-4H7v-2h10v2zm-2-4V5l4 4h-4z"></path></svg>
+    <span>LARGE</span>
+  </button>
+</div>
+
+</section>
+<section id="button_colors"  class="mt-4">
+<h3 class="h5 bold bb">Button Colors</h3>
+<div class="flex-row align-center justify-start mt-2 wrap gap-3">
+  <button class="filled primary" aria-label="Random">
+    PRIMARY
+  </button>
+  <button class="text secondary small" aria-label="Random">
+    SECONDARY
+  </button>
+  <button class="outlined warning" aria-label="Random">
+    WARNING
+  </button>
+  <button class="text info small" aria-label="Random">
+    INFO
+  </button>
+  <button class="filled error" aria-label="Random">
+    ERROR
+  </button>
+  <button class="outlined success large" aria-label="Random">
+    SUCCESS
+  </button>
+</div>
+</section>
+<section id="button_sizes"  class="mt-4">
+<h3 class="h5 bold bb">Button Sizes</h3>
+<div class="flex-row align-center justify-start mt-2 wrap gap-3">
+  <button class="filled error small" aria-label="Random">
+    SMALL
+  </button>
+  <button class="outlined warning small icon" aria-label="Random">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="EggSharp"><path d="M12 3C8.5 3 5 9.33 5 14c0 3.87 3.13 7 7 7s7-3.13 7-7c0-4.67-3.5-11-7-11zm1 15c-3 0-5-1.99-5-5v-1h2v1c0 2.92 2.42 3 3 3h1v2h-1z"></path></svg>
+  </button>
+  <button class="filled info small icon-text" aria-label="Random">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Hub"><path d="M8.4 18.2c.38.5.6 1.12.6 1.8 0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3c.44 0 .85.09 1.23.26l1.41-1.77c-.92-1.03-1.29-2.39-1.09-3.69l-2.03-.68c-.54.83-1.46 1.38-2.52 1.38-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3c0 .07 0 .14-.01.21l2.03.68c.64-1.21 1.82-2.09 3.22-2.32V5.91C9.96 5.57 9 4.4 9 3c0-1.66 1.34-3 3-3s3 1.34 3 3c0 1.4-.96 2.57-2.25 2.91v2.16c1.4.23 2.58 1.11 3.22 2.32L18 9.71V9.5c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3c-1.06 0-1.98-.55-2.52-1.37l-2.03.68c.2 1.29-.16 2.65-1.09 3.69l1.41 1.77c.38-.18.79-.27 1.23-.27 1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3c0-.68.22-1.3.6-1.8l-1.41-1.77c-1.35.75-3.01.76-4.37 0L8.4 18.2z"></path></svg>
+    <span>ABCD</span>
+  </button>
+
+  <button class="filled success medium" aria-label="Random">
+    MEDIUM
+  </button>
+  <button class="outlined secondary medium icon" aria-label="Random">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Message"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"></path></svg>
+  </button>
+  <button class="filled primary medium icon-text" aria-label="Random">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Timelapse"><path d="M16.24 7.76C15.07 6.59 13.54 6 12 6v6l-4.24 4.24c2.34 2.34 6.14 2.34 8.49 0 2.34-2.34 2.34-6.14-.01-8.48zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path></svg>
+    <span>ABCD</span>
+  </button>
+
+  <button class="filled info large" aria-label="Random">
+    LARGE
+  </button>
+  <button class="outlined warning large icon" aria-label="Random">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Games"><path d="M15 7.5V2H9v5.5l3 3 3-3zM7.5 9H2v6h5.5l3-3-3-3zM9 16.5V22h6v-5.5l-3-3-3 3zM16.5 9l-3 3 3 3H22V9h-5.5z"></path></svg>
+  </button>
+  <button class="filled info large icon-text" aria-label="Random">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Telegram"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"></path></svg>
+    <span>ABCD</span>
+  </button>
+  
+</div>
+</section>
+<section id="button-functionality" class="mt-4">
+<h3 class="h5 bold bb">Button Functionality</h3>
+<p class="body1 mt-2">
+  Here are some examples of button functionality.
+  <br>
+  For <span class="bold">hide-show buttons</span>, make sure that:
+</p>
+<ol class="body2">
+  <li>
+    The button that controls hide/show of content has the <span class="t-info bold">data-hide-show</span>
+    attribute and a data-el attribute that contains a query selector string that points to the content that is to be hidden.
+  </li>
+  <li>
+    The element that is to be shown/hidden does not have its <em class="bold t-info">display</em> styling set. 
+  </li>
+  <li>
+    The element that is to be hidden has <span class="t-info bold">hidden</span> and <span class="t-info bold">aria-hidden</span> equal to true or false depending on the initial state of the 
+    visibility.
+  </li>
+</ol>
+<div class="flex-row justify-center align-center mt-2">
+  <button class="text warning medium" data-hide-show="" data-el="#hide-show-example" type="button">
+    <span data-show>SHOW CONTENT</span>
+    <span data-hide hidden>HIDE CONTENT</span>
+  </button>
+</div>
+
+<div class="flex-row justify-center align-center mt-2">
+  <div hidden id="hide-show-example">
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, nam quo provident possimus quibusdam autem aliquam iusto, at temporibus voluptate esse praesentium blanditiis aperiam ipsam incidunt veniam amet quos corporis!
+  </div>
+</div>
+<div class="flex-row justify-center align-center mt-2">
+  <button class="icon-text medium outlined secondary" type="button" aria-haspopup="dialog" data-dialog="search-dialog">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Search"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+    <span>Search Application</span>
+  </button>
+</div>
+</section>

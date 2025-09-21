@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+      "target": "es2018" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+      "module": "commonjs" /* Specify what module code is generated. */,
+      "typeRoots": [
+        "./server/typescript/types", 
+        "./node_modules/@types",
+        "./node_modules/@aws-sdk/types/*"
+        ],                              /* Specify multiple folders that act like './node_modules/@types'. */
+      "allowJs": true,                                  /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
+      "outDir": "./server/javascript"                      /* Specify an output folder for all emitted files. */,
+      "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+      "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+      "strict": true /* Enable all strict type-checking options. */,
+      "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+      "checkJs": false
+    },
+    "include": ["./server/typescript/**/*"],
+    "exclude": [
+      "./LAMBDA_FUNCTION/*",
+      "./CLOUD_RUN_FUNCTION/*",
+      "./server/typescript/lexical/ARCHIVE/**/*"
+    ],
+    "paths": {
+      "personal-website-shared": ["./server/typescript/personal-website-shared/index.ts"],
+      "@utils/*": ["utils/*"],
+      "@twilio/*": ["twilio/*"],
+      "@middleware/*": ["MIDDLEWARE/*"],
+      "@lexical/*": ["lexical/*"],
+      "@constants/*": ["CONSTANTS/*"]
+    }
+  }
+  

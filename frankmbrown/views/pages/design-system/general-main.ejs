@@ -1,0 +1,204 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/general-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 hidden>Description of Design System:</h2>
+<section id="html-philosophy" class="mt-3">
+  <h3 class="bold bb-thick h2">
+    <a href="#html-philosophy" class="same-page bold">HTML</a>
+  </h3>
+  <p class="body1 mt-2">
+    The design system tries to guide the user of the design system to use semantic HTML as much as possible.
+    This is encouraged by styling components with their tag name + query selector rather than just with a query selector.
+    
+  </p>
+  <p class="body1 mt-1">
+    For accessability, you will have to look at each individual component to see what the accessability concerns are. In general, though, the design system 
+    encourages the user of the design system to use a page layout that includes a navbar, a main section, a footer, and two sidebars that shows content from 
+    a mobile or near-mobile perspective.
+    <div class="w-100 flex-row justify-center align-center">
+      <button class="text warning medium" data-hide-show data-el="#example-layout">
+        <span data-hide hidden>HIDE CODE</span>
+        <span data-show>SHOW CODE</span>
+      </button>
+    </div>
+<div hidden id="example-layout" style="position: relative;" class="mt-2"><pre class="hz-scroll"><code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- SEO, Meta Tags, Css, JS --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;banner&quot;</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- Navbar with 3 sections --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">nav</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- Commomn Site Navigation --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- Page Content --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- Page Navigation, Notifications --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- Footer --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>  
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><button data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button></div>
+  </p>
+</section>
+<section id="css-philosophy" class="mt-3">
+  <h3 class="bold bb-thick h2">
+    <a href="#css-philosophy" class="same-page bold">CSS</a>
+  </h3>
+  <p class="body1 mt-2">
+    The design system uses a combination of semantic class names and styles for specific components.
+    The design system makes use of CSS variables so that the design system is customizable for different themes.
+    <br/>
+    The background colors, text colors, and font-family are the three main things that you might want to change when using the design system.
+    The color scheme revolves around 7 main colors: 
+    <span class="t-primary">primary</span>, 
+    <span class="t-secondary">secondary</span>, 
+    <span class="t-error">error</span>, 
+    <span class="t-warning">warning</span>, 
+    <span class="t-info">info</span>, 
+    <span class="t-success">success</span>,
+    and <span class="bg-card p-sm brad-sm">the secondary background</span>. You can find out more about the 
+    semantic class names and the styling for specific components by visiting the pages for Utility Classes and the page for each component.
+  </p>
+  <p class="body1 mt-2">
+    The design system assumes that your <abbr title="Content Security Policy">CSP</abbr> (Content Security Policy) allows for inline styling for two main reasons: 
+  </p>
+  <ol>
+    <li>Inline styling allows you to give components small changes when needed, which can make development easier, and</li>
+    <li>Inline styling is required for popovers that need to have an absolute position relative to the component that triggered the popover.</li>
+  </ol>
+  <p class="body1 mt-2">
+    You can add custom css needed by just creating a custom CSS file. 
+  </p>
+  <div role="alert" class="alert info mt-1 icon small">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Info"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>
+    <p class="alert body2">
+      <strong>NOTE:</strong>
+      <span>
+        The main differences between the desktop, mobile, and tablet versions of the CSS are the breakpoints, which aren't included on tablet and mobile css,
+        the way dialogs are styled, and the presence of drawer-like components, which are only included in mobile and tablet versions of the CSS. 
+      </span>
+    </p>
+  </div>
+</section>
+<section id="javascript-philosophy" class="mt-3">
+  <h3 class="bold bb-thick h2">
+    <a href="#javascript-philosophy" class="same-page bold">JavaScript</a>
+  </h3>
+  <p class="body1 mt-2">
+    The JavaScript that relates to each individual component can be seen on that component's page, but in general,
+    on initial page load, the JavaScript adds listeners to elements based on their <span style="position: relative;"><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-*</span></span></span></code></span>
+    attributes and based on their class names. 
+    <br/>
+    The JavaScript also adds listeners to all components that have the <span style="position: relative;"><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-htmx</span></span></span></code></span>
+    so that the loop of adding listeners to content based on their <span style="position: relative;"><code class="hljs"><span class="language-xml"><span class="hljs-tag"><span class="hljs-attr">data-*</span></span></span></code></span> attributes
+    is re-run after new content is loaded. This function can be seen below.
+  
+
+  </p>
+  <div class="flex-row justify-center align-center">
+    <button class="text warning" data-hide-show data-el="#add-listeners">
+      <span data-show>SHOW CODE</span>
+      <span data-hide hidden>HIDE CODE</span>
+    </button>
+  </div>
+<div id="add-listeners" aria-hidden="true" hidden class="mt-1">
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-comment">/**
+* Function to call whenever new content is loaded
+*/</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">onNewContentLoaded</span>(<span class="hljs-params"></span>) {
+
+<span class="hljs-comment">/* Dialogs */</span>
+shared.<span class="hljs-title function_">setDialogOpenButtons</span>();
+shared.<span class="hljs-title function_">setDialogCloseOnBackdropClick</span>();
+shared.<span class="hljs-title function_">setDialogCloseButtons</span>();
+<span class="hljs-comment">/* Alerts */</span>
+shared.<span class="hljs-title function_">setCloseAlertsButtons</span>();
+<span class="hljs-comment">/* Accordions (Details / Summaries) */</span>
+shared.<span class="hljs-title function_">setSummariesOnClickEvents</span>();
+<span class="hljs-comment">/* Inputs (All - includes textareas and chips) */</span>
+shared.<span class="hljs-title function_">setInputListeners</span>();
+shared.<span class="hljs-title function_">setPasswordToggleButtons</span>();
+shared.<span class="hljs-title function_">copyInputButtons</span>();
+shared.<span class="hljs-title function_">regenerateInputValueButtons</span>();
+shared.<span class="hljs-title function_">setIncreaseButtonsListeners</span>();
+shared.<span class="hljs-title function_">setDecreaseButtonsListeners</span>();
+shared.<span class="hljs-title function_">setChipListeners</span>();
+shared.<span class="hljs-title function_">setToggleButtonGroups</span>();
+shared.<span class="hljs-title function_">setSelectButtonListeners</span>();
+shared.<span class="hljs-title function_">setComboboxListeners</span>();
+
+<span class="hljs-comment">/* Menus, tooltips, dropdowns, snackbars */</span>
+shared.<span class="hljs-title function_">setPopoverListeners</span>();
+shared.<span class="hljs-title function_">setSnackbarListeners</span>();
+shared.<span class="hljs-title function_">setSnackbarCloseListers</span>();
+
+<span class="hljs-comment">/* Buttons */</span>
+shared.<span class="hljs-title function_">setScrollToButtons</span>();
+shared.<span class="hljs-title function_">setNavigateBackButtons</span>();
+shared.<span class="hljs-title function_">setCopyCodeButtons</span>();
+shared.<span class="hljs-title function_">setCopyElementButtons</span>();
+shared.<span class="hljs-title function_">setHideShowButtons</span>();
+<span class="hljs-comment">/* Tabs */</span>
+shared.<span class="hljs-title function_">setMobileStepperListeners</span>();
+shared.<span class="hljs-title function_">setTabListeners</span>();
+
+<span class="hljs-comment">/* Time */</span>
+shared.<span class="hljs-title function_">setLocalTimes</span>();
+
+<span class="hljs-comment">/* Images, Audio, Video */</span>
+shared.<span class="hljs-title function_">setImagesOnClick</span>();
+shared.<span class="hljs-title function_">setAudioListeners</span>();
+shared.<span class="hljs-title function_">setVideoListeners</span>();
+
+<span class="hljs-comment">/* Drawers - Only On Mobile */</span>
+<span class="hljs-title function_">setDrawerButtons</span>();
+
+
+<span class="hljs-comment">/* HTMX */</span>
+<span class="hljs-title function_">setHxElementListeners</span>();
+}</code></pre><button data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button></div>
+</div>
+</section>
+<section id="things-to-note">
+  <h3 class="bold bb-thick h2">
+    <a href="#things-to-note" class="same-page bold">Things to Note</a>
+  </h3>
+  Here are some notes about the design system that I didn't really know where else to put:
+  <ul>
+    <li>A <span><code class="hljs"><span class="hljs-selector-class">.dialog-open</span></code></span> class is added to the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span></span></code></span> and <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span></code></span> elements when a dialog is opened to prevent body scrolling. It is removed on dialog close.</li>
+    <li>To add a light mode / dark mode button to the application, add a button with the id <span class="t-info bold">light-mode-dark-mode</span> to the page. When clicked, a function will run that changes the html tag's data-mode attribute from light to dark or vice versa.</li>
+    <li>To include an image dialog, a dialog, where images can be focused and the background blurred, include an element like the one below on the page.</li>
+    <li>
+      Make sure to include the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions" target="_blank" class="secondary link">aria-live="polite"</a> for  
+      regions - like search regions, that receive updated content.
+    </li>
+  </ul>
+  
+</section>
+<section id="coming-soon" class="mt-3">
+  <h3 class="bold bb-thick h2">
+    <a href="#coming-soon" class="same-page bold">Coming Soon</a>
+  </h3>
+  <p class="body1 mt-2">
+    I plan to add a 
+    <a href="https://lexical.dev/" target="_blank" class="secondary link">Lexical Rich Text Editor</a>, 
+    graphs with <a href="https://d3js.org/" class="secondary link" target="_blank">d3.js</a>, and 
+    <a href="https://developers.google.com/maps/documentation/javascript/overview" target="_blank" class="secondary link">maps with Google Maps</a> to the design system soon.
+    <br/>
+    The JavaScript for these functionalities will be self-contained since they will be a little larger than the default JavaScript, or they will at least greatly increase the bundle size (percentage-wise).
+    <br/>
+    <br>
+    <a href="https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/howto-optimize-performance-pgvector" target="_blank" class="secondary link" >Need to optimize vector database performance with pgvector</a>
+    <br>
+    Image Uploads, Video Uploads, and Audio uploads need to be included in the design system.
+  </p>
+</section>

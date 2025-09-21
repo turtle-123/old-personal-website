@@ -1,0 +1,386 @@
+<section id="id_dc6a9d1f-bd49-4d65-8278-2978a90b0787" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_dc6a9d1f-bd49-4d65-8278-2978a90b0787" class="same-page bold">Reporting API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_4dc0fdc4-26be-446d-b7e9-9b220d683a90">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_4dc0fdc4-26be-446d-b7e9-9b220d683a90" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Reporting_API">Reporting API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Reporting API provides a generic reporting mechanism for web applications to use to make reports available on various platform features (for example, Content Security Policy, Permissions-Policy, or feature deprecation reports) in a consistent manner.
+        </blockquote>
+        <p class="mt-2">
+            There are several different features and problems on the web platform that generate information useful to web developers when they are trying to fix bugs or improve their websites in other ways. Such information can include:
+        </p>
+        <ul>
+            <li>Content Security Policy violations</li>
+            <li>Permissions-Policy  violations</li>
+            <li>Deprecated feature usage (when you are using something that will stop working soon in browsers)</li>
+            <li>Occurrence of crashes</li>
+            <li>Occurrence of user-agent interventions</li>
+        </ul>
+        <p class="mt-2">
+            The purpose of the Reporting API is to provide a consistent reporting mechanism that can be used to make such information to developers in the form of reports represented by JavScript objects. Endpoints are named URLs that can be sent reports from a user agent. The <span class="text-code">Reporting-Endpoints</span> HTTP header is used to specify endpoints that a user-agent has available for delivering reports. The <span class="text-code">report-to</span> directive can then be used on particular HTTP response headers to indicate the specific endpoint that will be used for the associated report. 
+            <br>
+            The reports themeselves are sent to the target endpoint by the user agent in a <span class="text-code">POST</span> operation with a <span class="text-code">Content-Type</span> of <span class="text-code">application/reports+json</span>. They are serializations of <span class="text-code">Report</span> objects, where the <span class="text-code">type</span> indicates the type of report, the <span class="text-code">url</span> indicates the origin of the report, and the <span class="text-code">body</span> indicates a serialization f the API interface that corresponds to the report type. 
+        </p>
+        <p class="mt-2">
+            Reports can also be obtained via <span class="text-code">ReportingObserver</span> objects created via JavaScript inside the website you are aiming to get reports on. 
+        </p>
+        
+    </div>
+</section>
+<section id="id_5d792943-1464-4e8b-a3ae-b27afe5f3320" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_5d792943-1464-4e8b-a3ae-b27afe5f3320" class="same-page bold">Resize Observer API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_742d7be7-4157-4589-9f05-bbe091acbaec">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_742d7be7-4157-4589-9f05-bbe091acbaec" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Resize_Observer_API">Resize Observer API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Resize Observer API provides a performant mechanism by which code can monitor an element for changes to its size, with notifications being delivered to the observer each time the size changes. 
+        </blockquote>
+        <p class="mt-2">
+            There are a lot of use cases for responsive design techniques that respond to changes in an element's size, but previously their implementations have often been hacky/brittle. The Resize Observer API provides a solution to common problems when you want to listen for changes in the size of an element, and it provides a JavaScript solution to the often-discussed lack of <a class="secondary link" target="_blank" href="https://www.xanthir.com/b4PR0">element queries</a> in the web platform. You can create a <span class="text-code">ResizeObserver</span> object using the <span class="text-code">ResizeObserver()</span> constructor, then use <span class="text-code">ResizeObserver.observe()</span> to make it look for changes to a specific element's size.
+        </p>
+        
+    </div>
+</section>
+<section id="id_e21593d5-2072-4c9a-aace-bea0c58460f2" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_e21593d5-2072-4c9a-aace-bea0c58460f2" class="same-page bold">SVG</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_0e4f3728-698f-46c3-b9e7-720c8f7927fa">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_0e4f3728-698f-46c3-b9e7-720c8f7927fa" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/SVG_API">SVG Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            SVG applies elements for circles, rectangles, and simple and complex curves. The elements' attributes values specify how these must be drawn. The <strong>SVG API</strong> is the subset of the <strong>DOM</strong> connecting these SVG elements and their attribute values to scripts or programming languages by representing them in memory. The SVG API thus provides methods that allow programmatic access to the SVG elements and their attribute values. 
+        </blockquote>
+
+         
+    </div>
+</section>
+<section id="id_31ed5d09-32d8-4adf-ada2-f43bf7ff70a9" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_31ed5d09-32d8-4adf-ada2-f43bf7ff70a9" class="same-page bold">Screen Capture API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_a490a643-4257-473b-9748-704496dba7ee">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_a490a643-4257-473b-9748-704496dba7ee" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Screen_Capture_API">Screen Capture API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Screen Capture API introduces additions to the existing MediaCapture and Streams API to let the user select a screen or portion of a screen (such as a window) to capture as a media stream. This stream can then be recorded or shared with others over a network.
+        </blockquote>
+        <p class="mt-2">
+            The Screen Capture API is simple to use. Its sole method is <span class="text-code">MediaDevices.getDisplayMedia()</span>, whose job is to ask the user to select a screem or portion of a screen to capture in the form of a <span class="text-code">MediaStream</span>.
+        </p>
+         
+    </div>
+</section>
+<section id="id_e0f1a3b4-db96-4f6d-b77c-51bcc602d701" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_e0f1a3b4-db96-4f6d-b77c-51bcc602d701" class="same-page bold">Screen Orientation API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_9cca4d15-8bed-4a10-89e9-191e2161d457">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_9cca4d15-8bed-4a10-89e9-191e2161d457" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Screen_Orientation_API">Screen Orientation API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Screen Orientation API</strong> provides information about the orientation of the screen. 
+        </blockquote>
+        
+    </div>
+</section>
+<section id="id_5928b96c-3266-4c0b-8fbd-901a18038462" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_5928b96c-3266-4c0b-8fbd-901a18038462" class="same-page bold">Screen Wake Lock API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_922687b6-7507-475d-9758-5585bc6e9b87">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_922687b6-7507-475d-9758-5585bc6e9b87" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Screen_Wake_Lock_API">Screen Wake Lock API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Screen Wake Lock API</strong> provides a way to prevent devices from dimming or locking the screen when an application needs to keep running.
+        </blockquote>
+        <p class="mt-2">
+            Most devices by default turn of their screen after a specified amount of time to prolong the life of the hardware. The Screen Lock Wake API prevents the screen from turning off, dimming or locking. It allows for a simple pattern-based solution for visible (active) documents to acquire the platform screen wake lock. You acquire a <span class="text-code">WakeLockSentinel</span> object by claling the <span class="text-code">navigator.wakeLock.request()</span> Promise-based method that resolves if the platform allows it. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_bc07b273-8368-4289-8297-63fbb7d5f0f8" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_bc07b273-8368-4289-8297-63fbb7d5f0f8" class="same-page bold">Selection API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_33ca2f50-5869-4b57-8d4b-d6d0b92c0107">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_33ca2f50-5869-4b57-8d4b-d6d0b92c0107" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Selection_API">Selection API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Selection API</strong> enables developers to access and manipulate the portion of a document selected by the user.
+        </blockquote>
+        <p class="mt-2">
+            The <span class="text-code">Window.getSelection()</span> and <span class="text-code">Document.getSelection()</span> methods return a <span class="text-code">Selection</span> object representing the portion of the document selected by the user. A <span class="text-code">Selection</span> object provides methods to:
+        </p>
+        <ul>
+            <li>access the currently selected nodes</li>
+            <li>modify the current selection, expanding or collapsing it or selecting an entirely different part of the document</li>
+            <li>delete parts of the current selection from the DOM</li>
+        </ul>
+        <p class="mt-2">
+            The Selection APIalso provides two events, both firing on <span class="text-code">Document</span>: <span class="text-code">selectionstart</span> and <span class="text-code">selectionchange</span>.
+        </p>
+         
+    </div>
+</section>
+<section id="id_49d13086-5c0d-4ffe-a4c4-b2ad1d123bef" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_49d13086-5c0d-4ffe-a4c4-b2ad1d123bef" class="same-page bold">Sensor API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_abf31fc5-2082-4b12-8369-c266ca58e70f">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_abf31fc5-2082-4b12-8369-c266ca58e70f" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Sensor_APIs">Sensor API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Sensor APIs</strong> are a set of interfaces built to a common design that expose device sensors in a consistent way to the web platform.
+        </blockquote>
+        <p class="mt02">
+            Although the Generic Sensor API specification defines a <span class="text-code">Sensor</span> interface, as a web developer you will never use it. Instead, you'll use one of its subclasses to retrieve specific kinds of sensor data, e.g. the <span class="text-code">Accelerometer</span> interface. Sensors may or may not correspond exactly to a physical device sensor.  
+        </p>
+        <h3 class="h4 bold">Detecting Sensor APIs</h3>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Gyroscope</span> === <span class="hljs-string">&quot;function&quot;</span>) {
+<span class="hljs-comment">// run in circles…</span>
+}
+<span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;ProximitySensor&quot;</span> <span class="hljs-keyword">in</span> <span class="hljs-variable language_">window</span>) {
+<span class="hljs-comment">// watch out!</span>
+}
+<span class="hljs-keyword">if</span> (<span class="hljs-variable language_">window</span>.<span class="hljs-property">AmbientLightSensor</span>) {
+<span class="hljs-comment">// go dark…</span>
+}</code></pre>
+<button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+    </path>
+    </svg>
+</button>
+</div>
+        <p class="mt-2">
+            Defensive Programming must be used when detecting th existence of sensors:
+        </p>
+        <ul>
+            <li>Checking for thrown errors when instantiating a sensor object.</li>
+            <li>Listening for errors thrown during its use.</li>
+            <li>Handling the errors gracefully so that the user experience is enhanced rather than degraded.</li>
+        </ul>
+        <p>
+            Sometimes you have to request permission to use a sensor or alter the <span class="text-code">Permissions-Policy </span> HTTP header.
+        </p>
+        <div class="table-wrapper mt-2">
+            <table cellspacing="0">
+                <caption class="h5 bold">Sensor Type, Name Required for Permissions API, and the Permissions-Policy Directive</caption>
+          <thead>
+            <tr>
+              <th scope="col">Sensor</th>
+              <th scope="col">Permission Policy Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td><span class="text-code">AbsoluteOrientationSensor</span></td>
+                <td><span class="text-code">'accelerometer'</span>, <span class="text-code">'gyroscope'</span> and <span class="text-code">'magnetometer'</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-code">Accelerometer</span></td>
+                <td><span class="text-code">'accelerometer'</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-code">AmbientLightSensor</span></td>
+                <td><span class="text-code">'ambient-light-sensor'</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-code">GravitySensor</span></td>
+                <td><span class="text-code">'accelerometer'</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-code">GyroScope</span></td>
+                <td><span class="text-code">'gyroscope'</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-code">Linear Acceleration Sensor</span></td>
+                <td><span class="text-code">'accelerometer'</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-code">Magnetometer</span></td>
+                <td><span class="text-code">'magnetometer'</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-code">RelativeOrientationSensor</span></td>
+                <td><span class="text-code">'accelerometer'</span> and <span class="text-code">'gyroscope'</span> </td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="mt-2">
+            Sensor readings are received through the <span class="text-code">reading</span> event callback which is inherited by all sensor types. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_3f21b529-ac12-4825-af6b-ec3a34fa65f2" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_3f21b529-ac12-4825-af6b-ec3a34fa65f2" class="same-page bold">Server Sent Event</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_7760fe24-8dfc-4286-8358-da7a4a7d19e9">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_7760fe24-8dfc-4286-8358-da7a4a7d19e9" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Server-sent_events">Server Sent Event Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            Traditionally, a web page has to send a request to the server to receive new data [...] With server-sent events, it's possible for a server to send new data to a web page at any time, by pushing messages to the web page. These incoming messages can be treated as <em>Events + data</em> inside the web page. 
+        </blockquote>
+         
+    </div>
+</section>
+<section id="id_7e908d0d-9038-43c6-854e-73e4e5662d21" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_7e908d0d-9038-43c6-854e-73e4e5662d21" class="same-page bold">Service Workers API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_71ea74ea-ec3c-446c-adb9-054ea25f9a8a">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_71ea74ea-ec3c-446c-adb9-054ea25f9a8a" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Service_Worker_API">Service Workers API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            Service workers essentially act as proxy servers that sit between web applications, the browser, and the network (when available). They are intended, among other things, to enable the creation of effective offline experiences, intercept network requests, and take appropriate action based on whether the network is available, and update assets residing on the server. They will also allow access to push notifications and background sync APIs. 
+        </blockquote>
+        <p class="mt-2">
+            A <em>service worker</em> is an even-driven <a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Worker">worker</a> registered against an origin and a path. It takes the form of a JavaScript file that can control the web page/site that it is associated with, intercepting and modifying navigation and request and resource requests, and caching resources in a very granular fashion to give you complete control over how your app behaves in certain situations. 
+        </p>
+        <p class="mt-2">
+            Service Workers have no DOM access and run on a different thread to the main JS that powers your app. They are non-blocking and designed to be fully asynchronous. Service workers can;t import JS dynamically, and they only work over HTTPS. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_9d3676bf-18b2-4f50-a008-36f9350d34ea" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_9d3676bf-18b2-4f50-a008-36f9350d34ea" class="same-page bold">Shared Storage API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_e85c2c9a-6358-493e-b626-27a0eefdb594">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_e85c2c9a-6358-493e-b626-27a0eefdb594" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Shared_Storage_API">Shared Storage API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Shared Storage API</strong> is a client-side storage mechanism that enables unpartitioned, cross-site data access while preserving privacy (i.e., without relying on tracking cookies).
+        </blockquote>
+        <p class="mt-2">
+            The Shared Storage API provides a flexible solution for use cases where cross-site information sharing is preferable. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_b6e05d3c-c81d-4b38-bcbd-b1bf5320977f" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_b6e05d3c-c81d-4b38-bcbd-b1bf5320977f" class="same-page bold">Speculation Rules API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_1f4f697a-989c-49f8-8002-5f47ef611d82">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_1f4f697a-989c-49f8-8002-5f47ef611d82" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Speculation_Rules_API">Speculation Rules API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Speculation Rules API</strong> is designed to improve performance for future navigations. It targets document URLs rather than specific resource files, and so makes sense for multi-page applications (MPAs) rather than single page applications (SPAs).
+        </blockquote>
+        <p class="mt-2">
+            The Speculation Rules API provides an alternative to the widely-available <span class="text-code">&lt;link rel="prefetch"&gt;</span> and is designed to supersede the Chrome-only deprecated <span class="text-code">&lt;link rel="prerender"&gt;</span> feature. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_5ef4d87d-b8a5-4063-9955-a43b035d61b3" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_5ef4d87d-b8a5-4063-9955-a43b035d61b3" class="same-page bold">Storage</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_c9e2f367-02a6-4ad7-b034-0838a0696965">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_c9e2f367-02a6-4ad7-b034-0838a0696965" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Storage_API">Storage Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <a class="secondary link" target="_blank" href="https://storage.spec.whatwg.org/">Storage Standard</a> defines a shared storage system designed to be used by all APIs and technologies that websites can use to store data in a user's browser.
+        </blockquote>
+        <p class="mt-2">
+            The Storage APU gives websites the ability to find out how much space they can use, how much they are already using, and even control whether or not they need to be alerted before the user agent disposes of data in order to make room for other things. The storage system described by the Storage Standard, where site data is stored, usually consists of a single <em>bucket</em> for each origin. In essence, every website has its own storage space into which its data gets placed. 
+        </p>
+        <p class="mt-2">
+            Each site storage bucket has a <em>mode</em> that describes the data retention policy for that bucket. There are two modes:
+        </p>
+        <ul>
+            <li><span class="text-code">"best-effort"</span>: The user agent will try to retain the data contained in the bucket for as long as it can, <em>but will not warn users</em> if storage space runs low and it becomes necessary to clear the bucket in order to relieve the storage pressure</li>
+            <li><span class="text-code">"persistent"</span>: The user agent will retain the data as long as possible, clearing all "best-effort" buckets before considering clearing a bucket marked "persistent"</li>
+        </ul>
+        <p class="mt-2">
+            The user agent determines, using whatever mechanism it chooses, the maximum amount of storage a given site can use. The maximum is the origin's <strong>quota</strong>. The amount of this space which is in use by the site is called its <strong>usage</strong>. But these values are estimates. Data eviction is the process by which a user agent deletes an origin's stored data. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_0c01d99a-a5aa-42cd-9e9e-60c9f8e8302b" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_0c01d99a-a5aa-42cd-9e9e-60c9f8e8302b" class="same-page bold">Storage Access API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_04fa9b52-0d45-4eda-9182-e1995c91b58f">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_04fa9b52-0d45-4eda-9182-e1995c91b58f" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Storage_Access_API">Storage Access API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Storage Access API provides a way for cross-site content loaded in a third-party context (loaded in an <span class="text-code">&lt;iframe&gt;</span>) o gain access to third-party cookies and unpartitioned state that it would typically only have access to ina first party context. 
+        </blockquote>
+         
+    </div>
+</section>
+<section id="id_75426113-2d21-4181-b713-73be5b52463a" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_75426113-2d21-4181-b713-73be5b52463a" class="same-page bold">Stream</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_390297da-9bf8-4890-a946-ac69cda1156c">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_390297da-9bf8-4890-a946-ac69cda1156c" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Streams_API">Stream Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Streams API allows JavaScript to programatically access streams of data received over the network and process them as desired by the developer. 
+        </blockquote>
+        <p class="mt-2">
+            Streaming involves breaking a resource that you want to receive over a network into small chunks, then processing it bit by bit. Browsers already do this when receiving media assets - video buffer and play as more of the content downloads, and sometimes you'll see images display gradually as more is loaded too. With the streams API, you can start processing raw data bit by bit as it is available, without needing to generate a buffer, string, or blob.  
+        </p>
+         
+    </div>
+</section>

@@ -1,0 +1,126 @@
+<%# 
+PARTIAL ROUTE: pages/admin/admin-view-video.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.initialHTML
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+    <h1 class="page-title">Create a Chart</h1>
+
+    <section id="what-is-this" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#what-is-this" class="same-page bold">
+            What is This
+          </a>
+        </h2>
+        <p class="mt-2">
+            I am creating this page to test out my implementation of inserting bokeh and mpld3 charts into lexical editors. Use the form below to upload charts.  
+        </p>
+    </section>
+
+    <section id="upload-chart" class="mt-2">
+        <h2 class="bold bb-thick h2">
+          <a href="#upload-chart" class="same-page fw-regular">Upload Chart</a>
+        </h2>
+        <form class="mt-4" hx-post="/api/create-chart" hx-indicator="#ind_5842f8ac-5726-48f0-a5b3-bb43382d5e18" hx-target="#out_f47fe7f1-9ac0-4ae3-92a9-d0fd24aa5cd3" hx-trigger="submit" hx-swap="innerHTML">
+            <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+              <label for="chart-name">Chart Name:</label>
+              <div class="text-input block medium">
+                  <input 
+                  type="text" 
+                  name="chart-name" 
+                  class="medium icon-before mt-1" 
+                  spellcheck="true" 
+                  placeholder="Enter Chart Name..."
+                  autocapitalize="off"
+                  >
+                  <svg class="icon-before" viewBox="0 0 512 512" title="chart-bar" focusable="false" inert tabindex="-1"><path d="M32 32c17.7 0 32 14.3 32 32V400c0 8.8 7.2 16 16 16H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H80c-44.2 0-80-35.8-80-80V64C0 46.3 14.3 32 32 32zm96 96c0-17.7 14.3-32 32-32l192 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32zm32 64H288c17.7 0 32 14.3 32 32s-14.3 32-32 32H160c-17.7 0-32-14.3-32-32s14.3-32 32-32zm0 96H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H160c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
+              </div>
+            </div>
+
+            <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+              <label for="chart-description">Description:</label>
+              <div class="mt-1 text-input block medium disabled">
+                  <textarea 
+                  name="chart-description" 
+                  placeholder="Enter chart Description" 
+                  rows="5" 
+                  spellcheck="true"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  style="resize: vertical!important;"
+                  ></textarea>
+              </div>
+            </div>
+
+              <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+                <label for="chart-code">Code:</label>
+                <div class="mt-1 text-input block medium disabled">
+                    <textarea 
+                    name="chart-code" 
+                  placeholder="Enter chart code (Python)..." 
+                  rows="5" 
+                  spellcheck="true"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  style="resize: vertical!important;"
+                    ></textarea>
+                </div>
+              </div>
+
+              <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+                <label for="chart-html">HTML:</label>
+                <div class="mt-1 text-input block medium disabled">
+                    <textarea 
+                    name="chart-html" 
+                  placeholder="Enter chart html..." 
+                  rows="5" 
+                  spellcheck="true"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  style="resize: vertical!important;"
+                    ></textarea>
+                </div>
+              </div>
+            
+              <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+                <label for="chart-source">Source:</label>
+                <div class="text-input block medium">
+                    <input 
+                    type="text"  
+                    name="chart-source"  
+                    class="medium mt-1"
+                    placeholder="Chart source (NOT REQUIRED)" 
+                    spellcheck="true" 
+                    autocapitalize="off"
+                    >
+                </div>
+              </div>
+              <label class="checkbox">
+                <input type="checkbox" class="primary" name="make-public" value="on">
+                Make Public
+              </label>
+            <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+          </form>
+          <div class="mt-2 flex-row justify-center t-secondary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_5842f8ac-5726-48f0-a5b3-bb43382d5e18">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          
+          <output id="out_f47fe7f1-9ac0-4ae3-92a9-d0fd24aa5cd3" class="block mt-2">
+
+          </output>
+    </section>
+    
+  
+    <%-include('../../partials/pagePartial')%>
+  <%}%>

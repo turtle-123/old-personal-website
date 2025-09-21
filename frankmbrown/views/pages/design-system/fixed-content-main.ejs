@@ -1,0 +1,57 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/fixed-content-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="fixed-content-header">
+  <a href="#fixed-content-header"  class="same-page bold">Fixed Content</a>
+</h2>
+<div class="alert icon medium warning outlined mt-2 body2" role="alert" >
+<svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+<p class="alert">
+  <strong>NOTE:</strong>
+  <span>Most fixed content can be customized in the desktop.css and bole.css style files rather than in the shared.css files.</span>
+</p>
+</div>
+<section id="normal-fixed-content" id="about_fc" class="mt-2">
+<h3 class="h5 bold bb" style="margin-bottom: 8px;">About Fixed Content</h3>
+  There are 3 main types of fixed content:
+  <ul>
+    <li>Navbar</li>
+    <li>Sidebars</li>
+    <li>Floating Action Buttons / Speed Dial</li>
+  </ul>
+  <br>
+  The <strong>Navbar</strong> is always kept at top: 0, left: 0 with a width of 100vw. There are three sections of the navbar. The sections of the navbar mostly stay the same width as their sidebar sections except for the notifications aside that collapses on smaller screen sizes.
+  <strong>The right sidebar should become a drawer at smaller screen sizes.</strong> 
+  <br>
+  <br>
+  The <strong>Sidebars</strong> have a width that varies according to screen size. The sidebars should be drawers on mobile devices and on small screen size on desktop.
+  <br><br>
+  Floating Action Buttons / Speed Dials should be styled individually. An example of a floating action button / Speed Dial can be seen in the bottom right hand corner of the screen.
+</section>
+
+<section id="drawers" class="mt-3">
+<h3 class="h5 bold bb" style="margin-bottom: 8px;">
+  <a href="#drawers" class="same-page fw-regular">About Drawers</a>
+</h3>
+<p class="body1 mt-2">
+  For an element to be a drawer, it should have the <span><code class="hljs"><span class="hljs-selector-class">.drawer</span></code></span> class along with 
+  a <span><code class="hljs"><span class="hljs-selector-class">.left</span> or <span class="hljs-selector-class">.right</span></code></span> class with a <span><code class="hljs"><span class="hljs-selector-class">.sm</span> or <span class="hljs-selector-class">.md</span> or <span class="hljs-selector-class">.lg</span></code></span> class.
+  <br>
+  The left and right classes control which direction the drawer comes in from, and the sm, md, and lg classes control the width of the drawer - 25vw, 50vw, and 75vw respectively.
+  <br>
+  The drawer component is opened and closed according to its <span class="t-info bold">aria-hidden</span> attribute. 
+  <br>
+  Buttons that should open drawers should have the <span class="t-info bold">data-drawer-button</span> attribute with a 
+  <span class="t-info bold">data-drawer-el</span> attribute that is equal to a querySelector string that can be used to find the drawer element. 
+  <br>
+  Buttons that should close drawers when clicked should have the <span class="t-info bold">data-close-drawer</span> attribute. When clicked, these buttons will find the closest <span><code class="hljs"><span class="hljs-selector-class">.drawer</span></code></span> element and change its <span class="t-info bold">aria-hidden</span>
+  attribute to false. 
+  <br>
+  When drawers are opened a listener is added to the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span></code></span> so that the drawer closes whenever a part of the page not covered by the drawer is clicked. For this reason,
+  <mark>the drawer should have the <strong>data-click-capture</strong> boolean attribute.</mark>
+</p>
+</section>

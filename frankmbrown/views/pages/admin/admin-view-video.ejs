@@ -1,0 +1,27 @@
+<%# 
+PARTIAL ROUTE: pages/admin/admin-view-video.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.initialHTML
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">View frankmbrown.net Video</h1>
+  <p class="mt-2">
+    View and delete video files from the s3 bucket.
+  </p>
+  <section id="video-files" class="mt-2">
+      <h2 class="bold bb-thick h2">
+        <a href="#video-files" class="same-page fw-regular">Video Files</a>
+      </h2>
+      <div class="mt-4">
+        <%-locals.initialHTML%>
+      </div>
+  </section>
+  
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

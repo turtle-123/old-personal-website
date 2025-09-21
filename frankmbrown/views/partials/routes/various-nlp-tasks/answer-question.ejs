@@ -1,0 +1,22 @@
+<%# 
+PARTIAL ROUTE: partials/routes/various-nlp-tasks/answer-question.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.response
+%>
+<%# 
+Answer Question Response:
+%>
+
+<h3 class="bold h3 bb">Answer</h3>
+<p class="mt-1">
+    <%=locals.response.answer%>
+</p>
+<p class="mt-1">
+    <span class="bold">Score:</span> <%=locals.response.score%>
+</p>
+<h4 class="bold h4 mt-2">Where the Answer Was Found in Text:</h4>
+<p class="mt-1">
+    <%=locals.response.reference%>
+</p>

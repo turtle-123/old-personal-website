@@ -1,0 +1,194 @@
+<%# 
+PARTIAL ROUTE: pages/404.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+    <h1 class="page-title">Frank's Games</h1>
+
+    <section id="page-about" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#page-about" class="same-page bold">
+            About This Page
+          </a>
+        </h2>
+        
+        <div class="mt-2">
+            I am creating this page to host games that I create. You can see links to the games that I have created below. Some background: I developed some interest in creating 2D and 3D games after reading about Computer Graphics and using Three.js over the past couple weeks (March 2025), and now that AI has made it easier to create pixel art, I am going to try to create some games. 
+        </div>
+    </section>
+    <%if(locals.auth===3){%>
+        <section id="upload-game-script" class="mt-4">
+            <h2 class="bold bb-thick h2">
+              <a href="#upload-game-script" class="same-page bold">
+                Upload Game Script
+              </a>
+            </h2>
+            <div class="mt-2">
+                <form hx-encoding="multipart/form-data" hx-post="/games/upload-game-script" data-loading="Uploading Script..." hx-target="#tar_01ef087a-eec7-4329-9ae3-0964119a79de" hx-trigger="submit" hx-swap="innerHTML">
+                    <label for="js-file-game" class="bold mt-2">JavaScript File for Game:</label>
+                    <input type="file" id="js-file-game" accept=".js" name="js-file-game" class="mt-1 primary">
+                    <output class="block" for="js-file-game"></output>
+                    <div class="flex-row justify-between align-center mt-3">
+                            <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                            <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                                SUBMIT
+                            </button>
+                    </div>
+                </form>
+                <div class="block mt-1" id="tar_01ef087a-eec7-4329-9ae3-0964119a79de">
+
+                </div>
+            </div>
+        </section>
+        <section id="upload-new-game" class="mt-4">
+          <div class="flex-row bb-thick justify-between">
+            <h2 class="bold h2">
+              <a href="#upload-new-game" class="same-page bold">
+                Upload New Game
+              </a>
+            </h2>
+            <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#el_jwbfwefkwbe">
+              <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+              <span data-hide="">HIDE</span>
+              <span data-show="" hidden="">SHOW</span>
+            </button>
+          </div>
+          <div class="mt-2" id="el_jwbfwefkwbe">
+            <form hx-post="/games/new" data-loading="Upoloading game..." hx-target="#hwbfbkfwefjbffuuh" hx-trigger="submit" hx-swap="innerHTML">
+                <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+                  <label for="game-title">Game Title:</label>
+                  <div class="text-input block medium">
+                      <input 
+                      type="text" 
+                      name="game-title" 
+                      id="game-title" 
+                      class="medium icon-before mt-1" 
+                      required
+                      placeholder="Enter the title for the game..." 
+                      maxlength="150"
+                      minlength="1"  
+                      spellcheck="true" 
+                      autocapitalize="off"
+                      >
+                      <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Title"><path d="M5 4v3h5.5v12h3V7H19V4z"></path></svg>
+                  </div>
+                </div>
+                <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+                  <label for="game-description">Game Description:</label>
+                  <div class="mt-1 text-input block medium disabled">
+                      <textarea 
+                      name="game-description" 
+                      id="game-description" 
+                      placeholder="Enter a description for the game..." 
+                      rows="5" 
+                      maxlength="500" 
+                      minlength="1" 
+                      spellcheck="true"
+                      autocomplete="off"
+                      autocapitalize="off"
+                      ></textarea>
+                  </div>
+                  <p class="char-counter" data-input="game-description">
+                      <span class="min-counter body2" data-val="1" aria-hidden="false">more characters required</span>
+                      <span class="max-counter body2" data-val="500" aria-hidden="true">Characters Remaining</span>
+                  </p>
+                </div>
+                <label for="game-img" class="bold mt-2">Game Image:</label>
+                <input data-image-input type="file" id="game-img" accept="image/*" name="game-img" class="mt-1 secondary">
+                <output class="block" for="game-img"></output>
+                <%-locals.createArticleHTML%>
+                <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+                  <label for="game-javascript">Game JavaScript:</label>
+                  <div class="text-input block medium">
+                      <input
+                      name="game-javascript"
+                      id="game-javascript" 
+                      class="mt-1 medium icon-before" 
+                      placeholder="Enter the URL for the JavaScript for the game..." 
+                      autocomplete="off" 
+                      autocapitalize="off" 
+                      spellcheck="false" 
+                      type="url" 
+                      >
+                      <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Link">
+                          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z">
+                          </path>
+                      </svg>
+                  </div>
+                </div>
+
+              <div class="flex-row justify-between align-center mt-3">
+                    <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                    <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                        SUBMIT
+                    </button>
+                </div>
+              </form>
+              <div class="mt-2 block" id="hwbfbkfwefjbffuuh">
+
+              </div>
+          </div>
+        </section>
+    <%}%>
+    <section id="games-list" class="mt-4">
+        <h2 class="bold bb-thick h2">
+            <a href="#games-list" class="same-page bold">
+                Games List
+            </a>
+        </h2>
+
+        <div class="body1 bold mt-1" id="order-by-articles">Order By:</div>
+      <div class="mt-1 flex-row justify-start">
+        <div class="select">
+          <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="order-by-articles-drop" aria-labelledby="order-by-articles" class="select" aria-label="Order By" data-popover data-pelem="#order-by-articles-drop" data-click aria-expanded="false" style="min-width: 150px;">
+            <span class="body1"><%=locals?.order_by?.order_by_str%></span>
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+          </button>
+          <div tabindex="0" id="order-by-articles-drop" role="listbox" class="select-menu o-xs" data-placement="bottom">
+            <input type="text" hidden value="<%=locals?.order_by?.order_by_value%>" name="order-by-select" id="order-by-select" hx-get="<%=locals.path%>" hx-include="this" hx-push-url="true" hx-target="#articles-inner" hx-indicator="#change-art-order-ind">
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-new")%>" data-val="last-edit-new">
+              Last Edited (New)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-old")%>" data-val="last-edit-old">
+              Last Edited (Old)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-new")%>" data-val="date-created-new">
+              Date Created (New)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-old")%>" data-val="date-created-old">
+              Date Created (Old) 
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-likes")%>" data-val="num-likes">
+              Number of Likes
+            </button> 
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-comments")%>" data-val="num-comments">
+              Number of Comments
+            </button> 
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-views")%>" data-val="num-views">
+              Number of Views
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-annotations")%>" data-val="num-annotations">
+              Number of Annotations
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-row justify-center t-primary htmx-indicator" role="progressbar" id="change-art-order-ind" aria-busy="false" aria-label="Changing Order of Articles">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+
+      <div class="mt-1" id="articles-inner">
+          <%-locals.previews%>
+      </div>
+    </section>
+
+    <%-include('../partials/pagePartial')%>
+  <%}%>

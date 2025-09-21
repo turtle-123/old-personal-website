@@ -1,0 +1,36 @@
+<%# 
+PARTIAL ROUTE: partials/routes/various-nlp-tasks/fill-mask.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.response
+- locals.response[i]
+%>
+<%# 
+Fill Mask NLP Response
+%>
+
+<div class="table-wrapper mt-2">
+    <table cellspacing="0">
+        <caption class="h3 bold">Fill-Mask Results</caption>
+    <thead>
+        <tr>
+        <th scope="col">Score</th>
+        <th scope="col">Token</th>
+        <th scope="col">Token String</th>
+        <th scope="col">Output Sequence</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%for(let i = 0; i < locals.response.length; i++){%>
+            <tr>
+                <td><%=locals.response[i].score%></td>
+                <td><%=locals.response[i].token%></td>
+                <td><%=locals.response[i].token_str%></td>
+                <td><%=locals.response[i].sequence%></td>
+            </tr>
+        <%}%>
+    </tbody>
+    </table>
+</div>
+

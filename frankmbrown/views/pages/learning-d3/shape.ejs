@@ -1,0 +1,40 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/shape.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+<h1 class="page-title" id="top-of-page">D3.js Shape</h1>
+   
+<p>
+  Visualizations can be represented by discrete graphical marks such as symbols, arcs, lines, and areas. While the rectangles of a bar chart may sometimes be simple, other shapes are complex, such as rounded annular sectors and Catmull–Rom splines. The d3-shape module provides a variety of shape generators for your convenience.
+
+As with other aspects of D3, these shapes are driven by data: each shape generator exposes accessors that control how the input data are mapped to a visual representation. For example, you might define a line generator for a time series by scaling fields of your data to fit the chart:
+</p>
+    
+<section id="shape-types" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#shape-types" class="same-page fw-regular">Shape Types</a>
+    </h2>
+    <ul>
+      <li>arcs</li>
+      <li>areas</li>
+      <li>curves</li>
+      <li>lines</li>
+      <li>links</li>
+      <li>pies</li>
+      <li>stacks</li>
+      <li>symbols</li>
+      <li>radial areas</li>
+      <li>radial lines</li>
+      <li>radial links</li>
+    </ul>
+</section>
+
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

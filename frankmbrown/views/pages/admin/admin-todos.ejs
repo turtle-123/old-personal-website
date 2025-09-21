@@ -1,0 +1,88 @@
+<%# 
+PARTIAL ROUTE: pages/admin/admin-todos.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">Admin To Dos</h1>
+  
+  <section id="add-to-do" class="mt-4">
+    <div class="flex-row bb-thick justify-between">
+      <h2 class="bold h2">
+        <a href="#add-to-do" class="same-page bold">
+          Add To Do
+        </a>
+      </h2>
+      <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#add-to-do-section">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+      </button>
+    </div>
+
+    <div id="add-to-do-section">
+      <form class="mt-4" hx-post="/admin/to-dos" data-loading="Adding To Do" hx-target="#add-to-do-target" hx-trigger="submit" hx-swap="innerHTML">
+        <%-locals.lexicalHTML%>
+
+        <div class="input-group block mt-2">
+            <label for="date-complete-by">Date To Complete By:</label>
+            <div class="flex-row align-center gap-2 mt-1">
+              <button data-launch-datetime type="button" class="icon medium" aria-label="Launch Datetime Input Menu">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Today"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path></svg>
+              </button>
+              <input placeholder="mm/dd/yyyy" type="datetime-local" id="date-complete-by" name="date-complete-by" min="<%-locals.datetime_string_now%>"/>
+            </div>
+          </div>
+        <div class="flex-row justify-between align-center mt-3">
+          <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+          <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+              SUBMIT
+          </button>
+        </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_05fe9ca3-2254-4e21-8b95-1c969314598d">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output class="block mt-2" id="add-to-do-target">
+
+        </output>
+
+    </div>
+  </section>
+
+  <section id="to-dos" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#to-dos" class="same-page bold">
+          To Dos
+        </a>
+      </h2>
+      <div class="mt-2">
+        <%-locals.to_dos_str%>
+      </div>
+    </section>
+    
+    <section id="recently-completed" class="mt-4">
+      <div class="flex-row bb-thick justify-between">
+        <h2 class="bold h2">
+          <a href="#recently-completed" class="same-page bold">
+            Recently Completed
+          </a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="#recently-completed-hide" data-el="#recently-completed-hide">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+      <div id="recently-completed-hide">
+        <%-locals.recently_completed_str%>
+      </div>
+    </section>
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

@@ -1,0 +1,2 @@
+- This is a placeholder that makes it easier to copy files when building JavaScript server
+- See the "build" command in package.json and 

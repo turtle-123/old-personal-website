@@ -1,0 +1,237 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/accordions-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="accordions-header">
+  <a href="#accordions-header" class="same-page bold" >Accordions</a>
+</h2>
+<details class="mt-2" id="about-accordions">
+  <summary>
+    <span class="h6 fw-regular">About Accordions</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true">
+      <span class="w-100 block bold h6 bb">CSS</span>
+      The default state for accordions is to have a background color equal to <span><code class="hljs"><span class="hljs-selector-tag">var</span>(<span class="hljs-attr">--secondary-background</span>)</code></span> and to have 
+      padding that changes based on the <span style="position: relative;"><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span></span></code></span> element open state.
+      <br>
+      The details element can be made to have a transparent background by adding the <span><code class="hljs"><span class="hljs-selector-class">.flat</span></code></span> class to the details element.
+      <br>
+      The <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">summary</span>&gt;</span></span></code></span> element should have the class <span><code class="hljs"><span class="hljs-selector-class">.accordion-content</span></code></span> for the JavaScript to work correctly. This class also gives the accordion content some padding to make it look slightly indented.
+      <br />
+      Here is how a normal accordion should look:
+    <div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">details</span> <span class="hljs-attr">open</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;TITLE&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">summary</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;h6 fw-regular&quot;</span>&gt;</span>TITLE<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;details&quot;</span> <span class="hljs-attr">focusable</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">summary</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;accordion-content&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- Accordion Content --&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">details</span>&gt;</span></span></code></pre>
+            <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+                </path>
+            </svg>
+            </button>
+        </div>
+        <br>
+      You can also add the <span><code class="hljs"><span class="hljs-selector-class">.large</span></code></span> and <span><code class="hljs"><span class="hljs-selector-class">.small</span></code></span> classes to the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span></span></code></span> element to change the size of the svg.  
+      <span class="w-100 block bold h6 mt-2 bb">JavaScript</span>
+          The JavaScript toggles the <em class="t-info bold">aria-hidden</em> attribute of the 
+          <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></code></span>
+          element by default <em class="bold">if</em> the 
+          <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></code></span> element has the appropriate <span><code class="hljs"><span class="hljs-selector-class">.accordion-content</span></code></span> class.
+          <br/>
+          If the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span></span></code></span> element is a direct child of an <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span></code></span>, and <em class="bold">if</em> the 
+          <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span></code></span> has the class <span><code class="hljs"><span class="hljs-selector-class">.accordion</span></code></span> and the attribute <span class="t-info bold">data-only</span>, then the javascript toggles the currently open 
+          <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span></span></code></span> element and 
+          opens the recently clicked <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span></span></code></span> element whenever a summary element is clicked.
+      <span class="w-100 block bold h6 mt-2 bb">Accessability</span>
+      The content in the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">summary</span>&gt;</span></span></code></span> should be hidden from screen readers 
+      unless the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span></span></code></span> element is open.
+      <br/>
+      The <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span></span></code></span> element should have an <span class="t-info">aria-label</span> attribute.
+  </div>
+</details>
+<div class="alert outlined warning icon medium mt-2" role="alert">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="WarningAmber"><path d="M12 5.99 19.53 19H4.47L12 5.99M12 2 1 21h22L12 2z"></path><path d="M13 16h-2v2h2zm0-6h-2v5h2z"></path></svg>
+  <p class="alert body2">
+      <strong class="bold">NOTE:</strong>
+      <span>
+          If the accordion is initially open, then the aria-hidden attribute of the accordion content should be set to false.
+      </span>
+  </p>
+</div>
+<section id="accordion-examples" data-toc="Examples" data-level="1" class="mt-2">
+  <h2 class="h2 bb">
+      <a href="#accordion-examples" class="same-page bold">Accordion Examples</a>
+  </h2>
+  <p class="h6 mt-2 bb">Normal Accordion:</p>
+  <details aria-label="About Oranges" class="mt-2">
+      <summary>
+          <span class="h6 fw-regular">About Oranges</span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+          <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+          </path>
+          </svg>
+      </summary>
+      <div class="accordion-content" aria-hidden="true">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ex, natus consequuntur ea modi libero quisquam explicabo. Vero rerum sit, porro ut veritatis nam explicabo omnis! Unde, aliquid est?
+      </div>
+  </details>
+  <p class="h6 mt-2 bb">Flat Accordion:</p>
+  <details class="flat mt-2" aria-label="About Apples">
+      <summary>
+          <span class="h6 fw-regular">About Apples</span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+          <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+          </path>
+          </svg>
+      </summary>
+      <div class="accordion-content bg-trans" aria-hidden="true">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ex, natus consequuntur ea modi libero quisquam explicabo. Vero rerum sit, porro ut veritatis nam explicabo omnis! Unde, aliquid est?
+      </div>
+  </details>
+  <p class="h6 mt-2 bb">General Accordion:</p>
+  <details class="general mt-2" aria-label="About Bananas">
+      <summary>
+          <span class="h6 fw-regular">About Bananas</span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content bg-trans" aria-hidden="true">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ex, natus consequuntur ea modi libero quisquam explicabo. Vero rerum sit, porro ut veritatis nam explicabo omnis! Unde, aliquid est?
+      </div>
+  </details>
+  <h3 class="mt-2 bold bb-thick h2" id="SIZE_ACCORDION">Accordion Sizes</h3>
+  <p class="h6 mt-2 bb">Large Accordion:</p>
+  <details class="large mt-2" aria-label="About Mangos">
+      <summary>
+          <span class="h5 fw-regular">About Mangos</span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content bg-trans" aria-hidden="true">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ex, natus consequuntur ea modi libero quisquam explicabo. Vero rerum sit, porro ut veritatis nam explicabo omnis! Unde, aliquid est?
+      </div>
+  </details>
+  <p class="h6 mt-2 bb">Small Accordion:</p>
+  <details class="small mt-2" aria-label="About Grapes">
+      <summary>
+          <span class="body1 fw-regular">About Grapes</span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content bg-trans" aria-hidden="true">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ex, natus consequuntur ea modi libero quisquam explicabo. Vero rerum sit, porro ut veritatis nam explicabo omnis! Unde, aliquid est?
+      </div>
+  </details>
+  <h3 class="mt-2 bold bb-thick h2" id="ACCORDION_GROUPS">Accordion Groups</h3>
+  <p class="h6 mt-2 bb">Accordion Group Only One Open:</p>
+  <ul class="accordion mt-2" data-only>
+      <li>
+          <details class="small" aria-label="About Tangerines">
+              <summary>
+                  <span class="body1 fw-regular">About Tangerines</span>
+                  <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                      </path>
+                  </svg>
+              </summary>
+              <div class="accordion-content bg-trans" aria-hidden="true">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ex, natus consequuntur ea modi libero quisquam explicabo. Vero rerum sit, porro ut veritatis nam explicabo omnis! Unde, aliquid est?
+              </div>
+          </details>
+      </li>
+      <li>
+          <details class="small" aria-label="About Blackberries">
+              <summary>
+                  <span class="body1 fw-regular">About Blackberries</span>
+                  <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                      </path>
+                  </svg>
+              </summary>
+              <div class="accordion-content bg-trans" aria-hidden="true">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ex, natus consequuntur ea modi libero quisquam explicabo. Vero rerum sit, porro ut veritatis nam explicabo omnis! Unde, aliquid est?
+              </div>
+          </details>
+      </li>
+      <li>
+          <details class="small" aria-label="About Strawberries">
+              <summary>
+                  <span class="body1 fw-regular">About Strawberries</span>
+                  <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                      </path>
+                  </svg>
+              </summary>
+              <div class="accordion-content bg-trans" aria-hidden="true">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ex, natus consequuntur ea modi libero quisquam explicabo. Vero rerum sit, porro ut veritatis nam explicabo omnis! Unde, aliquid est?
+              </div>
+          </details>
+      </li>
+  </ul>
+  <p class="h6 mt-2 bb">Accordion Group Auto:</p>
+  <ul class="accordion mt-1">
+      <li>
+          <details class="flat" aria-label="About Tangerines">
+              <summary>
+                  <span class="h6 fw-regular">About Tangerines</span>
+                  <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                      </path>
+                  </svg>
+              </summary>
+              <div class="accordion-content bg-trans" aria-hidden="true">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ex, natus consequuntur ea modi libero quisquam explicabo. Vero rerum sit, porro ut veritatis nam explicabo omnis! Unde, aliquid est?
+              </div>
+          </details>
+      </li>
+      <li>
+          <details class="flat" aria-label="About Blackberries">
+              <summary>
+                  <span class="h6 fw-regular">About Blackberries</span>
+                  <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                      </path>
+                  </svg>
+              </summary>
+              <div class="accordion-content bg-trans" aria-hidden="true">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ex, natus consequuntur ea modi libero quisquam explicabo. Vero rerum sit, porro ut veritatis nam explicabo omnis! Unde, aliquid est?
+              </div>
+          </details>
+      </li>
+      <li>
+          <details class="flat" aria-label="About Strawberries">
+              <summary>
+                  <span class="h6 fw-regular">About Strawberries</span>
+                  <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                      </path>
+                  </svg>
+              </summary>
+              <div class="accordion-content bg-trans" aria-hidden="true">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ex, natus consequuntur ea modi libero quisquam explicabo. Vero rerum sit, porro ut veritatis nam explicabo omnis! Unde, aliquid est?
+              </div>
+          </details>
+      </li>  
+  </ul>
+</section>

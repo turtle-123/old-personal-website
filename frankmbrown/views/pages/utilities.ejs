@@ -1,0 +1,656 @@
+<%# 
+PARTIAL ROUTE: pages/utilities.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.auth>
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">Frank's Utilities</h1>
+
+ 
+
+  <section id="why-create-this" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#why-create-this" class="same-page fw-regular">Why Create This</a>
+      </h2>
+      <p class="mt-2">
+        I wanted to create this page to automate tasks that I need to do often / occasionally just for productivity reasons.
+      </p>
+  </section>  
+
+  <%if(locals.auth>=3){%>
+    <section id="upload-image-custom-name" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#upload-image-custom-name" class="same-page fw-regular">Upload Image With Custom Name</a>
+        </h2>
+        <p class="mt-2">
+          Upload image and save in s3 bucket. Instead of the image being given some random name, give a specific name to the image.
+        </p>
+      <form hx-post="/api/post-image-with-name" hx-trigger="submit" hx-encoding="multipart/form-data" hx-indicator="#uploading-images-ind"
+      hx-target="output[form='upload-image-with-name-form']"
+      hx-swap="innerHTML" 
+      id="upload-iamge-with-name-form">
+          <label for="upload-image-with-name" class="bold mt-2">Upload Image Files:</label>
+          <input multiple required data-image-input data-prevent-default type="file" id="upload-image-with-name" accept="image/*" name="upload-image-with-name" class="mt-1 info">
+          <output class="block" for="upload-image-with-name"></output>
+          <div></div>
+          <div class="flex-row justify-between mt-2">
+            <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+            <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+              SUBMIT
+            </button>
+          </div>
+        </form>
+        <div id="uploading-images-ind" class="flex-row justify-center t-secondary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Uploading Images...">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output form="upload-image-with-name-form"></output>
+        <script nonce="<%=locals.jsNonce%>" defer>
+          (() => {
+            const imageUpload = document.getElementById('upload-image-with-name');
+            if (imageUpload) {
+              const getTextInputHTML = (int) => {
+                const randID = 'input_name_'.concat(int);
+                return /*html*/`
+                <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+                  <label for="${randID}">Image ${int} Name:</label>
+                  <div class="text-input block medium">
+                      <input 
+                      type="text" 
+                      name="${randID}" 
+                      id="${randID}" 
+                      class="medium icon-before mt-1" 
+                      required
+                      placeholder="Enter the name for the uploaded image..." 
+                      maxlength="200"
+                      minlength="5" 
+                      spellcheck="true" 
+                      autocapitalize="off"
+                      >
+                      <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="TextFields"><path d="M2.5 4v3h5v12h3V7h5V4h-13zm19 5h-9v3h3v7h3v-7h3V9z"></path></svg>
+                  </div>
+                </div>
+                `;
+              }
+              function handleImageUpload(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                const files = Array.from(imageUpload.files);
+                const output = document.querySelector('output[for="upload-image-with-name"]');
+                if (output && output.nextElementSibling && files.length>=1){
+                  output.nextElementSibling.innerHTML = '';
+                  for (let i = files.length-1; i >=0; i--) {
+                    output.nextElementSibling.insertAdjacentHTML("afterbegin",getTextInputHTML(i));
+                  }
+                }
+              }
+              imageUpload.addEventListener('change',handleImageUpload,true);
+            }
+          })()
+        </script>
+    </section>
+  <%}%>
+
+  <section id="open-util-sialogs" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#open-util-dialogs" class="same-page bold">Open Utilities Dialogs</a>
+      </h2>
+
+      <div class="mt-2 flex-row gap-3 align-center justify-between wrap">
+        <button type="button" data-dialog="svg-icon-search-dialog" class="icon-text medium primary filled">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Search"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+          SEARCH ICONS
+        </button>
+        <button type="button" data-dialog="math-markup-dialog" class="icon-text medium secondary filled">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Calculate"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5.97 4.06L14.09 6l1.41 1.41L16.91 6l1.06 1.06-1.41 1.41 1.41 1.41-1.06 1.06-1.41-1.4-1.41 1.41-1.06-1.06 1.41-1.41-1.41-1.42zm-6.78.66h5v1.5h-5v-1.5zM11.5 16h-2v2H8v-2H6v-1.5h2v-2h1.5v2h2V16zm6.5 1.25h-5v-1.5h5v1.5zm0-2.5h-5v-1.5h5v1.5z"></path></svg>
+          GENERATE MATH MARKUP
+        </button>
+        <button type="button" data-dialog="code-markup-dialog" class="icon-text medium info filled">
+          <svg viewBox="0 0 640 512" title="code" focusable="false" inert tabindex="-1"><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg>
+          GENERATE CODE MARKUP
+        </button>
+
+      </div>
+  </section>
+
+  <section id="util-escape-string" class="mt-4">
+    <h2 class="h2 bold bb-main"><a href="#util-escape-string" class="same-page fw-regular">Escape String</a></h2>
+    <p class="mt-2" tabindex="-1">
+      Enter the string you want escaped into the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span> below.
+    </p>
+    <form id="utils-escape-string-form">
+      <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+        <label for="utils-escape-string-input">Escape String Input:</label>
+        <div class="mt-1 text-input block medium disabled">
+            <textarea 
+            name="utils-escape-string-input" 
+            id="utils-escape-string-input" 
+            placeholder="Enter the string you want escaped here..." 
+            rows="5" 
+            style="resize: vertical!important;"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            ></textarea>
+        </div>
+      </div>
+    </form>
+    <output form="utils-escape-string-form" class="block mt-2" style="position: relative; border: 3px solid var(--secondary); padding: 1.5rem; border-radius: 6px;">
+      <p class="body1 block">
+        Input string into the textarea above, and the output will be shown here.
+      </p>
+      <input type="text" name="scape-string-out-util" id="scape-string-out-util" hidden="hidden" />
+      <button type="button" data-copy-input data-input="scape-string-out-util" class="toggle-button medium" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true" data-snackbar data-selem="#utils-copy-string">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+          <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+          </path>
+        </svg>
+      </button>
+    </output>
+    <div aria-hidden="true" id="utils-copy-string" class="snackbar success" role="alert" data-snacktime="4000">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CheckCircle"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+      <p class="alert">
+        Escaped string has been coped to clipboard!
+      </p>
+      <button data-close-snackbar="" class="icon medium" type="button" aria-label="Close Snackbar">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+      </button>
+    </div>
+    <script nonce="<%=locals.jsNonce||'includeJsNonce'%>">
+      function utilsPageEscapeString() {
+        function hFCS(){
+          const i = document.querySelector('#utils-escape-string-input');
+          if(i){
+            const t=i.value;
+            if(t){
+              const b=JSON.stringify(t);
+              const output = document.querySelector('output[form="utils-escape-string-form"]');
+              if (output&&b) {
+                const p = output.querySelector('p');
+                const inp = output.querySelector('input');
+                if (inp) inp.value = b.slice(1,b.length-1);
+                if (p) p.innerText = b.slice(1,b.length-1);
+              }
+            }
+          }
+        } 
+        const a = document.querySelector('#utils-escape-string-form');
+        if (a) a.addEventListener('submit',hFCS)
+        if (a) a.addEventListener('change',hFCS)
+      }
+      utilsPageEscapeString();
+    </script>
+  </section>
+
+  <section id="util-math-markup" class="mt-4">
+    <h2 class="h2 bold bb-main"><a href="#util-math-markup" class="same-page fw-regular">Generate Math Markup</a></h2>
+    <p class="mt-2">
+      Enter <span id="copy_math_html1z3c5xng72a" class="inline-katex">
+        <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>K</mi><mi>a</mi><mi>T</mi><mi>e</mi><mi>X</mi></mrow>KaTeX</math></span><span aria-hidden="true" class="katex-html"><span class="base"><span style="height:0.6833em;" class="strut"></span><span style="margin-right:0.07153em;" class="mord mathnormal">K</span><span class="mord mathnormal">a</span><span style="margin-right:0.13889em;" class="mord mathnormal">T</span><span class="mord mathnormal">e</span><span style="margin-right:0.07847em;" class="mord mathnormal">X</span></span></span></span>
+      </span> code into the textarea below and submit the form. Copy the resulting HTML. <strong class="t-warning">NOTE: in order to use the KateX output, you must have the appropriate CSS.</strong> See <a class="secondary link" target="_blank" href="https://katex.org/">the KateX documentation</a>.
+    </p>
+    <form id="generate-math-markup-form-utils">
+      <div tabindex="-1" class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="math-markup-dialog-input-utils"><span id="random_id_math_ret_9n5ji9iubyt" class="inline-katex">
+          <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>e</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span></span> Input:</label>
+        <div class="mt-1 text-input block medium disabled" tabindex="-1">
+            <textarea data-katex-input name="math-markup-dialog-input-utils" id="math-markup-dialog-input-utils" placeholder="Write your TeX code here..." rows="6" spellcheck="false" autocomplete="off" autocapitalize="off" style="font-family: monospace!important;resize: vertical!important;"></textarea>
+        </div>
+        <p class="char-counter t-disabled" data-input="math-markup-dialog-input-utils" tabindex="-1">
+          <span class="min-counter body2" data-val="1" aria-hidden="false">Character Required</span>
+          <span class="max-counter body2" data-val="300" aria-hidden="true">Characters Remaining</span>
+        </p>
+      </div>
+      <div class="flex-row align-start justify-start gap-3" tabindex="-1">
+        <fieldset class="grow-1">
+          <legend class="body1 bold">Display Style:</legend>
+          <label class="radio">
+            <input type="radio" id="block-math-dialog" name="math-display-style-utils" value="block-math-dialog" class="primary" checked="">
+            Block
+          </label>
+          <label class="radio mt-3">
+            <input type="radio" id="inline-math-dialog" name="math-display-style-utils" value="inline-math-dialog" class="primary">
+            Inline
+          </label>
+        </fieldset>
+        <fieldset class="grow-1 checkbox">
+          <legend class="body1 bold">Customize:</legend>
+          <label class="checkbox">
+            <input type="checkbox" class="secondary" name="leqno-dialog">
+            leqno
+          </label>
+          <label class="checkbox mt-1">
+            <input type="checkbox" class="secondary" name="fleqn-dialog">
+            fleqn
+          </label>
+        </fieldset>
+      </div>
+      <div class="flex-row mt-1 justify-end align-center">
+        <button class="icon-text medium filled success" type="submit" aria-label="Submit Math Markup">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+          <span>SUBMIT</span>
+        </button>
+      </div>
+    </form>
+    <div id="math-dialog-indicator-2" class="flex-row justify-center t-info mt-2 htmx-indicator" role="progressbar" aria-busy="false" aria-label="Generating Math Markup...">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <output class="mt-2" form="generate-math-markup-form-utils" id="math-dialog-results-2"></output>
+  </section>
+
+  <section id="util-code-markup" class="mt-4">
+    <h2 class="h2 bold bb-main"><a href="#util-code-markup" class="same-page fw-regular">Generate Code Markup</a></h2>
+    <p class="mt-2">
+      Enter code into the textarea below and select the appropriate coding language for which you want to generate highlighted code markup. Click the submit button to generate the markup using <a class="secondary link" target="_blank" href="https://highlightjs.org/">highlight js</a>. 
+    </p>
+
+    <form data-highlight-js-form id="code-markup-utils">
+      <div tabindex="-1" class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+        <label for="code-markup-dialog-input-2">Code Input:</label>
+        <div class="mt-1 text-input block medium disabled" tabindex="-1">
+            <textarea name="code-markup-dialog-input-2" id="code-markup-dialog-input-2" placeholder="#include <stdio.h>
+int main(){
+printf(&quot;Hello, World!&quot;);
+return 0;
+}" rows="6" minlength="1" maxlength="5000" spellcheck="false" autocomplete="off" autocapitalize="off" style="font-family: monospace!important;"></textarea>
+        </div>
+        <p class="char-counter t-disabled" data-input="code-markup-dialog-input-2" tabindex="-1">
+          <span class="min-counter body2" data-val="1" aria-hidden="false">Character Required</span>
+          <span class="max-counter body2" data-val="5000" aria-hidden="true">Characters Remaining</span>
+        </p>
+      </div>
+      <div class="flex-row align-start justify-start gap-3" tabindex="-1">
+        <fieldset class="grow-1">
+          <legend class="body1 bold">Display Style:</legend>
+          <label class="radio">
+            <input checked="" type="radio" name="code-display-style" value="block-code-dialog" class="primary">
+            Block
+          </label>
+          <label class="radio mt-3">
+            <input type="radio" name="code-display-style" value="inline-code-dialog" class="primary">
+            Inline
+          </label>
+        </fieldset>
+        <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+          <div class="flex-column w-100 align-start justify-start grow-1">
+            <div class="body1 bold" id="high-theme-label-2">Coding Language:</div>
+            <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="highligh-js-theme-popover-2" aria-labelledby="high-theme-label-2" class="select" data-popover="" data-pelem="#highligh-js-theme-popover-2" data-click="" aria-expanded="false" data-force-close="">
+              <span style="min-width: 125px;" class="body1">auto</span>
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+            </button>
+            <div tabindex="0" id="highligh-js-theme-popover-2" role="listbox" class="select-menu o-xs" data-placement="bottom" style="max-height: 200px;">
+              <input type="text" hidden="" value="auto" name="highlight-js-language">
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val="auto">auto</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="1c">1c</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="abnf">abnf</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="accesslog">accesslog</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="actionscript">actionscript</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="ada">ada</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="angelscript">angelscript</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="apache">apache</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="applescript">applescript</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="arcade">arcade</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="arduino">arduino</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="armasm">armasm</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="xml">xml</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="asciidoc">asciidoc</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="aspectj">aspectj</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="autohotkey">autohotkey</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="autoit">autoit</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="avrasm">avrasm</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="awk">awk</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="axapta">axapta</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="bash">bash</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="basic">basic</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="bnf">bnf</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="brainfuck">brainfuck</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="c">c</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="cal">cal</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="capnproto">capnproto</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="ceylon">ceylon</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="clean">clean</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="clojure">clojure</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="clojure-repl">clojure-repl</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="cmake">cmake</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="coffeescript">coffeescript</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="coq">coq</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="cos">cos</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="cpp">cpp</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="crmsh">crmsh</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="crystal">crystal</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="csharp">csharp</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="csp">csp</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="css">css</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="d">d</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="markdown">markdown</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="dart">dart</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="delphi">delphi</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="diff">diff</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="django">django</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="dns">dns</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="dockerfile">dockerfile</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="dos">dos</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="dsconfig">dsconfig</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="dts">dts</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="dust">dust</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="ebnf">ebnf</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="elixir">elixir</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="elm">elm</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="ruby">ruby</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="erb">erb</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="erlang-repl">erlang-repl</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="erlang">erlang</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="excel">excel</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="fix">fix</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="flix">flix</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="fortran">fortran</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="fsharp">fsharp</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="gams">gams</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="gauss">gauss</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="gcode">gcode</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="gherkin">gherkin</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="glsl">glsl</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="gml">gml</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="go">go</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="golo">golo</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="gradle">gradle</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="graphql">graphql</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="groovy">groovy</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="haml">haml</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="handlebars">handlebars</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="haskell">haskell</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="haxe">haxe</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="hsp">hsp</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="http">http</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="hy">hy</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="inform7">inform7</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="ini">ini</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="irpf90">irpf90</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="isbl">isbl</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="java">java</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="javascript">javascript</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="jboss-cli">jboss-cli</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="json">json</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="julia">julia</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="julia-repl">julia-repl</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="kotlin">kotlin</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="lasso">lasso</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="latex">latex</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="ldif">ldif</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="leaf">leaf</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="less">less</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="lisp">lisp</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="livecodeserver">livecodeserver</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="livescript">livescript</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="llvm">llvm</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="lsl">lsl</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="lua">lua</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="makefile">makefile</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="mathematica">mathematica</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="matlab">matlab</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="maxima">maxima</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="mel">mel</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="mercury">mercury</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="mipsasm">mipsasm</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="mizar">mizar</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="perl">perl</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="mojolicious">mojolicious</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="monkey">monkey</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="moonscript">moonscript</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="n1ql">n1ql</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="nestedtext">nestedtext</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="nginx">nginx</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="nim">nim</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="nix">nix</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="node-repl">node-repl</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="nsis">nsis</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="objectivec">objectivec</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="ocaml">ocaml</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="openscad">openscad</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="oxygene">oxygene</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="parser3">parser3</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="pf">pf</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="pgsql">pgsql</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="php">php</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="php-template">php-template</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="plaintext">plaintext</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="pony">pony</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="powershell">powershell</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="processing">processing</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="profile">profile</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="prolog">prolog</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="properties">properties</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="protobuf">protobuf</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="puppet">puppet</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="purebasic">purebasic</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="python">python</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="python-repl">python-repl</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="q">q</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="qml">qml</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="r">r</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="reasonml">reasonml</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="rib">rib</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="roboconf">roboconf</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="routeros">routeros</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="rsl">rsl</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="ruleslanguage">ruleslanguage</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="rust">rust</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="sas">sas</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="scala">scala</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="scheme">scheme</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="scilab">scilab</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="scss">scss</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="shell">shell</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="smali">smali</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="smalltalk">smalltalk</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="sml">sml</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="sqf">sqf</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="sql">sql</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="stan">stan</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="stata">stata</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="step21">step21</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="stylus">stylus</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="subunit">subunit</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="swift">swift</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="taggerscript">taggerscript</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="yaml">yaml</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="tap">tap</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="tcl">tcl</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="thrift">thrift</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="tp">tp</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="twig">twig</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="typescript">typescript</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="vala">vala</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="vbnet">vbnet</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="vbscript">vbscript</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="vbscript-html">vbscript-html</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="verilog">verilog</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="vhdl">vhdl</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="vim">vim</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="wasm">wasm</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="wren">wren</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="x86asm">x86asm</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="xl">xl</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="xquery">xquery</button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="zephir">zephir</button>
+            </div>
+        </div>
+      </div>
+      </div>
+      <div class="flex-row mt-1 justify-end align-center">
+        <button class="icon-text medium filled success" type="submit" aria-label="Submit Math Markup">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+          <span>SUBMIT</span>
+        </button>
+      </div>
+    </form>
+    <output id="coding-dialog-results-section-2" form="code-markup-utils" class="mt-1"></output>
+
+  </section>
+
+  <section id="upload-image-get-data" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#upload-image-get-data" class="same-page bold">Upload Image, Get Data</a>
+      </h2>
+      <p class="mt-2">
+        Upload an image using the <span class="text-code">&lt;input type="file"&gt</span> input below, submit the form, and get the HTML that should be used for the image. 
+      </p>
+      <form class="mt-4" hx-post="/utilities/get-image-data" hx-encoding="multipart/form-data" hx-indicator="#ind_d1017fbf-0e1d-424a-9d45-6d3d24f725a8" hx-target="#tar_7e9360bd-b898-4199-b7d3-050702760c2a" hx-trigger="submit" hx-swap="innerHTML">
+        <label for="upload-image-for-data" class="bold mt-2">Upload Image File:</label>
+        <input data-prevent-default data-image-input type="file" id="upload-image-for-data" accept="image/*" name="upload-image-for-data" class="mt-1 info">
+        <output class="block" for="upload-image-for-data"></output>
+        <div class="mt-1">
+          <label class="checkbox">
+          <input type="checkbox" class="secondary" name="add-bg-trans" checked value="on">
+            Add Background Color if Transparent
+          </label>
+        </div>
+        <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+      </form>
+      <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_d1017fbf-0e1d-424a-9d45-6d3d24f725a8">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <output id="tar_7e9360bd-b898-4199-b7d3-050702760c2a">
+
+      </output>
+  </section>
+
+
+  <section id="markdown-to-html" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#markdown-to-html" class="same-page fw-regular">Markdown to HTML</a>
+    </h2>
+
+    <p class="mt-2">
+      Input markdown into the textarea below, customize the options, and submit the form to generate equivalent HTML for the markdown using <a class="secondary link" target="_blank" href="https://marked.js.org/">markedjs</a>. <span class="t-warning fw-regular">I am not done implementing marked correctly for my design system. I need to look at customizing the renderer / tokenizer for some elements. I also need to implement this for the Lexical Implementation. </span>
+    </p>
+
+    <form id="markdown-form" hx-post="/api/markdown" hx-trigger="submit" hx-swap="innerHTML" hx-target="#markdown-form-output" hx-indicator="#ind-mark-form">
+
+      <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+        <label for="markdown-input">Markdown Input:</label>
+        <div class="mt-1 text-input block medium disabled">
+            <textarea 
+            name="markdown-input" 
+            id="markdown-input" 
+            placeholder="Enter the markdown you want converted to HTML here. Input must be at least 10 characters long." 
+            minlength="10"
+            rows="5"
+            style="resize: vertical!important;" 
+            spellcheck="true"
+            autocomplete="off"
+            autocapitalize="off"
+            ></textarea>
+        </div>
+      </div>
+      <fieldset class="mt-1">
+        <legend class="h6 bold">Style Type:</legend>
+        <div class="flex-row align-center gap-3">
+          <label class="radio">
+          <input type="radio" name="style-type" value="default" class="primary" checked>
+            Default
+          </label>
+          <label class="radio">
+          <input type="radio" name="style-type" value="my-design-system" class="primary">
+          My Design System
+          </label>
+        </div>
+      </fieldset>
+      <fieldset class="mt-1">
+        <legend class="h6 bold">Options:</legend>
+        <div class="flex-row gap-3 align-center wrap">
+          <label class="checkbox">
+            <input type="checkbox" class="secondary" name="breaks" value="on" checked>
+            breaks
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" class="info" name="gfm" value="on" checked>
+            Github Flavored Markdown
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" class="warning" name="pedantic" value="on">
+            pedantic
+          </label>
+        </div>
+      </fieldset>
+      <div class="mt-2 flex-row align-center justify-between">
+        <input role="button" value="RESET" type="reset" aria-label="Reset Form">
+        <button type="submit" aria-label="Submit Form" class="filled success medium">
+          SUBMIT
+        </button>
+      </div>
+    </form>
+    <div class="flex-row justify-center t-warning htmx-indicator" id="ind-mark-form" role="progressbar" aria-busy="false" aria-label="Getting HTML for Markdown...">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <output id="markdown-form-output" for="markdown-form" class="mt-2">
+
+    </output>
+  </section>  
+
+
+  <section id="csv-excel-to-html-table" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#csv-excel-to-html-table" class="same-page fw-regular">CSV/Excel To HTML Table </a>
+      </h2>
+      <p class="mt-2">
+        Upload a <abbr title="Comma Separated Values">CSV</abbr> file or Excel file and get an equivalent HTML Table by uploading the file, customizing the output, and submitting the form.
+      </p>
+      <form hx-indicator="#get-table-html-ind" hx-target="#output-insert-table-upload-data" hx-swap="innerHTML" hx-post="/api/table" hx-encoding="multipart/form-data" class="mt-2" id="insert-table-upload-data">
+        <label for="upload-data-to-table-2" class="body1 bold">Data File:</label>
+        <input id="upload-data-to-table-2" name="upload-data-to-table-2" class="mt-1 primary" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+        <fieldset class="mt-2">
+          <legend class="h6 bold">Customization</legend>
+          <div class="w-100 flex-row align-start gap-2">
+            <div class="grow-1">
+              <label class="checkbox">
+                <input type="checkbox" class="primary" name="lexical-table-include-heading-row-upload" checked="">
+                Include Heading Row
+              </label>
+              <label class="checkbox mt-2">
+                <input type="checkbox" class="secondary" name="lexical-table-include-heading-column-upload"  checked="">
+                Include Heading Column
+              </label>
+              <label class="checkbox mt-2">
+                <input type="checkbox" class="error" name="lexical-table-include-caption-upload" id="caption-table-upload">
+                Include Caption
+              </label>
+            </div>
+            <div class="grow-1">
+              <label class="checkbox">
+                <input type="checkbox" class="info" name="lexical-table-banded-rows-upload" >
+                Banded Rows
+              </label>
+              <label class="checkbox mt-2">
+                <input type="checkbox" class="success" name="lexical-table-banded-cols-upload" >
+                Banded Columns
+              </label>
+            </div>
+          </div>
+        </fieldset>
+        <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+          <label for="lex-table-caption-input-upload-2">Table Caption:</label>
+          <div class="text-input block medium">
+              <input type="text" name="lex-table-caption-input-upload-2" id="lex-table-caption-input-upload-2" class="medium icon-before mt-1" maxlength="100" minlength="1" spellcheck="true" autocapitalize="off" value="Table Caption" disabled="">
+              <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Title"><path d="M5 4v3h5.5v12h3V7H19V4z"></path></svg>
+          </div>
+        </div>
+
+        <div class="mt-3 flex-row align-center justify-between">
+          <input role="button" value="RESET" type="reset" aria-label="Reset Form">
+          <button type="submit" aria-label="Submit Form" class="filled success medium" >
+            SUBMIT
+          </button>
+        </div>
+      </form>
+      <script nonce="<%=locals.jsNonce%>">
+        (function() {
+          const includeCaption = document.getElementById('caption-table-upload');
+          if (includeCaption) {
+            function onIncludeCaptionChange(e) {
+              const captionTextInput = document.getElementById('lex-table-caption-input-upload-2');
+              if (e&&e.target&&e.target.checked&&captionTextInput) {
+                captionTextInput.removeAttribute('disabled');
+              } else if (captionTextInput) {
+                captionTextInput.setAttribute('disabled','');
+              }
+            }
+            includeCaption.addEventListener('change',onIncludeCaptionChange);
+          }
+        })()
+      </script>
+      <div id="get-table-html-ind" class="flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Getting table...">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <output for="insert-table-upload-data" id="output-insert-table-upload-data"></output>
+  </section>
+
+
+  <section id="html-table-to-csv-json" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#html-table-to-csv-json" class="same-page fw-regular">HTML Table To CSV/JSON</a>
+      </h2>
+      <p class="mt-2">
+        Input a HTML table into the textarea below to convert it to equivalent CSV/json. This should work with tables that have merged cells, but it will not work with nested tables.
+      </p>
+      <form id="html-table-to-csv-json-form" hx-trigger="submit" hx-target="#html-table-to-csv-json-output" hx-swap="innerHTML" hx-indicator="#getting-csv-json-ind" hx-post="/api/html-table-to-csv-json">
+        <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+          <label for="html-table-input">HTML Table:</label>
+          <div class="mt-1 text-input block medium disabled">
+              <textarea 
+              name="html-table-input" 
+              id="html-table-input" 
+              placeholder="Enter the HTML Table you want converted to CSV/JSON..." 
+              rows="5"
+              style="resize: vertical!important;" 
+              minlength="10" 
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off"
+              ></textarea>
+          </div>
+        </div>
+
+        <div class="mt-3 flex-row align-center justify-between">
+          <input role="button" value="RESET" type="reset" aria-label="Reset Form">
+          <button type="submit" aria-label="Submit Form" class="filled success medium" >
+            SUBMIT
+          </button>
+        </div>
+      </form>
+      <div class="flex-row justify-center t-error htmx-indicator mt-1" role="progressbar" id="getting-csv-json-ind" aria-busy="false" aria-label="Getting CSV or JSON">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <output id="html-table-to-csv-json-output" for="html-table-to-csv-json"></output>
+  </section>
+
+
+  <section id="util-pattern-validator" class="mt-4">
+    <h2 class="h2 bold bb-main"><a href="#util-pattern-validator" class="same-page fw-regular">HTML5 Pattern Validator</a></h2>
+    <details aria-label="About HTML5 Pattern Attribute" class="mt-2">
+          <summary>
+              <span class="h6 fw-regular">About HTML5 Pattern Attribute</span>
+              <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+              </svg>
+          </summary>
+          <div class="accordion-content" aria-hidden="true">
+            <p class="body1">
+              According to the <a href="https://html.spec.whatwg.org/multipage/input.html#attr-input-pattern" target="_blank" class="secondary link">HTML Specs</a>,
+              the process for validating a <span class="t-info bold">pattern</span> attribute looks like this:
+            </p>
+            <ol class="first body2">
+              <li>If the input has no <span class="t-info bold">pattern</span> attribute, do nothing</li>
+              <li>else let <span class="t-secondary bold">pattern</span> be the pattern attribute of the element</li>
+              <li>Let <span class="t-secondary bold">regexCompletion</span> be </li>
+              <li>if <span class="t-secondary bold">regexCompletion</span> is an <a href="https://tc39.es/ecma262/#sec-completion-record-specification-type" target="blank" class="secondary link">abrupt completion</a>, return nothing. In other words, if the pattern is not valid, do nothing. It is encouraged for browsers to log an invalid RegExp to the console.</li>
+              <li>Let the <span class="t-success bold">anchoredPattern</span> be the string <span class="bold">"^(?:)" </span> followed by the <span class="t-secondary bold">pattern</span> followed by <span class="bold">")$"</span></li>
+              <li class="t-warning fw-regular">This means that you should not include <span class="bold t-error">^</span> and <span class="t-error bold">$</span> as the opening and closing characters of the string.</li>
+              <li>Test the input against this pattern.</li>
+            </ol>
+          </div>
+    </details>
+    <script nonce="<%=locals.jsNonce%>">
+
+    </script>
+    <p class="mt-2 body2">
+      Input the pattern that you want to use as the <span class="t-info bold">pattern</span> attribute in the input below, and whether or not the input is valid will be displayed below the input.
+    </p>
+    <form id="utils-pattern-form" class="mt-2">
+      <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="util-html5-pattern">Pattern Attribute:</label>
+        <div class="text-input block medium">
+            <input 
+            type="text" 
+            autocomplete="AUTOCOMPLETE" 
+            name="util-html5-pattern" 
+            id="util-html5-pattern" 
+            class="medium icon-before mt-1" 
+            placeholder="Enter the Regex Pattern Here..." 
+            maxlength="300"
+            minlength="1" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Pattern"><path d="M4 6c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm2 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-6c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-.02 6c-.74 0-1.37.4-1.72 1h-2.54c-.34-.6-.98-1-1.72-1s-1.37.4-1.72 1H8.41l3.07-3.07c.17.04.34.07.52.07 1.1 0 2-.9 2-2 0-.18-.03-.35-.07-.51l3.56-3.56c.16.04.33.07.51.07 1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2c0 .18.03.35.07.51l-3.56 3.56c-.16-.04-.33-.07-.51-.07-1.1 0-2 .9-2 2 0 .18.03.35.07.51l-3.56 3.56C6.35 16.03 6.18 16 6 16c-1.1 0-2 .9-2 2s.9 2 2 2c.74 0 1.37-.4 1.72-1h2.57c.34.6.98 1 1.72 1s1.37-.4 1.72-1h2.55c.34.6.98 1 1.72 1 1.1 0 2-.9 2-2-.02-1.1-.92-2-2.02-2z"></path></svg>
+            <%# Buttons and SVGs %>
+        </div>
+      </div>
+    </form>
+    <output form="utils-pattern-form">
+
+    </output>
+  </section>
+  <section id="util-random-id-gen" class="mt-4">
+    <h2 class="h2 bold bb-main"><a href="#util-random-id-gen" class="same-page fw-regular">Random JavaScript Variable Generator</a></h2>
+
+    <p class="body1">
+      Click the button below to generate valid random JavaScript variable names. 
+    </p>
+
+    <form id="util-generate-random-id" style="display: flex;justify-content: center; align-items: center;" class="mt-2">
+      <button type="submit" class="filled icon-text success medium">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Repeat"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"></path></svg>
+        Generate Random ID
+      </button>
+    </form>
+
+    <output form="util-generate-random-id" class="block mt-2" style="border-top: 2px solid var(--divider);">
+      <p class="h6 bold">Output:</p>
+      <input type="text" hidden="hidden" id="gen-random-id-output" name="gen-random-id-output" />
+      <div class="flex-row justify-center align-center mt-2" style="position: relative; border: 3px solid var(--text-primary); padding: 1.5rem; border-radius: 2px;">
+        <div id="output-for-code-gen-on-utils">
+        </div>
+        <button type="button" data-copy-input data-input="gen-random-id-output" class="toggle-button medium" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true" data-snackbar data-selem="#utils-copy-random-id-string">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+            </path>
+          </svg>
+        </button>
+      </div>
+      
+    </output>
+    <div aria-hidden="true" id="utils-copy-random-id-string" class="snackbar success" role="alert" data-snacktime="4000">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CheckCircle"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+      <p class="alert">
+        Random ID has been copied to clipboard.
+      </p>
+      <button data-close-snackbar="" class="icon medium" type="button" aria-label="Close Snackbar">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+      </button>
+    </div>
+    <script nonce="<%=locals.jsNonce||'includeJsNonce'%>">
+      function u_3787374(){
+        const form = document.getElementById('util-generate-random-id');
+        function u_38467383(e) {
+          const randomID = 'u_'.concat(Math.random().toString().slice(2));
+          if (e) e.preventDefault();
+          const id = this.getAttribute('id');
+          if(id) {
+            const output = document.querySelector('output[form="'.concat(id).concat('"]'));
+            if(output) {
+              const input = output.querySelector('input');
+              const div = output.querySelector('div#output-for-code-gen-on-utils');
+              if (input) input.value = randomID;
+              if (div) div.innerText = randomID;
+            }
+          }
+        }
+        if (form) form.addEventListener('submit',u_38467383);
+        u_38467383.bind(form)();
+      }
+      u_3787374();
+    </script>
+
+  </section>
+  
+  
+  
+
+ 
+  
+
+  <%-include('../partials/pagePartial')%>
+<%}%>

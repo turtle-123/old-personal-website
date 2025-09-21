@@ -1,0 +1,16 @@
+<%# 
+PARTIAL ROUTE: pages/404.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+    <h1 class="page-title">Comment Chain</h1>
+
+    <%-locals.comment_chain%>
+
+    <%-include('../partials/pagePartial')%>
+  <%}%>

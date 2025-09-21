@@ -1,0 +1,10 @@
+<%# 
+PARTIAL ROUTE: dialogs/loadingDialog.ejs
+PARTIAL DESCRIPTION: Include the `data-loading` attribute with some text to show this dialog on request...
+%>
+<div style="display: none;" hidden class="dialog-wrapper" id="loading-dialog">
+  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div class="lds-facebook" style="color: white;" aria-busy="false" data-indicator><div></div><div></div><div></div></div>
+    <p class="h6 bold mt-2" data-text style="color: white; max-width: 300px; text-align: center; align-items: center;">Here is Some Descriptive Text</p>
+  </div>
+</div>

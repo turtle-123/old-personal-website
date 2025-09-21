@@ -1,0 +1,102 @@
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+    <h1 class="page-title">Three.js</h1>
+    <input type="text" hidden="hidden" id="include-three-js" />
+
+    <section id="about-page" class="mt-4">
+      <div class="flex-row bb-thick justify-between">
+        <h2 class="bold h2">
+          <a href="#about-page" class="same-page bold">
+            About Page
+          </a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#about-page-hide">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+      <div id="about-page-hide">
+        <p class="mt-2">
+            I decided that I wanted to know more about Three.js, so I am creating this page to house some three js projects as I go through a Three.js tutorial. The tutorial that I am going through can be seen <a class="secondary link" target="_blank" href="https://youtu.be/xJAfLdUgdc4">here</a>.
+        </p>
+      </div>
+    </section>
+
+
+    <section id="notes-page" class="mt-4">
+        <div class="flex-row bb-thick justify-between">
+          <h2 class="bold h2">
+            <a href="#notes-page" class="same-page bold">
+              Notes on Three.js
+            </a>
+          </h2>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#notes-page-hide">
+            <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div id="notes-page-hide">
+            <ul>
+                <li class="bold">
+                    <span class="bold h4">Core Concepts</span>
+                    <ul class="second">
+                        <li>Three.js uses the WebGL renderer to display 3D elements on a web page.    </li><li>The 3D coordinate system in Three.js consists of three axes: x (horizontal), y (vertical), and z (depth).    </li><li>The x-axis represents horizontal placement, with negative values on the left and positive values on the right.    </li><li>The y-axis represents vertical placement, with negative values at the bottom and positive values at the top.    </li><li>The z-axis represents depth, with negative values going forward and positive values going backward from zero.    </li><li>A scene (Scene) is used to hold and manage 3D objects.    </li><li>Three.js provides two main camera types: perspective and orthographic.    </li><li>The perspective camera simulates real-life cameras and requires parameters like vertical field of view, aspect ratio, and near/far clipping planes.    </li><li>The orthographic camera is used for 2D scenes where depth is not a factor.    </li><li>Helpers are available as visual guides, such as the axis helper for visualizing the 3D coordinate system or the GridHelper to visualize a grid.    </li><li>Elements in the scene can undergo geometric transformations like rotation.    </li><li>Animations are created by applying transformations over time.    </li><li>The OrbitControls module enables camera interactivity with the mouse.</li>                    
+                
+                    </ul>
+
+                </li>
+
+
+                <li>
+                    <span class="bold h4">Elements</span>
+                    <ul>
+                        <li>Creating an element involves geometry, material, and a mesh (the combination of geometry and material).    </li><li>Three.js provides various built-in geometries (e.g., BoxGeometry, PlaneGeometry, SphereGeometry).    </li><li>Materials define the surface properties of objects; different materials have different resource requirements.    </li><li>MeshBasicMaterial does not require light sources.    </li><li>Other materials like MeshStandardMaterial and MeshLambertMaterial require light sources to be visible.    </li><li>The side property of a material determines which sides of a surface are rendered (e.g., THREE.DoubleSide to render both sides).    </li><li>The wireframe property displays a geometry in its skeleton form.   </li>          
+                    </ul>
+                </li> 
+      
+                <li>
+                    <span class="bold h4">Features</span>
+                    <ul>
+                        <li>Three.js supports various light types, including ambient light (diffuse environmental light), directional light (parallel rays), and spotlight (conical light).    </li><li>Shadows can be rendered, but they need to be explicitly enabled in the renderer.    </li><li>Shadow rendering involves a shadow camera that defines the area where shadows are cast.    </li><li>Fog can be added to a scene using Fog (linear fog) or FogExp2 (exponential fog).    </li><li>Backgrounds can be set using colors or textures.    </li><li>Textures can be loaded and applied to object materials.    </li><li>Cube textures can create 3D-like backgrounds by mapping images to the faces of a cube.    </li><li>Raycasting (Raycaster) allows for selecting objects in the scene with the mouse.    </li><li>Object selection can be based on properties like UUID, name, or ID.    </li><li>The shape of a mesh can be modified by updating the positions of its vertices.    </li><li>Vertex shaders and fragment shaders can be used to control rendering (note: requires WebGL knowledge).    </li><li>Three.js can load models from files (e.g., GLTF, FBX, OBJ).    </li>            
+                
+                    </ul>
+                </li> 
+
+            </ul>
+        </div>
+      </section>
+
+      <section id="tutorial-1" class="mt-4">
+          <h2 class="bold bb-thick h2">
+            <a href="#tutorial-1" class="same-page bold">
+              Tutorial 1
+            </a>
+          </h2>
+
+          <div style="position: relative; max-width: 450px; max-height: 450px; margin: 6px auto;" id="three-js-load-wrapper">
+            <button data-fullscreen-btn="" data-el="#three-js-load-wrapper" type="button" class="icon medium fullscreen-btn" aria-label="Enter / Exit Fullscreen">
+                <svg data-enter="" focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="Fullscreen"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>
+                <svg data-exit="" hidden="" focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="FullscreenExit"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"></path></svg>
+              </button>
+              <div id="gui-container" style="position:absolute;top:0px;left:0px;"></div>
+            <canvas id="three-js-tut" width="450" height="450"></canvas>
+          </div>
+      </section>
+
+      <script id="vertexShader" type="vertex" nonce="<%=locals.jsNonce%>">
+        void main() {
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      </script>
+      <script id="fragmentShader" type="fragment" nonce="<%=locals.jsNonce%>">
+        void main() {
+            gl_FragColor = vec4(1.0, 0.1, 0.3, 1.0);
+        }
+      </script>
+
+      <script nonce="<%=locals.jsNonce%>" type="module" defer src="/static/js/constant/three-js-tutorial.js"></script>
+
+    <%-include('../../partials/pagePartial')%>
+  <%}%>

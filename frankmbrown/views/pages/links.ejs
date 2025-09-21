@@ -1,0 +1,230 @@
+<%# 
+PARTIAL ROUTE: pages/links.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.auth<3
+- locals.common_links
+- locals.common_links[i]
+- locals.initHTML
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">Frank's Links</h1>
+  
+  <section id="why-create-this" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#why-create-this" class="same-page fw-regular">Why Create This</a>
+      </h2>
+      <p class="mt-2">
+        I wanted to create this page to keep track of helpful resources that I found around the web. The bookmarks tab for the search engine that I use is not really helpful beyond a certain number of links, and it is sometimes hard to remember why I bookmarked a certain page or why the page is useful. Below, you can explore the links that I have saved or search for a link with a description of what you are looking for.
+      </p>
+  </section>
+
+  <section id="search-links-section" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#search-links-section" class="same-page fw-regular">Search Links</a>
+      </h2>
+      <form hx-target="#search-links-output" hx-swap="innerHTML" hx-indicator="#searching-links-indicator" hx-trigger="search, submit" id="search-links-form" hx-post="/links/search">
+
+        <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+          <label for="search-link-title">Link Title:</label>
+          <div class="text-input block medium">
+              <input 
+              type="text" 
+              name="search-link-title" 
+              id="search-link-title" 
+              class="medium icon-before mt-1" 
+              placeholder="Enter the title of the link to search..." 
+              maxlength="100"
+              spellcheck="true" 
+              autocapitalize="off"
+              hx-target="#search-links-output" hx-swap="innerHTML" hx-indicator="#searching-links-indicator" hx-trigger="keyup changed delay:200ms, search" 
+            hx-include="#search-links-form"
+              >
+              <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="TextFields"><path d="M2.5 4v3h5v12h3V7h5V4h-13zm19 5h-9v3h3v7h3v-7h3V9z"></path></svg>
+          </div>
+        </div>
+       
+        <div class="flex-row justify-end mt-2">
+          <button type="submit" aria-label="Search" class="success filled icon-text medium">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Search"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+          SEARCH
+          </button>
+        </div>
+      </form>
+      <div class="flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Searching Links..." id="searching-links-indicator">
+        <div class="lds-facebook"><div></div><div></div><div></div></div>
+        </div>
+      <output id="search-links-output" class="block" style="max-height: 400px; overflow-y: auto;">
+
+      </output>
+  </section>
+
+  <%if(locals.auth<3){%>
+    <div class="alert outlined warning icon medium mt-2" role="alert">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+      <p class="alert">
+        You must be a site administrator to add a link to this page.  
+    </p>
+      <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+      </button>
+    </div>
+  <%}else{%>
+    <section id="add-link" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#add-link" class="same-page fw-regular">Add Link</a>
+        </h2>
+
+        <form hx-trigger="submit" hx-post="/links/create" class="mt-2" hx-target="#links-output" hx-swap="beforeend" hx-indicator="#submit-link-indicator">
+
+          <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+            <label for="link-url">Link URL:</label>
+            <div class="text-input block medium">
+                <input
+                name="link-url"
+                id="link-url" 
+                class="mt-1 
+                medium icon-before" 
+                placeholder="Enter the url of the link..." 
+                autocomplete="off" 
+                autocapitalize="off" 
+                spellcheck="false" 
+                type="url" 
+                >
+                <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Link">
+                    <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z">
+                    </path>
+                </svg>
+            </div>
+          </div>
+
+          <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+            <label for="add-link-title">Link Title:</label>
+            <div class="text-input block medium">
+                <input 
+                type="text" 
+                name="add-link-title" 
+                id="add-link-title" 
+                class="medium icon-before mt-1" 
+                required
+                placeholder="Enter a title for the link..." 
+                maxlength="100"
+                minlength="1" 
+                spellcheck="true" 
+                autocapitalize="off"
+                >
+                <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="TextFields"><path d="M2.5 4v3h5v12h3V7h5V4h-13zm19 5h-9v3h3v7h3v-7h3V9z"></path></svg>
+            </div>
+          </div>
+
+          <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+            <label for="link-description">Link Description:</label>
+            <div class="mt-1 text-input block medium disabled">
+                <textarea 
+                name="link-description" 
+                id="link-description" 
+                placeholder="Enter a description of the link..." 
+                rows="4" 
+                maxlength="500"  
+                spellcheck="true"
+                autocomplete="off"
+                autocapitalize="off"
+                ></textarea>
+            </div>
+            <p class="char-counter" data-input="link-description">
+                <span class="max-counter body2" data-val="200" aria-hidden="true">Characters Remaining</span>
+            </p>
+          </div>
+
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+            <label for="image-url">Image URL:</label>
+            <div class="text-input block medium">
+                <input
+                name="image-url"
+                id="image-url" 
+                class="mt-1 
+                medium icon-before" 
+                placeholder="Enter a URL for the image..." 
+                autocomplete="off" 
+                autocapitalize="off" 
+                spellcheck="false" 
+                type="url"
+                >
+                <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Link">
+                    <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z">
+                    </path>
+                </svg>
+            </div>
+          </div>
+          <details aria-label="Common Link URLs" class="mt-2">
+                <summary>
+                    <span class="h6 fw-regular">Common Link URLs</span>
+                    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                    </svg>
+                </summary>
+                <div class="accordion-content" aria-hidden="true">
+                  <p class="mt-2 bold h4">
+                    Common Link URLs:
+                   </p>
+                   <%for(let i =0; i < locals.common_links.length; i++){%>
+                      <p class="mt-1">
+                        <span class="bold"><%=locals.common_links[i].name%></span> <%=locals.common_links[i].image%>
+                      </p>
+                   <%}%>
+
+                   <p class="mt-2 bold h4">
+                    Script To Get Favicon of a Page:
+                   </p>
+                   <p class="mt-2">
+                    Paste the following in the developer console.
+                   </p>
+<div style="position: relative;" class="mt-2"><pre class="hz-scroll"><code class="hljs">(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+<span class="hljs-keyword">const</span> faviconElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;link[rel~=&quot;icon&quot;]&#x27;</span>);
+<span class="hljs-keyword">const</span> faviconUrl = faviconElement ? faviconElement.<span class="hljs-property">href</span> : <span class="hljs-string">&#x27;No favicon found&#x27;</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Favicon URL:&#x27;</span>, faviconUrl);
+})();</code></pre>
+<button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+  <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+  </path>
+</svg>
+</button>
+</div>
+                </div>
+            </details>
+          <div class="flex-row justify-between mt-2">
+            <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+            <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+              SUBMIT LINK
+            </button>
+          </div>
+        </form>
+        
+    </section>
+  <%}%>
+    <style>
+      a {
+        word-wrap: break-word!important;
+      }
+    </style>
+  <section id="links" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#links" class="same-page fw-regular">Links</a>
+      </h2>
+
+      <div class="flex-row justify-center t-info htmx-indicator" role="progressbar" aria-busy="false" aria-label="Submitting Link..." id="submit-link-indicator">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <div class="mt-2" id="links-output">
+        <%-locals.initHTML%>
+      </div>
+  </section>
+  <%-include('../partials/pagePartial')%>  
+<%}%>

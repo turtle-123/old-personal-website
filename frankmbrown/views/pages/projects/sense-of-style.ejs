@@ -1,0 +1,203 @@
+<%# 
+PARTIAL ROUTE: pages/projects/regex-search.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+     
+    <h1 class="page-title">
+        Sense of Style
+    </h1>
+
+    <section id="why-create-this" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#why-create-this" class="same-page bold">
+            Why Create This
+          </a>
+        </h2>
+        <p class="mt-2">
+            I wanted to get a sense of how different sizes looked on different devices. While you could do this by using the developer console, I don't think the developer console beats actually using the device that you are targeting to see how certain styles look.
+        </p>        
+    </section>
+    <section id="style-section" class="mt-4">
+      <div class="flex-row bb-thick justify-between">
+        <h2 class="bold h2">
+          <a href="#style-section" class="same-page bold">
+            Style
+          </a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#style-hide-show">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+      <div id="style-hide-show">
+        <form id="prevent-default-form">
+          <p class="mt-2">
+            Edit the code editor below and see the effect that it has on the red square below the code editor. (This square is a <span class="text-code">&lt;div&gt;</span> element that is inside a block  <span class="text-code">&lt;div&gt;</span> element - style it anyway you want to see the effect on different devices.)
+          </p>
+          <div data-editor-wrapper id="css-editor-wrapper" class="mt-2" style="min-height: 300px;">
+            <div data-theme="<%=locals.codeTheme%>" data-codemirror="css" data-type="mid" class="mt-2" hidden>#to-be-styled {
+  background-color: red;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+}</div>
+          </div>
+        </form>
+        
+        <style id="style-el-target">
+#to-be-styled {
+  background-color: red;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+}
+        </style>
+
+        <div>
+            <div id="to-be-styled">
+
+            </div>
+        </div>
+      </div>
+    </section>
+
+<script nonce="<%=locals.jsNonce%>">
+(() => {
+const form = document.getElementById('prevent-default-form');
+const codeEditor = document.getElementById('css-editor-wrapper');
+const style_target = document.getElementById('style-el-target');
+form.addEventListener('submit',(e) => {
+  e.preventDefault();
+  e.stopPropagation();
+})
+form.addEventListener('keyup',() => {
+  const editor = codeEditor.querySelector('div[contenteditable="true"]');
+  if (editor) {
+    const css = editor.innerText;
+    style_target.innerHTML = css;
+  }
+})
+})()
+</script>
+
+  <%if(locals.auth>=3){%>
+    <section id="add-notes-on-style" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#add-notes-on-style" class="same-page bold">
+            Add Note on Style
+          </a>
+        </h2>
+        <p class="mt-2">
+          Edit the HTML, CSS, and JavaScript below to add a note on styling.
+        </p>
+        <form class="mt-2" hx-post="/projects/sense-of-style" data-loading="Adding Sense of Style Note..." hx-target="#tar_985849f2-f0c6-409f-b183-60654c088ec3" hx-trigger="submit" hx-swap="innerHTML">
+
+          <div class="tabs mt-2">
+            <ul class="tabs" role="tablist">
+              <li role="presentation">
+                <button id="html-tab-button" class="tab-button secondary" role="tab" type="button" aria-selected="true" data-tab="0" tabindex="-1">
+                  HTML
+                </button>
+              </li>
+              <li role="presentation">
+                <button id="css-tab-button" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="1" tabindex="-1">
+                  CSS
+                </button>
+              </li>
+              <li role="presentation">
+                <button id="js-tab-button" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="2" tabindex="-1">
+                  JavaScript
+                </button>
+              </li>
+              <li role="presentation">
+                <button id="output-tab-button" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="3" tabindex="-1">
+                  Output
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-panels" style="min-height: 300px;">
+            <div data-editor-wrapper id="html-editor-wrapper" aria-labelledby="html-tab-button" role="tabpanel" tabindex="0">
+              <div data-theme="<%=locals.codeTheme%>" data-codemirror="html" data-type="mid" id="html-editor" class="mt-2" hidden><h1 class='hello-world'>Hello World</h1>
+  <p class='body1 blue'>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+  Officiis officia sed est debitis maiores nobis amet sit enim laboriosam. Possimus mollitia
+  non consequatur architecto officia, similique expedita id ratione aut?
+  </p></div>
+            </div>
+            <div data-editor-wrapper id="css-editor-wrapper-2" aria-labelledby="css-tab-button" role="tabpanel" tabindex="0" hidden>
+              <div data-theme="<%=locals.codeTheme%>" data-codemirror="css" data-type="mid" class="mt-2" hidden>.hello-world {
+    color: red;
+  }
+  .blue {
+    background-color: blue;
+  }</div>
+            </div>
+            <div data-editor-wrapper id="js-editor-wrapper" aria-labelledby="js-tab-button" role="tabpanel" tabindex="0" hidden>
+              <div data-theme="<%=locals.codeTheme%>" data-codemirror="javascript" data-type="mid" class="mt-2" hidden>console.log('Hello World');</div>
+            </div>
+            <div aria-labelledby="output-tab-button" role="tabpanel" tabindex="0" hidden id="oct-123">
+              <div id="show-output" ></div>
+            </div>
+          </div>
+
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+        </form>
+
+<script nonce="<%=locals.jsNonce%>">
+(() => {
+const output = document.getElementById('output-tab-button');
+const htmlEditor = document.getElementById('html-editor-wrapper');
+const cssEditor = document.getElementById('css-editor-wrapper-2');
+const jsEditor = document.getElementById('js-editor-wrapper');
+const outputTabPanel = document.getElementById('oct-123');
+output.addEventListener('click',() => {
+  const html = htmlEditor.querySelector('div[contenteditable="true"]');
+  const css = cssEditor.querySelector('div[contenteditable="true"]');
+  const js = jsEditor.querySelector('div[contenteditable="true"]');
+  outputTabPanel.innerHTML = '';
+  const div = document.createElement('div');
+  div.className="mt-2";
+  div.insertAdjacentHTML('afterbegin',html.innerText);
+  const style = document.createElement('style');
+  style.innerText=css.innerText;
+  const script = document.createElement('script');
+  const nonce = document.querySelector('script').nonce;
+  script.nonce = nonce;
+  script.innerText=`(() => {` + js.innerText + `})()`;
+  div.append(style,script);
+  outputTabPanel.append(div);
+})
+
+})()
+</script>
+
+        <output id="tar_985849f2-f0c6-409f-b183-60654c088ec3"></output>
+    </section>
+  <%}%>
+
+  <section id="notes-on-style" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#notes-on-style" class="same-page bold">
+          Notes on Style
+        </a>
+      </h2>
+
+      <%-locals.posts_html%>
+  </section>
+
+    <%-include('../../partials/pagePartial')%>
+<%}%> 

@@ -1,0 +1,155 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/time-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+
+<h2 class="bold bb-thick h2" id="time-header">
+  <a href="#time-header"  class="same-page bold">Time</a>
+</h2>
+<details class="mt-2">
+<summary>
+  <span class="h6 fw-regular">About Time</span>
+  <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+    </path>
+  </svg>
+</summary>
+<div class="accordion-content" aria-hidden="true">
+  <p class="body1">
+    <strong>Note:</strong>
+    The HTML <code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">time</span>&gt;</span></span></code> element can be used 
+    to represent one of the following:
+    </p><ul>
+      <li>A time on a 24 Hour Clock</li>
+      <li>A precise date in the <a href="https://en.wikipedia.org/wiki/Gregorian_calendar" target="_blank" class="secondary link">Gregorian Calender</a></li>
+      <li><a href="https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-duration-string" class="secondary link" target="_blank">A valid time duration</a></li>
+    </ul>
+    I have found the best way to represent time in a SQL database is using the 
+    <a class="secondary link" href="https://wiki.c2.com/?BigInt" target="_blank">bigint</a> 
+    type, representing the number of milliseconds since the 
+    <a class="secondary link" href="https://en.wikipedia.org/wiki/Unix_time" target="_blank">Unix Epoch</a>. 
+    This assumes that you don't want to deal with the 
+    <a class="secondary link" href="https://en.wikipedia.org/wiki/Year_2038_problem" target="_blank">2038 problem</a> and 
+    that you don't want to have to convert between timezones when pulling times from your database. 
+    <br>
+    This doubles the amount of space that a typical time would occupy in a database, but it seems worth it due to 
+    how it simplifies things.
+  <p></p>
+  <p class="body1 mt-1">
+    Times usually either standalone or sit next to an icon that indicates what the time means. 
+    Since the  <code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">time</span>&gt;</span></span></code>
+    element can contain an icon inside of its opening and closing tags, all times should contain a <em class="bold t-info">datetime</em> 
+    attribute.
+    <br>
+    Since we are storing the date as the number of ms since the Unix epoch and we want to render HTML on the server, we can use the following 
+    functions to set the datetime attribute for a given duration or date:
+</p><div style="position: relative;" class="mt-1"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">SECONDS_MINUTE</span> = <span class="hljs-number">60</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">SECONDS_HOUR</span> = <span class="hljs-number">3600</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">SECONDS_DAY</span> = <span class="hljs-number">86400</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">SECONDS_WEEK</span> = <span class="hljs-number">604800</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">SECONDS_MONTH</span> = <span class="hljs-number">2629746</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">SECONDS_YEAR</span> = <span class="hljs-number">31536000</span>;
+<span class="hljs-comment">/**
+* Function that takes the number of seconds between two events occuring and translates this number
+* to a valid duration string that can be used for the dateime attribute for an HTML time element
+* 
+* <span class="hljs-doctag">@param</span> {<span class="hljs-type">number</span>} diff The duration to be formatted in seconds. The difference in seconds between two events occurring.
+* <span class="hljs-doctag">@returns</span> {<span class="hljs-type">string</span>} A properly formatted, valid duration string that can be used for the datetime attribute for a HTML time element
+* <span class="hljs-doctag">@example</span>
+* const timeAgo = getDateTimeDuration(1694652601.776-1698939486.616);
+* console.log(timeAgo); // P1M2W5DT4H18M59S
+*/</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getDateTimeDuration</span>(<span class="hljs-params">diff</span>) {
+<span class="hljs-keyword">var</span> timeLeft = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(diff));
+<span class="hljs-keyword">var</span> ret = <span class="hljs-string">'P'</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">YEARS</span> = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(timeLeft/<span class="hljs-variable constant_">SECONDS_YEAR</span>);
+<span class="hljs-keyword">if</span> (<span class="hljs-variable constant_">YEARS</span>&gt;<span class="hljs-number">0</span>){
+ret+=<span class="hljs-title class_">String</span>(<span class="hljs-variable constant_">YEARS</span>).<span class="hljs-title function_">concat</span>(<span class="hljs-string">'Y'</span>);
+timeLeft-=<span class="hljs-variable constant_">YEARS</span>*<span class="hljs-variable constant_">SECONDS_YEAR</span>;
+}
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">MONTHS</span> = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(timeLeft/<span class="hljs-variable constant_">SECONDS_MONTH</span>);
+<span class="hljs-keyword">if</span> (<span class="hljs-variable constant_">MONTHS</span> &gt; <span class="hljs-number">0</span>){
+ret+=<span class="hljs-title class_">String</span>(<span class="hljs-variable constant_">MONTHS</span>).<span class="hljs-title function_">concat</span>(<span class="hljs-string">'M'</span>);
+timeLeft-=<span class="hljs-variable constant_">MONTHS</span>*<span class="hljs-variable constant_">SECONDS_MONTH</span>;
+}
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">WEEKS</span> = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(timeLeft/<span class="hljs-variable constant_">SECONDS_WEEK</span>);
+<span class="hljs-keyword">if</span> (<span class="hljs-variable constant_">WEEKS</span>&gt;<span class="hljs-number">0</span>){
+ret+=<span class="hljs-title class_">String</span>(<span class="hljs-variable constant_">WEEKS</span>).<span class="hljs-title function_">concat</span>(<span class="hljs-string">'W'</span>);
+timeLeft-=<span class="hljs-variable constant_">WEEKS</span>*<span class="hljs-variable constant_">SECONDS_WEEK</span>;
+}
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">DAYS</span> = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(timeLeft/<span class="hljs-variable constant_">SECONDS_DAY</span>);
+<span class="hljs-keyword">if</span> (<span class="hljs-variable constant_">DAYS</span>&gt;<span class="hljs-number">0</span>){
+ret+=<span class="hljs-title class_">String</span>(<span class="hljs-variable constant_">DAYS</span>).<span class="hljs-title function_">concat</span>(<span class="hljs-string">'D'</span>);
+timeLeft-=<span class="hljs-variable constant_">DAYS</span>*<span class="hljs-variable constant_">SECONDS_DAY</span>;
+}
+<span class="hljs-keyword">if</span> (ret!==<span class="hljs-string">'P'</span>) ret=ret.<span class="hljs-title function_">concat</span>(<span class="hljs-string">'T'</span>); <span class="hljs-comment">// Delineate between dates and times</span>
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">HOURS</span> = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(timeLeft/<span class="hljs-variable constant_">SECONDS_HOUR</span>);
+<span class="hljs-keyword">if</span> (<span class="hljs-variable constant_">HOURS</span>&gt;<span class="hljs-number">0</span>){
+ret+=<span class="hljs-title class_">String</span>(<span class="hljs-variable constant_">HOURS</span>).<span class="hljs-title function_">concat</span>(<span class="hljs-string">'H'</span>);
+timeLeft-=<span class="hljs-variable constant_">HOURS</span>*<span class="hljs-variable constant_">SECONDS_HOUR</span>;
+}
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">MINUTES</span> = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(timeLeft/<span class="hljs-variable constant_">SECONDS_MINUTE</span>);
+<span class="hljs-keyword">if</span> (<span class="hljs-variable constant_">MINUTES</span>&gt;<span class="hljs-number">0</span>){
+ret+=<span class="hljs-title class_">String</span>(<span class="hljs-variable constant_">MINUTES</span>).<span class="hljs-title function_">concat</span>(<span class="hljs-string">'M'</span>);
+timeLeft-=<span class="hljs-variable constant_">MINUTES</span>*<span class="hljs-variable constant_">SECONDS_MINUTE</span>;
+}
+<span class="hljs-keyword">if</span> (timeLeft!==<span class="hljs-number">0</span>) {
+ret+=<span class="hljs-title class_">String</span>(timeLeft).<span class="hljs-title function_">concat</span>(<span class="hljs-string">'S'</span>);
+}
+<span class="hljs-keyword">return</span> ret;
+}
+<span class="hljs-comment">/**
+* Function that takes a number, the number of milliseconds since the UNIX epoch that some event occurred, 
+* and returns a string that can be used for the datetime attribute for a HTML time element
+* 
+* <span class="hljs-doctag">@param</span> {<span class="hljs-type">number</span>} ms The number of milliseconds since the UNIX epoch  
+* <span class="hljs-doctag">@returns</span> {<span class="hljs-type">string</span>} A simplified string date format based on ISO8601 that can be used for the datetime attribute for a HTML time element
+*/</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">getISOString</span> = (<span class="hljs-params">ms</span>) =&gt; (<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(ms)).<span class="hljs-title function_">toISOString</span>();
+</code></pre><button data-snackbar="" data-selem="#copy-code-success" data-copy-prev="" class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button></div>
+  <p></p>
+  <p class="body1 mt-2">
+    If you want to include exact dates on the client 
+    (<em class="t-warning">the dates on the server could slightly or greatly differ from dates on the client depending on your application</em>), 
+    then you can include the
+    <em class="t-info bold">data-date-long</em> or <em class="t-info bold">data-date-short</em>
+    attribute on the 
+    <code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">time</span>&gt;</span></span></code>
+    element. The client side javascript searches for these elements, and if the 
+    time element has the data-date attribute, sets the time as MM/DD/YYYY and if the time element has the 
+    data-date-long attribute, sets the date as Month DD, YYYY.
+    </p>
+</div>
+</details>
+<section id="time-examples" class="mt-2">
+<h3 class="h6 bold bb"><a href="#time-examples" class="same-page fw-regular">Time Examples: </a></h3>
+<p class="bold h6 mt-2">Only Date Short:</p>
+<time data-date-short="" datetime="2023-11-08T16:30:12.284Z">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CalendarToday"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"></path></svg>
+  <span>11/8/2023</span>
+</time>
+<p class="bold h6 mt-2">Only Date Long (Small):</p>
+<time class="small" data-date-long="" datetime="2023-11-08T16:30:12.284Z">  
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CalendarToday"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"></path></svg>
+  <span>November 8, 2023</span>
+</time>
+<p class="bold h6 mt-2">Time Left:</p>
+<time datetime="5m">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Alarm"><path d="m22 5.72-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM7.88 3.39 6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM12.5 8H11v6l4.75 2.85.75-1.23-4-2.37V8zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+  <span>5 min</span>
+</time>
+<p class="bold h6 mt-2">Small Date:</p>
+<time class="small" data-date-long="" datetime="2023-11-08T16:30:12.284Z">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CalendarToday"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"></path></svg>
+  <span>November 8, 2023</span>
+</time>
+<p class="bold h6 mt-2">Large Time Left:</p>
+<time class="large" datetime="6H">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Alarm"><path d="m22 5.72-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM7.88 3.39 6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM12.5 8H11v6l4.75 2.85.75-1.23-4-2.37V8zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+  <span>6 H</span>
+</time>
+
+</section>

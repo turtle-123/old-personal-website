@@ -1,0 +1,374 @@
+<%# 
+PARTIAL ROUTE: pages/tex-notes.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.auth>
+- locals.upcomingTex
+- locals.completedTex
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+    <h1 class="page-title"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true" style="font-size: inherit;"><span class="base" style="
+        font-size: inherit;
+    "><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text" style="
+        font-size: inherit;
+    "><span class="mord textrm" style="
+        font-size: inherit;
+    ">T</span><span class="mspace" style="margin-right:-0.1667em;font-size: inherit;"></span><span class="vlist-t vlist-t2" style="
+        font-size: inherit;
+    "><span class="vlist-r" style="
+        font-size: inherit;
+    "><span class="vlist" style="height: 0.4678em;font-size: inherit;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="
+        font-size: 2.4rem!important;
+    "><span class="mord textrm" style="
+        font-size: inherit;
+    ">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm" style="
+        font-size: inherit;
+    ">X</span></span></span></span></span> Notes</h1>
+    
+    <section id="why-create-this-page" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#why-create-this-page" class="same-page bold">Why Create This Page</a>
+        </h2>
+        <aside class="right">
+            I think the editor's implementation of <span id="cop_html_108224430367031" class="inline-katex">
+                <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>KaTeX</mtext></mrow><annotation encoding="application/x-tex">\KaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">K</span><span class="mspace" style="margin-right:-0.17em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span>
+                </span>-related functionality is fine right now, but the editor can become slow and frustrating to deal with when inserting a lot of math equations or when you need to use a lot of Greek letters.
+        </aside>
+        <p class="mt-2">
+            I was getting tired of taking notes that involve a lot of math equations using the 
+            <a class="primary link" hx-get="/projects/design-system/lexical-rich-text-editor" href="/projects/design-system/lexical-rich-text-editor" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">Lexical Rich Text Editor</a>, so I am creating this page, where I can upload a <span id="cop_html_5507958965061586" class="inline-katex">
+                <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>
+                </span> file and create an article purely from the <span id="cop_html_5507958965061586" class="inline-katex">
+                    <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>
+                    </span> markup. I am also creating this page to practice writing <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span> in hopes of improving my knowledge of the markup language.
+                    <br>
+                    I plan on using this page to provide links to notes on things, mostly math-heavy textbooks and research papers, that I took using <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span> and to keep track of research papers or math-heavy textbooks that I plan to read in the future. I plan on using 
+                    <a class="secondary link" target="_blank" href="https://tug.org/tex4ht/">Tex4ht</a>, combined with some post-processing, to convert the uploaded <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span> documents to HTML. You can use the document below to test out this <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span> to HTML system.
+                    
+        </p>
+    </section>
+
+
+    <%if(locals.auth>=3){%>
+
+       <section id="add-upcoming-tex-note" class="mt-4">
+           <h2 class="bold bb-thick h2">
+             <a href="#add-upcoming-tex-note" class="same-page bold">
+               Add Upcoming  <span  class="inline-katex">
+                <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>
+                </span> Article
+             </a>
+           </h2>
+           <p class="mt-2">
+            Fill out the form below and submit the form to add an upcoming <span  class="inline-katex">
+              <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>
+              </span> article. 
+           </p>
+           <form class="mt-2" hx-post="/tex-notes/add-upcoming" hx-indicator="#ind_89478153-db73-4a65-8562-fb8bd2760c11" hx-target="#tar_95c03293-3b1a-4818-a36c-7a7517f962db" hx-trigger="submit" hx-swap="innerHTML">
+            <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+              <label for="note-title">Note Title:</label>
+              <div class="text-input block medium">
+                  <input 
+                  type="text" 
+                  name="note-title" 
+                  id="note-title" 
+                  class="medium icon-before mt-1" 
+                  placeholder="Enter note title..." 
+                  spellcheck="true" 
+                  autocapitalize="off"
+                  >
+                  <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Title"><path d="M5 4v3h5.5v12h3V7H19V4z"></path></svg>
+                  <%# Buttons and SVGs %>
+              </div>
+            </div>
+            <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+              <label for="text-link-note-resource">Text for Link to Note Resource:</label>
+              <div class="text-input block medium">
+                  <input 
+                  type="text" 
+                  name="text-link-note-resource" 
+                  id="text-link-note-resource" 
+                  class="medium icon-before mt-1" 
+                  placeholder="Enter some text for the link to the note resource..." 
+                  spellcheck="true" 
+                  autocapitalize="off"
+                  >
+                  <svg class="icon-before" viewBox="0 0 640 512" title="link" focusable="false" inert tabindex="-1"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"></path></svg>
+              </div>
+            </div>
+            <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+              <label for="link-to-note">Link to Note Resource:</label>
+              <div class="text-input block medium">
+                  <input
+                  name="link-to-note"
+                  id="link-to-note" 
+                  class="mt-1 
+                  medium icon-before" 
+                  placeholder="Enter a link to the note resource..." 
+                  autocomplete="off" 
+                  autocapitalize="off" 
+                  spellcheck="false" 
+                  type="url" 
+                  >
+                  <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Link">
+                      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z">
+                      </path>
+                  </svg>
+              </div>
+            </div>
+            <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+              <label for="note-description">Description of Note:</label>
+              <div class="mt-1 text-input block medium disabled">
+                  <textarea 
+                  name="note-description" 
+                  id="note-description" 
+                  placeholder="Enter a description of the note / why you are going to read this..." 
+                  rows="5"  
+                  spellcheck="true"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  style="resize: vertical!important;min-height: 100px;"
+                  ></textarea>
+              </div>
+            </div>
+            <label for="note-image" class="bold mt-2">Note Image:</label>
+            <input data-image-input type="file" id="note-image" accept="image/*" name="note-image" class="mt-1 info">
+            <output class="block" for="note-image"></output>
+
+             <div class="flex-row justify-between align-center mt-3">
+                   <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                   <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                       <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                       SUBMIT
+                   </button>
+               </div>
+          </form>
+          <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_89478153-db73-4a65-8562-fb8bd2760c11">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <output id="tar_95c03293-3b1a-4818-a36c-7a7517f962db"></output>
+       </section>
+
+       <section id="howt-to-write-ln" class="mt-4">
+         <div class="flex-row bb-thick justify-between">
+           <h2 class="bold h2">
+             <a href="#" class="same-page bold">
+              How To Write LaTeX Files For Notes
+             </a>
+           </h2>
+           <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#how-ti-write-hide">
+             <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+             <span data-hide="">HIDE</span>
+             <span data-show="" hidden="">SHOW</span>
+           </button>
+         </div>
+
+<div id="how-ti-write-hide">
+
+  <p class="mt-2">
+    Follow the format seen below in your favorite TeX editor and insert content inside the document. Then, you can use <span class="text-code">pandoc</span>, <span class="text-code">make4ht</span>, or <span class="text-code">latexml</span> to convert the TeX code to HTML (whichever method works best). It is recommended to crete a folder to start taking tex notes so that you easily organize assets that may be in file.
+  </p>
+
+  <ul>
+    <li><strong class="h4">Pandoc Command:</strong><ul>
+      <li><span class="text-code">pandoc &lt;input_file.tex&gt; --mathml -o &lt;output.html&gt;</span></li>
+      <li><a class="secondary link" target="_blank" href="https://pandoc.org/">Pandoc Reference</a></li>
+    </ul></li>
+    <li><strong class="h4">make4ht Command:</strong><ul>
+      <li><span class="text-code">make4ht &lt;input_file.tex&gt; "mathml" &lt;output.html&gt;</span></li>
+      <li><a class="secondary link" target="_blank" href="https://tug.org/tex4ht/">make4ht Reference</a></li>
+    </ul></li>
+    <li><strong class="h4">latexml Command:</strong><ul>
+      <li><span class="text-code">latexmlc &lt;input_file.tex&gt; --destination=&lt;output.html&gt;</span></li>
+      <li><a class="secondary link" target="_blank" href="https://math.nist.gov/~BMiller/LaTeXML/manual/">latexml Reference</a></li>
+    </ul> </li>
+  </ul>
+
+<div style="position: relative;" class="mt-2"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">\documentclass</span>[11pt]{report}
+<span class="hljs-keyword">\usepackage</span>{blindtext,hyperref,graphicx,listings,titlesec,color,soul,array,amsmath}
+<span class="hljs-keyword">\usepackage</span>[a4paper, portrait, margin=0.5in]{geometry}
+<span class="hljs-keyword">\usepackage</span>{multirow}
+<span class="hljs-keyword">\hypersetup</span>{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen
+}
+<span class="hljs-keyword">\urlstyle</span>{same}
+
+
+<span class="hljs-keyword">\title</span>{Guide To <span class="hljs-keyword">\LaTeX</span> <span class="hljs-keyword">\space</span> Notes}
+<span class="hljs-keyword">\author</span>{Frank Brown}
+<span class="hljs-keyword">\date</span>{<span class="hljs-keyword">\today</span>}
+
+<span class="hljs-keyword">\begin</span>{document}
+<span class="hljs-keyword">\tableofcontents</span>
+
+
+
+<span class="hljs-keyword">\end</span>{document}</code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>
+</div>         
+
+       </section>
+
+       <section id="upload-tex-note" class="mt-4">
+           <h2 class="bold bb-thick h2">
+             <a href="#upload-tex-note" class="same-page bold">
+              Complete TeX Note 
+             </a>
+           </h2>
+           <p class="mt-2">
+            Insert the ID of the TeX note to complete, along with the TeX file used to create the note and the resulting HTML from calling <span class="text-code">pandoc &lt;name&gt;.tex -o &lt;name&gt;.html</span>. <strong class="warning">The HTML and TeX note should not include a title or description - since those will already be included in the resulting HTML page.</strong>
+           </p>
+           <form class="mt-2" hx-encoding="multipart/form-data" hx-post="/tex-notes/complete" hx-indicator="#ind_ae5ee235-36ee-4e7e-a9fd-baf9183e3ba4" hx-target="#tar_3659a285-8dce-4df0-87c2-8f86ed54db6e" hx-trigger="submit" hx-swap="innerHTML">
+           <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+             <label for="note_id">Note ID:</label>
+             <div class="mt-1 number-input medium">
+                 <input 
+                 type="number" 
+                 name="note_id" 
+                 id="note_id" 
+                 placeholder="Enter the ID of the note to complete..." 
+                 autocomplete="off" 
+                 spellcheck="false" 
+                 autocapitalize="off"
+                 >
+                 <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                     <svg focusable="false" inert viewBox="0 0 24 24">
+                         <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                         </path>
+                     </svg>
+                 </button>
+                 <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                     <svg focusable="false" inert viewBox="0 0 24 24">
+                         <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                         </path>
+                     </svg>
+                 </button>
+             </div>
+           </div>
+           <label for="tex-file" class="bold mt-2">Upload TeX File:</label>
+           <input type="file" id="tex-file" accept=".tex" name="tex-file" class="mt-1 success">
+           <output class="block" for="tex-file"></output>
+           <label for="html-file" class="bold mt-2">Upload HTML File:</label>
+           <input type="file" id="html-file" accept=".html" name="html-file" class="mt-1 primary">
+           <output class="block" for="html-file"></output>
+
+             <div class="flex-row justify-between align-center mt-3">
+                   <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                   <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                       <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                       SUBMIT
+                   </button>
+               </div>
+             </form>
+             <div class="mt-2 flex-row justify-center t-warning htmx-indicator" role="progressbar" aria-busy="false" id="ind_ae5ee235-36ee-4e7e-a9fd-baf9183e3ba4">
+               <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+             </div>
+             <output id="tar_3659a285-8dce-4df0-87c2-8f86ed54db6e"></output>
+       </section>
+
+    <%}%>
+
+
+
+    <section id="upcoming-articles" class="mt-4">
+      <div class="flex-row bb-thick justify-between align-center">
+        <h2 class="bold h2">
+          <a href="#upcoming-articles" class="same-page bold">Upcoming <span  class="inline-katex">
+            <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>
+            </span> Articles</a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#hide-show-upcoming-tex-articles">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+      <div id="hide-show-upcoming-tex-articles" class="mt-2">
+        <div style="max-height: 400px; overflow-y: auto; padding: 3px; border: 2px solid var(--text-secondary); border-radius: 6px;">
+          <%-locals.upcomingTex%>
+        </div>
+      </div>
+    </section>
+
+     
+
+    <section id="articles-list" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#articles-list" class="same-page bold"><span  class="inline-katex">
+            <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>
+            </span> Notes</a>
+        </h2>
+
+        <div class="body1 bold mt-1" id="order-by-articles">Order By:</div>
+      <div class="mt-1 flex-row justify-start">
+        <div class="select">
+          <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="order-by-articles-drop" aria-labelledby="order-by-articles" class="select" aria-label="Order By" data-popover data-pelem="#order-by-articles-drop" data-click aria-expanded="false" style="min-width: 150px;">
+            <span class="body1"><%=locals?.order_by?.order_by_str%></span>
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+          </button>
+          <div tabindex="0" id="order-by-articles-drop" role="listbox" class="select-menu o-xs" data-placement="bottom">
+            <input type="text" hidden value="<%=locals?.order_by?.order_by_value%>" name="order-by-select" id="order-by-select" hx-get="<%=locals.path%>" hx-include="this" hx-push-url="true" hx-target="#articles-inner" hx-indicator="#change-art-order-ind">
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-new")%>" data-val="last-edit-new">
+              Last Edited (New)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-old")%>" data-val="last-edit-old">
+              Last Edited (Old)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-new")%>" data-val="date-created-new">
+              Date Created (New)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-old")%>" data-val="date-created-old">
+              Date Created (Old) 
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-likes")%>" data-val="num-likes">
+              Number of Likes
+            </button> 
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-comments")%>" data-val="num-comments">
+              Number of Comments
+            </button> 
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-views")%>" data-val="num-views">
+              Number of Views
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-row justify-center t-primary htmx-indicator" role="progressbar" id="change-art-order-ind" aria-busy="false" aria-label="Changing Order of Articles">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+
+        <div class="mt-1" id="articles-inner">
+            <%-locals.completedTex%>
+        </div>
+    </section>
+
+    <div id="likes-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+      Likes
+    </div>
+    <div id="comments-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+      Comments
+    </div>
+    <div id="annotations-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+      Annotations
+    </div>
+    <div id="views-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+      Views
+    </div>
+    
+    <%-include('../partials/pagePartial')%>
+<%}%>  

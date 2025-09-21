@@ -1,0 +1,588 @@
+<%# 
+PARTIAL ROUTE: pages/projects/image-editor.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.phone
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+      
+    <h1 class="page-title">Image Editor</h1>
+    <section id="why-create" class="mt-4">
+      <div class="flex-row bb-main justify-between align-center">
+        <h2 class="bold h2">
+          <a href="#why-create" class="same-page bold">Why Create This Page</a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#why-create-hide">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+      <div id="why-create-hide">
+        <p class="mt-2">
+          I want to have a page that makes it easy to quickly edit images / get information about images. Right now, I usually have to run a script or go to a website and upload an image to get the information about an image, and I figure creating my own page for this would be faster. Also, there are many times when I want to resize an image and add a background color around the image (in case the aspect ratio of the original image does not meet the target resize dimensions), and I hope to create this feature on this page.
+          <br>  
+          I want to get better acquainted with the 
+          <a class="secondary link" target="_blank" href="https://pqina.nl/pintura/">Pintura image editor</a>
+          . This is the image editor that I use for this site, and I want to study the documentation of the image editor so that I know what is available and how I might better customize the editor. 
+        </p>
+      </div>
+    </section>
+
+    <section id="pintura-image-editor" class="mt-4">
+      <div class="flex-row bb-main justify-between align-center">
+        <h2 class="bold h2">
+          <a href="#pintura-image-editor" class="same-page bold">Pintura Image Editor</a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#hide-pintura-image-editor">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+      <div class="mt-2" id="hide-pintura-image-editor">
+        <ul>
+          <li>You can use the <span class="text-code">appendEditor</span> method to easily append an image editor to the DOM.</li>
+        </ul>
+        <h3 class="h3 bold bb-main mt-4">
+          The Image Editor
+        </h3>
+        <h4 class="h4 bold bb mt-3">
+          Properties
+        </h4>
+        <ul class="mt-2">
+          <li>
+            <a class="secondary link" target="_blank" href="https://pqina.nl/pintura/docs/v8/api/image-editor/properties/">Image Editor Properties</a>
+          </li>
+          <li>
+            You can get the image source, width, height, and aspect ratio of the image and the crop rectangle with readonly image properties.
+          </li>
+          <li>
+            You can set the <span class="text-code">src</span> of the image editor to load a new image into the editor. You can use the <span class="text-code">imageReader</span> and <span class="text-code">imageWriter</span> properties to read and write image data.
+          </li>
+          <li>
+            There are various properties that you can set to update the image state, but I didn't see any that I would use.
+          </li>
+          <li>
+            You have access to the 
+            <a class="secondary link" target="_blank" href="https://pqina.nl/pintura/docs/v8/api/image-editor/properties/#imagestate"><span class="text-code">imageState</span></a>
+            property, which describes the current image state.
+          </li>
+        </ul>
+        <h4 class="h4 bold bb mt-3">
+          Methods
+        </h4>
+        <ul class="mt-2">
+          <div class="table-wrapper">
+            <table cellspacing="0">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="text-code">editImage(src, options?)</span></td>
+                <td style="text-align: left;">Load an Image. Returns a <span class="text-code">Promise</span> that resolves when the image is processed.</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">loadImage(src, options?)</span></td>
+                <td style="text-align: left;">Load an Image. Returns a <span class="text-code">Promise</span> that resolves when the image is loaded.</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">abortLoadImage()</span></td>
+                <td style="text-align: left;">Stop loading the current image.</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">removeImage()</span></td>
+                <td style="text-align: left;">Removes the currently loaded image.</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">processImage(src?, options?)</span></td>
+                <td style="text-align: left;">Start processing the current image. Or loads a new image and immediately processes it.</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">abortProcessImage()</span></td>
+                <td style="text-align: left;">Stop processing the current image.</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">updateImage(src)</span></td>
+                <td style="text-align: left;">Updates the current image source while retaining the history state. Will also update image preview. Returns a <span class="text-code">Promise</span> that resolves when the image is loaded.</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </ul>
+        <h4 class="h4 bold bb mt-3">
+          Events
+        </h4>
+        <ul class="mt-2">
+          <div class="table-wrapper">
+            <table cellspacing="0">
+            <thead>
+              <tr>
+                <th scope="col">Name:</th>
+                <th scope="col">Description:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="text-code">loadstart</span></td>
+                <td style="text-align: left;">Fires when the image loading starts</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">loadabort</span></td>
+                <td style="text-align: left;">Fired when the image loading is aborted</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">loaderror</span></td>
+                <td style="text-align: left;">Fired when an error is thrown during image load.</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">loadprogress</span></td>
+                <td style="text-align: left;">Fired when loading of the image progresses.</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">load</span></td>
+                <td style="text-align: left;">Fired when an image has successfully loaded.</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">loadpreview</span></td>
+                <td style="text-align: left;">Fired when an image preview has been loaded.</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">update</span></td>
+                <td style="text-align: left;">Fired when the <span class="text-code">imageState</span> is updated</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">processstart</span></td>
+                <td style="text-align: left;">Fired when processing of an image starts</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">processerror</span></td>
+                <td style="text-align: left;">Fired when an error is thrown during image processing.</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">processprogress</span></td>
+                <td style="text-align: left;">Fired when processing of the image progresses.</td>
+              </tr>
+              <tr>
+                <td><span class="text-code">process</span></td>
+                <td style="text-align: left;">Fired when an image has been processed. </td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </ul>
+        <h4 class="h4 bold bb mt-3">
+          Exports
+        </h4>
+        <ul class="mt-2">
+          I don't think I will use any of these functions.
+        </ul>
+      </div>
+    </section>
+
+
+    <section id="ued-img" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#ued-img" class="same-page bold">Upload, Edit, and Download Images</a>
+        </h2>
+        <div>
+          <label for="upload-image" class="bold mt-2">Upload Image File:</label>
+          <input data-image-input type="file" id="upload-image" accept="image/*" name="upload-image" class="mt-1 info">
+          <output class="block" for="upload-image"></output>
+          <div id="download-button-pintura-wrapper" class="mt-2">
+
+          </div>
+
+         
+        </div>
+
+
+        <div class="flex-row justify-center mt-2">
+          <canvas id="image-canvas" class="mt-3" height="450" style="<%-Boolean(locals.phone)?'width:100%;':''%>; height: 450px; background-color: black; cursor: crosshair!important;">
+            
+          </canvas>
+        </div>
+        <h4 class="h4 mt-2 bold">
+          How To Use:
+        </h4>
+        <ul class="mt-2">
+          <li>
+            Move your mouse over the <span class="text-code">&lt;canvas&gt;</span> to see what the color of the highlighted portion of the image is.
+          </li>
+          <li>
+            Click the canvas to copy the current color.
+          </li>
+        </ul>
+        <h4 class="mt-2 bold h4">Last Seen Colors:</h4>
+        <div>
+          <p>
+            <span class="bold">Hex Color:</span><span id="hex-ls"></span>
+          </p>
+          <p>
+            <span class="bold">RGBA Color:</span><span id="rgba-ls"></span>
+          </p>
+        </div>
+        <div class="floating-menu" id="floating-menu-color" style="position: fixed; display: block; min-width:100px;min-height:100px;" hidden>
+          <p>
+            <span class="bold">Color:</span><span id="floating-color"></span>
+          </p>
+          <div class="flex-row justify-center mt-1">
+            <div class="inline-block" style="min-width:50px;min-height:50px;" id="floating-color-block"></div>
+          </div>
+        </div>
+
+        <script nonce="<%=locals.jsNonce%>">
+(() => {
+  const isMobile = <%-Boolean(locals.phone)%>;
+  const canvas = document.getElementById('image-canvas');
+  const input = document.getElementById('upload-image');
+  const main = document.getElementById('PAGE');
+  const floatingMenu = document.getElementById('floating-menu-color');
+  const downloadButtonWrapperPintura = document.getElementById('download-button-pintura-wrapper');
+  const floatingColorBlock = document.getElementById("floating-color-block");
+  const floatingColor = document.getElementById("floating-color");
+  const hexLastSeen = document.getElementById('hex-ls');
+  const rgbaLastSeen = document.getElementById('rgba-ls');
+  if (input&&downloadButtonWrapperPintura&&canvas) {
+    var CURRENT_WIDTH = (main.offsetWidth-30);
+    var IMAGE = null;
+    var newImageWidth = 0;
+    var newImageHeight = 0;
+    var ctx = null;
+    /**
+     * @type {DOMRect}
+     * 
+     **/
+      var RECT = null;
+    canvas.setAttribute('width',CURRENT_WIDTH.toFixed('0'));
+    if (!!!isMobile) {
+      canvas.setAttribute('width',CURRENT_WIDTH.toFixed(0));
+      canvas.style.setProperty('width',CURRENT_WIDTH.toFixed(0));
+      var resizeTimeout = null;
+      function onResize1() {
+        if (resizeTimeout) clearTimeout(resizeTimeout);
+        setTimeout(() => {
+          CURRENT_WIDTH = (main.offsetWidth-30);
+          canvas.setAttribute('width',CURRENT_WIDTH.toFixed(0));
+          canvas.style.setProperty('width',CURRENT_WIDTH.toFixed(0));
+          if (IMAGE) {
+            if(ctx) ctx.drawImage(IMAGE,(CURRENT_WIDTH-newImageWidth)/2,(450-newImageHeight)/2,newImageWidth,newImageHeight);
+          }
+          if (canvas) {
+            RECT = canvas.getBoundingClientRect();
+          }
+          resizeTimeout = null;
+        },100);
+      }
+      window.addEventListener('resize',onResize1,true);
+      document.addEventListener('htmx:afterRequest',(e) => {
+        const el = e.detail.elt;
+        if (el.id==="PAGE") {
+          document.removeEventListener('resize',onResize1)
+        }
+      })
+    }
+    input.addEventListener('media-upload-complete',(e) => {
+      const url = e.detail.uploads[0]?.url;
+      if (typeof url==="string") {
+        if (ctx) ctx.clearRect(0, 0, CURRENT_WIDTH, 450)
+        IMAGE = new Image();
+        IMAGE.crossOrigin='Anonymous';
+        IMAGE.onload = () => {
+          ctx = canvas.getContext("2d");
+          if (ctx) {
+            const imageWidth = IMAGE.naturalWidth;
+            const imageHeight = IMAGE.naturalHeight;
+            const aspectRatio = imageWidth/imageHeight;
+            
+            if (imageWidth>400&&imageWidth>imageHeight) {
+              newImageWidth = 400;
+              newImageHeight = 400/aspectRatio;
+            } else if (imageHeight>400) {
+              newImageWidth = aspectRatio*400;
+              newImageHeight = 400*aspectRatio;
+            } else {
+              newImageWidth = imageWidth;
+              newImageHeight = imageHeight;
+            }
+            ctx.drawImage(IMAGE,(CURRENT_WIDTH-newImageWidth)/2,(450-newImageHeight)/2,newImageWidth,newImageHeight);
+          }  
+        }
+        IMAGE.src = url;
+        downloadButtonWrapperPintura.innerHTML='';
+        fetch(url)
+        .then((resp) => resp.blob())
+        .then((blob) => {
+          const fileType = url.slice(url.lastIndexOf('.')+1);
+          const objectURL = URL.createObjectURL(blob);
+          const downloadAnchor = document.createElement('a');
+          downloadAnchor.className="button filled medium icon-text success";
+          downloadAnchor.setAttribute('download',`frankmbrown-download.${fileType}`);
+          downloadAnchor.setAttribute('href',objectURL);
+          downloadAnchor.innerHTML=`<svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Download"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path></svg>DOWNLOAD IMAGE`;
+          const warnToSave = `<div><p class="block w-100" style="text-align: left;">Make sure to save the changes to the image by pressing the <span class="bg-primary" style="padding: 2px; border-radius: 4px;">Done</span> or <svg class="caption bg-primary" style="border-radius:50%; position:relative; top:3px;" viewBox="0 0 24
+24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" stroke-linecap="round" stroke-linejoin="round"><g><polyline points="20 6 9 17 4 12" fill="none" stroke="currentColor" stroke-width=".125em"></polyline></g></svg> button before trying to download the image.</p> </div>`;
+          downloadButtonWrapperPintura.insertAdjacentHTML("afterbegin",warnToSave);
+          const divWrapperBtn = document.createElement('div');
+          divWrapperBtn.className="justify-center flex-row mt-1";
+          divWrapperBtn.append(downloadAnchor);
+          downloadButtonWrapperPintura.append(divWrapperBtn);
+        })
+        .catch((e) => {
+          console.error(e);
+        })
+
+        
+      }
+    })
+    if (canvas) {
+      RECT = canvas.getBoundingClientRect();
+      document.addEventListener('scroll',function() {
+        RECT = canvas.getBoundingClientRect();
+        
+      })
+function rgbaToHex(rgba = '') {
+  // Parse Values from rgba string
+  const rgbaArr = rgba.match(/(\d+(\.\d+)?)/g);
+
+  if (rgbaArr.length === 4) {
+    const r = parseInt(rgbaArr[0]).toString(16);
+    const g = parseInt(rgbaArr[1]).toString(16);
+    const b = parseInt(rgbaArr[2]).toString(16);
+    let a = Math.round(+rgbaArr[3]).toString(16);
+    
+    // Add Padding when hex length of alpha is 1
+    if (a.length === 1) {
+      a = `0${a}`;
+    }
+
+    return `#${r}${g}${b}${a}`;
+  }
+
+  // Fallback when rgba string is invalid
+  return '#000000';
+}
+            canvas.addEventListener(isMobile?'touchmove':'mousemove',(e) => {
+              if (RECT) {
+                floatingMenu.style.setProperty('left',String(RECT.left+e.offsetX).concat('px'));
+                floatingMenu.style.setProperty('top',String(e.offsetY+RECT.top).concat('px'));
+                if (ctx) {
+                  var color = ctx.getImageData(e.offsetX, e.offsetY, 1, 1); 
+                  if (color) {
+                    if (floatingMenu.hasAttribute('hidden')) floatingMenu.removeAttribute('hidden');
+                    const [r,g,b,a] = color.data;
+                    const rgba = `rgba(${r},${g},${b},${a})`;
+                    const hex = rgbaToHex(rgba);
+                    floatingColor.innerText=hex;
+                    floatingColorBlock.style.setProperty('background-color',rgba);
+                    hexLastSeen.innerText=hex;
+                    rgbaLastSeen.innerText=rgba;
+                  }
+                }
+              }
+              
+            })
+            canvas.addEventListener(isMobile?'touchend':'mouseleave',(e) => {
+              if (floatingMenu) floatingMenu.setAttribute('hidden','');
+            })
+            canvas.addEventListener('click',(e) => {
+              if (RECT) {
+                floatingMenu.style.setProperty('left',String(RECT.left+e.offsetX).concat('px'));
+                floatingMenu.style.setProperty('top',String(e.offsetY+RECT.top).concat('px'));
+                if (ctx) {
+                  var color = ctx.getImageData(e.offsetX, e.offsetY, 1, 1); 
+                  if (color) {
+                    if (floatingMenu.hasAttribute('hidden')) floatingMenu.removeAttribute('hidden');
+                    const [r,g,b,a] = color.data;
+                    const rgba = `rgba(${r},${g},${b},${a})`;
+                    const hex = rgbaToHex(rgba);
+                    floatingColor.innerText=hex;
+                    floatingColorBlock.style.setProperty('background-color',rgba);
+                    hexLastSeen.innerText=hex;
+                    rgbaLastSeen.innerText=rgba;
+                    navigator.clipboard.writeText(JSON.stringify({ hex: hex, rgba: rgba }));
+                  }
+                }
+              }
+            })
+        }
+  }
+})()
+        </script>
+    </section>
+
+
+    <section id="resize-image-with-background" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#resize-image-with-background" class="same-page bold">Resize Image With Background Color</a>
+        </h2>
+        <p class="mt-2">
+          The Pintura Image Editor allows you to resize images, but the image is resized in a way that ignores the aspect ratio. In cases where you want to resize an image, keep the aspect ratio, and the aspect ratio does not equal the aspect ratio of the target width and height, you often times want to add a background color around the image so that the resulting image keeps aspect ratio of the original image and is resized to the correct size. 
+        </p>
+        <form class="mt-2" id="image-with-bg-form" hx-indicator="#res-ind-bg" hx-target="#image-with-bg-form-output" hx-swap="innerHTML" hx-trigger="submit" hx-encoding="multipart/form-data" hx-post="/projects/image-editor/resize">
+          <label for="upload-image-resize" class="bold mt-2">Upload Image For Resizing:</label>
+          <input type="file" id="upload-image-resize" accept="image/*" name="upload-image-resize" class="mt-1 primary">
+          <output for="upload-image-resize" id="image-output-bg" class="mt-2 flex-row justify-center">
+            
+          </output>
+          <div class="flex-row justify-start gap-1 mt-2">
+            <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+              <label for="target-width">Target Width:</label>
+              <div class="mt-1 number-input medium">
+                  <input 
+                  type="number" 
+                  value="100" 
+                  name="target-width" 
+                  id="target-width" 
+                  autocomplete="off" 
+                  spellcheck="false" 
+                  autocapitalize="off"
+                  >
+                  <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                      <svg focusable="false" inert viewBox="0 0 24 24">
+                          <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                          </path>
+                      </svg>
+                  </button>
+                  <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                      <svg focusable="false" inert viewBox="0 0 24 24">
+                          <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                          </path>
+                      </svg>
+                  </button>
+              </div>
+            </div>
+            <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+              <label for="target-height">Target Height:</label>
+              <div class="mt-1 number-input medium">
+                  <input 
+                  type="number" 
+                  value="100" 
+                  name="target-height" 
+                  id="target-height" 
+                  autocomplete="off" 
+                  spellcheck="false" 
+                  autocapitalize="off"
+                  >
+                  <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                      <svg focusable="false" inert viewBox="0 0 24 24">
+                          <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                          </path>
+                      </svg>
+                  </button>
+                  <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                      <svg focusable="false" inert viewBox="0 0 24 24">
+                          <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                          </path>
+                      </svg>
+                  </button>
+              </div>
+            </div>
+          </div>
+          <div class="flex-row mt-2 gap-3 justify-start align-center">
+            <div class="shrink-0">
+              <label class="body2" for="background-color-color">Background Color (Color Input):</label>
+              <div class="flex-row justify-begin align-center gap-2">
+                <input type="color" data-coloris name="background-color-color" id="background-color-color" value="#ffffff" style="margin-top: 2px;">
+                <span class="body2">#ffffff</span>
+              </div>
+            </div>
+            <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+              <label for="background-color-text">Background Color (Text Input):</label>
+              <div class="text-input block medium">
+                  <input 
+                  type="text" 
+                  name="background-color-text" 
+                  id="background-color-text" 
+                  class="medium icon-before mt-1" 
+                  maxlength="7"
+                  minlength="7" 
+                  spellcheck="true" 
+                  autocapitalize="off"
+                  value="#ffffff"
+                  >
+                  <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ColorLens"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path></svg>
+              </div>
+            </div>
+          </div>
+          <div class="mt-2">
+            <p class="bold">
+              <span class="bold">
+                Background Color:
+              </span>
+              <span id="background-color-result">
+                #ffffff
+              </span>
+              <input type="text" hidden="hidden" id="hidden-text-color" name="hidden-text-color">
+            </p> 
+          </div>
+          <div class="flex-row justify-between mt-3">
+            <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+            <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+              SUBMIT
+            </button>
+          </div>
+        </form>
+        <div class="flex-row justify-center t-warning htmx-indicator mt-3" role="progressbar" aria-busy="false" aria-label="Resizing Image" id="res-ind-bg">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output form="image-with-bg-form" id="image-with-bg-form-output">
+
+        </output>
+        <script nonce="<%=locals.jsNonce%>">
+          (() => {
+            const hexInput = document.getElementById('background-color-color');
+            const textInput = document.getElementById('background-color-text');
+            const output = document.getElementById('background-color-result');
+            const hiddenColor = document.getElementById('hidden-text-color');
+            if (hexInput&&textInput&&output&&hiddenColor) {
+              const span = hexInput.nextElementSibling;
+              hexInput.addEventListener('input',() => {
+                hiddenColor.value = hexInput.value;
+                textInput.value = hexInput.value;
+                output.innerText = textInput.value;
+              })
+              textInput.addEventListener('input',() => {
+                if(/^#([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3}/.test(textInput.value)) {
+                  console.log(textInput.value);
+                  hiddenColor.value = textInput.value;
+                  hexInput.value = textInput.value;
+                  span.innerText = textInput.value;
+                  output.innerText = textInput.value;
+                }
+              })
+            }
+            /**
+             * @type {HTMLInputElement}
+             * */
+            const fileInput = document.getElementById('upload-image-resize');
+            const fileInputBg = document.getElementById('image-output-bg');
+            if (fileInput&&fileInputBg) {
+              fileInput.addEventListener('change',() => {
+                const img = new Image();
+                img.style.setProperty("max-width","100%");
+                img.style.setProperty("max-height","450px");
+                img.style.setProperty("width","auto");
+                img.style.setProperty("height","auto");
+                img.src = URL.createObjectURL(fileInput.files[0]);
+                img.onload = () => {
+                  fileInputBg.innerHTML='';
+                  fileInputBg.append(img);
+                }
+              })
+            }
+          })()
+        </script>
+    </section>
+
+    <%-include('../../partials/pagePartial')%>
+<%}%>

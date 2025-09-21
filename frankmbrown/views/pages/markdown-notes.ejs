@@ -1,0 +1,94 @@
+<%# 
+PARTIAL ROUTE: pages/markdown-notes.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.auth>
+- locals.markdownNotesList
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">Frank's Markdown Notes</h1>
+
+  <section id="about-page" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#about-page" class="same-page fw-regular">About This Page</a>
+    </h2>
+    <p class="mt-2">
+      Below is a list of links that take you to a page of notes that was created using my <a class="primary link" hx-get="/projects/markdown-to-html" href="/projects/markdown-to-html" hx-target="#PAGE" hx-indicator="#page-transition-progress">Markdown to HTML system.</a> I created this page, even though I already have a <a class="primary link" hx-get="/note" href="/note" hx-target="#PAGE" hx-indicator="#page-transition-progress">notes page</a>, because most of the time when taking notes, I don't need all of the functionality that is offered by the Lexical implementation and custom HTML and instead just need to primarily write text, lists, code, math, and maybe include a few pictures. This is easier and quicker to accomplish with Markdown rather than with a rich text editor. When I need to take more complex notes, I will use the <a class="primary link" hx-get="/article-builder-3" href="/article-builder-3" hx-target="#PAGE" hx-indicator="#page-transition-progress">article builder</a> to generate notes for the <a class="primary link" hx-get="/note" href="/note" hx-target="#PAGE" hx-indicator="#page-transition-progress">notes page</a>.
+    </p>
+  </section>
+
+  <%if(locals.auth>=3){%>
+    <div class="flex-row justify-end align-center mt-3">
+      <button type="button" class="icon-text medium filled info" hx-get="/projects/markdown-to-html" hx-target="#PAGE" hx-push-url="true" hx-swap="innerHTML">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Add"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+        ADD MARKDOWN NOTE
+      </button>
+    </div>
+  <%}%>
+  <section id="markdown-notes" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#markdown-notes" class="same-page bold">Markdown Notes</a>
+      </h2>
+
+      <div class="body1 bold mt-1" id="order-by-articles">Order By:</div>
+      <div class="mt-1 flex-row justify-start">
+        <div class="select">
+          <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="order-by-articles-drop" aria-labelledby="order-by-articles" class="select" aria-label="Order By" data-popover data-pelem="#order-by-articles-drop" data-click aria-expanded="false" style="min-width: 150px;">
+            <span class="body1"><%=locals?.order_by?.order_by_str%></span>
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+          </button>
+          <div tabindex="0" id="order-by-articles-drop" role="listbox" class="select-menu o-xs" data-placement="bottom">
+            <input type="text" hidden value="<%=locals?.order_by?.order_by_value%>" name="order-by-select" id="order-by-select" hx-get="<%=locals.path%>" hx-include="this" hx-push-url="true" hx-target="#articles-inner" hx-indicator="#change-art-order-ind">
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-new")%>" data-val="last-edit-new">
+              Last Edited (New)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-old")%>" data-val="last-edit-old">
+              Last Edited (Old)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-new")%>" data-val="date-created-new">
+              Date Created (New)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-old")%>" data-val="date-created-old">
+              Date Created (Old) 
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-likes")%>" data-val="num-likes">
+              Number of Likes
+            </button> 
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-comments")%>" data-val="num-comments">
+              Number of Comments
+            </button> 
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-views")%>" data-val="num-views">
+              Number of Views
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-row justify-center t-primary htmx-indicator" role="progressbar" id="change-art-order-ind" aria-busy="false" aria-label="Changing Order of Articles">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+
+      <div class="mt-1" id="articles-inner">
+        <%-locals.markdownNotesList%>
+      </div>
+  </section>
+
+  <div id="likes-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+    Likes
+  </div>
+  <div id="comments-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+    Comments
+  </div>
+  <div id="annotations-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+    Annotations
+  </div>
+  <div id="views-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+    Views
+  </div>
+  
+  <%-include('../partials/pagePartial')%>
+<%}%>

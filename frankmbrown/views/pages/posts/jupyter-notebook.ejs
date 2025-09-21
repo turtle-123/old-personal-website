@@ -1,0 +1,36 @@
+<%# 
+PARTIAL ROUTE: pages/posts/jupyter-notebook.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.pageObj
+- locals.auth>
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title"><%=locals.pageObj.title%></h1>
+  <p class="mt-2">
+    <%=locals.pageObj.description%>
+  </p>  
+  <div class="flex-row justify-between align-center bb-main p-md" style="margin-bottom: 0.75rem; border-bottom-width: 3px;">
+    <time  data-popover data-pelem="#date-created-tool" data-mouse data-date-format="MM/DD/YYYY" datetime="<%-locals.pageObj.date_created_string%>">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CalendarToday">
+        <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z">
+        </path>
+      </svg>
+      <span></span>
+    </time>
+
+    <a href="<%=locals.path_to_download%>" download="<%=locals.filename%>"  class="button icon-text medium filled info">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Download"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path></svg>
+      DOWNLOAD NOTEBOOK
+    </a>
+  </div>
+  <%-include('../../partials/share-like-comment')%>
+  <%-locals.pageObj.html%>
+   
+  <%-include('../../partials/comment')%>
+  <%-include('../../partials/pagePartial')%>
+<%}%>

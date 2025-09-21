@@ -1,0 +1,13 @@
+sibling_index
+parent_comment_id
+user_id,
+lexical_state
+next_comment
+previous_comment
+id
+date_created
+comment_uuid
+mobile_html
+tablet_html
+desktop_html
+

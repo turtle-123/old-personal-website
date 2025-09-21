@@ -1,0 +1,35 @@
+<%# 
+PARTIAL ROUTE: pages/projects/three-js-playground.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+  <h1 class="page-title">
+    ThreeJS Playground
+  </h1>
+  <div class="tabs mt-2">
+    <ul class="tabs" role="tablist">
+      <li role="presentation">
+        <button id="output-button-three-js-playground" class="tab-button secondary" role="tab" type="button" aria-selected="true" data-tab="0" tabindex="-1">Renderer</button>
+      </li>
+      <li role="presentation">
+        <button id="code-button-three-js-playground" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="1" tabindex="-1">Code</button>
+      </li>
+    </ul>
+  </div>
+  <div class="tab-panels">
+    <div aria-labelledby="output-button-three-js-playground" role="tabpanel" tabindex="0">
+      Here is the first tab panel. 
+    </div>
+    <div aria-labelledby="code-button-three-js-playground" role="tabpanel" tabindex="0" hidden>
+      Here is the second tab panel.
+    </div>
+  </div>
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>
+    

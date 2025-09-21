@@ -1,0 +1,21 @@
+<%# 
+PARTIAL ROUTE: pages/design-system.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <%-include('design-system/DESIGN_SYSTEM_HEADER.ejs');%>
+  <div id="subpage" class="mt-3">
+    <%-include('design-system/general-main.ejs');%>
+  </div>
+
+  <%-include('design-system/DESIGN_SYSTEM_FOOTER.ejs');%>
+
+
+  <%-include('../partials/pagePartial')%>
+  <%}%>

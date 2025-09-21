@@ -1,0 +1,226 @@
+<%# 
+PARTIAL ROUTE: pages/account/createAccountForm.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.pageObj
+- locals.jsNonce
+%>
+<%if(locals.pageObj.creatingAccount){%>
+  <div class="flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Creating Account" id="creating-account-indicator">
+    <div class="lds-facebook"><div></div><div></div><div></div></div>
+  </div>
+  <section id="create-account-section">
+      <div 
+      id="create-account-fetch"
+      hx-indicator="#creating-account-indicator"
+      hx-trigger="load" 
+      hx-target="#create-account-section" 
+      hx-get="/create-account/finish"
+      ></div>
+      <p class="text-align-center mt-2 h6 bold t-success">
+        Creating Account
+      </p>  
+      <script nonce="<%=locals.jsNonce%>">
+        (function() {
+          const el = document.getElementById("create-account-fetch")
+          function onBeforeUnload(e) {
+            if(e) e.preventDefault();
+            
+          }
+          el.addEventListener('htmx:beforeRequest',() => {
+            window.addEventListener('beforeunload',onBeforeUnload);
+          })
+          el.addEventListener('htmx:afterRequest',() => {
+            window.removeEventListener('beforeunload',onBeforeUnload);
+          })
+        })();
+      </script>
+  </section>
+<%}else if(!!!locals.pageObj.twoFactorAuthentication){%>
+  
+  <section id="create-account-section">
+    <%if(!!!locals.pageObj.canCreateAccount){%>
+      <div class="flex-row justify-center">
+        <div class="alert error filled icon medium mt-2" role="alert" style="max-width: 600px;">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+          <p class="alert">
+            <%=locals.pageObj.canCreateAccountMessage%>  
+          </p>
+          <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+          </button>
+        </div>
+      </div>
+    <%}%>
+    <form hx-indicator="#reset-creds-ind" hx-post="/create-account" hx-target="#create-account-section" hx-swap="outerHTML" id="create-account-form" style="max-width: 600px; margin: 0px auto 0px auto;">
+      
+      <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="email" <%-!!!locals.pageObj.canCreateAccount?'class="disabled"':''%>>Email:</label>
+        <div class="text-input block medium">
+            <input 
+            type="email" 
+            autocomplete="email" 
+            name="email" 
+            id="email" 
+            class="medium icon-before mt-1" 
+            required
+            placeholder="Enter the email to use for frankmbrown.net..." 
+            spellcheck="false" 
+            autocapitalize="off"
+            <%-!!!locals.pageObj.canCreateAccount?'disabled':''%>
+            value="<%=locals.pageObj.email%>"
+            >
+            <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Email">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z">
+              </path>
+            </svg>
+            <%# Buttons and SVGs %>
+        </div>
+      </div>
+
+      <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="username" <%-!!!locals.pageObj.canCreateAccount?'class="disabled"':''%>>Username:</label>
+        <div class="text-input block medium">
+            <input type="text" autocomplete="username" name="username" id="username" class="medium icon-before mt-1" required="" placeholder="Enter the username to use for frankmbrown.net..." minlength="4" maxlength="50" pattern="^(?!Anonymous$)(?!.*\s)(.{4,50})$" spellcheck="false" autocapitalize="off" <%-!!!locals.pageObj.canCreateAccount?'disabled':''%>
+            value="<%=locals.pageObj.username%>"
+            >
+            <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="AccountCircleSharp">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z">
+                </path>
+            </svg>
+            <%# Buttons and SVGs %>
+        </div>
+      </div>
+
+      <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="password" <%-!!!locals.pageObj.canCreateAccount?'class="disabled"':''%>>Password:</label>
+        <div class="text-input block medium">
+            <input name="password" id="password" class="mt-1 medium icon-after" placeholder="Enter the password to use for frankmbrown.net..." autocomplete="new-password" autocapitalize="off" spellcheck="false" type="password" required=""
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\da-zA-Z]).{8,}$"
+            <%-!!!locals.pageObj.canCreateAccount?'disabled':''%>
+            value="<%=locals.pageObj.password%>"
+            >
+            <button <%-!!!locals.pageObj.canCreateAccount?'disabled':''%> class="icon-after icon medium" data-vis-switch="" type="button" aria-label="Change Visibility">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z">
+                    </path>
+                </svg>
+                <svg hidden="" focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M12 6.5c2.76 0 5 2.24 5 5 0 .51-.1 1-.24 1.46l3.06 3.06c1.39-1.23 2.49-2.77 3.18-4.53C21.27 7.11 17 4 12 4c-1.27 0-2.49.2-3.64.57l2.17 2.17c.47-.14.96-.24 1.47-.24zM3.42 2.45 2.01 3.87l2.68 2.68C3.06 7.83 1.77 9.53 1 11.5 2.73 15.89 7 19 12 19c1.52 0 2.97-.3 4.31-.82l3.43 3.43 1.41-1.41L3.42 2.45zM12 16.5c-2.76 0-5-2.24-5-5 0-.77.18-1.5.49-2.14l1.57 1.57c-.03.18-.06.37-.06.57 0 1.66 1.34 3 3 3 .2 0 .38-.03.57-.07L14.14 16c-.65.32-1.37.5-2.14.5zm2.97-5.33c-.15-1.4-1.25-2.49-2.64-2.64l2.64 2.64z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+
+      <div class="flex-row justify-end align-center mt-3">
+        <button <%-!!!locals.pageObj.canCreateAccount?'disabled':''%> type="submit" aria-label="Submit" class="success filled icon-text medium">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+          SUBMIT
+        </button>
+      </div>
+    </form>
+    <%if(!!locals.pageObj.createAccountError){%>
+      <div class="flex-row justify-center">
+        <div class="alert error filled icon medium mt-2" role="alert"  style="max-width: 600px;">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+          <p class="alert">
+            <%=locals.pageObj.createAccountErrorMessage%>  
+          </p>
+          <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+          </button>
+        </div>
+      </div>
+    <%}%>
+    <div class="mt-3 flex-row align-center gap-3">
+      <div class="grow-1">
+        <p class="mt-3 text-align-center fw-regular">
+          Already have an account?
+        </p>
+        <div class="flex-row justify-center align-center mt-1">
+          <a href="/login" class="button success filled medium" hx-get="/login" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">LOGIN</a>
+        </div>
+      </div>
+      <div class="grow-1">
+        <p class="mt-3 text-align-center fw-regular">
+          Forgot username or password?
+        </p>
+        <div class="flex-row justify-center align-center mt-1">
+          <a href="/reset-credentials" class="button warning filled medium" hx-get="/reset-credentials" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">RESET CREDENTIALS</a>
+        </div>
+      </div>
+    </div>
+  </section>
+<%}else{%>
+  <div data-no-check-initial data-warn-form-progress="create-account-2fa" hidden></div>
+  <section id="create-account-section">
+    
+    <form hx-indicator="#reset-creds-ind" hx-post="/create-account/2fa" hx-target="#create-account-section" hx-swap="outerHTML" id="create-account-2fa" style="max-width: 600px; margin: 0px auto 0px auto;">
+      <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+        <label for="two_factor_code" <%-!!!locals.pageObj.canCreateAccount?'class="disabled"':''%>>2 Factor Authentication Code:</label>
+        <div class="text-input block medium">
+            <input 
+            type="text"  
+            name="two_factor_code" 
+            id="two_factor_code" 
+            class="medium icon-before mt-1" 
+            required
+            placeholder="Enter the 6 digit two factor authentication code sent to your email..." 
+            maxlength="6"
+            minlength="6" 
+            pattern="[0-9]*" 
+            spellcheck="false" 
+            autocapitalize="off"
+            value="<%=locals.pageObj.twoFactorAuthenticationCode%>"
+            <%-!!!locals.pageObj.canCreateAccount?'disabled':''%> 
+            >
+            <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Password"><path d="M2 17h20v2H2v-2zm1.15-4.05L4 11.47l.85 1.48 1.3-.75-.85-1.48H7v-1.5H5.3l.85-1.47L4.85 7 4 8.47 3.15 7l-1.3.75.85 1.47H1v1.5h1.7l-.85 1.48 1.3.75zm6.7-.75 1.3.75.85-1.48.85 1.48 1.3-.75-.85-1.48H15v-1.5h-1.7l.85-1.47-1.3-.75L12 8.47 11.15 7l-1.3.75.85 1.47H9v1.5h1.7l-.85 1.48zM23 9.22h-1.7l.85-1.47-1.3-.75L20 8.47 19.15 7l-1.3.75.85 1.47H17v1.5h1.7l-.85 1.48 1.3.75.85-1.48.85 1.48 1.3-.75-.85-1.48H23v-1.5z"></path></svg>
+        </div>
+      </div>
+      <div class="flex-row justify-between align-center mt-3">
+        <button <%-!!!locals.pageObj.canCreateAccount?'disabled':''%>  type="button" class="icon-text filled medium info" hx-trigger="click" hx-get="/create-account/email" hx-target="#resent-email-notification" hx-swap="innerHTML">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Mail"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+          RESEND EMAIL
+        </button>
+
+        <button <%-!!!locals.pageObj.canCreateAccount?'disabled':''%>  type="submit" aria-label="Submit" class="success filled icon-text medium">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+          SUBMIT
+        </button>
+      </div>
+    </form>
+
+    <%if(locals.pageObj.twoFactorAuthenticationError){%>
+      <div class="flex-row justify-center">
+        <div class="alert error filled icon medium mt-3" role="alert"  style="max-width: 600px;">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+          <p class="alert">
+            <%=locals.pageObj.twoFactorAuthenticationErrorMessage%>  
+          </p>
+          <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+          </button>
+        </div>
+      </div>
+    <%}%>
+      
+    <div id="resent-email-notification">
+      
+      <%if(locals.pageObj.emailSent){%>
+        <div class="flex-row justify-center">
+          <div class="alert mt-3 filled success icon medium" style="max-width: 600px;" role="alert">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Mail"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+            <p class="alert">
+              An email with the two factor authentication code has been sent to <%=locals.pageObj.email%>. You have <%=locals.pageObj.emailsLeft%> two factor authentication emails left before you will no longer be able to create an account.
+            </p>
+            <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+            </button>
+          </div>
+        </div>
+      <%}%>
+    </div>
+  </section>
+<%}%>

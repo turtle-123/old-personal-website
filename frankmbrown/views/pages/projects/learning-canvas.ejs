@@ -1,0 +1,105 @@
+<%# 
+PARTIAL ROUTE: pages/projects/learning-canvas.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.jsNonce
+- locals.settings[locals
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+  <h1 class="page-title" id="top-of-page">
+    Learning More About HTML5 Canvas
+  </h1>
+   
+
+  <section id="learning-canvas" class="mt-4">
+      <div class="flex-row bb-main justify-between align-center">
+        <h2 class="bold h5">
+          <a href="#learning-canvas" class="same-page fw-regular">Learning HTML5 Canvas</a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#canvas-example-wrap">
+          <svg data-arrow="" style="transform:rotate(180deg)" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="" hidden>HIDE</span>
+          <span data-show="" >SHOW</span>
+        </button>
+      </div>
+
+      <style>
+        #canvas1 {
+          background: black;
+          margin-top: 0.5rem!important;
+          display: block;
+        }
+      </style>
+      <p class="mt-1">
+        Move your mouse / touch the canvas to see an interesting graphic.
+      </p>
+      <div id="canvas-example-wrap" hidden>
+        <canvas style="position: relative; margin: auto; display: block;" width="400" height="400" id="canvas1">
+        </canvas>
+      </div>
+      
+
+      <script type="module" nonce="<%=locals.jsNonce%>" src="/static/js/constant/learning-canvas.js"></script>
+      <script nonce="<%=locals.jsNonce%>">
+        (function(){
+          document.dispatchEvent(new CustomEvent('run-learn-canvas-script'))
+        })()
+      </script>
+  </section>
+
+  <section id="image-data" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#image-data" class="same-page fw-regular">Image Data Canvas</a>  
+      </h2>
+
+      <form class="mt-2">
+        <div class="flex-row">
+          <div class="grow-1">
+            <label for="upload-image-data-canvas-example" class="bold">Upload Image File:</label>
+            <input data-prevent-default data-image-input type="file" id="upload-image-data-canvas-example" accept="image/*" name="upload-image-data-canvas-example" class="mt-1 info">
+            <output class="block" for="upload-image-data-canvas-example"></output>
+          </div>
+          <div class="flex-column grow-1">
+            <div>
+              <label class="body2" for="filter-color">Filter Color:</label>
+              <div class="flex-row justify-begin align-center gap-2">
+              <input  type="color" data-coloris name="filter-color" id="filter-color" value="<%=locals.settings[locals.settingsMode].primary%>" style="margin-top: 2px;">
+              <span class="body2"><%=locals.settings[locals.settingsMode].primary%></span>
+              </div>
+            </div>
+            <label class="checkbox mt-1">
+              <input type="checkbox" class="primary" name="transparent-filter" id="transparent-filter" checked>
+              No Color Filter
+            </label>
+          </div>
+        </div>
+        <label for="filter-opacity" class="mt-1">Filter Opacity:</label>
+        <input name="filter-opacity" id="filter-opacity" type="range" min="0" max="1" value="1" step="0.01" style="background-size: 100% 100%;">
+        <output class="hidden" for="filter-opacity" hidden>1</output>
+      </form>
+      <style>
+        #dog-image {
+          display: none;
+        }
+      </style>
+      <img id="dog-image" src="https://image.storething.org/frankmbrown/a50f923b-e1b1-4d55-b8fb-074bf2eee0fc.jpeg" alt="Dog Image" width="400" height="400" data-text="Image of a dog to use for learning more about Canvas" style="width: 400px; height: 400px;" />
+
+      <canvas style="display: block; margin: auto;" id="image-data-canvas" width="400" height="400">
+
+      </canvas>
+
+
+      <script nonce="<%=locals.jsNonce%>" src="/static/js/constant/canvas-image-data.js" type="module"></script>
+      <script nonce="<%=locals.jsNonce%>">
+        (function(){
+          document.dispatchEvent(new CustomEvent('run-canvas-image-data'))
+        })()
+      </script>
+  </section>
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

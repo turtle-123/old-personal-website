@@ -1,0 +1,29 @@
+<%# 
+PARTIAL ROUTE: pages/admin/admin-view-audio.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.initialHTML
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">View frankmbrown.net Audio</h1>
+
+  <p class="mt-2">
+    View and delete audio files from the s3 bucket.
+  </p>
+
+  <section id="audio-files" class="mt-2">
+    <h2 class="bold bb-thick h2">
+      <a href="#audio-files" class="same-page fw-regular">Audio Files</a>
+    </h2>
+    <div class="mt-4">
+      <%-locals.initialHTML%>
+    </div>
+</section>
+
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

@@ -1,0 +1,30 @@
+<%# 
+PARTIAL ROUTE: pages/404.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">404 - Not Found</h1>
+  <div class="flex-row justify-center mt-2">
+    <svg style="width: 200px; height:200px; fill: var(--text-primary);" viewBox="0 0 512 512" title="face-frown" focusable="false" inert tabindex="-1"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM174.6 384.1c-4.5 12.5-18.2 18.9-30.7 14.4s-18.9-18.2-14.4-30.7C146.9 319.4 198.9 288 256 288s109.1 31.4 126.6 79.9c4.5 12.5-2 26.2-14.4 30.7s-26.2-2-30.7-14.4C328.2 358.5 297.2 336 256 336s-72.2 22.5-81.4 48.1zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"></path></svg>
+  </div>
+ 
+
+  <p id="not-found-introduction" class="h6 text-align-center mt-3">
+    It looks like the page you are looking for does not exist. 
+    <br>
+    Try navigating back to the home page.
+  </p>
+
+  <div class="flex-row mt-3 justify-center align-center">
+    <a href="/" class="button filled icon-text primary large" aria-label="Home" hx-get="/" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Home"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
+      <span>Home</span>
+    </a>
+  </div>
+  <%-include('../partials/pagePartial')%>
+<%}%>

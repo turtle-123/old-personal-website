@@ -1,0 +1,112 @@
+<%# 
+PARTIAL ROUTE: pages/blogs.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    <h1 class="page-title">How To Change Site Permissions</h1>
+    <section id="why-create" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#why-create" class="same-page bold">
+            Why Create This Page
+          </a>
+        </h2>
+
+        <p class="mt-2">
+            This site contains multiple Web <abbr title="Application Programming Interface">API</abbr>s that require the user to give the site <em class="bold">permission</em> to use the API. Sometimes the user might accidentally deny the site access to the API, and the might later change their mind and decide to give teh site permission to use an API to enable some feature of this application.
+            <br>
+            This page shows users how to change the permissions granted to this site once they have already denied / granted this site permission to use the API. 
+        </p>
+    </section>
+    <section id="chrome-permission" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#chrome-permission" class="same-page bold">
+            Chrome 
+          </a>
+        </h2>
+        <p class="mt-2">
+            <strong>Reference:</strong> <a class="secondary link" target="_blank" href="https://support.google.com/chrome/answer/114662?hl=en&co=GENIE.Platform%3DDesktop">Change settings for a specific site</a>
+        </p>
+        <ol>
+            <li>On your computer, open Chrome.</li>
+            <li>Go to a site.</li>
+            <li>To left of the web address, select View Site Information <svg style="position: relative; top:
+                6px;" class="caption t-normal" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#444746"><path d="M710-150q-63 0-106.5-43.5T560-300q0-63 43.5-106.5T710-450q63 0 106.5 43.5T860-300q0 63-43.5 106.5T710-150Zm0-80q29 0 49.5-20.5T780-300q0-29-20.5-49.5T710-370q-29 0-49.5 20.5T640-300q0 29 20.5 49.5T710-230Zm-550-30v-80h320v80H160Zm90-250q-63 0-106.5-43.5T100-660q0-63 43.5-106.5T250-810q63 0 106.5 43.5T400-660q0 63-43.5 106.5T250-510Zm0-80q29 0 49.5-20.5T320-660q0-29-20.5-49.5T250-730q-29 0-49.5 20.5T180-660q0 29 20.5 49.5T250-590Zm230-30v-80h320v80H480Zm230 320ZM250-660Z"/></svg></li>
+            <li>Select <span class="bold">Site settings</span>.</li>
+            <li>Change a permission setting.</li>
+        </ol>
+        <p class="mt-2">
+            The YouTube video below can provide additional help as needed. 
+        </p>
+        <div class="mt-1" style="text-align: center;">
+            <iframe src="https://www.youtube-nocookie.com/embed/jWiZZE0N8T8" frameborder="0" class="youtube-embed" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" loading="lazy"></iframe>
+        </div>
+    </section>
+    <section id="safari-permission" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#safari-permission" class="same-page bold">
+            Safari / iPhone
+          </a>
+        </h2>
+        <p class="mt-2">
+            <strong>Reference:</strong> <a class="secondary link" target="_blank" href="https://developer.apple.com/documentation/safariservices/adjusting-website-access-permissions#Grant-and-manage-permissions">Grant and Manage Permissions</a>
+        </p>
+        <ul>
+            <li>
+                <strong>On Mac</strong>
+                <ol>
+                    <li>
+                        Navigate to the website in Safari.
+                    </li>
+                    <li>
+                        Click the Safari app menu in the upper left corner of the screen.
+                    </li>
+                    <li>
+                        Clicking Settings for This Website.
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <strong>On iPhone</strong>
+                <ol>
+                    <li>
+                        Open Safari, navigate to the website you want to adjust, and tap the A's to the left of the website address. From there, you can choose the website settings option and select whether or not to allow the website to access your camera, microphone, location, and other options. 
+                    </li>
+                </ol>
+            </li>
+        </ul>
+        <h3 class="bold mt-2 h4">On Mac:</h3>
+        <div class="mt-1" style="text-align: center;">
+            <iframe src="https://www.youtube-nocookie.com/embed/Vc_oZud8ZPI" frameborder="0" class="youtube-embed" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" loading="lazy"></iframe>
+        </div>
+        <h3 class="bold mt-2 h4">On iPhone:</h3>
+        <div class="mt-1" style="text-align: center;">
+            <iframe src="https://www.youtube-nocookie.com/embed/qVGbdHBOwpw" frameborder="0" class="youtube-embed" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" loading="lazy"></iframe>
+        </div>
+    </section>
+    <section id="edge-permission" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#edge-permission" class="same-page bold">
+            Microsoft Edge
+          </a>
+        </h2>
+        <p class="mt-2">
+            <strong>Reference:</strong> <a class="secondary link" target="_blank" href="https://www.windowscentral.com/how-manage-site-permissions-new-microsoft-edge">How to Manage Site Permissions on the New Microsoft Edge</a>
+        </p>
+        <ol>
+            <li>Open Microsoft Edge</li>
+            <li>Navigate to the website you want to manage.</li>
+            <li>Click the <strong>Lock</strong> icon next to the website link in the address bar</li>
+            <li>Use the drop-down menus to change the permissions.</li>
+            <li>Click the <strong>Refresh</strong> button on the site to apply the changes.</li>
+        </ol>
+
+        <div class="mt-1" style="text-align: center;">
+            <iframe src="https://www.youtube-nocookie.com/embed/EXW7XBS2TSo" frameborder="0" class="youtube-embed" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" loading="lazy"></iframe>
+        </div>
+    </section>
+    <%-include('../partials/pagePartial')%>
+<%}%>

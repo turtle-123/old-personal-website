@@ -1,0 +1,63 @@
+<%# 
+PARTIAL ROUTE: partials/settings.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.themeColorsStyle
+- locals.strokeColor
+- locals.fillColor
+- locals.navbarColor
+- locals.mode
+- locals.getSettingsForm
+- locals.preferencesCookie
+- locals.create_ip_address_row
+- locals.showedBanner
+%>
+<%-locals.themeColorsStyle%>
+<input type="text" hidden id="STROKE_COLOR_MAP" value="<%=locals.strokeColor%>" ></input>
+<input type="text" hidden id="FILL_COLOR_MAP"  value="<%=locals.fillColor%>"></input>
+<input type="text" hidden id="NAVBAR_COLOR" value="<%=locals.navbarColor%>" ></input>
+<input type="text" hidden id="mode-from-settings" value="<%=locals.mode%>" ></input>
+
+<%if(locals.getSettingsForm===true){%>
+  <span 
+  hidden 
+  id="get-settings-form"
+  hx-get="/api/settings-form" 
+  hx-indicator="#settings-dialog-form-indicator"
+  hx-target="#settings-dialog-form"
+  hx-swap="outerHTML"
+  hx-trigger="load"
+  ></span>
+  <%if(typeof locals.ip_id === "number"){%>
+    <div hidden id="ip-set-wrapper" hx-swap-oob="true"><input type="number" readonly id="ip_id" value="<%=locals.ip_id%>"></div>
+
+  <%}%>
+<%}%>
+<%if(locals.preferencesCookie===true&&locals.create_ip_address_row===false){%>
+  <span 
+  hidden
+  hx-get="/api/save-settings"
+  hx-swap="outerHTML"
+  hx-target="this"
+  hx-trigger="load" 
+  ></span>
+<%}else if(locals.showedBanner===true && locals.preferencesCookie===false){%>
+  <span 
+  hidden
+  hx-get="/cookies/denied-preference-cookies"
+  hx-swap="outerHTML"
+  hx-target="this"
+  hx-trigger="load"
+  ></span>
+<%}else if (locals.create_ip_address_row===true){%>
+  <span 
+  hidden
+  hx-get="/api/save-settings"
+  hx-swap="outerHTML"
+  hx-target="this"
+  hx-trigger="load"
+  ></span>
+<%}%>
+
+

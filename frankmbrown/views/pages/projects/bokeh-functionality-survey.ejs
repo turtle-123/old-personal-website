@@ -1,0 +1,123 @@
+<%# 
+PAGE ROUTE: /projects/bokeh-functionality-survey
+PAGE DESCRIPTION: 
+PAGE KEYOWRDS: [/]
+PAGE IMAGE: 
+PAGE VARIABLES:
+-------------------------
+- locals.hello (number): 
+- locals.world (string|undefined): 
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  <h1 class="page-title">Bokeh Survey Functionality</h1>
+
+  <%-include('../../partials/bokeh-tags.ejs')%>
+  
+  <section id="about-page" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#about-page" class="same-page bold">
+          About Page
+        </a>
+      </h2>
+      <p class="mt-2">
+        I am creating this page to test out how I am going to show survey results using <a class="secondary link" target="_blank" href="https://bokeh.org/">Bokeh</a>. There are two main types of survey responses that need to be shown:
+      </p>
+      <ol class="mt-1">
+        <li><span class="bold">Dimensionality Reduction Plots</span>: for survey questions where the survey response is embedded into a numerical vector of some length and must be dimensionality reduced in order to show on a plot.</li>
+        <li><span class="bold">Histogram Plots</span>: For survey questions where the responses are numerical or able to be grouped into bins. This survey response type should be used for Date questions, Datetime questions, time questions, range questions, month questions, selection questions, and number questions</li>
+        <li><span class="bold">Bar Charts</span>: for survey questions like multiple choice questions, ranking questions, and checkbox questions, where you want to show how many times an option was selected (or how frequently an option was ranked in a certain position in the case of ranking questions). </li>
+      </ol>
+  </section>
+  
+  <section id="bokeh-test" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#bokeh-test" class="same-page bold">
+          Bokeh Text
+        </a>
+      </h2>
+      <script type="text/javascript" defer nonce="<%=locals.jsNonce%>">
+        (function() {
+  const fn = function() {
+    Bokeh.safely(function() {
+      (function(root) {
+        function embed_document(root) {
+        const docs_json = '{"8446cd4b-2dad-438b-83f7-ecd5983cc726":{"version":"3.6.3","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p1133","attributes":{"x_range":{"type":"object","name":"DataRange1d","id":"p1134"},"y_range":{"type":"object","name":"DataRange1d","id":"p1135"},"x_scale":{"type":"object","name":"LinearScale","id":"p1143"},"y_scale":{"type":"object","name":"LinearScale","id":"p1144"},"title":{"type":"object","name":"Title","id":"p1136","attributes":{"text":"Multiple glyphs example"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1174","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1168","attributes":{"selected":{"type":"object","name":"Selection","id":"p1169","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1170"},"data":{"type":"map","entries":[["x",[1,2,3,4,5]],["y",[6,7,2,4,5]]]}}},"view":{"type":"object","name":"CDSView","id":"p1175","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1176"}}},"glyph":{"type":"object","name":"Line","id":"p1171","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"line_color":"#004488","line_width":3}},"nonselection_glyph":{"type":"object","name":"Line","id":"p1172","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"line_color":"#004488","line_alpha":0.1,"line_width":3}},"muted_glyph":{"type":"object","name":"Line","id":"p1173","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"line_color":"#004488","line_alpha":0.2,"line_width":3}}}},{"type":"object","name":"GlyphRenderer","id":"p1185","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1179","attributes":{"selected":{"type":"object","name":"Selection","id":"p1180","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1181"},"data":{"type":"map","entries":[["x",[1,2,3,4,5]],["y",[2,3,4,5,6]]]}}},"view":{"type":"object","name":"CDSView","id":"p1186","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1187"}}},"glyph":{"type":"object","name":"Line","id":"p1182","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"line_color":"#906c18","line_width":3}},"nonselection_glyph":{"type":"object","name":"Line","id":"p1183","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"line_color":"#906c18","line_alpha":0.1,"line_width":3}},"muted_glyph":{"type":"object","name":"Line","id":"p1184","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"line_color":"#906c18","line_alpha":0.2,"line_width":3}}}},{"type":"object","name":"GlyphRenderer","id":"p1195","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1189","attributes":{"selected":{"type":"object","name":"Selection","id":"p1190","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1191"},"data":{"type":"map","entries":[["x",[1,2,3,4,5]],["y",[4,5,5,7,2]]]}}},"view":{"type":"object","name":"CDSView","id":"p1196","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1197"}}},"glyph":{"type":"object","name":"Scatter","id":"p1192","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"size":{"type":"value","value":16},"line_color":{"type":"value","value":"#bb5566"},"fill_color":{"type":"value","value":"#bb5566"},"hatch_color":{"type":"value","value":"#bb5566"}}},"nonselection_glyph":{"type":"object","name":"Scatter","id":"p1193","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"size":{"type":"value","value":16},"line_color":{"type":"value","value":"#bb5566"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"value","value":"#bb5566"},"fill_alpha":{"type":"value","value":0.1},"hatch_color":{"type":"value","value":"#bb5566"},"hatch_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"Scatter","id":"p1194","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"size":{"type":"value","value":16},"line_color":{"type":"value","value":"#bb5566"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"value","value":"#bb5566"},"fill_alpha":{"type":"value","value":0.2},"hatch_color":{"type":"value","value":"#bb5566"},"hatch_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1142","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1155"},{"type":"object","name":"WheelZoomTool","id":"p1156","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1157","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1158","attributes":{"syncable":false,"line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","handles":{"type":"object","name":"BoxInteractionHandles","id":"p1164","attributes":{"all":{"type":"object","name":"AreaVisuals","id":"p1163","attributes":{"fill_color":"white","hover_fill_color":"lightgray"}}}}}}}},{"type":"object","name":"SaveTool","id":"p1165"},{"type":"object","name":"ResetTool","id":"p1166"},{"type":"object","name":"HelpTool","id":"p1167"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1150","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1151","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1152"},"axis_label":"y","major_label_policy":{"type":"object","name":"AllLabels","id":"p1153"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1145","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1146","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1147"},"axis_label":"x","major_label_policy":{"type":"object","name":"AllLabels","id":"p1148"}}}],"center":[{"type":"object","name":"Grid","id":"p1149","attributes":{"axis":{"id":"p1145"}}},{"type":"object","name":"Grid","id":"p1154","attributes":{"dimension":1,"axis":{"id":"p1150"}}},{"type":"object","name":"Legend","id":"p1177","attributes":{"items":[{"type":"object","name":"LegendItem","id":"p1178","attributes":{"label":{"type":"value","value":"Temp."},"renderers":[{"id":"p1174"}]}},{"type":"object","name":"LegendItem","id":"p1188","attributes":{"label":{"type":"value","value":"Rate"},"renderers":[{"id":"p1185"}]}},{"type":"object","name":"LegendItem","id":"p1198","attributes":{"label":{"type":"value","value":"Objects"},"renderers":[{"id":"p1195"}]}}]}}]}}]}}';
+        const render_items = [{"docid":"8446cd4b-2dad-438b-83f7-ecd5983cc726","roots":{"p1133":"c7664c8f-e8fc-445f-b0bd-213f3cff565e"},"root_ids":["p1133"]}];
+        root.Bokeh.embed.embed_items(docs_json, render_items);
+        }
+        if (root.Bokeh !== undefined) {
+          embed_document(root);
+        } else {
+          let attempts = 0;
+          const timer = setInterval(function(root) {
+            if (root.Bokeh !== undefined) {
+              clearInterval(timer);
+              embed_document(root);
+            } else {
+              attempts++;
+              if (attempts > 100) {
+                clearInterval(timer);
+                console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+              }
+            }
+          }, 10, root)
+        }
+      })(window);
+    });
+  }; 
+  if (document.readyState != "loading") fn();
+  else document.addEventListener("DOMContentLoaded", fn);
+})();
+    </script>
+      <div id="c7664c8f-e8fc-445f-b0bd-213f3cff565e" data-root-id="p1133" style="display: contents;"></div>
+
+
+  </section>
+
+  <section id="histogram-functionality" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#histogram-functionality" class="same-page bold">
+          Histogram Functionality
+        </a>
+      </h2>
+      <p class="mt-2">
+        
+      </p>
+  </section>
+
+  <section id="dim-red-func" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#dim-red-func" class="same-page bold">
+          Dimensionality Reduction Functionality
+        </a>
+      </h2>
+      <p class="nt-2">
+
+      </p>
+  </section>
+
+  <section id="bar-chart-functionality" class="mt-4">
+    <h2 class="bold bb-thick h2">
+    <a href="#bar-chart-functionality" class="same-page bold">
+        Bar Chart Functionality
+    </a>
+    </h2>
+    <p class="nt-2">
+
+    </p>
+</section>
+
+  <section id="color-question-functionality" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#color-question-functionality" class="same-page bold">
+          Color Question Functionality
+        </a>
+      </h2>
+      <p class="mt-2">
+
+      </p>
+  </section>
+
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

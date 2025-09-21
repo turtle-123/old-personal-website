@@ -1,0 +1,281 @@
+<%# 
+PARTIAL ROUTE: pages/projects/image-editor.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.phone
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+      
+    <h1 class="page-title">Table Conversion</h1>
+
+    <section id="why-create-this-page" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#why-create-this-page" class="same-page bold">
+            Why Create This Page
+          </a>
+        </h2>
+        <p class="mt-2">
+            It is sometimes frustrating to convert HTML tables between formats, which is why I am creating this page. Using the forms below, you can either 
+        </p>
+        <ol>
+            <li>Upload a CSV / Excel file and convert it to another format.</li>
+            <li>Upload some text, specify what format the text is in, and convert the tabular representation into another format.</li>
+            <li>Insert a URL, get the tables from the page, and convert it to a different format.</li>
+        </ol>
+    </section>
+
+    <section id="file-to-table" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#file-to-table" class="same-page bold">
+          File to Table Format
+        </a>
+      </h2>
+      <p class="mt-2">
+        Upload an Excel or CSV file using the file input below and select the output format to which you want to convert the table. Submit the form to receive the table in a different format.
+      </p>
+      <form hx-encoding="multipart/form-data" class="mt-2" hx-post="/projects/table-conversion/file" hx-indicator="#ind_140d3455-1a65-4370-8b1f-03cc2eceac29" hx-target="#tar_b76b2e74-7e51-4ada-bb64-5993badebe5e" hx-trigger="submit" hx-swap="innerHTML">
+        <label for="table-file" class="body1 bold">Excel or CSV File:</label>
+        <input id="table-file" name="table-file" class="mt-1 primary" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+        <label class="checkbox mt-2">
+        <input type="checkbox" class="info" name="include-heading-row" id="include-heading-row" value="on" checked>
+        Include Heading Row
+        </label>
+
+        <fieldset class="mt-2">
+          <legend class="h6 bold">Input Format:</legend>
+          <div class="mt-1 flex-row wrap gap-2">
+            <label class="radio">
+            <input type="radio" class="secondary" name="text-input-type" value="html" checked>
+            HTML
+            </label>
+            <label class="radio">
+            <input type="radio" class="warning" name="text-input-type" value="markdown">
+              Markdown
+            </label>
+            <label class="radio">
+            <input type="radio" class="error" name="text-input-type" value="csv">
+              CSV
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="body1 bold mt-2" id="output-format-1">Output Format:</div>
+        <div class="mt-1 flex-row justify-start">
+          <div class="select">
+            <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="output-format-dropdown-1" aria-labelledby="output-format-1" class="select" aria-label="Output Table Format" data-popover style="min-width: 140px;" data-pelem="#output-format-dropdown-1" data-click aria-expanded="false">
+              <span class="body1">CSV</span>
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+            </button>
+            <div tabindex="0" id="output-format-dropdown-1" role="listbox" class="select-menu o-xs" data-placement="bottom">
+              <input type="text" hidden value="csv" name="output-format">
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val="csv">
+                CSV
+              </button>
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="excel" disabled>
+                Excel
+              </button>
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="json">
+                JSON
+              </button>
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="markdown">
+                Markdown
+              </button>
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="html">
+                HTML
+              </button>
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="rte">
+                Rich Text Editor
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_140d3455-1a65-4370-8b1f-03cc2eceac29">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+
+        <output class="mt-2" id="tar_b76b2e74-7e51-4ada-bb64-5993badebe5e"></output>
+     </section>
+
+
+    <section id="text-to-table" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#text-to-table" class="same-page bold">
+            Text to Table Format
+          </a>
+        </h2>
+        <p class="mt-2">
+          Insert the table in HTML, markdown, or csv form which you want to convert to another format. See this <a class="secondary link" target="_blank" href="https://colab.research.google.com/notebooks/markdown_guide.ipynb">Google Colab page</a> to see how to properly format the markdown. Select the output format of the table, and submit the form. 
+        </p>
+        <form class="mt-2" hx-post="/projects/table-conversion/text" hx-indicator="#ind_46329a17-91a3-411d-8aa1-35c37d1f6240" hx-target="#tar_72ff840c-21fa-4a6a-927d-00b561cd5509" hx-trigger="submit" hx-swap="innerHTML">
+          <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+            <label for="table-text">Table Text:</label>
+            <div class="mt-1 text-input block medium disabled">
+                <textarea 
+                name="table-text" 
+                id="table-text" 
+                placeholder="Paste the Table HTML, the Table Markdown, or the Table in CSV form that you wish to convert to another format. The markdown table should be in the same format as specified by Markdown Guide - Colab - Google." 
+                rows="5"  
+                spellcheck="true"
+                autocomplete="off"
+                autocapitalize="off"
+                style="resize: vertical!important; min-height: 100px!important;"
+                ></textarea>
+            </div>
+          </div>
+          <div class="body1 bold mt-2" id="output-format-2">Output Format:</div>
+          <div class="mt-1 flex-row justify-start">
+            <div class="select">
+              <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="output-format-dropdown-2" aria-labelledby="output-format-2" class="select" aria-label="Output Table Format" data-popover style="min-width: 140px;" data-pelem="#output-format-dropdown-2" data-click aria-expanded="false">
+                <span class="body1">CSV</span>
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+              </button>
+              <div tabindex="0" id="output-format-dropdown-2" role="listbox" class="select-menu o-xs" data-placement="bottom">
+                <input type="text" hidden value="csv" name="output-format">
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val="csv">
+                  CSV
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="excel" disabled>
+                  Excel
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="json">
+                  JSON
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="markdown">
+                  Markdown
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="html">
+                  HTML
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="rte">
+                  Rich Text Editor
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="mt-2">
+            <legend class="h6 bold">Text Input Type</legend>
+            <div class="flex-row wrap align-center gap-2">
+              <label class="radio">
+              <input type="radio"  name="text-input-type" value="csv" class="primary" checked>
+              csv
+              </label>
+              <label class="radio">
+              <input type="radio"  name="text-input-type" value="markdown" class="success">
+              Markdown
+              </label>
+              <label class="radio">
+              <input type="radio"  name="text-input-type" value="html" class="info">
+              HTML
+              </label>
+            </div>
+
+          </fieldset>
+
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+          </form>
+          <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_46329a17-91a3-411d-8aa1-35c37d1f6240">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <output class="mt-2" id="tar_72ff840c-21fa-4a6a-927d-00b561cd5509">
+
+          </output>
+    </section>
+
+    <section id="url-to-table" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#url-to-table" class="same-page bold">
+            URL to Table Format
+          </a>
+        </h2>
+        <p class="mt-2">
+          Insert a URL using the link below 
+        </p>
+        <form class="mt-2" hx-post="/projects/table-conversion/url" hx-indicator="#ind_a6c23124-111d-4292-a315-0caf9b5e747e" hx-target="#tar_1a9f3783-a283-4fd0-8a3a-71be64fcdcd8" hx-trigger="submit" hx-swap="innerHTML">
+          <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+            <label for="url-of-table-page">URL of Table Page:</label>
+            <div class="text-input block medium">
+                <input
+                name="url-of-table-page"
+                id="url-of-table-page" 
+                class="mt-1 medium icon-before" 
+                placeholder="URL of table page..." 
+                autocomplete="off" 
+                autocapitalize="off" 
+                spellcheck="false" 
+                type="url" 
+                >
+                <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Link">
+                    <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z">
+                    </path>
+                </svg>
+            </div>
+          </div>
+
+          <div class="body1 bold mt-2" id="output-format-3">Output Format:</div>
+          <div class="mt-1 flex-row justify-start">
+            <div class="select">
+              <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="output-format-dropdown-3" aria-labelledby="output-format-3" class="select" aria-label="Output Table Format" data-popover style="min-width: 140px;" data-pelem="#output-format-dropdown-3" data-click aria-expanded="false">
+                <span class="body1">CSV</span>
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+              </button>
+              <div tabindex="0" id="output-format-dropdown-3" role="listbox" class="select-menu o-xs" data-placement="bottom">
+                <input type="text" hidden value="csv" name="output-format">
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val="csv">
+                  CSV
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="excel" disabled>
+                  Excel
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="json">
+                  JSON
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="markdown">
+                  Markdown
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="html">
+                  HTML
+                </button>
+                <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="rte">
+                  Rich Text Editor
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+          </form>
+          <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_8530423d-62cd-4b9b-8a68-a91adb165f70">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <output class="mt-2" id="tar_1a9f3783-a283-4fd0-8a3a-71be64fcdcd8">
+
+          </output>
+    </section>
+
+    <%-include('../../partials/pagePartial')%>
+<%}%>

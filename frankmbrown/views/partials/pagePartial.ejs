@@ -1,0 +1,68 @@
+<%# 
+PARTIAL ROUTE: partials/pagePartial.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.noIndex
+- locals.js
+- locals.css
+- locals.bodyClass
+- locals.pageRequest
+- locals.subPageRequest
+- locals.title
+- locals.description
+- locals.keywords
+- locals.fullPageRequest
+- locals.title
+- locals.url
+- locals.description
+- locals.pageImage
+- locals.twitterImage
+%>
+
+<%if(!!!locals.fullPageRequest){%>
+  <%-include('./breadcrumbs')%>
+  <%-include('./onThisPage')%>
+  <%-include('./article-annotation')%>
+  <title hx-swap-oob="true" data-ignore-oob id="PAGE_TITLE"><%=locals.title%></title>
+  <meta  hx-swap-oob="true" data-ignore-oob name="description" id="PAGE_DESCRIPTION" content="<%=locals.description%>"/>
+  <meta  hx-swap-oob="true" data-ignore-oob name="keywords" id="PAGE_KEYWORDS" content="<%=locals.keywords.join(', ')%>" />
+  <meta  hx-swap-oob="true" data-ignore-oob id="META_OG_TITLE" property="og:title" content="<%=locals.title%>" />
+  <meta  hx-swap-oob="true" data-ignore-oob id="META_OG_URL" property="og:url" content="<%=locals.url%>" />
+  <meta  hx-swap-oob="true" data-ignore-oob id="META_OG_DESCRIPTION" property="og:description" content="<%=locals.description%>" />
+  <meta  hx-swap-oob="true" data-ignore-oob id="META_OG_IMAGE" property="og:image" content="<%=locals.pageImage%>" />
+  <meta  hx-swap-oob="true" data-ignore-oob id="TWITTER_TITLE" property="twitter:title" content="<%=locals.title%>" />
+  <meta  hx-swap-oob="true" data-ignore-oob id="TWITTER_DESCRIPTON" property="twitter:description" content="<%=locals.description%>" />
+  <meta  hx-swap-oob="true" data-ignore-oob id="TWITTER_IMAGE" property="twitter:image" content="<%=locals.twitterImage%>" />
+  <meta  hx-swap-oob="true" data-ignore-oob id="TWITTER_IMAGE_ALT" property="twitter:image:alt" content="<%=locals.title%> Page - Twitter Image" />
+
+  <head hx-head="merge">
+   
+    
+  
+    <%if(locals.noIndex===true){%>
+      <meta name="robots" content="noindex"/>
+    <%}%>
+    <%if(locals.js){%>
+        <%-locals.js%>
+    <%}%>
+    <%if(locals.css){%>
+        <%-locals.css%>
+    <%}%>
+  </head>
+  <div role="tooltip" class="body2 tooltip" id="date-created-tool">
+    Date Created
+  </div>
+  <div role="tooltip" class="body2 tooltip" id="last-edit-tool">
+    Last Edited
+  </div>
+  <%if(locals.bodyClass){%>
+    <div hidden data-value="<%=locals.bodyClass%>" id="MAIN_CLASS" hx-swap-oob="true"></div>
+  <%}else{%>
+    <div hidden data-value="none" id="MAIN_CLASS" hx-swap-oob="true"></div>
+  <%}%>
+  <%if(locals.snackbarMessage){%>
+    <%-locals.snackbarMessage%>
+  <%}%>
+<%}%>

@@ -1,0 +1,2903 @@
+<%# 
+PARTIAL ROUTE: pages/projects/convert-file-type.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.desktop?"195px":"190px"
+- locals.desktop?"259px":"252px"
+- locals.desktop?"195":"190"
+- locals.desktop?"259":"252"
+- locals.desktop?"112px":"212px"
+- locals.desktop?"200px":"380px"
+- locals.desktop?"200":"380"
+- locals.desktop?"112":"212"
+- locals.desktop?'680px':'380px'
+- locals.desktop?'200px':'241px'
+- locals.desktop?'680':'380'
+- locals.desktop?'200':'241'
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+      
+    <h1 class="page-title">Convert File Type</h1>
+
+    <section id="about-this-page" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#about-this-page" class="same-page bold">
+            About This Page
+          </a>
+        </h2>
+        <p class="mt-2">
+            I wanted to create this page to make it easier for me to convert between file types for image, video, audio, and text files. I also wanted to create this page to test out markdown to HTML and <span id="cop_html_9078601916874571" class="inline-katex">
+                <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>
+                </span> to HTML using <a class="secondary link" target="_blank" href="https://pandoc.org/MANUAL.html">pandoc</a>.
+        </p>
+        <p class="mt-1">
+            It is also a good way to learn about <a class="secondary link" target="_blank" href="https://imagemagick.org/index.php">ImageMagick</a> (for images),  <a class="secondary link" target="_blank" href="https://www.ffmpeg.org/">ffmpeg</a> (for audio and video) and <a class="secondary link" target="_blank" href="https://pandoc.org/">pandoc</a> (for text files).
+        </p>
+    </section>
+
+    <section id="convert-image-file" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#convert-image-file" class="same-page bold">
+            Convert Image File Type
+          </a>
+        </h2>
+        <p class="mt-2">
+            I am using <a class="secondary link" target="_blank" href="https://imagemagick.org/index.php">ImageMagick</a> to convert between image types. See the supported formats in the section below.
+            In the form below, upload an image and choose an output image type. Submit the form and a link to the resulting image, with the new format, wll be returned.
+        </p>
+        <img 
+        sizes="(max-width: 500px) 108.97058823529412px, (min-width:500px) 195px" 
+        data-v="1" 
+        loading="lazy" 
+        data-original-device="desktop" 
+        src="https://image.storething.org/frankmbrown/f406a09c-d110-468f-acd6-d27f3ac00d4e.jpg" 
+        style="margin: 4px auto; aspect-ratio: 49 / 65; max-width:100%; min-width:108.97058823529412px; min-height: 148px; width: <%-locals.desktop?"195px":"190px"%>; height: <%-locals.desktop?"259px":"252px"%>"
+        width="<%-locals.desktop?"195":"190"%>" 
+        height="<%-locals.desktop?"259":"252"%>"
+        alt="ImageMagick" 
+        data-text="" />
+
+        <section id="support-image-file-format" class="mt-4">
+            <div class="flex-row bb-thick justify-between">
+              <h3 class="bold h3">
+                <a href="#support-image-file-format" class="same-page bold">
+                  Supported Image File Formats
+                </a>
+              </h3>
+              <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#support-image-file-format-hide">
+                 <svg data-arrow="" focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp" style="transform: rotate(180deg) !important;"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+                 <span data-hide="" hidden="">HIDE</span>
+                 <span data-show="">SHOW</span>
+               </button>
+            </div>
+            <div id="support-image-file-format-hide" class="mt-3" hidden>
+             <div class="table-wrapper">
+                 <table class="table" cellspacing="0">
+                     <caption class="h5 bold">Supported Image Formats</caption>
+                     <tbody>
+                     <tr>
+                         <th scope="col" class="bold">
+                             Format
+                         </th>
+                         <th scope="col" class="bold">
+                             Mode
+                             </td>
+                         <th scope="col" class="bold">
+                             Description
+                         </th>
+                         <th scope="col" class="bold">
+                             Notes
+                         </th>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="https://fileinfo.com/extension/aai">AAI</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Dune HD AAI Image (aka
+                                 Auburn Animation Image)
+                             </p>
+                         </td>
+                         <td>
+                             <p>Format used by Dune HD media players to display
+                                 images with transparency, such as icons for
+                                 Internet radio stations or channels.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>ART</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>PFS: 1st Publisher</p>
+                         </td>
+                         <td>
+                             <p>Format originally used on the Macintosh
+                                 (MacPaint?) and later used for PFS: 1st
+                                 Publisher clip art.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="https://aomediacodec.github.io/av1-avif/">AVIF</a></p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>AVIF Image File Format</p>
+                         </td>
+                         <td>
+                             <p>AV1 in a _HEIF container.  AVIF is supported
+                                 via libheif if it supports AVIF decode.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>AVS</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>AVS X image</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.fileformat.info/format/bmp/egff.htm">BMP</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Microsoft Windows bitmap</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.fileformat.info/format/cals/egff.htm">CALS</a></p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Continuous Acquisition
+                                 and Life-cycle Support
+                                 Type 1 image
+                             </p>
+                         </td>
+                         <td>
+                             <p>Specified in MIL-R-28002 and MIL-PRF-28002.
+                                 Standard blueprint archive format as used by the
+                                 US military to replace microfiche.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="motion-picture.html">CIN</a></p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Kodak Cineon</p>
+                         </td>
+                         <td>
+                             <p>Kodak Cineon Log format (4.5 draft).
+                                 Precursor to SMPTE <a class="link secondary fw-regular" target="_blank" href="motion-picture.html">DPX</a>
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.fileformat.info/format/cgm/egff.htm">CGM</a></p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Computer Graphics
+                                 Metafile
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://www.agocg.ac.uk/train/cgm/ralcgm.htm">ralcgm</a> to render CGM files.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>CMYK</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Raw cyan, magenta,
+                                 yellow, and black samples
+                             </p>
+                         </td>
+                         <td>
+                             <p>Use -size, -depth, -endian, and -interlace to
+                                 specify the image width, height, depth, byte
+                                 order, and interlace.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>CUR</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Microsoft Cursor Icon</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>CUT</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>DR Halo</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>DCM</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Digital Imaging and
+                                 Communications in
+                                 Medicine (<a class="link secondary fw-regular" target="_blank" href="http://dicom.nema.org/">DICOM</a>) image
+                             </p>
+                         </td>
+                         <td>
+                             <p>Used by the medical community for images like
+                                 X-rays. See the NEMA <a class="link secondary fw-regular" target="_blank" href="http://dicom.nema.org/">DICOM</a> web site for more
+                                 information. <a class="link secondary fw-regular" target="_blank" href="http://dicom.nema.org/">DICOM</a> is the basis for the
+                                 <a class="link secondary fw-regular" target="_blank" href="http://www.geinspectiontechnologies.com/en/products/software/diconde.html">DICONDE</a> format.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>DCX</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>ZSoft IBM PC multi-page
+                                 Paintbrush image
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>DIB</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Microsoft Windows Device
+                                 Independent Bitmap
+                             </p>
+                         </td>
+                         <td>
+                             <p>DIB is a BMP file without the BMP header. Used
+                                 to support embedded images in compound formats
+                                 like WMF.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="motion-picture.html">DPX</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Digital Moving Picture
+                                 Exchange
+                             </p>
+                         </td>
+                         <td>
+                             <p>RGB and grayscale are fully supported at 1, 8,
+                                 10, 12, and 16 bits as per the <a class="link secondary fw-regular" target="_blank" href="http://www.smpte.org/">SMPTE</a> 268M-2003
+                                 (V2.0) specification. This includes support for
+                                 images stored in a planar (multi-element)
+                                 configuration and Cineon Log RGB. Rec. 601 and
+                                 709 YCbCr are fully supported with 4:4:4 and
+                                 4:2:2 subsampling. <a class="link secondary fw-regular" target="_blank" href="motion-picture.html">DPX</a> is commonly used to
+                                 store image frames in film and HDTV production.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>EMF</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Microsoft Enhanced
+                                 Metafile (32-bit)
+                             </p>
+                         </td>
+                         <td>
+                             <p>Only available under Microsoft Windows.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>EPDF</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Encapsulated Portable
+                                 Document Format
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>EPI</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Adobe Encapsulated
+                                 PostScript Interchange
+                                 format
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a> to read.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>EPS</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Adobe Encapsulated
+                                 PostScript
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a> to read.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>EPS2</p>
+                         </td>
+                         <td>
+                             <p>W</p>
+                         </td>
+                         <td>
+                             <p>Adobe Level II
+                                 Encapsulated PostScript
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a> to read.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>EPS3</p>
+                         </td>
+                         <td>
+                             <p>W</p>
+                         </td>
+                         <td>
+                             <p>Adobe Level III
+                                 Encapsulated PostScript
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a> to read.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>EPSF</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Adobe Encapsulated
+                                 PostScript
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a> to read.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>EPSI</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Adobe Encapsulated
+                                 PostScript Interchange
+                                 format
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a> to read.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>EPT</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Adobe Encapsulated
+                                 PostScript Interchange
+                                 format with <a class="link secondary fw-regular" target="_blank" href="http://www.simplesystems.org/libtiff/">TIFF</a> preview
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a> to read.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>FAX</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Group 3 FAX</p>
+                         </td>
+                         <td>
+                             <p>Note that FAX machines use non-square pixels
+                                 which are 1.5 times wider than they are tall but
+                                 computer displays use square pixels, so FAX
+                                 images may appear to be narrow unless they are
+                                 explicitly resized using a resize specification
+                                 of "150x100%". Please note that this is <em>not</em> a
+                                 <a class="link secondary fw-regular" target="_blank" href="http://www.simplesystems.org/libtiff/">TIFF</a> format.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>FIG</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>FIG graphics format</p>
+                         </td>
+                         <td>
+                             <p>Requires TransFig.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.cv.nrao.edu/fits/">FITS</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Flexible Image Transport
+                                 System
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>FPX</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>FlashPix Format</p>
+                         </td>
+                         <td>
+                             <p>Requires FlashPix SDK.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.fileformat.info/format/gif/egff.htm">GIF</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>CompuServe Graphics
+                                 Interchange Format
+                             </p>
+                         </td>
+                         <td>
+                             <p>8-bit RGB PseudoColor with up to 256 palette
+                                 entries. Specify the format "GIF87" to write the
+                                 older version 87a of the format.
+                             </p>
+                             <p>The PNG format provides a superior set of
+                                 features to GIF. Consider using PNG format
+                                 rather than GIF if clients are able to read PNG.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>GRAY</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Raw gray samples</p>
+                         </td>
+                         <td>
+                             <p>Use -size, -depth, and -endian to specify the
+                                 image width, height, depth, and byte order.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>GRAYA</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Raw gray samples + alpha</p>
+                         </td>
+                         <td>
+                             <p>Use -size, -depth, and -endian to specify the
+                                 image width, height, depth, and byte order.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format">HEIF</a></p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>High Efficiency Image
+                                 File Format (with
+                                 h.265/HEVC encoding)
+                             </p>
+                         </td>
+                         <td>
+                             <p>HEIF is a container format supporting multiple
+                                 codecs.  HEIF with h.265/HEVC encoding
+                                 is supported via libheif and libde265.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>HPGL</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>HP-GL plotter language</p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://www.gnu.org/software/hp2xx/hp2xx.html">hp2xx</a> 3.2.0 or later</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>HTML</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Hypertext Markup Language
+                                 with a client-side image
+                                 map
+                             </p>
+                         </td>
+                         <td>
+                             <p>Also known as "HTM". Requires html2ps to read.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>HRZ</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Slow-Scan Television
+                                 (SSTV)
+                             </p>
+                         </td>
+                         <td>
+                             <p>This a format used when an image is transmitted
+                                 over amateur radio using audio equipment.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>ICO</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Microsoft icon</p>
+                         </td>
+                         <td>
+                             <p>Also known as "ICON".</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.jpeg.org/">JBIG</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Joint Bi-level Image
+                                 experts Group file
+                                 interchange format
+                             </p>
+                         </td>
+                         <td>
+                             <p>Also known as "BIE" and "JBG". Requires
+                                 <a class="link secondary fw-regular" target="_blank" href="http://www.cl.cam.ac.uk/~mgk25/jbigkit/">jbigkit</a> 1.0 or later
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.libmng.com/">JNG</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.jpeg.org/">JPEG</a> Network Graphics</p>
+                         </td>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.jpeg.org/">JPEG</a> in a PNG-style wrapper with transparency.
+                                 Requires libjpeg and libpng-1.0.2 or later,
+                                 libpng-1.2.5 or later recommended.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>JP2</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>JPEG-2000 JP2 File Format
+                                 Syntax
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://www.ece.uvic.ca/~mdadams/jasper/">jasper</a> 1.600.0 or later</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>JPC</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>JPEG-2000 Code Stream
+                                 Syntax
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://www.ece.uvic.ca/~mdadams/jasper/">jasper</a> 1.600.0 or later</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.jpeg.org/">JPEG</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Joint Photographic
+                                 Experts Group JFIF format
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires jpegsrc.v6b.tar.gz or later</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="https://github.com/libjxl/libjxl/">JXL</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>JPEG XL</p>
+                         </td>
+                         <td>
+                             <p>Requires JPEG XL 0.7 or later</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>MAN</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Unix reference manual
+                                 pages
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires that GNU groff and Ghostcript are
+                                 installed.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>MAT</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>MATLAB image format</p>
+                         </td>
+                         <td>
+                             <p>Coming from <a class="link secondary fw-regular" target="_blank" href="http://www.mathworks.com/">MathWorks</a> for storing matrices.
+                                 Currently supported types are 2D matrices: byte,
+                                 word, double, complex and 3D matrices containing
+                                 RGB [x*y*3] byte, word.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="miff.html">MIFF</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Magick image file format</p>
+                         </td>
+                         <td>
+                             <p>ImageMagick's lossless image format (with
+                                 ASCII header) which ensures that no image
+                                 attributes understood by ImageMagick or
+                                 GraphicsMagick are lost.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>MONO</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Bi-level bitmap in
+                                 least-significant-byte
+                                 first order
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.libmng.com/">MNG</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Multiple-image Network
+                                 Graphics
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires libpng-1.0.2 or later, libpng-1.2.5 or
+                                 later recommended.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.mpeg.org/">MPEG</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Motion Picture Experts
+                                 Group file interchange
+                                 format (version 1)
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires mpeg2vidcodec_v12.tar.gz.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.mpeg.org/">M2V</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Motion Picture Experts
+                                 Group file interchange
+                                 format (version 2)
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires mpeg2vidcodec_v12.tar.gz.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>MPC</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Magick Persistent Cache
+                                 image file format
+                             </p>
+                         </td>
+                         <td>
+                             <p>The native "in-memory" GraphicsMagick
+                                 uncompressed file format. This file format is
+                                 identical to that used by Open ImageMagick to
+                                 represent images in memory and is read in "zero
+                                 time" via memory mapping. The MPC format is not
+                                 portable and is not suitable as an archive
+                                 format. It is suitable as an intermediate format
+                                 for high-performance image processing.
+                             </p>
+                             <p>The MPC format requires two files to support one
+                                 image. When writing the MPC format, a file with
+                                 extension ".mpc" is used to store information
+                                 about the image, while a file with extension
+                                 <span class="docutils literal">.cache</span> stores the image pixels. The storage
+                                 space required by a MPC image (or an image in
+                                 memory) may be calculated by the equation
+                                 (QuantumDepth*Rows*Columns*5)/8.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>MSL</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Magick Scripting Language</p>
+                         </td>
+                         <td>
+                             <p>MSL is the XML-based scripting language
+                                 supported by the conjure utility.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.fileformat.info/format/mtv/egff.htm">MTV</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>MTV Raytracing image
+                                 format
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>MVG</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Magick Vector Graphics.</p>
+                         </td>
+                         <td>
+                             <p>The native GraphicsMagick vector metafile
+                                 format. A text file containing vector drawing
+                                 commands accepted by <a class="link secondary fw-regular" target="_blank" href="convert.html">convert</a>'s -draw option.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>OTB</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>On-the-air Bitmap</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>P7</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Xv's Visual Schnauzer
+                                 thumbnail format
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PALM</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Palm pixmap</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://netpbm.sourceforge.net/doc/pam.html">PAM</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Portable Arbitrary Map
+                                 format
+                             </p>
+                         </td>
+                         <td>
+                             <p>Superset of PNM (PPM, PGM, PPM) raw type formats.
+                                 Supports bilevel, gray, RGB, CMYK, alpha channel.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.fileformat.info/format/pbm/egff.htm">PBM</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Portable bitmap format
+                                 (black and white)
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PCD</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Photo CD</p>
+                         </td>
+                         <td>
+                             <p>The maximum resolution written is 768x512 pixels
+                                 since larger images require huffman compression
+                                 (which is not supported).
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PCDS</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Photo CD</p>
+                         </td>
+                         <td>
+                             <p>Decode with the sRGB color tables.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PCL</p>
+                         </td>
+                         <td>
+                             <p>W</p>
+                         </td>
+                         <td>
+                             <p>HP Page Control Language</p>
+                         </td>
+                         <td>
+                             <p>For output to HP laser printers.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.fileformat.info/format/pcx/egff.htm">PCX</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>ZSoft IBM PC Paintbrush
+                                 file
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PDB</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Palm Database ImageViewer
+                                 Format
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PDF</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Portable Document Format</p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a> to read.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PFA</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Postscript Type 1 font
+                                 (ASCII)
+                             </p>
+                         </td>
+                         <td>
+                             <p>Opening as file returns a preview image.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PFB</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Postscript Type 1 font
+                                 (binary)
+                             </p>
+                         </td>
+                         <td>
+                             <p>Opening as file returns a preview image.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PGM</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Portable graymap format
+                                 (gray scale)
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PICON</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Personal Icon</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PICT</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Apple Macintosh QuickDraw
+                                 /PICT file
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PIX</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Alias/Wavefront RLE image
+                                 format
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PNG</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Portable Network Graphics</p>
+                         </td>
+                         <td>
+                             <p>Requires libpng-1.0.2 or later, libpng-1.2.5 or
+                                 later recommended.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PNM</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Portable anymap</p>
+                         </td>
+                         <td>
+                             <p>PNM is a family of formats supporting portable
+                                 bitmaps (PBM) , graymaps (PGM), and pixmaps
+                                 (PPM). There is no file format associated with
+                                 pnm itself. If PNM is used as the output format
+                                 specifier, then GraphicsMagick automatically
+                                 selects the most appropriate format to represent
+                                 the image.
+                             </p>
+                             <p>The default is to write the binary version of
+                                 the formats. Use '-quality 0' to write the
+                                 ASCII version of the formats.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PPM</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Portable pixmap format
+                                 (color)
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PS</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Adobe PostScript file</p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a> to read.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PS2</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Adobe Level II PostScript
+                                 file
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a> to read.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PS3</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Adobe Level III
+                                 PostScript file
+                             </p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a> to read.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PSD</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Adobe Photoshop bitmap
+                                 file
+                             </p>
+                         </td>
+                         <td>
+                             <p>PSD format is no longer supported since the
+                                 1.3.24 release.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>PTIF</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Pyramid encoded <a class="link secondary fw-regular" target="_blank" href="http://www.simplesystems.org/libtiff/">TIFF</a></p>
+                         </td>
+                         <td>
+                             <p>Multi-resolution <a class="link secondary fw-regular" target="_blank" href="http://www.simplesystems.org/libtiff/">TIFF</a> containing successively
+                                 smaller versions of the image down to the size
+                                 of an icon. The desired sub-image size may be
+                                 specified when reading via the -size option.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.photoworks.com/">PWP</a></p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Seattle File Works
+                                 multi-image file
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>RAS</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.topol.cz/english/share/index.php3">TopoL</a> (GIS)</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>RAD</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://radsite.lbl.gov/radiance/HOME.html">Radiance</a> image file</p>
+                         </td>
+                         <td>
+                             <p>Requires that ra_ppm from the <a class="link secondary fw-regular" target="_blank" href="http://radsite.lbl.gov/radiance/HOME.html">Radiance</a> software
+                                 package be installed.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>RGB</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Raw red, green, and blue
+                                 samples
+                             </p>
+                         </td>
+                         <td>
+                             <p>Use -size, -depth, -endian, and -interlace to
+                                 specify the image width, height, depth, byte
+                                 order, and interlace.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>RGBA</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Raw red, green, and blue
+                                 and matte samples
+                             </p>
+                         </td>
+                         <td>
+                             <p>Use -size, -depth, -endian, and -interlace to
+                                 specify the image width, height, depth, byte
+                                 order, and interlace.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>RLA</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Alias/Wavefront image
+                                 file
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>RLE</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Utah Run length encoded
+                                 image file
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://oreilly.com/www/centers/gff/formats/scitex/">SCT</a></p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Scitex Continuous Tone
+                                 Picture
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.algonet.se/~cyren/sfw/">SFW</a></p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Seattle File Works image</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>SGI</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Irix RGB image</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>SHTML</p>
+                         </td>
+                         <td>
+                             <p>W</p>
+                         </td>
+                         <td>
+                             <p>Hypertext Markup Language
+                                 client-side image map
+                             </p>
+                         </td>
+                         <td>
+                             <p>Used to write HTML clickable image maps based on
+                                 a the output of montage or a format which
+                                 supports tiled images such as <a class="link secondary fw-regular" target="_blank" href="miff.html">MIFF</a>.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>SUN</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>SUN Rasterfile</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.w3.org/Graphics/SVG/">SVG</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Scalable Vector Graphics</p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://xmlsoft.org/">libxml2</a> and <a class="link secondary fw-regular" target="_blank" href="http://www.freetype.org/">freetype2</a>. Note that <a class="link secondary fw-regular" target="_blank" href="http://www.w3.org/Graphics/SVG/">SVG</a>
+                                 is a very complex specification so support is
+                                 still not complete.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>TGA</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Truevision Targa image</p>
+                         </td>
+                         <td>
+                             <p>Also known as formats "ICB", "VDA", and "VST".</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.simplesystems.org/libtiff/">TIFF</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Tagged Image File Format</p>
+                         </td>
+                         <td>
+                             <p>Also known as "TIF". Requires tiff-v3.5.4.tar.gz
+                                 or later. Note that since the Unisys LZW patent
+                                 recently expired, libtiff may still require a
+                                 separate LZW patch in order to support LZW. LZW
+                                 is included in libtiff by default since v3.7.0.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>TIM</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>PSX TIM file</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>TTF</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>TrueType font file</p>
+                         </td>
+                         <td>
+                             <p>Requires <a class="link secondary fw-regular" target="_blank" href="http://www.freetype.org/">freetype2</a>. Opening as file returns a
+                                 preview image.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>TXT</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Raw text file</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>UIL</p>
+                         </td>
+                         <td>
+                             <p>W</p>
+                         </td>
+                         <td>
+                             <p>X-Motif UIL table</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>UYVY</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Interleaved YUV raw image</p>
+                         </td>
+                         <td>
+                             <p>Use -size command line option to specify width
+                                 and height.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>VICAR</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>VICAR rasterfile format</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.fileformat.info/format/viff/egff.htm">VIFF</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Khoros Visualization
+                                 Image File Format
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.openmobilealliance.org/Technical/wapindex.aspx">WBMP</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Wireless bitmap</p>
+                         </td>
+                         <td>
+                             <p>Support for uncompressed monochrome only.</p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="https://developers.google.com/speed/webp/">WebP</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>Google's WebP</p>
+                         </td>
+                         <td>
+                             <p>Requires libwebp from
+                                 "<a class="link secondary fw-regular" target="_blank" href="https://developers.google.com/speed/webp/">https://developers.google.com/speed/webp/</a>".
+                                 WebP is good for small photos for the web and is
+                                 supported by Google's Chrome and Firefox.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.fileformat.info/format/wmf/egff.htm">WMF</a></p>
+                         </td>
+                         <td></td>
+                         <td>
+                             <p>Windows Metafile</p>
+                         </td>
+                         <td>
+                             <p>Requires libwmf. By default, renders WMF files
+                                 using the dimensions specified by the metafile
+                                 header. Use the -density option to adjust the
+                                 output resolution, and thereby adjust the output
+                                 size. The default output resolution is 72DPI so
+                                 "-density 144" results in an image twice as
+                                 large as the default. Use -background <a class="link secondary fw-regular" target="_blank" href="color.html">color</a> to
+                                 specify the WMF background color (default white)
+                                 or -texture filename to specify a background
+                                 texture image.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.fileformat.info/format/wpg/egff.htm">WPG</a></p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>Word Perfect Graphics
+                                 File
+                             </p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.fileformat.info/format/xbm/egff.htm">XBM</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>X Windows system bitmap,
+                                 black and white only
+                             </p>
+                         </td>
+                         <td>
+                             <p>Used by the X Windows System to store monochrome
+                                 icons.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>XCF</p>
+                         </td>
+                         <td>
+                             <p>R</p>
+                         </td>
+                         <td>
+                             <p>GIMP image</p>
+                         </td>
+                         <td></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.fileformat.info/format/xpm/egff.htm">XPM</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>X Windows system pixmap</p>
+                         </td>
+                         <td>
+                             <p>Also known as "PM". Used by the X Windows System
+                                 to store color icons.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p><a class="link secondary fw-regular" target="_blank" href="http://www.fileformat.info/format/xwd/egff.htm">XWD</a></p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>X Windows system window
+                                 dump
+                             </p>
+                         </td>
+                         <td>
+                             <p>Used by the X Windows System to save/display
+                                 screen dumps.
+                             </p>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <p>YUV</p>
+                         </td>
+                         <td>
+                             <p>RW</p>
+                         </td>
+                         <td>
+                             <p>CCIR 601 4:1:1</p>
+                         </td>
+                         <td>
+                             <p>Use -size command line option to specify width
+                                 and height.
+                             </p>
+                         </td>
+                     </tr>
+                     </tbody>
+                 </table>
+             </div>
+            </div>
+          </section>
+
+        <form class="mt-2" hx-encoding="multipart/form-data" hx-post="/projects/convert-file-type/image" data-loading="Converting Image File Type" hx-target="#tar_2ca07a6f-ed6f-424e-99e1-2f3629589ad0" hx-trigger="submit" hx-swap="innerHTML">
+        <div class="flex-row gap-2 align-start justify-start">
+            <div style="flex-shrink: 0;width: 200px;">
+                <label for="image-file" class="bold mt-2">Upload Image File:</label>
+                <input data-ignore-change data-image-input type="file" id="image-file" accept=".aai,.art,.avs,.bmp,.cmyk,.dcx,.dib,.dpx,.epdf,.epi,.eps,.eps2,.eps3,.epsf,.epsi,.ept,.fax,.fits,.fpx,.gif,.gray,.graya,.html,.hrz,.jbig,.jng,.jp2,.jpc,.jpeg,.jxl,.mat,.miff,.mono,.mng,.mpeg,.m2v,.mpc,.msl,.mtv,.mvg,.otb,.p7,.palm,.pam,.pbm,.pcd,.pcds,.pcl,.pcx,.pdb,.pdf,.pgm,.picon,.pict,.png,.pnm,.ppm,.ps,.ps2,.ps3,.psd,.ptif,.rgb,.rgba,.sgi,.shtml,.sun,.svg,.tga,.tiff,.txt,.uil,.uyvy,.vicar,.viff,.wbmp,.webp,.xbm,.xpm,.xwd,.yuv" name="image-file" class="mt-1 secondary">
+                <output class="block" for="image-file"></output>
+            </div>
+            <div class="grow-1">
+                <div class="body1 bold" id="output-image-type-label">Output Image Type:</div>
+                <div class="mt-1 flex-row justify-start">
+                  <div class="select">
+                    <button style="min-width: 100px;" type="button" role="combobox" aria-haspopup="listbox" aria-controls="output-image-type-drop-id" aria-labelledby="output-image-type-label" class="select" aria-label="Select Output Image Type" data-popover data-pelem="#output-image-type-drop-id" data-click aria-expanded="false">
+                      <span class="body1">.jpeg</span>
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+                    </button>
+                    <div style="max-height: 350px;" tabindex="0" id="output-image-type-drop-id" role="listbox" class="select-menu o-xs" data-placement="bottom">
+                      <input type="text" hidden value=".jpeg" name="output-image-type" id="output-image-type">
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".aai">
+                        .aai
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".art">
+                        .art
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".avs">
+                        .avs
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".bmp">
+                        .bmp
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".cmyk">
+                        .cmyk
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".dcx">
+                        .dcx
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".dib">
+                        .dib
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".dpx">
+                        .dpx
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".epdf">
+                        .epdf
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".epi">
+                        .epi
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".eps">
+                        .eps
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".eps2">
+                        .eps2
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".eps3">
+                        .eps3
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".epsf">
+                        .epsf
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".epsi">
+                        .epsi
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".ept">
+                        .ept
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".fax">
+                        .fax
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".fits">
+                        .fits
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".fpx">
+                        .fpx
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".gif">
+                        .gif
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".gray">
+                        .gray
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".graya">
+                        .graya
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".html">
+                        .html
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".hrz">
+                        .hrz
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".jbig">
+                        .jbig
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".jng">
+                        .jng
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".jp2">
+                        .jp2
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".jpc">
+                        .jpc
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val=".jpeg">
+                        .jpeg
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".jxl">
+                        .jxl
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".mat">
+                        .mat
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".miff">
+                        .miff
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".mono">
+                        .mono
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".mng">
+                        .mng
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".mpeg">
+                        .mpeg
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".m2v">
+                        .m2v
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".mpc">
+                        .mpc
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".msl">
+                        .msl
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".mtv">
+                        .mtv
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".mvg">
+                        .mvg
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".otb">
+                        .otb
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".p7">
+                        .p7
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".palm">
+                        .palm
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pam">
+                        .pam
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pbm">
+                        .pbm
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcd">
+                        .pcd
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcds">
+                        .pcds
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcl">
+                        .pcl
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcx">
+                        .pcx
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pdb">
+                        .pdb
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pdf">
+                        .pdf
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pgm">
+                        .pgm
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".picon">
+                        .picon
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pict">
+                        .pict
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".png">
+                        .png
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pnm">
+                        .pnm
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".ppm">
+                        .ppm
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".ps">
+                        .ps
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".ps2">
+                        .ps2
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".ps3">
+                        .ps3
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".psd">
+                        .psd
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".ptif">
+                        .ptif
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".rgb">
+                        .rgb
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".rgba">
+                        .rgba
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".sgi">
+                        .sgi
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".shtml">
+                        .shtml
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".sun">
+                        .sun
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".svg">
+                        .svg
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".tga">
+                        .tga
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".tiff">
+                        .tiff
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".txt">
+                        .txt
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".uil">
+                        .uil
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".uyvy">
+                        .uyvy
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".vicar">
+                        .vicar
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".viff">
+                        .viff
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".wbmp">
+                        .wbmp
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".webp">
+                        .webp
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".xbm">
+                        .xbm
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".xpm">
+                        .xpm
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".xwd">
+                        .xwd
+                      </button>
+                      <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".yuv">
+                        .yuv
+                      </button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+          </form>
+          <output class="block mt-2" id="tar_2ca07a6f-ed6f-424e-99e1-2f3629589ad0">
+
+          </output>
+    </section>
+
+    <section id="convert-audio-file" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#convert-audio-file" class="same-page bold">
+            Convert Audio File Type
+          </a>
+        </h2>
+        <p class="mt-2">
+            I am using <a class="secondary link" target="_blank" href="https://www.ffmpeg.org/">ffmpeg</a> to convert between audio and video file formats. Read more about ffmpeg and see what file types are supported for audio files and video files below. Upload audio / video files in the forms in the appropriate sections below, and submit the form to receive a link to the transcoded audio / video files. 
+        </p>
+
+        <div class="flex-row justify-center mt-2">
+            <img sizes="(max-width: 500px) 380px, (min-width:500px) 200px" data-v="1" loading="lazy" data-original-device="desktop" src="https://image.storething.org/frankmbrown/9dc506fc-d55a-497c-bf17-fd9c224a838e.png" style="margin: 4px auto; aspect-ratio: 340 / 189; max-width:100%; min-width:200px; min-height: 100px; max-width: 300px; height: <%-locals.desktop?"112px":"212px"%>; width: <%-locals.desktop?"200px":"380px"%>;" alt="FFMpeg" data-text="" 
+            width="<%-locals.desktop?"200":"380"%>"
+            height="<%-locals.desktop?"112":"212"%>"
+            />
+          </div>
+        
+        <section id="what-is-ffmpeg" class="mt-3">
+            <div class="flex-row bb-thick justify-between">
+              <h3 class="bold h3">
+                <a href="#what-is-ffmpeg" class="same-page bold">
+                    What Is FFMpeg
+                </a>
+              </h3>
+              <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#what-is-ffmpeg-hide">
+                <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+                <span data-hide="">HIDE</span>
+                <span data-show="" hidden="">SHOW</span>
+              </button>
+            </div>
+            <div id="what-is-ffmpeg-hide" class="mt-2">
+                <p>
+                    <span class="text-code">ffmpeg</span> is a universal media converter. It can read a wide variety of inputs - including live grabbing/recording devoces - filter, and transcode them into a plethora of output formats. 
+                    <br>
+                    <span class="text-code">ffmpeg</span> reads from an arbitary number of inputs (which can be regular files, pipes, network streams, grabbing devices, etc.), specified by the <span class="text-code">-i</span> option, writes to anarbitrary number of outputs, which are specified by a plain output url. 
+                </p>
+                <p class="mt-2">
+                    Read more about ffmpeg in 
+                    <a class="primary link" hx-get="/daily-reading/71/ffmpeg%20Review" href="/daily-reading/71/ffmpeg%20Review" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">this daily reading article</a>, and see the section below for more information about which file types can be converted to and from for audio and video files. 
+                </p>
+            </div>
+            </section>
+            <section id="audio-video-formats-supported" class="mt-4">
+              <div class="flex-row bb-thick justify-between">
+                <h3 class="bold h3">
+                  <a href="#audio-video-formats-supported" class="same-page bold">
+                    Audio and Video Formats Supported
+                  </a>
+                </h3>
+                <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#audio-video-formats-supported-hide">
+                    <svg data-arrow="" focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp" style="transform: rotate(180deg) !important;"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+                    <span data-hide="" hidden="">HIDE</span>
+                    <span data-show="">SHOW</span>
+                  </button>
+              </div>
+        
+              <div id="audio-video-formats-supported-hide" hidden>
+                <h3 class="h3 mt-3 bold">Video Formats</h3>
+        <h4 class="h4"><strong class="bold">Read-Only:</strong></h4>
+        <ol type="1" class="mt-2">
+        <li><strong class="bold">av1</strong> - AV1 video</li>
+        <li><strong class="bold">flv</strong> - FLV (Flash Video)</li>
+        <li><strong class="bold">mxf</strong> - MXF (Material eXchange Format)</li>
+        <li><strong class="bold">webm</strong> - WebM</li>
+        <li><strong class="bold">yuv4mpegpipe</strong> - YUV4MPEG pipe</li>
+        </ol>
+        <h4 class="h4 mt-3"><strong class="bold">Write-Only:</strong></h4>
+        <ol type="1" class="mt-2">
+        <li><strong class="bold">asf</strong> - ASF (Advanced Systems Format) - output
+        only</li>
+        <li><strong class="bold">avi</strong> - AVI (Audio Video Interleaved) - output
+        only</li>
+        <li><strong class="bold">cavsvideo</strong> - raw Chinese AVS video</li>
+        <li><strong class="bold">roq</strong> - raw id RoQ video - output only</li>
+        </ol>
+        <h4 class="h4 mt-3"><strong class="bold">Both Read and Write:</strong></h4>
+        <ol type="1" class="mt-2">
+        <li><strong class="bold">dnxhd</strong> - raw DNxHD (SMPTE VC-3)</li>
+        <li><strong class="bold">evc</strong> - raw EVC video</li>
+        <li><strong class="bold">h261</strong> - raw H.261</li>
+        <li><strong class="bold">h263</strong> - raw H.263</li>
+        <li><strong class="bold">h264</strong> - raw H.264 video</li>
+        <li><strong class="bold">hevc</strong> - raw HEVC video</li>
+        <li><strong class="bold">image2</strong> - image sequence (JPEG, PNG, etc.)</li>
+        <li><strong class="bold">image2pipe</strong> - piped image sequence</li>
+        <li><strong class="bold">mjpeg</strong> - raw MJPEG video</li>
+        <li><strong class="bold">mp4</strong> - MP4 (MPEG-4 Part 14)</li>
+        <li><strong class="bold">mpeg</strong> - MPEG-1 Systems / MPEG program stream</li>
+        <li><strong class="bold">mpegts</strong> - MPEG-TS (MPEG-2 Transport Stream)</li>
+        <li><strong class="bold">nut</strong> - NUT multimedia container</li>
+        <li><strong class="bold">obu</strong> - AV1 low overhead OBU</li>
+        <li><strong class="bold">rawvideo</strong> - raw video format</li>
+        <li><strong class="bold">swf</strong> - SWF (ShockWave Flash)</li>
+        <li><strong class="bold">vc1</strong> - raw VC-1 video</li>
+        <li><strong class="bold">vc1test</strong> - VC-1 test bitstream</li>
+        <li><strong class="bold">vidc</strong> - PCM Archimedes VIDC</li>
+        </ol>
+        <hr style="border-bottom-width: 3px; border-bottom-color: var(--divider);" class="mt-3"/>
+        <h3 class="h3 mt-3 bold">Audio Formats</h3>
+        <h4 class="h4 mt-3"><strong class="bold">Read-Only:</strong></h4>
+        <ol type="1" class="mt-2">
+        <li><strong class="bold">au</strong> - Sun AU format</li>
+        <li><strong class="bold">shorten</strong> - Shorten</li>
+        <li><strong class="bold">smpte</strong> - SMPTE timecode</li>
+        <li><strong class="bold">w64</strong> - Sony Wave64</li>
+        <li><strong class="bold">wv</strong> - WavPack</li>
+        <li><strong class="bold">xwma</strong> - Microsoft xWMA</li>
+        </ol>
+        <h4 class="h4 mt-3"><strong class="bold">Write-Only:</strong></h4>
+        <ol type="1" class="mt-2">
+        <li><strong class="bold">ass</strong> - ASS (Advanced SubStation Alpha)</li>
+        <li><strong class="bold">srt</strong> - SubRip subtitle format</li>
+        </ol>
+        <h4 class="h4 mt-3"><strong class="bold">Both Read and Write:</strong></h4>
+        <ol type="1" class="mt-2">
+        <li><strong class="bold">ac3</strong> - raw AC-3</li>
+        <li><strong class="bold">ac4</strong> - raw AC-4</li>
+        <li><strong class="bold">adx</strong> - CRI ADX</li>
+        <li><strong class="bold">aea</strong> - MD STUDIO audio</li>
+        <li><strong class="bold">aiff</strong> - Audio IFF</li>
+        <li><strong class="bold">alaw</strong> - PCM A-law</li>
+        <li><strong class="bold">amr</strong> - 3GPP AMR audio</li>
+        <li><strong class="bold">aptx</strong> - raw aptX (Audio Processing Technology for
+        Bluetooth)</li>
+        <li><strong class="bold">aptx_hd</strong> - raw aptX HD (Audio Processing Technology
+        for Bluetooth)</li>
+        <li><strong class="bold">caf</strong> - Apple CAF (Core Audio Format)</li>
+        <li><strong class="bold">codec2</strong> - codec2 .c2 audio</li>
+        <li><strong class="bold">daud</strong> - D-Cinema audio</li>
+        <li><strong class="bold">dfpwm</strong> - raw DFPWM1a</li>
+        <li><strong class="bold">dts</strong> - raw DTS</li>
+        <li><strong class="bold">eac3</strong> - raw E-AC-3</li>
+        <li><strong class="bold">flac</strong> - raw FLAC audio</li>
+        <li><strong class="bold">g722</strong> - raw G.722</li>
+        <li><strong class="bold">g723_1</strong> - raw G.723.1</li>
+        <li><strong class="bold">g726</strong> - raw big-endian G.726</li>
+        <li><strong class="bold">g726le</strong> - raw little-endian G.726</li>
+        <li><strong class="bold">gsm</strong> - raw GSM</li>
+        <li><strong class="bold">lc3</strong> - Low Complexity Communication Codec</li>
+        <li><strong class="bold">mp3</strong> - MP3 (MPEG audio layer 3)</li>
+        <li><strong class="bold">mulaw</strong> - PCM mu-law</li>
+        <li><strong class="bold">opus</strong> - Ogg Opus</li>
+        <li><strong class="bold">pcm_s16be</strong> - PCM signed 16-bit big-endian</li>
+        <li><strong class="bold">pcm_s16le</strong> - PCM signed 16-bit little-endian</li>
+        <li><strong class="bold">pcm_s24be</strong> - PCM signed 24-bit big-endian</li>
+        <li><strong class="bold">pcm_s24le</strong> - PCM signed 24-bit little-endian</li>
+        <li><strong class="bold">pcm_s32be</strong> - PCM signed 32-bit big-endian</li>
+        <li><strong class="bold">pcm_s32le</strong> - PCM signed 32-bit little-endian</li>
+        <li><strong class="bold">pcm_s8</strong> - PCM signed 8-bit</li>
+        <li><strong class="bold">pcm_u16be</strong> - PCM unsigned 16-bit big-endian</li>
+        <li><strong class="bold">pcm_u16le</strong> - PCM unsigned 16-bit little-endian</li>
+        <li><strong class="bold">pcm_u24be</strong> - PCM unsigned 24-bit big-endian</li>
+        <li><strong class="bold">pcm_u24le</strong> - PCM unsigned 24-bit little-endian</li>
+        <li><strong class="bold">pcm_u32be</strong> - PCM unsigned 32-bit big-endian</li>
+        <li><strong class="bold">pcm_u32le</strong> - PCM unsigned 32-bit little-endian</li>
+        <li><strong class="bold">pcm_u8</strong> - PCM unsigned 8-bit</li>
+        <li><strong class="bold">rm</strong> - RealMedia</li>
+        <li><strong class="bold">sbc</strong> - raw SBC</li>
+        <li><strong class="bold">spdif</strong> - IEC 61937 (S/PDIF - IEC958)</li>
+        <li><strong class="bold">tta</strong> - True Audio</li>
+        <li><strong class="bold">vorbis</strong> - raw Vorbis</li>
+        </ol>
+        
+              </div>
+            </section>
+        <form class="mt-2" hx-encoding="multipart/form-data" hx-post="/projects/convert-file-type/audio" data-loading="Convereting Audio File Type" hx-target="#tar_499ed2e4-573f-4373-9671-8a54cd61b267" hx-trigger="submit" hx-swap="innerHTML">
+            <div class="flex-row gap-2 align-start justify-start">
+                <div style="flex-shrink: 0;width: 200px;">
+                    <label for="audio-file" class="bold mt-2">Upload Audio File:</label>
+                    <input data-ignore-change data-audio-input type="file" id="audio-file" accept=".ac3, .ac4, .adx, .aea, .aiff, .alaw, .amr, .aptx, .aptx_hd, .au, .caf, .codec2, .daud, .dfpwm, .dts, .eac3, .flac, .g722, .g723_1, .g726, .g726le, .gsm, .lc3, .mp3, .mulaw, .opus, .pcm_s16be, .pcm_s16le, .pcm_s24be, .pcm_s24le, .pcm_s32be, .pcm_s32le, .pcm_s8, .pcm_u16be, .pcm_u16le, .pcm_u24be, .pcm_u24le, .pcm_u32be, .pcm_u32le, .pcm_u8, .rm, .sbc, .shorten, .smpte, .spdif, .tta, .vorbis, .w64, .wv, .xwma" name="audio-file" class="mt-1 primary">
+                    <output class="block" for="audio-file"></output>
+                </div>
+                <div class="grow-1">
+                    <div class="grow-1 shrink-0">
+                        <div class="body1 bold" id="output-audio-type-label">Output Audio Type:</div>
+                        <div class="mt-1 flex-row justify-start">
+                          <div class="select">
+                            <button style="min-width: 150px;" type="button" role="combobox" aria-haspopup="listbox" aria-controls="output-audio-type-drop-id" aria-labelledby="output-audio-type-label" class="select" aria-label="Select Output audio Type" data-popover data-pelem="#output-audio-type-drop-id" data-click aria-expanded="false">
+                              <span class="body1">.mp3</span>
+                              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+                            </button>
+                            <div style="max-height: 350px;" tabindex="0" id="output-audio-type-drop-id" role="listbox" class="select-menu o-xs" data-placement="bottom">
+                              <input type="text" hidden value=".mp3" name="output-audio-type" id="output-audio-type">
+                              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".ac3">
+                                .ac3
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".ac4">
+                                .ac4
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".adx">
+                                .adx
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".aea">
+                                .aea
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".aiff">
+                                .aiff
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".alaw">
+                                .alaw
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".amr">
+                                .amr
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".aptx">
+                                .aptx
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".aptx_hd">
+                                .aptx_hd
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".ass">
+                                .ass
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".caf">
+                                .caf
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".codec2">
+                                .codec2
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".daud">
+                                .daud
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".dfpwm">
+                                .dfpwm
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".dts">
+                                .dts
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".eac3">
+                                .eac3
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".flac">
+                                .flac
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".g722">
+                                .g722
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".g723_1">
+                                .g723_1
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".g726">
+                                .g726
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".g726le">
+                                .g726le
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".gsm">
+                                .gsm
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".lc3">
+                                .lc3
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val=".mp3">
+                                .mp3
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".mulaw">
+                                .mulaw
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".opus">
+                                .opus
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_s16be">
+                                .pcm_s16be
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_s16le">
+                                .pcm_s16le
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_s24be">
+                                .pcm_s24be
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_s24le">
+                                .pcm_s24le
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_s32be">
+                                .pcm_s32be
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_s32le">
+                                .pcm_s32le
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_s8">
+                                .pcm_s8
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_u16be">
+                                .pcm_u16be
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_u16le">
+                                .pcm_u16le
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_u24be">
+                                .pcm_u24be
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_u24le">
+                                .pcm_u24le
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_u32be">
+                                .pcm_u32be
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_u32le">
+                                .pcm_u32le
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pcm_u8">
+                                .pcm_u8
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".rm">
+                                .rm
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".sbc">
+                                .sbc
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".spdif">
+                                .spdif
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".srt">
+                                .srt
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".tta">
+                                .tta
+                            </button>
+                            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".vorbis">
+                                .vorbis
+                            </button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+          </form>
+          <output class="block mt-2" id="tar_499ed2e4-573f-4373-9671-8a54cd61b267">
+
+          </output>
+    </section>
+
+    <section id="convert-video-file" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#convert-video-file" class="same-page bold">
+            Convert Video File Type            
+          </a>
+        </h2>
+        <form class="mt-2" hx-encoding="multipart/form-data" hx-post="/projects/convert-file-type/video" data-loading="Converting Video File Type" hx-target="#tar_2520f2c3-0715-4ab8-aad2-a58809b7520b" hx-trigger="submit" hx-swap="innerHTML">
+            <div class="flex-row gap-2 align-start justify-start">
+                <div style="flex-shrink: 0;width: 200px;">
+                    <label for="video-file" class="bold mt-2">Upload Video File:</label>
+                    <input data-ignore-change data-video-input type="file" id="video-file" accept=".av1, .dnxhd, .evc, .flv, .h261, .h263, .h264, .hevc, .image2, .image2pipe, .mjpeg, .mp4, .mpeg, .mpegts, .mxf, .nut, .obu, .rawvideo, .swf, .vc1, .vc1test, .vidc, .webm, .yuv4mpegpipe" name="video-file" class="mt-1 info">
+                    <output class="block" for="video-file"></output>
+                </div>
+                <div class="grow-1">
+                    <div class="body1 bold" id="output-video-type-label">Output Video Type:</div>
+                    <div class="mt-1 flex-row justify-start">
+                      <div style="max-height: 350px;" class="select">
+                        <button style="min-width: 200px;" type="button" role="combobox" aria-haspopup="listbox" aria-controls="output-video-type-drop-id" aria-labelledby="output-video-type-label" class="select" aria-label="Select Output video Type" data-popover data-pelem="#output-video-type-drop-id" data-click aria-expanded="false">
+                          <span class="body1">.mp4</span>
+                          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+                        </button>
+                        <div style="max-height: 350px;" tabindex="0" id="output-video-type-drop-id" role="listbox" class="select-menu o-xs" data-placement="bottom">
+                          <input type="text" hidden value=".mp4" name="output-video-type" id="output-video-type">
+                          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".asf">
+                            .asf
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".avi">
+                            .avi
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".cavsvideo">
+                            .cavsvideo
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".dnxhd">
+                            .dnxhd
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".evc">
+                            .evc
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".h261">
+                            .h261
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".h263">
+                            .h263
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".h264">
+                            .h264
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".hevc">
+                            .hevc
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".image2">
+                            .image2
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".image2pipe">
+                            .image2pipe
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".mjpeg">
+                            .mjpeg
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val=".mp4">
+                            .mp4
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".mpeg">
+                            .mpeg
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".mpegts">
+                            .mpegts
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".nut">
+                            .nut
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".obu">
+                            .obu
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".rawvideo">
+                            .rawvideo
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".roq">
+                            .roq
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".swf">
+                            .swf
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".vc1">
+                            .vc1
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".vc1test">
+                            .vc1test
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".vidc">
+                            .vidc
+                        </button>
+                         
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+           
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+          </form>
+          <output class="block mt-2" id="tar_2520f2c3-0715-4ab8-aad2-a58809b7520b">
+
+          </output>
+    </section>
+
+
+    <section id="convert-text-file" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#convert-text-file" class="same-page bold">
+            Convert Text File Type
+          </a>
+        </h2>
+
+        <p class="mt-2">
+            Upload a file with a valid input type (see <a class="primary link"  href="#input-output-formats">the section below for valid input / output types</a>) and select the output type to which you want your file to be converted. I use <a class="secondary link" target="_blank" href="">pandoc</a> on the backend to convert the file from one format to another. 
+    
+            <div class="flex-row justify-center mt-2">
+                <img sizes="(max-width: 500px) 380px, (min-width:500px) 680px" data-v="1" loading="lazy" data-original-device="desktop" src="https://image.storething.org/frankmbrown/bbe1a60b-ca7d-42b4-a0ba-9b6ce5050c9c.png" 
+                style="margin: 4px auto; aspect-ratio: 85 / 54; max-width:100%; min-width:380px; max-width: 200px; min-height: 246.85714285714283px; width: <%-locals.desktop?'680px':'380px'%>; height: <%-locals.desktop?'200px':'241px'%>;" 
+                width="<%-locals.desktop?'680':'380'%>"
+                height="<%-locals.desktop?'200':'241'%>"
+                alt="Pandoc Image" data-text="" />
+            </div>
+    
+        </p>
+        <section id="input-output-text-formats" class="mt-4">
+            <div class="flex-row bb-thick justify-between">
+              <h3 class="bold h3">
+                <a href="#input-output-text-formats" class="same-page bold">
+                  Input and Output Text Formats
+                </a>
+              </h3>
+              <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#input-output-text-formats-hide">
+                  <svg data-arrow="" focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp" style="transform: rotate(180deg) !important;"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+                  <span data-hide="" hidden="">HIDE</span>
+                  <span data-show="">SHOW</span>
+              </button>
+            </div>
+            <div id="input-output-text-formats-hide" hidden>
+              <h4 class="h4 bold bb mt-4">
+                Input File Format
+              </h4>
+              
+              <ul>
+              <li><strong class="bolder">biblatex</strong>:  <span class="text-code">.bib</span></li>
+              <li><strong class="bolder">bibtex</strong>:  <span class="text-code">.bib</span></li>
+              <li><strong class="bolder">bits</strong>:  <span class="text-code">.xml</span></li>
+              <li><strong class="bolder">commonmark</strong>:  <span class="text-code">.md</span>, <span class="text-code">markdown</span></li>
+              <li><strong class="bolder">commonmark_x</strong>:  <span class="text-code">.md</span>, <span class="text-code">markdown</span></li>
+              <li><strong class="bolder">creole</strong>:  <span class="text-code">.creole</span></li>
+              <li><strong class="bolder">csljson</strong>:  <span class="text-code">.json</span></li>
+              <li><strong class="bolder">csv</strong>:  <span class="text-code">.csv</span></li>
+              <li><strong class="bolder">djot</strong>:  <span class="text-code">.djot</span></li>
+              <li><strong class="bolder">docbook</strong>:  <span class="text-code">.xml</span>, <span class="text-code">dbk</span></li>
+              <li><strong class="bolder">docx</strong>:  <span class="text-code">.docx</span></li>
+              <li><strong class="bolder">dokuwiki</strong>:  <span class="text-code">.doku</span></li>
+              <li><strong class="bolder">endnotexml</strong>:  <span class="text-code">.xml</span></li>
+              <li><strong class="bolder">epub</strong>:  <span class="text-code">.epub</span></li>
+              <li><strong class="bolder">fb2</strong>:  <span class="text-code">.fb2</span></li>
+              <li><strong class="bolder">gfm (GitHub-Flavored Markdown)</strong>:  <span class="text-code">.md</span></li>
+              <li><strong class="bolder">haddock</strong>:  <span class="text-code">.txt</span></li>
+              <li><strong class="bolder">html</strong>:  <span class="text-code">.html</span>, <span class="text-code">htm</span></li>
+              <li><strong class="bolder">ipynb (Jupyter Notebook)</strong>:  <span class="text-code">.ipynb</span></li>
+              <li><strong class="bolder">jats</strong>:  <span class="text-code">.xml</span></li>
+              <li><strong class="bolder">jira</strong>:  <span class="text-code">.jira</span></li>
+              <li><strong class="bolder">json</strong>:  <span class="text-code">.json</span></li>
+              <li><strong class="bolder">latex</strong>:  <span class="text-code">.tex</span></li>
+              <li><strong class="bolder">man (manpage)</strong>:  <span class="text-code">.man</span>, <span class="text-code">1</span>, <span class="text-code">2</span></li>, etc. (sections vary)
+              <li><strong class="bolder">markdown</strong>:  <span class="text-code">.md</span>, <span class="text-code">markdown</span></li>
+              <li><strong class="bolder">markdown_github</strong>:  <span class="text-code">.md</span></li>
+              <li><strong class="bolder">markdown_mmd (MultiMarkdown)</strong>:  <span class="text-code">.mmd</span></li>
+              <li><strong class="bolder">markdown_phpextra</strong>:  <span class="text-code">.md</span></li>
+              <li><strong class="bolder">markdown_strict</strong>:  <span class="text-code">.md</span></li>
+              <li><strong class="bolder">mediawiki</strong>:  <span class="text-code">.wiki</span>, <span class="text-code">mediawiki</span></li>
+              <li><strong class="bolder">muse</strong>:  <span class="text-code">.muse</span></li>
+              <li><strong class="bolder">native</strong>:  No standard extension (specific to Pandoc's internal format)</li>
+              <li><strong class="bolder">odt (OpenDocument Text)</strong>:  <span class="text-code">.odt</span></li>
+              <li><strong class="bolder">opml</strong>:  <span class="text-code">.opml</span></li>
+              <li><strong class="bolder">org</strong>:  <span class="text-code">.org</span></li>
+              <li><strong class="bolder">ris</strong>:  <span class="text-code">.ris</span></li>
+              <li><strong class="bolder">rst (reStructuredText)</strong>:  <span class="text-code">.rst</span></li>
+              <li><strong class="bolder">rtf</strong>:  <span class="text-code">.rtf</span></li>
+              <li><strong class="bolder">t2t (txt2tags)</strong>:  <span class="text-code">.t2t</span></li>
+              <li><strong class="bolder">textile</strong>:  <span class="text-code">.textile</span></li>
+              <li><strong class="bolder">tikiwiki</strong>:  <span class="text-code">.tiki</span></li>
+              <li><strong class="bolder">tsv (Tab-Separated Values)</strong>:  <span class="text-code">.tsv</span></li>
+              <li><strong class="bolder">twiki</strong>:  <span class="text-code">.twiki</span></li>
+              <li><strong class="bolder">typst</strong>:  <span class="text-code">.typ</span></li>
+              <li><strong class="bolder">vimwiki</strong>:  <span class="text-code">.wiki</span>, <span class="text-code">vimwiki</span></li>
+              </ul>
+              
+              <h4 class="h4 bold bb mt-3">
+                Output File Format
+              </h4>
+              
+              <ul>
+                <li><strong class="bolder"><strong class="bolder">asciidoc</strong>: </strong> <span class="text-code">.adoc</span>, <span class="text-code">asciidoc</span></li>
+                <li><strong class="bolder"><strong class="bolder">asciidoc_legacy</strong>: </strong> <span class="text-code">.txt</span>, <span class="text-code">asciidoc</span> (used with older versions of AsciiDoc)</li>
+                <li><strong class="bolder"><strong class="bolder">asciidoctor</strong>: </strong> <span class="text-code">.adoc</span>, <span class="text-code">asciidoc</span></li>
+                <li><strong class="bolder"><strong class="bolder">beamer</strong>: </strong> <span class="text-code">.tex</span></li>
+                <li><strong class="bolder"><strong class="bolder">biblatex</strong>: </strong> <span class="text-code">.bib</span></li>
+                <li><strong class="bolder"><strong class="bolder">bibtex</strong>: </strong> <span class="text-code">.bib</span></li>
+                <li><strong class="bolder"><strong class="bolder">chunkedhtml</strong>: </strong> No specific extension, usually outputs HTML files in chunks.</li>
+                <li><strong class="bolder"><strong class="bolder">commonmark</strong>: </strong> <span class="text-code">.md</span>, <span class="text-code">markdown</span></li>
+                <li><strong class="bolder"><strong class="bolder">commonmark_x</strong>: </strong> <span class="text-code">.md</span>, <span class="text-code">markdown</span></li>
+                <li><strong class="bolder"><strong class="bolder">context</strong>: </strong> <span class="text-code">.tex</span></li>
+                <li><strong class="bolder"><strong class="bolder">csljson</strong>: </strong> <span class="text-code">.json</span></li>
+                <li><strong class="bolder"><strong class="bolder">djot</strong>: </strong> <span class="text-code">.djot</span></li>
+                <li><strong class="bolder"><strong class="bolder">docbook</strong>: </strong> <span class="text-code">.xml</span>, <span class="text-code">dbk</span></li>
+                <li><strong class="bolder"><strong class="bolder">docbook4</strong>: </strong> <span class="text-code">.xml</span>, <span class="text-code">dbk</span></li>
+                <li><strong class="bolder"><strong class="bolder">docbook5</strong>: </strong> <span class="text-code">.xml</span>, <span class="text-code">dbk</span></li>
+                <li><strong class="bolder"><strong class="bolder">docx</strong>: </strong> <span class="text-code">.docx</span></li>
+                <li><strong class="bolder"><strong class="bolder">dokuwiki</strong>: </strong> <span class="text-code">.doku</span>, <span class="text-code">txt</span></li>
+                <li><strong class="bolder"><strong class="bolder">dzslides</strong>: </strong> <span class="text-code">.html</span> (generated HTML slides)</li>
+                <li><strong class="bolder"><strong class="bolder">epub</strong>: </strong> <span class="text-code">.epub</span></li>
+                <li><strong class="bolder"><strong class="bolder">epub2</strong>: </strong> <span class="text-code">.epub</span></li>
+                <li><strong class="bolder"><strong class="bolder">epub3</strong>: </strong> <span class="text-code">.epub</span></li>
+                <li><strong class="bolder"><strong class="bolder">fb2</strong>: </strong> <span class="text-code">.fb2</span></li>
+                <li><strong class="bolder"><strong class="bolder">gfm (GitHub-Flavored Markdown)</strong>: </strong> <span class="text-code">.md</span></li>
+                <li><strong class="bolder"><strong class="bolder">haddock</strong>: </strong> <span class="text-code">.txt</span></li>
+                <li><strong class="bolder"><strong class="bolder">html</strong>: </strong> <span class="text-code">.html</span>, <span class="text-code">htm</span></li>
+                <li><strong class="bolder"><strong class="bolder">html4</strong>: </strong> <span class="text-code">.html</span>, <span class="text-code">htm</span></li>
+                <li><strong class="bolder"><strong class="bolder">html5</strong>: </strong> <span class="text-code">.html</span>, <span class="text-code">htm</span></li>
+                <li><strong class="bolder"><strong class="bolder">icml (Adobe InCopy)</strong>: </strong> <span class="text-code">.icml</span></li>
+                <li><strong class="bolder"><strong class="bolder">ipynb (Jupyter Notebook)</strong>: </strong> <span class="text-code">.ipynb</span></li>
+                <li><strong class="bolder"><strong class="bolder">jats</strong>: </strong> <span class="text-code">.xml</span></li>
+                <li><strong class="bolder"><strong class="bolder">jats_archiving</strong>: </strong> <span class="text-code">.xml</span></li>
+                <li><strong class="bolder"><strong class="bolder">jats_articleauthoring</strong>: </strong> <span class="text-code">.xml</span></li>
+                <li><strong class="bolder"><strong class="bolder">jats_publishing</strong>: </strong> <span class="text-code">.xml</span></li>
+                <li><strong class="bolder"><strong class="bolder">jira</strong>: </strong> <span class="text-code">.jira</span>, <span class="text-code">txt</span></li>
+                <li><strong class="bolder"><strong class="bolder">json</strong>: </strong> <span class="text-code">.json</span></li>
+                <li><strong class="bolder"><strong class="bolder">latex</strong>: </strong> <span class="text-code">.tex</span></li>
+                <li><strong class="bolder"><strong class="bolder">man (manpage)</strong>: </strong> <span class="text-code">.man</span>, <span class="text-code">1</span>, <span class="text-code">2</span>, etc. (sections vary)</li>
+                <li><strong class="bolder"><strong class="bolder">markdown</strong>: </strong> <span class="text-code">.md</span>, <span class="text-code">markdown</span></li>
+                <li><strong class="bolder"><strong class="bolder">markdown_github</strong>: </strong> <span class="text-code">.md</span></li>
+                <li><strong class="bolder"><strong class="bolder">markdown_mmd (MultiMarkdown)</strong>: </strong> <span class="text-code">.mmd</span></li>
+                <li><strong class="bolder"><strong class="bolder">markdown_phpextra</strong>: </strong> <span class="text-code">.md</span></li>
+                <li><strong class="bolder"><strong class="bolder">markdown_strict</strong>: </strong> <span class="text-code">.md</span></li>
+                <li><strong class="bolder"><strong class="bolder">markua</strong>: </strong> <span class="text-code">.markua</span></li>
+                <li><strong class="bolder"><strong class="bolder">mediawiki</strong>: </strong> <span class="text-code">.wiki</span>, <span class="text-code">mediawiki</span></li>
+                <li><strong class="bolder"><strong class="bolder">ms (groff ms)</strong>: </strong> <span class="text-code">.ms</span></li>
+                <li><strong class="bolder"><strong class="bolder">muse</strong>: </strong> <span class="text-code">.muse</span></li>
+                <li><strong class="bolder"><strong class="bolder">native</strong>: </strong> No standard extension (specific to Pandoc's internal format)</li>
+                <li><strong class="bolder"><strong class="bolder">odt (OpenDocument Text)</strong>: </strong> <span class="text-code">.odt</span></li>
+                <li><strong class="bolder"><strong class="bolder">opendocument</strong>: </strong> <span class="text-code">.odt</span></li>
+                <li><strong class="bolder"><strong class="bolder">opml</strong>: </strong> <span class="text-code">.opml</span></li>
+                <li><strong class="bolder"><strong class="bolder">org</strong>: </strong> <span class="text-code">.org</span></li>
+                <%# <li><strong class="bolder"><strong class="bolder">pdf</strong>: </strong> <span class="text-code">.pdf</span></li> %>
+                <li><strong class="bolder"><strong class="bolder">plain</strong>: </strong> <span class="text-code">.txt</span></li>
+                <li><strong class="bolder"><strong class="bolder">pptx</strong>: </strong> <span class="text-code">.pptx</span></li>
+                <li><strong class="bolder"><strong class="bolder">revealjs</strong>: </strong> <span class="text-code">.html</span> (generated presentation files)</li>
+                <li><strong class="bolder"><strong class="bolder">rst (reStructuredText)</strong>: </strong> <span class="text-code">.rst</span></li>
+                <li><strong class="bolder"><strong class="bolder">rtf</strong>: </strong> <span class="text-code">.rtf</span></li>
+                <li><strong class="bolder"><strong class="bolder">s5</strong>: </strong> <span class="text-code">.html</span> (HTML slides for S5 presentations)</li>
+                <li><strong class="bolder"><strong class="bolder">slideous</strong>: </strong> <span class="text-code">.html</span></li>
+                <li><strong class="bolder"><strong class="bolder">slidy</strong>: </strong> <span class="text-code">.html</span></li>
+                <li><strong class="bolder"><strong class="bolder">tei</strong>: </strong> <span class="text-code">.xml</span>, <span class="text-code">tei</span></li>
+                <li><strong class="bolder"><strong class="bolder">texinfo</strong>: </strong> <span class="text-code">.texi</span>, <span class="text-code">texinfo</span></li>
+                <li><strong class="bolder"><strong class="bolder">textile</strong>: </strong> <span class="text-code">.textile</span></li>
+                <li><strong class="bolder"><strong class="bolder">typst</strong>: </strong> <span class="text-code">.typ</span></li>
+                <li><strong class="bolder"><strong class="bolder">xwiki</strong>: </strong> <span class="text-code">.xwiki</span></li>
+                <li><strong class="bolder"><strong class="bolder">zimwiki</strong>: </strong> <span class="text-code">.zim</span>, <span class="text-code">wiki</span></li>
+              </ul>
+            </div>
+          </section>
+        <form class="mt-2" hx-encoding="multipart/form-data" hx-post="/projects/convert-file-type/text" data-loading="Converting Text File Type" hx-target="#tar_1633aed4-bc76-4a45-b451-20e7d06f1c6f" hx-trigger="submit" hx-swap="innerHTML">
+            <div class="flex-row gap-2 align-start justify-start">
+                <div style="flex-shrink: 0;width: 200px;">
+                    <label for="text-file" class="bold">Text Conversion Input:</label>
+                    <input type="file" id="text-file" accept=".bib, .creole, .csv, .dbk, .djot, .docx, .doku, .epub, .fb2, .htm, .html, .ipynb, .jira, .json, .man, .markdown, .md, .mediawiki, .mmd, .muse, .odt, .opml, .org, .ris, .rst, .rtf, .t2t, .tex, .textile, .tiki, .tsv, .twiki, .txt, .typ, .vimwiki, .wiki, .xml" name="text-file" class="mt-1 error">
+                    <output class="block" for="text-file"></output>
+                </div>
+                <div class="grow-1">
+                    <div class="body1 bold" id="output-text-type-label">Output Text Type:</div>
+                    <div class="mt-1 flex-row justify-start">
+                      <div class="select">
+                        <button style="min-width: 150px;" type="button" role="combobox" aria-haspopup="listbox" aria-controls="output-text-type-drop-id" aria-labelledby="output-text-type-label" class="select" aria-label="Select Output text Type" data-popover data-pelem="#output-text-type-drop-id" data-click aria-expanded="false">
+                          <span class="body1">.html</span>
+                          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+                        </button>
+                        <div tabindex="0" id="output-text-type-drop-id" role="listbox" class="select-menu o-xs" data-placement="bottom">
+                          <input type="text" hidden value=".html" name="output-text-type" id="output-text-type">
+                          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".adoc">
+                            .adoc
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".asciidoc">
+                            .asciidoc
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".bib">
+                            .bib
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".dbk">
+                            .dbk
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".djot">
+                            .djot
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".docx">
+                            .docx
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".doku">
+                            .doku
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".epub">
+                            .epub
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".fb2">
+                            .fb2
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".htm">
+                            .htm
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val=".html">
+                            .html
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".icml">
+                            .icml
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".ipynb">
+                            .ipynb
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".jira">
+                            .jira
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".json">
+                            .json
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".man">
+                            .man
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".markdown">
+                            .markdown
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".markua">
+                            .markua
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".md">
+                            .md
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".mediawiki">
+                            .mediawiki
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".mmd">
+                            .mmd
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".ms">
+                            .ms
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".muse">
+                            .muse
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".odt">
+                            .odt
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".opml">
+                            .opml
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".org">
+                            .org
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pdf">
+                            .pdf
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".pptx">
+                            .pptx
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".rst">
+                            .rst
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".rtf">
+                            .rtf
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".tei">
+                            .tei
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".tex">
+                            .tex
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".texi">
+                            .texi
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".texinfo">
+                            .texinfo
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".textile">
+                            .textile
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".txt">
+                            .txt
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".typ">
+                            .typ
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".wiki">
+                            .wiki
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".xml">
+                            .xml
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".xwiki">
+                            .xwiki
+                        </button>
+                        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val=".zim">
+                            .zim
+                        </button>
+                          
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-2">
+                <label class="checkbox">
+                <input type="checkbox" value="on" class="primary medium" name="my-design-system">
+                My Design System
+                </label>
+            </div>
+            <p class="t-warning fw-regular mt-1">
+                For some output file types, I have custom styling that I can apply to the document to make it more in-line with my design system. Check the checkbox above to have the output styled in my design system.
+            </p>
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+          </form>
+          <output class="block mt-2" id="tar_1633aed4-bc76-4a45-b451-20e7d06f1c6f">
+
+          </output>
+    </section>
+
+    <%-include('../../partials/pagePartial')%>
+<%}%>

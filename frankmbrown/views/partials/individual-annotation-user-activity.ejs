@@ -1,0 +1,91 @@
+<%# 
+locals.id: number - annotation id
+locals.html: string - 
+locals.date_created: string,
+locals.upvote_count: number,
+locals.downvote_count: number,
+locals.user_upvote: number,
+locals.user_downvote: number,
+locals.user_id: number,
+locals.username: string
+
+upvote_annotation_str: string
+downvote_annotation_str: string,
+time_ago: string
+%>
+
+<div class="mt-2 flex-row justify-between" style="padding-top: 4px; border-top: 1px solid var(--divider);">
+    <span class="flex-row align-center gap-3">
+        <span class="bold">Content:</span>
+        <span><%=locals.articleType%></span>
+    </span>
+
+    <a hx-get="<%=locals.url%>" href="<%=locals.url%>" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress" class="button icon small text">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="RemoveRedEye" <%-locals.svg_style%> ><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+    </a>
+</div>
+
+<div data-annotation data-annotation-id="<%-locals.id%>" class="mt-2" style="border: 2px solid var(--divider); border-radius: 2px; padding: 3px;">
+    <div class="flex-row align-center gap-2">
+        <img src="<%=locals.profile_picture%>" alt=" <%=locals.username%>" style="width:20px;height:20px; border-radius: 50%; object-fit: cover; margin: 0px;" width="20" height="20" data-text="MORE IMAGE TEXT" />
+        <a class="h6 bold no-show-link" hx-get="/users/<%=locals.user_id%>/<%=locals.username%>" href="/users/<%=locals.user_id%>/<%=locals.username%>" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">
+            <%=locals.username%>
+        </a>
+        <span style="margin-left: 8px;" class="caption t-tsecondary">
+            &#x2022;
+        </span>
+        <span style="margin-left: 4px;" class="caption t-tsecondary">
+            <%=locals.time_ago%>
+        </span>
+
+        <div class="grow-1 justify-end align-center flex-row">
+            <button data-hide-show-annotation type="button" class="small icon warning text" aria-label="Goto Annotation">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            </button>
+        </div>
+    </div>
+    <div data-annotation-content>
+        <div class="mt-1 lexical-wrapper" data-max-height="500"  data-rich-text-editor data-editable="false" contenteditable="false" data-type="annotation" id="annotation-<%=locals.id%>"><%-locals.html%></div>
+        <div class="flex-row justify-end mt-1">
+            <span class="flex-row align-center gap-1" style="margin-right: 7px;">
+                <button type="button" class="icon small" aria-label="Comment on Annotation" hx-get="/annotations/<%-locals.id%>" hx-target="#annotation-dialog-container" hx-swap="innerHTML">
+                    <svg viewBox="0 0 512 512" title="comment" focusable="false" inert tabindex="-1"><path d="M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9c.1-.2 .2-.3 .3-.5z"></path></svg>
+                </button>
+                <span class="body2">
+                    <%=locals.comment_count%> <!-- Locals Comment Count -->
+                </span>
+            </span>
+            <span class="flex-row align-center gap-1" style="margin-right: 7px;">
+                <svg style="width: 1.5rem; height: 1.5rem; fill: var(--text-primary);" focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="AnalyticsOutlined"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"></path><path d="M7 12h2v5H7zm8-5h2v10h-2zm-4 7h2v3h-2zm0-4h2v2h-2z"></path></svg>
+                <span class="body2">
+                    <%=locals.view_count%>
+                </span>
+            </span>
+            <span class="flex-row align-center gap-1" style="margin-right: 4px;">
+                <button type="button" class="icon small text secondary" aria-label="Upvote Annotation" inert>
+                        <svg xmlns="http://www.w3.org/2000/svg" focusable="false" inert viewBox="0 0 20 20" tabindex="-1">
+                            <path d="M10 19c-.072 0-.145 0-.218-.006A4.1 4.1 0 0 1 6 14.816V11H2.862a1.751 1.751 0 0 1-1.234-2.993L9.41.28a.836.836 0 0 1 1.18 0l7.782 7.727A1.751 1.751 0 0 1 17.139 11H14v3.882a4.134 4.134 0 0 1-.854 2.592A3.99 3.99 0 0 1 10 19Zm0-17.193L2.685 9.071a.251.251 0 0 0 .177.429H7.5v5.316A2.63 2.63 0 0 0 9.864 17.5a2.441 2.441 0 0 0 1.856-.682A2.478 2.478 0 0 0 12.5 15V9.5h4.639a.25.25 0 0 0 .176-.429L10 1.807Z"></path>
+                        </svg>
+                </button>
+                <span>
+                    <%=locals.vote_count%>
+                </span>
+                <button type="button" class="icon small text secondary" aria-label="Downvote Annotation" inert>
+                        <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false" inert tabindex="-1">
+                            <path d="M10 1c.072 0 .145 0 .218.006A4.1 4.1 0 0 1 14 5.184V9h3.138a1.751 1.751 0 0 1 1.234 2.993L10.59 19.72a.836.836 0 0 1-1.18 0l-7.782-7.727A1.751 1.751 0 0 1 2.861 9H6V5.118a4.134 4.134 0 0 1 .854-2.592A3.99 3.99 0 0 1 10 1Zm0 17.193 7.315-7.264a.251.251 0 0 0-.177-.429H12.5V5.184A2.631 2.631 0 0 0 10.136 2.5a2.441 2.441 0 0 0-1.856.682A2.478 2.478 0 0 0 7.5 5v5.5H2.861a.251.251 0 0 0-.176.429L10 18.193Z"></path>
+                        </svg>
+                </button>
+            </span>
+            <span>
+                <button data-popover data-click data-force-close style="margin-right: 4px;" data-pelem="<%="#annotation-info-pop-dialog-".concat(locals.id)%>" type="button" class="icon small" aria-label="Information on Annotation Color">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="InfoOutlined"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path></svg>
+                </button>
+            </span>
+
+        </div>
+    </div>
+    <div id="<%="annotation-info-pop-dialog-".concat(locals.id)%>" role="dialog" class="floating-menu" data-placement="bottom-end">
+        <span class="bold">Annotation Rating:</span> <%=locals.rating%>
+    </div>
+</div>
+

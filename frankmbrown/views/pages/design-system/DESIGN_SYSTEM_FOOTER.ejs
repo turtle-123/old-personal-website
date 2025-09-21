@@ -1,0 +1,177 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/DESIGN_SYSTEM_FOOTER.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+
+<section id="icon-search" class="mt-3">
+  <h3 class="h4 bb text-align-left">
+    <a href="#icon-search" class="same-page bold">Search Icons</a>
+  </h3>
+  <details class="mt-2">
+    <summary>
+      <span class="h6 fw-regular">
+        About Icon Search
+      </span>
+      <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+        <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+        </path>
+      </svg>
+    </summary>
+    <div class="accordion-content" aria-hidden="true">
+      The search ranks results based on text similarity and cosine distance between a vectorized representation of the input and names of the icons in the database.
+    </div>
+  </details>
+  <form hx-post="/api/search-icons" hx-trigger="submit" hx-target="#icon-results" hx-swap="innerHTML"
+    hx-indicator="#indicator-search-icons" id="search-icons-form">
+    <div class="input-group block w-100 mt-1" data-hover="false" data-focus="false" data-error="false"
+      data-blurred="false">
+      <label for="search-icons-input">Search Icons:</label>
+      <div class="mt-1 text-input block medium">
+        <input type="search" class="icon-after" name="search-icons-input" id="search-icons-input"
+          placeholder="Search Icons..." hx-trigger="keyup changed delay:200ms, search"
+          hx-include="#search-icons-form" hx-post="/api/search-icons" hx-target="#icon-results" hx-swap="innerHTML"
+          hx-indicator="#indicator-search-icons" />
+        <svg class="icon-after" focusable="false" inert viewBox="0 0 24 24">
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+          </path>
+        </svg>
+      </div>
+    </div>
+    <fieldset class="checkbox mt-1">
+      <legend class="h6 fw-regular">Include:</legend>
+      <div class="flex-row justify-start wrap align-center gap-3">
+        <label class="checkbox">
+          <input type="checkbox" name="Filled" value="Filled"  checked/>
+          Filled
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" class="secondary" name="Outlined" value="Outlined"  checked />
+          Outlined
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" class="warning" name="Rounded" value="Rounded"  checked />
+          Rounded
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" class="success" name="Sharp" value="Sharp"  checked />
+          Sharp
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" class="error" name="TwoTone" value="TwoTone"  checked />
+          Two Tone
+        </label>
+      </div>
+    </fieldset>
+  </form>
+  <div 
+  class="flex-row justify-center t-primary mt-1 htmx-indicator" 
+  id="indicator-search-icons" 
+  role="progressbar" 
+  aria-label="Search Icons Indicator"
+  aria-busy="false">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <div id="icon-results" aria-live="polite">
+  </div>
+</section>
+
+<section id="resources" class="mt-4">
+  <h2 class="h2 bb mt-3">
+    <a href="#resources" class="same-page bold">Resources</a>
+  </h2>
+    
+  <p class="body1 mt-1">
+    Click on the individual buttons to download separate files, or click on the <span class="t-warning bold">All Files</span> button to download a ZIP file of all the code. The code is sent pre-transpiled 
+    for readability.
+    <br>
+    Click on the <span class="t-success bold">VSCode Snippet</span> button to download a copy of the html.json file that will make implementing this design system simpler.    
+  </p>
+
+  <div class="flex-col align-start justify-start w-100 mt-2">
+    <a href="/static/download/all-client-files.zip" class="button icon-text text warning large" download>
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Download">
+        <path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path>
+      </svg>
+      <span>
+        All Files
+      </span>
+    </a>
+    <div class="indent-2 mt-2">
+      <a href="/static/download/shared.css" class="button icon-text text info medium w-fc" download>
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Share">
+          <path
+            d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z">
+          </path>
+        </svg> <span>
+          Shared CSS
+        </span>
+      </a>
+      <div class="indent-2 flex-col align-start">
+        <a href="/static/download/desktop.css" class="button icon-text text transparent medium mt-2" download>
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Computer">
+            <path
+              d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z">
+            </path>
+          </svg> <span>
+            Desktop CSS
+          </span>
+        </a>
+        <a href="/static/download/phone.css" class="button icon-text text transparent medium mt-2" download>
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="PhoneIphone">
+            <path
+              d="M15.5 1h-8C6.12 1 5 2.12 5 3.5v17C5 21.88 6.12 23 7.5 23h8c1.38 0 2.5-1.12 2.5-2.5v-17C18 2.12 16.88 1 15.5 1zm-4 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5-4H7V4h9v14z">
+            </path>
+          </svg>
+          <span>
+          Mobile CSS
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="indent-2">
+      <a href="/static/download/shared.ts" class="button icon-text text info medium w-fc mt-2" download>
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Share">
+          <path
+            d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z">
+          </path>
+        </svg> <span>
+          Shared JavaScript
+        </span>
+      </a>
+      <div class="indent-2 flex-col align-start">
+        <a href="/static/download/desktop.ts" class="button icon-text text transparent medium mt-2" download>
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Computer">
+            <path
+              d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z">
+            </path>
+          </svg> <span>
+            Desktop JavaScript
+          </span>
+        </a>
+        <a href="/static/download/mobile.ts" class="button icon-text text transparent medium mt-2" download>
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="PhoneIphone">
+            <path
+              d="M15.5 1h-8C6.12 1 5 2.12 5 3.5v17C5 21.88 6.12 23 7.5 23h8c1.38 0 2.5-1.12 2.5-2.5v-17C18 2.12 16.88 1 15.5 1zm-4 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5-4H7V4h9v14z">
+            </path>
+          </svg> Mobile JavaScript
+          </span>
+        </a>
+      </div>
+    </div>
+    <a href="/static/download/html.json" class="button icon-text success outlined medium mt-3" download>
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Code"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"></path></svg>
+      VSCode Snippet
+    </a>
+  </div>
+
+</section>
+

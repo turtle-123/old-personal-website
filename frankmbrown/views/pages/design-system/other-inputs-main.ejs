@@ -1,0 +1,601 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/other-inputs-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="inputs-header">
+  <a href="#other-inputs-header" class="same-page bold">Other Inputs</a>
+</h2>
+
+
+<section id="javascript-for-inputs" class="mt-2">
+    <h3 class="h5 bb t-warning bold flex-row">
+      <span class="flex-row grow-1">
+          <a href="#javascript-for-inputs" class="same-page bold">Javascript for Inputs</a>
+      </span>
+      <button type="Button" aria-label="Hide Text Below" data-hide-show data-el="#js-text" class="icon medium">
+         <svg data-show focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowDown"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>
+         <svg data-hide hidden style="transform: rotate(180deg);" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowDown"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>
+      </button>
+    </h3>
+    <div id="js-text" hidden>
+      <p class="body1 mt-1">
+          When new content is loaded, the client side javascript gets all <span><code
+                  class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>
+          and <span><code
+                  class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span>
+          elements, and then:
+      </p>
+      <ol>
+          <li>
+              initializes them,
+              <ol class="second">
+                  <li>
+                      This involves setting the appropriate background size for range
+                      <span><code
+                              class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+                      as well as setting the value for the <span><code
+                              class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">output</span>&gt;</span></span></code></span>s
+                      for the range <span><code
+                              class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s,
+                  </li>
+              </ol>
+          </li>
+          <li>
+              adds a focus event listener to the <span><code
+                      class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+              that are not readonly,
+              <ol class="second">
+                  <li>
+                      gets the parent element node of the parent element node of the input and if the element is a div
+                      that contains the <span><code
+                              class="hljs"><span class="hljs-selector-class">.input-group</span></code></span> class, sets
+                      the <span class="t-info bold">data-focus</span> attribute to true,
+                  </li>
+              </ol>
+          </li>
+          <li>
+              adds a blur event listener to the <span><code
+                      class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+              that are not readonly,
+              <ol class="second">
+                  <li>
+                      gets the parent element node of the parent element node of the input and if the element is a div
+                      that contains the <span><code
+                              class="hljs"><span class="hljs-selector-class">.input-group</span></code></span> class, sets
+                      the <span class="t-info bold">data-blurred</span> attribute to true and the <span
+                          class="t-info bold">data-focus</span> attribute to false,
+                  </li>
+              </ol>
+          </li>
+          <li>
+              adds a change event listener to the <span><code
+                      class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+              that are not readonly and adds an 'input' event listener to <span><code
+                      class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span></span></code></span>s
+              and range inputs,
+              <ol class="second">
+                  <li>
+                      Checks whether classlist of the input contains <span><code
+                              class="hljs"><span class="hljs-selector-class">.chip</span></code></span>, then return if it
+                      does.
+                  </li>
+                  <li>
+                      gets the id, name, type, current length of the input (if the input.value has a length), the
+                      minlength and maxlength attribute of the input,
+                  </li>
+                  <li>
+                      checks whether the last change is currently being debounced, cancels the debounced function,
+                  </li>
+                  <li>
+                      creates a debounced function that:
+                      <ol class="third">
+                          <li>checks whether there is a character counter for the input, and if there is, set the <span
+                                  class="t-info bold">data-val</span> attributes of the minlength and maxlength spans</li>
+                          <li>checks whether the input is a range input, and if it is, sets the background size for the
+                              range input and sets the value of the output element that corresponds to the range input
+                          </li>
+                      </ol>
+                  </li>
+                  <li>
+                      checks whether the input is a range input and if it is, creates a debounced function to blur the
+                      range input in 50ms.
+                  </li>
+              </ol>
+          </li>
+          <li>
+              adds a mouseover event listener to the <span><code
+                      class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+              that are not readonly,
+              <ol class="second">
+                  <li>
+                      gets the parent element node of the parent element node of the input and if the element is a div
+                      that contains the <span><code
+                              class="hljs"><span class="hljs-selector-class">.input-group</span></code></span> class, sets
+                      the <span class="t-info bold">data-hover</span> attribute to true.
+                  </li>
+              </ol>
+          </li>
+          <li>
+              adds a mouseout event listener to the <span><code
+                      class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span>s
+              that are not readonly,
+              <ol class="second">
+                  <li>
+                      gets the parent element node of the parent element node of the input and if the element is a div
+                      that contains the <span><code
+                              class="hljs"><span class="hljs-selector-class">.input-group</span></code></span> class, sets
+                      the <span class="t-info bold">data-hover</span> attribute to false.
+                  </li>
+              </ol>
+          </li>
+      </ol>
+    </div>
+</section>
+<section id="toggle-button-inputs" class="mt-2">
+  <h3 class="h5 bold bb">
+    <a href="#toggle-button-inputs" class="same-page fw-regular">Toggle Buttons</a>
+  </h3>
+  <details class="mt-2">
+      <summary>
+          <span class="h6 fw-regular">
+              About Toggle Buttons
+          </span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content" aria-hidden="true">
+          Toggle buttons aren't really an input, and there is no <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></span></code></span> element associated with them, but there is custom JavaScript associated with toggle buttons.
+          When new content is loaded, the client-side JavaScript gets all buttons with the <span class="t-info bold">data-toggle</span> attribute, and adds a click listener to them.
+          <br>
+          If the button is already selected, then the button is unselected (the <span><code class="hljs"><span class="hljs-selector-class">.toggle</span></code></span> class is toggled on the button). The client-side JavaScript then checks the wrapper of the toggle button group - the parent element of the button - to see if it has the <span class="t-info bold">data-only</span> or the <span class="t-info bold">data-one</span> attributes.
+          <br>
+          If the wrapper has the <span class="t-info bold">data-only</span> attribute, that means only one toggle button in the group can be selected and whichever button was selected needs to be unselected.
+          <br>
+          If the wrapper has the <span class="t-ifno bold">data-one</span> attribute, that means that the toggle button group needs to have at least one button selected, and so we querySelector for the button that has the attribute <span class="t-info bold">data-default</span> to see which button should be selected (if the button that was just clicked was not unselected). <span class="t-error bold">That might not have made much sense, but I will go over the docs at some point.</span>
+      </div>
+  </details>
+  <p class="body1 mt-2">Regular Toggle Buttons:</p>
+  <div role="toolbar" class="toggle-button-group mt-1 hz-scroll mt-2">
+    <div role="toolbar" class="toggle-button-group subgroup left">
+      <button class="toggle-button" aria-label="Undo">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="UndoSharp"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Redo">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="RedoSharp"><path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Reset">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Clear"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>                      
+      </button>
+    </div>
+    <div class="toggle-button-group subgroup left pl-1">
+      <button class="toggle-button" aria-label="New Line">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardReturnSharp"><path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7h-2z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Indent">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FormatIndentIncrease"><path d="M3 21h18v-2H3v2zM3 8v8l4-4-4-4zm8 9h10v-2H11v2zM3 3v2h18V3H3zm8 6h10V7H11v2zm0 4h10v-2H11v2z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Outdent">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FormatIndentDecrease"><path d="M11 17h10v-2H11v2zm-8-5 4 4V8l-4 4zm0 9h18v-2H3v2zM3 3v2h18V3H3zm8 6h10V7H11v2zm0 4h10v-2H11v2z"></path></svg>
+      </button>
+    </div>
+    <div role="toolbar" class="toggle-button-group subgroup left pl-1" data-only="" data-one="">
+      <button class="toggle-button selected" aria-label="Left Align" data-toggle="" data-default="">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FormatAlignLeftSharp"><path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Center Align" data-toggle="">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FormatAlignCenterSharp"><path d="M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Right Align" data-toggle="">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FormatAlignRightSharp"><path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Justify Align" data-toggle="">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FormatAlignJustifySharp"><path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm0-6v2h18V3H3z"></path></svg>
+      </button>
+    </div>
+    <div role="toolbar" class="toggle-button-group subgroup left pl-1">
+      <button class="toggle-button" aria-label="Bold" data-toggle="">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FormatBoldSharp"><path d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Italic" data-toggle="">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FormatItalicSharp"><path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4h-8z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Strikethrough" data-toggle="">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="StrikethroughSSharp"><path d="M7.24 8.75c-.26-.48-.39-1.03-.39-1.67 0-.61.13-1.16.4-1.67.26-.5.63-.93 1.11-1.29.48-.35 1.05-.63 1.7-.83.66-.19 1.39-.29 2.18-.29.81 0 1.54.11 2.21.34.66.22 1.23.54 1.69.94.47.4.83.88 1.08 1.43s.38 1.15.38 1.81h-3.01c0-.31-.05-.59-.15-.85-.09-.27-.24-.49-.44-.68-.2-.19-.45-.33-.75-.44-.3-.1-.66-.16-1.06-.16-.39 0-.74.04-1.03.13s-.53.21-.72.36c-.19.16-.34.34-.44.55-.1.21-.15.43-.15.66 0 .48.25.88.74 1.21.38.25.77.48 1.41.7H7.39c-.05-.08-.11-.17-.15-.25zM21 12v-2H3v2h9.62c.18.07.4.14.55.2.37.17.66.34.87.51s.35.36.43.57c.07.2.11.43.11.69 0 .23-.05.45-.14.66-.09.2-.23.38-.42.53-.19.15-.42.26-.71.35-.29.08-.63.13-1.01.13-.43 0-.83-.04-1.18-.13s-.66-.23-.91-.42c-.25-.19-.45-.44-.59-.75s-.25-.76-.25-1.21H6.4c0 .55.08 1.13.24 1.58s.37.85.65 1.21c.28.35.6.66.98.92.37.26.78.48 1.22.65.44.17.9.3 1.38.39.48.08.96.13 1.44.13.8 0 1.53-.09 2.18-.28s1.21-.45 1.67-.79c.46-.34.82-.77 1.07-1.27s.38-1.07.38-1.71c0-.6-.1-1.14-.31-1.61-.05-.11-.11-.23-.17-.33H21V12z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Underline" data-toggle="">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FormatUnderlinedSharp"><path d="M12 17c3.31 0 6-2.69 6-6V3h-2.5v8c0 1.93-1.57 3.5-3.5 3.5S8.5 12.93 8.5 11V3H6v8c0 3.31 2.69 6 6 6zm-7 2v2h14v-2H5z"></path></svg>
+      </button>
+    </div>
+    <div role="toolbar" class="toggle-button-group subgroup left pl-1" data-only="">
+      <button class="toggle-button" aria-label="Superscript" data-toggle="">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="SuperscriptSharp"><path d="M20 7v1h3v1h-4V6h3V5h-3V4h4v3h-3zM5.88 20h2.66l3.4-5.42h.12l3.4 5.42h2.66l-4.65-7.27L17.81 6h-2.68l-3.07 4.99h-.12L8.85 6H6.19l4.32 6.73L5.88 20z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Subscript" data-toggle="">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="SubscriptSharp"><path d="M20 18v1h3v1h-4v-3h3v-1h-3v-1h4v3h-3zM5.88 18h2.66l3.4-5.42h.12l3.4 5.42h2.66l-4.65-7.27L17.81 4h-2.68l-3.07 4.99h-.12L8.85 4H6.19l4.32 6.73L5.88 18z"></path></svg>
+      </button>
+    </div>
+    <div role="toolbar" class="pl-1 toggle-button-group subgroup none">
+      <button class="toggle-button disabled" aria-label="Text Size">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FormatSizeSharp"><path d="M9 4v3h5v12h3V7h5V4H9zm-6 8h3v7h3v-7h3V9H3v3z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Background Color">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FormatColorFillSharp"><path d="M10 17.62 17.62 10l-10-10-1.41 1.41 2.38 2.38L2.38 10 10 17.62zm0-12.41L14.79 10H5.21L10 5.21zM19 17c1.1 0 2-.9 2-2 0-1.33-2-3.5-2-3.5s-2 2.17-2 3.5c0 1.1.9 2 2 2zM2 20h20v4H2z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Text Color">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FormatColorTextSharp"><path d="M2 20h20v4H2v-4zm3.49-3h2.42l1.27-3.58h5.65L16.09 17h2.42L13.25 3h-2.5L5.49 17zm4.42-5.61 2.03-5.79h.12l2.03 5.79H9.91z"></path></svg>
+      </button>
+      <button class="toggle-button" aria-label="Highlight Color">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="HighlightSharp"><path d="m6 14 3 3v5h6v-5l3-3V9H6v5zm5-12h2v3h-2V2zM3.5 5.88l1.41-1.41 2.12 2.12L5.62 8 3.5 5.88zm13.46.71 2.12-2.12 1.41 1.41L18.38 8l-1.42-1.41z"></path></svg>
+      </button>
+    </div>
+  </div>
+  <p class="body1 mt-2">Toggle Buttons Large:</p>
+  <div role="toolbar" class="toggle-button-group mt-1 hz-scroll">
+  <div role="toolbar" class="toggle-button-group subgroup left">
+      <button class="toggle-button large" aria-label="Image">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ImageSharp"><path d="M21 21V3H3v18h18zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"></path></svg>
+      </button>
+      <button class="toggle-button large" aria-label="Audio">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="AudiotrackSharp"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"></path></svg>
+      </button>
+      <button class="toggle-button large" aria-label="Video">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="VideocamSharp"><path d="M17 10.5V6H3v12h14v-4.5l4 4v-11l-4 4z"></path></svg>
+      </button>
+  </div>
+  <div role="toolbar" class="toggle-button-group subgroup pl-1">
+      <button class="toggle-button large" aria-label="Link">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="AddLinkSharp"><path d="M8 11h8v2H8v-2zm12.1 1H22c0-2.76-2.24-5-5-5h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1zM3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM19 12h-2v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
+      </button>
+      <button class="toggle-button large" aria-label="Quote">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FormatQuote"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"></path></svg>
+      </button>
+      <button class="toggle-button large" aria-label="Code">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CodeSharp"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"></path></svg>
+      </button>
+      <button class="toggle-button large" aria-label="List">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ListSharp"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7zm-4 6h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"></path></svg>
+      </button>
+      <button class="toggle-button large" aria-label="Equation">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Functions"><path d="M18 4H6v2l6.5 6L6 18v2h12v-3h-7l5-5-5-5h7z"></path></svg>
+      </button>
+      <button class="toggle-button large" aria-label="Table">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="TableView"><path d="M19 7H9c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm0 2v2H9V9h10zm-6 6v-2h2v2h-2zm2 2v2h-2v-2h2zm-4-2H9v-2h2v2zm6-2h2v2h-2v-2zm-8 4h2v2H9v-2zm8 2v-2h2v2h-2zM6 17H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v1h-2V5H5v10h1v2z"></path></svg>
+      </button>
+      <button class="toggle-button large" aria-label="Chart">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Addchart"><path d="M22 5v2h-3v3h-2V7h-3V5h3V2h2v3h3zm-3 14H5V5h6V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2v6zm-4-6v4h2v-4h-2zm-4 4h2V9h-2v8zm-2 0v-6H7v6h2z"></path></svg>
+      </button>
+      <button class="toggle-button large" aria-label="View">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="RemoveRedEyeSharp"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+      </button>
+  </div>
+  </div>
+  <p class="body1 mt-2">Toggle Buttons Small:</p>
+  <div class="toggle-button-group mt-1">
+    <button class="toggle-button small" aria-label="Facebook">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Facebook"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m13 2h-2.5A3.5 3.5 0 0 0 12 8.5V11h-2v3h2v7h3v-7h3v-3h-3V9a1 1 0 0 1 1-1h2V5z"></path></svg>
+    </button>
+    <button class="toggle-button small" aria-label="Instagram">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Instagram"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
+    </button>
+    <button class="toggle-button small" aria-label="Youtube">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="YouTube"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg>
+    </button>
+    <button class="toggle-button small" aria-label="Twitter">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Twitter"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"></path></svg>
+    </button>
+    <button class="toggle-button small" aria-label="Pinterest">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Pinterest"><path d="M9.04 21.54c.96.29 1.93.46 2.96.46a10 10 0 0 0 10-10A10 10 0 0 0 12 2 10 10 0 0 0 2 12c0 4.25 2.67 7.9 6.44 9.34-.09-.78-.18-2.07 0-2.96l1.15-4.94s-.29-.58-.29-1.5c0-1.38.86-2.41 1.84-2.41.86 0 1.26.63 1.26 1.44 0 .86-.57 2.09-.86 3.27-.17.98.52 1.84 1.52 1.84 1.78 0 3.16-1.9 3.16-4.58 0-2.4-1.72-4.04-4.19-4.04-2.82 0-4.48 2.1-4.48 4.31 0 .86.28 1.73.74 2.3.09.06.09.14.06.29l-.29 1.09c0 .17-.11.23-.28.11-1.28-.56-2.02-2.38-2.02-3.85 0-3.16 2.24-6.03 6.56-6.03 3.44 0 6.12 2.47 6.12 5.75 0 3.44-2.13 6.2-5.18 6.2-.97 0-1.92-.52-2.26-1.13l-.67 2.37c-.23.86-.86 2.01-1.29 2.7v-.03z"></path></svg>
+    </button>
+    <button class="toggle-button small" aria-label="Tiktok">
+      <svg focusable="false" inert viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"><path d="m19.48483,5.1246a5.24548,5.46423 0 0 1 -0.45365,-0.27504a6.37839,6.64438 0 0 1 -1.16507,-1.03114c-0.86889,-1.03563 -1.19339,-2.08627 -1.31293,-2.82187l0.0048,0c-0.09985,-0.61058 -0.05857,-1.00564 -0.05232,-1.00564l-3.95752,0l0,15.94112c0,0.21403 0,0.42555 -0.00864,0.63458c0,0.02601 -0.0024,0.05 -0.00384,0.07801c0,0.0115 0,0.0235 -0.0024,0.03551c0,0.00299 0,0.006 0,0.00899a3.36033,3.50046 0 0 1 -1.69072,2.77838a3.30272,3.44046 0 0 1 -1.63744,0.45006c-1.84386,0 -3.33825,-1.56621 -3.33825,-3.50046s1.49439,-3.50046 3.33825,-3.50046a3.30753,3.44545 0 0 1 1.02778,0.16951l0.0048,-4.19755a7.35145,7.65801 0 0 0 -5.66456,1.72624a7.76669,8.09056 0 0 0 -1.69458,2.17679c-0.16705,0.30003 -0.79735,1.5057 -0.87369,3.46244c-0.048,1.11064 0.27219,2.26131 0.42484,2.73686l0,0.01001c0.09602,0.28003 0.46804,1.23566 1.07435,2.04126a8.04223,8.37762 0 0 0 1.71426,1.68473l0,-0.01001l0.00959,0.01001c1.91588,1.35618 4.04009,1.26716 4.04009,1.26716c0.36772,-0.0155 1.59952,0 2.99837,-0.69059c1.55151,-0.7656 2.4348,-1.90625 2.4348,-1.90625a7.60684,7.92406 0 0 0 1.32684,-2.2968c0.35812,-0.98063 0.47765,-2.15678 0.47765,-2.62685l0,-8.45712c0.048,0.03 0.68742,0.47056 0.68742,0.47056s0.92122,0.61508 2.35847,1.01563c1.03115,0.28505 2.4204,0.34505 2.4204,0.34505l0,-4.09254c-0.48677,0.05501 -1.47519,-0.10501 -2.48713,-0.63059l0,-0.00001l0.00001,0.00002z"></path></svg>
+    </button>
+  </div>
+</section>
+<section id="range-inputs" class="mt-2">
+  <h3 class="h5 bold bb">
+    <a href="#range-inputs" class="same-page fw-regular">Range Inputs</a>
+  </h3>
+  <details class="mt-2">
+      <summary>
+          <span class="h6 fw-regular">
+              About Range Inputs
+          </span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content" aria-hidden="true">
+        A range input can either have a <span class="t-secondary">secondary</span> (default) or <span class="t-primary">primary</span>
+        background color and can have either a normal or <span class="caption">small</span> size.
+        <br>
+        Ensure that all range inputs have <span class="t-info bold">min</span>,
+        <span class="t-info bold">max</span>,
+        <span class="t-info bold">step</span>,
+        <span class="t-info bold">id</span>,
+        and
+        <span class="t-info bold">name</span> attributes. Ensure that all ranges have an associated <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">output</span>&gt;</span></span></code></span>
+        and an associated 
+        <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span></span></code></span>
+        <span class="t-warning">(Both may be hidden.)</span>.
+        <br>
+        If you want to show the output, just put both the input and output inside of a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-row align-center justify-start gap-2&quot;</span>&gt;</span></span></code></span>.
+        <br>
+        If you want to show a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">datalist</span>&gt;</span></span></code></span> with the input at certain values,
+        just see the examples below. 
+        <br>
+        <span class="block body1 fw-regular bg-warning brad-sm p-sm">
+          Actually, due to the fact that many browsers do not support the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">datalist</span>&gt;</span></span></code></span> element (e.g. <a href="https://www.apple.com/safari/" target="_blank" class="secondary link">Safari</a>), 
+          I changed what would have been a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">datalist</span>&gt;</span></span></code></span> component with some 
+          <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span></span></code></span>s to a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;listbox&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;datalist&quot;&gt;</span></span></span></code></span>
+          with some <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;option&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;datalist-option&quot;</span>&gt;</span></span></code></span>s. This will help with customization anyway (with some sacrifice to HTML correctness - you won't be able to include the <strong class="bolder">list</strong> attribute on the input).
+        </span>
+        If you don't want the user to be able to edit the input, just add the disabled class to the slider. It will not affect styling.
+      </div>
+  </details>
+
+  <label for="example-range" class="mt-2">Example Range:</label>
+  <input name="example-range" class="mt-4" id="example-range" type="range" min="0" max="100" value="50" step="1" style="background-size: 50% 100%;">
+  <output class="hidden" for="example-range" hidden="">50</output>
+  
+  <label for="example-range-2" class="mt-2">Example Range With Sections:</label>
+  <input name="example-range-2" class="mt-4 primary w-data" id="example-range-2" type="range" min="0" max="100" value="50" step="25" style="background-size: 50% 100%;">
+  <output class="hidden" for="example-range" hidden=""></output>
+  <div class="datalist" role="listbox">
+    <div class="datalist-option" role="option">Very Cold!</div>
+    <div class="datalist-option" role="option">Cool</div>
+    <div class="datalist-option" role="option">Medium</div>
+    <div class="datalist-option" role="option">Getting Warm</div>
+    <div class="datalist-option" role="option">Hot</div>
+  </div>
+
+  <label for="example-range-small" class="body2">Small Range:</label>
+  <input name="example-range-small" class="mt-2 small" id="example-range-small" type="range" min="0" max="100" value="50" step="1" style="background-size: 58% 100%;">
+  <output class="hidden" for="example-range" hidden=""></output>
+  
+  <label for="example-range-3" class="mt-2">Small Range With Sections:</label>
+  <input name="example-range-3" class="mt-2 primary small w-data" id="example-range-3" type="range" min="0" max="100" value="50" step="25" style="background-size: 50% 100%;">
+  <output class="hidden" for="example-range" hidden=""></output>
+  <div class="datalist" role="listbox">
+    <div class="datalist-option" role="option">Very Cold!</div>
+      <div class="datalist-option" role="option">Cool</div>
+      <div class="datalist-option" role="option">Medium</div>
+      <div class="datalist-option" role="option">Getting Warm</div>
+      <div class="datalist-option" role="option">Hot</div>
+  </div>
+
+  <label for="example-range-4" class="mt-2">Numeric Range With Output:</label>
+  <div class="flex-row align-center justify-start gap-2">
+    <input name="example-range-4" class="primary" id="example-range-4" type="range" min="0" max="100" value="50" step="1" style="background-size: 50% 100%;">
+    <output class="h6 pl-2 bold range" for="example-range-4">50</output>
+  </div>
+
+</section>
+<section id="file-upload-inputs" class="mt-2">
+  <h3 class="h5 bold bb">
+    <a href="#file-upload-inputs" class="same-page fw-regular">File Uploads</a>
+  </h3>
+  <details class="mt-2">
+      <summary>
+          <span class="h6 fw-regular">
+              About File Uploads
+          </span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content" aria-hidden="true">
+          I haven't worked much on file uploads because you usually just want to specify the type of file the user should upload (image / audio / video), let the 
+          browser constrain the types, then upload to the server, but below are some preliminary file upload drafts. 
+          <br>
+          The main difference between image / audio / video file uploads are the <span class="t-info bold">accept</span>
+          attribute.
+      </div>
+  </details>
+
+    <label for="upload-image-example" class="bold mt-2">Upload Image File:</label>
+    <input type="file" data-image-input accept="image/*" id="upload-image-example" name="upload-image-example" class="mt-1" />
+    <output class="block" for="upload-image-example"></output>
+
+    <label for="upload-audio-example" class="bold mt-2">Upload Audio File:</label>
+    <input type="file" id="upload-audio-example" data-audio-input accept="audio/*" name="upload-audio-example" class="mt-1 secondary" />
+    <output class="block" for="upload-audio-example">
+
+    </output>
+    
+
+    <label for="upload-video-example" class="bold mt-2">Upload Video File:</label>
+    <input type="file" id="upload-video-example" data-video-input accept="video/*" name="upload-video-example" class="mt-1 warning" />
+    <output for="upload-video-example" class="block"></output>
+
+    <label for="upload-image-example-2" class="bold mt-2">Upload Multiple Image Files:</label>
+    <input multiple type="file" data-image-input accept="image/*" id="upload-image-example-2" name="upload-image-example-2" class="mt-1 info" />
+    <output class="block" for="upload-image-example-2"></output>
+
+
+    <label for="upload-audio-example-2" class="bold mt-2">Upload Audio Files:</label>
+    <input multiple type="file" id="upload-audio-example-2" data-audio-input accept="audio/*" name="upload-audio-example-2" class="mt-1 error" />
+    <output class="block" for="upload-audio-example-2"></output>
+
+    <label for="upload-video-example-2" class="bold mt-2">Upload Video Files:</label>
+    <input multiple type="file" id="upload-video-example-2" data-video-input accept="video/*" name="upload-video-example-2" class="mt-1 success" />
+    <output class="block" for="upload-video-example-2"></output>
+</section>
+<section id="date-time-inputs" class="mt-2">
+  <h3 class="h5 bold bb">
+    <a href="#date-time-inputs" class="same-page fw-regular">Date and Time Inputs</a>
+  </h3>
+  <details aria-label="About Date and Time Inputs" class="mt-2">
+    <summary>
+        <span class="h6 fw-regular">About Date and Time Inputs</span>
+        <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+          <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+          </path>
+        </svg>
+    </summary>
+    <div class="accordion-content" aria-hidden="true">
+      <ol>
+        <li>
+          <span class="bold h6">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#setting_maximum_and_minimum_dates" class="secondary link" target="_blank">Date Inputs:</a>
+          </span>
+          <ul>
+            <li>
+              Date Inputs accept a <span class="fw-regular t-info">max</span> and <span class="fw-regular t-info">min</span> attribute that 
+              accept a value in the <span class="fw-regular t-success">YYYY-MM-DD</span> format.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span class="bold h6">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local" class="secondary link" target="_blank">Datetime Inputs:</a>  
+          </span>
+          <ul>
+            <li>
+              Datetime Inputs accept a <span class="fw-regular t-info">max</span> and <span class="fw-regular t-info">min</span> attribute that 
+              accept a value in the <span class="fw-regular t-success">YYYY-MM-DDTHH:MM:SS</span> format. 
+              
+            </li>
+            <li>
+              The HH:MM:SS stands for hours, minutes, and seconds in military time (e.g. 23:15 === 11:15 PM) and the seconds are optional.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span class="bold h6">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/time" class="secondary link" target="_blank">Time Inputs:</a>
+          </span>
+          <ul>
+            <li>
+              Time Inputs accept a <span class="fw-regular t-info">max</span> and <span class="fw-regular t-info">min</span> attribute that 
+              accept a value in the <span class="fw-regular t-success">HH:MM:SS</span> format. 
+              
+            </li>
+            <li>
+              The HH:MM:SS stands for hours, minutes, and seconds in military time (e.g. 23:15 === 11:15 PM) and the seconds are optional.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span class="bold h6">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/month" class="secondary link" target="_blank">Month Inputs:</a>
+          </span>
+          <ul>
+            <li>
+              Month Inputs accept a <span class="fw-regular t-info">max</span> and <span class="fw-regular t-info">min</span> attribute that 
+              accept a value in the <span class="fw-regular t-success">YYYY-MM</span> format. 
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span class="bold h6">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/week" class="secondary link" target="_blank">Week Inputs:</a>
+          </span>
+          <ul>
+            <li>
+              Week Inputs accept a <span class="fw-regular t-info">max</span> and <span class="fw-regular t-info">min</span> attribute that 
+              accept a value in the <span class="fw-regular t-success">YYYY-W##</span> format. 
+            </li>
+            <li>
+              The #'s in the above abbreviation stand for the weeks in the year from 01 to 52 (and sometimes 53).
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </details>
+
+  <p class="h3 bold mt-2 bb">Date Input:</p>
+  <div class="input-group block mt-2">
+    <label for="example-date-input">Date Input:</label>
+    <div class="flex-row align-center gap-2 mt-1">
+      <button data-launch-datetime type="button" class="icon medium" aria-label="Launch Date Input Menu">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="DateRange"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"></path></svg>
+      </button>
+      <input placeholder="mm/dd/yyyy" type="date" id="example-date-input" name="example-date-input" max="2024-01-15" min="1998-10-08" value="1998-10-08" />
+    </div>
+  </div>
+  
+  
+
+  <p class="h3 bold mt-2 bb">Datetime Input:</p>
+  <div class="input-group block mt-2">
+    <label for="example-datetime-input">Datetime-local Input:</label>
+    <div class="flex-row align-center gap-2 mt-1">
+      <button data-launch-datetime type="button" class="icon medium" aria-label="Launch Datetime Input Menu">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Today"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path></svg>
+      </button>
+      <input placeholder="mm/dd/yyyy" type="datetime-local" id="example-datetime-input" name="example-datetime-input" max="2024-01-15T15:40" value="1998-10-08T12:00" min="1998-10-08T12:00"/>
+    </div>
+  </div>
+  
+
+  <p class="h3 bold mt-2 bb">Time Input:</p>
+  <div class="input-group block mt-2">
+    <label for="example-time-input">Time Input:</label>
+    <div class="flex-row align-center gap-2 mt-1">
+      <button data-launch-datetime type="button" class="icon medium" aria-label="Launch Time Input Menu">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="QueryBuilder"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"></path></svg>
+      </button>
+      <input type="time" id="example-time-input" name="example-time-input" max="22:00" value="12:00:15" min="01:00"/>
+    </div>
+  </div>
+
+  <p class="h3 bold mt-2 bb">Month Input:</p>
+  <div class="input-group block mt-2">
+    <label for="example-month-input">Month Input:</label>
+    <div class="flex-row align-center gap-2 mt-1">
+      <button data-launch-datetime type="button" class="icon medium" aria-label="Launch Time Input Menu">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CalendarMonth"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"></path></svg>
+      </button>
+      <input type="month" id="example-month-input" name="example-month-input" max="2024-01" value="1998-10" min="1998-10"/>
+    </div>
+  </div>
+
+  <p class="h3 bold mt-2 bb">Week Input:</p>
+  <div class="input-group block mt-2">
+    <label for="example-week-input">Week Input:</label>
+    <div class="flex-row align-center gap-2 mt-1">
+      <button data-launch-datetime type="button" class="icon medium" aria-label="Launch Time Input Menu">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CalendarViewWeek"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-7 2h2.5v12H13V6zm-2 12H8.5V6H11v12zM4 6h2.5v12H4V6zm16 12h-2.5V6H20v12z"></path></svg>
+      </button>
+      <input type="week" id="example-week-input" name="example-week-input" max="2024-W03" value="1998-W41" min="1998-W40"/>
+    </div>
+  </div>
+</section>
+<section id="phone-inputs" class="mt-4">
+  <h3 class="h5 bold bb">
+    <a href="#phone-inputs" class="same-page fw-regular">Phone Inputs</a>
+  </h3>
+  <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+    <label for="phone-input">Phone Input:</label>
+    <div class="text-input block medium">
+        <input 
+        type="tel" 
+        autocomplete="tel" 
+        name="phone-input" 
+        id="phone-input" 
+        class="medium icon-before mt-1" 
+        required
+        placeholder="Enter your phone number..." 
+        maxlength="19"
+        minlength="19" 
+        value="+1 "
+        pattern="INPUT_PATTERN" 
+        spellcheck="false" 
+        autocapitalize="off"
+        >
+        <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Phone"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg>
+        <%# Buttons and SVGs %>
+    </div>
+    <p class="caption fw-regular t-warning" style="padding-left: 8px;">
+    Only enter numbers. The number will be formatted automatically.
+    </p>
+  </div>
+</section>

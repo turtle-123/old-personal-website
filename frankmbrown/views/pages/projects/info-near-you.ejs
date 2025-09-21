@@ -1,0 +1,206 @@
+<%# 
+PARTIAL ROUTE: pages/projects/info-near-you.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.communitiesHTML
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+  <h1 class="page-title">
+    Census Information Near You
+  </h1>
+
+  <section id="why-add-this" class="mt-2">
+      <h2 class="bold bb-thick h2">
+        <a href="#why-add-this" class="same-page fw-regular">Why Add This?</a>
+      </h2>
+      <p class="mt-2">
+        I just wanted to remind myself of what the structure of census data that I had previously gathered looked like. Use this page to see census communities near you and to search for census communities in the United States. In the future, I plan to generate <a class="secondary link" target="_blank" href="https://d3js.org/">d3.js</a> graphs based on census data going back to <abbr title="approximately">approx</abbr> 1984 for all census communities.
+      </p>
+  </section>
+
+  <hr style="margin: 1rem auto; border-color: var(--warning); border-width: 4px;">
+
+  <div id="communities-near-you">
+    <%if(!!!locals.communitiesHTML){%>
+      <p class="mt-2">
+        Click the button below to see the Census Communities near you.
+      </p>
+      <div class="flex-row align-center justify-center mt-2">
+        <button id="get-census-communities" class="icon-text info medium primary filled">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Map"><path d="m20.5 3-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"></path></svg>
+          CENSUS COMMUNITIES
+        </button>
+      </div>
+    
+      <div id="census-communities-output"></div>
+    
+      
+
+      <script nonce="<%=locals.jsNonce%>">
+        (function() {
+          if ("geolocation" in navigator) {
+            const btn = document.getElementById('get-census-communities');
+            const output = document.getElementById('census-communities-output');
+            const main = document.querySelector('main#PAGE');
+            const html = document.querySelector('html');
+            const communitiesNearYou = document.getElementById('communities-near-you');
+            if(btn&&main&&html&&communitiesNearYou&&output){
+              function successCallback(position) {
+                // https://stackoverflow.com/questions/11042212/ff-13-ie-9-json-stringify-geolocation-object
+                const body = JSON.stringify({
+                      coords: {
+                          accuracy: position.coords.accuracy,
+                          altitude: position.coords.altitude,
+                          altitudeAccuracy: position.coords.altitudeAccuracy,
+                          heading: position.coords.heading,
+                          latitude: position.coords.latitude,
+                          longitude: position.coords.longitude,
+                          speed: position.coords.speed,
+                      },
+                      timestamp: position.timestamp,
+                });
+                output.insertAdjacentHTML("beforeend",`<div id="getting-communities-near-you-loader" class="mt-1 w-100 flex-row justify-center t-tsecondary" role="progressbar" aria-busy="true" aria-label="Page Indicator">
+                <div class="lds-facebook"><div></div><div></div><div></div></div>
+                </div>`);
+                function getCsrfToken() {
+                  const csrf = document.getElementById('csrf_token');
+                  if (csrf) return csrf.value;
+                  else return 'csrf-not-found';
+                }
+                fetch('/api/device-position',{method: 'POST', body, headers: {'Content-Type': 'application/json', 'X-CSRF-Token': getCsrfToken() } })
+                .then((res) => {
+                  if (res.status!==200) throw new Error('Something went wrong getting the census communities.');
+                  return res.text();
+                })
+                .then((res) => {
+                  const loader = document.getElementById('getting-communities-near-you-loader');
+                  if (loader) loader.remove();
+                  btn.remove();
+                  output.insertAdjacentHTML('beforeend',res);
+                  document.dispatchEvent(new CustomEvent('NEW_CONTENT_LOADED'));
+                })
+                .catch((error) => {
+                  console.error(error);
+                  const loader = document.getElementById('getting-communities-near-you-loader');
+                  if (loader) loader.remove();
+                  btn.setAttribute('disabled','');
+                  const div = document.createElement('div');
+                  div.className="error filled alert icon medium mt-2"
+                  div.setAttribute('aria-hidden','false');
+                  div.setAttribute('role','alert');
+                  div.setAttribute('data-snacktime','4000');
+                  div.innerHTML = `<svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Error"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+        <p class="p-sm">There was an error getting the census communities near you.</p>
+        <button class="icon medium" type="button" data-close-snackbar aria-label="Close Snackbar">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CloseSharp"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+        </button>`;
+                  communitiesNearYou.append(div);
+                  document.dispatchEvent(new CustomEvent('NEW_CONTENT_LOADED'));
+                })
+              }
+              function errorCallback() {
+                const main = document.querySelector('main#PAGE');
+                const html = document.querySelector('html');
+                if (main&&html) {
+                  const div = document.createElement('div');
+                  div.className="error filled alert icon medium mt-2"
+                  div.setAttribute('aria-hidden','false');
+                  div.setAttribute('role','alert');
+                  div.setAttribute('data-snacktime','4000');
+                  div.innerHTML = `<svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Error"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+        <p class="p-sm">There was an error getting your current position.</p>
+        <button class="icon medium" type="button" data-close-snackbar aria-label="Close Snackbar">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CloseSharp"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+        </button>`;
+                  communitiesNearYou.append(div);
+                  document.dispatchEvent(new CustomEvent('NEW_CONTENT_LOADED'));
+                }
+              }
+              function onGetCensusCommunitiesClick() {
+                navigator.geolocation.getCurrentPosition(successCallback,errorCallback);
+              }
+              btn.addEventListener('click',onGetCensusCommunitiesClick);
+            }
+          }
+        })()
+      </script>
+    <%}else{%>
+      <%-locals.communitiesHTML%>
+    <%}%>
+  </div>
+  
+
+  <section id="search-census-communities" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#search-census-communities" class="same-page fw-regular">Search Census Communities</a>
+    </h2>
+
+    <p class="mt-2">
+      Search for census communities using the search box below. When you click on a search result, information about the census community will be shown below.
+    </p>
+    <div class="input-group block w-100 mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+      <label for="search-census-communities-input">Search Census Communities:</label>
+      <div class="mt-1 text-input block medium">
+        <input 
+        type="search" 
+        class="icon-after" 
+        name="search-census-communities-input" 
+        id="search-census-communities-input" 
+        placeholder="Enter the name of a census location to search for..." 
+        hx-post="/projects/census-info-near-you"
+        hx-trigger="search, input changed delay:200ms"
+        hx-target="#search-results"
+        hx-swap="innerHTML"
+        hx-indicator="#sear-cen-comm-ind"
+        >
+        <svg class="icon-after" focusable="false" inert viewBox="0 0 24 24">
+          <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+          </path>
+        </svg>
+      </div>
+    </div>
+
+    <style>
+      .response-button {
+        all:initial;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border: 2px solid var(--divider);
+        flex-wrap:nowrap;
+        font-family: var(--font-family);
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+      .response-button:hover {
+        border: 2px solid var(--text-primary);
+      }
+      .response-button:focus {
+        border: 2px solid var(--primary);
+      }
+    </style>
+    <div class="flex-row justify-center t-secondary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Search Census Communities..." id="sear-cen-comm-ind">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div id="search-results" class="mt-2" style="max-height: 400px;min-height: 400px; overflow-y: auto; border-radius: 0.25rem; padding: 0.25rem;">
+  <p class="h5 bold text-align-center mt-2">Search Results</p>  
+  </div>
+
+  </section>
+
+  <div class="mt-4" id="scroll-to-specific-community">
+    <div class="flex-row justify-center t-info htmx-indicator" role="progressbar" aria-busy="false" aria-label="Getting specific census community" id="get-specific-census-community-loader">
+    <div class="lds-dual-ring"></div>
+    </div>
+    <div id="get-specific-community" class="mt-2"></div>
+  </div>
+  <%-include('../../partials/pagePartial')%>
+<%}%>
+    

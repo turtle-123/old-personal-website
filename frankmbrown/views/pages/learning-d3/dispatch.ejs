@@ -1,0 +1,18 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/dispatch.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+  <h1 class="page-title" id="top-of-page">D3.js Dispatch</h1>
+   
+  <p>
+    Dispatching is a low-level interaction mechanism that allows you to register named callbacks and then call them with arbitrary arguments. A variety of D3 interaction components, such as d3-drag, use dispatch to emit events to listeners. Think of this as EventTarget except every listener has a well-defined name so it’s easy to remove or replace them.
+  </p>
+        
+  <%-include('../../partials/pagePartial')%>
+<%}%>

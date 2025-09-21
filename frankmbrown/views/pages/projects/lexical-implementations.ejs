@@ -1,0 +1,373 @@
+<%# 
+PARTIAL ROUTE: pages/projects/lexical-implementations.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.articleBuilderEditor
+- locals.jsNonce
+- locals.commentEditor
+- locals.textOnlyEditor
+- locals.textOnlyEditorNoColor
+- locals.textWithLinksEditor
+- locals.textWithLinksEditorNoColor 
+- locals.textWithBlockImplementation
+- locals.textWithBlockImplementationNoColor
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+      
+    <h1 class="page-title">
+        Various Lexical Implementations
+    </h1>
+
+    <section id="why-create-this" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#why-create-this" class="same-page fw-regular">Why Create This Page</a>
+        </h2>
+        <p class="mt-2">
+            I want to test out various implementations of the rich text editor. The <a class="primary link" hx-get="/projects/design-system/lexical-rich-text-editor" href="/projects/design-system/lexical-rich-text-editor" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">Lexical Rich Text Editor</a> has more uses than just being used in the <a class="primary link" hx-get="/projects/article-builder-3" href="/projects/article-builder-3" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">article builder</a>, it also can be used for comments or inputs that require more than just plain text. The rich text editor will be used fo render comments, render various things for the <a class="primary link" hx-get="/projects/create-a-survey" href="/projects/create-a-survey" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">poll implementation</a>. 
+            <br>
+            <br>
+            I am using this page to test out the various implementations, figure out wha capabilities I want each of the implementations to have, to figure out how they will be rendered, and to 
+        </p>
+    </section>
+
+    <section id="how-to-use" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#how-to-use" class="same-page fw-regular">How To Use This Page</a>
+        </h2>
+        <p class="mt-2">
+            Below, you can test out the various lexical implementations. You can read about / test what their capabilities are and the click the <span class="bg-background p-md">SUBMIT</span> button to submit the 
+            form and see how that version of the lexical implementation is rendered.
+        </p>
+    </section>
+    <section id="registering-editor" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#regisering-editor" class="same-page bold">Registering a Lexical Editor</a>
+        </h2>
+        <p class="mt-2">
+            The basic setup of a lexical editor:
+        </p>
+        <div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;lexical-wrapper&quot;</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Toolbars --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> 
+  <span class="hljs-attr">data-rich-text-editor</span> 
+  <span class="hljs-attr">data-type</span>=<span class="hljs-string">&quot;TYPE&quot;</span> 
+  <span class="hljs-attr">data-editable</span>=<span class="hljs-string">&quot;(true|false)&quot;</span> 
+  [<span class="hljs-attr">data-no-color</span>]
+  [<span class="hljs-attr">data-char-min-length</span>=<span class="hljs-string">&quot;NUMBER&quot;</span>]
+  [<span class="hljs-attr">data-char-max-length</span>=<span class="hljs-string">&quot;NUMBER&quot;</span>]
+  [<span class="hljs-attr">data-node-restrictions</span>=<span class="hljs-string">&quot;JSON-STRINGIFIED-OBJECT&quot;</span>]
+  &gt;</span>
+    <span class="hljs-comment">&lt;!-- Initial HTML --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Toolbars --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>  </span></code></pre>
+<button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+    </path>
+    </svg>
+</button>
+</div>
+
+        <table cellspacing="0" class="mt-2">
+            <caption>Description of The Lexical Setup</caption>
+        <thead>
+            <tr>
+            <th scope="col">Attribute:</th>
+            <th scope="col">Description:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td style="width:auto;"><span class="text-code">.lexical-wrapper</span></td>
+            <td style="text-align:left;">This class is used often when registering listeners on the lexical editor. The class can be used on the same <span class="text-code">&lt;div&gt;</span> element has the <span class="text-code">&lt;div&gt;</span> element that has the <span class="text-code">[data-rich-text-editor]</span> attribute - and this is how it should be when you are just rendering the editor (not editing). There is no styling directly related to this class, but there are styles related to the elements related to the class.</td>
+            </tr>
+            <tr>
+                <td style="width:auto;"><span class="text-code">[data-rich-text-editor]</span></td>
+                <td style="text-align: left;">The JavaScript searches for <span class="text-code">div[data-rich-text-editor]</span> elements when looking for editors to register.</td>
+            </tr>
+            <tr>
+                <td><span class="text-code">[data-type]</span></td>
+                <td style="text-align: left;">
+                    Tells the JavaScript which kind of editor to register. 
+                    Here is a list of different types:
+                    <ul>
+                        <li style="text-align: left;"><span class="text-code">full</span>: The type that should be with articles. Includes all nodes.</li>
+                        <li style="text-align: left;"><span class="text-code">comment</span>: The type that should be used with comments. Restricts some types of nodes.</li>
+                        <li style="text-align: left;"><span class="text-code">text-only</span>: The type that you should include when you only want the user to insert text and paragraph nodes.</li>
+                        <li style="text-align: left;"><span class="text-code">text-with-links</span>: The type that you should include when you only want the user to insert text, link, and paragraph nodes.</li>
+                        <li style="text-align: left;"><span class="text-code">text-block-elements</span>: The type that you should include when you only want the user to insert text, link, paragraph, blockquote, list, code, math, and table nodes.</li>
+                        <li class="bg-error">The elements below might be removed.</li>
+                        <li style="text-align: left;"><span class="text-code">article</span>: Initially used for article nodes. Should be removed by now and replaced with </li>
+                        <li style="text-align: left;"><span class="text-code">poll-question</span>: Currently used for poll questions. Will probably be replaced with a customized comment node.</li>
+                        <li style="text-align: left;"><span class="text-code">poll-short-blog</span>: Currently used for polls. Will probably be replaced with comment editors.</li>
+                        <li style="text-align: left;"><span class="text-code">poll-option</span>: Currently used for polls. Will probably be replaced with comment editors.</li>
+                        <li style="text-align: left;"><span class="text-code">range-description</span>: Currently used for polls. Will probably be replaced with comment editors.</li>
+                    </ul>
+
+                </td>
+            </tr>
+            <tr>
+                <td style="width:auto;"><span class="text-code">[data-editable]</span></td>
+                <td style="text-align: left;">This optional attribute can be set to <span class="text-code">true</span> or <span class="text-code">false</span>. When set to <span class="text-code">false</span>, then the editable state of the editor is immediately set to <span class="text-code">false</span>.</td>
+            </tr>
+            <tr>
+                <td style="width:auto;"><span class="text-code">[data-no-color]</span></td>
+                <td style="text-align: left;">This optional attribute, when included, tells the JavaScript to not allow the user to change the background-color or text-color of anything in the editor.</td>
+            </tr>
+            <tr>
+                <td style="width:auto;"><span class="text-code">[data-char-min-length]</span></td>
+                <td style="text-align: left;">This optional attribute tells the user what the minimum length of the text inside the editor should be. </td>
+            </tr>
+            <tr>
+                <td style="width:auto;"><span class="text-code">[data-char-max-length]</span></td>
+                <td style="text-align: left;">This optional attribute tells the user what the maximum length of the text inside the editor should be.</td>
+            </tr>
+            <tr>
+                <td style="width:auto;"><span class="text-code">[data-max-restrictions]</span></td>
+                <td style="text-align: left;">This optional attribute tells the user how many nodes of certain types are allowed in the editor.</td>
+            </tr>
+        </tbody>
+        </table>
+
+    </section>
+    <section id="article-builder-lexical-implementation" class="mt-4">
+        <h2 class="bold bb-thick h2">
+            <a href="#article-builder-lexical-implementation" class="same-page fw-regular">Article Builder Implementation</a>
+        </h2>
+        <p class="mt-2">
+            The article builder lexical implementation is used to allow users to compose articles. It should allow basically all types of Lexical nodes. 
+        </p>
+        <section id="article-builder-lexical-implementation-input" class="mt-4">
+            <h3 class="bold h3 bb">
+              <a href="#article-builder-lexical-implementation-input" class="same-page fw-regular">Input</a>
+            </h3>
+            <form id="article-builder-lexical-implementation-input-form" hx-post="/projects/lexical-implementations/article-builder-lexical-implementation" data-loading="Parsing article-builder-lexical-implementation Implementation...." class="mt-2" hx-target="#article-builder-lexical-implementation-output-container" hx-swap="innerHTML">
+              <%-locals.articleBuilderEditor%>
+              <div class="mt-2 flex-row justify-between align-center">
+                  <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                  <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                      SUBMIT
+                  </button>
+              </div>
+            </form>
+            <script nonce="<%=locals.jsNonce%>" defer>
+            (function() {
+                const el = document.getElementById('article-builder-lexical-implementation-input-form');
+                if (el) {
+                    const getCodeBtn = el.querySelector('button[hx-get="/components/article-builder-code"]')
+                    const getMarkdownBtn = el.querySelector('button[hx-get="/components/markdown"]')
+                    const getEditorBtn = el.querySelector('button[hx-get="/api/lexical/article-builder-3"]')
+                    if (getCodeBtn) getCodeBtn.setAttribute('disabled','');
+                    if (getMarkdownBtn) getMarkdownBtn.setAttribute('disabled','');
+                    if (getEditorBtn) getEditorBtn.setAttribute('disabled','');
+                }
+            })()
+                
+            </script>
+        </section>
+        <section id="article-builder-lexical-implementation-output" class="mt-4">
+            <h3 class="bold h3 bb">
+            <a href="#article-builder-lexical-implementation-output" class="same-page fw-regular">Output</a>
+            </h3>
+            <output style="min-height: 150px; display: block;"id="article-builder-lexical-implementation-output-container" form="article-builder-lexical-implementation-input-form"></output>
+        </section>
+    </section>
+    <section id="comment-lexical-implementation" class="mt-4">
+        <h2 class="bold bb-thick h2">
+            <a href="#comment-lexical-implementation" class="same-page fw-regular">Comment Implementation</a>
+        </h2>
+        <p class="mt-2">
+            The comment implementation of the rich text editor is used to allow users to create comments for articles, polls, or other entities. <br>
+            The comment implementation should not include heading nodes or section heading nodes because that might introduce semantically incorrect HTML - unless you wrap each comment in an <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">article</span>&gt;</span></span></code></span> tag. <br>
+            The comment implementation should be implemented with a min/max length character counter, you should constrain the size of images on the server, and you should be able to constrain how many of certain types of nodes are inserted into the Lexical editor, i.e. one image node OR one video node OR one table. <br>
+            There might need to be a type of node created so that you can constrain the height of the node on initial rendering. Like a hide/show node that can be used to limit the initial height of long comments. This would need to be added to the editor on the server.
+        </p>
+        <section id="comment-lexical-implementation-input" class="mt-4">
+            <h3 class="bold h3 bb">
+              <a href="#comment-lexical-implementation-input" class="same-page fw-regular">Input</a>
+            </h3>
+            <form id="comment-lexical-implementation-input-form" hx-post="/projects/lexical-implementations/comment-lexical-implementation" data-loading="Parsing comment-lexical-implementation Implementation...." class="mt-2" hx-target="#comment-lexical-implementation-output-container" hx-swap="innerHTML">
+                <%# Comment Implementation %>
+                <%-locals.commentEditor%>
+
+              <div class="mt-2 flex-row justify-between align-center">
+                  <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                  <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                      SUBMIT
+                  </button>
+              </div>
+            </form>
+        </section>
+        <section id="comment-lexical-implementation-output" class="mt-4">
+            <h3 class="bold h3 bb">
+            <a href="#comment-lexical-implementation-output" class="same-page fw-regular">Output</a>
+            </h3>
+            <output style="min-height: 150px; display: block;"id="comment-lexical-implementation-output-container" form="comment-lexical-implementation-input-form"></output>
+        </section>
+    </section>
+    <section id="text-only-lexical-implementation" class="mt-4">
+        <h2 class="bold bb-thick h2">
+            <a href="#text-only-lexical-implementation" class="same-page fw-regular">Text Only Implementation</a>
+        </h2>
+        <p class="mt-2">
+            The text only implementation of the rich text editor should be used in places where you want the user to create something more customizable than 
+            what is allowed with just a <span class="text-code">&lttextarea&gt</span>. <br>
+            The text only implementation should come in versions that allow users to change the background color / text color of the text and change the style of the paragraph and versions that do not allow the user to change colors / styles of the paragraph. <br>
+            You will need to change the implementation of the floating action toolbar to prevent the users from inserting links and from inserting 
+        </p>
+        <section id="text-only-lexical-implementation-input" class="mt-4">
+            <h3 class="bold h3 bb">
+              <a href="#text-only-lexical-implementation-input" class="same-page fw-regular">Input</a>
+            </h3>
+            <form id="text-only-lexical-implementation-input-form" hx-post="/projects/lexical-implementations/text-only-lexical-implementation" data-loading="Parsing text-only-lexical-implementation Implementation...." class="mt-2" hx-target="#text-only-lexical-implementation-output-container" hx-swap="innerHTML">
+                <%-locals.textOnlyEditor%>
+                <div class="mt-2 flex-row justify-between align-center">
+                  <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                  <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                      SUBMIT
+                  </button>
+              </div>
+            </form>
+        </section>
+        <section id="text-only-lexical-implementation-output" class="mt-4">
+            <h3 class="bold h3 bb">
+            <a href="#text-only-lexical-implementation-output" class="same-page fw-regular">Output</a>
+            </h3>
+            <output style="min-height: 150px; display: block;"id="text-only-lexical-implementation-output-container" form="text-only-lexical-implementation-input-form"></output>
+        </section>
+        <h3 class="h3 bold mt-4" style="border-top: 4px solid var(--primary); padding-top: 6px;">No Color Implementation:</h3>
+        <section id="text-only-lexical-implementation-input-no-color" class="mt-4">
+            <h3 class="bold h3 bb">
+                <a href="#text-only-lexical-implementation-input-no-color" class="same-page fw-regular">Input</a>
+            </h3>
+            <form id="text-only-lexical-implementation-input-form-no-color" hx-post="/projects/lexical-implementations/text-only-lexical-implementation" data-loading="Parsing text-only-lexical-implementation Implementation...." class="mt-2" hx-target="#text-only-lexical-implementation-output-container-no-color" hx-swap="innerHTML">
+                <%-locals.textOnlyEditorNoColor%>
+                <div class="mt-2 flex-row justify-between align-center">
+                  <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                  <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                      SUBMIT
+                  </button>
+              </div>
+            </form>
+        </section>
+        <section id="text-only-lexical-implementation-output-no-color" class="mt-4">
+            <h3 class="bold h3 bb">
+                <a href="#text-only-lexical-implementation-output-no-color" class="same-page fw-regular">Output</a>
+            </h3>
+            <output style="min-height: 150px; display: block;"id="text-only-lexical-implementation-output-container-no-color" form="text-only-lexical-implementation-input-form-no-color"></output>
+        </section>
+    </section>
+    <section id="text-links-lexical-implementation" class="mt-4">
+        <h2 class="bold bb-thick h2">
+            <a href="#text-links-lexical-implementation" class="same-page fw-regular">Text with Links Lexical Implementation</a>
+        </h2>
+        <p class="mt-2">
+            The text with links lexical implementation of the rich text editor should be used in places where you want the user to embed links in an input. It should be basically like 
+            the text only implementation, except that it should also allow for links.
+        </p>
+        <section id="text-links-lexical-implementation-input" class="mt-4">
+            <h3 class="bold h3 bb">
+              <a href="#text-links-lexical-implementation-input" class="same-page fw-regular">Input</a>
+            </h3>
+            <form id="text-links-lexical-implementation-input-form" hx-post="/projects/lexical-implementations/text-links-lexical-implementation" data-loading="Parsing text-links-lexical-implementation Implementation...." class="mt-2" hx-target="#text-links-lexical-implementation-output-container" hx-swap="innerHTML">
+                <%-locals.textWithLinksEditor%>
+                <div class="mt-2 flex-row justify-between align-center">
+                  <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                  <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                      SUBMIT
+                  </button>
+              </div>
+            </form>
+        </section>
+        <section id="text-links-lexical-implementation-output" class="mt-4">
+            <h3 class="bold h3 bb">
+            <a href="#text-links-lexical-implementation-output" class="same-page fw-regular">Output</a>
+            </h3>
+            <output style="min-height: 150px; display: block;"id="text-links-lexical-implementation-output-container" form="text-links-lexical-implementation-input-form"></output>
+        </section>
+        <h3 class="h3 bold mt-4" style="border-top: 4px solid var(--primary); padding-top: 6px;">No Color Implementation:</h3>
+        <section id="text-links-lexical-implementation-input-no-color" class="mt-4">
+            <h3 class="bold h3 bb">
+                <a href="#text-links-lexical-implementation-input-no-color" class="same-page fw-regular">Input</a>
+            </h3>
+            <form id="text-links-lexical-implementation-input-form-no-color" hx-post="/projects/lexical-implementations/text-links-lexical-implementation" data-loading="Parsing text-links-lexical-implementation Implementation...." class="mt-2" hx-target="#text-links-lexical-implementation-output-container-no-color" hx-swap="innerHTML">
+                <%-locals.textWithLinksEditorNoColor || '<h1>Insert Editor Here...</h1>'%>
+                <div class="mt-2 flex-row justify-between align-center">
+                  <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                  <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                      SUBMIT
+                  </button>
+              </div>
+            </form>
+        </section>
+        <section id="text-links-lexical-implementation-output-no-color" class="mt-4">
+            <h3 class="bold h3 bb">
+                <a href="#text-links-lexical-implementation-output-no-color" class="same-page fw-regular">Output</a>
+            </h3>
+            <output style="min-height: 150px; display: block;"id="text-links-lexical-implementation-output-container-no-color" form="text-links-lexical-implementation-input-form"></output>
+        </section>
+    </section>
+    <section id="text-lists-quotes-code-math-lexical-implementation" class="mt-4">
+        <h2 class="bold bb-thick h2">
+            <a href="#text-lists-quotes-code-math-lexical-implementation" class="same-page fw-regular">Text and Block-Text Elements Lexical Implementation</a>
+        </h2>
+        <p class="mt-2">
+            This implementation should implement basically anything that only includes text - e.g., include lists, blockquote, code, math, and tables.
+        </p>
+        <section id="text-lists-quotes-code-math-lexical-implementation-input" class="mt-4">
+            <h3 class="bold h3 bb">
+              <a href="#text-lists-quotes-code-math-lexical-implementation-input" class="same-page fw-regular">Input</a>
+            </h3>
+            <form id="text-lists-quotes-code-math-lexical-implementation-input-form" hx-post="/projects/lexical-implementations/text-lists-quotes-code-math-lexical-implementation" data-loading="Parsing text-lists-quotes-code-math-lexical-implementation Implementation...." class="mt-2" hx-target="#text-lists-quotes-code-math-lexical-implementation-output-container" hx-swap="innerHTML">
+                <%-locals.textWithBlockImplementation%>
+                <div class="mt-2 flex-row justify-between align-center">
+                  <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                  <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                      SUBMIT
+                  </button>
+              </div>
+            </form>
+        </section>
+        <section id="text-lists-quotes-code-math-lexical-implementation-output" class="mt-4">
+              <h3 class="bold h3 bb">
+                <a href="#text-lists-quotes-code-math-lexical-implementation-output" class="same-page fw-regular">Output</a>
+              </h3>
+              <output style="min-height: 150px; display: block;"id="text-lists-quotes-code-math-lexical-implementation-output-container" form="text-lists-quotes-code-math-lexical-implementation-input-form"></output>
+        </section>
+        <h3 class="h3 bold mt-4" style="border-top: 4px solid var(--primary); padding-top: 6px;">No Color Implementation:</h3>
+        <section id="text-lists-quotes-code-math-lexical-implementation-input-no-color" class="mt-4">
+            <h3 class="bold h3 bb">
+                <a href="#text-lists-quotes-code-math-lexical-implementation-input-no-color" class="same-page fw-regular">Input</a>
+            </h3>
+            <form id="text-lists-quotes-code-math-lexical-implementation-input-form-no-color" hx-post="/projects/lexical-implementations/text-lists-quotes-code-math-lexical-implementation" data-loading="Parsing text-lists-quotes-code-math-lexical-implementation Implementation...." class="mt-2" hx-target="#text-lists-quotes-code-math-lexical-implementation-output-container-no-color" hx-swap="innerHTML">
+                <%-locals.textWithBlockImplementationNoColor%>
+                <div class="mt-2 flex-row justify-between align-center">
+                  <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                  <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                      SUBMIT
+                  </button>
+              </div>
+            </form>
+        </section>
+        <section id="text-lists-quotes-code-math-lexical-implementation-output-no-color" class="mt-4">
+            <h3 class="bold h3 bb">
+                <a href="#text-lists-quotes-code-math-lexical-implementation-output-no-color" class="same-page fw-regular">Output</a>
+            </h3>
+            <output style="min-height: 150px; display: block;"id="text-lists-quotes-code-math-lexical-implementation-output-container-no-color" form="text-lists-quotes-code-math-lexical-implementation-input-form-no-color"></output>
+        </section>
+    </section>
+
+    <%-include('../../partials/pagePartial')%>
+<%}%>

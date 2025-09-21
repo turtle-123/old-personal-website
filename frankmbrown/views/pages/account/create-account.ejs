@@ -1,0 +1,111 @@
+<%# 
+PARTIAL ROUTE: pages/account/create-account.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">Create Account</h1>
+  <div style="display: block; max-width: 100%; width: 600px; margin: auto;">
+    <section id="why-create-account">
+      <h2 class="bb-thick flex-row align-cente justify-between w-100" style="padding-bottom: 4px;" class="mt-3">
+        <a href="#why-create-account" class="same-page fw-regular h2">Why Create An Account</a>
+        <button id="hide-show-create-account-2" class="icon-text medium warning text" type="button" >
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span >HIDE</span>
+        </button>
+      </h2>
+      <ul>
+        <li>
+          By creating an account, you will be able to comment on blog posts, notes, and participate and polls.
+        </li>
+        <li>
+          You will be able to save gradients and use those gradient designs when creating svgs.
+        </li>
+        <li>
+          Maybe some other stuff I haven't thought of yet.
+        </li>
+      </ul>
+    </section>
+    <section id="about-create-account" class="mt-4" style="margin-bottom: 1rem;">
+      <h2 class="bb-thick flex-row align-cente justify-between w-100" style="padding-bottom: 4px;">
+        <a href="#about-create-account" class="same-page fw-regular h2">About Creating an Account</a>
+        <button id="hide-show-create-account" class="icon-text medium warning text" type="button" >
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span >HIDE</span>
+        </button>
+      </h2>
+      <ul class="mt-2">
+        <li>
+        Enter a valid email, username, and password to create an account.
+        </li>
+        <li>
+        Your email will be used for two factor authentication purposes - for when you create an account or want to reset your password. Your email also <span class="bold t-info">could</span> be used to send you notifications whenever new blog posts or notes are posted, but this is disabled by default and you will have to enable it on your user page.
+        </li>
+        <li>
+        Your username must be unique, less than 50 characters, at least 4 characters, must not contain spaces, and must not be equal to '<span class="t-primary bold">Anonymous</span>'. 
+        </li>
+        <li>
+          Your password must be at least 8 characters long, contain a number, contain capital letter, contain a lowercase letter, and contain a special character. (A special character is defined as any character that is not a digit, lowercase letter, or capital letter.)
+        </li>
+        <li>
+          You will have the ability to reset your username and password twice per day using your email.
+        </li>
+        <li>
+          As of writing this, I have not implemented a system of checking for inappropriate content for user inputs, but I will before I allow people to post on this site. If your username is inappropriate, your email will be banned.
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <script nonce="<%=locals.jsNonce%>">
+    (function(){
+      const b = document.getElementById('hide-show-create-account');
+      const b2 = document.getElementById('hide-show-create-account-2');
+      function getOnClick(b) {
+        const func = function() {
+          const section = b.closest('section');
+          const svg = b.querySelector('svg');
+          const span = b.querySelector('span');
+          if (section) {
+            const ul = section.querySelector('ul');
+            if (ul) {
+              if (ul.hasAttribute('hidden')) {
+                b.classList.remove('success');
+                b.classList.add('warning');
+                svg.style.cssText='';
+                span.innerText='HIDE';
+                ul.removeAttribute('hidden');
+              } else {
+                b.classList.add('success');
+                b.classList.remove('warning');
+                svg.style.cssText='transform:rotate(180deg);';
+                span.innerText='SHOW';
+                ul.setAttribute('hidden','');
+              }
+            }
+          }
+        }
+        return func;
+      }
+      if(b&&b2) {
+        b.addEventListener('click',getOnClick(b));
+        b2.addEventListener('click',getOnClick(b2));
+      }
+    })()
+  </script>
+  <div>
+    <div id="reset-creds-ind" class=" mt-1 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <%-include('./createAccountForm')%>
+  </div>
+
+ 
+
+  <%-include('../../partials/pagePartial')%>
+  <%}%>

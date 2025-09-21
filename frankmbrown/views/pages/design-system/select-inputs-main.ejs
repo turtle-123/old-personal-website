@@ -1,0 +1,470 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/select-inputs-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+
+%>
+<h2 class="bold bb-thick h2" id="inputs-header">
+  Select Inputs
+</h2>
+<section id="select-inputs" class="mt-2">
+  <h3 class="h5 bold bb">
+    <a href="#select-inputs" class="same-page fw-regular">Select</a>
+  </h3>
+  <details class="mt-2">
+      <summary>
+          <span class="h6 fw-regular">
+              About Select
+          </span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+              </path>
+          </svg>
+      </summary>
+      <div class="accordion-content" aria-hidden="true">
+        Select inputs should have a <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span></span></code></span> 
+        tag that does not have a <span class="t-info bold">for</span> attribute.
+        <br>
+        Select inputs should look like this:
+        <div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;select&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> 
+<span class="hljs-attr">role</span>=<span class="hljs-string">&quot;combobox&quot;</span> 
+<span class="hljs-attr">aria-haspopup</span>=<span class="hljs-string">&quot;listbox&quot;</span> 
+<span class="hljs-attr">aria-controls</span>=<span class="hljs-string">&quot;${id of select menu}&quot;</span> 
+<span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">&quot;${id of label element for select}&quot;</span> 
+<span class="hljs-attr">class</span>=<span class="hljs-string">&quot;select&quot;</span>  
+<span class="hljs-attr">data-popover</span> 
+<span class="hljs-attr">data-pelem</span>=<span class="hljs-string">&quot;${query selector string for select menu}&quot;</span> 
+<span class="hljs-attr">data-click</span> 
+<span class="hljs-attr">aria-expanded</span>=<span class="hljs-string">&quot;false&quot;</span>
+&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;body1&quot;</span>&gt;</span>${initial value}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">focusable</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;-1&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;ArrowDropDown&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;m7 10 5 5 5-5z&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> 
+<span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;-1&quot;</span> 
+<span class="hljs-attr">id</span>=<span class="hljs-string">&quot;${id of select menu}&quot;</span> 
+<span class="hljs-attr">role</span>=<span class="hljs-string">&quot;listbox&quot;</span> 
+<span class="hljs-attr">class</span>=<span class="hljs-string">&quot;select-menu o-xs&quot;</span> 
+<span class="hljs-attr">data-placement</span>=<span class="hljs-string">&quot;bottom&quot;</span> 
+<span class="hljs-attr">aria-orientation</span>=<span class="hljs-string">&quot;vertical&quot;</span>
+&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">hidden</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;option-1&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;${name of input}&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;${name of input}&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;-1&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;select-option&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;option&quot;</span> <span class="hljs-attr">aria-selected</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">data-val</span>=<span class="hljs-string">&quot;option-1&quot;</span>&gt;</span>
+    Option 1
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;-1&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;select-option&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;option&quot;</span> <span class="hljs-attr">aria-selected</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">data-val</span>=<span class="hljs-string">&quot;option-2&quot;</span>&gt;</span>
+    Option 2
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;-1&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;select-option&quot;</span> <span class="hljs-attr">disabled</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;option&quot;</span> <span class="hljs-attr">aria-selected</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">data-val</span>=<span class="hljs-string">&quot;disabled-option&quot;</span>&gt;</span>
+    Disabled Option
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></code></pre><button data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button></div>
+      where each select option has a <span class="t-info bold">data-val</span> attribute equal to the value associated with that option. When a select option is clicked, the 
+      <em class="bold">innerText</em> of the option replaces the innerText of the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span></code></span> element and the 
+      <span class="t-info bold">data-val</span> of the select option is set to be the value of the hidden text input.
+      </div>
+  </details>
+
+  <div class="body1 mt-2" id="example-select-label">Select Example:</div>
+  <div class="mt-2 flex-row justify-center">
+    <div class="select"  >
+      <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="example-select-dropdown" aria-labelledby="example-select-label" class="select" aria-label="Button Select" data-popover="" data-pelem="#example-select-dropdown" data-click aria-expanded="false">
+        <span class="body1">Option 1</span>
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+      </button>
+      <div tabindex="0" id="example-select-dropdown" role="listbox" class="select-menu o-xs" data-placement="bottom">
+        <input type="text" hidden="" value="option-1" name="select-example" id="select-example">
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val="option-1">
+          Option 1
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-2">
+          Option 2
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-3">
+          Option 3
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-4">
+          Option 4
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-5">
+          Option 5
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-6">
+          Option 6
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-7">
+          Option 7
+        </button>
+        <button type="button" tabindex="-1" disabled="" class="select-option" role="option" aria-selected="false" data-val="option-8">
+          Option 8
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-9">
+          Option 9
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-10">
+          Option 10
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="body1 mt-2" id="example-select-label-2">Small Select Example:</div>
+  <div class="mt-2 flex-row justify-center">
+    <div class="select">
+      <button 
+      role="combobox" 
+      aria-haspopup="listbox" 
+      aria-controls="example-select-dropdown-2" 
+      aria-labelledby="example-select-label-2" 
+      aria-expanded="false"
+      data-placeholder="Select a Value..."
+      class="select small" data-popover="" data-pelem="#example-select-dropdown-2" data-click >
+        <span class="body1">Option 1</span>
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+      </button>
+      <div tabindex="0" id="example-select-dropdown-2" role="listbox" class="select-menu o-xs" data-placement="bottom">
+        <input type="text" hidden="" value="option-1" name="select-example-2" id="select-example-2">
+        <button tabindex="-1" class="select-option body2" role="option" aria-selected="true" data-val="option-1">
+          Option 1
+        </button>
+        <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="option-2">
+          Option 2
+        </button>
+        <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="option-3">
+          Option 3
+        </button>
+        <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="option-4">
+          Option 4
+        </button>
+        <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="option-5">
+          Option 5
+        </button>
+        <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="option-6">
+          Option 6
+        </button>
+        <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="option-7">
+          Option 7
+        </button>
+        <button tabindex="-1" disabled="" class="select-option body2" role="option" aria-selected="false" data-val="option-8">
+          Option 8
+        </button>
+        <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="option-9">
+          Option 9
+        </button>
+        <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="option-10">
+          Option 10
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+<section id="multiple-select-inputs" class="mt-2">
+  <h3 class="h5 bold bb">
+    <a href="#multiple-select-inputs" class="same-page fw-regular">Multiple Select</a>
+  </h3>
+    <div class="alert error filled medium icon mt-2" role="alert">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Deselect"><path d="M3 13h2v-2H3v2zm4 8h2v-2H7v2zm6-18h-2v2h2V3zm6 0v2h2c0-1.1-.9-2-2-2zM5 21v-2H3c0 1.1.9 2 2 2zm-2-4h2v-2H3v2zm8 4h2v-2h-2v2zm8-8h2v-2h-2v2zm0-4h2V7h-2v2zm-4-4h2V3h-2v2zM7.83 5 7 4.17V3h2v2H7.83zm12 12-.83-.83V15h2v2h-1.17zm1.36 4.19L2.81 2.81 1.39 4.22 4.17 7H3v2h2V7.83l2 2V17h7.17l2 2H15v2h2v-1.17l2.78 2.78 1.41-1.42zM9 15v-3.17L12.17 15H9zm6-2.83V9h-3.17l-2-2H17v7.17l-2-2z"></path></svg>
+        <p class="alert body2 fw-regular">
+            Multiple Selects were determined to not be worth it since they add too much complexity to client side code.
+        </p>
+    </div>
+    <p class="body1 mt-2">
+        Below is an example of a disabled select. Make sure to add <span><code class="hljs"><span class="hljs-selector-class">.disabled</span></code></span> to the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span></span></code></span> element.
+    </p>
+  <div class="body1 mt-2 disabled" id="example-select-label-3">Multiple Select Example:</div>
+  <div class="mt-2 flex-row justify-center">
+    <div class="select"  >
+      <button 
+      role="combobox" 
+      aria-haspopup="listbox" 
+      aria-controls="example-select-dropdown-3" 
+      aria-labelledby="example-select-label-3" 
+      class="select"
+      disabled 
+      aria-label="Button Select" 
+      data-popover="" 
+      data-pelem="#example-select-dropdown-3" 
+      data-click 
+      aria-expanded="false"
+      data-placeholder="Select a Value..."
+      type="button"
+      >
+        <span class="body2">Option 1</span>
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+      </button>
+      <div data-multiple tabindex="0" id="example-select-dropdown-3" role="listbox" class="select-menu o-xs" data-placement="bottom">
+        <input type="text" hidden="" value="option-1" name="select-example-3" id="select-example-3">
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val="option-1">
+          Option 1
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-2">
+          Option 2
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-3">
+          Option 3
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-4">
+          Option 4
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-5">
+          Option 5
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-6">
+          Option 6
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-7">
+          Option 7
+        </button>
+        <button type="button" tabindex="-1" disabled="" class="select-option" role="option" aria-selected="false" data-val="option-8">
+          Option 8
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-9">
+          Option 9
+        </button>
+        <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="option-10">
+          Option 10
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="combobox-inputs" class="mt-2">
+    <h3 class="h5 bold bb">
+      <a href="#combobox-inputs" class="same-page fw-regular">Combobox Inputs</a>
+    </h3>
+    <details class="mt-2">
+        <summary>
+            <span class="h6 fw-regular">
+                About Combobox Inputs
+            </span>
+            <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                </path>
+            </svg>
+        </summary>
+        <div class="accordion-content" aria-hidden="true">
+            Combobox inputs are pretty much the same as select inputs except for the fact that combobox inputs are 
+            going to have a <span class="t-info bold">hx-indicator</span>, an <span class="t-warning bold">aria-live</span>
+            region, and a wrapper for the indicator + select menu that should have a <span class="t-info bold">data-input</span>
+            attribute that is equal to the <em class="bold">id</em> of the input. The combobox should look something like this:
+            <div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">label</span> 
+<span class="hljs-attr">for</span>=<span class="hljs-string">&quot;${id of text input}&quot;</span>&gt;</span>
+${label}:
+<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-input block medium&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> 
+<span class="hljs-attr">name</span>=<span class="hljs-string">&quot;${id of text input}&quot;</span> 
+<span class="hljs-attr">id</span>=<span class="hljs-string">&quot;${id of text input}&quot;</span> 
+<span class="hljs-attr">type</span>=<span class="hljs-string">&quot;search&quot;</span>
+<span class="hljs-attr">autocomplete</span>=<span class="hljs-string">&quot;off&quot;</span>
+<span class="hljs-attr">class</span>=<span class="hljs-string">&quot;medium mt-1 icon-before&quot;</span>
+<span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Enter your favorite coding language...&quot;</span>
+<span class="hljs-attr">maxlength</span>=<span class="hljs-string">&quot;50&quot;</span>
+<span class="hljs-attr">pattern</span>=<span class="hljs-string">&quot;/^{1.50}$/&quot;</span>
+<span class="hljs-attr">spellecheck</span>=<span class="hljs-string">&quot;off&quot;</span>
+<span class="hljs-attr">autocapitalize</span>=<span class="hljs-string">&quot;off&quot;</span>
+
+<span class="hljs-attr">aria-autocomplete</span>=<span class="hljs-string">&quot;list&quot;</span>
+<span class="hljs-attr">aria-haspopup</span>=<span class="hljs-string">&quot;listbox&quot;</span>
+<span class="hljs-attr">role</span>=<span class="hljs-string">&quot;combobox&quot;</span>
+<span class="hljs-attr">aria-expanded</span>=<span class="hljs-string">&quot;false&quot;</span>
+<span class="hljs-attr">aria-controls</span>=<span class="hljs-string">&quot;${id of combobox popup}&quot;</span>
+<span class="hljs-attr">data-popover</span>
+<span class="hljs-attr">data-click</span>
+<span class="hljs-attr">data-pelem</span>=<span class="hljs-string">&quot;#${id of combobox popup}&quot;</span>
+
+<span class="hljs-attr">hx-post</span>=<span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-attr">hx-target</span>=<span class="hljs-string">&quot;#${id of combobox aria-live region}&quot;</span>
+<span class="hljs-attr">hx-indicator</span>=<span class="hljs-string">&quot;#${id of combobox indicator}&quot;</span>
+<span class="hljs-attr">hx-swap</span>=<span class="hljs-string">&quot;innerHTML&quot;</span>
+<span class="hljs-attr">hx-trigger</span>=<span class="hljs-string">&quot;keyup changed delay:200ms, search&quot;</span>
+<span class="hljs-attr">data-htmx</span>
+/&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-before&quot;</span> <span class="hljs-attr">focusable</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;-1&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Code&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> 
+<span class="hljs-attr">class</span>=<span class="hljs-string">&quot;select-menu o-xs&quot;</span> 
+<span class="hljs-attr">data-placement</span>=<span class="hljs-string">&quot;bottom&quot;</span> 
+<span class="hljs-attr">id</span>=<span class="hljs-string">&quot;#${id of combobox popup}&quot;</span> 
+<span class="hljs-attr">style</span>=<span class="hljs-string">&quot;mx-height ?&quot;</span>
+
+<span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;-1&quot;</span>
+<span class="hljs-attr">role</span>=<span class="hljs-string">&quot;listbox&quot;</span>
+<span class="hljs-attr">aria-orientation</span>=<span class="hljs-string">&quot;vertical&quot;</span>
+<span class="hljs-attr">data-input</span>=<span class="hljs-string">&quot;${name of associated text input}&quot;</span>
+&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;Coding Language Select Progressbar&quot;</span> 
+    <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-row justify-center t-secondary htmx-indicator&quot;</span> 
+    <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;coding-language-example-search-indicator&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;progressbar&quot;</span> <span class="hljs-attr">aria-busy</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;lds-dual-ring&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">aria-live</span>=<span class="hljs-string">&quot;polite&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;${id of combobox aria-live reigion}&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></code></pre><button data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button></div>
+        </div>
+    </details>
+
+    <div 
+    class="input-group block mt-2" 
+    data-hover="false"
+    data-focus="false"
+    data-error="false"
+    data-blurred="false"
+    >
+    <label for="coding-language-example">Favorite Coding Language:</label>
+    <div class="text-input block medium">
+        <input 
+        name="coding-language-example" 
+        id="coding-language-example" 
+        type="search"
+        autocomplete="off"
+        class="medium mt-1 icon-before"
+        placeholder="Enter your favorite coding language..."
+        maxlength="50"
+        pattern="{1.50}"
+        spellecheck="off"
+        autocapitalize="off"
+
+        aria-autocomplete="list"
+        aria-haspopup="listbox"
+        role="combobox"
+        aria-expanded="false"
+        aria-controls="coding-language-example-popup"
+        data-popover
+        data-click
+        data-pelem="#coding-language-example-popup"
+
+        hx-post="/api/search-coding-languages"
+        hx-target="#coding-language-example-select-options"
+        hx-indicator="#coding-language-example-search-indicator"
+        hx-swap="innerHTML"
+        hx-trigger="keyup changed delay:200ms, search"
+       
+        />
+        <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Code"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"></path></svg>
+        <div 
+        class="select-menu o-xs" 
+        data-placement="bottom" 
+        id="coding-language-example-popup" 
+        style="max-height: 300px;"
+
+        tabindex="-1"
+        role="listbox"
+        aria-orientation="vertical"
+        data-input="coding-language-example"
+        >
+            <div aria-label="Coding Language Select Progressbar" 
+            class="flex-row justify-center t-secondary htmx-indicator" 
+            id="coding-language-example-search-indicator" role="progressbar" aria-busy="false">
+                <div class="lds-dual-ring"></div>
+            </div>
+            <div aria-live="polite" id="coding-language-example-select-options">
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <p class="card el-2 rounded mt-2 p-lg">
+      <span>
+      If you want the popup to stay open even after an option is selected or a mousedown / touchstart event happens, then you can add a 
+      <span class="t-info bold">data-force-close</span> attribute to the element that triggers the popup, the element with the <span class="bold t-info">data-pelem</span> attribute, and it will remove the listeners 
+      for <span class="t-info focus">focusout</span> and <span class="t-info focus">blur</span>, which normally close the popup, with a listener for a click on the 
+      <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span></code></span> or 
+      <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dialog&quot;</span>&gt;</span></span></code></span> element. See the 
+      example below. Notice how the combobox select menu does not close on mousedown.
+    </span>
+   </p>
+
+    <div 
+    class="input-group block mt-2" 
+    data-hover="false"
+    data-focus="false"
+    data-error="false"
+    data-blurred="false"
+    >
+    <label for="example-state-input">Search States:</label>
+    <div class="text-input block medium">
+        <input 
+        name="example-state-input" 
+        id="example-state-input" 
+        type="search"
+        autocomplete="off"
+        class="medium mt-1 icon-before"
+        placeholder="Enter a name of the state..."
+        maxlength="100"
+        pattern="{1.100}"
+        spellecheck="off"
+        autocapitalize="off"
+
+        aria-autocomplete="list"
+        aria-haspopup="listbox"
+        role="combobox"
+        aria-expanded="false"
+        aria-controls="state-search-example-popup"
+        data-popover
+        data-click
+        data-pelem="#state-search-example-popup"
+
+        hx-post="/api/example-state-select"
+        hx-target="#state-search-example-select-options"
+        hx-indicator="#state-example-search-indicator"
+        hx-swap="innerHTML"
+        hx-trigger="keyup changed delay:200ms, search"
+       
+        data-force-close
+        />
+        <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Flag"><path d="M14.4 6 14 4H5v17h2v-7h5.6l.4 2h7V6z"></path></svg>        
+        <div 
+        class="select-menu o-xs" 
+        data-placement="bottom" 
+        id="state-search-example-popup" 
+        style="max-height: 300px;"
+
+        tabindex="-1"
+        role="listbox"
+        aria-orientation="vertical"
+        data-input="example-state-input"
+        data-click-capture
+        >
+            <div aria-label="State Search Select Progressbar" 
+            class="flex-row justify-center t-secondary htmx-indicator" 
+            id="state-example-search-indicator" role="progressbar" aria-busy="false">
+                <div class="lds-dual-ring"></div>
+            </div>
+            <div aria-live="polite" id="state-search-example-select-options" data-click-capture>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+
+<section id="html-select-autocomplete" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#html-select-autocomplete" class="same-page fw-regular">HTML Select And Autocomplete Components</a>
+    </h2>
+    <p class="mt-2">
+      I want to try to implement HTML <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span>&gt;</span></span></code></span> components to save some space on the page.
+    </p>
+</section>
+
+
+<section id="combobox-search" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#combobox-search" class="same-page bold">Combobox Search</a>
+    </h2>
+    <p class="mt-2">
+      Sometimes you want to render an autocomplete component like above but you don't want to make a request to the server to get options. Instead, you want to render all the options on load and sort the options by most relevant when the input changes, and let the user choose from the options.
+    </p>
+    <p class="h6 bg-error bold">
+      Need To Implement This
+    </p>
+</section>

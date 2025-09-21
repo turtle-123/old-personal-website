@@ -1,0 +1,82 @@
+<%# 
+PARTIAL ROUTE: pages/404.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+    <h1 class="page-title">AI Tools</h1>
+    
+    <section id="ai-tools-about" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#ai-tools-about" class="same-page bold">
+            About This Page
+          </a>
+        </h2>
+        <p class="mt-2">
+            I created this page to separate the AI tools that I have created / will create from other projects that I have created (which are on the <a class="primary link" hx-get="/projects" href="/projects" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">Projects page</a>). <strong>Tools that I Want to Create:</strong>
+        </p>
+        <ul class="check-l-first first-rte-element" data-v="1" style="text-align: left; margin: 6px 0px; padding-top: 0px; padding-bottom: 0px;"><li role="checkbox" tabindex="-1" aria-checked="false" value="1" class="rte-li-unchecked ltr" data-v="1" dir="ltr"><span data-v="1" data-frank-text="true">AI Chat that includes the ability to talk with images and search the web (if the model has those capabilities). The AI chat should also include some Desmos functionality like seen </span><a href="https://x.com/RayFernando1337/status/1890226074912715092" target="_blank" rel="ugc" data-v="1" class="lexical-link ltr" dir="ltr"><span data-v="1" data-frank-text="true" style="font-weight: 500;">in this tweet</span></a><span data-v="1" data-frank-text="true">.  </span></li><li role="checkbox" tabindex="-1" aria-checked="false" value="2" class="rte-li-unchecked ltr" data-v="1" dir="ltr"><span data-v="1" data-frank-text="true">AI Chat where users can upload a document and ask questions about the document / summarize the document. </span></li><li role="checkbox" tabindex="-1" aria-checked="false" value="3" class="rte-li-unchecked ltr" data-v="1" dir="ltr"><span data-v="1" data-frank-text="true">Page where users can extract keywords from document or text or HTML text. I am bad at creating keywords for search engine optimization, which is why I want to create this. </span></li><li role="checkbox" tabindex="-1" aria-checked="false" value="4" class="rte-li-unchecked ltr" data-v="1" dir="ltr"><span data-v="1" data-frank-text="true">Page that recommends changes to Resume given Job Description. The page should look for keywords in the Job Description and recommend the user to make changes to their Resume based on the Job Description. </span></li></ul>
+    </section>
+    <style>
+      a.project_link {
+        text-decoration: none;
+        border: 2px solid var(--divider);
+        padding: 0px 4px 0px 0px;
+        display: flex;
+        flex-basis: 100%;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: start;
+        border-radius: 4px;
+        margin-top: 8px;
+        color: var(--text-primary);
+      }
+      a.project_link:hover {
+        opacity: 0.7;
+        border: 2px solid var(--text-primary);
+      }
+      span.proj-info {
+        padding: 3px; 
+        border-radius: 6px;
+      }
+  
+    </style>
+    <section id="tools" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#tools" class="same-page bold">
+            Tools
+          </a>
+        </h2>
+
+        <div>
+          
+          <a href="/ai-tools/ai-chat" hx-get="/ai-tools/ai-chat" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true" class="project_link" aria-disabled="false">
+            <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+              <img src="https://image.storething.org/frankmbrown/7537ebac-c6eb-4b26-9d5a-4d1f347b0eda.jpg" alt="AI Chat Image" style="width:150px;height: 75px;" width="150" height="75" class="no-click">
+            </div>
+            <div style="padding: 4px 0px;">
+              <p class="h5 bold w-100">
+                AI Chat
+              </p>
+              <p class="body2 w-100">
+                I created this page so that users of this site could save AI chats / come back to previous chats when they want to. I want it to be similar to the functionality found on ChatGPT sidebar. I am also creating this page for people who would rather not use the AI chat dialog - which can be found on the left sidebar - and would rather chat with an AI chatbot on a page.  
+              </p>
+              <!-- <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+                <span class="caption proj-info bg-success">
+                  Completed
+                </span>
+                <span class="caption proj-info bg-info">
+                  WILL ADD TO
+                </span>
+              </div> -->
+            </div>
+          </a>
+
+        </div>
+    </section>
+    <%-include('../partials/pagePartial')%>
+  <%}%>

@@ -1,0 +1,347 @@
+<%# 
+PARTIAL ROUTE: pages/search.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.spellcheck
+- locals.searchResult
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">Search frankmbrown.net</h1>
+
+  <section id="about-search" class="mt-4">
+    <div class="flex-row bb-thick justify-between align-center">
+      <h2 class="bold h2">
+        <a href="#about-search" class="same-page bold">About Search</a>
+      </h2>
+      <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#about-search-hide">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+      </button>
+    </div>
+    <div id="about-search-hide">
+      <p class="mt-2">
+        This site uses <a class="primary link" hx-get="" href="" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">PostgreSQL full text search</a> to search over all the pages in the website to give users the most relevant results. <br>
+        The user has the ability to limit search results to only a certain kind of page - e.g., <i class="bold">notes</i>, <i class="bold">wikipedia of the day entries</i>, or <i class="bold">jupyter notebooks</i>.
+        <br>
+        The user also has the option of opting into <strong class="bold">semantic search</strong>, which gives the user the ability to describe the type of content they are looking for. By utilizing the <a class="secondary link" target="_blank" href="https://platform.openai.com/docs/guides/embeddings">Open AI Embeddings model</a> and <a class="secondary link" target="_blank" href="https://github.com/pgvector/pgvector">pgvector</a>, we can direct the user to the page that is most similar to what they input in the search box.
+      </p>
+      <div class="alert info filled mt-2 icon medium" role="alert">
+        <svg viewBox="0 0 448 512" title="database" focusable="false" inert tabindex="-1"><path d="M448 80v48c0 44.2-100.3 80-224 80S0 172.2 0 128V80C0 35.8 100.3 0 224 0S448 35.8 448 80zM393.2 214.7c20.8-7.4 39.9-16.9 54.8-28.6V288c0 44.2-100.3 80-224 80S0 332.2 0 288V186.1c14.9 11.8 34 21.2 54.8 28.6C99.7 230.7 159.5 240 224 240s124.3-9.3 169.2-25.3zM0 346.1c14.9 11.8 34 21.2 54.8 28.6C99.7 390.7 159.5 400 224 400s124.3-9.3 169.2-25.3c20.8-7.4 39.9-16.9 54.8-28.6V432c0 44.2-100.3 80-224 80S0 476.2 0 432V346.1z"></path></svg>
+        <p class="alert">
+          <span>
+            For more information on the considerations that I took when creating the search feature for this site, 
+            <a class="primary link" hx-get="/note/140/PostgreSQL%20Search" href="/note/140/PostgreSQL%20Search" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">see this note entry on PostgreSQL search.</a>
+          </span>  
+        </p>
+        <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+  
+  <section id="search-application" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#search-application" class="same-page bold">Search Application</a>
+      </h2>
+      <section id="edit-search">
+        <form  id="search-page-form"  method="get" action="/search" hx-trigger="submit" 
+        hx-target="#search-results"
+        hx-swap="innerHTML"
+        hx-indicator="#search-page-indicator"
+        hx-get="/search"
+        >
+          <div class="input-group block grow-1 bb" style="padding: 8px 0px;" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+            <label for="search-application-2">Search This Application:</label>
+            <div class="text-input block medium">
+                <input 
+                hx-trigger="input changed delay:200ms, search"
+                hx-include="#search-page-form"
+                hx-target="#search-results"
+                hx-swap="innerHTML"
+                hx-indicator="#search-page-indicator"
+                hx-get="/search"
+                id="search-application-2"
+                name="search-application" class="medium icon-after" placeholder="Enter your search..." autocomplete="off" autocapitalize="off" spellcheck="<%=Boolean(locals.spellcheck===true)?true:false%>" maxlength="250" type="search">
+                <svg class="icon-after" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Search">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                    </path>
+                </svg>
+            </div>
+          </div>
+          <details aria-label="Customize Search" class="mt-2">
+            <summary>
+                <span class="h6 fw-regular">Customize Search</span>
+                <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                </path>
+                </svg>
+            </summary>
+            <div class="accordion-content" aria-hidden="true">
+              <div class="flex-row gap-3 wrap">
+                <label class="checkbox">
+                  <input type="checkbox" class="secondary" name="search-blog"  checked>
+                  Search Blog
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" class="info" name="search-notes"  checked>
+                  Search Notes
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" class="warning" name="search-ideas"  checked>
+                  Search Ideas
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" class="error" name="search-markdown-notes"  checked>
+                  Search Markdown Notes
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" class="primary" name="search-jupyternb"  checked>
+                  Search Jupyter Notebooks
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" class="success" name="search-wotd"  checked>
+                  Search Daily Reading
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" class="secondary" name="search-tex-notes"  checked>
+                  Search Tex Notes
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" class="info" name="search-surveys"  checked>
+                  Search Surveys
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" class="warning" name="search-goodreads"  checked>
+                  Search Goodreads
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" class="error" name="search-letterboxd"  checked>
+                  Search Letterboxd
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" class="primary" name="search-games"  checked>
+                  Search Games
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" class="success" name="search-3d-designs"  checked>
+                  Search 3d Designs
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" class="secondary" name="search-users"  checked>
+                  Search Users
+                </label>
+              </div>
+              <fieldset class="mt-1">
+                <legend class="bold">Search Type</legend>
+                <div class="flex-row align-center wrap gap-2">
+                  <label class="radio">
+                    <input type="radio" name="search_type" value="default" checked class="secondary">
+                    Default
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="search_type" value="semantic" class="info">
+                    Semantic Search
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="search_type" value="string_match" class="warning">
+                    String Match
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+        </details>
+          
+        </form>
+      </section>
+    
+      <div id="search-page-indicator" class="flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="INDEICATOR LABEL">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <div id="search-results" style="max-height: 400px; min-height: 200px; overflow-y: auto;">
+        <%-locals.searchResult%>
+      </div>
+  </section>
+
+  <section id="image-search" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#image-search" class="same-page bold">
+          Image Search
+        </a>
+      </h2>
+      <p class="mt-2">
+        Upload an image using the image input below, and submit the form to search for images similar to the one provided. <strong>Note</strong>: I only search the images that I have in my database for similar images, and I do not return any inappropriate images.
+      </p>
+      <details aria-label="How Image Search Works" class="mt-2">
+            <summary>
+                <span class="h6 fw-regular">How Image Search Works</span>
+                <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                </path>
+                </svg>
+            </summary>
+            <div class="accordion-content" aria-hidden="true">
+               <ol>
+                <li>
+                  An embedding for the image is generated using the <a class="secondary link" target="_blank" href="https://huggingface.co/google/vit-base-patch16-384">google/vit-base-patch16-384 Vision Transformer model</a>.
+                </li>
+                <li>The embedding is compared against the embeddings of all other images in the image database using cosine similarity. </li>
+                <li>The most similar images are returned and displayed with their similarity score.</li>
+               </ol>
+            </div>
+        </details>
+        
+        <div class="alert mt-2 warning icon medium" role="alert">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+          <p class="alert">
+            Something about this is not working right now. I think something may be wrong with the vectors, but there are also a lot of images to search over. I will look into this eventually.
+          </p>
+        </div>
+
+      <form 
+      class="mt-4" 
+      hx-post="/search/image" 
+      hx-indicator="#ind_7e470465-3652-4041-9bde-450b1f99e62d" hx-target="#tar_751eed8e-e4b6-4156-a159-8ac977b09157" 
+      hx-trigger="submit" 
+      hx-swap="innerHTML"
+      hx-encoding="multipart/form-data"
+      data-loading="Performing image search..."
+      disabled
+      >
+        <label for="image-search-input" class="bold mt-2">Image Search Input:</label>
+        <input disabled data-image-input data-prevent-default type="file" id="image-search-input" accept="image/*" name="image-search-input" class="mt-1 info">
+        <output class="block" for="image-search-input"></output>
+
+        <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button disabled type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+      </form>
+      <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_7e470465-3652-4041-9bde-450b1f99e62d">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <output id="tar_751eed8e-e4b6-4156-a159-8ac977b09157" class="block mt-2">
+
+      </output>
+  </section>
+  
+  <section id="rag-search" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#rag-search" class="same-page bold">
+          Retrieval-Augmented-Generation (<abbr style="font-weight: inherit;" title="Retrieval-Augmented-Generation">RAG</abbr>) Search
+        </a>
+      </h2>
+      <p class="mt-2">
+        See <a class="primary link" hx-get="/daily-reading/132/Retrieval%20Augmented%20Generation" href="/daily-reading/132/Retrieval%20Augmented%20Generation" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">this daily reading article on Retrieval Augmented Generation</a> to learn more about RAG. In short, Retrieval Augmented Generation is a technique for enhancing the accuracy of generative AI models with facts fetched from internal or external sources. The RAG implementation below works by:
+      </p>
+      <ol>
+        <li>Embedding your query using a text-embedding model like <a class="secondary link" target="_blank" href="https://platform.openai.com/docs/guides/embeddings">OpenAI's <span class="text-code">text-embedding-ada-002</span> model</a>.</li>
+        <li>Using <a class="secondary link" target="_blank" href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a> to compare the embedding of your query to the embeddings of chunks of text throughout this website.</li>
+        <li>Retrieving the relevant documents based on the similarity score between your embedding and the embeddings of documents throughout this website.
+          <ul>
+            <li class="fw-regular t-warning">
+              If there are no documents that are relevant, then I will return an error saying that there are no relevant documents. This is a money-saving mechanism.
+            </li>
+          </ul>
+        </li>
+        <li>Feeding the relevant documents as context to a LLM to generate a generative AI result based on what is on this site.</li>
+      </ol>
+
+      <details aria-label="Retrieval Augmented Generation Example" class="mt-2">
+            <summary>
+                <span class="h6 fw-regular">Retrieval Augmented Generation Example</span>
+                <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                </path>
+                </svg>
+            </summary>
+            <div class="accordion-content" aria-hidden="true">
+               <ol>
+                <li><span class="bold">Query:</span> What is empiricism?</li>
+                <li><span class="bold">Embedding:</span> <span class="text-code">[ 0.0016227311,0.011579121,-0.024362471,-0.03202454, ..., -0.01802373,-0.011499722,-0.044490293 ]</span></li>
+                <li><span class="bold">Relevant Documents:</span>
+                <ul>
+                  <li><q class="quote">Notes: In philosophy, rationalism is the epistemological view that regards reason as the chief source and test of knowledge or any view appealing to reason as a source of knowledge or justification often in contrast to other possible sources of knowledge such as faith, tradition, or sensory experience. Rationalism is defined as a methodology or a theory in which the criterion of truth is deductive.In a major philosophical debate during the Enlightenment, rationalism (sometimes equated with innatism) was opposed to empiricism. On the one hand, the rationalists emphasized that knowledge is primarily innate and the intellect, the inner faculty of the human mind, can therefore directly grasp or derive logical truths; on the other hand, the empiricists emphasized that knowledge is not primarily innate and is best gained by careful observation of the physical world outside the mind, namely though sensory experiences.rationalists asserted that certain principles exist in logic, mathematics, ethics, and metaphysics that are so fundamentally true that denying them causes one to fall into contradiction.</q></li>
+                  <li><q class="quote">Definitions: EpistemologyThe branch of philosophy concerned with knowledge. It studies the nature, origin, and scope of knowledge, epistemic justification, the rationality of belief, and various related issues. Epistemology aims to answer questions such as What do people know?, What does it mean to say that people know something?, What makes justified beliefs justified?, and How do people know that they know?How do people know together is a question asked in social epistemology.Empirical EvidenceEmpirical evidence for a proposition is evidence, i.e. what supports or counters this proposition, that is constituted by or accessible to sense experience or experimental procedure. Empirical evidence is of central importance to the sciences and plays a role in various other field, like epistemology and law.PropositionA proposition is a central concept in the philosophy of language, semantics, logic, and related fields, often characterized as the primary bearer of truth or falsity. Propositions are also characterized as being the kind of thing that declarative sentences denote. For instance the sentence The sky is blue denotes the proposition that the sky is blue.Formally, propositions are often modeled as functions which map a possible world to a truth value. For instance, the proposition that the sky is blue can be modeled as a function which would return the truth value  if given the actual world as input, but would return  if given some alternative world where the sky is green.Cognitive BiasA cognitive bias is a systemic pattern of deviation from norm or rationality in judgment. Individual can create their own subjective reality from their perception of an input. An individual's construction of reality, not the objective input, may dictate their behavior in the world. Thus, cognitive biases may sometimes lead to perceptual distortion, inaccurate judgment, illogical interpretation, and irrationality.a priori and a posterioriFrom the earlier and from the later are Latin phrases used in philosophy to distinguish types of knowledge, justification, or argument by their reliance on experience. A priori knowledge is independent from any experience. A posteriri knowledge depends on empirical evidence. sine qua non Without which, notAn essential condition; a thing that is absolutely necessary</q></li>
+                  <li>...</li>
+                </ul>
+                </li>
+                <li><span class="bold">Generative AI Query:</span>
+                <ul>
+                  <li>
+                    You are an expert assistant helping to answer questions based on the provided context. <br> 
+                    &lt;CONTEXT&gt;
+                    In philosophy, rationalism is the epistemological view that regards reason as the chief source and test of knowledge or any view appealing to reason as a source of knowledge or justification often in contrast to other possible sources of knowledge such as faith, tradition, or sensory experience. Rationalism is defined as a methodology or a theory in which the criterion of truth is deductive.In a major philosophical debate during the Enlightenment, rationalism (sometimes equated with innatism) was opposed to empiricism. ...
+                    &lt;/CONTEXT&gt;
+                    &lt;QUESTION&gt;
+                    What is empiricism?
+                    &lt;/QUESTION&gt;
+                  </li>
+                </ul>
+                </li>
+                <li><span class="bold">Result:</span> <br> 
+                  Empiricism is the epistemological view that emphasizes the role of sensory experience and observation in the formation of ideas, over the notion that knowledge is innate or derived solely through reasoning. Empiricists argue that all knowledge originates from experience and that human beings gain understanding of the world primarily through their senses. This view is often contrasted with rationalism, which holds that reason and innate knowledge are the primary sources of knowledge.
+                </li>
+               </ol>
+            </div>
+        </details>
+        <div class="mt-2 alert outlined warning medium icon" role="alert">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+          <p class="alert">
+            <span>
+              <strong>Note:</strong> I haven;t implemented RAG search yet because I was ignorant of the <a class="secondary link" style="color: var(--secondary)!important;" target="_blank" href="https://www.llamaindex.ai/blog/evaluating-the-ideal-chunk-size-for-a-rag-system-using-llamaindex-6207e5d3fec5">importance of text chunk size for RAG.</a> The embeddings that I have now do not perform well with RAG. I will look into this and come back to implement it in the future.
+            </span>  
+          </p>
+        </div>
+      <form 
+      disabled
+      class="mt-2" 
+      hx-post="/image/rag" 
+      hx-indicator="#ind_8f7d3ee8-7937-400d-80fc-3f34ffff4664" hx-target="#tar_860d2df7-99bc-44fb-955e-a11310a9d406" 
+      hx-trigger="submit" 
+      hx-swap="innerHTML"
+      > 
+        <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+          <label for="rag-search-input">RAG Search Input:</label>
+          <div class="mt-1 text-input block medium disabled">
+              <textarea 
+              disabled
+              name="rag-search-input" 
+              id="rag-search-input" 
+              placeholder="Enter your question to use Retrieval-Augmented-Generation search for here..." 
+              rows="5" 
+              maxlength="500" 
+              spellcheck="true"
+              autocomplete="off"
+              autocapitalize="off"
+              style="resize: vertical!important; min-height: 150px;"
+              ></textarea>
+          </div>
+        </div>
+
+        <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button disabled type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+      </form>
+      <div class="mt-2 flex-row justify-center t-warning htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_8f7d3ee8-7937-400d-80fc-3f34ffff4664">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <output class="mt-2 block" id="tar_860d2df7-99bc-44fb-955e-a11310a9d406">
+
+      </output>
+  </section>
+
+  <%-include('../partials/pagePartial')%>
+<%}%>

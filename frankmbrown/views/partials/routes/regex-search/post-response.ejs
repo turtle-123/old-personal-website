@@ -1,0 +1,29 @@
+<%# 
+PARTIAL ROUTE: partials/routes/regex-search/post-response.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.text
+- locals.jsNonce
+%>
+<%# 
+Reponse to POST request when POSTing to /projects/regex-search
+%>
+
+<div class="alert success filled mt-2 icon medium" role="alert">
+    <svg viewBox="0 0 448 512" title="check" focusable="false" inert tabindex="-1"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg>
+    <p class="alert">
+     Successfully converted uploaded document to text!  
+    </p>
+  <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+  </button>
+</div>
+
+<div style="display: none;" id="hidden-document-text" hx-swap-oob="true"><%=locals.text%></div>
+
+<script nonce="<%=locals.jsNonce%>">
+    (() => {
+        document.dispatchEvent(new CustomEvent("DOCUMENT_TEXT_RESPONSE"));
+    })()
+</script>

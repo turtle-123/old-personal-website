@@ -1,0 +1,134 @@
+<%# 
+PARTIAL ROUTE: pages/projects/article-builder-2.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.articleBuilder2
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">Article Builder v2</h1>
+  <details aria-label="About Building an Article / Blog Post" class="mt-2" style="margin-bottom: 8px;" open id="about-building-article">
+      <summary>
+        <span class="h6 fw-regular">Building an Article</span>
+        <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+          <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+          </path>
+        </svg>
+      </summary>
+      <div class="accordion-content" style="padding-top: 0px;" aria-hidden="false">
+        <ol>
+          <li>
+            Enter the title of the article. The title of the article must be between 1 and 100 characters.
+          </li>
+          <li>
+            Add the body of the article by editing the sections below the `Add Article Body` heading.
+            <ul>
+              <li>
+                To add a new section, click the <span class="t-primary bold">Add Section</span> button. There must be at least one section and 
+                each section must contain content, else it will be removed from the finished article.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span class="t-success bold">SUBMIT</span> the article for processing.
+          </li>
+        </ol>
+      </div>
+  </details>
+  <form id="article-builder-form">
+    <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+      <label for="article-title">Article Title:</label>
+      <div class="text-input block medium">
+          <input 
+          type="text" 
+          name="article-title" 
+          id="article-title" 
+          class="medium icon-before mt-1" 
+          required
+          placeholder="Enter the title of the article..." 
+          maxlength="100"
+          minlength="1" 
+          spellcheck="true" 
+          autocapitalize="off"
+          data-form-include
+          >
+          <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Title"><path d="M5 4v3h5.5v12h3V7H19V4z"></path></svg>
+      </div>
+    </div>
+    <h2 class="h2 bold mt-3 bb-main" id="add-article-body">
+      <a href="#add-article-body" class="same-page fw-regular">Add Article Body</a>
+    </h2>
+    <div id="sort-section-container" data-drag-container>
+      <%-locals.articleBuilder2%>
+    </div>
+    <div class="flex-row w-100 justify-between mt-2">
+      <button id="preview-article-button" type="button" class="info medium filled icon-text" aria-label="View Article At Different Sizes">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="RemoveRedEye"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+        PREVIEW ARTICLE
+      </button>
+
+      <button type="button" class="success medium filled icon-text" aria-label="Submit Article Builder Form">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+        SUBMIT FORM
+      </button>
+    </div>
+  </form>
+  <section id="article-preview-section" class="mt-2" hidden>
+    <h2 class="bold bb-thick h2">
+      <a href="#article-preview-section" class="same-page fw-regular">Article Preview</a>
+    </h2>
+    <div class="mt-2 flex-row justify-start align-center">
+      <button type="button" class="info medium filled icon-text" id="edit-article-button" aria-label="Edit Article">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Edit"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
+        EDIT ARTICLE
+      </button>
+    </div>
+    <div class="tabs mt-2">
+      <ul class="tabs" role="tablist">
+        <li role="presentation">
+          <button id="preview-mobile-screen-article" class="tab-button secondary" role="tab" type="button" aria-selected="true" data-tab="0" tabindex="-1">
+            Mobile
+          </button>
+        </li>
+        <li role="presentation">
+          <button id="preview-tablet-screen-article" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="1" tabindex="-1">
+            Tablet
+          </button>
+        </li>
+        <li role="presentation">
+          <button id="preview-desktop-screen-article" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="2" tabindex="-1">
+            Desktop
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-panels"  style="background-color: var(--secondary-background);">
+      <div aria-labelledby="preview-mobile-screen-article" role="tabpanel" tabindex="0">
+        <div style="padding: 8px 0px;" class="hz-scroll">
+          <article role="presentation" class="preview-editor-mobile hz-scroll" data-preview-mobile>
+
+          </article>
+        </div>
+      </div>
+      <div aria-labelledby="preview-tablet-screen-article" role="tabpanel" tabindex="0" hidden>
+        <div style="padding: 8px 0px;" class="hz-scroll">
+          <article role="presentation" class="preview-editor-tablet hz-scroll" data-preview-tablet>
+
+          </article>
+        </div>
+      </div>
+      <div aria-labelledby="preview-desktop-screen-article" role="tabpanel" tabindex="0" hidden>
+        <div style="padding: 8px 0px;" class="hz-scroll">
+          <article role="presentation" class="preview-editor-desktop hz-scroll" data-preview-desktop>
+
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <%-include('../../partials/pagePartial')%>
+<%}%>

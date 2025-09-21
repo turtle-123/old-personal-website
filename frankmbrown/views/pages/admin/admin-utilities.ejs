@@ -1,0 +1,86 @@
+<%# 
+PARTIAL ROUTE: pages/admin/admin-utilities.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+    <h1 class="page-title">Admin Utilities</h1>
+  
+    <section id="why-make" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#why-make" class="same-page fw-regular">Why Make This Page</a>
+        </h2>
+        <p class="mt-2">
+            I wanted to make this page to accomplish some tasks that I want to accomplish during development so that I don't have to start / restart the development 
+            server. 
+        </p>
+    </section>
+  
+    <section id="take-actions" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#take-actions" class="same-page fw-regular">Take Action</a>
+        </h2>
+
+        <div>
+            <div class="mt-4" style="border: 2px solid var(--divider); padding: 0.35rem;" hx-trigger="click" hx-get="/admin/utilities/clear-cache" data-loading="Clearing Cache..." hx-target="this" hx-swap="afterend">
+                <div class="block text-align-center">
+                    <button type="button" class="icon-text large filled primary" style="margin: auto;">
+                        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Cached"><path d="m19 8-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"></path></svg>
+                        CLEAR CACHE
+                    </button>
+                </div>
+                <p class="mt-2 h6">
+                    Clear cache - this is pretty self explanatory.
+                </p>
+            </div>
+            <div class="mt-4" style="border: 2px solid var(--divider); padding: 0.35rem;">
+                <div class="block text-align-center">
+                    <button type="button" class="icon-text large filled secondary" style="margin: auto;" hx-trigger="click" hx-get="/admin/utilities/update-search" data-loading="Populating Search..." hx-target="#update-search-confirm-wrapper" hx-swap="innerHTML">
+                        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="SavedSearch"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm-2.17-1.5 2.14-1.53 2.14 1.53-.83-2.46 2.15-1.5h-2.62L9.47 6l-.84 2.54H6l2.14 1.49z"></path></svg>
+                        UPDATE SEARCH
+                    </button>
+                </div>
+                <p class="mt-2 h6">
+                    Update search - get a sense of all the pages that need to be updated in the database. There will be a confirmation to see if you really want to update all the pages.
+                </p>
+                <div id="update-search-confirm-wrapper">
+
+                </div>
+            </div>
+            <div class="mt-4" style="border: 2px solid var(--divider); padding: 0.35rem;">
+                <div class="block text-align-center">
+                    <button type="button" class="icon-text large filled secondary" style="margin: auto;" hx-trigger="click" hx-get="/admin/utilities/update-search-images" data-loading="Getting Pages to Upload for search..." hx-target="#update-search-confirm-wrapper-images" hx-swap="innerHTML">
+                        <svg viewBox="0 0 576 512" title="images" focusable="false" inert tabindex="-1"><path d="M160 80H512c8.8 0 16 7.2 16 16V320c0 8.8-7.2 16-16 16H490.8L388.1 178.9c-4.4-6.8-12-10.9-20.1-10.9s-15.7 4.1-20.1 10.9l-52.2 79.8-12.4-16.9c-4.5-6.2-11.7-9.8-19.4-9.8s-14.8 3.6-19.4 9.8L175.6 336H160c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16zM96 96V320c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160c-35.3 0-64 28.7-64 64zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120V344c0 75.1 60.9 136 136 136H456c13.3 0 24-10.7 24-24s-10.7-24-24-24H136c-48.6 0-88-39.4-88-88V120zm208 24a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"></path></svg>
+                        UPDATE SEARCH IMAGES
+                    </button>
+                </div>
+                <p class="mt-2 h6">
+                    Update search images - get a sense of all the pages that need to be updated in the database. There will be a confirmation to see if you really want to update all the pages' images.
+                </p>
+                <div id="update-search-confirm-wrapper-images">
+
+                </div>
+            </div>
+            <div class="mt-4" style="border: 2px solid var(--divider); padding: 0.35rem;">
+                <div class="block text-align-center">
+                    <button type="button" class="icon-text large outlined secondary" style="margin: auto;" hx-trigger="click" hx-get="/admin/utilities/index-pages" data-loading="Index Pages using Google API..." hx-target="this" hx-swap="afterend">
+                        <svg viewBox="0 0 320 512" title="yandex-international" focusable="false" inert tabindex="-1"><path d="M129.5 512V345.9L18.5 48h55.8l81.8 229.7L250.2 0h51.3L180.8 347.8V512h-51.3z"></path></svg>
+                        INDEX PAGES
+                    </button>
+                </div>
+                <p class="mt-2 h6">
+                    Use the
+                    <a class="secondary link" target="_blank" href="https://developers.google.com/search/apis/indexing-api/v3/using-api#:~:text=on%20your%20preferences.-,Overview,you%20have%20sent%20to%20Google.">google indexing api</a>
+                    to index pages. This helps improve search engine optimization.
+                </p>
+            </div>
+        </div>
+    </section>
+  
+  
+    <%-include('../../partials/pagePartial')%>
+  <%}%>

@@ -1,0 +1,608 @@
+<section id="id_3ad89c25-ab91-4b3e-86df-4507e4405ef2" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_3ad89c25-ab91-4b3e-86df-4507e4405ef2" class="same-page bold">Web Audio API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_43829b0e-d127-4b48-987c-7242748f3188">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_43829b0e-d127-4b48-987c-7242748f3188" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_Audio_API">Web Audio API Reference</a></li>
+        <li><a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API">Introductory Web Audio Tutorial</a></li>
+        <li><a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Basic_concepts_behind_Web_Audio_API">Basic Concepts Behind the Web Audio API</a></li>
+        <li><a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Advanced_techniques">Advanced Tutorial</a></li>
+        </ul>
+        <blockquote class="blockquote mt-2">
+            The Web Audio API provides a powerful and versatile system for controlling audio on the Web, allowing developers to choose audio sources, add effects to audio, create audio visualizations, apply spatial effects (such as panning) and much more. 
+        </blockquote>
+        <p class="mt-2">
+            The Web Audio API involves handling audio operations inside an <strong>audio context</strong>, and has been designed to allow <strong>modular routing</strong>. Basic audio operations are performed with <strong>audio nodes</strong>, which are linked together to form an <strong>audio routing graph</strong>. Several sources - with different types of channel layout - are supported even within a single context. This modular design provides the flexibility to create complex audio functions with dynamic effects. 
+        </p>
+        <p class="mt-2">
+            They typically start with one or more sources. Sources provide arrays of sound intensities (samples) at very small timescales, often tens of thousands of them per second. These could be computed mathematically via <span class="text-code">OscillatorNode</span> or they can be recordings from sound/video files (like <span class="text-code">AudioBufferSourceNode</span> and <span class="text-code">MediaElementAudioSourceNode</span>) and audio streams (<span class="text-code">MediaStreamAudioSourceNode</span>). In fact, sound files are just recordings of sound intensities themselves, which come in from microphones or electric instruments, and get mixed down into a single, complicated wave. 
+        </p>
+        <p class="mt-2">
+            Outputs of these nodes could be linked to inputs of others, which mix or modify these streams of sound samples into different streams. A common modification is modifying the samples by a value to make them louder or quieter (as is the case with <span class="text-code">GainNode</span>). Once the sound has been sufficiently processed for the intended effect, it can be linkedin to the input of a destination (<span class="text-code">BasedAudioContext.destination</span>), which sends the sound to the speakers or headphones. A typical workflow for web audio would look something like:
+        </p>
+        <ol class="mt-1">
+            <li>Create audio context.</li>
+            <li>Inside the context, create sources - such as <span class="text-code">&lt;audio&gt;</span>, osciallator, stream</li>
+            <li>Create effects nodes, such as reverb, biquad filter, panner, compressor</li>
+            <li>Choose the final destination of audio, for example your system speakers</li>
+            <li>Connect the sources up to the effects, and the effects to the destination.</li>
+        </ol>
+        <div class="flex-row justify-center">
+            <img 
+            width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+            height="<%-locals.desktop?217:(locals.tablet?180:143)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 22 / 9 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2Ff44929c9-3189-4c64-b176-d4f37d85f38f-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2Ff44929c9-3189-4c64-b176-d4f37d85f38f-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2Ff44929c9-3189-4c64-b176-d4f37d85f38f-desktop.jpeg 650w" 
+            sizes="(max-width: 550px) 143px, ((min-width: 550px) and (max-width: 1200px)) 180px, (min-width: 1200px) 217px" 
+            src="https://image.storething.org/frankmbrown%2Ff44929c9-3189-4c64-b176-d4f37d85f38f-desktop.jpeg" 
+            alt="" 
+            />
+        </div>
+        <p class="mt-2">
+            Timing is controlled with high precision and low latency, allowing developers to write code that responds accurately to events and is able to target specific samples, even at a high sample rate. So applications such as drum machines and sequencers are well within reach. The Web Audio API also allows us to control how audio is <em>spatialized</em>. Using a system based on a <em>source-listener model</em>, it allows control of the <em>panning model</em> and deals with <em>distance-induced attenuation</em> induced by  a moving source (or moving listener).
+        </p>
+         
+    </div>
+</section>
+<section id="id_c55ef7ba-8cba-454a-916b-320a1fe6550f" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_c55ef7ba-8cba-454a-916b-320a1fe6550f" class="same-page bold">Web Authentication API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_416a3716-3b2d-4333-a9a9-dc94a2f9b4ef">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_416a3716-3b2d-4333-a9a9-dc94a2f9b4ef" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_Authentication_API">Web Authentication API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Web Authentication API (WebAuthn) is an extension of the Credential Management API that enables strong authentication with public key cryptography, enabling passwordless authentication and secure multi-factor authentication (MFA) without SMS texts. 
+        </blockquote>
+        <p class="mt-2">
+            WebAuthn uses <a class="secondary link" target="_blank" href="">asymmetric (public-key) cryptography</a> instead of passwords or SMS texts for registering, authenticating, and multi-factor authentication with websites. Some benefits:
+        </p>
+        <ul>
+            <li><strong>Protection against phishing</strong>: An attacker who creates a fake login website can't login as the user because the signature changes with the origin of the website.</li>
+            <li><strong>Reduced impact of data breaches</strong>: Developers don't need to hash the public key, and if an attacker gets access to the public key used to verify the authentication, it can't authenticate because it needs the private key.</li>
+            <li><strong>Invulnerable to password attacks</strong>: Some users might reuse passwords, and an attacker may obtain the user's password for another website. </li>
+        </ul>
+        <p class="mt-2">
+            Many website have pages that allow users to register new accounts or sign into an existing account, and WebAuthn acts as a replacement or enhancement for the authentication part of the system. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_294a11b2-e797-4163-9b4c-a50cabca9927" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_294a11b2-e797-4163-9b4c-a50cabca9927" class="same-page bold">Web Component</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_0c32ca2f-aa6b-44c1-bae6-77cc8cdbb1ca">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_0c32ca2f-aa6b-44c1-bae6-77cc8cdbb1ca" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_components">Web Component Reference</a></li>
+        <li><a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">Using Custom Elements</a></li>
+        <li><a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM">Using shadow DOM</a></li>
+        <li><a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_templates_and_slots">Using templates and slots</a></li>
+        </ul>
+        <blockquote class="blockquote mt-2">
+            Web Components is a suite of different technologies allowing you to create reusable custom elements - with their functionality encapsulated away from the rest of your code - ans utilize them in your web apps. 
+        </blockquote>
+        <p class="mt-2">
+            Web Components consists of three main technologies, which can be used together to create custom elements with encapsulated functionality that can be reused wherever you like without fear of code collisions.
+        </p>
+        <ul>
+            <li><strong>Custom Elements</strong>: A set of JavaScript APIs that allow you to define custom elements and their behavior, which can then be used as desired in your user interface.</li>
+            <li><strong>Shadow DOM</strong>: A set of JavaScript APIs for attaching an encapsulated "shadow" DOM tree to an element - which is rendered separately from the main document DOM - and controlling associated functionality.</li>
+            <li><strong>HTML Templates</strong>: The <span class="text-code">&lt;template&gt;</span> and <span class="text-code">&lt;slot&gt;</span> elements enable you to write markup templates that are not displayed in the rendered page. </li>
+        </ul>
+         
+    </div>
+</section>
+<section id="id_0bec29ad-a1cc-424a-9bec-5084d3735b9d" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_0bec29ad-a1cc-424a-9bec-5084d3735b9d" class="same-page bold">Web Crypto API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_a34c9654-6a0d-465c-afe1-87cd9291094f">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_a34c9654-6a0d-465c-afe1-87cd9291094f" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_Crypto_API">Web Crypto API Reference</a></li></ul>
+        The <strong>Web Crypto API</strong> is an interface allowing a cript to use cryptographic primitive in order to build systems using cryptography. 
+         
+    </div>
+</section>
+<section id="id_b68b41ab-d38d-4db6-b3fb-2d052815277b" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_b68b41ab-d38d-4db6-b3fb-2d052815277b" class="same-page bold">Web Locks API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_b8f8de60-73a8-4c0e-88ed-b1b7556ab5a2">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_b8f8de60-73a8-4c0e-88ed-b1b7556ab5a2" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_Locks_API">Web Locks API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            the <strong>Web Locks API</strong> allows scripts running in one tab or worker to asynchronously acquire a lock, hold it while work is performed, then release it. While held, no other script executing in the same origin can acquire the same lock, which allows a web app running in multiple tabs or workers to coordinate work and the use of resources.
+        </blockquote>
+
+         
+    </div>
+</section>
+<section id="id_92fa3688-cb56-4ebd-a728-d5e2c5941837" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_92fa3688-cb56-4ebd-a728-d5e2c5941837" class="same-page bold">Web MIDI API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_6b612f9c-300f-47e7-881c-933d0c343369">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_6b612f9c-300f-47e7-881c-933d0c343369" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_MIDI_API">Web MIDI API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Web MIDI API connects to and interacts with Musical Instrument Digital Interface (MIDI) Devices. The interfaces deal with the practical aspects of sending and receiving MIDI messages. Therefore, the API can be used for musical and non-musical uses, with any MIDI device connected to your computer. 
+        </blockquote>
+         
+    </div>
+</section>
+<section id="id_b5b052c0-9559-4d46-9b91-7d30cf1d5b1a" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_b5b052c0-9559-4d46-9b91-7d30cf1d5b1a" class="same-page bold">Web NFC API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_00295249-9ae9-4345-b8d7-8a7c90cadcb3">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_00295249-9ae9-4345-b8d7-8a7c90cadcb3" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_NFC_API">Web NFC API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Web NFC API allows exchanging data over NFC via light-weight NFC Data Exchange Format (NDEF) messages. 
+        </blockquote>
+         
+    </div>
+</section>
+<section id="id_c916d6f0-0836-4c10-9468-86590c7bb9b7" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_c916d6f0-0836-4c10-9468-86590c7bb9b7" class="same-page bold">Web Notification</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_d1cd2d24-7dca-48ff-a5f0-4075d8926446">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_d1cd2d24-7dca-48ff-a5f0-4075d8926446" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Notifications_API">Web Notification Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Notifications API allows web pages to control the display of system notifications to the end user. These are outside the top-level browsing context viewport, so therefore can be displayed even when the user has switched tabs or moved to a different app. The API is designed to be compatible with existing notification systems, across different platforms.
+        </blockquote>
+         
+    </div>
+</section>
+<section id="id_cb3896d4-b29f-42fb-a7eb-b4825315924e" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_cb3896d4-b29f-42fb-a7eb-b4825315924e" class="same-page bold">Web Serial API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_1201329f-1f88-4ef6-8096-24c359f4cdd2">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_1201329f-1f88-4ef6-8096-24c359f4cdd2" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_Serial_API">Web Serial API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Web Serial API</strong> provides a way for websites to read from and write to serial devices. These devices may be connected via a serial port, or be USB or Bluetooth devices that emulate a serial port. 
+        </blockquote>
+        <p class="mt-2">
+            The Web Serial API is one of a set of APIs that allow websites to communicate with peripherals connected to a user's computer. It provides the ability to connect to devices that are required by the operating system to communicate via the serial API, rather than USB which can be accessed via the WebUSB API, or input devices that can be accessed via WebHID API. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_c13d1bb9-7b9a-40ab-98ad-8b1dc2b73eca" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_c13d1bb9-7b9a-40ab-98ad-8b1dc2b73eca" class="same-page bold">Web Share API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_29ef5c0c-c66b-4d48-9351-f2a819e8cd9e">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_29ef5c0c-c66b-4d48-9351-f2a819e8cd9e" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_Share_API">Web Share API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Web Share API</strong> provides a mechanisms for sharing text, links, files, and other content to an arbitrary <em>share target</em> selected by the user.
+        </blockquote>
+        <p class="mt-2">
+            The APU allows a site to share text, links, files, and other content to user-selected share targets, utilizing the sharing mechanisms of the underlying operating system. These share targets typically include the system clipboard, email, contacts or messaging applications, and  Bluetooth or Wi-Fi channels. The API has two methods. The <span class="text-code">navigator.canShare()</span> method may be used to first validate whether some data is "shareable", prior to passing it to <span class="text-code">navigator.share()</span> for sending. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_dfc8473f-6ea3-4663-bb3b-4d16d445c8f2" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_dfc8473f-6ea3-4663-bb3b-4d16d445c8f2" class="same-page bold">Web Speech API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_7fae6af6-e635-4b66-ae83-84c534bf9ece">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_7fae6af6-e635-4b66-ae83-84c534bf9ece" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_Speech_API">Web Speech API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Web Speech API</strong> enables you to incorporate voice data into web apps. The Web Speech API has two parts: <span class="text-code">Speech Synthesis</span> (Text-to-Speech), and <span class="text-code">SpeechRecognition</span> (Asynchronous Speech Recognition).
+        </blockquote>
+        <p class="mt-2">
+            The Web Speech API makes web apps able to handle voice data. There are two components to this API: 
+        </p>
+        <ul class="mt-1">
+            <li>Speech recognition is accessed via the <span class="text-code">SpeechRecogntion</span> interface, which provides the ability to recognize voice context from an audio input (normally via the device's default speech recognition service) and respond appropriately. Generally you'll use the interface's constructor to create a new <span class="text-code">SpeechRecognition</span> object, which has a number of event handlers available for detecting when speech is input through the device's microphone. The <span class="text-code">SpeechGrammar</span> interface represents a container for a particular set of grammar that your app should recognize. Grammar is defined using <a class="secondary link" target="_blank" href="https://www.w3.org/TR/jsgf/">JSpeech Grammar Format</a></li>
+            <li>Speech synthesis is accessed via the <span class="text-code">SpeechSynthesis</span> interface, a text-to-speech component that allows programs to read out their text content (normally via the device's default speech synthesizer). Different voice types are represented by <span class="text-code">SpeechSynthesisVoice</span> objects, and different parts of text that you want to be spoken are represented by <span class="text-code">SpeechSynthesisUtterance</span> objects.</li>
+        </ul>
+         
+    </div>
+</section>
+<section id="id_9a5e3512-c9a6-44a1-adc5-cbdef2238276" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_9a5e3512-c9a6-44a1-adc5-cbdef2238276" class="same-page bold">Web Storage API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_a63c7428-9574-4913-a1bc-07fca1150953">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_a63c7428-9574-4913-a1bc-07fca1150953" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_Storage_API">Web Storage API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+        The <strong>Web Storage API</strong> provides mechanisms by which browsers can store key/value pairs, in a much more intuitive fashion than using cookies.
+        </blockquote>
+        <p class="mt-2">
+            The two mechanisms within WebStorage are as follows:
+        </p>
+        <ul>
+            <li><span class="text-code">sessionStorage</span> maintains a separate storage area for each given origin that's available for the duration of the page session</li>
+            <li><span class="text-code">localStorage</span> does the same thing, but persists when the browser is close and reopened.</li>
+        </ul>
+        <p class="mt-2">
+            These mechanisms are available via the <span class="text-code">Window.sessionStorage</span> and <span class="text-code">Window.localStorage</span> properties. Invoking one of these will return an instance of a <span class="text-code">Storage</span> object, through which data items can be set, retrieved and removed. Both <span class="text-code">sessionStorage</span> and <span class="text-code">localStorage</span> in WebStorage are synchronous in nature. This means that when data is set retrieved, or removed from these storage mechanisms, the operations are performed synchronously, blocking the execution of other JavaScript code until the operation is completed. Developers should be cautious when using Storage that involves tasks that involve a significant amount of data or computationally intensive tasks.  
+        </p>
+         
+    </div>
+</section>
+<section id="id_6fed4f62-2721-4cfc-af8f-7d40b989a165" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_6fed4f62-2721-4cfc-af8f-7d40b989a165" class="same-page bold">Web Workers API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_9d4ab183-11c2-4ca6-9fd5-1cb8fe186f28">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_9d4ab183-11c2-4ca6-9fd5-1cb8fe186f28" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Web_Workers_API">Web Workers API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            <strong>Web Workers</strong> makes it possible to run a script operation in a background thread separate from the main execution thread of a web application. The advantage of this is that laborious processing can be performed in a separate thread, allowing the main (usually the UI) thread to run without being blocked / slowed down. 
+        </blockquote>
+        <p class="mt-2">
+            A worker is an object created using a constructor (e.g. <span class="text-code">Worker()</span>) that runs a named JavaScript file - this file contains the code that will be run in the worker thread. You can;t directly manipulate the DOM from inside the worker, or use some default methods and properties of the <span class="text-code">Window</span> object. Data is sent between workers and the main thread via a system of messages - both sides send their messages using the <span class="text-code">postMessage()</span> method, and respond to messages via the <span class="text-code">onmessage</span> event handler (the message is contained within the <span class="text-code">message</span> event's <span class="text-code">data</span> property). The data is copied rather than shared. 
+        </p>
+        
+    </div>
+</section>
+<section id="id_a18f531c-73bd-4581-bd53-eec96621fc8b" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_a18f531c-73bd-4581-bd53-eec96621fc8b" class="same-page bold">WebCodecs API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_d0d40aea-7de5-42fb-b46f-b8abfdc68c74">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_d0d40aea-7de5-42fb-b46f-b8abfdc68c74" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/WebCodecs_API">WebCodecs API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>WebCodecs API</strong> gives web developers low-level access to the individual frames of a video stream and chunks of audio. It is useful for web applications that require full control over the way media is processed. For example, video or audio editors, and video conferencing.
+        </blockquote>
+        <p class="mt-2">
+            The WebCodecs API provides access to codecs that are already in the browser. it gives access to raw video frames, chunks of audio data, image decoders, audio and video encoders and decoders. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_936af3a5-f047-4c13-9bba-07b949d1b58d" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_936af3a5-f047-4c13-9bba-07b949d1b58d" class="same-page bold">WebGL</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_adf88b1b-d1f0-4030-b73e-db925cb9d6fc">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_adf88b1b-d1f0-4030-b73e-db925cb9d6fc" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/WebGL_API">WebGL Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            <strong>WebGL</strong> (Web Graphics Library) is a JavaScript APU for rendering high-performance interactive 3D and 2D graphics within any comparable web browser without the use of plug-ins. WebGL does so by introducing an APU tht closely conforms to OpenGL ES 2.0 that can be used in HTML <span class="text-code">&lt;canvas&gt;</span> elements. This conformance makes it possible for the API to take advantage of hardware graphics acceleration provided by the user's device. 
+        </blockquote>
+         
+    </div>
+</section>
+<section id="id_2d3de915-5d70-4589-b6f5-896c944e4f10" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_2d3de915-5d70-4589-b6f5-896c944e4f10" class="same-page bold">WebGPU API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_025dbadd-98ff-4f99-9ceb-365492061cc0">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_025dbadd-98ff-4f99-9ceb-365492061cc0" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/WebGPU_API">WebGPU API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>WebGPU API</strong> enables web developers to use the underlying system's GPU (Graphics Processing Unit) to cary out high-performance computations and draw complex images that can be rendered in thr browser. WebGPU is the successor to WebGL, providing better compatibility with modern GPUs, support for general-purpose GPU computations, faster operations, and access to more advanced GPU features. 
+        </blockquote>
+        <p class="mt-2">
+            WebGL revolutionized the web in terms of graphical capabilities after it first appeared around 2011. Several apps have been created to make WebGL apps easier to write: <a class="secondary link" target="_blank" href="https://threejs.org/">Three.js</a>, <a class="secondary link" target="_blank" href="https://www.babylonjs.com/">Babylon.js</a>, and <a class="secondary link" target="_blank" href="https://playcanvas.com/">PlayCanvas</a>. WebGPU addresses the issues with WebGL, providing an updated general-purpose architecture compatible with modern GPU APIs, which feels more "webby". There are several layers of abstraction between a device GPU and a web browser running the WebGPU API. It is useful  to understand these as you begin to learn WebGPU: 
+        </p>
+        <div class="flex-row justify-center">
+            <img 
+            width="<%-locals.desktop?511:(locals.tablet?393:276)%>" 
+            height="<%-locals.desktop?541:(locals.tablet?449:357)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 138 / 179 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2Fbc22bf98-7578-4130-b204-16f0760b5632-mobile.jpeg 276w, https://image.storething.org/frankmbrown%2Fbc22bf98-7578-4130-b204-16f0760b5632-tablet.jpeg 393w, https://image.storething.org/frankmbrown%2Fbc22bf98-7578-4130-b204-16f0760b5632-desktop.jpeg 511w" 
+            sizes="(max-width: 550px) 357px, ((min-width: 550px) and (max-width: 1200px)) 449px, (min-width: 1200px) 541px" 
+            src="https://image.storething.org/frankmbrown%2Fbc22bf98-7578-4130-b204-16f0760b5632-desktop.jpeg" 
+            alt="Web GPU Abstraction" 
+            />
+        </div>
+        <ul>
+            <li>Physical devices have GPUs. Most devices only have one GPU, but some have more than one. Different GPU types are available:
+                <ul>
+                    <li>Integrated GPUs, which live on the same board as the CP and share its memory</li>
+                    <li>Discrete GPUsm which live on their own board, separate from the CPU</li>
+                    <li>Software "GPUs", implemented on the CPU</li>
+                </ul>
+            </li>
+            <li>A native GPU API, which is part of the OS, is a programming interface allowing native applications to use the capabilities of the GPU. API instructions are sent to the GPU (and responses received) via a driver. It is possible for a system to have multiple native OS APIs and drivers available to communicate with the GPU, although the above diagram assumes a device with only one API/driver. </li>
+            <li>A browser;s WebGPU implementation handles communicating with the GPU via a native GPU API driver. A WebGPU adapter effectively represents a physical GPU and driver available in the underlying system, in your code. </li>
+            <li>A logical device is an abstraction via which a single web app can access GPU capabilities in a compartmentalized way. Logical devices are required to provide multiplexing capabilities. A physical device's GPU is used by many applications and processes concurrently, including potentially many web apps. Each web app needs to be able to access WebGPU is isolation for security and logic reasons.</li>
+        </ul>
+         
+    </div>
+</section>
+<section id="id_d1868dcb-fd5b-4b87-b56e-c891d83b34c5" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_d1868dcb-fd5b-4b87-b56e-c891d83b34c5" class="same-page bold">WebHID API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_169a2b5d-7b10-4c05-b6f8-2b6f93528628">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_169a2b5d-7b10-4c05-b6f8-2b6f93528628" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/WebHID_API">WebHID API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            A Human Interface Device (HID) is a type of device that takes input from or provides output to humans. It also refers to the HID protocol, a standard for bi-directional communication between a host and a device that is designed to simplify the installation procedure. The HID was originally developed for USB devices but has since been implemented over many protocols, including Bluetooth.
+        </blockquote>
+         
+    </div>
+</section>
+<section id="id_701e28fc-946d-4785-8cc0-ab893240dbc8" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_701e28fc-946d-4785-8cc0-ab893240dbc8" class="same-page bold">WebOTP API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_11428285-63c5-4445-a109-cbf0174c2d82">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_11428285-63c5-4445-a109-cbf0174c2d82" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/WebOTP_API">WebOTP API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>WebOTP API</strong> provides a streamlined user experience for web apps to verify that a phone number belongs to verify that a phone number belongs to a user when using it as a sign-in factor. WebOTP is an extension of the Credential manager API.
+        </blockquote>
+        <p class="mt-2">
+            The verification is done via a 2 step process:
+        </p>
+        <ol>
+            <li>The app client requests a one-time password (OTP), which is obtained from a specially-formatted SMS message sent by the app server.</li>
+            <li>JavaScript is used to enter the OTP into a validation form on the app client and it is submitted back to teh server to verify that it matches what was originally sent in the SMS.</li>
+        </ol>
+         
+    </div>
+</section>
+<section id="id_399661b4-8c6d-4645-9dd3-7740412a6b7a" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_399661b4-8c6d-4645-9dd3-7740412a6b7a" class="same-page bold">WebRTC</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_0667ba2b-1339-4c45-b014-0dddd9eba955">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_0667ba2b-1339-4c45-b014-0dddd9eba955" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/WebRTC_API">WebRTC Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            <strong>WebRTC</strong> (Web Real-Time Communication) is a technology that enables Web applications and sites to capture and optionally stream audio and/or video media, as well as to exchange arbitrary data between browsers without requiring an intermediary. The set of standards that comprise WebRTC makes it possible to share data and perform teleconferencing peer-to-peer, without requiring that the user install plug-ins or any other third-party software. WebRTC consists of several interrelated APIs and protocols which work together to achieve this.
+        </blockquote>
+        <p class="mt-2">
+            WebRTC serves multiple purposes; together with the <a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API">Media Capture and Streams API</a>, they provide powerful multimedia capabilities to the Web, including support for audio and video conferencing, file exchange, screen sharing, identify management, and interface with legacy telephone systems including support for sending <a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/WebRTC_API">DTMF</a> (touch tone) signals.
+        </p>
+         
+    </div>
+</section>
+<section id="id_23f6ef10-d859-4fdd-a305-8b00e8fa100a" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_23f6ef10-d859-4fdd-a305-8b00e8fa100a" class="same-page bold">WebSockets API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_47ef9dc4-5808-4f3a-8efa-754d3dd2c4be">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_47ef9dc4-5808-4f3a-8efa-754d3dd2c4be" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/WebSockets_API">WebSockets API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>WebSocket API</strong> makes it possible to open a two-way interactive communication session between the user's browser and a server. WIth this API, you can send messages to a server and receive responses without having to poll the sever for a reply.
+        </blockquote>
+        
+         
+    </div>
+</section>
+<section id="id_c8603bdd-a02b-42f0-b202-3f576386b897" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_c8603bdd-a02b-42f0-b202-3f576386b897" class="same-page bold">WebTransport API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_85bbcd16-0667-43ed-b4c1-7abcfe685201">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_85bbcd16-0667-43ed-b4c1-7abcfe685201" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/WebTransport_API">WebTransport API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>WebTransport API</strong> provides a modern update to WebSockets, transmitting data between client and server using <a class="secondary link" target="_blank" href="https://datatracker.ietf.org/doc/html/draft-ietf-webtrans-http3/">HTTP/3 Transport</a>. WebTransport provides support for multiple streams, unidirectional streams, and out-of-order delivery. It enables reliable transport via streams and unreliable transport via UDP-like datagrams.
+        </blockquote>
+        <p class="mt-2">
+            HTTP/3 has been in progress since 2018. It is based on Google's QUIC protocol and fixes several issues around the classic TCP protocol, on which HTTP and WebSockets are based. These concepts include:
+        </p>
+        <ul>
+            <li><strong>Head-of-line blocking</strong>: HTTP/2 allows multiplexing, so a single connection can stream multiple resources simultaneously. However, if a single resource fails, all other resources on that connection are held up until all missing packets are retransmitted. With QUIC, only the failing resource is affected.</li>
+            <li><strong>Faster Performance</strong>: QUIC is more performant than TCP in many ways. QUIC can handle security features by itself, rather than handling responsibility off to other protocols like TLS - meaning fewer round trips. And streams provide better transport efficiency than the older packet mechanism. That can make a significant difference, especially on high-latency networks. </li>
+            <li><strong>Better network transitions</strong>QUIC is more performant than TCP in many ways. QUIC can handle security features by itself, rather than handling responsibility off to other protocols like TLS - meaning fewer round trips. Streams provide better transport efficiency than the older packet mechanism. </li>
+            <li><strong>Unreliable Transport</strong>: HTTP/3 supports unreliable data transmission via datagrams.</li>
+        </ul>
+
+         
+    </div>
+</section>
+<section id="id_1fbe067d-773a-4d1c-8025-266424a9d762" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_1fbe067d-773a-4d1c-8025-266424a9d762" class="same-page bold">WebUSB API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_d664bb2a-1b13-4c0e-8cca-d2eb404b99a0">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_d664bb2a-1b13-4c0e-8cca-d2eb404b99a0" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/WebUSB_API">WebUSB API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>WebUSB API</strong> provides a way to expose non-standard Universal Serial Bus (USB) compatible devices services to the web, to make USB safer and easier to use. 
+        </blockquote>
+        <p class="mt-2">
+            USB is the de-facto standard for wired peripherals. The USB devices that you connect to your computer are typically grouped into a number of device classes - such as keyboards, mice, video devices, and so on. WebUSB provides a way for these non-standardized USB device services to be exposed to the web. This means that hardware manufacturers will be able to provide a way for their device to be accessed from the web, without having to provide their own API.
+        </p>
+         
+    </div>
+</section>
+<section id="id_ab97cd4d-6720-412f-ba22-07120ac765c2" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_ab97cd4d-6720-412f-ba22-07120ac765c2" class="same-page bold">WebVR API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_11de8852-9c80-4a99-ba1e-fe2583c86011">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_11de8852-9c80-4a99-ba1e-fe2583c86011" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/WebVR_API">WebVR API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            <strong class="t-error">No Longer recommended</strong> <br>
+            WebVR provides support for exposing virtual realty devices - for example, head mounted displays like Oculus Rift or HTC Vive - to web apps, enabling developes to translate position and movement information from the display into movement around a 3D scene. 
+        </blockquote>
+        <p class="mt-2">
+            Any VR devices attached to your computer will be returned by the <span class="text-code">Navigator.getVRDisplays()</span> method; each one will be represented by a <span class="text-code">VRDisplay</span> object. The WebVR API, which was never ratified as a Web standard has been deprecared in favor of the <a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API">WebXR API</a>, which is well on track toward finishing the standardization process.
+        </p>
+         
+    </div>
+</section>
+<section id="id_ecd9bde9-f559-4216-8e05-29658c602e7a" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_ecd9bde9-f559-4216-8e05-29658c602e7a" class="same-page bold">WebVTT</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_a77fdb20-1de0-4f80-8192-210963e4b2e1">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_a77fdb20-1de0-4f80-8192-210963e4b2e1" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/WebVTT_API">WebVTT Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            <strong>Web Video Text Tracks (WebVTT)</strong> are text tracks providing text "cues" that are time-aligned with other media, such as video or audio tracks. The <strong>WebVTT API</strong> provides functionality to define and manipulate these text tracks. The WebVTT API is primarily used for displaying subtitles or captions that overlay with video content, but it has other uses: providing chapter information for easier navigation and generic metadata that needs to be time-aligned with audio or video content. 
+        </blockquote>
+        <p class="mt-2">
+            A text track is a container for time-aligned text data that can be played in parallel with a video or audio track to provide a translation, transcription, or overview of the content. A video or audio media element may define tracks of different kinds or in different languages, allowing users to display appropriate tracks based on their preferences or needs. The different kinds of text data that can be specified are listed below. 
+        </p>
+        <ul>
+            <li><span class="text-code">subtitles</span> provide a textual translation of spoken dialog. This is the default type of text track, and if used, the source language must be specified. </li>
+            <li><span class="text-code">captions</span>provide a transcription of spoken text, and may include information about other audio such as music or background noise. They are intended for hearing impaired users. </li>
+            <li><span class="text-code">chapters</span> provide high level navigation information, allowing users to more easily switch to relevant content</li>
+            <li><span class="text-code">metadata</span> is used ofr any other kinds of time-aligned information</li>
+        </ul>
+         
+    </div>
+</section>
+<section id="id_b703c103-1d22-4869-bf52-6a93e964ed94" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_b703c103-1d22-4869-bf52-6a93e964ed94" class="same-page bold">WebXR Device API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_364fc93e-7ddc-45a7-ad62-fa681926d21d">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_364fc93e-7ddc-45a7-ad62-fa681926d21d" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/WebXR_Device_API">WebXR Device API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            <strong>WebXR</strong> is a group of standards which are used together to support rendering 3D scenes to hardware designed for presenting virtual words (<strong>virtual reality (VR)</strong>), or for adding graphical imagery to the real world, (<strong>augmented reality (AR)</strong>). The <strong>WebXR Device API</strong> implements the core of the WebXR feature set, managing the selection of output devices, render the 3D sceme to the chosen device at the appropriate frame rate, and manage notion vectors created using input controllers.
+        </blockquote>
+        <p class="mt-2">
+            WebXR-compatible devices include fully-immersive 3D headsets with motion and orientation tracking, eyeglasses which overlay graphics atop the real-world scene passing through the frames, and handheld mobile phones which augment reality by capturing the world with a camera and augment that scene with computer-generated imagery. The WebXR Device API provides the following key capabilities:
+        </p>
+        <ul>
+            <li>Find a compatible VR or AR output devices</li>
+            <li>Render a 3D scene to the device at an appropriate frame rate</li>
+            <li>(Optionally) mirror the output to a 2D display</li>
+            <li>Create vectors representing the movements of input controls</li>
+        </ul>
+        <p class="mt-2">
+            At the most basic level, a scene is presented in 3D by computing the perspective to apply to the scene in order to render it from the viewpoint of each of the user's eyes by computing the position of each eye and rendering the scene from that position, looking in the direction the user is currently facing. Each of these two images is rendered into a single framebuffer, with the left eye's rendered image on the left and the right eye's viewpoint rendered on the right half od the buffer. Once both eyes' perspectives on the scene have been rendered, the resulting framebuffer is delivered to the WebXR device to be presented to the user through their headet or other appropriate display device. 
+        </p>
+         
+    </div>
+</section>
+<section id="id_bae33bc8-5b82-4bbe-9334-afda9e3ae7d4" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_bae33bc8-5b82-4bbe-9334-afda9e3ae7d4" class="same-page bold">Window Controls Overlay API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_f046135a-66ba-42a6-9dc8-1fbb8ddc264f">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_f046135a-66ba-42a6-9dc8-1fbb8ddc264f" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Window_Controls_Overlay_API">Window Controls Overlay API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The Window Controls Overlay API gives Progressive Web Apps installed on desktop operating systems the ability to hide the default window title bar and display their own content over the full surface area of the app window, turning the control buttons (maximize, minimize, and close) into an overlay.
+        </blockquote>
+        <p class="mt-2">
+            Before using this feature, the following conditions must be true:
+        </p>
+        <ul>
+            <li>The Web App Manifest's <span class="text-code">display_override</span> member must be set to <span class="text-code">window-controls-overlay</span></li>
+            <li>The Progressive Web App ust be installed on a desktop operating system. </li>
+        </ul>
+
+         
+    </div>
+</section>
+<section id="id_a9ab4c3d-aa78-49b1-8560-83c99b184982" class="mt-4">
+    <div class="flex-row bb-thick justify-between"><h2 class="bold h2"><a href="#id_a9ab4c3d-aa78-49b1-8560-83c99b184982" class="same-page bold">Window Management API</a></h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#id_8a379138-ea5d-4d6e-9b39-2861a73d2628">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+        </button>
+    </div>
+    <div id="id_8a379138-ea5d-4d6e-9b39-2861a73d2628" class="mt-2">
+        <ul><li><a class="secondary link" target="_blank" href="https://developer.mozilla.org//en-US/docs/Web/API/Window_Management_API">Window Management API Reference</a></li></ul>
+        <blockquote class="blockquote mt-2">
+            The <strong>Window Management API</strong> allows you to get detailed information on the displays connected to your device and more easily place windows on specific screens, paving the way towards more effective multi-screen applications.
+        </blockquote>
+        <p class="mt-2">
+            The Windows Management API provides robust, flexible window management. It allows you to query whether your display is extended with multiple screens and get information on each screen separately: windows can then be placed on each screen as desired. It also provides event handlers to allow you to respond to changes in teh available screens. It is useful in cases such as:
+        </p>
+        <ul>
+            <li>Multi-window graphics editors and audio processors that may wish to arrange editing tools and panels across different screens.</li>
+            <li>Virtual trading desks that want to show market trends in multiple windows and put specific windows of interest in fullscreen mode</li>
+            <li>Slideshow apps that want to show speaker notes on the internal primary screen and presentation on an external projector. </li>
+        </ul>
+         
+    </div>
+</section>

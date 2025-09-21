@@ -1,0 +1,60 @@
+<%# 
+id: annotation id
+user_upvote: boolean
+user_downvote: boolean
+upvote_count: number
+downvote_count: number
+error: boolean
+%>
+<%if(locals.error){%>
+    <span class="flex-row align-center gap-1" style="margin-left: 4px;">
+        <button disabled type="button" class="icon small text secondary" aria-label="Upvote Annotation">
+            <svg xmlns="http://www.w3.org/2000/svg" focusable="false" inert viewBox="0 0 20 20" tabindex="-1">
+                <path d="M10 19c-.072 0-.145 0-.218-.006A4.1 4.1 0 0 1 6 14.816V11H2.862a1.751 1.751 0 0 1-1.234-2.993L9.41.28a.836.836 0 0 1 1.18 0l7.782 7.727A1.751 1.751 0 0 1 17.139 11H14v3.882a4.134 4.134 0 0 1-.854 2.592A3.99 3.99 0 0 1 10 19Zm0-17.193L2.685 9.071a.251.251 0 0 0 .177.429H7.5v5.316A2.63 2.63 0 0 0 9.864 17.5a2.441 2.441 0 0 0 1.856-.682A2.478 2.478 0 0 0 12.5 15V9.5h4.639a.25.25 0 0 0 .176-.429L10 1.807Z"></path>
+            </svg>
+        </button>
+        <span>
+           N/A
+        </span>
+        <button disabled type="button" class="icon small text secondary" aria-label="Downvote Annotation">
+            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false" inert tabindex="-1">
+                <path d="M10 1c.072 0 .145 0 .218.006A4.1 4.1 0 0 1 14 5.184V9h3.138a1.751 1.751 0 0 1 1.234 2.993L10.59 19.72a.836.836 0 0 1-1.18 0l-7.782-7.727A1.751 1.751 0 0 1 2.861 9H6V5.118a4.134 4.134 0 0 1 .854-2.592A3.99 3.99 0 0 1 10 1Zm0 17.193 7.315-7.264a.251.251 0 0 0-.177-.429H12.5V5.184A2.631 2.631 0 0 0 10.136 2.5a2.441 2.441 0 0 0-1.856.682A2.478 2.478 0 0 0 7.5 5v5.5H2.861a.251.251 0 0 0-.176.429L10 18.193Z"></path>
+            </svg>
+        </button>
+    </span>
+    <div class="snackbar error" aria-hidden="false" role="alert" data-snacktime="4000">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ErrorOutline"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path></svg>
+        <p class="p-sm">Something went wrong posting the upvote / downvote to the database.</p>
+        <button class="icon medium" type="button" data-close-snackbar aria-label="Close Snackbar">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CloseSharp"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+        </button>
+    </div>
+<%}else{%>
+    <span class="flex-row align-center gap-1" style="margin-left: 4px;">
+        <button type="button" class="icon small text secondary" aria-label="Upvote Annotation" hx-get="/annotation/upvote/<%=locals.id%>" hx-target="closest span" hx-swap="outerHTML" hx-trigger="click">
+            <%if(locals.user_upvote){%>
+                <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false" inert tabindex="-1">
+                    <path d="M10 19c-.072 0-.145 0-.218-.006A4.1 4.1 0 0 1 6 14.816V11H2.862a1.751 1.751 0 0 1-1.234-2.993L9.41.28a.836.836 0 0 1 1.18 0l7.782 7.727A1.751 1.751 0 0 1 17.139 11H14v3.882a4.134 4.134 0 0 1-.854 2.592A3.99 3.99 0 0 1 10 19Z"></path>
+                </svg>
+            <%} else {%>
+                <svg xmlns="http://www.w3.org/2000/svg" focusable="false" inert viewBox="0 0 20 20" tabindex="-1">
+                    <path d="M10 19c-.072 0-.145 0-.218-.006A4.1 4.1 0 0 1 6 14.816V11H2.862a1.751 1.751 0 0 1-1.234-2.993L9.41.28a.836.836 0 0 1 1.18 0l7.782 7.727A1.751 1.751 0 0 1 17.139 11H14v3.882a4.134 4.134 0 0 1-.854 2.592A3.99 3.99 0 0 1 10 19Zm0-17.193L2.685 9.071a.251.251 0 0 0 .177.429H7.5v5.316A2.63 2.63 0 0 0 9.864 17.5a2.441 2.441 0 0 0 1.856-.682A2.478 2.478 0 0 0 12.5 15V9.5h4.639a.25.25 0 0 0 .176-.429L10 1.807Z"></path>
+                </svg>
+            <%}%>
+        </button>
+        <span>
+            <%=locals.vote_count%>
+        </span>
+        <button type="button" class="icon small text secondary" aria-label="Downvote Annotation" hx-get="/annotation/downvote/<%=locals.id%>" hx-swap="outerHTML" hx-target="closest span" hx-trigger="click">
+            <%if(locals.user_downvote){%>
+                <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false" inert tabindex="-1">
+                    <path d="M10 1c.072 0 .145 0 .218.006A4.1 4.1 0 0 1 14 5.184V9h3.138a1.751 1.751 0 0 1 1.234 2.993L10.59 19.72a.836.836 0 0 1-1.18 0l-7.782-7.727A1.751 1.751 0 0 1 2.861 9H6V5.118a4.134 4.134 0 0 1 .854-2.592A3.99 3.99 0 0 1 10 1Z"></path>
+                </svg>
+            <%} else {%>
+                <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false" inert tabindex="-1">
+                    <path d="M10 1c.072 0 .145 0 .218.006A4.1 4.1 0 0 1 14 5.184V9h3.138a1.751 1.751 0 0 1 1.234 2.993L10.59 19.72a.836.836 0 0 1-1.18 0l-7.782-7.727A1.751 1.751 0 0 1 2.861 9H6V5.118a4.134 4.134 0 0 1 .854-2.592A3.99 3.99 0 0 1 10 1Zm0 17.193 7.315-7.264a.251.251 0 0 0-.177-.429H12.5V5.184A2.631 2.631 0 0 0 10.136 2.5a2.441 2.441 0 0 0-1.856.682A2.478 2.478 0 0 0 7.5 5v5.5H2.861a.251.251 0 0 0-.176.429L10 18.193Z"></path>
+                </svg>
+            <%}%>
+        </button>
+    </span>
+<%}%>

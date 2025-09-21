@@ -1,0 +1,271 @@
+<%# 
+PARTIAL ROUTE: pages/projects/neural-style-transfer.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.development
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+      <h1 class="page-title">Neural Style Transfer</h1>
+
+    <section id="why-create-this-page" class="mt-4">
+        <div class="flex-row bb-main justify-between align-center">
+          <h2 class="bold h2">
+              <a href="#why-create-this-page" class="same-page bold">
+                  Why Create This Page
+              </a>
+          </h2>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#why-just-el-hide">
+            <svg data-arrow="" focusable="false" aria-hidden="true" viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div id="why-just-el-hide">
+          <p class="mt-2">
+              I am mainly creating this page to test out my 
+              <a class="secondary link" target="_blank" href="https://flask.palletsprojects.com/en/3.0.x/">
+                  Flask</a>
+               backend. I am using a 
+              <a class="secondary link" target="_blank" href="https://nodejs.org/en">
+                  Node.js</a>
+               backend for most of this site and I need to test whether I am handling requests that should be routed to a different systemd service correctly. This requires configuring 
+              <a class="secondary link" target="_blank" href="https://nginx.org/en/">
+                  ngnix</a> and 
+              <a class="secondary link" target="_blank" href="https://systemd.io/">
+                  systemd</a>
+               correctly, so I am killing two birds with one stone here.
+          </p>
+          <p class="mt-2">
+              Also, this site is running into problems when it comes to uploading multiple files at once. I think this is caused by something to do with the 
+              <a class="secondary link" target="_blank" href="https://aws.amazon.com/ec2/">
+                  Amazon EC2</a> server or <a class="secondary link" target="_blank" href="https://aws.amazon.com/cloudfront/">
+                      CloudFront</a>, so I will also be able to fix that here.
+          </p>
+      
+          <section id="text-flask-working" class="mt-4">
+            <div class="flex-row bb-main justify-between align-center">
+              <h3 class="bold h4">
+                <a href="#text-flask-working" class="same-page bold">
+                  Test If Flask is Working
+                </a>
+              </h3>
+              <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#text-flask-working-out-wrap">
+                <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+                <span data-hide="">HIDE</span>
+                <span data-show="" hidden="">SHOW</span>
+              </button>
+            </div>
+            <div id="text-flask-working-out-wrap">
+              <div hx-trigger="load" hx-get="/python/test" hx-target="#text-flask-working-out" hx-indicator="#flask-test-ind" hx-swap="innerHTML"></div>
+              <div class="flex-row justify-center t-warning htmx-indicator mt-2" role="progressbar" id="flask-test-ind" aria-busy="false" aria-label="Test if Flask is working">
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+              </div>
+              <div>
+                <%if (locals.development){%>
+                  <div class="alert warning small icon" role="alert">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+                    <p class="alert">
+                      The API Route will not work in development!
+                    </p>
+                    <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+                      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+                    </button>
+                  </div>
+                <%}%>
+              </div>
+              <div id="text-flask-working-out" style="min-height: 100px; max-height: 250px; overflow: hidden;" class="block mt-2"></div>
+            </div>
+        </div>
+      </section>
+      
+      <section id="references" class="mt-4">
+        <div class="flex-row bb-main justify-between align-center">
+          <h2 class="bold h2">
+            <a href="#references" class="same-page bold">
+              References
+            </a>
+          </h2>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#ref-hide-el">
+            <svg data-arrow="" focusable="false" aria-hidden="true" viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div id="ref-hide-el" class="mt-2">
+          <p>
+              Here are some links that may be interesting to you on Neural Style Transfer:
+          </p>
+          <ul class="mt-1">
+              <li>
+                  <a class="secondary link" target="_blank" href="https://www.tensorflow.org/tutorials/generative/style_transfer">TensorFlow Neural Style Transfer Tutorial</a>
+              </li>
+              <li>
+                  <a class="primary link" hx-get="/jupyter-notebooks/4367b1b0-42cb-4289-8b3b-26363dd6224b/Generative%20Deep%20Learning%20-%20Paint%20and%20Write" href="/jupyter-notebooks/4367b1b0-42cb-4289-8b3b-26363dd6224b/Generative%20Deep%20Learning%20-%20Paint%20and%20Write" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">Frank's Jupyter Notebooks: Generative Deep Learning - Paint and Write</a>
+              </li>
+              <li>
+                  <a class="secondary link" target="_blank" href="https://en.wikipedia.org/wiki/Neural_style_transfer">Neural Style Transfer Wikipedia</a>
+              </li>
+              <li>
+                  <a class="secondary link" target="_blank" href="https://arxiv.org/abs/1508.06576">A Neural Algorithm of Artistic Style</a> - The first published paper on Neural Style Transfer
+              </li>
+              <li>
+                  <a class="secondary link" target="_blank" href="https://arxiv.org/abs/1610.07629">A Learned Representation for Artistic Style</a> - In 2017, Google AI introduced a method that allows a single deep convolutional style transfer network to learn multiple styles at the same time. This algorithm permits style interpolation in real-time, even when done on video media.
+              </li>
+          </ul>
+        </div>
+      </section>
+      
+      <section id="about-neural-style-transfer" class="mt-4">
+        <div class="flex-row bb-main justify-between align-center">
+          <h2 class="bold h2">
+            <a href="#about-neural-style-transfer" class="same-page bold">
+              About Neural Style Transfer
+            </a>
+          </h2>
+          <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#abt-nst-hid">
+            <svg data-arrow="" focusable="false" aria-hidden="true" viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <span data-hide="">HIDE</span>
+            <span data-show="" hidden="">SHOW</span>
+          </button>
+        </div>
+        <div id="abt-nst-hid" class="mt-2">
+          <p>
+              <strong>Neural style transfer</strong> is an optimization technique used to take two images - a <em>content</em> image and a <em>style reference</em> image (such as an artwork by a famous painter) - and blend them together so the output image looks like the content image, but "painted" in the style of the style reference image. This is implemented by optimizing the output image to match the content statistics of the content image and the style statistics of the style reference image. These statistics are extracted from the images using a convolutional network. See the example below for an example of neural style transfer. An image of a dog is recreated in the style of  <a class="secondary link" target="_blank" href="https://en.wikipedia.org/wiki/Wassily_Kandinsky">Wassily Kandinsky's</a>  <a class="secondary link" target="_blank" href="Wassily Kandinsky's Composition 7">Composition 7</a>: 
+          </p>
+      
+          <h3 class="bb h3 bold mt-2">
+              Content Image:
+          </h3>
+          <div class="flex-row justify-center mt-1">
+              <img sizes="(max-width: 500px) 380px, (min-width:500px) 680px" data-v="1" loading="lazy" data-original-device="desktop" src="https://image.storething.org/frankmbrown/81f41b82-fc77-40ca-988a-e9ed907a5896.jpg" style="margin: 4px auto; aspect-ratio: 340 / 281; max-width:100%; min-width:380px; max-width: 380px; min-height: 320.57142857142856px;" alt="Content Image" data-text="" />
+          </div>
+      
+          <h3 class="bb h3 bold mt-2">
+              Style Image:
+          </h3>
+          <div class="flex-row justify-center mt-1">
+              <img sizes="(max-width: 500px) 380px, (min-width:500px) 680px" data-v="1" loading="lazy" data-original-device="desktop" src="https://image.storething.org/frankmbrown/33d5dfd7-cd9f-49d7-bc42-7cb41f82a3d0.jpg" style="margin: 4px auto; aspect-ratio: 85 / 56; max-width:100%; min-width:380px; max-width: 380px; min-height: 255.42857142857142px;" alt="Style Image" data-text="" />
+          </div>
+          
+          <h3 class="bb h3 bold mt-2">
+              Output Image:
+          </h3>
+          <div class="flex-row justify-center mt-1">
+              <img sizes="(max-width: 500px) 286.11764705882354px, (min-width:500px) 512px" data-v="1" loading="lazy" data-original-device="desktop" src="https://image.storething.org/frankmbrown/9a93bb95-6fc7-4821-9733-13fc17721e21.png" style="margin: 4px auto; aspect-ratio: 256 / 211; max-width:100%; min-width:286.11764705882354px; max-width: 287px; min-height: 241.14285714285714px;" alt="Output Image" data-text="" />
+          </div>
+      
+        </div>
+      </section>
+      
+      <section id="apply-style-transfer" class="mt-4">
+          <h2 class="bold bb-thick h2">
+            <a href="#apply-style-transfer" class="same-page bold">
+              Apply Style Transfer
+            </a>
+          </h2>
+          <p class="mt-2">
+              Upload a style image and a content image below and get the resulting image using <a class="secondary link" target="_blank" href="https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2">arbitrary-image-stylization-v1</a>:
+          </p>
+          <details aria-label="About the Model" class="mt-2">
+                <summary>
+                    <span class="h6 fw-regular">About the Model</span>
+                    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                    </svg>
+                </summary>
+                <div class="accordion-content" aria-hidden="true">
+                  The original work for artistic style transfer with neural networks proposed a slow optimization algorithm that works on any arbitrary painting. Subsequent work developed a method for fast artistic style transfer that may operate in real time, but was limited to one or a limited set of styles. This module performs fast artistic style transfer that may work on arbitrary painting styles.
+                </div>
+            </details>
+            <p class="t-warning fw-regular mt-2">
+              Images should have similar aspect ratios to achieve the best style transfer. The minimum dimension (width and height) of both of the images must be greater than or equal to 50px. The images will be shrunk down to a square shape of the minimum dimension, and they will be cropped around the center before applying style transfer.
+            </p>
+            <form style="max-width: 100%; overflow-x: hidden;" id="post-form" hx-post="/python/style-transfer" hx-encoding="multipart/form-data" hx-indicator="#pis-tmtaw-123" hx-target="#out-post-form-im-style" hx-swap="innerHTML" hx-trigger="submit">
+                <div class="flex-row justify-start align-start gap-1 mt-2">
+                    <div class="grow-1" style="flex-shrink: 0; max-width: 50%;">
+                        <label for="upload-style-image" class="bold mt-2">Upload Style Image:</label>
+                        <input data-image-input data-prevent-default type="file" id="upload-style-image" accept="image/*" name="upload-style-image" class="mt-1 primary">
+                        <output class="block mt-2" style="min-height: 150px; border: 5px inset var(--error);" for="upload-style-image">
+                          <div style="width: 100%; height: 150px;" class="justify-center align-center bold h6">
+                            <div class="text-align-center bold">Output Goes Here</div>
+                          </div>
+                        </output>
+                    </div>
+                    <div class="grow-1" style="flex-shrink: 0; max-width: 50%;">
+                        <label for="upload-content-image" class="bold mt-2">Upload  Content Image:</label>
+                        <input data-image-input type="file" id="upload-content-image" accept="image/*" name="upload-content-image" class="mt-1 info">
+                        <output class="block mt-2" style="min-height: 150px; border: 5px inset var(--error);" for="upload-content-image">
+                          <div style="width: 100%; height: 150px;" class="justify-center align-center bold h6">
+                           <div class="text-align-center bold">Output Goes Here</div>
+                          </div>
+                        </output>
+                    </div>
+<script nonce="<%=locals.jsNonce%>">
+(() => {
+  const imgInput1 = document.getElementById('upload-style-image');
+  const imgInput2 = document.getElementById('upload-content-image');
+  if (imgInput1&&imgInput2) {
+    const getImageOutput = (input) => {
+      const output = document.querySelector(`output[for="${input.name || 'nothing'}"]`);
+      if (output) return output;
+      else return null;
+    }
+    /**
+     * @param {HTMLInputElement} input
+     * @param {HTMLElement} output
+     */
+    const putImageInOutput = async (input,output,src) => {
+      const url = src;
+      const imageElement = document.createElement('img');
+      imageElement.src = url;
+      output.innerHTML='';
+      imageElement.style.cssText = "max-width: 100%; max-height: 200px; height: auto; width: auto;"
+      output.append(imageElement);
+    }
+    console.log(imgInput1);
+    imgInput1.addEventListener('media-upload-complete',(event)=>{
+      console.log(event)
+      const url = event?.detail?.uploads?.[0]?.url;
+      if (url) {
+        const output = getImageOutput(imgInput1);
+        putImageInOutput(imgInput1,output,url)
+      }
+    })
+    imgInput2.addEventListener('media-upload-complete',(event)=>{
+      const url = event?.detail?.uploads?.[0]?.url;
+      if (url) {
+        const output = getImageOutput(imgInput2);
+        putImageInOutput(imgInput2,output,url)
+      }
+    })
+  }
+})()
+</script>
+                </div>
+                <div class="flex-row justify-between align-center mt-2">
+                    <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                    <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                        SUBMIT
+                    </button>
+                </div>
+            </form>
+            <div class="flex-row justify-center t-secondary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Performing Image Stylization" id="pis-tmtaw-123">
+                <div class="lds-dual-ring"></div>
+            </div>
+            <h3 class="h3 bold mt-3" style="border-bottom: 2px solid var(--primary);">
+                Output:
+            </h3>
+            <output form="post-form" style="min-height: 200px;" id="out-post-form-im-style">
+      
+            </output>
+      </section>
+
+      
+    <%-include('../../partials/pagePartial')%>
+<%}%>    

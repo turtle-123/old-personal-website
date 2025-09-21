@@ -1,0 +1,996 @@
+<%# 
+PARTIAL ROUTE: pages/projects/information-on-models.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.desktop?650:(locals
+- locals.desktop?325:(locals
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+     
+    <h1 class="page-title">Information on Chat Models</h1>
+
+    <p class="mt-4">
+        I wanted to create this page to compare this pricing / capabilities of different AI models, research how much it would cost to host an open source model, and get a better sense of what Large Language Models are out there. 
+    </p>
+    <p class="mt-1">
+      <span class="bold">Last Updated:</span>11/14/2024
+    </p>
+    <h3 class="h3 bold bb-main mt-3">
+        Some Terminology
+    </h3>
+    <h4 class="h4 bold mt-2">
+      Tokens
+    </h4>
+    <blockquote class="mt-2 blcokquote">
+      <em>Tokens</em> are words, character sets, or combinations of words and punctuation that are used by large language models (LLMs) to break down text.
+    </blockquote>
+    <blockquote class="blockquote mt-2">
+      Tokens can be single characters like z or whole words like cat. Long words are broken up into several tokens. The set of all tokens used by the model is called the vocabulary, and the process of splitting text into tokens is called <em>tokenization</em>.
+    </blockquote>
+    <p class="mt-2">
+      The set of all tokens used by the model is called the vocabulary, and the process of splitting text into tokens is called <em>tokenization</em>. Tokens are used by the models below to calculate the cost of an API call. They have different methods for calculating tokens: 
+    </p>
+    <h5 class="h5 bold mt-2">
+      OpenAI
+    </h5>
+    <p class="mt-1">
+      <a class="secondary link" target="_blank" href="https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken">OpenAI Counting Tokens Reference</a>
+      <br>
+      <span class="text-code"><a class="secondary link" target="_blank" href="https://github.com/openai/tiktoken/blob/main/README.md">tiktoken</a></span> is a fast open-source tokenizer by OpenAI. Given a text string and an encoding, a tokenizer can split the text string into a list of tokens. Knowing how many tokens that are in a text string can tell you whether the string is too long for a text model to process and how much an OpenAI API call costs. There are <a class="secondary link" target="_blank" href="https://github.com/openai/tiktoken/blob/main/README.md">python libraries</a> and <a class="secondary link" target="_blank" href="https://www.npmjs.com/package/tiktoken">JavaScript libraries</a> that allow you to count OpenAI tokens (there are also libraries for other languages - see link above). 
+    </p>
+
+    <h5 class="h5 bold mt-2">
+      Google
+    </h5>
+    <p class="mt-1">
+      <a class="secondary link" target="_blank" href="https://ai.google.dev/gemini-api/docs/tokens?lang=node">Gemini Counting Tokens Reference</a>
+      <br>
+      <a class="secondary link" target="_blank" href="https://github.com/google-gemini/generative-ai-js/blob/6a99ed87fbb0a5b3557ac2adaa4240521bd114cb/samples/count_tokens.js#L33-L57">Counting Tokens Code Example Gemini</a>
+      <br>
+      <q class="quote">For Gemini models, a token is equivalent to about 4 characters. 100 tokens is equal to about 60-80 English words. When billing is enabled, the cost of a call to the Gemini API is determined in part by the number of input and output tokens, so knowing how to count tokens can be helpful.</q>
+      <br>
+      You can count tokens in the following ways:
+    </p>
+    <ul>
+      <li><strong>Call <span class="text-code">countTokens</span> with the input of the request</strong>: This returns the total number of tokens in the <i>input only</i>. You can make this call before sending the input to the model to check the size of your requests.</li>
+      <li><strong>use the <span class="text-code">usageMetadata</span> attribute on the <span class="text-code">response</span> object after calling <span class="text-code">generate_content</span></strong>: This returns the total number of tokens in <em>both the input and the output</em>: <span class="text-code">totalTokenCount</span>.</li>
+    </ul>
+    <h5 class="h5 bold mt-2">
+      Anthropic
+    </h5>
+    <p class="mt-1">
+      <a class="secondary link" target="_blank" href="https://docs.anthropic.com/en/docs/build-with-claude/token-counting">Anthropic Token Counting</a>
+      <br>
+      <span class="t-info">
+        To access this feature, include the  <span class="text-code t-normal">anthropic-beta:token-counting-2024-11-01</span> header in your API requests, or use <span class="text-code t-normal">client.beta.messages.count_tokens</span> in your SDK calls. 
+      </span>
+    </p>
+    <p class="mt-1">
+      Token counting enables you to determine the number of tokens in a message before sending it to Claude, helping you make informed decisions about your prompts and usage. <strong>How to count tokens with Anthropic:</strong> 
+    </p>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Anthropic</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@anthropic-ai/sdk&#x27;</span>;
+
+<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Anthropic</span>();
+<span class="hljs-comment">// Vallid Token Counting Models: Claude 2.5 Sonnet, Claude 3.5 Haiku, Claude 3 Haiku, Claude 3 Opus</span>
+<span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> client.<span class="hljs-property">beta</span>.<span class="hljs-property">messages</span>.<span class="hljs-title function_">countTokens</span>({
+  <span class="hljs-attr">betas</span>: [<span class="hljs-string">&quot;token-counting-2024-11-01&quot;</span>],
+  <span class="hljs-attr">model</span>: <span class="hljs-string">&#x27;claude-3-5-sonnet-20241022&#x27;</span>,
+  <span class="hljs-attr">system</span>: <span class="hljs-string">&#x27;You are a scientist&#x27;</span>,
+  <span class="hljs-attr">messages</span>: [{
+    <span class="hljs-attr">role</span>: <span class="hljs-string">&#x27;user&#x27;</span>,
+    <span class="hljs-attr">content</span>: <span class="hljs-string">&#x27;Hello, Claude&#x27;</span>
+  }]
+});
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response); <span class="hljs-comment">//{ "input_tokens": 14 }</span>
+</code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>
+    <h5 class="h5 bold mt-2">
+      Llama API
+    </h5>
+    <p class="mt-1 t-error fw-regular">
+      I haven't seen a way where you can count tokens with Llama API yet.
+    </p>
+    
+
+    <h4 class="h4 bold mt-2">
+      Abbreviations:
+    </h4>
+    <ul>
+        <li><abbr title="Large Language Model">LLM</abbr> = Large Language Model</li>
+        <li><abbr title="Requests per Minute">RPM</abbr> = Requests Per Minute</li>
+        <li><abbr title="Tokens per Minute">TPM</abbr> = Tokens per Minute</li>
+        <li><abbr title="Requests per Day">RPD</abbr> = Requests per Day</li>
+        <li><abbr title="Large Language Model Meta AI">Llama</abbr> = Large Language Model Meta AI</li>
+    </ul>
+
+    <section id="enterprise-models" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#enterprise-models" class="same-page bold">
+            Enterprise API Models
+          </a>
+        </h2>
+        <p class="mt-2">
+          Looking into the differences between the Enterprise LLM providers. I want to see the cost breakdowns of each and what their model capabilities are. 
+        </p>
+        <section id="openai-sect" class="mt-4">
+          <h3 class="bold h3 bb-thick">
+            <a href="#openai-sect" class="same-page bold">
+                OpenAI
+            </a>
+          </h3>
+          <blockquote class="mt-2 blockquote" cite="https://openai.com/api/pricing/">
+            Multiple models, each with different capabilities and price points. Prices can be viewed in units of either per 1M or 1K tokens. You can think of tokens as pieces of words, where 1,000 tokens is about 750 words.
+            <br>
+            Language models are also available in the <a class="secondary link" target="_blank" href="https://platform.openai.com/docs/guides/batch">Batch API</a> (opens in a new window) that returns completions within 24 hours for a 50% discount.
+          </blockquote>
+          <p class="mt-1">
+            Learn more about OpenAI pricing on the <a class="secondary link" target="_blank" href="https://openai.com/api/pricing/">OpenAI API pricing page</a>.
+            <br>
+            <span class="bold">Models:</span>
+          </p>
+          <ul>
+            <li>
+              <strong>GPT-4o</strong>
+              <ul>
+                <li><q class="quote">GPT-4o mini is our most cost-efficient small model that's smarter and cheaper than GPT-3.5 Turbo, and has vision capabilities. The model has 128k context and an October 2023 knowledge cutoff.</q></li>
+              </ul>
+            </li>
+            <li>
+              <strong>GPT-4o mini</strong>
+              <ul>
+                <li>GPT-4o mini is our most cost-efficient small model that's smarter and cheaper than GPT-3.5 Turbo, and has vision capabilities. The model has 128k context and an October 2023 knowledge cutoff.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>OpenAI o1-preview</strong>
+              <ul>
+                <li><q class="quote">o1-preview is our new reasoning model for complex tasks. The model has 128k context and an October 2023 knowledge cutoff.</q></li>
+              </ul>
+            </li>
+            <li>
+              <strong>OpenAI o1-mini</strong>
+              <ul>
+                <li>o1-mini is a fast, cost-efficient reasoning model tailored to coding, math, ans science use cases. The mosel has 128k context and an October 2023 knowledge cutoff.</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="table-wrapper mt-2">
+            <table cellspacing="0">
+              <caption class="h5 bold">OpenAI Models Prices</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Model</th>
+                  <th scope="col">Input Tokens Pricing (/ 1M input Tokens)</th>
+                  <th scope="col">Batched Input Tokens Pricing (/ 1M output Tokens)</th>
+                  <th scope="col">Cached Input Token Pricing (/ 1M <em>cached</em> input Tokens)</th>
+                  <th scope="col">Output Token Pricing (/ 1M <em>output</em> Tokens)</th>
+                  <th scope="col">Batched Output Token Pricing (/ 1M <em>output</em> Tokens)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>gpt-4o-mini</td>
+                  <td>$0.150</td>
+                  <td>$0.075</td>
+                  <td>$0.075 </td>
+                  <td>$0.600</td>
+                  <td>$0.300</td>
+                </tr>
+                <tr>
+                  <td>gpt-4o-mini-2024-07-18</td>
+                  <td>$0.150</td>
+                  <td>$0.075</td>
+                  <td>$0.075 </td>
+                  <td>$0.600</td>
+                  <td>$0.300</td>
+                </tr>
+                <tr>
+                  <td>o1-preview</td>
+                  <td>$15.00</td>
+                  <td class="bg-error">N/A</td>
+                  <td>$7.50</td>
+                  <td>$60.00</td>
+                  <td class="bg-error">N/A</td>
+                </tr>
+                <tr>
+                  <td>o1-preview-2024-09-12</td>
+                  <td>$15.00</td>
+                  <td class="bg-error">N/A</td>
+                  <td>$7.50</td>
+                  <td>$60.00</td>
+                  <td class="bg-error">N/A</td>
+                </tr>
+                <tr>
+                  <td>o1-mini</td>
+                  <td>$3.00</td>
+                  <td class="bg-error">N/A</td>
+                  <td>$1.50</td>
+                  <td>$12.00</td>
+                  <td class="bg-error">N/A</td>
+                </tr>
+                <tr>
+                  <td>o1-mini-2024-09-12</td>
+                  <td>$3.00</td>
+                  <td class="bg-error">N/A</td>
+                  <td>$1.50</td>
+                  <td>$12.00</td>
+                  <td class="bg-error">N/A</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+            width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+            height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2F12d0c45c-f1d7-4393-81cf-cf13b12fb34f-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F12d0c45c-f1d7-4393-81cf-cf13b12fb34f-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F12d0c45c-f1d7-4393-81cf-cf13b12fb34f-desktop.jpeg 650w" 
+            sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+            src="https://image.storething.org/frankmbrown%2F12d0c45c-f1d7-4393-81cf-cf13b12fb34f-desktop.jpeg" 
+            alt="OpenAI Input" 
+            />   
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+srcset="https://image.storething.org/frankmbrown%2F3687df1c-e807-4178-96f4-2debe062fbdc-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F3687df1c-e807-4178-96f4-2debe062fbdc-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F3687df1c-e807-4178-96f4-2debe062fbdc-desktop.jpeg 650w" 
+sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+src="https://image.storething.org/frankmbrown%2F3687df1c-e807-4178-96f4-2debe062fbdc-desktop.jpeg" 
+alt="OpenAI Batched Input" 
+/>
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+            width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+            height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2Fbedf1ad5-8155-4119-ba4d-d16086b574a4-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2Fbedf1ad5-8155-4119-ba4d-d16086b574a4-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2Fbedf1ad5-8155-4119-ba4d-d16086b574a4-desktop.jpeg 650w" 
+            sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+            src="https://image.storething.org/frankmbrown%2Fbedf1ad5-8155-4119-ba4d-d16086b574a4-desktop.jpeg" 
+            alt="OpenAI Cached Input" 
+            />
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+srcset="https://image.storething.org/frankmbrown%2F4d18f138-39ae-432a-ac9e-e8131149244c-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F4d18f138-39ae-432a-ac9e-e8131149244c-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F4d18f138-39ae-432a-ac9e-e8131149244c-desktop.jpeg 650w" 
+sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+src="https://image.storething.org/frankmbrown%2F4d18f138-39ae-432a-ac9e-e8131149244c-desktop.jpeg" 
+alt="OpenAI Output" 
+/>
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+            width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+            height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2F4ffe7715-1abb-4fe4-97c4-28e0675d28a6-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F4ffe7715-1abb-4fe4-97c4-28e0675d28a6-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F4ffe7715-1abb-4fe4-97c4-28e0675d28a6-desktop.jpeg 650w" 
+            sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+            src="https://image.storething.org/frankmbrown%2F4ffe7715-1abb-4fe4-97c4-28e0675d28a6-desktop.jpeg" 
+            alt="OpenAI Batched Output" 
+            />  
+          </div>
+        </section>
+        
+        <section id="goog-sect" class="mt-4">
+          <h3 class="bold h3 bb-thick">
+            <a href="#goog-sect" class="same-page bold">
+                Google
+            </a>
+          </h3>
+          <blockquote class="blockquote mt-2">
+            The Google Gemini API is a powerful tool that provides access to Google DeepMind's Gemini models. These models are designed to be multimodal, meaning they can understand and process various types of data, including text, images, code, and audio.
+          </blockquote>
+          <p class="mt-2">
+            Find out more about Google Gemini Pricing on its <a class="secondary link" target="_blank" href="https://ai.google.dev/pricing#1_5flash">pricing page</a>. List of current Gemini models available through the API:
+          </p>
+          <ul>
+            <li><strong>Gemini 1.5 Flash</strong>
+              <ul>
+                <li>
+                  Rate Limits:
+                  <ul>
+                    <li>2,000 RPM</li>
+                    <li>4,000,000 TPM</li>
+                  </ul>
+                </li>
+                <li><strong>Context Caching:</strong> $1.00 / 1,000,000 tokens per hour</li>
+                <li><strong>Grounding with Google Search</strong>: $35 / 1,000 grounding requets (up to 5k grounding requests per day)</li>
+              </ul>
+              <q class="quote">Our fastest model with great performance for diverse, repetitive tasks and a 1 million context window.</q></li>
+            <li>
+              <strong>Gemini 1.5 Flask-8B</strong>: <q class="quote">Our smallest model for lower intelligence use cases with a 1 million token context window.</q>
+              <ul>
+                <li>
+                  Rate Limits:
+                  <ul>
+                    <li>4,000 RPM</li>
+                    <li>4,000,000 TPM</li>
+                  </ul>
+                </li>
+                <li><strong>Context Caching:</strong> $0.25 / 1,000,000 tokens per hour</li>
+                <li><strong>Grounding with Google Search</strong>: $35 / 1,000 grounding requets (up to 5k grounding requests per day)</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Gemini 1.5 Pro</strong>: <q class="quote">Our next generation model with a breathrough 2 million context window. Now generally availabel fro production use.</q>
+              <ul>
+                <li>
+                  Rate Limits:
+                  <ul>
+                    <li>1,000 RPM</li>
+                    <li>4,000,000 TPM</li>
+                  </ul>
+                </li>
+                <li><strong>Context Caching:</strong> $4.50 / 1,000,000 tokens per hour</li>
+                <li><strong>Grounding with Google Search</strong>: $35 / 1,000 grounding requets (up to 5k grounding requests per day)</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Gemini 1.0 Pro</strong>: <q class="quote">Our first generation model offering only text and image reasoning. Generally available for production use.</q>
+              <ul>
+                <li>
+                  Rate Limits:
+                  <ul>
+                    <li>360 RPM</li>
+                    <li>120,000 TPM</li>
+                    <li>30,000 TPM</li>
+                  </ul>
+                </li>
+                <li><strong>Context Caching:</strong> $4.50 / 1,000,000 tokens per hour</li>
+                <li><strong>Grounding with Google Search</strong>: $35 / 1,000 grounding requets (up to 5k grounding requests per day)</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="table-wrapper mt-2">
+            <table cellspacing="0">
+              <caption class="h5 bold">Google Model Pricing</caption>
+              <thead>
+                <tr>
+                  <th scope="col" rowspan="2">Model</th>
+                  <th scope="col" colspan="3">Prompts up To 128k Tokens</th>
+                  <th scope="col" colspan="3">Prompts Longer Than 128k Tokens</th>
+                </tr>
+                <tr>
+                  <th scope="col" >Input Pricing</th>
+                  <th scope="col" >Output Pricing</th>
+                  <th scope="col" >Context Caching</th>
+                  <th scope="col" >Input Pricing</th>
+                  <th scope="col" >Output Pricing</th>
+                  <th scope="col" >Context Caching</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Gemini 1.5 Flash:</th>
+                  <td>$0.075 / 1 million tokens</td>
+                  <td>$0.30 / 1 million tokens</td>
+                  <td>$0.01875 / 1 million tokens</td>
+                  <td>$0.15 / 1 million tokens</td>
+                  <td>$0.60 / 1 million tokens</td>
+                  <td>$0.0375 / 1 million tokens</td>
+                </tr>
+                <tr>
+                  <th scope="row">Gemini 1.5 Flash-8B:</th>
+                  <td>$0.0375 / 1 million tokens</td>
+                  <td>$0.15 / 1 million tokens</td>
+                  <td>$0.01 / 1 million tokens</td>
+                  <td>$0.075 / 1 million tokens</td>
+                  <td>$0.30 / 1 million tokens</td>
+                  <td>$0.02 / 1 million tokens</td>
+                </tr>
+                <tr>
+                  <th scope="row">Gemini 1.5 Pro:</th>
+                  <td>$1.25 / 1 million tokens</td>
+                  <td>$5.00 / 1 million tokens</td>
+                  <td>$0.3125 / 1 million tokens</td>
+                  <td>$2.50 / 1 million tokens</td>
+                  <td>$10.00 / 1 million tokens</td>
+                  <td>$0.625 / 1 million tokens</td>
+                </tr>
+                <tr>
+                  <th scope="row">Gemini 1.0 Pro:</th>
+                  <td>$0.50 / 1 million tokens</td>
+                  <td>$1.50 / 1 million tokens</td>
+                  <td class="bg-error">N/A</td>
+                  <td>$0.50 / 1 million tokens</td>
+                  <td>$1.50 / 1 million tokens</td>
+                  <td class="bg-error">N/A</td>
+                </tr>
+              </tbody>
+          </table>
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+            width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+            height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2F7a7cb014-5ecf-44c3-ac39-5253ba0e6167-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F7a7cb014-5ecf-44c3-ac39-5253ba0e6167-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F7a7cb014-5ecf-44c3-ac39-5253ba0e6167-desktop.jpeg 650w" 
+            sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+            src="https://image.storething.org/frankmbrown%2F7a7cb014-5ecf-44c3-ac39-5253ba0e6167-desktop.jpeg" 
+            alt="Gemini Input less than 128k" 
+            />
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+          width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+          height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+          style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+          srcset="https://image.storething.org/frankmbrown%2F95d9ea57-7ce5-4624-b3a3-d224d1099f18-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F95d9ea57-7ce5-4624-b3a3-d224d1099f18-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F95d9ea57-7ce5-4624-b3a3-d224d1099f18-desktop.jpeg 650w" 
+          sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+          src="https://image.storething.org/frankmbrown%2F95d9ea57-7ce5-4624-b3a3-d224d1099f18-desktop.jpeg" 
+          alt="Gemini Output less than 128k" 
+          />
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+srcset="https://image.storething.org/frankmbrown%2F8dbd2d62-d1ac-4967-a34f-bb24bcca3387-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F8dbd2d62-d1ac-4967-a34f-bb24bcca3387-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F8dbd2d62-d1ac-4967-a34f-bb24bcca3387-desktop.jpeg 650w" 
+sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+src="https://image.storething.org/frankmbrown%2F8dbd2d62-d1ac-4967-a34f-bb24bcca3387-desktop.jpeg" 
+alt="Gemini Context Caching Tokens to $100" 
+/>
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+            width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+            height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2F94369e07-e58f-4a24-a3d0-ecf7555cdad4-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F94369e07-e58f-4a24-a3d0-ecf7555cdad4-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F94369e07-e58f-4a24-a3d0-ecf7555cdad4-desktop.jpeg 650w" 
+            sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+            src="https://image.storething.org/frankmbrown%2F94369e07-e58f-4a24-a3d0-ecf7555cdad4-desktop.jpeg" 
+            alt="Gemini Input More than 128k" 
+            />
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+            width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+            height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2Fd516a009-bf16-422a-a6d7-19694c2a8ef4-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2Fd516a009-bf16-422a-a6d7-19694c2a8ef4-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2Fd516a009-bf16-422a-a6d7-19694c2a8ef4-desktop.jpeg 650w" 
+            sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+            src="https://image.storething.org/frankmbrown%2Fd516a009-bf16-422a-a6d7-19694c2a8ef4-desktop.jpeg" 
+            alt="Gemini Output More than 128k" 
+            />
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+            width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+            height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2F1e4cf69a-7bae-4e21-9657-4d77996b3ed3-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F1e4cf69a-7bae-4e21-9657-4d77996b3ed3-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F1e4cf69a-7bae-4e21-9657-4d77996b3ed3-desktop.jpeg 650w" 
+            sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+            src="https://image.storething.org/frankmbrown%2F1e4cf69a-7bae-4e21-9657-4d77996b3ed3-desktop.jpeg" 
+            alt="Gemini Context Caching Tokens to $100" 
+            />
+          </div>
+        </section>
+
+        <section id="anthrop-sect" class="mt-4">
+          <h3 class="bold h3 bb-thick">
+            <a href="#anthrop-sect" class="same-page bold">
+                Anthropic
+            </a>
+          </h3>
+          <blockquote class="blockquote mt-2">
+            Anthropic is also the name of an AI research and safety company founded in 2021 by former OpenAI researchers. Its mission is to create AI systems that are aligned with human values and are safe and reliable. They focus on developing large language models and other AI tools while emphasizing ethical guidelines and safety, aiming to prevent harmful consequences associated with advanced AI.
+          </blockquote>
+          <p class="bold mt-2">Models:</p>
+          <ul>
+            <li>
+              <strong>Claude 3.5 Sonnet</strong>
+              <ul>
+                <li>
+                  Our most intelligent model to date.
+                </li>
+                <li>
+                  200K context window
+                </li>
+                <li>
+                  50% discount with the Batches API
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Claude 3.5 Haiku</strong>
+              <ul>
+                <li>
+                  Fastest, most cost-effective model
+                </li>
+                <li>
+                  200K Context Window
+                </li>
+                <li>
+                  50% discount with the Batches API
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Claude 3 Opus</strong>
+              <ul>
+                <li>
+                  Powerful model for complex tasks 
+                </li>
+                <li>
+                  200K Context window
+                </li>
+                <li>
+                  50% Discount with the Batches API*
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div class="table-wrapper mt-2">
+            <table cellspacing="0">
+            <thead>
+              <tr>
+                <th scope="col">Model</th>
+                <th scope="col">Input (/ 1M Tokens)</th>
+                <th scope="col">Prompt Caching Write (/ 1M Tokens)</th>
+                <th scope="col">Prompt Caching Read (/ 1M Tokens)</th>
+                <th scope="col">Output (/ 1M Tokens)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Claude 3.5 Sonnet</th>
+                <td>$3</td>
+                <td>$3.75</td>
+                <td>$0.30</td>
+                <td>$15</td>
+              </tr>
+              <tr>
+                <th scope="row">Claude 3.5 Haiku</th>
+                <td>$1</td>
+                <td>$1.25</td>
+                <td>$0.10</td>
+                <td>$5</td>
+              </tr>
+              <tr>
+                <th scope="row">Claude 3 Opus</th>
+                <td>$15</td>
+                <td>$18.75</td>
+                <td>$1.50</td>
+                <td>$75</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+            width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+            height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2F73ac6ef9-ddde-4ccd-b01e-45c105870c93-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F73ac6ef9-ddde-4ccd-b01e-45c105870c93-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F73ac6ef9-ddde-4ccd-b01e-45c105870c93-desktop.jpeg 650w" 
+            sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+            src="https://image.storething.org/frankmbrown%2F73ac6ef9-ddde-4ccd-b01e-45c105870c93-desktop.jpeg" 
+            alt="Anthropic Input Tokens To $100" 
+            />
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+            width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+            height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+            style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+            srcset="https://image.storething.org/frankmbrown%2F53b5328f-3efd-4f00-bad9-0a6ce012afa1-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F53b5328f-3efd-4f00-bad9-0a6ce012afa1-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F53b5328f-3efd-4f00-bad9-0a6ce012afa1-desktop.jpeg 650w" 
+            sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+            src="https://image.storething.org/frankmbrown%2F53b5328f-3efd-4f00-bad9-0a6ce012afa1-desktop.jpeg" 
+            alt="Anthropic Output Tokens To $100" 
+            />
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+srcset="https://image.storething.org/frankmbrown%2Fcda7d24a-b7b4-4318-ac83-a96f95901d76-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2Fcda7d24a-b7b4-4318-ac83-a96f95901d76-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2Fcda7d24a-b7b4-4318-ac83-a96f95901d76-desktop.jpeg 650w" 
+sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+src="https://image.storething.org/frankmbrown%2Fcda7d24a-b7b4-4318-ac83-a96f95901d76-desktop.jpeg" 
+alt="Anthropic Prompt Cache Read Tokens to $100" 
+/>
+          </div>
+          <div class="flex-row justify-center mt-1">
+            <img 
+width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+srcset="https://image.storething.org/frankmbrown%2F29f15456-860a-4a56-8187-46b5e7a144b7-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F29f15456-860a-4a56-8187-46b5e7a144b7-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F29f15456-860a-4a56-8187-46b5e7a144b7-desktop.jpeg 650w" 
+sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+src="https://image.storething.org/frankmbrown%2F29f15456-860a-4a56-8187-46b5e7a144b7-desktop.jpeg" 
+alt="Anthropic Prompt Cache Write" 
+/>
+          </div>
+        </section>
+
+        <section id="hosted-llama" class="mt-4">
+          <h3 class="bold h3 bb-thick">
+            <a href="#hosted-llama" class="same-page bold">
+                Hosted Llama APIs
+            </a>
+          </h3>
+          The <a class="secondary link" target="_blank" href="">Llama</a> family of models are open-source models released by Meta AI starting in February 2023. since these models are open source, you can download them and run them on your own server. Given that the cost of a GPU can be expensive, it can be cheaper to run the model through an external API service. The prices below apply to the <a class="secondary link" target="_blank" href="https://www.llama-api.com/pricing">llama api service</a>.
+          <div class="table-wrapper mt-2">
+            <table cellspacing="0">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Parameter Count</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Small</td>
+                <td>0B-8B</td>
+                <td>$0.0004 / 1k Tokens</td>
+              </tr>
+              <tr>
+                <td>Medium</td>
+                <td>8B-30B</td>
+                <td>$0.0016 / 1k Tokens</td>
+              </tr>
+              <tr>
+                <td>Large</td>
+                <td>>30B</td>
+                <td>$0.0028 / 1k Tokens</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+          <div class="table-wrapper mt-3" style="max-height: 500px; overflow-y: auto;">
+            <table cellspacing="0"> <caption class="h5 bold">Other Models Available by Llama API</caption> <thead><tr><th scope="col">Name</th><th scope="col">Author</th><th scope="col">Pricing (per 1K tokens)</th></tr></thead><tbody><tr ><td >llama3.2-11b-vision</td><td >meta</td><td >$0.0004</td></tr><tr ><td >llama3.2-1b</td><td >meta</td><td >$0.0004</td></tr><tr ><td >llama3.2-3b</td><td >meta</td><td >$0.0004</td></tr><tr ><td >llama3.2-90b-vision</td><td >meta</td><td >$0.0028</td></tr><tr ><td >llama3.1-405b</td><td >meta</td><td >$0.0036</td></tr><tr ><td >llama3.1-70b</td><td >meta</td><td >$0.0028</td></tr><tr ><td >llama3.1-8b</td><td >meta</td><td >$0.0004</td></tr><tr ><td >llama3-70b</td><td >meta</td><td >$0.0028</td></tr><tr ><td >llama3-8b</td><td >meta</td><td >$0.0004</td></tr><tr ><td >gemma2-27b</td><td >google</td><td >$0.0016</td></tr><tr ><td >gemma2-9b</td><td >google</td><td >$0.0004</td></tr><tr ><td >mixtral-8x22b</td><td >mistral</td><td >$0.0028</td></tr><tr ><td >mixtral-8x22b-instruct</td><td >mistral</td><td >$0.0028</td></tr><tr ><td >mixtral-8x7b-instruct</td><td >mistral</td><td >$0.0028</td></tr><tr ><td >mistral-7b</td><td >mistral</td><td >$0.0004</td></tr><tr ><td >mistral-7b-instruct</td><td >mistral</td><td >$0.0004</td></tr><tr ><td >llama-7b-32k</td><td >meta</td><td >$0.0028</td></tr><tr ><td >llama2-13b</td><td >meta</td><td >$0.0016</td></tr><tr ><td >llama2-70b</td><td >meta</td><td >$0.0028</td></tr><tr ><td >llama2-7b</td><td >meta</td><td >$0.0016</td></tr><tr ><td >Nous-Hermes-2-Mixtral-8x7B-DPO</td><td >mistral</td><td >$0.0004</td></tr><tr ><td >Nous-Hermes-2-Yi-34B</td><td >custom</td><td >$0.0028</td></tr><tr ><td >Qwen1.5-0.5B-Chat</td><td >custom</td><td >$0.0004</td></tr><tr ><td >Qwen1.5-1.8B-Chat</td><td >custom</td><td >$0.0004</td></tr><tr ><td >Qwen1.5-110B-Chat</td><td >custom</td><td >$0.0028</td></tr><tr ><td >Qwen1.5-14B-Chat</td><td >custom</td><td >$0.0016</td></tr><tr ><td >Qwen1.5-32B-Chat</td><td >custom</td><td >$0.0028</td></tr><tr ><td >Qwen1.5-4B-Chat</td><td >custom</td><td >$0.0004</td></tr><tr ><td >Qwen1.5-72B-Chat</td><td >custom</td><td >$0.0028</td></tr><tr ><td >Qwen1.5-7B-Chat</td><td >custom</td><td >$0.0004</td></tr><tr ><td >Qwen2-72B-Instruct</td><td >custom</td><td >$0.0028</td></tr></tbody></table>
+            </div>
+            <div class="flex-row justify-center mt-1">
+              <img 
+width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+height="<%-locals.desktop?325:(locals.tablet?270:215)%>" 
+style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 27 !important; height: auto;"
+srcset="https://image.storething.org/frankmbrown%2Fe9292aab-6a93-4456-9a8e-65ef0ea4cfb7-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2Fe9292aab-6a93-4456-9a8e-65ef0ea4cfb7-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2Fe9292aab-6a93-4456-9a8e-65ef0ea4cfb7-desktop.jpeg 650w" 
+sizes="(max-width: 550px) 215px, ((min-width: 550px) and (max-width: 1200px)) 270px, (min-width: 1200px) 325px" 
+src="https://image.storething.org/frankmbrown%2Fe9292aab-6a93-4456-9a8e-65ef0ea4cfb7-desktop.jpeg" 
+alt="Llama API Prices" 
+/>
+            </div>
+        </section>
+
+    </section>
+
+    <section id="how-apis-work" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#how-apis-work" class="same-page bold">
+          How These APIs Work
+        </a>
+      </h2>
+      <p class="mt-2">
+        In this section, I am going to take some notes on the documentation for the various API services and ideate on how to store messages in database. 
+        <br>
+        <strong>Documentation Links:</strong>
+      </p>
+      <ul>
+        <li><a class="secondary link" target="_blank" href="https://platform.openai.com/docs/overview">OpenAI API Documentation</a></li>
+        <li><a class="secondary link" target="_blank" href="https://ai.google.dev/gemini-api/docs">Google Gemini Documentation</a></li>
+        <li><a class="secondary link" target="_blank" href="https://docs.llama-api.com/quickstart">Llama API Documentation</a></li>
+        <li><a class="secondary link" target="_blank" href="https://docs.anthropic.com/en/api/getting-started">Anthropic Documentation</a></li>
+      </ul>
+      <h3 class="h3 mt-2 bb fw-regular">
+        OpenAI
+      </h3>
+      <p class="mt-1">
+        There are three types of <span class="text-code">role</span>s when doing chat completion (AI chat) through OpenAI's chat completion API (and other enterprise models):
+      </p>
+      <ol>
+        <li>
+          <strong>system</strong>
+          <ul>
+            <li>Messages with the <span class="text-code">system</span> role act as top-level instructions to the model, and typically describe what the model is supposed to do ans how it should generally behave and respond.</li>
+            <li>
+              <em>Example:</em>
+              <ul>
+                <li>
+                  <q class="quote">
+                    You are a helpful assistant that answers programming questions in the style of an ancient chinese emperor.
+                  </q>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>user</strong>
+          <ul>
+            <li>User messages contain instructions that request a particular type of output from the model. You can think of user messages as the messages you might type in to ChatGPT as an end user.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>assistant</strong>
+          <ul>
+            <li>
+              Messages with the <span class="text-code">assistant</span> role are presumed to have been generated by the model, perhaps in a previous generation request. They can also be used to provide examples to the model for how it should respond to the current request - a technique known as <a class="secondary link" target="_blank" href="https://arxiv.org/abs/2203.04291">few shot learning</a>.
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <div class="flex-row gap-2 mt-2 hz-scroll" style="overflow-x: auto; max-width: 100%;">
+        <div>
+          <div class="fw-regular">JavaScript</div>
+          <%#Code%>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">import</span> <span class="hljs-title class_">OpenAI</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;openai&quot;</span>;
+<span class="hljs-keyword">const</span> openai = <span class="hljs-keyword">new</span> <span class="hljs-title class_">OpenAI</span>();
+<span class="hljs-keyword">const</span> completion = <span class="hljs-keyword">await</span> openai.<span class="hljs-property">chat</span>.<span class="hljs-property">completions</span>.<span class="hljs-title function_">create</span>({
+    <span class="hljs-attr">model</span>: <span class="hljs-string">&quot;gpt-4o&quot;</span>,
+    <span class="hljs-attr">messages</span>: [
+        {<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;write a haiku about ai&quot;</span>}
+    ]
+});</code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>
+        <%# End Code %>
+        </div>
+        <div>
+          <div class="fw-regular">Python</div>
+          <%#Code%>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">from</span> openai <span class="hljs-keyword">import</span> OpenAI
+client = OpenAI()
+completion = client.chat.completions.create(
+    model=<span class="hljs-string">&quot;gpt-4o&quot;</span>,
+    messages=[
+        {<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;write a haiku about ai&quot;</span>}
+    ]
+)
+</code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>        
+          <%#End Code%>
+        </div>
+      </div>
+      
+      <h3 class="h3 mt-2 bb fw-regular">
+        Google
+      </h3>
+      <div class="flex-row gap-2 mt-2 hz-scroll" style="overflow-x: auto; max-width: 100%;">
+        <div>
+          <div class="fw-regular">JavaScript</div>
+          <%#Code%>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">const</span> { <span class="hljs-title class_">GoogleGenerativeAI</span> } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@google/generative-ai&quot;</span>);
+
+<span class="hljs-keyword">const</span> genAI = <span class="hljs-keyword">new</span> <span class="hljs-title class_">GoogleGenerativeAI</span>(<span class="hljs-string">&quot;YOUR_API_KEY&quot;</span>);
+<span class="hljs-keyword">const</span> model = genAI.<span class="hljs-title function_">getGenerativeModel</span>({ <span class="hljs-attr">model</span>: <span class="hljs-string">&quot;gemini-1.5-flash&quot;</span> });
+
+<span class="hljs-keyword">const</span> prompt = <span class="hljs-string">&quot;Explain how AI works&quot;</span>;
+
+<span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> model.<span class="hljs-title function_">generateContent</span>(prompt);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result.<span class="hljs-property">response</span>.<span class="hljs-title function_">text</span>());</code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>
+          <%# End Code %>
+        </div>
+        <div>
+          <div class="fw-regular">Python</div>
+          <%#Code%>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">import</span> google.generativeai <span class="hljs-keyword">as</span> genai
+
+genai.configure(api_key=<span class="hljs-string">&quot;YOUR_API_KEY&quot;</span>)
+model = genai.GenerativeModel(<span class="hljs-string">&quot;gemini-1.5-flash&quot;</span>)
+response = model.generate_content(<span class="hljs-string">&quot;Explain how AI works&quot;</span>)
+<span class="hljs-built_in">print</span>(response.text)</code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>
+          <%#End Code%>
+        </div>
+      </div>
+      <p class="mt-2">
+        The <abbr title="Application programming interface">API</abbr>s for llama and Anthropic are both very similar to the OpenAI and Google APIs. They can easily be found using the links above.
+      </p>
+
+      <h3 class="h3 mt-2 bb fw-regular">
+        How to Store Chats in Database?
+      </h3>
+      <p class="mt-1">
+
+      </p>
+  </section>
+
+    <section id="hosting-own-model" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#hosting-own-model" class="same-page bold">
+            Hosting Your Own Model
+          </a>
+        </h2>
+
+        <p class="mt-2">
+          This section will basically go over some AWS prices. To run a LLM, you will need an EC2 instance with a GPU, so I am going to be looking into that. I will also be looking into the prices of additional RAM.
+        </p>
+        <blockquote class="blockquote mt-2" cite="https://docs.aws.amazon.com/dlami/latest/devguide/gpu.html">
+          We recommend a GPU instance for most deep learning purposes. Training new models is faster on a GPU instance than a CPU instance. You can scale sub-linearly when you have multi-GPU instances or if you use distributed training across many instances with GPUs.
+        </blockquote>
+        
+        <div class="table-wrapper mt-2" style="max-height: 500px; overflow-y: auto;">
+          <table cellspacing="0">
+          <thead>
+            <tr>
+              <th scope="col">Instance Name:</th>
+              <th scope="col">On-Demand Hourly Rate</th>
+              <th scope="col">vCPU</th>
+              <th scope="col">Memory</th>
+              <th scope="col">Storage</th>
+              <th scope="col">Network Performance</th>
+              <th scope="col">GPUs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">p5e.48xlarge</th>
+              <td>$108.152</td>
+              <td>192</td>
+              <td>2048 GiB</td>
+              <td>8 x 3840 GB SSD</td>
+              <td>3200 Gigabit</td>
+              <td>up to 8 NVIDIA Tesla H200 GPUs</td>
+            </tr>
+            <tr>
+              <th scope="row">p5.48xlarge</th>
+              <td>
+                $98.32
+              </td>
+              <td>
+                192
+              </td>
+              <td>
+                2048 gIb
+              </td>
+              <td>
+                8 X 3840 GB SSD
+              </td>
+              <td>
+                3200 Gigabit
+              </td>
+              <td>up to 8 NVIDIA Tesla H100 GPUs</td>
+            </tr>
+            <tr>
+              <th scope="row">p4d.24xlarge</th>
+              <td>$32.7726</td>
+              <td>96</td>
+              <td>1152 GiB</td>
+              <td>8 x 1000 SSD</td>
+              <td>400 Gigabit</td>
+              <td>up to 8 NVIDIA Tesla A100 GPUs</td>
+            </tr>
+            <tr>
+              <th scope="row">p3.2xlarge</th>
+              <td>$3.06</td>
+              <td>8</td>
+              <td>61 GiB</td>
+              <td>EBS Only</td>
+              <td>Up to 10 Gigabit</td>
+              <td>up to 8 NVIDIA Tesla V100 GPUs</td>
+            </tr>
+            <tr>
+              <th scope="row">p3.8xlarge</th>
+              <td>$12.24</td>
+              <td>32</td>
+              <td>244 GiB</td>
+              <td>EBS Only</td>
+              <td>10 Gigabit</td>
+              <td>up to 8 NVIDIA Tesla V100 GPUs</td>
+            </tr>
+            <tr>
+              <th scope="row">p3.16xlarge</th>
+              <td>$24.48</td>
+              <td>64</td>
+              <td>488 GiB</td>
+              <td>EBS Only</td>
+              <td>25 Gigabit</td>
+              <td>up to 8 NVIDIA Tesla V100 GPUs</td>
+            </tr>
+            <tr>
+              <th scope="row">g3.4xlarge</th>
+              <td>$1.14</td>
+              <td>16</td>
+              <td>122 GiB</td>
+              <td>EBS Only</td>
+              <td>Up to 10 Gigabit</td>
+              <td>up to 4 NVIDIA Tesla M60 GPUs</td>
+            </tr>
+            <tr>
+              <th scope="row">g3.8xlarge</th>
+              <td>$2.28</td>
+              <td>32</td>
+              <td>244 GiB</td>
+              <td>EBS Only</td>
+              <td>10 Gigabit</td>
+              <td>up to 4 NVIDIA Tesla M60 GPUs</td>
+            </tr>
+            <tr>
+              <th scope="row">g3.16xlarge</th>
+              <td>$4.56</td>
+              <td>64</td>
+              <td>488 GiB</td>
+              <td>EBS Only</td>
+              <td>20 Gigabit</td>
+              <td>up to 4 NVIDIA Tesla M60 GPUs</td>
+            </tr>
+            <tr>
+              <th scope="row">g3s.xlarge</th>
+              <td>$0.75</td>
+              <td>4</td>
+              <td>30.5 GiB</td>
+              <td>EBS Only</td>
+              <td>10 Gigabit</td>
+              <td>up to 4 NVIDIA Tesla M60 GPUs</td>
+            </tr>
+            <tr><th scope="row"> g4ad.xlarge</th><td>$0.37853</td> <td>4</td> <td>16 GiB</td> <td>150 GB NVMe SSD</td> <td>Up to 10 Gigabit</td> <td>up to 4 NVIDIA T4 GPUs</td></tr>
+            <tr><th scope="row"> g4ad.2xlarge</th><td>$0.54117</td> <td>8</td> <td>32 GiB</td> <td>300 GB NVMe SSD</td> <td>Up to 10 Gigabit</td> <td>up to 4 NVIDIA T4 GPUs</td></tr>
+            <tr><th scope="row"> g4ad.4xlarge</th><td>$0.867</td> <td>16</td> <td>64 GiB</td> <td>600 GB NVMe SSD</td> <td>Up to 10 Gigabit</td> <td>up to 4 NVIDIA T4 GPUs</td></tr>
+            <tr><th scope="row"> g4ad.8xlarge</th><td>$1.734</td> <td>32</td> <td>128 GiB</td> <td>1200 GB NVMe SSD</td> <td>15 Gigabit</td> <td>up to 4 NVIDIA T4 GPUs</td></tr>
+            <tr><th scope="row"> g4ad.16xlarge</th><td>$3.468</td> <td>64</td> <td>256 GiB</td> <td>2400 GB NVMe SSD</td> <td>25 Gigabit</td> <td>up to 4 NVIDIA T4 GPUs</td></tr>
+            <tr><th scope="row"> g4dn.xlarge</th><td>$0.526</td> <td>4</td> <td>16 GiB</td> <td>125 GB NVMe SSD</td> <td>Up to 25 Gigabit</td> <td>up to 4 NVIDIA T4 GPUs</td></tr>
+            <tr><th scope="row"> g4dn.2xlarge</th><td>$0.752</td> <td>8</td> <td>32 GiB</td> <td>225 GB NVMe SSD</td> <td>Up to 25 Gigabit</td> <td>up to 4 NVIDIA T4 GPUs</td></tr>
+            <tr><th scope="row"> g4dn.4xlarge</th><td>$1.204</td> <td>16</td> <td>64 GiB</td> <td>225 GB NVMe SSD</td> <td>Up to 25 Gigabit</td> <td>up to 4 NVIDIA T4 GPUs</td></tr>
+            <tr><th scope="row"> g5.xlarge</th><td>$1.006</td> <td>4</td> <td>16 GiB</td> <td>1 x 250 GB NVMe SSD</td> <td>Up to 10 Gigabit</td> <td>up to 8 NVIDIA A10G GPUs</td></tr>
+            <tr><th scope="row"> g5.2xlarge</th><td>$1.212</td> <td>8</td> <td>32 GiB</td> <td>1 x 450 GB NVMe SSD</td> <td>Up to 10 Gigabit</td> <td>up to 8 NVIDIA A10G GPUs</td></tr>
+            <tr><th scope="row"> g5.4xlarge</th><td>$1.624</td> <td>16</td> <td>64 GiB</td> <td>1 x 600 GB NVMe SSD</td> <td>Up to 25 Gigabit</td> <td>up to 8 NVIDIA A10G GPUs</td></tr>
+            <tr><th scope="row"> g5.8xlarge</th><td>$2.448</td> <td>32</td> <td>128 GiB</td> <td>1 x 900 GB NVMe SSD</td> <td>25 Gigabit</td> <td>up to 8 NVIDIA A10G GPUs</td></tr>
+            <tr><th scope="row"> g5.12xlarge</th><td>$5.672</td> <td>48</td> <td>192 GiB</td> <td>1 x 3800 GB NVMe SSD</td> <td>40 Gigabit</td> <td>up to 8 NVIDIA A10G GPUs</td></tr>
+            <tr><th scope="row"> g5.16xlarge</th><td>$4.096</td> <td>64</td> <td>256 GiB</td> <td>1 x 1900 GB NVMe SSD</td> <td>25 Gigabit</td> <td>up to 8 NVIDIA A10G GPUs</td></tr>
+            <tr><th scope="row"> g5.24xlarge</th><td>$8.144</td> <td>96</td> <td>384 GiB</td> <td>1 x 3800 GB NVMe SSD</td> <td>50 Gigabit</td> <td>up to 8 NVIDIA A10G GPUs</td></tr>
+            <tr><th scope="row"> g5.48xlarge</th><td>$16.288</td> <td>192</td> <td>768 GiB</td> <td>2 x 3800 GB NVMe SSD</td> <td>100 Gigabit</td> <td>up to 8 NVIDIA A10G GPUs</td></tr>
+            <tr><th scope="row"> g6.xlarge</th><td>$0.8048</td> <td>4</td> <td>16 GiB</td> <td>1 x 250 GB NVMe SSD</td> <td>Up to 10 Gigabit</td> <td>up to 8 NVIDIA L40S Tensor Core GPU</td></tr>
+            <tr><th scope="row"> g6.2xlarge</th><td>$0.9776</td> <td>8</td> <td>32 GiB</td> <td>1 x 450 GB NVMe SSD</td> <td>Up to 10 Gigabit</td> <td>up to 8 NVIDIA L40S Tensor Core GPU</td></tr>
+            <tr><th scope="row"> g6.4xlarge</th><td>$1.3232</td> <td>16</td> <td>64 GiB</td> <td>1 x 600 GB NVMe SSD</td> <td>Up to 25 Gigabit</td> <td>up to 8 NVIDIA L40S Tensor Core GPU</td></tr>
+            <tr><th scope="row"> g6.8xlarge</th><td>$2.0144</td> <td>32</td> <td>128 GiB</td> <td>2 x 450 GB NVMe SSD</td> <td>25 Gigabit</td> <td>up to 8 NVIDIA L40S Tensor Core GPU</td></tr>
+            <tr><th scope="row"> g6.12xlarge</th><td>$4.6016</td> <td>48</td> <td>192 GiB</td> <td>4 X 940 GB NVMe SSD</td> <td>40 Gigabit</td> <td>up to 8 NVIDIA L40S Tensor Core GPU</td></tr>
+            <tr><th scope="row"> g6.16xlarge</th><td>$3.3968</td> <td>64</td> <td>256 GiB</td> <td>2 x 940 GB NVMe SSD</td> <td>25 Gigabit</td> <td>up to 8 NVIDIA L40S Tensor Core GPU</td></tr>
+            <tr><th scope="row"> g6.24xlarge</th><td>$6.6752</td> <td>96</td> <td>384 GiB</td> <td>4 X 940 GB NVMe SSD</td> <td>50 Gigabit</td> <td>up to 8 NVIDIA L40S Tensor Core GPU</td></tr>
+            <tr><th scope="row"> g6.48xlarge</th><td>$13.3504</td> <td>192</td> <td>768 GiB</td> <td>8 x 940 NVMe SSD</td> <td>100 Gigabit</td> <td>up to 8 NVIDIA L40S Tensor Core GPU</td></tr>
+            <tr><th scope="row"> g6e.xlarge</th><td>$1.861</td> <td>4</td> <td>32 GiB</td> <td>1 x 250 GB NVMe SSD</td> <td>Up to 20 Gigabit</td> <td>up to 8 NVIDIA L4 GPU</td></tr>
+            <tr><th scope="row"> g6e.2xlarge</th><td>$2.24208</td> <td>8</td> <td>64 GiB</td> <td>1 x 450 GB NVMe SSD</td> <td>Up to 20 Gigabit</td> <td>up to 8 NVIDIA L4 GPU</td></tr>
+            <tr><th scope="row"> g6e.4xlarge</th><td>$3.00424</td> <td>16</td> <td>128 GiB</td> <td>1 x 600 GB NVMe SSD</td> <td>20 Gigabit</td> <td>up to 8 NVIDIA L4 GPU</td></tr>
+            <tr><th scope="row"> g6e.8xlarge</th><td>$4.52856</td> <td>32</td> <td>256 GiB</td> <td>1 x 900 GB NVMe SSD</td> <td>25 Gigabit</td> <td>up to 8 NVIDIA L4 GPU</td></tr>
+            <tr><th scope="row"> g6e.12xlarge</th><td>$10.49264</td> <td>48</td> <td>384 GiB</td> <td>2 x 1900 GB NVMe SSD</td> <td>100 Gigabit</td> <td>up to 8 NVIDIA L4 GPU</td></tr>
+            <tr><th scope="row"> g6e.16xlarge</th><td>$7.57719</td> <td>64</td> <td>512 GiB</td> <td>1 x 1900 GB NVMe SSD</td> <td>35 Gigabit</td> <td>up to 8 NVIDIA L4 GPU</td></tr>
+            <tr><th scope="row"> g6e.24xlarge</th><td>$15.06559</td> <td>96</td> <td>768 GiB</td> <td>2 x 1900 GB NVMe SSD</td> <td>200 Gigabit</td> <td>up to 8 NVIDIA L4 GPU</td></tr>
+            <tr><th scope="row"> g6e.48xlarge</th><td>$30.13118</td> <td>192</td> <td>1536 GiB</td> <td>4 x 1900 GB NVMe SSD</td> <td>400 Gigabit</td> <td>up to 8 NVIDIA L4 GPU</td></tr>
+
+
+          </tbody>
+        </table>
+        </div>
+    </section>
+  <%-include('../../partials/pagePartial')%>
+<%}%> 

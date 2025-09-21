@@ -1,0 +1,696 @@
+<%# 
+PARTIAL ROUTE: pages/projects/embedding-social-media-posts.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.desktop?'762px':'564px'
+- locals.desktop?'740px':'564px'
+- locals.desktop?'428px':'420px'
+- locals.desktop?'301px':'304px'
+- locals.desktop?'730px':'540px'
+- locals.jsNonce
+- locals.fullPageRequest!
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+      
+    <h1 class="page-title">Embedding Social Media Posts</h1>
+
+    <section id="what-is-this" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#what-is-this" class="same-page bold" style="font-size: inherit;">What Is This</a>
+        </h2>
+        
+        <p class="mt-2">
+            You can embed social media content in a web application by either:
+        </p>
+        <ul>
+          <li>Asking the users for the URL or post ID of the post and trying to embed the content by using an API provided by the platform</li>
+          <li>Allowing the users to insert the embed code HTML</li>
+          <li>Or by using a third-party service like <a class="secondary link" target="_blank" href="https://embedsocial.com/">Embed Social</a>.</li>
+        </ul>
+        <p class="mt-1">
+          The first option above doesn't always work and the third option costs money, so I am going to try to allow users to add their own embed code, and I am going to try to do it safely by using an HTML parser on the client and server to make sure that the embed code that the user includes is not malicious. The 
+        </p>
+        <div role="alert" class="alert warning filled icon medium mt-1">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+          <p class="alert">
+            <span class="h4 bold">Note:</span>
+            <span>
+            You need to pay attention to cumulative layout shift when embedding social media posts. For the lexical implementation, you need to specify a <span style="font-family: monospace;">min-height</span> property for the wrapper <span style="font-family: monospace;">&lt;div&gt;</span> element. You should also add the <span style="font-family: monospace;">.flex-row.justify-center</span> classes to the wrapper div as well.
+            </span>
+          </p>
+        </div>
+        <h3 class="fw-regular h3 mt-1">Styling Implications:</h3>
+        <p class="mt-2">
+          It is probably best to make the embedded content appear hidden - give the initial content an <span class="text-code">opacity</span> equal to 0 - until the actual content is loaded probably in an <span class="text-code">&lt;iframe&gt;</span>.  
+        </p>
+        <div class="alert warning filled icon medium mt-2" role="alert">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+          <p class="alert">
+            <span>
+              You need to add a  <span style="font-family:monospace;">nonce</span> value to the <span style="font-family:monospace;">&lt;script&gt;</span> elements for each of the social media embed scripts - you have to do this because you are using the <span style="font-family:monospace;">strict-dynamic</span> directive for <span style="font-family:monospace;">script-src</span>.
+            </span>
+          </p>
+          <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+          </button>
+        </div>
+    </section>
+
+    <section id="x-posts" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#x-posts" class="same-page bold">X Posts</a>
+        </h2>
+        <h3 class="h3 mt-2 fw-regular">
+          Content Security Policy Implications
+        </h3>
+        <ul>
+          <li><span class="text-code">script-src</span> needs to include <a class="secondary link" target="_blank" href="https://platform.twitter.com/widgets.js">https://platform.twitter.com/widgets.js</a> in order for twitter embedding to work.</li>
+          <li><span class="text-code">frame-src</span> needs to include <a class="secondary link" target="_blank" href="https://platform.twitter.com">https://platform.twitter.com</a> for the iframe included in the twitter embedding to work.</li>
+        </ul>
+        <h3 class="h3 mt-2 fw-regular">
+          How To Embed a Tweet
+        </h3>
+        <ol>
+          <li>Go to <a class="secondary link" target="_blank" href="https://x.com/home?lang=en">x.com</a>.</li>
+          <li>Click on the three dots button <svg style="position: relative; top:10px; fill: var(--text-primary);" class="body2" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="MoreHoriz"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg> in the upper right hand corner of the tweet.</li>
+          <li>Click on the Embed Post button.</li>
+          <li>
+            Select the <span class="bold">Embedded Post</span> display option:
+          </li>
+          <img height="162" src="https://image.storething.org/frankmbrown/6a772bd0-825a-491a-8e13-0bd0faad9967.png" alt="Embedded Post Option">
+          <li>
+            Click on the <span class="bold">Copy Code</span> button.
+          </li>
+        </ol>
+        <div class="table-wrapper">
+          <table cellspacing="0">
+            <caption class="h4 bold">Heights of Posts To Prevent Cumulative Layout Shift</caption>
+            <thead>
+              <tr>
+                <th scope="col">Post Type: / Device:</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Tablet</th>
+                <th scope="col">Desktop</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Video Post</th>
+                <td>762px</td>
+                <td>762px</td>
+                <td>564px</td>
+              </tr>
+              <tr>
+                <th scope="row">Image Post</th>
+                <td>740px</td>
+                <td>740px</td>
+                <td>564px</td>
+              </tr>
+              <tr>
+                <th scope="row">Poll Post</th>
+                <td>428px</td>
+                <td>428px</td>
+                <td>420px</td>
+              </tr>
+              <tr>
+                <th scope="row">Normal Post</th>
+                <td>301px</td>
+                <td>301px</td>
+                <td>304px</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <h3 class="h3 mt-2 fw-regular">
+          Examples
+        </h3>
+        <h4 class="h4">Video Post</h4>
+<div class="flex-row justify-center" style="min-height: <%=locals.desktop?'762px':'564px'%>;">
+  <blockquote class="twitter-tweet"><p lang="en" dir="ltr">A melanistic leopard <br> <a href="https://t.co/tXTSGhqVbL">pic.twitter.com/tXTSGhqVbL</a></p>&mdash; Science girl (@gunsnrosesgirl3) <a href="https://twitter.com/gunsnrosesgirl3/status/1808192447630942582?ref_src=twsrc%5Etfw">July 2, 2024</a></blockquote> 
+</div>
+        <h4 class="h4">Image Post</h4>
+        <div class="flex-row justify-center" style="min-height: <%=locals.desktop?'740px':'564px'%>;">
+          <blockquote class="twitter-tweet"><p lang="en" dir="ltr">A Cheetah and her Cheetos <a href="https://t.co/QMzIVctaGh">pic.twitter.com/QMzIVctaGh</a></p>&mdash; Nature is Amazing ☘️ (@AMAZlNGNATURE) <a href="https://twitter.com/AMAZlNGNATURE/status/1801959470714462244?ref_src=twsrc%5Etfw">June 15, 2024</a></blockquote> 
+        </div>
+        <h4 class="h4">Poll Post</h4>
+        <div class="flex-row justify-center" style="min-height: <%=locals.desktop?'428px':'420px'%>;">
+          <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Which party do you now plan to vote for on the 4th of July? <a href="https://twitter.com/hashtag/electionpoll?src=hash&amp;ref_src=twsrc%5Etfw">#electionpoll</a></p>&mdash; Philip Pickering🏴󠁧󠁢󠁷󠁬󠁳󠁿🇬🇧🏴󠁧󠁢󠁳󠁣󠁴󠁿🚜 (@philip_pbm339) <a href="https://twitter.com/philip_pbm339/status/1806321309804011793?ref_src=twsrc%5Etfw">June 27, 2024</a></blockquote>
+        </div>
+        <h4 class="h4">Normal Post</h4>
+        <div style="min-height: <%=locals.desktop?'301px':'304px'%>;" class="flex-row justify-center">
+          <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Educate yourself about things. Study hard what interests you the most. Don&#39;t worry about what others think of you, that&#39;s none of your business. Train your mind to think, doubt, and question. That&#39;s how you grow.</p>&mdash; Prof. Feynman (@ProfFeynman) <a href="https://twitter.com/ProfFeynman/status/1808083774670012442?ref_src=twsrc%5Etfw">July 2, 2024</a></blockquote>
+        </div>
+    </section>
+
+    <section id="tiktok-posts" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#tiktok-posts" class="same-page bold">TikTok Posts          </a>
+      </h2>
+      <h3 class="h3 mt-2 fw-regular">
+        Content Security Policy Implications
+      </h3>
+      <ul>
+        <li><span class="text-code">script-src</span> should include <a class="secondary link" target="_blank" href="https://www.tiktok.com/embed.js">https://www.tiktok.com/embed.js</a>.</li>
+        <li>
+          <span class="text-code">frame-src</span> should include <a class="secondary link" target="_blank" href="https://www.tiktok.com/embed">https://www.tiktok.com/embed</a>.
+        </li>
+        <li>
+          <span class="text-code">style-src</span> should include <a class="secondary link" target="_blank" href="https://lf16-tiktok-web.tiktokcdn-us.com/obj/tiktok-web-tx/tiktok/falcon/embed/embed_lib_v1.0.12.css">https://lf16-tiktok-web.tiktokcdn-us.com/obj/tiktok-web-tx/tiktok/falcon/embed/embed_lib_v1.0.12.css</a>.
+        </li>
+        <li>
+          The <span class="text-code">Permissions-Policy</span> header to allow for <span class="text-code">(self "https://www.tiktok.com")</span> <span class="bold">(at least)</span>.
+        </li>
+      </ul>
+      <h3 class="h3 mt-2 fw-regular">
+        <a class="secondary link" target="_blank" href="https://developers.tiktok.com/doc/embed-videos/">How To Embed a TikTok Post</a>
+      </h3>
+      <ol>
+        <li>
+          Navigate to the TikTok post you want to embed on <a class="secondary link" target="_blank" href="https://www.tiktok.com/">TikTok.com</a>.
+        </li>
+        <li>
+          Click on the <span class="bold">Share</span> button.
+        </li>
+        <li>
+          Click on <span class="bold">Copy Link</span>.
+        </li>
+      </ol>
+      <div class="alert info filled icon medium mt-1" role="alert">
+        <svg viewBox="0 0 192 512" title="info" focusable="false" inert tabindex="-1"><path d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V448h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H64V256H32c-17.7 0-32-14.3-32-32z"></path></svg>
+        <p class="alert">
+          <span>
+            For TikTok videos, it is probably best to ask the user for the URL of the TikTok video and use the oEmbed API to generate the appropriate HTML. TikTok posts should have a <span style="font-family: monospace;">min-height</span> of 750px to prevent cumulative layout shift.
+          </span>  
+        </p>
+      </div>
+      <h3 class="h3 mt-2 fw-regular">
+        Examples
+      </h3>
+<div class="flex-row justify-center" style="min-height:750px;">
+  <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@scout2015/video/6718335390845095173" data-video-id="6718335390845095173" data-embed-from="oembed" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@scout2015" href="https://www.tiktok.com/@scout2015?refer=embed">@scout2015</a> <p>Scramble up ur name & I’ll try to guess it😍❤️ <a title="foryoupage" target="_blank" href="https://www.tiktok.com/tag/foryoupage?refer=embed">#foryoupage</a> <a title="petsoftiktok" target="_blank" href="https://www.tiktok.com/tag/petsoftiktok?refer=embed">#petsoftiktok</a> <a title="aesthetic" target="_blank" href="https://www.tiktok.com/tag/aesthetic?refer=embed">#aesthetic</a></p> <a target="_blank" title="♬ original sound - tiff" href="https://www.tiktok.com/music/original-sound-6689804660171082501?refer=embed">♬ original sound - tiff</a> </section> </blockquote> 
+</div>
+  </section>
+
+  <section id="instagram-posts" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#instagram-posts" class="same-page bold">Instagram Posts</a>
+    </h2>
+    <h3 class="h3 mt-2 fw-regular">
+      Content Security Policy Implications
+    </h3>
+    <ul>
+      <li><span class="text-code">frame-src</span> should include <a class="secondary link" target="_blank" href="https://www.instagram.com/">https://www.instagram.com/</a>.</li>
+    </ul>
+    <h3 class="h3 mt-2 fw-regular">
+      How To Embed an Instagram Post
+    </h3>
+    <ol>
+      <li>Go to the instagram post that you want to embed. </li>
+      <li>Click on the three dots in the upper right hand corner of the post <svg style="position: relative; top:10px; fill: var(--text-primary);" class="body2" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="MoreHoriz"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg>.</li>
+      <li>Click <span class="bold">Embed</span>.</li>
+      <li>Click <span class="bold">Copy embed code</span>.</li>
+    </ol>
+    <div class="alert info icon medium mt-2" role="alert">
+      <svg viewBox="0 0 448 512" title="instagram" focusable="false" inert tabindex="-1"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg>
+      <p class="alert">
+        <span>
+          The <span style="font-family:monospace;">min-height</span> of the wrapper <span style="font-family:monospace;">&lt;div&gt;</span> should be 615px on desktop and 540 px on mobile.
+        </span>  
+    </p>
+      <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+      </button>
+    </div>
+    <h3 class="h3 mt-2 fw-regular">
+      Examples
+    </h3>
+<div class="flex-row justify-center" style="min-height: <%=locals.desktop?'730px':'540px'%>;">
+  <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/C4gH3z_Jg1D/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/p/C4gH3z_Jg1D/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/C4gH3z_Jg1D/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by @americanrivieraorchard</a></p></div></blockquote> 
+</div>
+  </section>
+
+  <section id="reddit-posts" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#reddit-posts" class="same-page bold">Reddit Comments</a>
+    </h2>
+    <h3 class="h3 mt-2 fw-regular">
+      Content Security Policy Implications
+    </h3>
+    <ul>
+      <li><span class="text-code">script-src</span> should allow for <a class="secondary link" target="_blank" href="https://embed.reddit.com/widgets.js">https://embed.reddit.com/widgets.js</a>.</li>
+      <li><span class="text-code">frame-src</span> should allow for <a class="secondary link" target="_blank" href="https://embed.reddit.com/">https://embed.reddit.com/</a>.</li>
+
+    </ul>
+    <h3 class="h3 mt-2 fw-regular">
+      How To Embed a Reddit Comment
+    </h3>
+    <ol>
+      <li>Click on the <span class="bold">Share</span> button below a comment.</li>
+      <li>Click on the <span class="bold">Embed</span> option in the pop up menu.</li>
+      <li>Click on the <span class="bold">Copy Code</span> button on the resulting page.</li>
+    </ol>
+    <h4 class="bold mt-2">Styling</h4>
+    <p class="mt-2">
+      It is difficult to tell what the <span class="text-code">min-height</span> of a Reddit comment should be on different devices. You probably need to try to get the size of the embed when calling <span class="text-code">exportDOM</span> on the client, set a property in the lexical state, and interpolate from there.
+    </p>
+    <h3 class="h3 mt-2 fw-regular">
+      Examples
+    </h3>
+<div class="flex-row justify-center" style="min-height: 404px;">
+  <blockquote class="reddit-embed-bq" data-embed-height="404"><a href="https://www.reddit.com/r/france/comments/1duaao0/comment/lbf52g6/">Comment</a><br> by<a href="https://www.reddit.com/user/Thor1noak/">u/Thor1noak</a> from discussion<a href="https://www.reddit.com/r/france/comments/1duaao0/ipsos_sociologie_des_électorats_législatives_2024/"><no value=""></no></a><br> in<a href="https://www.reddit.com/r/france/">france</a></blockquote>
+</div>
+  </section>
+
+  <section id="conclusion" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#conclusion" class="same-page bold">Conclusion</a>
+      </h2>
+      <p class="mt-2">
+        Make the changes to the Content Security Policy and Permissions Policy described above. Instead of allowing the user to embed <span class="text-code">&lt;script&gt;</span> tags when inserting embed codes from the various social media platforms, you should send the user generated embed code to the backend, purify the embed code using <a class="secondary link" target="_blank" href="https://github.com/cure53/DOMPurify">DOMPurify</a> (remove all script tags and make sure that the elements in the embed code resemble the elements in the embed code seen above), and return the purified embed code. <strong class="bolder">You can see the code for parsing the user-generated embed codes for the various platforms below.</strong>
+        <br>
+        You should load the embed widgets for all the platforms on initial page load, e.g:
+      </p>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">nonce</span>=<span class="hljs-string">&quot;&lt;%=locals.jsNonce%&gt;&quot;</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://platform.twitter.com/widgets.js&quot;</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">nonce</span>=<span class="hljs-string">&quot;&lt;%=locals.jsNonce%&gt;&quot;</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.tiktok.com/embed.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">nonce</span>=<span class="hljs-string">&quot;&lt;%=locals.jsNonce%&gt;&quot;</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.instagram.com/embed.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">nonce</span>=<span class="hljs-string">&quot;&lt;%=locals.jsNonce%&gt;&quot;</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><span class="language-javascript">
+  (<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">const</span> rs = !<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>){}; <span class="hljs-comment">// replace with contents of reddit embed script</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-title function_">redditFunction</span> = (<span class="hljs-params"></span>) =&gt; rs;
+    <span class="hljs-title function_">redditFunction</span>();
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;EMBED_REDDIT&#x27;</span>,<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-title function_">redditFunction</span>();
+    })
+  })();
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>
+<p>
+  and then you should try to process embed codes whenever new content is loaded with custom events or other JavaScript (like the <span class="text-code">EMBED_REDDIT</span> custom event shown above or the script snippet shown below).
+</p>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-comment">/* Social Media Events */</span>
+<span class="hljs-comment">// On New Content Loaded</span>
+<span class="hljs-keyword">const</span> twitterEmbeds = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">querySelectorAll</span>&lt;<span class="hljs-title class_">HTMLElement</span>&gt;(<span class="hljs-string">&#x27;blockquote.twitter-tweet&#x27;</span>));
+<span class="hljs-keyword">if</span> (twitterEmbeds.<span class="hljs-property">length</span>&amp;&amp;(<span class="hljs-variable language_">window</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">twttr</span>&amp;&amp;(<span class="hljs-variable language_">window</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">twttr</span>.<span class="hljs-property">widgets</span>&amp;&amp;(<span class="hljs-variable language_">window</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">twttr</span>.<span class="hljs-property">widgets</span>.<span class="hljs-property">load</span>) (<span class="hljs-variable language_">window</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">twttr</span>.<span class="hljs-property">widgets</span>.<span class="hljs-title function_">load</span>();
+<span class="hljs-comment">// On New Content Loaded</span>
+<span class="hljs-keyword">const</span> tiktokEmbeds = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">querySelectorAll</span>&lt;<span class="hljs-title class_">HTMLElement</span>&gt;(<span class="hljs-string">&#x27;blockquote.tiktok-embed&#x27;</span>));
+<span class="hljs-keyword">if</span> (tiktokEmbeds.<span class="hljs-property">length</span>&amp;&amp;(<span class="hljs-variable language_">window</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">tiktokEmbed</span>&amp;&amp;(<span class="hljs-variable language_">window</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">tiktokEmbed</span>.<span class="hljs-property">lib</span>&amp;&amp;(<span class="hljs-variable language_">window</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">tiktokEmbed</span>.<span class="hljs-property">lib</span>.<span class="hljs-property">render</span>) (<span class="hljs-variable language_">window</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">tiktokEmbed</span>.<span class="hljs-property">lib</span>.<span class="hljs-title function_">render</span>(tiktokEmbeds);
+<span class="hljs-comment">// On New Content Loaded</span>
+<span class="hljs-keyword">const</span> instagramEmbeds = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">querySelectorAll</span>&lt;<span class="hljs-title class_">HTMLElement</span>&gt;(<span class="hljs-string">&#x27;blockquote.instagram-media&#x27;</span>));
+<span class="hljs-keyword">if</span> (instagramEmbeds.<span class="hljs-property">length</span>&amp;&amp;(<span class="hljs-variable language_">window</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">instgrm</span>&amp;&amp;(<span class="hljs-variable language_">window</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">instgrm</span>.<span class="hljs-property">Embeds</span>&amp;&amp;(<span class="hljs-variable language_">window</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">instgrm</span>.<span class="hljs-property">Embeds</span>.<span class="hljs-property">process</span>) (<span class="hljs-variable language_">window</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">instgrm</span>.<span class="hljs-property">Embeds</span>.<span class="hljs-title function_">process</span>();
+<span class="hljs-comment">// On New Content Loaded</span>
+<span class="hljs-keyword">const</span> redditEmbeds = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">querySelectorAll</span>&lt;<span class="hljs-title class_">HTMLElement</span>&gt;(<span class="hljs-string">&#x27;blockquote.reddit-embed-bq&#x27;</span>));
+<span class="hljs-keyword">if</span> (redditEmbeds.<span class="hljs-property">length</span>) <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">dispatchEvent</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomEvent</span>(<span class="hljs-string">&quot;EMBED_REDDIT&quot;</span>));</code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>
+  </section>
+
+  <section id="parsing-embed-codes" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#parsing-embed-codes" class="same-page bold">Parsing Embed Codes</a>
+      </h2>
+      <p class="mt-3">
+        Below are some scripts that you can use to ensure that the embed code that the user pastes into a <span class="text-code">&lt;textarea&gt;</span> or some other editor is safe to use in the website (protecting against XSS).
+      </p>
+      <div>
+        <h3 class="h3 mt-3 bold bb" style="margin-bottom: 8px;">
+          TikTok
+        </h3>
+        <div>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">validateTikTokEmbed</span>(<span class="hljs-params">s:string</span>) {
+  <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ALLOWED_TAGS</span> = [
+    <span class="hljs-string">&quot;BLOCKQUOTE&quot;</span>,
+    <span class="hljs-string">&quot;SECTION&quot;</span>,
+    <span class="hljs-string">&quot;A&quot;</span>
+  ];
+  <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ALLOWED_ATTR</span> = [
+    <span class="hljs-string">&quot;class&quot;</span>,
+    <span class="hljs-string">&quot;cite&quot;</span>,
+    <span class="hljs-string">&quot;data-video-id&quot;</span>,
+    <span class="hljs-string">&quot;style&quot;</span>,
+    <span class="hljs-string">&quot;target&quot;</span>,
+    <span class="hljs-string">&quot;title&quot;</span>,
+    <span class="hljs-string">&quot;href&quot;</span>
+  ];
+  <span class="hljs-keyword">const</span> hrefRegex = <span class="hljs-regexp">/https:\/\/(www\.|)tiktok\.com\//</span>;
+
+  <span class="hljs-comment">// Check the HTML first manually</span>
+  <span class="hljs-keyword">const</span> dom = <span class="hljs-keyword">new</span> <span class="hljs-title function_">JSDOM</span>(s);
+  dom.<span class="hljs-property">window</span>.<span class="hljs-property">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;script&#x27;</span>)
+  .<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">s</span>) =&gt;</span> s.<span class="hljs-title function_">remove</span>());
+  <span class="hljs-keyword">const</span> bodyChildren = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(dom.<span class="hljs-property">window</span>.<span class="hljs-property">document</span>.<span class="hljs-property">body</span>.<span class="hljs-property">children</span>);
+  <span class="hljs-keyword">if</span> (bodyChildren.<span class="hljs-property">length</span>&gt;<span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;TikTok embed should be wrapped in &lt;blockquote&gt; child.&quot;</span>);
+  }
+  <span class="hljs-keyword">const</span> blockquote = bodyChildren[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">if</span> (
+    blockquote.<span class="hljs-property">nodeName</span>!==<span class="hljs-string">&quot;BLOCKQUOTE&quot;</span> || 
+    blockquote.<span class="hljs-property">className</span>!==<span class="hljs-string">&quot;tiktok-embed&quot;</span> ||
+    !!!<span class="hljs-regexp">/https:\/\/(www\.|)tiktok.com\/.*\/video\/\d+/</span>.<span class="hljs-title function_">test</span>(<span class="hljs-title class_">String</span>(blockquote.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;cite&#x27;</span>))) || 
+    !!!<span class="hljs-title class_">Number</span>.<span class="hljs-title function_">isInteger</span>(<span class="hljs-title class_">Number</span>(blockquote.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;data-video-id&#x27;</span>))) 
+  ) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;TikTok embed should be wrapped in &lt;blockquote&gt; child. This blockquote child should have a classname equal to \&quot;tiktok-embed\&quot;. It should have a cite attribute that matches /https:\/\/(www.|)tiktok.com\/.*\/video\/\d+/. It should have an integer data-video-id attribute.&quot;</span>);
+  }
+  <span class="hljs-keyword">const</span> blockquoteChildren = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(blockquote.<span class="hljs-property">children</span>);
+  <span class="hljs-keyword">if</span> (blockquoteChildren.<span class="hljs-property">length</span>&gt;<span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;TikTok embed HTML should be blockquote &gt; 1 section &gt; all other elements. &quot;</span>);
+  }
+  <span class="hljs-keyword">const</span> section = blockquoteChildren[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">if</span> (section.<span class="hljs-property">nodeName</span>!==<span class="hljs-string">&#x27;SECTION&#x27;</span>||section.<span class="hljs-property">className</span>!==<span class="hljs-string">&#x27;&#x27;</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;TikTok embed HTML should be blockquote &gt; 1 section &gt; all other elements. Section Element should not have a class name.&quot;</span>);
+  }
+  <span class="hljs-keyword">const</span> sectionDescendants = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(section.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;*&#x27;</span>));
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> child <span class="hljs-keyword">of</span> sectionDescendants) {
+    <span class="hljs-keyword">if</span> (child.<span class="hljs-property">tagName</span>!==<span class="hljs-string">&#x27;A&#x27;</span>&amp;&amp;child.<span class="hljs-property">tagName</span>!==<span class="hljs-string">&#x27;P&#x27;</span>) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;The descendants of the section element in a tiktok embed should either by and anchor tag or a paragraph.&quot;</span>);
+    }
+    <span class="hljs-keyword">if</span> (child.<span class="hljs-property">tagName</span>===<span class="hljs-string">&quot;A&quot;</span>) {
+      <span class="hljs-keyword">if</span> (child.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;target&#x27;</span>)!==<span class="hljs-string">&#x27;_blank&#x27;</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;The &#x27;target&#x27; attribute of all anchor tags in the TikTok embed should be &#x27;_blank&#x27;.&quot;</span>);
+      <span class="hljs-keyword">if</span> (!!!hrefRegex.<span class="hljs-title function_">test</span>(<span class="hljs-title class_">String</span>(child.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;href&#x27;</span>)))) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;All links in the TikTok embed should have an href attribute that matches: /https:\/\/(www.|)tiktok.com\//.&quot;</span>);
+      }
+    }
+  }
+  <span class="hljs-comment">// Now Sanitive the HTML</span>
+  <span class="hljs-keyword">const</span> newHTML = blockquote.<span class="hljs-property">outerHTML</span>;
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">DOMPurify</span> = <span class="hljs-title function_">createDOMPurify</span>(dom.<span class="hljs-property">window</span>);
+  <span class="hljs-keyword">const</span> finalHTML = <span class="hljs-title class_">DOMPurify</span>.<span class="hljs-title function_">sanitize</span>(newHTML,{
+    <span class="hljs-variable constant_">ALLOWED_TAGS</span>,
+    <span class="hljs-variable constant_">ALLOWED_ATTR</span>,
+    <span class="hljs-attr">ALLOW_DATA_ATTR</span>: <span class="hljs-literal">true</span>
+  });
+  <span class="hljs-keyword">return</span> finalHTML;
+}</code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>
+        </div>
+        
+        <h3 class="h3 mt-3 bold bb" style="margin-bottom: 8px;">
+          Reddit
+        </h3>
+        <div>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">validateRedditEmbed</span>(<span class="hljs-params">s:string</span>) {
+  <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ALLOWED_TAGS</span> = [
+    <span class="hljs-string">&quot;BLOCKQUOTE&quot;</span>,
+    <span class="hljs-string">&quot;A&quot;</span>,
+    <span class="hljs-string">&quot;BR&quot;</span>
+  ];
+  <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ALLOWED_ATTR</span> =  [
+    <span class="hljs-string">&quot;class&quot;</span>,
+    <span class="hljs-string">&quot;data-embed-height&quot;</span>,
+    <span class="hljs-string">&quot;href&quot;</span>
+  ];
+  <span class="hljs-keyword">const</span> hrefRegex = <span class="hljs-regexp">/https:\/\/(www\.|)reddit\.com\/.*/</span>
+
+  <span class="hljs-keyword">const</span> dom = <span class="hljs-keyword">new</span> <span class="hljs-title function_">JSDOM</span>(s);
+  dom.<span class="hljs-property">window</span>.<span class="hljs-property">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;script&#x27;</span>)
+  .<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">s</span>) =&gt;</span> s.<span class="hljs-title function_">remove</span>());
+  <span class="hljs-keyword">const</span> bodyChildren = dom.<span class="hljs-property">window</span>.<span class="hljs-property">document</span>.<span class="hljs-property">body</span>.<span class="hljs-property">children</span>;
+  <span class="hljs-keyword">if</span> (bodyChildren.<span class="hljs-property">length</span>&gt;<span class="hljs-number">1</span>) { 
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Reddit embed should be wrapped in &lt;blockquote&gt; child.&quot;</span>);
+  }
+  <span class="hljs-keyword">const</span> blockquote = bodyChildren[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">if</span> ( 
+    blockquote.<span class="hljs-property">nodeName</span>!==<span class="hljs-string">&quot;BLOCKQUOTE&quot;</span> || 
+    blockquote.<span class="hljs-property">className</span>!==<span class="hljs-string">&quot;reddit-embed-bq&quot;</span> ||
+    !!!<span class="hljs-title class_">Number</span>.<span class="hljs-title function_">isInteger</span>(<span class="hljs-title class_">Number</span>(blockquote.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;data-embed-height&#x27;</span>)))
+  ) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Reddit embed should be wrapped in &lt;blockquote&gt; child. This blockquote child should have a classname equal to \&quot;reddit-embed-bq\&quot;. It should have a data-embed-height attribute that is an integer.&quot;</span>);
+  }
+  <span class="hljs-comment">// This should be the max depth</span>
+  <span class="hljs-keyword">const</span> blockquoteChildren = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(blockquote.<span class="hljs-property">children</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> child <span class="hljs-keyword">of</span> blockquoteChildren) {
+    <span class="hljs-keyword">if</span> ((child.<span class="hljs-property">tagName</span>!==<span class="hljs-string">&#x27;A&#x27;</span>&amp;&amp;child.<span class="hljs-property">tagName</span>!==<span class="hljs-string">&#x27;BR&#x27;</span>)||(<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(child.<span class="hljs-property">children</span>).<span class="hljs-property">length</span>&gt;<span class="hljs-number">0</span>)) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;The children of the blockquote in the Reddit embed should be either anchor tags or line breaks and they should not have any children themselves.&quot;</span>)
+    }
+    <span class="hljs-keyword">if</span> (child.<span class="hljs-property">tagName</span>===<span class="hljs-string">&quot;A&quot;</span>) {
+      <span class="hljs-keyword">if</span> (!!!hrefRegex.<span class="hljs-title function_">test</span>(<span class="hljs-title class_">String</span>(child.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;href&#x27;</span>)))) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Invalid href attribute for anchor tag inside Reddit embed.&quot;</span>);
+      }
+    }
+  }
+  <span class="hljs-keyword">const</span> newHTML = blockquote.<span class="hljs-property">outerHTML</span>;
+  <span class="hljs-keyword">const</span> minHeight = <span class="hljs-title class_">Number</span>(<span class="hljs-title class_">String</span>(blockquote.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;data-embed-height&#x27;</span>)));
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">DOMPurify</span> = <span class="hljs-title function_">createDOMPurify</span>(dom.<span class="hljs-property">window</span>);
+  <span class="hljs-keyword">const</span> finalHTML = <span class="hljs-title class_">DOMPurify</span>.<span class="hljs-title function_">sanitize</span>(newHTML,{
+    <span class="hljs-variable constant_">ALLOWED_TAGS</span>,
+    <span class="hljs-variable constant_">ALLOWED_ATTR</span>,
+    <span class="hljs-attr">ALLOW_DATA_ATTR</span>: <span class="hljs-literal">true</span>
+  });
+  <span class="hljs-keyword">return</span> {<span class="hljs-attr">html</span>: finalHTML, minHeight };
+}</code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>
+        </div>
+        
+        <h3 class="h3 mt-3 bold bb" style="margin-bottom: 8px;">
+          Twitter
+        </h3>
+        <div>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">validateTwitterEmbed</span>(<span class="hljs-params">s:string</span>) {
+  <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ALLOWED_TAGS</span> = [
+    <span class="hljs-string">&quot;BLOCKQUOTE&quot;</span>,
+    <span class="hljs-string">&quot;P&quot;</span>,
+    <span class="hljs-string">&quot;BR&quot;</span>,
+    <span class="hljs-string">&quot;A&quot;</span>
+  ];
+  <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ALLOWED_ATTR</span> =  [
+      <span class="hljs-string">&quot;class&quot;</span>,
+      <span class="hljs-string">&quot;lang&quot;</span>,
+      <span class="hljs-string">&quot;dir&quot;</span>,
+      <span class="hljs-string">&quot;href&quot;</span>
+  ];
+  <span class="hljs-keyword">const</span> dom = <span class="hljs-keyword">new</span> <span class="hljs-title function_">JSDOM</span>(s);
+  dom.<span class="hljs-property">window</span>.<span class="hljs-property">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;script&#x27;</span>)
+  .<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">s</span>) =&gt;</span> s.<span class="hljs-title function_">remove</span>());
+  <span class="hljs-keyword">const</span> bodyChildren = dom.<span class="hljs-property">window</span>.<span class="hljs-property">document</span>.<span class="hljs-property">body</span>.<span class="hljs-property">children</span>;
+  <span class="hljs-keyword">if</span> (bodyChildren.<span class="hljs-property">length</span>&gt;<span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Twitter embed should be wrapped in &lt;blockquote&gt; child.&quot;</span>);
+  }
+  <span class="hljs-keyword">const</span> blockquote = bodyChildren[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">if</span> (
+    blockquote.<span class="hljs-property">nodeName</span>!==<span class="hljs-string">&quot;BLOCKQUOTE&quot;</span> || 
+    blockquote.<span class="hljs-property">className</span>!==<span class="hljs-string">&quot;twitter-tweet&quot;</span>
+  ) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Twitter embed should be wrapped in &lt;blockquote&gt; child. This blockquote child should have a classname equal to \&quot;twitter-tweet\&quot;.&quot;</span>);
+  }
+  <span class="hljs-keyword">const</span> blockquoteChildren = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(blockquote.<span class="hljs-property">children</span>);
+  <span class="hljs-keyword">if</span> (
+    blockquoteChildren.<span class="hljs-property">length</span>!==<span class="hljs-number">2</span> ||
+    blockquoteChildren[<span class="hljs-number">0</span>].<span class="hljs-property">tagName</span>!==<span class="hljs-string">&#x27;P&#x27;</span> ||
+    blockquoteChildren[<span class="hljs-number">1</span>].<span class="hljs-property">tagName</span>!==<span class="hljs-string">&#x27;A&#x27;</span> ||
+    <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(blockquoteChildren[<span class="hljs-number">1</span>].<span class="hljs-property">children</span>).<span class="hljs-property">length</span>&gt;<span class="hljs-number">0</span> ||
+    !!!<span class="hljs-regexp">/https:\/\/(www\.|)(twitter|x)\.com\/.*\/status\/\d+\?.*/</span>.<span class="hljs-title function_">test</span>(<span class="hljs-title class_">String</span>(blockquoteChildren[<span class="hljs-number">1</span>].<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;href&#x27;</span>))) ||
+    (blockquoteChildren[<span class="hljs-number">0</span>].<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;dir&#x27;</span>)!==<span class="hljs-string">&#x27;ltr&#x27;</span>&amp;&amp;blockquoteChildren[<span class="hljs-number">0</span>].<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;dir&#x27;</span>)!==<span class="hljs-string">&#x27;rtl&#x27;</span>) ||
+    !!!blockquoteChildren[<span class="hljs-number">0</span>].<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;lang&#x27;</span>)
+  ) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Twitter Embed bloclquote element should have two children. The first should be a paragraph and the second should be an anchor tag. The anchor tag should have no children and it should have an href attribute that matches /https:\/\/(www.|)(twitter|x).com\/.*\/status\/\d+\?.*/. The first paragraph should have appropriate lang and dir attributes.&quot;</span>)
+  }
+  <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(blockquoteChildren[<span class="hljs-number">0</span>].<span class="hljs-property">children</span>)
+  .<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">child</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (child.<span class="hljs-property">tagName</span>!==<span class="hljs-string">&#x27;A&#x27;</span>&amp;&amp;child.<span class="hljs-property">tagName</span>!==<span class="hljs-string">&#x27;BR&#x27;</span>) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;The children of blockquote &gt; p for the twitter implementation should only be anchor tags and newlines.&quot;</span>)
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(child.<span class="hljs-property">children</span>).<span class="hljs-property">length</span>&gt;<span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;The children of blockquote &gt; p for the twitter implementation should not have children themselves.&quot;</span>);
+    }
+    <span class="hljs-keyword">if</span> (child.<span class="hljs-property">tagName</span>===<span class="hljs-string">&#x27;A&#x27;</span>) {
+      <span class="hljs-keyword">if</span> (
+        !!!<span class="hljs-regexp">/https:\/\/t\.co\/.*/</span>.<span class="hljs-title function_">test</span>(<span class="hljs-title class_">String</span>(child.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;href&#x27;</span>))) &amp;&amp; 
+        !!!<span class="hljs-regexp">/https:\/\/(twitter|x)\.com\/.*/</span>.<span class="hljs-title function_">test</span>(<span class="hljs-title class_">String</span>(child.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;href&#x27;</span>)))
+      ) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Twitter embed: Invalid twitter anchor tag href.&quot;</span>);
+      }
+    }
+  })
+  <span class="hljs-keyword">const</span> newHTML = blockquote.<span class="hljs-property">outerHTML</span>;
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">DOMPurify</span> = <span class="hljs-title function_">createDOMPurify</span>(dom.<span class="hljs-property">window</span>);
+  <span class="hljs-keyword">const</span> finalHTML = <span class="hljs-title class_">DOMPurify</span>.<span class="hljs-title function_">sanitize</span>(newHTML,{
+    <span class="hljs-variable constant_">ALLOWED_TAGS</span>,
+    <span class="hljs-variable constant_">ALLOWED_ATTR</span>,
+    <span class="hljs-attr">ALLOW_DATA_ATTR</span>: <span class="hljs-literal">false</span>
+  });
+  <span class="hljs-keyword">return</span> finalHTML;
+}</code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>
+        </div>
+
+        <h3 class="h3 mt-3 bold bb" style="margin-bottom: 8px;">
+          Instagram
+        </h3>
+        <div>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">validateInstagramEmbed</span>(<span class="hljs-params">s:string</span>) {
+  <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ALLOWED_TAGS</span> = [
+    <span class="hljs-string">&quot;BLOCKQUOTE&quot;</span>,
+    <span class="hljs-string">&quot;DIV&quot;</span>,
+    <span class="hljs-string">&quot;svg&quot;</span>,
+    <span class="hljs-string">&quot;g&quot;</span>,
+    <span class="hljs-string">&quot;path&quot;</span>,
+    <span class="hljs-string">&quot;A&quot;</span>,
+    <span class="hljs-string">&quot;P&quot;</span>
+  ];
+  <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ALLOWED_ATTR</span> =  [
+      <span class="hljs-string">&quot;class&quot;</span>,
+      <span class="hljs-string">&quot;lang&quot;</span>,
+      <span class="hljs-string">&quot;dir&quot;</span>,
+      <span class="hljs-string">&quot;href&quot;</span>
+  ];
+  <span class="hljs-keyword">const</span> gAttributesSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([
+    <span class="hljs-string">&quot;stroke&quot;</span>,
+    <span class="hljs-string">&quot;stroke-width&quot;</span>,
+    <span class="hljs-string">&quot;fill&quot;</span>,
+    <span class="hljs-string">&quot;fill-rule&quot;</span>,
+    <span class="hljs-string">&quot;transform&quot;</span>
+  ]);
+  <span class="hljs-keyword">const</span> dom = <span class="hljs-keyword">new</span> <span class="hljs-title function_">JSDOM</span>(s);
+  dom.<span class="hljs-property">window</span>.<span class="hljs-property">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;script&#x27;</span>)
+  .<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">s</span>) =&gt;</span> s.<span class="hljs-title function_">remove</span>());
+  <span class="hljs-keyword">const</span> bodyChildren = dom.<span class="hljs-property">window</span>.<span class="hljs-property">document</span>.<span class="hljs-property">body</span>.<span class="hljs-property">children</span>;
+  <span class="hljs-keyword">if</span> (bodyChildren.<span class="hljs-property">length</span>&gt;<span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Instagram embed should be wrapped in &lt;blockquote&gt; child.&quot;</span>);
+  }
+  <span class="hljs-keyword">const</span> blockquote = bodyChildren[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">if</span> (
+    blockquote.<span class="hljs-property">nodeName</span>!==<span class="hljs-string">&quot;BLOCKQUOTE&quot;</span> || 
+    blockquote.<span class="hljs-property">className</span>!==<span class="hljs-string">&quot;instagram-media&quot;</span> || 
+    !!!blockquote.<span class="hljs-title function_">hasAttribute</span>(<span class="hljs-string">&quot;data-instgrm-captioned&quot;</span>) ||
+    !!!<span class="hljs-regexp">/https:\/\/www.instagram.com\/.*/</span>.<span class="hljs-title function_">test</span>(<span class="hljs-title class_">String</span>(blockquote.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&quot;data-instgrm-permalink&quot;</span>))) ||
+    !!!blockquote.<span class="hljs-title function_">hasAttribute</span>(<span class="hljs-string">&quot;data-instgrm-version&quot;</span>)
+  ) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Instagram embed should be wrapped in &lt;blockquote&gt; child. This blockquote child should have a classname equal to \&quot;instagram-media\&quot;. Instagram embed should have the data-instgrm captioned and data-instgrm-version attributes, and the data-instagram-permalink attribute should match /https:\/\/www.instagram.com\/.*/.&quot;</span>);
+  }
+  <span class="hljs-keyword">const</span> blockquoteChildren = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(blockquote.<span class="hljs-property">children</span>);
+  <span class="hljs-keyword">if</span> (blockquoteChildren.<span class="hljs-property">length</span>!==<span class="hljs-number">1</span>||blockquoteChildren[<span class="hljs-number">0</span>].<span class="hljs-property">nodeName</span>!==<span class="hljs-string">&#x27;DIV&#x27;</span>||!!!blockquoteChildren[<span class="hljs-number">0</span>].<span class="hljs-title function_">hasAttribute</span>(<span class="hljs-string">&#x27;style&#x27;</span>)) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Instagram embed blcokquote wrapper should only have one &lt;div&gt; child with the style attribute.&quot;</span>);
+  }
+  <span class="hljs-keyword">const</span> divWrapper = blockquoteChildren[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">const</span> divChildren = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(divWrapper.<span class="hljs-property">children</span>);
+  <span class="hljs-keyword">if</span> (divChildren[<span class="hljs-number">0</span>].<span class="hljs-property">nodeName</span>!==<span class="hljs-string">&#x27;A&#x27;</span>||divChildren[<span class="hljs-number">1</span>].<span class="hljs-property">nodeName</span>!==<span class="hljs-string">&#x27;P&#x27;</span>) {
+
+  }
+  <span class="hljs-keyword">const</span> anchorWrapper = divChildren[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">const</span> anchorWrapperDescendents = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(anchorWrapper.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;*&#x27;</span>));
+  anchorWrapperDescendents.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">child</span>) =&gt;</span> {
+    <span class="hljs-keyword">switch</span> (child.<span class="hljs-property">tagName</span>) {
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;DIV&quot;</span>:
+        <span class="hljs-comment">// Children can be div | svg</span>
+        <span class="hljs-comment">// can have style attribute</span>
+        <span class="hljs-keyword">const</span> attribs = child.<span class="hljs-property">attributes</span>;
+        <span class="hljs-keyword">const</span> attributeArray = [];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; attribs.<span class="hljs-property">length</span>; i++) {
+          <span class="hljs-keyword">const</span> tempAt = attribs.<span class="hljs-title function_">item</span>(i);
+          <span class="hljs-keyword">if</span> (tempAt) attributeArray.<span class="hljs-title function_">push</span>(tempAt.<span class="hljs-property">name</span>);
+        }
+        <span class="hljs-keyword">if</span> (attributeArray.<span class="hljs-property">length</span>&gt;<span class="hljs-number">1</span>||(attributeArray.<span class="hljs-property">length</span>===<span class="hljs-number">1</span>&amp;&amp;attributeArray[<span class="hljs-number">0</span>]!==<span class="hljs-string">&#x27;style&#x27;</span>)) {
+          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;DIV element in instagram embed can only have style attribute.&quot;</span>)
+        }
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;svg&quot;</span>:
+          <span class="hljs-keyword">if</span> (
+            !!!child.<span class="hljs-title function_">hasAttribute</span>(<span class="hljs-string">&quot;width&quot;</span>) ||
+            !!!child.<span class="hljs-title function_">hasAttribute</span>(<span class="hljs-string">&quot;height&quot;</span>) ||
+            !!!child.<span class="hljs-title function_">hasAttribute</span>(<span class="hljs-string">&quot;viewBox&quot;</span>) ||
+            !!!child.<span class="hljs-title function_">hasAttribute</span>(<span class="hljs-string">&quot;version&quot;</span>) ||
+            !!!child.<span class="hljs-title function_">hasAttribute</span>(<span class="hljs-string">&quot;xmlns&quot;</span>) ||
+            !!!child.<span class="hljs-title function_">hasAttribute</span>(<span class="hljs-string">&quot;xmlns:xlink&quot;</span>) ||
+            <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(child.<span class="hljs-property">children</span>).<span class="hljs-property">length</span>!==<span class="hljs-number">1</span> ||
+            <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(child.<span class="hljs-property">children</span>)[<span class="hljs-number">0</span>].<span class="hljs-property">tagName</span>!==<span class="hljs-string">&#x27;g&#x27;</span>
+          ) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;svg attribute in instagram embed does not have valid attributes or the correct number of children or its child is not a g element.&quot;</span>)
+          }
+        <span class="hljs-keyword">break</span>;  
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;g&quot;</span>:
+        <span class="hljs-keyword">const</span> <span class="hljs-title class_">HasUnrecognizedDescendants</span> = <span class="hljs-title class_">Boolean</span>(<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(child.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;*&#x27;</span>)).<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">el</span>) =&gt;</span> el.<span class="hljs-property">tagName</span>!==<span class="hljs-string">&#x27;g&#x27;</span>&amp;&amp;el.<span class="hljs-property">tagName</span>!==<span class="hljs-string">&#x27;path&#x27;</span>).<span class="hljs-property">length</span>&gt;<span class="hljs-number">1</span>);
+        <span class="hljs-keyword">const</span> <span class="hljs-title class_">HasMoreThanOneChild</span> = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(child.<span class="hljs-property">children</span>).<span class="hljs-property">length</span>&gt;<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span> (<span class="hljs-title class_">HasMoreThanOneChild</span>||<span class="hljs-title class_">HasUnrecognizedDescendants</span>) {
+          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;g tag in Instagram embed has more than one child or has a descendant with a tagName that does not match the pattren.&quot;</span>)
+        }
+        <span class="hljs-keyword">const</span> attrs = child.<span class="hljs-property">attributes</span>;
+        <span class="hljs-keyword">const</span> attributes = [];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; attrs.<span class="hljs-property">length</span>; i++) {
+          <span class="hljs-keyword">const</span> tempAt = attrs.<span class="hljs-title function_">item</span>(i);
+          <span class="hljs-keyword">if</span> (tempAt) attributes.<span class="hljs-title function_">push</span>(tempAt.<span class="hljs-property">name</span>);
+        }
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> attr <span class="hljs-keyword">of</span> attributes) {
+          <span class="hljs-keyword">if</span> (!!!gAttributesSet.<span class="hljs-title function_">has</span>(attr)) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Unrecognized g attribute for instagram embed.&quot;</span>);
+          }
+        }
+
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;path&quot;</span>:
+        <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(child.<span class="hljs-property">children</span>).<span class="hljs-property">length</span>&gt;<span class="hljs-number">0</span>||!!!child.<span class="hljs-title function_">hasAttribute</span>(<span class="hljs-string">&#x27;d&#x27;</span>)) {
+          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;path element for instagram embed should have no children and have a d attribute.&#x27;</span>);
+        }
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-attr">default</span>:
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Invalid Instagram embed structure. Unrecognized child tagName in anchor wrapper.&quot;</span>)
+    }
+  })
+  <span class="hljs-keyword">const</span> endP = divChildren[<span class="hljs-number">1</span>];
+  <span class="hljs-keyword">const</span> endPChildren = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(endP.<span class="hljs-property">children</span>);
+  <span class="hljs-keyword">if</span> (endPChildren.<span class="hljs-property">length</span>!==<span class="hljs-number">1</span>||endPChildren[<span class="hljs-number">0</span>].<span class="hljs-property">nodeName</span>!==<span class="hljs-string">&#x27;A&#x27;</span> ||
+    !!!<span class="hljs-regexp">/https:\/\/www.instagram.com\/.*/</span>.<span class="hljs-title function_">test</span>(<span class="hljs-title class_">String</span>(endPChildren[<span class="hljs-number">0</span>].<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;href&#x27;</span>))) || 
+    !!!endPChildren[<span class="hljs-number">0</span>].<span class="hljs-title function_">hasAttribute</span>(<span class="hljs-string">&#x27;style&#x27;</span>) || 
+    endPChildren[<span class="hljs-number">0</span>].<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;target&#x27;</span>)!==<span class="hljs-string">&#x27;_blank&#x27;</span> ||
+    <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(endPChildren[<span class="hljs-number">0</span>].<span class="hljs-property">children</span>).<span class="hljs-property">length</span>&gt;<span class="hljs-number">0</span>
+  ) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;The ending paragraph of the div wrapper should have one anchor tag child that has appropraiet attributes.&quot;</span>);</code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>
+        </div>
+
+      </div>
+
+  </section>
+
+
+  <%if(locals.fullPageRequest!==true){%>
+    <script nonce="<%=locals.jsNonce%>" defer>
+      (() => {
+        document.dispatchEvent(new CustomEvent("EMBED_REDDIT"));
+        document.dispatchEvent(new CustomEvent("EMBED_TWITTER"));
+        document.dispatchEvent(new CustomEvent("EMBED_INSTAGRAM"));
+        document.dispatchEvent(new CustomEvent("EMBED_TIKTOK"));
+      })()
+    </script>
+  <%}%>
+    
+  <%-include('../../partials/pagePartial')%>
+<%}%>
+    

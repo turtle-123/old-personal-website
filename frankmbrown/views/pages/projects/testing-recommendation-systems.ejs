@@ -1,0 +1,46 @@
+<%# 
+PAGE ROUTE: /
+PAGE DESCRIPTION: /
+PAGE KEYOWRDS: [/]
+PAGE IMAGE: 
+PAGE VARIABLES:
+-------------------------
+- locals.hello (number): 
+- locals.world (string|undefined): 
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    <h1 class="page-title">Testing Recommendation Systems</h1>
+
+  <section id="about-page" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#about-page" class="same-page bold">
+          About this Page
+        </a>
+      </h2>
+
+      <p class="mt-2">
+        I wanted to create this page to test out building recommendation systems. Below, I use the Wikipedia API 
+      </p>
+
+  </section>
+
+  <section id="" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#" class="same-page bold">
+          Describe Yourself
+        </a>
+      </h2>
+  </section>
+
+
+  <section id="recommened-darticles" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#recommended-articles" class="same-page bold">
+          Recommended Articles
+        </a>
+      </h2>
+      
+  </section>
+
+    <%-include('../../partials/pagePartial')%>
+  <%}%>

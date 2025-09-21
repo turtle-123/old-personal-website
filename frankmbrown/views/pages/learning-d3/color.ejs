@@ -1,0 +1,638 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/color.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.settings[locals
+- locals.jsNonce
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title" id="top-of-page">D3.js Color</h1>
+
+
+  <div class="alert warning mt-2 outlined icon medium" role="alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+    <p class="alert">
+      Need to finish this. Something is wrong with getting the x-value on color change on drag event for the Canvas.  
+  </p>
+    <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+    </button>
+  </div>
+
+  <p class="mt-2">
+    D3.js provides many methods and function to transform colors between hex, rgb, hsl, css color name, hcl, lch, and cubehelix. It would be a good idea to implement d3's 
+    functions for transfering colors rather than trying to implement my own. Below, you can edit color values and copy the resulting coplor values.
+    <br>
+    <span class="bold">
+      To change between having the main color be represented as hex / rgb / hsl / css color name / hcl / lch / cubehelix, edit the <strong class="t-info">Main Color Representation</strong>
+      select input.
+    </span>
+  </p>
+
+  <section id="output-color" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#output-color" class="same-page fw-regular">Output Color</a>
+      </h2>
+      <div id="color-container" style="min-height: 200px;" class="hz-scroll flex-row justify-between mt-2">
+        <ul>
+          <li id="color-rep-list-hex">
+            <span class="bold h6">Hex:</span> <span><%=locals.settings[locals.settingsMode].primary%></span> <button type="button" class="icon small" data-copy-input data-input=""><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button>  <input type="text" hidden="hidden" id="color-rep-output-hex" value="color-rep-output-hex" >
+          </li>
+          <li id="color-rep-list-rgb">
+            <span class="bold h6">RGB:</span> <span></span> <button type="button" class="icon small" data-copy-input data-input=""><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button>  <input type="text" hidden="hidden" id="color-rep-output-rgb" value="color-rep-output-rgb" >
+          </li>
+          <li id="color-rep-list-hsl">
+            <span class="bold h6">HSL:</span> <span></span> <button type="button" class="icon small" data-copy-input data-input=""><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button>  <input type="text" hidden="hidden" id="color-rep-output-hsl" value="color-rep-output-hsl" >
+          </li>
+          <li id="color-rep-list-css-color-name">
+            <span class="bold h6">CSS Color Name:</span> <span></span> <button type="button" class="icon small" data-copy-input data-input=""><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button>  <input type="text" hidden="hidden" id="color-rep-output-css-color-name" value="color-rep-output-css-color-name" >
+          </li>
+          <li id="color-rep-list-hcl">
+            <span class="bold h6">HCL:</span> <span></span> <button type="button" class="icon small" data-copy-input data-input=""><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button>  <input type="text" hidden="hidden" id="color-rep-output-hcl" value="color-rep-output-hcl" >
+          </li>
+          <li id="color-rep-list-lch">
+            <span class="bold h6">LCH:</span> <span></span> <button type="button" class="icon small" data-copy-input data-input=""><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button>  <input type="text" hidden="hidden" id="color-rep-output-lch" value="color-rep-output-lch" >
+          </li>
+          <li id="color-rep-list-cubehelix">
+            <span class="bold h6">Cubehelix:</span> <span></span> <button type="button" class="icon small" data-copy-input data-input=""><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button>  <input type="text" hidden="hidden" id="color-rep-output-cubehelix" value="color-rep-output-cubehelix" >
+          </li>
+          <li id="color-rep-list-lab">
+            <span class="bold h6">LAB:</span> <span></span> <button type="button" class="icon small" data-copy-input data-input=""><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button>  <input type="text" hidden="hidden" id="color-rep-output-lab" value="color-rep-output-lab" >
+          </li>
+        </ul>
+      </div>
+  </section>
+
+  <section id="input-color" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#input-color" class="same-page fw-regular">Input Color</a>
+    </h2>
+    <div class="flex-row align-center gap-3">
+      <div class="grow-1 justify-center mt-1">
+        <div class="body1 bold" id="main-color-rep-label">Main Color Representation:</div>
+        <div class="mt-1 flex-row justify-center">
+          <div class="select">
+            <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="main-color-rep-dropdown" aria-labelledby="main-color-rep-label" class="select" aria-label="SELECT ARIA_LABEL" data-popover data-pelem="#main-color-rep-dropdown" data-click aria-expanded="false">
+              <span class="body1" style="min-width: 75px;">hex</span>
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+            </button>
+            <div tabindex="0" id="main-color-rep-dropdown" role="listbox" class="select-menu o-xs" data-placement="bottom">
+              <input type="text" hidden value="hex" name="main-color-representation-input" id="main-color-representation-input">
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val="hex">
+                hex
+              </button>
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="css color name">
+                css color name
+              </button>
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="rgb">
+                rgb
+              </button>
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="hsl">
+                hsl
+              </button>
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="hcl">
+                hcl
+              </button>
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="lch">
+                lch
+              </button>
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="cubehelix">
+                cubehelix
+              </button>
+              <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="lab">
+                lab
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grow-1 justify-center">
+        <label class="body2" for="hex-color-input">Hex Input:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="hex-color-input" id="hex-color-input" value="<%=locals.settings[locals.settingsMode].primary%>" style="margin-top: 2px;">
+          <span class="body2"><%=locals.settings[locals.settingsMode].primary%></span>
+        </div>
+      </div>
+      <div class="grow-1 justify-center">
+        <div class="body1 bold text-align-center" id="css-color-select-label">CSS Color Select:</div>
+        <div class="mt-1 flex-row justify-center">
+          <div class="select">
+            <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="css-color-select-dropdown" aria-labelledby="css-color-select-label" class="select" aria-label="CSS Color Select" data-popover data-pelem="#css-color-select-dropdown" data-click aria-expanded="false">
+              <span style="min-width: 75px;" class="body1">none</span>
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+            </button>
+            <div tabindex="0" id="css-color-select-dropdown" role="listbox" class="select-menu o-xs" data-placement="bottom">
+              <input type="text" hidden value="none" name="css-color-name-input" id="css-color-name-input">
+              <button style="color: aqua!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="aqua">
+                aqua
+            </button><button style="color: black!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="black">
+                black
+            </button><button style="color: blue!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="blue">
+                blue
+            </button><button style="color: fuchsia!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="fuchsia">
+                fuchsia
+            </button><button style="color: gray!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="gray">
+                gray
+            </button><button style="color: green!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="green">
+                green
+            </button><button style="color: lime!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="lime">
+                lime
+            </button><button style="color: maroon!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="maroon">
+                maroon
+            </button><button style="color: navy!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="navy">
+                navy
+            </button><button style="color: olive!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="olive">
+                olive
+            </button><button style="color: purple!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="purple">
+                purple
+            </button><button style="color: red!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="red">
+                red
+            </button><button style="color: silver!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="silver">
+                silver
+            </button><button style="color: teal!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="teal">
+                teal
+            </button><button style="color: white!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="white">
+                white
+            </button><button style="color: yellow!important;" type="button" tabindex="-1" class="select-option" role="option" aria-selected="false" data-val="yellow">
+                yellow
+            </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="true" data-val="none">
+                none
+            </button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <label for="opacity-input" class="mt-1">Opacity:</label>
+    <div class="flex-row align-center gap-3">
+      <input name="opacity-input" id="opacity-input" type="range" min="0" max="1" value="1" step="0.01" style="background-size: 100% 100%;">
+      <output class="h6 bold" for="opacity-input">1</output>
+    </div>
+
+    <fiv class="flex-row gap-3 align-center">
+      <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="k-value-darken">K - Value Darken:</label>
+        <div class="mt-1 flex-row gap-2 medium">
+            <input 
+            type="number" 
+            value="1" 
+            name="k-value-darken" 
+            id="k-value-darken" 
+            placeholder="Enter the K-value for producing a darker value of this color..." 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button type="button" class="icon medium filled secondary" id="confirm-darken">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Check"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
+            </button>
+        </div>
+      </div>
+      <div class="input-group grow-1 mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="k-value-lighten">K - Value Lighten:</label>
+        <div class="mt-1 flex-row gap-2 medium">
+            <input 
+            type="number" 
+            value="1" 
+            name="k-value-lighten" 
+            id="k-value-lighten" 
+            placeholder="Enter the K-value for producing a lighter value of this color..." 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button type="button" class="icon medium filled primary" id="confirm-darken">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Check"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
+            </button>
+        </div>
+      </div>
+    </fiv>
+
+    <section id="rgb-picker-section" class="mt-4">
+      <div class="flex-row bb-main justify-between align-center">
+        <h3 class="bold h6">
+          <a href="#rgb-picker-section" class="same-page fw-regular">RGB Picker</a>
+        </h3>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#rgb-picker">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+      <div id="rgb-picker" style="min-height: 220px;" class="hz-scroll flex-row justify-center mt-4"></div>
+    </section>
+    
+
+    <section id="hcl-picker-section" class="mt-4">
+      <div class="flex-row bb-main justify-between align-center">
+        <h3 class="bold h6">
+          <a href="#hcl-picker-section" class="same-page fw-regular">HCL Picker</a>
+        </h3>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#hcl-picker">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+      <div id="hcl-picker" style="min-height: 220px;" class="hz-scroll flex-row justify-center mt-4"></div>
+    </section>
+    
+
+    <section id="lch-picker-section" class="mt-4">
+      <div class="flex-row bb-main justify-between align-center">
+        <h3 class="bold h6">
+          <a href="#lch-picker-section" class="same-page fw-regular">LCH Picker</a>
+        </h3>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#lch-picker">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+      <div id="lch-picker" style="min-height: 220px;" class="hz-scroll flex-row justify-center mt-4"></div>
+    </section>
+    
+    
+    <section id="hsl-picker-section" class="mt-4">
+      <div class="flex-row bb-main justify-between align-center">
+        <h3 class="bold h6">
+          <a href="#hsl-picker-section" class="same-page fw-regular">HSL Picker</a>
+        </h3>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#hsl-picker">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>
+      <div id="hsl-picker" style="min-height: 220px;" class="hz-scroll flex-row justify-center mt-4"></div>
+    </section>
+    
+
+    <section id="lab-picker-section" class="mt-4">
+      <div class="flex-row bb-main justify-between align-center">
+        <h3 class="bold h6">
+          <a href="#lab-picker-section" class="same-page fw-regular">Lab Picker</a>
+        </h3>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#lab-picker">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>  
+        <div id="lab-picker" style="min-height: 220px;" class="hz-scroll flex-row justify-center mt-4"></div>
+    </section>
+    
+    
+  </section>
+
+  <script nonce="<%=locals.jsNonce%>" type="module">
+    import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+    const container = document.getElementById('color-container');
+    const hexColorInput = document.getElementById('hex-color-input')
+    const cssColorInput = document.getElementById('css-color-name-input');
+    const rgbPicker = document.getElementById('rgb-picker');
+    const hclPicker = document.getElementById('hcl-picker');
+    const lchPicker = document.getElementById('lch-picker');
+    const hslPicker = document.getElementById('hsl-picker');
+    const labPicker = document.getElementById('lab-picker');
+    var color = hexColorInput.value;
+
+    function picker(model, channels, color) {
+      // Specify the picker’s dimensions.
+      // const width = 928; // set by Observable to the window’s width, for a responsive chart
+      const width = 500;
+      const height = 70;
+
+      channels = channels.map(({ name, domain }) => ({
+        name,
+        scale: d3.scaleLinear().domain(domain).range([0, width]),
+        removeLastTick: domain[1]===100 || domain[1]===1
+      }));
+
+      // Start from the passed color (present after, e.g., a window resize event), or the midpoint.
+      for (const d of channels) d.x = Math.round(color ? d.scale(color[d.name]) : width / 2);
+
+      const wrapper = d3.create("div")
+      .attr('class','text-align-center');
+      const white = d3.rgb("white");
+      const black = d3.rgb("black");
+
+      const channel = wrapper.selectAll("div").data(channels).join("div").attr('class','mt-3');
+
+      const ctx = d3.local();
+
+      const canvas = channel
+        .append("canvas")
+        .attr("width", width)
+        .attr("height", 1)
+        .style("max-width", "100%")
+        .style("width", `${width}px`)
+        .style("height", `${height}px`)
+        .each(function (d) {
+          const context = this.getContext("2d");
+          const image = context.createImageData(width, 1);
+          ctx.set(this, { context, image, data: image.data });
+        })
+        .each(render);
+
+      const svg = channel
+        .append("svg")
+        .attr("width", width)
+        .attr("height", 25)
+        .attr("viewBox", [0, 0, width, 20])
+        .style("max-width", "100%")
+        .style("overflow", "visible")
+        .append("g")
+        .each(function (d) {
+          d3.select(this).call(
+            d3.axisBottom(d.scale).ticks(Math.min(width / 80, 10))
+          );
+          if (d.removeLastTick) d3.select(this).select("g:last-of-type").remove();
+        })
+        .append("text")
+        .attr("x", width)
+        .attr("y", 20)
+        .attr("dy", ".72em")
+        .style("text-anchor", "middle")
+        .style("text-transform", "uppercase")
+        .attr("fill", "currentColor")
+        .attr('class','bold')
+        .text((d) => d.name);
+
+      canvas.call(
+        d3.drag()
+          .subject(({x}) => ({x}))
+          .on("start drag", ({x}, d) => {
+            console.log(x);
+            d.x = Math.max(1, Math.min(width - 1, x));
+            canvas.each(render);
+          })
+      );
+
+      function render(d) {
+        const obj = {
+          a: channels[0].scale.invert(channels[0].x),
+          b: channels[1].scale.invert(channels[1].x),
+          c: channels[2].scale.invert(channels[2].x)
+        }
+        const current = d3[model](obj.a,obj.b,obj.c);
+
+        // Update the value of the cell and notify listeners (for example, this informs the “color” cell below).
+        if (d.name === "h") {
+          wrapper.node().value = current.copy();
+          wrapper.node().dispatchEvent(new Event("input"));
+          console.log(model);
+          switch (model) {
+            case 'rgb': {
+              const { r, g, b } = current;
+              wrapper.node().dispatchEvent(new CustomEvent("color-change",{ detail: { color: { r,g,b } }}));
+              break;
+            }
+            case 'hcl': {
+              const { h, c, l } = current;
+              wrapper.node().dispatchEvent(new CustomEvent("color-change",{ detail: { color: { h, c, l } }}));
+              break;
+            }
+            case 'hsl': {
+              const { h, s, l } = current;
+              wrapper.node().dispatchEvent(new CustomEvent("color-change",{ detail: { color: { h, s, l } }}));
+              break;
+            }
+            case 'lab': {
+              const { l, a, b } = current;
+              wrapper.node().dispatchEvent(new CustomEvent("color-change",{ detail: { color: { l, a, b } }}));
+              break;
+            }
+            default: {
+              break;
+            }
+          }
+          
+        }
+        console.log(this);
+        const { context, image, data } = ctx.get(this);
+        for (let x = 0, i = -1; x < width; ++x) {
+          const c = x === d.x ? white
+                  : x === d.x - 1 ? black
+                  : ((current[d.name] = d.scale.invert(x)), d3.rgb(current));
+          data[++i] = c.r;
+          data[++i] = c.g;
+          data[++i] = c.b;
+          data[++i] = 255;
+        }
+        context.putImageData(image, 0, 0);
+      }
+
+      return wrapper.node();
+    }
+
+    function getCurrentColorRepresentation() {
+      const input = document.getElementById('main-color-representation-input');
+      if (input) {
+        const val = input.value;
+        switch (val) {
+          case 'hex': {
+            return 'hex';
+            break;
+          }
+          case 'css color name': {
+            return 'css color name';
+            break;
+          }
+          case 'rgb': {
+            return 'rgb';
+            break;
+          }
+          case 'hsl': {
+            return 'hsl';
+            break;
+          }
+          case 'hcl': {
+            return 'hcl';
+            break;
+          }
+          case 'lch': {
+            return 'lch';
+            break;
+          }
+          case 'cubehelix': {
+            return 'cubehelix';
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+      }
+      return null;
+    }
+    function updateOutputColors(newColor) {
+      const colorRepresentation = getCurrentColorRepresentation();
+      if (colorRepresentation) {
+        var hexColor = undefined;
+        const hexListItem = document.getElementById('color-rep-list-hex');
+        const hexOutputInput = document.getElementById('color-rep-output-hex');
+        var rgbColor = undefined;
+        const rgbListItem = document.getElementById('color-rep-list-rgb');
+        const rgbOutputInput = document.getElementById('color-rep-output-rgb');
+        var hslColor = undefined;
+        const hslListItem = document.getElementById('color-rep-list-hsl');
+        const hslOutputInput = document.getElementById('color-rep-output-hsl');
+        var hclColor = undefined;
+        const hclListItem = document.getElementById('color-rep-list-hcl');
+        const hclOutputInput = document.getElementById('color-rep-output-hcl');
+        var lchColor = undefined;
+        const lchListItem = document.getElementById('color-rep-list-lch');
+        const lchOutputInput = document.getElementById('color-rep-output-lch');
+        var cubeHelixColor = undefined;
+        const cubeHelixListItem = document.getElementById('color-rep-list-cubehelix');
+        const cubeHelixOutputInput = document.getElementById('color-rep-output-cubehelix');
+        var cssColorNameColor = undefined;
+        const cssColorNameListItem = document.getElementById('color-rep-list-css-color-name');
+        const cssColorNameOutputInput = document.getElementById('color-rep-output-css-color-name');
+        var labColorNameColor = undefined;
+        const labColorNameListItem = document.getElementById('color-rep-list-lab');
+        const labColorNameOutputInput = document.getElementById('color-rep-output-lab');
+        switch (colorRepresentation) {
+          case 'hex': {
+            hexColor = d3.color(newColor).formatHex8();
+            rgbColor = d3.color(newColor).rgb();
+            hslColor = d3.hsl(newColor);
+            hclColor = d3.hcl(newColor);
+            lch = d3.lch(newColor);
+            cubeHelixColor = d3.cubehelix(newColor);
+            labColorNameColor = d3.lab(newColor);
+            break;
+          }
+          case 'css color name': {
+            
+            break;
+          }
+          case 'rgb': {
+
+            break;
+          }
+          case 'hsl': {
+
+            break;
+          }
+          case 'hcl': {
+
+            break;
+          }
+          case 'cubehelix': {
+
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+      }
+    }
+    const squareDim = 150;
+    if (container && rgbPicker && hclPicker && lchPicker && hslPicker && labPicker) {
+      const svg = d3.create('svg')
+      .attr("viewBox", [0, 0, squareDim, squareDim])
+      .attr('width',squareDim)
+      .attr('height',squareDim)
+      .attr('class','hz-scroll')
+      .style('overflow','auto')
+
+      const path = d3.path();
+      
+      path.rect(0,0,squareDim,squareDim);
+
+
+      svg.append('path')
+      .attr('d',path)
+      .attr('fill',color)
+      .attr('stroke','var(--text-primary)')
+      .attr('stroke-width','4')
+
+      container.append(svg.node());
+
+      rgbPicker.append(picker('rgb', [
+      { name: "r", domain: [0, 255] },
+      { name: "g", domain: [0, 255] },
+      { name: "b", domain: [0, 255] }
+      ], d3.color(color)));
+      rgbPicker.addEventListener('color-change',(e) => {
+        const { r, g, b } = e.detail.color;
+        console.log(r,g,b);
+      })
+      hclPicker.append(picker('hcl', [
+      { name: "h", domain: [0, 360] },
+      { name: "c", domain: [0, 100] },
+      { name: "l", domain: [0, 150] }
+      ], d3.hcl(color)))
+      hclPicker.addEventListener('color-change',(e) => {
+        const { h, c, l } = e.detail.color;
+      })
+      lchPicker.append(picker('lch', [
+      { name: "l", domain: [0, 150] },
+      { name: "c", domain: [0, 100] },
+      { name: "h", domain: [0, 360] }
+      ], d3.lch(color)))
+      lchPicker.addEventListener('color-change',(e) => {
+        const { l, a, b} = e.detail.color;
+      })
+      hslPicker.append(picker('hsl', [
+      { name: "h", domain: [0, 360] },
+      { name: "s", domain: [0, 1] },
+      { name: "l", domain: [0, 1] }
+      ], d3.hsl(color)))
+      hslPicker.addEventListener('color-change',(e) => {
+        const { h, s, l } = e.detail.color;
+      })
+      labPicker.append(picker('lab', [
+      { name: "l", domain: [0, 150] },
+      { name: "a", domain: [-100, 100] },
+      { name: "b", domain: [-100, 100] }
+      ],d3.lab(color)))
+      labPicker.addEventListener('color-change',(e) => {
+        const { l, a, b } = e.detail.color;
+      })
+      setTimeout(() => {
+        const pickers = Array.from(document.querySelectorAll('div[id$="-picker"]'));
+        pickers.forEach((el) => {
+          if (el.style.getPropertyValue('min-height')==='220px') el.style.removeProperty('min-height');
+        })
+      },500)
+    }
+    
+  </script>
+        
+  <%-include('../../partials/pagePartial')%>
+<%}%>

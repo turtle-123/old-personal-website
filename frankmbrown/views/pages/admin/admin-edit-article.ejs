@@ -1,0 +1,22 @@
+<%# 
+PARTIAL ROUTE: pages/admin/admin-edit-article.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.pageObj
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title"><%=locals.pageObj.title%></h1>
+
+  <section id="edit-post" class="mt-2">
+    <div id="reloading-article-form-indicator" class="flex-row justify-center t-secondary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Reload Article Form Indicator">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <%-locals.pageObj.innerHTML%>
+  </section>
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

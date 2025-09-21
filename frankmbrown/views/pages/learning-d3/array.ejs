@@ -1,0 +1,50 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/array.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  <h1 class="page-title" id="top-of-page">D3.js Array</h1>
+  <p>
+    Array manipulation, ordering, searching, summarizing, etc.
+  </p>
+  <ul>
+    <li>
+      Adding numbers - Add floating point values with full precision.
+    </li>
+    <li>
+      Binning data - Bin discrete samples into continuous, non-overlapping intervals.
+    </li>
+    <li>
+      Bisecting data - Quickly find a value in a sorted array.
+    </li>
+    <li>
+      Blurring data - Blur quantitative values in one or two dimensions.
+    </li>
+    <li>
+      Grouping data - Group discrete values.
+    </li>
+    <li>
+      Interning values - Create maps and sets with non-primitive values such as dates.
+    </li>
+    <li>
+      Set operations - Logical operations on sets.
+    </li>
+    <li>
+      Sorting data - Sort and reorder arrays of values.
+    </li>
+    <li>
+      Summarizing data - Compute summary statistics.
+    </li>
+    <li>
+      Ticks - Generate representative values from a continuous interval.
+    </li>
+    <li>
+      Transforming data - Derive new arrays.
+    </li>
+  </ul>   
+  <%-include('../../partials/pagePartial')%>
+<%}%>

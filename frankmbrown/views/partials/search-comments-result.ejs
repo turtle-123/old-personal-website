@@ -1,0 +1,20 @@
+<div class="flex-row justify-end">
+    <button type="button" class="outlined error medium" id="remove-search-comments-but">
+        REMOVE SEARCH
+    </button>
+    <script defer nonce="<%=locals.jsNonce%>">
+(() => {
+    const b = document.getElementById('remove-search-comments-but');
+    if (b) {
+        b.addEventListener('click',() => {
+            const inp = document.getElementById('search-comments-searchbox');
+            if (inp) {
+                inp.value = '';
+                inp.dispatchEvent(new Event("change"));
+            }
+        })
+    }
+})()
+    </script>
+</div>
+<%-locals.comments_str%>

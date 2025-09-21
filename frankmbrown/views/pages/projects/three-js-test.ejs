@@ -1,0 +1,281 @@
+<%# 
+PARTIAL ROUTE: pages/projects/three-js-test.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.settings[locals
+- locals.settings[settingsMode]
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  <h1 class="page-title">
+    <a href="https://threejs.org/" style="font-size: inherit; font-weight: inherit;" class="secondary link" target="_blank">Three JS </a>Test
+  </h1>
+  <p class="body1">
+    I am including this here for now to show a working example of Three js in a production environment that includes importing a .stl file. 
+    <br>
+    STL files are loaded using a url with Three.js, so it would probably be best to host, if you are hosting a large amount of stl files, on Amazon S3. 
+    <br>
+    I plan on creating a node for the lexical implementation that allows users to upload 3d models and probably include that in the polls as well.
+    <br>
+    <span class="t-error fw-regular">
+      It looks like there is a problem with the renderer being correctly resized when the window is resized. I'll come back to this later after creating the 
+    </span>
+    <a href="/projects/create-svg"  hx-get="/projects/create-svg"  class="primary link" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true">SVG Editor</a>. The problem with the threejs renderer being correctly resized arises 
+  </p>
+
+  <section id="example-render-3d-objects" class="mt-2">
+      <h2 class="bold bb-thick h2">
+        <a href="#example-render-3d-objects" class="same-page fw-regular">Example Render 3D Objects</a>
+      </h2>
+      <p class="mt-2">
+        Render 3D Objects on load.
+      </p>
+      <div class="block text-align-center">
+        <div data-src="" data-color="" id="load-three-js" data-three-js-object class="mt-2" style="position: relative; display: inline-block; min-height: 300px; height: 300px; max-height: 300px; width: 300px; min-width: 350px; max-width: 350px; border: 1px solid var(--divider);">
+    
+          <div id="info">
+            Example of Adding Text
+          </div>
+          <style>
+          #info {
+            position: absolute;
+            top: 5px;
+            width: 100%;
+            text-align: center;
+            z-index: 35;
+            display:block;
+            color: black;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0px auto;
+          }
+          </style>
+<button data-fullscreen-btn data-el="#load-three-js" type="button" class="icon medium fullscreen-btn"  aria-label="Enter / Exit Fullscreen">
+  <svg data-enter focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Fullscreen"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>
+  <svg data-exit hidden focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FullscreenExit"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"></path></svg>
+</button>
+        </div>
+        
+      </div>
+  </section>
+
+  <section id="example-upload-3d-objects" class="mt-2">
+      <h2 class="bold bb-thick h2">
+        <a href="#example-upload-3d-objects" class="same-page fw-regular">Example Uploading 3D Objects</a>
+      </h2>
+      <p class="mt-2">
+        Upload 3D objects to s3 and then 
+      </p>
+  </section>
+
+  <section id="example-form-change-color" class="mt-2">
+      <h2 class="bold bb-thick h2">
+        <a href="#example-form-change-color" class="same-page fw-regular">Example of Form for Changing </a>
+      </h2>
+      <details aria-label="Edit ThreeD Model Appearance" class="mt-2">
+        <summary>
+          <span class="h6 fw-regular">Edit 3D Model Appearance</span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+            <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+            </path>
+          </svg>
+        </summary>
+        <div class="accordion-content" aria-hidden="true">
+          <div class="flex-row gap-2 w-100">
+            <fieldset class="grow-1">
+              <legend class="h6 bold">Scene</legend>
+              <label class="body2" for="ambient_light_">Ambient Light:</label>
+              <div class="flex-row justify-begin align-center gap-2">
+                <input type="color" data-coloris name="ambient_light_" id="ambient_light_" value="<%=locals.settings[locals.settingsMode].background%>" style="margin-top: 2px;">
+                <span class="body2"><%=locals.settings[locals.settingsMode].background%></span>
+              </div>
+    
+              <label class="checkbox mt-2">
+              <input type="checkbox" class="primary" name="add_scene_fog" id="add_scene_fog">
+                Add Scene Fog
+              </label>
+    
+              <label class="body2 mt-1" for="scene_fog_color_">Scene Fog Color:</label>
+              <div class="flex-row justify-begin align-center gap-2">
+                <input type="color" data-coloris name="scene_fog_color_" id="scene_fog_color_" value="<%=locals.settings[locals.settingsMode].primary%>" style="margin-top: 2px;">
+                <span class="body2"><%=locals.settings[locals.settingsMode].primary%></span>
+              </div>
+            </fieldset>
+            <fieldset class="grow-1">
+              <legend class="h6 bold">Material</legend>
+              <label class="checkbox">
+              <input type="checkbox" class="secondary" name="three_material_transparent_" id="three_material_transparent_">
+                Transparent
+              </label>
+  
+              <label for="three_material_opacity_" class="mt-1">Opacity:</label>
+              <input name="three_material_opacity_" id="three_material_opacity_" type="range" min="0" max="1" value="1" step="0.01" style="background-size: 100% 100%;">
+              <output class="hidden" for="three_material_opacity_" hidden>1</output>
+  
+              <label class="checkbox mt-1">
+              <input type="checkbox" class="info" name="three_material_depth_test_" id="three_material_depth_test_" checked>
+              Depth Test
+              </label>
+              
+              <label class="checkbox mt-1">
+              <input type="checkbox" class="warning" name="three_material_depth_write_" id="three_material_depth_write_" checked>
+              Depth Write
+              </label>
+  
+              <label for="three_material_alpha_test_" class="mt-1">Alpha Test:</label>
+              <input name="three_material_alpha_test_" id="three_material_alpha_test_" type="range" min="0" max="1" value="0" step="0.01" class="primary" style="background-size: 0% 100%;">
+              <output class="hidden" for="three_material_alpha_test_" hidden>50</output>
+  
+              <label class="checkbox mt-1">
+              <input type="checkbox" class="error" name="three_material_alpha_hash_" id="three_material_alpha_hash_">
+              Alpha Hash
+              </label>
+  
+              <label class="checkbox mt-1">
+              <input type="checkbox" class="success" name="three_material_visible_" id="three_material_visible_" checked>
+              Visible
+              </label>
+  
+              <fieldset class="mt-1">
+                <legend class="body1 bold">Side</legend>
+                <div class="flex-row align-center gap-2">
+                  <label class="radio">
+                  <input checked type="radio" name="three_material_side" value="front" class="secondary" checked>
+                  Front
+                  </label>
+                  
+                  <label class="radio">
+                  <input type="radio" name="three_material_side" value="INPUT_VALUE" class="secondary">
+                  Back
+                  </label>
+  
+                  <label class="radio">
+                  <input type="radio" name="three_material_side" value="double" class="secondary">
+                  Double
+                  </label>
+                </div>
+              </fieldset>
+  
+            </fieldset>
+          </div>
+          <fieldset>
+            <legend class="h6 bold">Physical Material</legend>
+            <div class="flex-row gap-2 w-100">
+              <div class="grow-1">
+                <label class="body2" for="physical_material_color_">Color:</label>
+                <div class="flex-row justify-begin align-center gap-2">
+                  <input type="color" data-coloris name="physical_material_color_" id="physical_material_color_" value="<%=locals.settings[settingsMode].primary%>" style="margin-top: 2px;">
+                  <span class="body2"><%=locals.settings[settingsMode].primary%></span>
+                </div>
+                <label for="physical_material_roughness_" class="mt-1">Roughness:</label>
+                <input name="physical_material_roughness_" id="physical_material_roughness_" type="range" min="0" max="1" value="1" step="0.01" style="background-size: 100% 100%;">
+                <output class="hidden" for="physical_material_roughness_" hidden>50</output>
+                <label for="physical_material_ior_" class="mt-1">IOR:</label>
+                <input name="physical_material_ior_" id="physical_material_ior_" type="range" min="0" max="2.33" value="1.50" step="0.01" class="primary" style="background-size: 100% 100%;">
+                <output class="hidden" for="physical_material_ior_" hidden>50</output>
+                <label for="physical_material_iridescence_" class="mt-1">Iridescence:</label>
+                <input name="physical_material_iridescence_" id="physical_material_iridescence_" type="range" min="0" max="1" value="0" step="0.01" style="background-size: 100% 100%;">
+                <output class="hidden" for="physical_material_iridescence_" hidden>50</output>
+                <label for="physical_material_sheen_" class="mt-1">Sheen:</label>
+                <input name="physical_material_sheen_" id="physical_material_sheen_" type="range" min="0" max="1" value="0" step="0.01" style="background-size: 100% 100%;" class="primary">
+                <output class="hidden" for="physical_material_sheen_" hidden>50</output>
+  
+                <label class="body2 mt-1" for="physical_material_sheen_color_">Sheen Color:</label>
+                <div class="flex-row justify-begin align-center gap-2">
+                  <input type="color" data-coloris name="physical_material_sheen_color_" id="physical_material_sheen_color_" value="<%=locals.settings[settingsMode].background%>" style="margin-top: 2px;">
+                  <span class="body2"><%=locals.settings[settingsMode].background%></span>
+                </div>
+                <label for="physical_material_clearcoat_roughness_" class="mt-1">Clearcoat Roughness:</label>
+                <input class="primary" name="physical_material_clearcoat_roughness_" id="physical_material_clearcoat_roughness_" type="range" min="0" max="1" value="0" step="0.01" style="background-size: 100% 100%;">
+                <output class="hidden" for="physical_material_clearcoat_roughness_" hidden>50</output>
+  
+                <label class="body2 mt-1" for="physical_material_specular_color_">Specular Color:</label>
+                <div class="flex-row justify-begin align-center gap-2">
+                  <input type="color" data-coloris name="physical_material_specular_color_" id="physical_material_specular_color_" value="<%=locals.settings[settingsMode].textColor%>" style="margin-top: 2px;">
+                  <span class="body2"><%=locals.settings[settingsMode].textColor%></span>
+                </div>
+  
+                <label class="checkbox mt-1">
+                  <input type="checkbox" class="secondary" name="physical_material_wireframe_" id="physical_material_wireframe_">
+                  Wireframe
+                  </label>
+    
+                  <label class="checkbox mt-1">
+                  <input type="checkbox" class="warning" name="physical_material_fog_" id="physical_material_fog_" checked>
+                  Fog
+                  </label>
+    
+                  <label class="checkbox mt-1">
+                  <input type="checkbox" class="success" name="physical_material_fibers_alpha_" id="physical_material_fibers_alpha_">
+                  Fibers Alpha Map
+                  </label>
+    
+                  <label class="checkbox mt-1">
+                  <input type="checkbox" class="secondary" name="physical_material_fibers_iridescence_" id="physical_material_fibers_iridescence_">
+                  Fibers Iridescence Map
+                  </label>
+  
+              </div>  
+              <div class="grow-1">
+                <label class="body2" for="physical_material_emissive_">Emissive:</label>
+                <div class="flex-row justify-begin align-center gap-2">
+                  <input type="color" data-coloris name="physical_material_emissive_" id="physical_material_emissive_" value="<%=locals.settings[settingsMode].background%>" style="margin-top: 2px;">
+                  <span class="body2"><%=locals.settings[settingsMode].background%></span>
+                </div>
+                <label for="physical_material_metalness_" class="mt-1">Metalness:</label>
+                <input name="physical_material_metalness_" id="physical_material_metalness_" type="range" min="0" max="1" value="0" step="0.01" style="background-size: 100% 100%;" class="primary">
+                <output class="hidden" for="physical_material_metalness_" hidden>50</output>
+                <label for="physical_material_reflectivity_" class="mt-1">Reflectivity:</label>
+                <input name="physical_material_reflectivity_" id="physical_material_reflectivity_" type="range" min="0" max="1" value="0.5" step="0.01" style="background-size: 100% 100%;">
+                <output class="hidden" for="physical_material_reflectivity_" hidden>50</output>
+                <label for="physical_material_iridescence_ior_" class="mt-1">Iridescence IOR:</label>
+                <input name="physical_material_iridescence_ior_" id="physical_material_iridescence_ior_" type="range" min="0" max="2.33" value="1.3" step="0.01" style="background-size: 100% 100%;" class="primary">
+                <output class="hidden" for="physical_material_iridescence_ior_" hidden>50</output>
+                <label for="physical_material_sheen_roughness_" class="mt-1">Sheen Roughness:</label>
+                <input name="physical_material_sheen_roughness_" id="physical_material_sheen_roughness_" type="range" min="0" max="1" value="1" step="0.01" style="background-size: 100% 100%;">
+                <output class="hidden" for="physical_material_sheen_roughness_" hidden>50</output>
+                <label for="physical_material_clearcoat_" class="mt-1">Clearcoat:</label>
+                <input class="primary" name="physical_material_clearcoat_" id="physical_material_clearcoat_" type="range" min="0" max="1" value="0" step="0.01" style="background-size: 100% 100%;">
+                <output class="hidden" for="physical_material_clearcoat_" hidden>50</output>
+                <label for="physical_material_specular_intensity_" class="mt-1">Specular Intensity:</label>
+                <input name="physical_material_specular_intensity_" id="physical_material_specular_intensity_" type="range" min="0" max="1" value="1" step="0.01" style="background-size: 100% 100%;">
+                <output class="hidden" for="physical_material_specular_intensity_" hidden>50</output>
+                
+                <label class="checkbox mt-1">
+                <input type="checkbox" class="primary" name="physical_material_flat_shading_" id="physical_material_flat_shading_">
+                Flat Shading
+                </label>
+  
+                <label class="checkbox mt-1">
+                <input type="checkbox" class="info" name="physical_material_vertex_colors_" id="physical_material_vertex_colors_">
+                Vertex Colors
+                </label>
+  
+                <label class="checkbox mt-1">
+                <input type="checkbox" class="error" name="physical_material_reflection_env_maps_" id="physical_material_reflection_env_maps_">
+                Reflection envMaps
+                </label>
+  
+                <label class="checkbox mt-1">
+                <input type="checkbox" class="primary" name="physical_material_bricks_roughness_maps_" id="physical_material_bricks_roughness_maps_">
+                Bricks Roughness Map
+                </label>
+  
+                <label class="checkbox mt-1">
+                <input type="checkbox" class="info" name="physical_material_fibers_metalness_maps_" id="physical_material_fibers_metalness_maps_">
+                Fibers Metalness Map
+                </label>
+  
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </details>
+  </section>
+
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>
+  

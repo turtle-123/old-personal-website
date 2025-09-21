@@ -1,0 +1,172 @@
+<%# 
+PARTIAL ROUTE: pages/test.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.isPhone?'checked':''
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+    <h1 class="page-title">Surveys</h1>
+    
+    <section id="about-this-page" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#about-this-page" class="same-page bold">
+            About This Page
+          </a>
+        </h2>
+        <p class="mt-2">
+            I created this page to test out my system of letting users complete surveys and view the results of surveys. I am letting visitors to this web app complete surveys based on their IP address. The <strong>closed surveys</strong> section below shows completed surveys, and the <strong>open surveys</strong> section shows surveys that can still be completed. You can see what goes into creating a survey on the <a class="primary link" hx-get="/projects/create-a-survey" href="/projects/create-a-survey" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">create a survey project page</a>.
+        </p>
+
+    </section>
+
+    <section id="search-surveys" class="mt-4">
+      <div class="flex-row bb-thick justify-between">
+        <h2 class="bold h2">
+          <a href="#search-surveys" class="same-page bold">
+            Search Surveys
+          </a>
+        </h2>
+        <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#se-sur-hs">
+          <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+          <span data-hide="">HIDE</span>
+          <span data-show="" hidden="">SHOW</span>
+        </button>
+      </div>  
+      
+        
+        <div id="se-sur-hs">
+          <div class="input-group block w-100 mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+            <label for="search-surveys-input">Search Surveys:</label>
+            <div class="mt-1 text-input block medium">
+              <input 
+              type="search" 
+              class="icon-after" 
+              name="search-surveys-input" 
+              id="search-surveys-input" 
+              placeholder="Search surveys..." 
+              hx-trigger="search"
+              hx-get="/surveys/search" 
+              hx-indicator="#ssurv-ind"
+              hx-target="#search-surveys-output-el"
+              hx-swap="innerHTML"
+              hx-include="#search-survey-default-radio, #search-survey-semantic-radio, #search-survey-title-radio"
+              >
+              <svg class="icon-after" focusable="false" inert viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                </path>
+              </svg>
+            </div>
+          </div>
+          <fieldset class="mt-1">
+            <legend class="h5 bold">Search Type</legend>
+            <div class="mt-1 flex-row align-center gap-2 justify-start wrap">
+              <label class="radio">
+              <input checked id="search-survey-default-radio" type="radio" name="survey-search-type" value="default" class="secondary"
+              hx-trigger="change"
+              hx-get="/surveys/search" 
+              hx-indicator="#ssurv-ind"
+              hx-target="#search-surveys-output-el"
+              hx-swap="innerHTML"
+              hx-include="#search-surveys-input, #search-survey-semantic-radio, #search-survey-title-radio"
+              >
+              Default
+              </label>
+              <label class="radio">
+              <input id="search-survey-semantic-radio" type="radio" name="survey-search-type" value="semantic" class="primary"
+              hx-trigger="change"
+              hx-get="/surveys/search" 
+              hx-indicator="#ssurv-ind"
+              hx-target="#search-surveys-output-el"
+              hx-swap="innerHTML"
+              hx-include="#search-survey-default-radio, #search-surveys-input, #search-survey-title-radio"
+              >
+              Semantic
+              </label>
+              <label class="radio">
+                <input id="search-survey-title-radio" 
+                type="radio" 
+                name="survey-search-type" 
+                value="by-title" 
+                class="warning"
+                hx-trigger="change"
+                hx-get="/surveys/search" 
+                hx-indicator="#ssurv-ind"
+                hx-target="#search-surveys-output-el"
+                hx-swap="innerHTML"
+                hx-include="#search-survey-default-radio, #search-surveys-input"
+                >
+                By Title
+                </label>
+            </div>
+          </fieldset>
+          <div id="ssurv-ind" class="flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Searching Surveys">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <output class="block mt-2" style="min-height: 150px; max-height: 350px; scrollbar-width: none; overflow-y: auto;" id="search-surveys-output-el">
+            <div class="alert medium filled info icon" role="alert">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+              <p class="alert">
+                Survey Search output goes here...
+              </p>
+            </div>
+          </output>
+        </div>
+    </section>
+
+    <section id="closed-surveys" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#closed-surveys" class="same-page bold">
+            Closed Surveys
+          </a>
+        </h2>
+        <p class="mt-2">
+            Click on one of the surveys below to see the results of a survey.
+        </p>
+        <div id="closed-surveys-container" class="mt-2">
+          <%-locals.closed_surveys%>
+        </div>
+    </section>
+
+    <section id="open-surveys" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#open-surveys" class="same-page bold">
+            Open Surveys
+          </a>
+        </h2>
+        <p class="mt-2">
+          Click on one of the surveys below to respond to a survey.
+        </p>
+        <div id="open-surveys-container" class="mt-2">
+          <%-locals.open_surveys%>
+        </div>
+    </section>
+
+    <div id="question-count-tool" class="tooltip body2" data-placement="top">
+      Number of Survey Questions
+    </div>
+    <div class="tooltip body2" id="deadline-tool" data-placement="top">
+      Survey Deadline
+    </div>
+    <div id="likes-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+      Likes
+    </div>
+    <div id="comments-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+      Comments
+    </div>
+    <div id="annotations-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+      Annotations
+    </div>
+    <div id="views-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+      Views
+    </div>
+    <div id="responses-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+      Responses
+    </div>
+
+    <%-include('../partials/pagePartial')%>
+  <%}%>
+  

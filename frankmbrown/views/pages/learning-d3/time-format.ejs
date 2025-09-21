@@ -1,0 +1,18 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/time-format.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+  <h1 class="page-title" id="top-of-page">D3.js Time Format</h1>
+  
+  <p>
+    This module provides an approximate JavaScript implementation of the venerable strptime and strftime functions from the C standard library, and can be used to parse or format dates in a variety of locale-specific representations. To format a date, create a formatter from a specifier (a string with the desired format directives, indicated by %); then pass a date to the formatter, which returns a string. For example, to convert the current date to a human-readable string:
+  </p>
+        
+  <%-include('../../partials/pagePartial')%>
+<%}%>

@@ -1,0 +1,105 @@
+<%# 
+PARTIAL ROUTE: pages/daily-reading-update-old.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+    
+    <h1 class="page-title">Add Old Daily Reading Post</h1>
+        
+    <section id="why-create-this" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#why-create-this" class="same-page bold">
+            Why Create This Page
+          </a>
+        </h2>
+        <p class="mt-2">
+            Sometimes I miss the opportunity to submit a daily reading article (or I have many things that I want to read and I don't want to get too ahead of myself), so I am creating this page so that I can creating daily reading articles and submit them for previous days - days that I missed. 
+        </p>
+    </section>
+
+    <section id="add-old-daily-reading-article" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#add-old-daily-reading-article" class="same-page bold">
+            Add Old Daily Reading Article
+          </a>
+        </h2>
+        <p class="mt-2">
+          Use the form below to submit a daily reading article for a previous day. <span class="fw-regular">If you enter an article id, then you don't have to fill out the title, description, and image inputs.</span> <span class="t-warning fw-regular">The date input is required. Enter the date that this daily reading article should fall under.</span>
+        </p>
+        <form class="mt-2" data-loading="Uploading Old Daily Reading Post..." hx-post="/daily-reading/old" hx-trigger="submit" hx-target="#out-sub-daily-read" hx-swap="innerHTML">
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+            <label for="article-id">Article ID:</label>
+            <div class="mt-1 number-input medium">
+                <input 
+                type="number" 
+                step="1" 
+                name="article-id" 
+                id="article-id" 
+                placeholder="Enter the article id - or leave blank to create a new article..." 
+                autocomplete="off" 
+                spellcheck="false" 
+                autocapitalize="off"
+                >
+                <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+          </div>
+
+          <div class="input-group block mt-3" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+            <label for="article-title">Article Title:</label>
+            <div class="text-input block medium">
+                <input type="text" id="article-title" name="article-title" class="medium icon-before mt-1" placeholder="Enter the article title..." maxlength="100" minlength="1" spellcheck="true" autocapitalize="on" value="">
+                <svg class="icon-before" focusable="false" inert="" viewBox="0 0 24 24" tabindex="-1" title="Title"><path d="M5 4v3h5.5v12h3V7H19V4z"></path></svg>
+            </div>
+          </div>
+          <div class="input-group block mt-3" data-hover="false" data-focus="false" data-error="false" data-blurred="true"> 
+            <label for="article-description">Article Description:</label>
+            <div class="mt-1 text-input block medium disabled">
+                <textarea id="article-description" name="article-description" placeholder="Enter the article description here..." rows="5" maxlength="400" spellcheck="true" autocomplete="off" autocapitalize="on"></textarea>
+            </div>
+          </div>
+          <label for="article-banner-image" class="bold mt-3">Article Banner Image:</label>
+          <input data-article-image="" type="file" id="article-banner-image" data-image-input="" accept="image/*" name="article-banner-image" class="mt-1 secondary">
+          <output class="block" for="article-banner-image"></output>
+          <div class="input-group block mt-2">
+           <label for="old-article-date">Date Input:</label>
+           <div class="flex-row align-center gap-2 mt-1">
+           <button data-launch-datetime type="button" class="icon medium" aria-label="Launch Date Input Menu">
+           <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="DateRange"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"></path></svg>
+           </button>
+           <input placeholder="mm/dd/yyyy" type="date" id="old-article-date" name="old-article-date" />
+           </div>
+          </div>
+          <%-createArticleHTML%>
+           
+
+           <div class="flex-row justify-between align-center mt-2" id="submit-art">
+            <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+            <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                SUBMIT
+            </button>
+           </div>
+        </form>
+    </section>
+
+    <div class="mt-2" id="out-sub-daily-read">
+
+    </div>
+
+    <%-include('../partials/pagePartial')%>
+<%}%>

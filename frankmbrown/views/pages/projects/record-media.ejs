@@ -1,0 +1,478 @@
+<%# 
+PARTIAL ROUTE: pages/projects/record-media.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.jsNonce
+- locals.auth>
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  <h1 class="page-title">Record Media</h1>
+
+  <section id="why">
+    <h2 class="bold bb-thick h2">
+      <a href="#why" class="same-page fw-regular">Why The Addition of This Feature</a>
+    </h2>
+    <p class="mt-2">
+      Especially for audio files, the ability to record and upload media ensures that users 
+      will upload media. Many users probably do not have audio files saved. Allowing the ability to 
+      record and upload unique images / audio recordings / videos also ensures that unique content will be uploaded.
+    </p>
+  </section>
+
+  <div class="alert outlined error medium icon mt-1" role="alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Error"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+      <p class="alert fw-regular">
+      I haven't looked over the documentation here yet, so I wouldn't read it if you are looking for how I created the media uploads / why I did things the way I did.
+    </p>
+    <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+    </button>
+  </div>
+
+  <section id="how-it-works" class="mt-2">
+      <h2 class="bold bb-thick h2">
+        <a href="#how-it-works" class="same-page fw-regular">How It Works / Things To Remember</a>
+      </h2>
+      <h3 class="body1 bold bb mt-2">
+        Generally, This is How File Uploads Should Look On Load:
+      </h3>
+<div style="position: relative;" class="mt-1"><pre class="hz-scroll"><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;INPUT_NAME&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mt-2 bold&quot;</span>&gt;</span>LABEL:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">accept</span>=<span class="hljs-string">&quot;(audio|image|video)/*&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;INPUT_NAME&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;INPUT_NAME&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mt-1&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">output</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mt-2 block&quot;</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;INPUT_NAME&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">output</span>&gt;</span></span></code></pre>
+        <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+            </path>
+          </svg>
+        </button>
+      </div>
+      <p class="mt-1 t-warning fw-regular">
+        When you want to include a default image on the page include this as the nextElementSibling of the file input:
+      </p>
+<div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">accept</span>=<span class="hljs-string">&quot;(audio|image|video)/*&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;INPUT_NAME-text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;INPUT_NAME-text&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mt-1&quot;</span> /&gt;</span></span></code></pre>
+  <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+      </path>
+    </svg>
+  </button>
+</div>
+      <div class="table-wrapper">
+        <table cellspacing="0" class="mt-1">
+          <caption>Quick Info on Media Types</caption>
+          <thead>
+            <tr>
+              <th scope="col">Component</th>
+              <th scope="col">Accepted Types</th>
+              <th scope="col">Recorded Format</th>
+              <th scope="col">Max Size</th>
+              <th scope="col">Max Number (Multiple)</th>
+              <th scope="col">Validation</th>
+              <th scope="col">Admin Only</th>
+              <th scope="col">Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Image:</th>
+              <td>jpeg, jpg, png, webp, gif, bmp, svg</td>
+              <td>webp</td>
+              <td>5MB</td>
+              <td>30</td>
+              <td>Google Image API</td>
+              <td>false</td>
+              <td>
+                <a class="secondary link" target="_blank" href="https://aws.amazon.com/s3/pricing/?did=ap_card&trk=ap_card">Amazon S3 Pricing</a> 
+                <br>
+                <a class="secondary link" target="_blank" href="https://cloud.google.com/vision/pricing">Cloud Vision API Pricing</a>
+                <br>
+                <a class="secondary link" target="_blank" href="https://aws.amazon.com/lambda/pricing/">AWS Lambda Pricing</a>
+            </td>
+            </tr>
+            <tr>
+              <th scope="row">Audio:</th>
+              <td>m4a, flac, mp3, mp4, wav, wma, aac, webm, mpeg, mov, ogg</td>
+              <td><strong class="t-warning">TBD</strong></td>
+              <td>300MB</td>
+              <td>10</td>
+              <td>Not Yet - should transcribe audio and test that way</td>
+              <td>true</td>
+              <td>
+                <a class="secondary link" target="_blank" href="https://aws.amazon.com/s3/pricing/?did=ap_card&trk=ap_card">Amazon S3 Pricing</a> 
+  
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Video:</th>
+              <td>mp4, mov, avi, wmv, avchd, webm, flv</td>
+              <td><strong class="t-warning">TBD</strong></td>
+              <td>300MB</td>
+              <td>10</td>
+              <td>Not yet - use Amazon or Google Video</td>
+              <td>true</td>
+              <td>
+                <a class="secondary link" target="_blank" href="https://aws.amazon.com/s3/pricing/?did=ap_card&trk=ap_card">Amazon S3 Pricing</a> 
+  
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alert warning filled medium mt-1 icon" role="alert">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+        <p class="alert">
+          These docs won't be that good but I just hope to explain how I handle media uploads enough so that I can come back and get the gist of it. It is working fine now except for styling on safari ios and 
+          the fact that I should probably allow users to more easily delete images and i need to add functionality so that users can have a default image on page load that they can then edit...
+        </p>
+        <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </div>
+      <ol class="mt-1">
+        <li class="h6 bold" id="image-upload-example-desc">
+          <a href="#image-upload-example-text" class="same-page h6 bold">Image Upload</a>
+          <ol class="second body1">
+            <li>
+              Since we use the <a class="secondary link" target="_blank" href="https://pqina.nl/pintura/">Pintura image editor</a> to allow users to edit images on the client, and since we need to keep track of what image the editor is currently using and to avoid loading multiple editors for a sing image input and for multiple other reasons, we keep track of the uploaded images in the client side object seen below: <button class="text warning small" data-hide-show data-el="#image-tracker-client" ><span data-hide>HIDE</span> <span data-show hidden>SHOW</span></button>
+            </li>
+<div id="image-tracker-client" style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="hljs-keyword">type</span> <span class="hljs-title class_">ImageFilesArray</span> = {
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>,
+  <span class="hljs-attr">currentUrl</span>: <span class="hljs-built_in">string</span>,
+  <span class="hljs-attr">currentFile</span>: <span class="hljs-title class_">File</span>,
+  <span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span>,
+  <span class="hljs-attr">inputName</span>: <span class="hljs-built_in">string</span>
+}[];
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">KeepTrackType</span> = {
+  <span class="hljs-attr">images</span>: {
+    [<span class="hljs-attr">nameOfUploadedFile</span>: <span class="hljs-built_in">string</span>]: {
+      <span class="hljs-attr">inputName</span>: <span class="hljs-built_in">string</span>,
+      <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>,
+      <span class="hljs-attr">currentUrl</span>: <span class="hljs-built_in">string</span>,
+      <span class="hljs-attr">currentFile</span>: <span class="hljs-title class_">File</span>,
+      <span class="hljs-attr">input</span>: <span class="hljs-title class_">HTMLInputElement</span>,
+      <span class="hljs-attr">index</span>: <span class="hljs-built_in">number</span>,
+      <span class="hljs-attr">imageEditor</span>: <span class="hljs-title class_">PinturaEditor</span>|<span class="hljs-literal">undefined</span>,
+      <span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span>
+    }
+  },
+  <span class="hljs-attr">multipleImages</span>: {
+    [<span class="hljs-attr">inputName</span>: <span class="hljs-built_in">string</span>]: {
+      <span class="hljs-attr">files</span>: <span class="hljs-title class_">ImageFilesArray</span>,
+      <span class="hljs-attr">input</span>: <span class="hljs-title class_">HTMLInputElement</span>,
+      <span class="hljs-attr">imageEditor</span>: <span class="hljs-title class_">PinturaEditor</span>|<span class="hljs-literal">undefined</span>
+    }
+  }
+}
+<span class="hljs-comment">/**
+  * Object to keep track of all images, audio, and videos that have been submitted on the page. This object should be cleared on page change
+  *  
+  */</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">KeepTrackPage</span>: <span class="hljs-title class_">KeepTrackType</span> = {
+  <span class="hljs-attr">images</span>: {},
+  <span class="hljs-attr">multipleImages</span>: {}
+};</code></pre>
+        <button aria-label="Copy Code Output" data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;" aria-haspopup="true">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy">
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+            </path>
+          </svg>
+        </button>
+      </div>
+            <li>
+              When the page sees any image, audio, or video components, the record-media.js JavaScript is lazy-loaded.
+            </li>
+            <li>
+              We set two event listeners on <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">accept</span>=<span class="hljs-string">&quot;image/*&quot;</span> /&gt;</span></span></code></span> elements. We listen for the <strong class="t-primary">change</strong> and <strong class="t-primary">delete-image</strong> events.
+            </li>
+            <li>
+              When a change event is invoked by the user either uploading or taking an image with their device, we get the name, and multiple attributes of the input and get the files that were uploaded by the user.
+              <ul class="third">
+                <li>
+                  For multiple image inputs, we create custom forward and back buttons that, when clicked, dispatch a custom <strong class="t-secondary">nav-media</strong> event with a <strong class="t-primary">detail</strong> that is equal to either <i>next</i> or <i>back</i>.
+                </li>
+                <li>
+                  When this custom event is dispatched, we use the client side object to load the appropriate new image into the Pintura editor and disable the forward / back buttons when we reach the start / end of the uploaded images.
+                </li>
+              </ul>
+            </li>
+            <li>
+              When looking at the uploaded image files - we first check that less than 30 images were uploaded (this is the max). We slice the first 30 files out if the length is greater than 30.
+            </li>
+            <li>
+              We then get the signed urls for the images and lazy-load the pintura image editor. 
+            </li>
+            <li>
+              We post the images to Amazon s3, which runs a Lambda function on image upload that checks whether the image is inappropriate using the Google Image API. If it is inappropriate then the image is removed from the bucket. <b class="t-error">Should probably add functionality so that when the image fails to load on the client, it ios replaced by a default image.</b>
+            </li>
+            <li>
+              We get a pintura image editor and append it to the output element with the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span></span></code></span> elements for adding short and long descriptions to the element. The short input is normally used to be the <strong>alt</strong> attribute for the image, and the long description is used as the <strong>data-text</strong> attribute.
+            </li>
+            <li>
+              To include a default image in the page, render the 
+            </li>
+          </ol>
+        </li>
+        <li class="h6 bold" id="audio-upload-example-desc" >
+          <a href="#audio-upload-example-desc" class="same-page h6 bold">Audio Upload</a>
+          <ol class="second body2">
+            <li>
+              When the page sees any image, audio, or video components, the record-media.js JavaScript is lazy-loaded.
+            </li>
+            <li>
+              The audio and video uploads basically go through the same process as the image upload except we use MultiPart uploads to stream the response to s3 in 5MB chunks.
+            </li>
+          </ol>
+        </li>
+        <li class="h6 bold" id="video-upload-example-desc" >
+          <a href="#video-upload-example-desc" class="same-page h6 bold">Video Upload</a>
+          <ol class="second body2">
+            <li>
+              When the page sees any image, audio, or video components, the record-media.js JavaScript is lazy-loaded.
+            </li>
+            <li>
+              The audio and video uploads basically go through the same process as the image upload except we use MultiPart uploads to stream the response to s3 in 5MB chunks.
+            </li>
+          </ol>
+        </li>
+      </ol>
+  </section>
+
+  <div class="alert medium icon filled error mt-2" role="alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="DomainDisabled"><path d="M8 5h2v2h-.9L12 9.9V9h8v8.9l2 2V7H12V3H5.1L8 5.9zm8 6h2v2h-2zM1.3 1.8.1 3.1 2 5v16h16l3 3 1.3-1.3-21-20.9zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm4 8H8v-2h2v2zm0-4H8v-2h2v2zm2 4v-2h2l2 2h-4z"></path></svg>    
+    <p class="alert">
+      Uploading Audio and Video files is currently not allowed for people who do not own this site. I haven't decided how I want to 
+      validate videos - in terms of making sure that they do not contain inappropriate content - yet, so I don't want to allow users to upload their own videos yet. I also don't want to run out of cheap storage.  
+    </p>
+    <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+    </button>
+  </div>
+
+  <section id="image-upload" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#image-upload" class="same-page fw-regular">Image Upload</a>
+    </h2>
+
+    <label for="image-upload-example" class="mt-2 bold">Image Upload Example:</label>
+    <input type="file" data-image-input accept="image/*" id="image-upload-example" name="image-upload-example" class="mt-1" />
+
+    <output class="mt-2 block" for="image-upload-example"></output>
+
+    <label for="multiple-image-upload-example" class="mt-2 bold">Multiple Image Upload Example:</label>
+    <input multiple type="file" data-image-input accept="image/*" id="multiple-image-upload-example" name="multiple-image-upload-example" class="mt-1 secondary" />
+    <output class="mt-2 block" for="multiple-image-upload-example"></output>
+
+    
+
+    <label for="already-loaded-image-upload-example" class="mt-2 bold">Previously Uploaded Image Upload Example:</label>
+    <input type="file" data-image-input accept="image/*" id="already-loaded-image-upload-example" name="already-loaded-image-upload-example" class="mt-1 info" 
+    data-default-value="%5B%7B%22src%22%3A%22https%3A%2F%2Fimage.storething.org%2Ffrankmbrown%2FVideoRekognitionLambda.png%22%2C%22shortDescription%22%3A%22Lambda%20Logo%22%2C%22longDescription%22%3A%22I%20believe%20this%20is%20an%20example%20of%20the%20lambda%20logo.%22%7D%5D"
+    />
+    <output class="mt-2 block" for="already-loaded-image-upload-example"></output>
+
+    <label for="already-loaded-image-upload-example-multiple" class="mt-2 bold">Previously Uploaded Multiple Image Upload Example:</label>
+    <input multiple type="file" data-image-input accept="image/*" id="already-loaded-image-upload-example-multiple" name="already-loaded-image-upload-example-multiple" class="mt-1 warning" 
+    data-default-value="%5B%7B%22src%22%3A%22https%3A%2F%2Fimage.storething.org%2Ffrankmbrown%2Fexample-1.jpg%22%2C%22shortDescription%22%3A%22Example%201%22%2C%22longDescription%22%3A%22I%20believe%20this%20is%20an%20example%20of%20example%20picture%201.%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fimage.storething.org%2Ffrankmbrown%2Fexample-2.jpg%22%2C%22shortDescription%22%3A%22Example%202%22%2C%22longDescription%22%3A%22I%20believe%20this%20is%20an%20example%20of%20example%20picture%202.%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fimage.storething.org%2Ffrankmbrown%2Fexample-3.jpg%22%2C%22shortDescription%22%3A%22Example%203%22%2C%22longDescription%22%3A%22I%20believe%20this%20is%20an%20example%20of%20example%20picture%203.%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fimage.storething.org%2Ffrankmbrown%2Fexample-4.jpg%22%2C%22shortDescription%22%3A%22Example%204%22%2C%22longDescription%22%3A%22I%20believe%20this%20is%20an%20example%20of%20example%20picture%204.%22%7D%5D"
+    />
+    <output class="mt-2 block" for="already-loaded-image-upload-example-multiple"></output>
+
+  </section>
+  
+  <section id="audio-upload" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#audio-upload" class="same-page fw-regular">Audio Upload</a>
+    </h2>
+
+    <label for="audio-upload-example" class="mt-2 bold">Audio Upload Example:</label>
+    <input type="file" data-audio-input accept="audio/*" id="audio-upload-example" name="audio-upload-example" class="mt-1 secondary" />
+    <output class="mt-2 block" for="audio-upload-example"></output>
+
+    <label for="multiple-audio-upload-example" class="mt-2 bold">Multiple Audio Upload Example:</label>
+    <input multiple type="file" data-audio-input accept="audio/*" id="multiple-audio-upload-example" name="multiple-audio-upload-example" class="mt-1 " />
+    <output class="mt-2 block" for="multiple-audio-upload-example"></output>
+
+    <p class="h6 t-warning fw-regular">
+      I haven't decided to upload audio and video files yet to test the previously uploaded functionality for audio and video files. When you do, you should set the 
+      min-height style attribute on the output element to prevent <abbr title="cumulative layout shift">CLS</abbr>.
+    </p>
+
+    <label for="already-loaded-audio-upload-example" class="mt-2 bold">Previously Uploaded Audio Upload Example:</label>
+    <input type="file" data-audio-input accept="audio/*" id="already-loaded-audio-upload-example" name="already-loaded-audio-upload-example" class="mt-1 info" />
+    <output class="mt-2 block" for="already-loaded-audio-upload-example"></output>
+
+    <label for="already-loaded-audio-upload-example-multiple" class="mt-2 bold">Previously Uploaded Multiple Audio Upload Example:</label>
+    <input multiple type="file" data-audio-input accept="audio/*" id="already-loaded-audio-upload-example-multiple" name="already-loaded-audio-upload-example-multiple" class="mt-1 error" />
+    <output class="mt-2 block" for="already-loaded-audio-upload-example-multiple"></output>
+
+    
+
+  </section>
+
+  <section id="video-upload" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#video-upload" class="same-page fw-regular">Video Upload</a>
+    </h2>
+
+    <label for="video-upload-example" class="mt-2 bold">Video Upload Example:</label>
+    <input type="file" data-video-input accept="video/*" id="video-upload-example" name="video-upload-example" class="mt-1 info" />
+    <output class="mt-2 block" for="video-upload-example"></output>
+
+    <label for="multiple-video-upload-example" class="mt-2 bold">Multiple Video Upload Example:</label>
+    <input multiple type="file" data-video-input accept="video/*" id="multiple-video-upload-example" name="multiple-video-upload-example" class="mt-1" />
+    <output class="mt-2 block" for="multiple-video-upload-example"></output>
+
+
+    <p class="h6 t-warning fw-regular">
+      I haven't decided to upload audio and video files yet to test the previously uploaded functionality for audio and video files. When you do, you should set the 
+      min-height style attribute on the output element to prevent <abbr title="cumulative layout shift">CLS</abbr>.
+    </p>
+
+    <label for="already-loaded-video-upload-example" class="mt-2 bold">Previously Uploaded Video Upload Example:</label>
+    <input type="file" data-video-input accept="video/*" id="already-loaded-video-upload-example" name="already-loaded-video-upload-example" class="mt-1 secondary" />
+    <output class="mt-2 block" for="already-loaded-video-upload-example"></output>
+
+    <label for="already-loaded-video-upload-example-multiple" class="mt-2 bold">Previously Uploaded Multiple Video Upload Example:</label>
+    <input multiple type="file" data-video-input accept="video/*" id="already-loaded-video-upload-example-multiple" name="already-loaded-video-upload-example-multiple" class="mt-1 warning" />
+    <output class="mt-2 block" for="already-loaded-video-upload-example-multiple">
+
+   
+
+  </section>
+
+  <section id="upload-media-get-url" class="mt-2">
+      <h2 class="bold bb-thick h2">
+        <a href="#upload-media-get-url" class="same-page fw-regular">Upload Media and Get The URL</a>
+      </h2>
+      <p class="mt-2">
+        Since we will allow users to write their own code for the website, we should allow them to upload audio, video, and 
+        image files and copy the url of those files. To allow this functionality, include the <span class="t-info bold">data-copy-url</span> attribute on the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> /&gt;</span></span></code></span> element. See examples below.
+      </p>
+      <label for="upload-image-example-56" class="bold mt-2">Upload Image File (Multiple) Copy URL:</label>
+      <input data-copy-url multiple type="file" id="upload-image-example-56" data-image-input accept="image/*" name="upload-image-example-56" class="mt-1 primary">
+      <output class="block" for="upload-image-example-56"></output>
+
+      <label for="upload-audio-example" class="bold mt-2">Upload Audio File Copy URL:</label>
+      <input data-copy-url type="file" id="upload-audio-example" data-audio-input accept="audio/*" name="upload-audio-example" class="mt-1 secondary">
+      <output class="block" for="upload-audio-example"></output>
+
+      <label for="upload-video-example" class="bold mt-2">Upload Video File Copy URL:</label>
+      <input data-copy-url type="file" id="upload-video-example" data-video-input accept="video/*" name="upload-video-example" class="mt-1 info">
+      <output class="block" for="upload-video-example"></output>
+
+  </section>
+
+  <script nonce="<%=locals.jsNonce%>">
+  (function() {
+    // For reference (Showing previously uploaded images)
+  const IMAGE_ARR_1 = [{
+  src: 'https://image.storething.org/frankmbrown/VideoRekognitionLambda.png',
+  shortDescription: 'Lambda Logo',
+  longDescription: 'I believe this is an example of the lambda logo.'
+  }];
+  const IMAGE_ARR_2 = [
+  {
+    src: 'https://image.storething.org/frankmbrown/example-1.jpg',
+    shortDescription: 'Example 1',
+    longDescription: 'I believe this is an example of example picture 1.'
+  },
+  {
+    src: 'https://image.storething.org/frankmbrown/example-2.jpg',
+    shortDescription: 'Example 2',
+    longDescription: 'I believe this is an example of example picture 2.'
+  },
+  {
+    src: 'https://image.storething.org/frankmbrown/example-3.jpg',
+    shortDescription: 'Example 3',
+    longDescription: 'I believe this is an example of example picture 3.'
+  },
+  {
+    src: 'https://image.storething.org/frankmbrown/example-4.jpg',
+    shortDescription: 'Example 4',
+    longDescription: 'I believe this is an example of example picture 4.'
+  }
+  ];
+
+  })()
+  
+
+  </script>
+
+<section id="upload-image-get-data" class="mt-4">
+  <h2 class="bold bb-thick h2">
+    <a href="#upload-image-get-data" class="same-page bold">Upload Image, Get Data</a>
+  </h2>
+  <p class="mt-2">
+    Upload an image using the <span class="text-code">&lt;input type="file"&gt</span> input below, submit the form, and get the HTML that should be used for the image. 
+  </p>
+  <form class="mt-4" hx-post="/utilities/get-image-data" hx-encoding="multipart/form-data" hx-indicator="#ind_d1017fbf-0e1d-424a-9d45-6d3d24f725a8" hx-target="#tar_7e9360bd-b898-4199-b7d3-050702760c2a" hx-trigger="submit" hx-swap="innerHTML">
+    <label for="upload-image-for-data" class="bold mt-2">Upload Image File:</label>
+    <input data-ignore-change data-image-input type="file" id="upload-image-for-data" accept="image/*" name="upload-image-for-data" class="mt-1 info">
+    <output class="block" for="upload-image-for-data"></output>
+    <div class="mt-1">
+      <label class="checkbox">
+      <input type="checkbox" class="secondary" name="add-bg-trans" checked value="on">
+        Add Background Color if Transparent
+      </label>
+    </div>
+    <div class="flex-row justify-between align-center mt-3">
+          <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+          <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+              SUBMIT
+          </button>
+      </div>
+  </form>
+  <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_d1017fbf-0e1d-424a-9d45-6d3d24f725a8">
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+  </div>
+  <output id="tar_7e9360bd-b898-4199-b7d3-050702760c2a">
+
+  </output>
+</section>
+
+<%if(locals.auth>=3){%>
+  <section id="add-image-image" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#add-page-image" class="same-page bold">
+          Add Page Image
+        </a>
+      </h2>
+
+      <p class="mt-2">
+        Upload an image, and ensure that image image is resized correctly so that it gets images for sharing image on Twitter and other social media sites.
+      </p>
+      <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/record-media/page-image" hx-indicator="#ind_961e17fb-74bd-4fa5-9422-a2870f572376" hx-target="#tar_f8b66fdb-9d53-4865-a34d-94e9f68d6372" hx-trigger="submit" hx-swap="innerHTML">
+        <label for="image-file" class="bold mt-2">Image File:</label>
+        <input data-ignore-change data-image-input type="file" accept="image/*" name="image-file" class="mt-1 info">
+        <output class="block" for="image-file"></output>
+        <label class="checkbox mt-2">
+          <input type="checkbox" class="primary" value="on" name="add-bg-color">
+            Add Background Color
+        </label>
+        <label class="body2 mt-2" for="bg-color">Image Background Color:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" name="bg-color" value="#ffffff" style="margin-top: 2px;">
+          <span class="body2">#FFFFFF</span>
+        </div>
+
+        <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_961e17fb-74bd-4fa5-9422-a2870f572376">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_f8b66fdb-9d53-4865-a34d-94e9f68d6372"></output>
+  </section>
+
+<%}%>
+
+  <%-include('../../partials/pagePartial')%>
+<%}%>

@@ -1,0 +1,139 @@
+<%# 
+PARTIAL ROUTE: pages/notes.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.previews
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">Frank's Notes</h1>
+
+  <p class="body1">
+    I created these notes to try to keep track of things that I plan to do, to have something to look over when I am trying to remind myself about a subject, and to try and keep myself honest when learning new things.
+  </p>
+  <div class="alert warning icon medium filled mt-1" role="alert">
+    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="NoteAlt"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7-.25c.41 0 .75.34.75.75s-.34.75-.75.75-.75-.34-.75-.75.34-.75.75-.75zM9.1 17H7v-2.14l5.96-5.96 2.12 2.12L9.1 17zm7.75-7.73-1.06 1.06-2.12-2.12 1.06-1.06c.2-.2.51-.2.71 0l1.41 1.41c.2.2.2.51 0 .71z"></path></svg>
+    <p class="alert">
+      Some of the older articles are not styled correctly due to changes that have been made to the rich text editor.  
+    </p>
+    <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+    </button>
+  </div>
+
+  <%# Copy Here to add Search to blogs / idea / notes %>
+  <section id="search_instances" class="mt-4">
+    <div class="flex-row bb-thick justify-between align-center">
+      <h2 class="bold h2">
+        <a href="#search_instances" class="same-page bold">Search Notes</a>
+      </h2>
+      <button type="button" class="small icon-text text warning" data-hide-show="" data-el="#search-notes-body">
+        <svg data-arrow="" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="KeyboardArrowUp"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+        <span data-hide="">HIDE</span>
+        <span data-show="" hidden="">SHOW</span>
+      </button>
+    </div>
+    <div id="search-notes-body">
+      <div class="input-group block w-100 mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="search-notes-title">Search Notes By Title:</label>
+        <div class="mt-1 text-input block medium">
+          <input 
+          type="search" 
+          class="icon-after" 
+          name="search-notes-title" 
+          id="search-notes-title" 
+          placeholder="Search Notes by title" 
+          hx-trigger="input changed delay:200ms, search" 
+          hx-target="#search-note-tit-res" hx-swap="innerHTML" hx-indicator="#search-notes-ind" hx-get="/note/search" 
+          >
+          <svg class="icon-after" focusable="false" inert viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+            </path>
+          </svg>
+        </div>
+      </div>
+      <div class="flex-row justify-center t-info htmx-indicator mt-3" role="progressbar" aria-busy="false" id="search-notes-ind" aria-label="Searching notes by title">
+        <div class="lds-dual-ring"></div>
+      </div>
+      <div class="mt-3" id="search-note-tit-res" style="max-height: 300px; overflow-y: auto;">
+        <div class="alert info filled medium icon" role="alert">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+          <p class="alert">
+              Search for a note by title in the search box above and see the results here...
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section id="franks-notes" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#franks-notes" class="same-page bold">
+          Notes
+        </a>
+      </h2>
+      <div class="body1 bold mt-1" id="order-by-articles">Order By:</div>
+      <div class="mt-1 flex-row justify-start">
+        <div class="select">
+          <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="order-by-articles-drop" aria-labelledby="order-by-articles" class="select" aria-label="Order By" data-popover data-pelem="#order-by-articles-drop" data-click aria-expanded="false" style="min-width: 150px;">
+            <span class="body1"><%=locals?.order_by?.order_by_str%></span>
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+          </button>
+          <div tabindex="0" id="order-by-articles-drop" role="listbox" class="select-menu o-xs" data-placement="bottom">
+            <input type="text" hidden value="<%=locals?.order_by?.order_by_value%>" name="order-by-select" id="order-by-select" hx-get="<%=locals.path%>" hx-include="this" hx-push-url="true" hx-target="#articles-inner" hx-indicator="#change-art-order-ind">
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-new")%>" data-val="last-edit-new">
+              Last Edited (New)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="last-edit-old")%>" data-val="last-edit-old">
+              Last Edited (Old)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-new")%>" data-val="date-created-new">
+              Date Created (New)
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="date-created-old")%>" data-val="date-created-old">
+              Date Created (Old) 
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-likes")%>" data-val="num-likes">
+              Number of Likes
+            </button> 
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-comments")%>" data-val="num-comments">
+              Number of Comments
+            </button> 
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-views")%>" data-val="num-views">
+              Number of Views
+            </button>
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-Boolean(locals?.order_by?.order_by_value==="num-annotations")%>" data-val="num-annotations">
+              Number of Annotations
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-row justify-center t-primary htmx-indicator" role="progressbar" id="change-art-order-ind" aria-busy="false" aria-label="Changing Order of Articles">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <div class="mt-1 grid-notes" id="articles-inner">
+        <%-locals.previews%>
+      </div>
+  </section>
+  
+  <div id="likes-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+    Likes
+  </div>
+  <div id="comments-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+    Comments
+  </div>
+  <div id="annotations-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+    Annotations
+  </div>
+  <div id="views-tool" role="tooltip" class="tooltip body2" data-placement="bottom">
+    Views
+  </div>
+
+  <%-include('../partials/pagePartial')%>
+  <%}%>

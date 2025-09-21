@@ -1,0 +1,47 @@
+<%# 
+PARTIAL ROUTE: pages/projects/implementing-auth.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  <h1 class="page-title">Implementing Auth</h1>
+  <section id="why" class="mt-2">
+    <h2 class="bb"><a href="#why" class="same-page fw-regular h2">Why Create Login / Create Account</a></h2>
+    <p class="mt-2">
+      I am getting tired of creating new project pages for everything that I decided to do or try to do, so I have decided to finally implement authentication for this website.
+      <br>  
+    </p>
+    <p class="bold h6">Requirements:</p>
+    <ul class="mt-1">
+      <li>
+        User should be able to create an account using email and password. I probably will not implement reset-password functionality because it is a waste of time right now for a small site.
+      </li>
+      <li>
+        By creating an account, users should be able to comment on blog posts, notes, and critique wording / information in polls, notes, and blog posts.
+      </li>
+      <li>
+        Users should be able to create and save gradients and svgs (eventually - not yet finished) when they are logged in.
+      </li>
+      <li>
+        Website owner should be able to create and edit blog posts, create and edit note pages, and create polls.
+      </li>
+    </ul>
+    <p class="bold h6">Possible Effects of Implementing Auth:</p>
+    <ul>
+      <li>
+        Will need to update the way sitemaps and search information is generated to account for changes in notes and blogs.
+      </li>
+      <li>
+        Will need to look into <abbr title="Search Engine Optimization">SEO</abbr> for articles.
+      </li>
+      <li>
+        Will need to save the users settings when they create an account. Will need to get their settings when they create an account / login and apply them to the page.
+      </li>
+    </ul>
+  </section>
+  
+  <%-include('../../partials/pagePartial')%>
+<%}%>

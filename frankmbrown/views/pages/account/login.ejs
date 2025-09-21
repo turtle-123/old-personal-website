@@ -1,0 +1,18 @@
+<%# 
+PARTIAL ROUTE: pages/account/login.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">Login</h1>
+  <div id="logging-in-indicator" class="flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="Logging In">
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+  </div>
+  <%-include('./loginForm')%>
+ 
+  <%-include('../../partials/pagePartial')%>
+  <%}%>

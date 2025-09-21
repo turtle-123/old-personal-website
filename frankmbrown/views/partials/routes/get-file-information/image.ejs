@@ -1,0 +1,147 @@
+<%# 
+PARTIAL ROUTE: partials/routes/get-file-information/image.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.format
+- locals.mimetype
+- locals.height
+- locals.color_space
+- locals.type
+- locals.depth
+- locals.channels
+- locals.alpha
+- locals.gamma
+- locals.matte_color
+- locals.background_color
+- locals.border_color
+- locals.transparent_color
+- locals.compression
+- locals.oritentation
+- locals.date_created
+- locals.date_modified
+- locals.tainted
+- locals.size
+- locals.number_pixels
+- locals.ellapsed_milliseconds
+- locals.embeddingCode
+- locals.safeSearchCode
+%>
+<%# 
+type ParsedImageData = {
+  format: string|null,
+  mimetype: string|null,
+  width: number, 
+  height: number,
+  color_space: string|null,
+  type: string|null,
+  depth: string|null,
+  channels: number,
+  alpha: string|null,
+  gamma: number|null,
+  matte_color: string|null,
+  background_color: string|null,
+  border_color: string|null,
+  transparent_color: string|null,
+  compression: string|null,
+  oritentation: string|null,
+  date_created: number|null,
+  date_modified: number|null,
+  tainted: Boolean,
+  size: number,
+  number_pixels: number,
+  ellapsed_milliseconds: number
+}
+str: HTML string
+%>
+
+<div class="mt-2">
+    <h3 class="h3 bold bb-main">
+        Image Information
+    </h3>
+    <h4 class="h4 bold bb mt-2">
+        ImageMagick <span class="text-code">identify</span>
+    </h4>
+    <p class="mt-1">
+        <span class="bold">Format:</span> <%=locals.format%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Mimetype:</span> <%=locals.mimetype%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Width:</span> <%=locals.height%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Height:</span> <%=locals.color_space%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Colorspace:</span> <%=locals.format%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Type:</span> <%=locals.type%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Depth:</span> <%=locals.depth%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Channels:</span> <%=locals.channels%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Alpha:</span> <%=locals.alpha%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Gamma:</span> <%=locals.gamma%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Matte Color:</span> <%=locals.matte_color%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Background Color:</span> <%=locals.background_color%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Border Color:</span> <%=locals.border_color%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Transparent Color:</span> <%=locals.transparent_color%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Compression:</span> <%=locals.compression%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Orientation:</span> <%=locals.oritentation%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Date Created:</span> <%=locals.date_created%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Date Modified:</span> <%=locals.date_modified%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Tainted:</span> <%=locals.tainted%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Size:</span> <%=locals.size%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Number of Pixels:</span> <%=locals.number_pixels%>
+    </p>
+    <p class="mt-1">
+        <span class="bold">Ellapsed Milliseconds:</span> <%=locals.ellapsed_milliseconds%>
+    </p>
+
+    <h4 class="h4 bold bb mt-2">
+        Responsive Sizing
+    </h4>
+    <%-str%>
+
+    <h4 class="h4 bold bb mt-2">
+        Image Embedding
+    </h4>
+    <%-locals.embeddingCode%>
+
+    <h4 class="h4 bold bb mt-2">
+        Safe Search Response
+    </h4>
+    <%-locals.safeSearchCode%>
+</div>
+

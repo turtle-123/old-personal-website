@@ -1,0 +1,55 @@
+<%# 
+
+%>
+<%# Dialog that allows users to record audio %>
+<div style="display: none;" hidden class="dialog-wrapper" id="upload-audio-dialog" data-close-backdrop data-esc>
+    <div class="dialog large" style="min-height: 300px!important; height: auto!important;" data-click-capture>
+      <div class="dialog-header">
+        <p class="grow-1 flex-row h3 bold">Record Audio</p>
+        <%if(locals.desktop===true){%> 
+          <kbd class="inline" style="margin-right: 4px;"  data-pelem="#close-dialog-esc-close-record-audio" aria-describedby="close-dialog-esc-close-record-audio" data-mouse data-popover>ESC</kbd>
+          <div id="close-dialog-esc-close-record-audio" role="tooltip" class="tooltip body2" data-placement="bottom-end">
+            Press the Escape key to Close the Dialog
+          </div>
+        <%}%>
+        <button class="icon medium close-dialog" type="button" aria-label="Close Dialog">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </div>
+      <div class="dialog-body">
+        <form hidden method="dialog" data-main id="upload-audio-form">
+          <audio autoplay id="take-video-audio" muted hidden controls></audio>
+          <p class="mt-2">
+            Click the red button below to start / stop recording audio. After recording the audio, you can preview your recording by pressing the <span class="bg-info" style="padding: 2px; border-radius: 2px;">PREVIEW</span> button, so submit the audio by pressing the <span class="bg-success" style="padding: 2px; border-radius: 2px;">SUBMIT</span> button. 
+          </p>              
+          <div class="flex-row justify-start align-center gap-2" style="margin-top: 1.75rem;">
+            <button style="margin-left: 0.5rem;" id="record-audio-button" aria-label="Record Audio" type="button"></button>
+            <span data-time class="h6">0:00</span>
+          </div>
+          <input name="can-upload-multiple-audio" type="text" hidden data-multiple value="false" />
+          <div data-actions hidden class="mt-2 flex-row align-center justify-end gap-2">
+            <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+            <button data-preview type="button" aria-label="Preview Audio(s)" class="info filled icon-text medium">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="RemoveRedEye"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+              Preview
+            </button>
+            <button data-submit type="submit" aria-label="Submit Audio(s)" class="success filled icon-text medium">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+              SUBMIT
+            </button>
+          </div>
+        </form>
+        <output form="upload-audio-form" class="mt-2 block" hidden></output>
+        <div data-loader class="block" hidden>
+          <div class="flex-row justify-center t-primary" role="progressbar" aria-busy="false" aria-label="Getting Media Stream">
+            <div class="lds-facebook"><div></div><div></div><div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-footer" role="toolbar">
+        <button class="filled error small close-dialog" type="button" aria-label="Close Dialog">
+          CLOSE DIALOG
+        </button>
+      </div>
+    </div>
+  </div>

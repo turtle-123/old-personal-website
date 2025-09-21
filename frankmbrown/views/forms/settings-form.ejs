@@ -1,0 +1,953 @@
+<%# 
+PARTIAL ROUTE: forms/settings-form.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.desktop (boolean): Is the user's device desktop? 
+- locals.settings (boolean): Settings object - see server/typescript/types
+- locals.tablet (boolean): Is the user's device tablet?
+%>
+<form 
+spellcheck="false" 
+autocapitalize="false" 
+id="settings-dialog-form" 
+hx-trigger="change throttle:250ms" 
+hx-target="#application-styles" 
+hx-swap="innerHTML"
+hx-post="/api/settings" 
+>
+  <fieldset>
+    <legend class="bold h4">General:</legend>
+    <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+      <label for="application-font-size">Application Size (%):</label>
+      <div class="mt-1 number-input medium">
+          <%if(locals.desktop===true){%>
+            <input 
+            type="number" 
+            min="80"
+            step="2" 
+            max="120" 
+            value="<%=locals.settings.desktop_application_size%>"
+            name="desktop-font-size" 
+            id="application-font-size" 
+            placeholder="Application Size..." 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            data-application-size
+            >
+          <%}else if (locals.tablet===true){%>
+            <input 
+            type="number" 
+            min="80"
+            step="2" 
+            max="120" 
+            value="<%=locals.settings.tablet_application_size%>"
+            name="tablet-font-size" 
+            id="application-font-size" 
+            placeholder="Application Size..." 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            data-application-size
+            >
+          <%}else{%>
+            <input 
+            type="number" 
+            min="80"
+            step="2" 
+            max="120" 
+            value="<%=locals.settings.mobile_application_size%>"
+            name="mobile-font-size" 
+            id="application-font-size" 
+            placeholder="Application Size..." 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            data-application-size
+            >
+          <%}%>
+          <button class="icon large" data-increase aria-label="Increase Input" type="button">
+              <svg focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                  </path>
+              </svg>
+          </button>
+          <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+              <svg focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                  </path>
+              </svg>
+          </button>
+      </div>
+    </div>
+    <p class="mt-1 t-warning body2">
+      Application font sizes are saved per-device-type. This means that there are different font sizes for mobile, tablet, and desktop devices.
+    </p>
+    <fieldset class="mt-2">
+      <legend class="h6 bold">Language:</legend>
+      <label class="radio">
+        <input disabled type="radio" id="application-language-english" name="application-language" value="en" class="info" checked>
+        English
+      </label>
+      <label class="radio mt-2">
+        <input disabled type="radio" id="application-language-spanish" name="application-language" value="es" class="info">
+        Spanish
+      </label>
+      <p class="mt-2 body2">
+        I decided that I am going to keep all projects in English. 
+        <a class="secondary link" target="_blank" href="https://wordsrated.com/how-many-people-speak-english/#:~:text=As%20of%202023%2C%20an%20estimated,English%20than%20any%20other%20language.">20% of the world speak english.</a>
+      </p>
+    </fieldset>
+    <div class="block bold body1 mt-1" id="timezone-settings-label">Timezone:</div>
+    <div class="block text-align-left" tabindex="-1">
+      <div class="select">
+        <button 
+        role="combobox" 
+        aria-haspopup="listbox" 
+        aria-controls="timezone-select-dropdown" 
+        aria-labelledby="timezone-settings-label" 
+        class="select" 
+        aria-label="Select the Timezone for the Application" 
+        data-popover 
+        data-pelem="#timezone-select-dropdown" 
+        data-click 
+        aria-expanded="false"
+        type="button"
+        <%-Boolean(locals.desktop!==true)?'data-force-close':''%>
+        >
+          <span class="body1" style="min-width: 225px; text-align: left;"><%=locals?.settings?.timezone || 'America/New_York'%></span>
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+        </button>
+        <div 
+        <%-Boolean(locals.desktop!==true)?'data-click-capture':''%>
+        tabindex="0" id="timezone-select-dropdown" role="listbox" class="select-menu o-xs" data-placement="bottom">
+          <input type="text" hidden="" value="<%=locals?.settings?.timezone%>" name="settings-timezone" id="settings-timezone">
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Anchorage")%>" data-val="America/Anchorage">America/Anchorage</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Asuncion")%>" data-val="America/Asuncion">America/Asuncion</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Bahia_Banderas")%>" data-val="America/Bahia_Banderas">America/Bahia_Banderas</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Barbados")%>" data-val="America/Barbados">America/Barbados</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Belize")%>" data-val="America/Belize">America/Belize</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Blanc-Sablon")%>" data-val="America/Blanc-Sablon">America/Blanc-Sablon</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Boa_Vista")%>" data-val="America/Boa_Vista">America/Boa_Vista</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Bogota")%>" data-val="America/Bogota">America/Bogota</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Boise")%>" data-val="America/Boise">America/Boise</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Cambridge_Bay")%>" data-val="America/Cambridge_Bay">America/Cambridge_Bay</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Campo_Grande")%>" data-val="America/Campo_Grande">America/Campo_Grande</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Cancun")%>" data-val="America/Cancun">America/Cancun</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Chicago")%>" data-val="America/Chicago">America/Chicago</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Chihuahua")%>" data-val="America/Chihuahua">America/Chihuahua</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Costa_Rica")%>" data-val="America/Costa_Rica">America/Costa_Rica</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Creston")%>" data-val="America/Creston">America/Creston</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Cuiaba")%>" data-val="America/Cuiaba">America/Cuiaba</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Curacao")%>" data-val="America/Curacao">America/Curacao</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Dawson")%>" data-val="America/Dawson">America/Dawson</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Dawson_Creek")%>" data-val="America/Dawson_Creek">America/Dawson_Creek</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Denver")%>" data-val="America/Denver">America/Denver</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Detroit")%>" data-val="America/Detroit">America/Detroit</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Edmonton")%>" data-val="America/Edmonton">America/Edmonton</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Eirunepe")%>" data-val="America/Eirunepe">America/Eirunepe</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/El_Salvador")%>" data-val="America/El_Salvador">America/El_Salvador</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Grand_Turk")%>" data-val="America/Grand_Turk">America/Grand_Turk</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Guatemala")%>" data-val="America/Guatemala">America/Guatemala</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Guayaquil")%>" data-val="America/Guayaquil">America/Guayaquil</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Guyana")%>" data-val="America/Guyana">America/Guyana</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Havana")%>" data-val="America/Havana">America/Havana</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Hermosillo")%>" data-val="America/Hermosillo">America/Hermosillo</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Indiana/Knox")%>" data-val="America/Indiana/Knox">America/Indiana/Knox</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Indiana/Marengo")%>" data-val="America/Indiana/Marengo">America/Indiana/Marengo</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Indiana/Petersburg")%>" data-val="America/Indiana/Petersburg">America/Indiana/Petersburg</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Indiana/Tell_City")%>" data-val="America/Indiana/Tell_City">America/Indiana/Tell_City</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Indiana/Vevay")%>" data-val="America/Indiana/Vevay">America/Indiana/Vevay</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Indiana/Vincennes")%>" data-val="America/Indiana/Vincennes">America/Indiana/Vincennes</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Indiana/Winamac")%>" data-val="America/Indiana/Winamac">America/Indiana/Winamac</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Inuvik")%>" data-val="America/Inuvik">America/Inuvik</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Iqaluit")%>" data-val="America/Iqaluit">America/Iqaluit</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Jamaica")%>" data-val="America/Jamaica">America/Jamaica</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Juneau")%>" data-val="America/Juneau">America/Juneau</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Kentucky/Monticello")%>" data-val="America/Kentucky/Monticello">America/Kentucky/Monticello</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/La_Paz")%>" data-val="America/La_Paz">America/La_Paz</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Lima")%>" data-val="America/Lima">America/Lima</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Los_Angeles")%>" data-val="America/Los_Angeles">America/Los_Angeles</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Managua")%>" data-val="America/Managua">America/Managua</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Manaus")%>" data-val="America/Manaus">America/Manaus</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Martinique")%>" data-val="America/Martinique">America/Martinique</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Matamoros")%>" data-val="America/Matamoros">America/Matamoros</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Mazatlan")%>" data-val="America/Mazatlan">America/Mazatlan</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Menominee")%>" data-val="America/Menominee">America/Menominee</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Merida")%>" data-val="America/Merida">America/Merida</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Mexico_City")%>" data-val="America/Mexico_City">America/Mexico_City</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Monterrey")%>" data-val="America/Monterrey">America/Monterrey</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Nassau")%>" data-val="America/Nassau">America/Nassau</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/New_York")%>" data-val="America/New_York">America/New_York</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Nipigon")%>" data-val="America/Nipigon">America/Nipigon</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Nome")%>" data-val="America/Nome">America/Nome</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/North_Dakota/Beulah")%>" data-val="America/North_Dakota/Beulah">America/North_Dakota/Beulah</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/North_Dakota/Center")%>" data-val="America/North_Dakota/Center">America/North_Dakota/Center</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/North_Dakota/New_Salem")%>" data-val="America/North_Dakota/New_Salem">America/North_Dakota/New_Salem</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Ojinaga")%>" data-val="America/Ojinaga">America/Ojinaga</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Panama")%>" data-val="America/Panama">America/Panama</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Pangnirtung")%>" data-val="America/Pangnirtung">America/Pangnirtung</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Phoenix")%>" data-val="America/Phoenix">America/Phoenix</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Port-au-Prince")%>" data-val="America/Port-au-Prince">America/Port-au-Prince</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Port_of_Spain")%>" data-val="America/Port_of_Spain">America/Port_of_Spain</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Porto_Velho")%>" data-val="America/Porto_Velho">America/Porto_Velho</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Puerto_Rico")%>" data-val="America/Puerto_Rico">America/Puerto_Rico</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Rainy_River")%>" data-val="America/Rainy_River">America/Rainy_River</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Rankin_Inlet")%>" data-val="America/Rankin_Inlet">America/Rankin_Inlet</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Regina")%>" data-val="America/Regina">America/Regina</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Resolute")%>" data-val="America/Resolute">America/Resolute</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Rio_Branco")%>" data-val="America/Rio_Branco">America/Rio_Branco</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Santiago")%>" data-val="America/Santiago">America/Santiago</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Santo_Domingo")%>" data-val="America/Santo_Domingo">America/Santo_Domingo</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Sitka")%>" data-val="America/Sitka">America/Sitka</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Swift_Current")%>" data-val="America/Swift_Current">America/Swift_Current</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Tegucigalpa")%>" data-val="America/Tegucigalpa">America/Tegucigalpa</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Thunder_Bay")%>" data-val="America/Thunder_Bay">America/Thunder_Bay</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Tijuana")%>" data-val="America/Tijuana">America/Tijuana</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Toronto")%>" data-val="America/Toronto">America/Toronto</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Vancouver")%>" data-val="America/Vancouver">America/Vancouver</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Whitehorse")%>" data-val="America/Whitehorse">America/Whitehorse</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Winnipeg")%>" data-val="America/Winnipeg">America/Winnipeg</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Yakutat")%>" data-val="America/Yakutat">America/Yakutat</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="America/Yellowknife")%>" data-val="America/Yellowknife">America/Yellowknife</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Antarctica/DumontDUrville")%>" data-val="Antarctica/DumontDUrville">Antarctica/DumontDUrville</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Antarctica/Palmer")%>" data-val="Antarctica/Palmer">Antarctica/Palmer</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Australia/Brisbane")%>" data-val="Australia/Brisbane">Australia/Brisbane</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Australia/Currie")%>" data-val="Australia/Currie">Australia/Currie</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Australia/Hobart")%>" data-val="Australia/Hobart">Australia/Hobart</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Australia/Lindeman")%>" data-val="Australia/Lindeman">Australia/Lindeman</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Australia/Melbourne")%>" data-val="Australia/Melbourne">Australia/Melbourne</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Australia/Sydney")%>" data-val="Australia/Sydney">Australia/Sydney</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Pacific/Galapagos")%>" data-val="Pacific/Galapagos">Pacific/Galapagos</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Pacific/Guam")%>" data-val="Pacific/Guam">Pacific/Guam</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Pacific/Honolulu")%>" data-val="Pacific/Honolulu">Pacific/Honolulu</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Pacific/Niue")%>" data-val="Pacific/Niue">Pacific/Niue</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Pacific/Pago_Pago")%>" data-val="Pacific/Pago_Pago">Pacific/Pago_Pago</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Pacific/Port_Moresby")%>" data-val="Pacific/Port_Moresby">Pacific/Port_Moresby</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Pacific/Rarotonga")%>" data-val="Pacific/Rarotonga">Pacific/Rarotonga</button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals?.settings?.timezone==="Pacific/Tahiti")%>" data-val="Pacific/Tahiti">Pacific/Tahiti</button>
+        </div>
+      </div>
+    </div>
+  
+  </fieldset>
+  <fieldset class="mt-2" form="settings-dialog-form">
+    <legend class="bold h4">Theme Colors:</legend>
+    <div tabindex="-1" class="flex-row align-start justify-start gap-3">
+      <fieldset tabindex="-1" style="max-height: 300px; overflow-y: auto; border: 2px solid var(--divider); border-radius: 4px; padding: 4px;" class="grow-1">
+        <legend class="h6 bold">Light Mode</legend>
+        <label class="body2" for="primary-light-settings-color">Primary:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="primary-light-settings-color" id="primary-light-settings-color" value="<%=locals.settings.lightMode.primary%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.lightMode.primary%></span>
+        </div><label class="mt-1 body2" for="secondary-light-settings-color">Secondary:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="secondary-light-settings-color" id="secondary-light-settings-color" value="<%=locals.settings.lightMode.secondary%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.lightMode.secondary%></span>
+        </div><label class="mt-1 body2" for="warning-light-settings-color">Warning:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="warning-light-settings-color" id="warning-light-settings-color" value="<%=locals.settings.lightMode.warning%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.lightMode.warning%></span>
+        </div><label class="mt-1 body2" for="success-light-settings-color">Success:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="success-light-settings-color" id="success-light-settings-color" value="<%=locals.settings.lightMode.success%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.lightMode.success%></span>
+        </div><label class="mt-1 body2" for="info-light-settings-color">Info:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="info-light-settings-color" id="info-light-settings-color" value="<%=locals.settings.lightMode.info%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.lightMode.info%></span>
+        </div><label class="mt-1 body2" for="error-light-settings-color">Error:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="error-light-settings-color" id="error-light-settings-color" value="<%=locals.settings.lightMode.error%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.lightMode.error%></span>
+        </div><label class="mt-1 body2" for="buttonContrastText-light-settings-color">Button Contrast Text:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="buttonContrastText-light-settings-color" id="buttonContrastText-light-settings-color" value="<%=locals.settings.lightMode.buttonContrastText%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.lightMode.buttonContrastText%></span>
+        </div><label class="mt-1 body2" for="background-light-settings-color">Background:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="background-light-settings-color" id="background-light-settings-color" value="<%=locals.settings.lightMode.background%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.lightMode.background%></span>
+        </div><label class="mt-1 body2" for="secondaryBackground-light-settings-color">Secondary Background:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="secondaryBackground-light-settings-color" id="secondaryBackground-light-settings-color" value="<%=locals.settings.lightMode.secondaryBackground%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.lightMode.secondaryBackground%></span>
+        </div><label class="mt-1 body2" for="navbarColor-light-settings-color">Navbar Color:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="navbarColor-light-settings-color" id="navbarColor-light-settings-color" value="<%=locals.settings.lightMode.navbarColor%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.lightMode.navbarColor%></span>
+        </div><label class="mt-1 body2" for="shadowColor-light-settings-color">Shadow Color:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="shadowColor-light-settings-color" id="shadowColor-light-settings-color" value="<%=locals.settings.lightMode.shadowColor%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.lightMode.shadowColor%></span>
+        </div><label class="mt-1 body2" for="textColor-light-settings-color">Text Color:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="textColor-light-settings-color" id="textColor-light-settings-color" value="<%=locals.settings.lightMode.textColor%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.lightMode.textColor%></span>
+        </div>
+      </fieldset>
+      <fieldset tabindex="-1" style="max-height: 300px; overflow-y: auto; border: 2px solid var(--divider); border-radius: 4px; padding: 4px;" class="grow-1">
+        <legend class="h6 bold">Dark Mode</legend>
+        <label class="body2" for="primary-dark-settings-color">Primary:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="primary-dark-settings-color" id="primary-dark-settings-color" value="<%=locals.settings.darkMode.primary%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.darkMode.primary%></span>
+        </div><label class="mt-1 body2" for="secondary-dark-settings-color">Secondary:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="secondary-dark-settings-color" id="secondary-dark-settings-color" value="<%=locals.settings.darkMode.secondary%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.darkMode.secondary%></span>
+        </div><label class="mt-1 body2" for="warning-dark-settings-color">Warning:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="warning-dark-settings-color" id="warning-dark-settings-color" value="<%=locals.settings.darkMode.warning%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.darkMode.warning%></span>
+        </div><label class="mt-1 body2" for="success-dark-settings-color">Success:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="success-dark-settings-color" id="success-dark-settings-color" value="<%=locals.settings.darkMode.success%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.darkMode.success%></span>
+        </div><label class="mt-1 body2" for="info-dark-settings-color">Info:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="info-dark-settings-color" id="info-dark-settings-color" value="<%=locals.settings.darkMode.info%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.darkMode.info%></span>
+        </div><label class="mt-1 body2" for="error-dark-settings-color">Error:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="error-dark-settings-color" id="error-dark-settings-color" value="<%=locals.settings.darkMode.error%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.darkMode.error%></span>
+        </div><label class="mt-1 body2" for="buttonContrastText-dark-settings-color">Button Contrast Text:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="buttonContrastText-dark-settings-color" id="buttonContrastText-dark-settings-color" value="<%=locals.settings.darkMode.buttonContrastText%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.darkMode.buttonContrastText%></span>
+        </div><label class="mt-1 body2" for="background-dark-settings-color">Background:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="background-dark-settings-color" id="background-dark-settings-color" value="<%=locals.settings.darkMode.background%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.darkMode.background%></span>
+        </div><label class="mt-1 body2" for="secondaryBackground-dark-settings-color">Secondary Background:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="secondaryBackground-dark-settings-color" id="secondaryBackground-dark-settings-color" value="<%=locals.settings.darkMode.secondaryBackground%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.darkMode.secondaryBackground%></span>
+        </div><label class="mt-1 body2" for="navbarColor-dark-settings-color">Navbar Color:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="navbarColor-dark-settings-color" id="navbarColor-dark-settings-color" value="<%=locals.settings.darkMode.navbarColor%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.darkMode.navbarColor%></span>
+        </div><label class="mt-1 body2" for="shadowColor-dark-settings-color">Shadow Color:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="shadowColor-dark-settings-color" id="shadowColor-dark-settings-color" value="<%=locals.settings.darkMode.shadowColor%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.darkMode.shadowColor%></span>
+        </div><label class="mt-1 body2" for="textColor-dark-settings-color">Text Color:</label>
+        <div class="flex-row justify-begin align-center gap-2">
+          <input type="color" data-coloris name="textColor-dark-settings-color" id="textColor-dark-settings-color" value="<%=locals.settings.darkMode.textColor%>" style="margin-top: 2px;" />
+          <span class="body2"><%=locals.settings.darkMode.textColor%></span>
+        </div>
+      </fieldset>
+    </div>
+  </fieldset>
+  <div tabindex="-1" class="flex-row justify-center w-100 mt-2">
+    <button data-popover aria-haspopup="dialog" data-click data-pelem="#confirm-reset-theme-colors" type="button" aria-label="Reset Theme Colors" class="error text icon-text medium" >
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Restore"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"></path></svg>
+      <span>RESET THEME COLORS</span>
+    </button>
+    <div id="confirm-reset-theme-colors" style="max-width: min(95%, 300px);" class="floating-menu" role="dialog" data-placement="top">
+      <p class="body1 bold text-align-center" >
+        Are you sure you want to reset the theme colors for this application?
+        <br>
+        <span class="block text-align-left t-warning body2 mt-2">
+          <strong>Note: </strong> Resetting theme colors only resets the theme colors for whichever mode you are currently on (Light Mode or Dark Mode).
+        </span>
+      </p>
+      <div class="flex-row w-100 align-center justify-end mt-2">
+        <button 
+        hx-trigger="mousedown, touchstart"
+        hx-get="/api/settings-form-reset" 
+        hx-target="#application-styles" 
+        class="outlined icon-text success medium" 
+        type="button"
+        >
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Check"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
+        <span>CONFIRM</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <fieldset form="settings-dialog-form" class="mt-1">
+    <legend class="bold h6">Textarea TAB Behavior</legend>
+    <div tabindex="-1" hidden aria-hidden="false"> Check the checkbox below to disable the default behavior when clicking <kbd class="inline">TAB</kbd> in a textarea. Normally, clicking <kbd class="inline">TAB</kbd> in a textarea will focus the input, but by clicking the checkbox below, you are enabling a feature that will insert a certain amount of spaces, controlled by the <em class="bold">Indent Size</em> input, into the textarea when you click <kbd class="inline">TAB</kbd>.</div>
+    <details aria-hidden="true" class="flat">
+      <summary tabindex="-1">
+          <span class="body2 fw-regular">About Changing TAB Behavior</span>
+          <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+            <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+            </path>
+          </svg>
+      </summary>
+      <div tabindex="-1" class="accordion-content caption" aria-hidden="true" style="line-height: 1.7;">
+        Check the checkbox below to disable the default behavior when clicking <kbd class="inline">TAB</kbd> in a textarea. Normally, clicking <kbd class="inline">TAB</kbd> in a textarea will focus the input, 
+        but by clicking the checkbox below, you are enabling a feature that will insert a certain amount of spaces, controlled by the <em class="bold">Indent Size</em> input, into the textarea when you click 
+        <kbd class="inline">TAB</kbd>.
+      </div>
+    </details>
+    <label class="checkbox mt-2">
+      <input type="checkbox" class="primary" name="disabled-default-tab" id="disabled-default-tab" <%-Boolean(locals.settings.disableDefaultTab)?'checked':''%>>
+      Disable Default TAB Behavior 
+    </label>
+    <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+      <label for="tab-indent-size">Indent Size:</label>
+      <div class="mt-1 number-input medium">
+          <input <%-Boolean(!!!locals.settings.disableDefaultTab)?'disabled':''%> type="number" min="1" max="12" value="<%=locals.settings.tabSize%>" name="tab-indent-size" id="tab-indent-size" autocomplete="off" spellcheck="false" autocapitalize="off">
+          <button <%-Boolean(!!!locals.settings.disableDefaultTab)?'disabled':''%>  class="icon large" data-increase="" aria-label="Increase Input" type="button">
+              <svg focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                  </path>
+              </svg>
+          </button>
+          <button <%-Boolean(!!!locals.settings.disableDefaultTab)?'disabled':''%>  class="icon large" data-decrease="" aria-label="Decrease Input" type="button">
+              <svg focusable="false" inert viewBox="0 0 24 24">
+                  <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                  </path>
+              </svg>
+          </button>
+      </div>
+  </div>
+  </fieldset>
+  <label class="checkbox mt-2">
+    <input type="checkbox" class="primary" name="spellcheck-settings" id="spellcheck-settings" <%-Boolean(locals.settings.spellcheck)?'checked':''%>>
+    Spellcheck 
+  </label>
+  <p class="mt-1 warning fw-regular" tabindex="-1">
+    Check the checkbox above if you want inputs that could have spellcheck enabled to have spellcheck enabled.
+  </p>
+
+  <p class="body2 mt-2" tabindex="-1">
+    If you want to view or edit your cookies, navigate to the <button type="button" class="text medium secondary close-dialog" hx-get="/cookies" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">
+      Cookies Page
+    </button>.
+  </p>
+
+  <fieldset class="mt-2">
+    <legend class="h5 bold">Code Customization</legend>
+    <div class="flex-row justify-between align-center gap-2">
+      <div class="flex-column w-100 align-start justify-start grow-1">
+        <div class="body1 bold" id="code-theme-label">Editor Theme:</div>
+        <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="code-theme-popover" aria-labelledby="code-theme-label" class="select" data-popover data-pelem="#code-theme-popover" data-click aria-expanded="false"
+        data-force-close
+          >
+          <span style="min-width: 125px;" class="body1"><%=locals.settings.code_editor_theme%></span>
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+        </button>
+        <div tabindex="0" id="code-theme-popover" role="listbox" <%-Boolean(locals.desktop!==true)?'data-click-capture':''%> class="select-menu o-xs" data-placement="bottom">
+          <input 
+          data-theme 
+          type="text" 
+          hidden 
+          value="<%=locals.settings.code_editor_theme%>"
+          name="code-editor-theme-main" 
+          id="code-editor-theme-main"
+          >
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='abcdef')%>" data-val="abcdef">
+          abcdef
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='abyss')%>" data-val="abyss">
+          abyss
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='androidstudio')%>" data-val="androidstudio">
+          androidstudio
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='andromeda')%>" data-val="andromeda">
+          andromeda
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='atomone')%>" data-val="atomone">
+          atomone
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='aura')%>" data-val="aura">
+          aura
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='bbedit')%>" data-val="bbedit">
+          bbedit
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='basic light')%>" data-val="basic light">
+          basic light
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='basic dark')%>" data-val="basic dark">
+          basic dark
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='bespin')%>" data-val="bespin">
+          bespin
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='copilot')%>" data-val="copilot">
+          copilot
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='dracula')%>" data-val="dracula">
+          dracula
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='darcula')%>" data-val="darcula">
+          darcula
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='duotone light')%>" data-val="duotone light">
+          duotone light
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='duotone dark')%>" data-val="duotone dark">
+          duotone dark
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='eclipse')%>" data-val="eclipse">
+          eclipse
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='github light')%>" data-val="github light">
+          github light
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='github dark')%>" data-val="github dark">
+          github dark
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='gruvbox dark')%>" data-val="gruvbox dark">
+          gruvbox dark
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='gruvbox light')%>" data-val="gruvbox light">
+          gruvbox light
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='material light')%>" data-val="material light">
+          material light
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='material dark')%>" data-val="material dark">
+          material dark
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='monokai')%>" data-val="monokai">
+          monokai
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='monokai dimmed')%>" data-val="monokai dimmed">
+          monokai dimmed
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='kimbie')%>" data-val="kimbie">
+          kimbie
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='noctis-lilac')%>" data-val="noctis-lilac">
+          noctis-lilac
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='nord')%>" data-val="nord">
+          nord
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='okaidia')%>" data-val="okaidia">
+          okaidia
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='quietlight')%>" data-val="quietlight">
+          quietlight
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='red')%>" data-val="red">
+          red
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='solarized light')%>" data-val="solarized light">
+          solarized light
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='solarized dark')%>" data-val="solarized dark">
+          solarized dark
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='sublime')%>" data-val="sublime">
+          sublime
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='tokyo-night')%>" data-val="tokyo-night">
+          tokyo-night
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='tokyo-night-storm')%>" data-val="tokyo-night-storm">
+          tokyo-night-storm
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='tokyo-night-day')%>" data-val="tokyo-night-day">
+          tokyo-night-day
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='tomorrow-night-blue')%>" data-val="tomorrow-night-blue">
+          tomorrow-night-blue
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='white dark')%>" data-val="white dark">
+          white dark
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='white light')%>" data-val="white light">
+          white light
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='vscode')%>" data-val="vscode">
+          vscode
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='xcode light')%>" data-val="xcode light">
+          xcode light
+          </button>
+          <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%=Boolean(locals.settings.code_editor_theme==='xcode dark')%>" data-val="xcode dark">
+          xcode dark
+          </button>
+        </div>
+      </div>
+      <div class="grow-1 w-100">
+        <label class="checkbox medium">
+          <input type="checkbox" class="secondary" name="codemirror_emmet" id="codemirror_emmet"
+          <%-locals.settings.code_editor_emmet?'checked':''%>
+          >
+          Use Emmet
+        </label>
+      </div>
+    </div>
+    
+  </fieldset>
+
+ <div class="alert filled warning mt-2 icon small" role="alert">
+   <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+   <p class="alert body2">
+     The checkboxes below will only affect you if you have accepted notifications. Uncheck the checkboxes if you don't want to receive notifications on any of the topics below.
+    </p>
+   <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+     <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+   </button>
+ </div>
+  <fieldset class="mt-2" style="max-height: 300px; overflow-y: auto;">
+    <legend class="h4 bold">Push Notification Settings:</legend>
+
+    <div class="flex-row justify-start align-center gap-2" style="max-width:100%; overflow-x: hidden;">
+      <label class="checkbox grow-1" style="width: 50%;">
+        <input type="checkbox" value="on" class="primary" name="update_idea" <%-locals.settings.update_idea?'checked':''%>>
+        Update Idea
+    </label>
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="secondary" name="create_note" <%-locals.settings.create_note?'checked':''%>>
+          Create Note
+      </label>
+  </div>
+  <div class="flex-row justify-start align-center gap-2 mt-1" style="max-width:100%; overflow-x: hidden;">
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="warning" name="update_note" <%-locals.settings.update_note?'checked':''%>>
+          Update Note
+      </label>
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="info" name="create_blog" <%-locals.settings.create_blog?'checked':''%>>
+          Create Blog
+      </label>
+  </div>
+  <div class="flex-row justify-start align-center gap-2 mt-1" style="max-width:100%; overflow-x: hidden;">
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="error" name="update_blog" <%-locals.settings.update_blog?'checked':''%>>
+          Update Blog
+      </label>
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="success" name="create_idea" <%-locals.settings.create_idea?'checked':''%>>
+          Create Idea
+      </label>
+  </div>
+  <div class="flex-row justify-start align-center gap-2 mt-1" style="max-width:100%; overflow-x: hidden;">
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="warning" name="create_jupyter_notebook" <%-locals.settings.create_jupyter_notebook?'checked':''%>>
+          Create Jupyter Notebook Article
+      </label>
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="info" name="create_markdown_note" <%-locals.settings.create_markdown_note?'checked':''%>>
+          Create Markdown Note Article
+      </label>
+  </div>
+  <div class="flex-row justify-start align-center gap-2 mt-1" style="max-width:100%; overflow-x: hidden;">
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="error" name="create_stream_consciousness" <%-locals.settings.create_stream_consciousness?'checked':''%>>
+          Create Stream of Consciousness Post
+      </label>
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="success" name="create_daily_reading" <%-locals.settings.create_daily_reading?'checked':''%>>
+          Create Daily Reading Article
+      </label>
+  </div>
+  <div class="flex-row justify-start align-center gap-2 mt-1" style="max-width:100%; overflow-x: hidden;">
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="primary" name="create_tex_note" <%-locals.settings.create_tex_note?'checked':''%>>
+          Create TeX Note
+      </label>
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="secondary" name="create_link" <%-locals.settings.create_link?'checked':''%>>
+          Create Link
+      </label>
+  </div>
+  <div class="flex-row justify-start align-center gap-2 mt-1" style="max-width:100%; overflow-x: hidden;">
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="warning" name="create_quote" <%-locals.settings.create_quote?'checked':''%>>
+          Create Quote
+      </label>
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="info" name="create_project" <%-locals.settings.create_project?'checked':''%>>
+          Create Project
+      </label>
+  </div>
+  <div class="flex-row justify-start align-center gap-2 mt-1" style="max-width:100%; overflow-x: hidden;">
+      <label class="checkbox grow-1" style="width: 50%;">
+          <input type="checkbox" value="on" class="error" name="project_update" <%-locals.settings.project_update?'checked':''%>>
+          Project Update
+      </label>
+      <label class="checkbox grow-1" style="width: 50%;">
+        <input type="checkbox" value="on" class="success" name="create_survey" <%-locals.settings.create_survey?'checked':''%>>
+        Create Survey
+      </label>
+  </div>
+
+  <div class="flex-row justify-start align-center gap-2 mt-1" style="max-width:100%; overflow-x: hidden;">
+    <label class="checkbox grow-1" style="width: 50%;">
+        <input type="checkbox" value="on" class="primary" name="create_goodreads" <%-locals.settings.create_goodreads?'checked':''%>>
+        Create GoodReads
+    </label>
+    <label class="checkbox grow-1" style="width: 50%;">
+      <input type="checkbox" value="on" class="secondary" name="create_letterboxd" <%-locals.settings.create_letterboxd?'checked':''%>>
+      Create Letterboxd
+    </label>
+  </div>
+
+  <div class="flex-row justify-start align-center gap-2 mt-1" style="max-width:100%; overflow-x: hidden;">
+    <label class="checkbox grow-1" style="width: 50%;">
+        <input type="checkbox" value="on" class="warning" name="create_game" <%-locals.settings.create_game?'checked':''%>>
+        Create Game
+    </label>
+    <label class="checkbox grow-1" style="width: 50%;">
+      <input type="checkbox" value="on" class="info" name="create_3d_design" <%-locals.settings.create_3d_design?'checked':''%>>
+      Create 3D Design
+  </label>
+  </div>
+  <div class="flex-row justify-start align-center gap-2 mt-1" style="max-width:100%; overflow-x: hidden;">
+    <label class="checkbox grow-1" style="width: 50%;">
+        <input type="checkbox" value="on" class="error" name="create_electronics" <%-locals.settings.create_electronics?'checked':''%>>
+        Create Electronics / Robotics
+    </label>
+  </div>
+
+
+  </fieldset>
+
+  <fieldset class="mt-2">
+    <legend class="h4 bold">AI Settings:</legend>
+
+    <label class="checkbox mt-1">
+      <input type="checkbox" value="on" class="primary" name="include-autocomplete-suggestions" id="include-autocomplete-suggestions" <%-locals.settings.include_autocomplete_suggestions?'checked':''%>>
+      Include Autocomple Suggestions
+    </label>
+
+    <label class="checkbox">
+      <input type="checkbox" value="on" class="secondary" name="enable-ai-writer" id="enable-ai-writer" <%-locals.settings.enable_ai_writer?'checked':''%>>
+      Enable AI Writer
+    </label>
+
+    <fieldset>
+      <legend class="h5 bold">AI Writer Settings:</legend>
+      <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="ai-writer-temperature">Temperature:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="0" 
+            max="1"
+            step="0.01"
+            value="<%-locals.settings.ai_writer_temperature%>" 
+            name="ai-writer-temperature" 
+            id="ai-writer-temperature" 
+            placeholder="Enter the temperature for the AI writer" 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+      <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="ai-writer-max-tokens">Max Tokens:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="10" 
+            max="1000" 
+            value="<%-locals.settings.ai_writer_max_tokens%>" 
+            step="1"
+            name="ai-writer-max-tokens" 
+            id="ai-writer-max-tokens" 
+            placeholder="Enter the max tokens for the AI writer..." 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+
+      <div class="h6 bold mt-1" id="ai-writer-model-label">Model:</div>
+      <div class="mt-1 flex-row justify-start">
+        <div class="select">
+          <button style="min-width: 250px;" type="button" role="combobox" aria-haspopup="listbox" aria-controls="ai-writer-model-drop" aria-labelledby="ai-writer-model-label" class="select" aria-label="AI Writer Model" data-popover data-pelem="#ai-writer-model-drop" data-click aria-expanded="false">
+            <span class="body1"><%-locals.ai_writer_model_name%></span>
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+          </button>
+          <div tabindex="0" id="ai-writer-model-drop" role="listbox" class="select-menu o-xs" data-placement="bottom">
+            <input type="text" hidden value="<%-locals.settings.ai_writer_model%>" name="ai-writer-model-input" id="ai-writer-model-input">
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="meta-llama/llama-3.2-1b-instruct"%>" data-val="meta-llama/llama-3.2-1b-instruct">
+              Meta: Llama 3.1 1B Instruct
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="meta-llama/llama-3.2-3b-instruct"%>" data-val="meta-llama/llama-3.2-3b-instruct">
+              Meta: Llama 3.2 3B Instruct
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="meta-llama/llama-3.1-8b-instruct"%>" data-val="meta-llama/llama-3.1-8b-instruct">
+              Meta: Llama 3.1 8B Instruct
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="qwen/qwen-2.5-7b-instruct"%>" data-val="qwen/qwen-2.5-7b-instruct">
+              Qwen2.5 7B Instruct
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="mistralai/mistral-7b-instruct"%>" data-val="mistralai/mistral-7b-instruct">
+              Mistral: Mistral 7B Instruct
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="google/gemma-2-9b-it"%>" data-val="google/gemma-2-9b-it">
+              Google: Gemma 2 9B
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="meta-llama/llama-3-8b-instruct"%>" data-val="meta-llama/llama-3-8b-instruct">
+              Meta: Llama 8B Instruct
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="mistralai/ministral-3b"%>" data-val="mistralai/ministral-3b">
+              Mistral: Ministral 3B
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="amazon/nova-micro-v1"%>" data-val="amazon/nova-micro-v1">
+              Amazon: Nova Micro 1.0
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="google/gemini-flash-1.5-8b"%>" data-val="google/gemini-flash-1.5-8b">
+              Google: Gemini Flash 1.5 8B
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="mistralai/ministral-8b"%>" data-val="mistralai/ministral-8b">
+              Mistral: Ministral 8B
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="google/gemini-2.0-flash-001"%>" data-val="google/gemini-2.0-flash-001">
+              Google: Gemini Flash 2.0
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="meta-llama/llama-3.3-70b-instruct"%>" data-val="meta-llama/llama-3.3-70b-instruct">
+              Meta: Llama 3.3 70B Instruct
+             </button>
+             <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="meta-llama/llama-3.1-70b-instruct"%>" data-val="meta-llama/llama-3.1-70b-instruct">
+              Meta: Llama 3.3 70B Instruct
+             </button>
+             <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="google/gemma-7b-it"%>" data-val="google/gemma-7b-it">
+              Google: Gemma 7B 
+             </button>
+             <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="openai/gpt-4o-mini-2024-07-18"%>" data-val="openai/gpt-4o-mini-2024-07-18">
+              OpenAI: GPT-40-mini 
+             </button>
+             <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="meta-llama/llama-2-13b-chat"%>" data-val="meta-llama/llama-2-13b-chat">
+              Meta: Llama 2 13B Chat
+             </button>
+             <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="anthropic/claude-3-haiku"%>" data-val="anthropic/claude-3-haiku">
+              Anthropic: Claude 3 Haiku
+             </button>
+             <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="openai/gpt-3.5-turbo"%>" data-val="openai/gpt-3.5-turbo">
+              OpenAI: GPT-3.5 Turbo 
+             </button>
+             <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="anthropic/claude-3.5-haiku"%>" data-val="anthropic/claude-3.5-haiku">
+              Anthropic: Claude 3.5 Haiku
+             </button>
+             <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="openai/o3-mini"%>" data-val="openai/o3-mini">
+              OpenAI: o3 Mini
+             </button>
+             <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_writer_model==="openai/gpt-4o"%>" data-val="openai/gpt-4o">
+              OpenAI: GPT-4o
+             </button>
+
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <label class="checkbox mt-1">
+      <input type="checkbox" value="on" class="info" name="enable-ai-coder" id="enable-ai-coder" <%-locals.settings.enable_ai_coder?'checked':''%>>
+      Enable AI Coder
+    </label>
+    <fieldset>
+      <legend class="h5 bold">AI Coder Settings:</legend>
+      <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="ai-coder-temperature">Temperature:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="0" 
+            max="1"
+            step="0.01"
+            value="<%-locals.settings.ai_coder_temperature%>" 
+            name="ai-coder-temperature" 
+            id="ai-coder-temperature" 
+            placeholder="Enter the temperature for the AI writer" 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+      <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+        <label for="ai-coder-max-tokens">Max Tokens:</label>
+        <div class="mt-1 number-input medium">
+            <input 
+            type="number" 
+            min="10" 
+            max="1000" 
+            value="<%-locals.settings.ai_coder_max_tokens%>" 
+            step="1"
+            name="ai-coder-max-tokens" 
+            id="ai-coder-max-tokens" 
+            placeholder="Enter the max tokens for the AI writer..." 
+            autocomplete="off" 
+            spellcheck="false" 
+            autocapitalize="off"
+            >
+            <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                    </path>
+                </svg>
+            </button>
+            <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24">
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+      </div>
+      <div class="g6 mt-1 bold">Model:</div>
+      <div class="mt-1 flex-row justify-start">
+        <div class="select">
+          <button type="button" role="combobox" aria-haspopup="listbox" aria-controls="ai_coder_dropdown" class="select" aria-label="Select AI Coding Model" data-popover data-pelem="#ai_coder_dropdown" data-click aria-expanded="false">
+            <span class="body1"><%-locals.ai_coder_model_name%></span>
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ArrowDropDown"><path d="m7 10 5 5 5-5z"></path></svg>
+          </button>
+          <div tabindex="0" id="ai_coder_dropdown" role="listbox" class="select-menu o-xs" data-placement="bottom">
+            <input type="text" hidden value="<%-locals.settings.ai_coder_model%>" name="ai-coder-model-input" id="ai-coder-model-input">
+            <button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_coder_model==="qwen/qwen-2.5-coder-32b-instruct"%>" data-val="qwen/qwen-2.5-coder-32b-instruct">
+              Qwen2.5 Coder 32B Instruct
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_coder_model==="google/gemini-flash-1.5"%>" data-val="google/gemini-flash-1.5">
+              Google: Gemini Flash 1.5
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_coder_model==="google/gemini-2.0-flash-001"%>" data-val="google/gemini-2.0-flash-001">
+              Google: Gemini Flash 2.0
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_coder_model==="meta-llama/llama-3.3-70b-instruct"%>" data-val="meta-llama/llama-3.3-70b-instruct">
+              Meta: Llama 3.3 70B Instruct
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_coder_model==="openai/gpt-4o-mini"%>" data-val="openai/gpt-4o-mini">
+              OpenAI: GPT-4o-mini
+             </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_coder_model==="mistralai/mistral-7b-instruct-v0.1"%>" data-val="mistralai/mistral-7b-instruct-v0.1">
+              Mistal: Mistral 7B Instruct v0.1
+             </button>
+            </button><button type="button" tabindex="-1" class="select-option" role="option" aria-selected="<%-locals.settings.ai_coder_model==="google/palm-2-chat-bison"%>" data-val="google/palm-2-chat-bison">
+              Google PaLM 2 Chat
+             </button>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+  </fieldset>
+</form>
+
+

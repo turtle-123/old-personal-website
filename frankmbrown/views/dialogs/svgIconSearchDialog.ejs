@@ -1,0 +1,85 @@
+<%# 
+PARTIAL ROUTE: dialogs/svgIconSearchDialog.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.desktop (boolean): Is the user's device a desktop?
+%>
+<div style="display: none;" hidden class="dialog-wrapper" id="svg-icon-search-dialog" data-close-backdrop data-esc>
+  <div class="dialog large" data-click-capture>
+    <div class="dialog-header">
+      <p class="grow-1 flex-row h3 bold">SVG Icon Search</p>
+      <%if(locals.desktop===true){%>
+        <kbd class="inline" style="margin-right: 4px;"  data-pelem="#close-dialog-esc-svg-icon" aria-describedby="close-dialog-esc-svg-icon" data-mouse data-popover>ESC</kbd>
+        <div id="close-dialog-esc-svg-icon" role="tooltip" class="tooltip body2" data-placement="bottom-end">
+          Press the Escape key to Close the Dialog
+        </div>
+      <%}%>
+      <button class="icon medium close-dialog" type="button" aria-label="Close Dialog">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+      </button>
+    </div>
+    <div class="dialog-body">
+      <p class="body2 mt-1">
+        Search the same icons that are included <a href="https://v4.mui.com/components/material-icons/" target="_blank" class="secondary link">on the MUI Website</a>. I included 
+        search here because I am very often searching these icons, and I don't like having to go back to their website.
+      </p>
+      <form hx-post="/api/search-icons" id="search-icons-form-dialog" hx-trigger="submit" hx-target="#search-icons-dialog-results" hx-indicator="#indicator-search-icons-dialog" hx-swap="innerHTML">
+        <div class="input-group block w-100 mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+          <label for="search-icons-input-dialog">Search Icons:</label>
+          <div class="mt-1 text-input block medium">
+            <input type="search" class="icon-after auto-sec" name="search-icons-input-dialog" id="search-icons-input-dialog" 
+            placeholder="Search Icons..." hx-trigger="keyup changed delay:200ms, search" hx-include="#search-icons-form-dialog" hx-post="/api/search-icons" hx-target="#search-icons-dialog-results" hx-swap="innerHTML" hx-indicator="#indicator-search-icons-dialog">
+            <svg class="icon-after" focusable="false" inert viewBox="0 0 24 24">
+              <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+              </path>
+            </svg>
+          </div>
+        </div>
+        <fieldset class="checkbox mt-1">
+          <legend class="body1 fw-regular">Include:</legend>
+          <div class="flex-row justify-start wrap align-center gap-3">
+            <label class="checkbox">
+              <input type="checkbox" name="Filled-Dialog" value="Filled-Dialog" checked>
+              Filled
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" class="secondary" name="Outlined-Dialog" value="Outlined-Dialog" checked>
+              Outlined
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" class="warning" name="Rounded-Dialog" value="Rounded-Dialog" checked>
+              Rounded
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" class="success" name="Sharp-Dialog" value="Sharp-Dialog" checked>
+              Sharp
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" class="error" name="TwoTone-Dialog" value="TwoTone-Dialog" checked>
+              Two Tone
+            </label>
+          </div>
+        </fieldset>
+      </form>
+      <div class="flex-row justify-center t-primary mt-2 htmx-indicator" role="progressbar" aria-busy="false" aria-label="Search Icons Dialog Indicator" id="indicator-search-icons-dialog">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <div id="search-icons-dialog-results" style="min-height: 200px;"></div>
+
+      <div class="snackbar dialog-snackbar success" aria-hidden="true" id="copy-svg-success-dialog" data-snacktime="4000">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CopyAll"><path d="M18 2H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H9V4h9v12zM3 15v-2h2v2H3zm0-5.5h2v2H3v-2zM10 20h2v2h-2v-2zm-7-1.5v-2h2v2H3zM5 22c-1.1 0-2-.9-2-2h2v2zm3.5 0h-2v-2h2v2zm5 0v-2h2c0 1.1-.9 2-2 2zM5 6v2H3c0-1.1.9-2 2-2z"></path></svg>
+        <p class="p-sm">Copied SVG icon to clipboard!</p>
+        <button class="icon medium" type="button" data-close-snackbar aria-label="Close Snackbar">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="CloseSharp"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="dialog-footer" role="toolbar">
+      <button class="filled error small close-dialog" type="button" aria-label="Close Dialog">
+        CLOSE DIALOG
+      </button>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="dialog-wrapper whole" id="ai-chat-dialog" data-esc style="display: hidden;" hidden>
+  <div class="dialog whole">
+    <div class="dialog-header">
+      <div class="grow-1 flex-row align-center gap-3">
+        <span class="h3 bold">
+          AI Chat
+        </span>
+        <div class="flex-row justify-center" id="select-ai-chats-swap"></div>
+        
+      </div>
+
+      
+    <%if(locals.desktop){%>
+        <kbd class="inline" data-pelem="#close-dialog-esc-ai-chat-di" aria-describedby="close-dialog-esc-ai-chat-di" data-mouse data-popover>ESC</kbd>
+        <div id="close-dialog-esc-ai-chat-di" role="tooltip" class="tooltip body2" data-placement="bottom-end">
+            Press the Escape key to Close the Dialog
+        </div>        
+    <%}%>
+
+      
+      <button class="icon medium close-dialog" type="button" aria-label="Close Dialog">
+        <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+      </button>
+    </div>
+    <div class="dialog-body" style="position: relative; background-color: var(--background); max-height: calc(100vh - 100px); overflow: hidden;">
+
+        
+
+        <div hx-trigger="load delay:250ms" hx-get="/components/ai-chat-prompt" hx-target="this" hx-swap="outerHTML"></div>
+    </div>
+    <div class="dialog-footer" role="toolbar">
+      <button class="filled error small close-dialog" type="button" aria-label="Close Dialog">
+        CLOSE DIALOG
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<%# 
+PARTIAL ROUTE: pages/learning-d3/random.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title" id="top-of-page">D3.js Random</h1>    
+  <p>
+    Generate random numbers from various distributions. For seeded random number generation, see random.source and randomLcg.
+  </p>        
+  <%-include('../../partials/pagePartial')%>
+<%}%>

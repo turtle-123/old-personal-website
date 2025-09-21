@@ -1,0 +1,421 @@
+<%# 
+PARTIAL ROUTE: pages/home.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">Welcome to frankmbrown.net</h1>
+  <p class="body1 mt-4" id="site-introduction">
+    Welcome to my personal website. 
+    <br><br>
+    If you see anything on this site that you like or don't like, you can
+    <a href="mailto:fmb201704@gmail.com" class="primary link">email me</a>.
+    <br>
+    <br>
+    For why I created this site, see the 
+    <a href="#about" class="secondary link" hx-get="/about"
+    hx-target="#PAGE"
+    hx-indicator="#page-transition-progress"
+    hx-push-url="true"
+    >About Page</a>.
+    
+  </p>
+  <style>
+    a.project_link {
+      text-decoration: none;
+      border: 2px solid var(--divider);
+      padding: 0px 4px 0px 0px;
+      display: flex;
+      flex-basis: 100%;
+      width: 100%;
+      justify-content: flex-start;
+      align-items: start;
+      border-radius: 4px;
+      margin-top: 8px;
+      color: var(--text-primary);
+    }
+    a.project_link:hover {
+      opacity: 0.7;
+      border: 2px solid var(--text-primary);
+    }
+    span.proj-info {
+      padding: 3px; 
+      border-radius: 6px;
+    }
+
+  </style>
+
+  <h3 class="h5 bold mt-2 bb">Current Things to Note About This Site:</h3>
+  <ul class="mt-1">
+    <li class="fw-regular">
+      Some of the features on this site require <a class="secondary link" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API">Web <abbr title="Application Programming Interface">API</abbr>s</a> which require user consent for the site to utilize. If you ever accidentally deny the site access to Web APIs and later change your mind, you can use <a class="primary link" hx-get="/change-site-permissions" href="/change-site-permissions" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">this page</a> to change which APIs you give the site access to.
+    </li>
+  </ul>
+
+  <section id="on-this-site" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#on-this-site" class="same-page fw-regular">On This Site</a>
+      </h2>
+
+      <div>
+        <a href="/note" hx-get="/note" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/3db70bb5-1bde-4f08-9cdf-05e1900a0058.jpg" alt="Notes" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Notes
+            </p>
+            <p class="body2 w-100">
+              Page that houses the notes that I took using my implementation of the Lexical Rich text editor, which can be seen on the projects page. Right now, notes are mostly on computer/software topics, but I expect that to change in the future.
+            </p>
+          </div>
+        </a>
+       
+        <a href="/projects" hx-get="/projects" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/06ea38f0-37e1-4bc4-8dc2-60d1edc4a746.jpg" alt="Projects" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Projects
+            </p>
+            <p class="body2 w-100">
+              Page that contains links to projects that I have worked on. Right now, the page contains mostly software projects, but that might change in the future.
+            </p>
+          </div>
+        </a>
+        <a href="/links" hx-get="/links" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/20536e51-ad4a-4525-bfb4-38a5e11c475d.jpg" alt="Links" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Links
+            </p>
+            <p class="body2 w-100">
+              Page contains some helpful links to pages across the internet that I want to remember.  
+            </p>
+          </div>
+        </a>
+        <a href="/quotes" hx-get="/quotes" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/d297fd1e-b5bb-483f-b878-bc8694feb646.jpg" alt="Quotes" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Quotes
+            </p>
+            <p class="body2 w-100">
+              I wanted to create a page similar to Paul Graham's quote page on his website. If I ever come across a snippet of text that I think is meaningful, I will try to add it to this page along with what I got from it. 
+            </p>
+          </div>
+        </a>
+        <a href="/daily-reading" hx-get="/daily-reading" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/32d12c57-dd8c-49b9-97f8-a177586cca51.jpg" alt="Daily Reading" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Daily Reading
+            </p>
+            <p class="body2 w-100">
+              I am trying to learn something new everyday, or dive deeper into a topic that I previously didn't have the time to do a deep dive on. I created this page to try to read documentation/blog posts/chapters of a book every day and take some notes on what I read.
+            </p>
+          </div>
+        </a>
+        <a href="/tex-notes" hx-get="/tex-notes" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/b8a18371-774c-44e5-a08a-708185739465.jpg" alt="TeX Notes" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              <span class="inline-katex">
+                <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>
+                </span> Notes
+            </p>
+            <p class="body2 w-100">
+              I created this page to take notes using <span id="cop_html_16346440646210492" class="inline-katex">
+                <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>
+                </span>. I wanted to create this page in part to improve my <span id="cop_html_16346440646210492" class="inline-katex">
+                  <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>
+                  </span> skills and also to improve my <span id="cop_html_16346440646210492" class="inline-katex">
+                    <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span>
+                    </span> to HTML system. This page mainly contains notes on research papers and other technical subjects.
+            </p>
+          </div>
+        </a>
+        <a href="/jupyter-notebooks" hx-get="/jupyter-notebooks" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/2677d8e5-d121-4e3c-bb1b-33dacf62a55f.jpg" alt="Jupyter Notebooks" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Jupyter Notebooks
+            </p>
+            <p class="body2 w-100">
+              Page that contains Jupyter Notebooks that I created. I wanted to create this page to house Jupyter Notebooks that I create - which mainly contain notes on data science, machine learning, and other python-related topics (such as notes on documentation), but I also wanted to improve my <span class="text-code">ipynb</span> to HTML system.
+            </p>
+          </div>
+        </a>
+        <a href="/markdown-notes" hx-get="/markdown-notes" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/b22dc7bf-6304-45b6-a10e-54302a78eda6.jpg" alt="Markdown Notes" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Markdown Notes
+            </p>
+            <p class="body2 w-100">
+              Page that contains some notes that I have taken using the markdown markup language. I wanted to create this page to improve my markdown-to-HTML system, learn more about markdown, and because sometimes, it is easier to take notes using markdown than any other markup language. 
+            </p>
+          </div>
+        </a>
+        <a href="/ai-tools" hx-get="/ai-tools" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/aca66b05-8a57-4ccd-8b0a-b5e0f0261c98.jpg" alt="Notes" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              AI Tools
+            </p>
+            <p class="body2 w-100">
+              Page that contains links to AI tools that I have created or will create to solve some problems that I sometimes face.  
+            </p>
+          </div>
+        </a>
+        <a href="/goodreads" hx-get="/goodreads" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/a024b04c-9b17-4d76-babd-be44ecbceac5.jpg" alt="Notes" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Frank's Goodreads
+            </p>
+            <p class="body2 w-100">
+              I am creating this page to write about books that I have read. I didn't want to create a Goodreads account beacuse that is just more information that I am going to have to remember. 
+            </p>
+          </div>
+        </a>
+        <a href="/letterboxd" hx-get="/letterboxd" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/8edef0e0-ee44-41e5-b8e2-59b0bcd8bd47.jpg" alt="Letterboxd" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Frank's Letterboxd
+            </p>
+            <p class="body2 w-100">
+              I am creating this page to write about movies or shows that I have watched. I didn't want to create a Letterboxd account beacuse that is just more information that I am going to have to remember. 
+            </p>
+          </div>
+        </a>
+        <a href="/games" hx-get="/games" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/7757999d-473c-40e5-a548-5b9c44e5c1d3.avif" alt="Games" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Frank's Games
+            </p>
+            <p class="body2 w-100">
+              I am creating this page to host games that I create. I developed some interest in creating 2D and 3D games after reading about Computer Graphics and using Three.js over the past couple weeks, and now that AI has made it easier to create pixel art, I am going to try to create some games. 
+            </p>
+          </div>
+        </a>
+        <a href="/3d-designs" hx-get="/3d-designs" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/993711a4-76c1-42aa-85b3-c0e0dc3ca786.jpg" alt="3D Designs" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Frank's 3D Designs
+            </p>
+            <p class="body2 w-100">
+              I am creating this page to house 3D designs that I will create. One of my new years resolutions for 2025 was to get back into 3D printing and learn Blender. I am going to use this page to showcase my designs - whether they be engineering designs or recrational 3D designs that I create. This is also an opportunity to learn Three.js better. 
+            </p>
+          </div>
+        </a>
+        <a href="/electronics-robotics" hx-get="/electronics-robotics" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/91cc8d31-0f4b-4c1e-8cb2-240dddfd4ee4.jpg" alt="Electronics and Robotics" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Frank's Electronics and Robotics Projects
+            </p>
+            <p class="body2 w-100">
+              I am creating this page to document electronics and robotics projects that I hope to complete. I first got into electronics after learning that I needed to learn more about electronics if I ever wanted to build something somehwat complicated. This page contains links to electronics / robotics projects. 
+            </p>
+          </div>
+        </a>
+
+        <a href="/stream-of-consciousness" hx-get="/stream-of-consciousness" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/34277e9b-a8d1-4cdd-9ae1-7aa89f3c8a18.jpg" alt="Stream of Consciousness" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Stream of Consciousness
+            </p>
+            <p class="body2 w-100">
+              I created this page to house some microblogs that I have created / will create. Sometimes I want to note something for future reference that does not require a full note or deep dive, and this page contains those ideas. Sometimes I will just post what I am thinking as well.
+            </p>
+          </div>
+        </a>
+        <a href="/chat" hx-get="/chat" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/8ae93294-2e96-48df-b817-bf6a87c0c46b.jpg" alt="Chat" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Chat
+            </p>
+            <p class="body2 w-100">
+              I created this page because I wanted to practice using WebSockets and because I thought it would be fun. It also gives me the opportunity to maybe implement infinite scroll. This page allows you to chat with other people who have visited this site. Your chat messages are associated with your IP address. 
+            </p>
+          </div>
+        </a>
+        <a href="/blog" hx-get="/blog" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/27d63f3b-f495-4005-9ae2-ed1f17a423ad.jpg" alt="Blog" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Blog
+            </p>
+            <p class="body2 w-100">
+              Page that contains some blog posts. I haven't really started blogging yet, but I hope to in the future.              
+            </p>
+          </div>
+        </a>
+        <a href="/idea" hx-get="/idea" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/554ddff3-4f4a-44fb-a3c2-19a3887eb473.jpg" alt="Idea" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Idea
+            </p>
+            <p class="body2 w-100">
+              Page that contains some ideas that I have. The page is currently empty, but I plan to add to it in the future.
+            </p>
+          </div>
+        </a>
+        <a href="/utilities" hx-get="/utilities" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/bde8fb2e-dff6-430f-a089-ee2efdb530fb.jpg" alt="Utilities" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Utilities
+            </p>
+            <p class="body2 w-100">
+              Page that contains some functionality that I need to use often and that didn't require its own project page. You can search for SVG icons, generate mathml, generate highlighted code markup, and much more on this page. 
+            </p>
+          </div>
+        </a>
+        <a href="/cookies" hx-get="/cookies" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/b90c4170-4c72-4ea8-8ced-bf2ca72e2159.jpg" alt="Cookies" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Cookies
+            </p>
+            <p class="body2 w-100">
+              Page that allows you to edit your cookie preferences. I tried to make this site comply with the European Union's regulations after looking into what they require, and I believe that it does.
+            </p>
+          </div>
+        </a>
+
+        <%#
+        <a href="" hx-get="" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="" alt="" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              
+            </p>
+            <p class="body2 w-100">
+              
+            </p>
+          </div>
+        </a>
+        %>
+      </div>
+  </section>
+
+  <section id="where-else-find-me" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#where-else-find-me" class="same-page bold">
+          Where Else To Find Me Online
+        </a>
+      </h2>
+      <div>
+        <a href="https://github.com/turtle-123" target="_blank" class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/71c8fde7-95fd-420c-a9d6-ee9b26367329.jpg" alt="GitGub" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              GitHub
+            </p>
+            <p class="body2 w-100">
+              GitHub account. I think I only have one public repository now that allows you to decrease the size of font files based on what characters you need the fornt for. 
+            </p>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/@frankslearning" class="project_link" target="_blank">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/14597d0e-4257-4f54-832d-1aa7e0429ad8.jpg" alt="Cookies" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              YouTube
+            </p>
+            <p class="body2 w-100">
+              YouTube account. I am considering making an educational YouTube account where I review materials that I read as part of 
+            </p>
+          </div>
+        </a>
+        <a href="https://x.com/frankmckeebrown" class="project_link" target="_blank">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/8203d057-56e3-41fa-9fe4-9ca2c13f22e3.jpg" alt="X / Twitter Link" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Twitter
+            </p>
+            <p class="body2 w-100">
+              Twitter Account. I haven't posted yet and I don't see myself posting here much gong forward. 
+            </p>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/frank-brown-660236171/" class="project_link" target="_blank">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/89254406-b617-45bc-bc73-1d1469318b6e.jpg" alt="Cookies" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              LinkedIn
+            </p>
+            <p class="body2 w-100">
+              My LinkedIn account.
+            </p>
+          </div>
+        </a>
+        
+      </div>
+  </section>
+
+
+
+  <%-include('../partials/pagePartial')%>
+  
+  <%}%>

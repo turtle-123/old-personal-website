@@ -1,0 +1,112 @@
+<%# 
+PARTIAL ROUTE: forms/article-builder-form.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.hxPost: hx-post="/to-your-house"
+- locals.loading: data-loading="Submitting Form!"
+- locals.form-id: Id of the form
+- locals.target: What is form targeting?, output#abc
+- locals.article-title: Article Title Input ID
+- locals.form-id: ID for form
+- locals.mobile-preview-button: Arial label for button
+- locals.tablet-preview-button: Arial label for button
+- locals.desktop-preview-button: Arial label for button
+%>
+<form 
+<%-locals["hxPost"]?locals["hxPost"]:''%> 
+<%-locals["loading"]?locals["loading"]:''%> 
+id="<%=locals["form-id"]%>" 
+data-article-builder-final 
+data-no-lexical-form
+class="mt-2"
+<%-locals["target"]?locals["target"]:''%> 
+>
+  <div class="input-group block" data-hover="false" data-focus="false" data-error="false" data-blurred="true">
+    <label for="<%=locals["article-title"]%>">Article Title:</label>
+    <div class="text-input block medium">
+        <input 
+        data-article-title
+        type="text" 
+        autocomplete="off" 
+        name="<%=locals["article-title"]%>" 
+        id="<%=locals["article-title"]%>" 
+        class="medium icon-before mt-1" 
+        required
+        placeholder="Enter the article/blog/notes title" 
+        maxlength="50"
+        minlength="1" 
+        spellcheck="true" 
+        autocapitalize="off"
+        >
+        <svg class="icon-before" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Title"><path d="M5 4v3h5.5v12h3V7H19V4z"></path></svg>
+    </div>
+  </div>
+  
+  <div id="sort-section-container" data-drag-container>
+    <%-include('../lexical/rich-text-editor-article-builder-3')%>
+  </div>
+
+  <div class="flex-row justify-between" style="padding-top: 8px; border-top: 1px solid var(--divider); margin-top: 2rem;">
+    <button data-preview-article type="button" class="icon-text info filled medium">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="RemoveRedEye"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+      PREVIEW ARTICLE
+    </button>
+    <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+      SUBMIT
+    </button>
+  </div>
+  
+</form>
+<output form="<%=locals["form-id"]%>" hidden class="mt-2">
+  <div class="flex-row justify-start p-md bb">
+    <button data-edit-article id="edit-article" type="button" class="icon-text info filled medium">
+      <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Edit"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
+      EDIT
+    </button>
+  </div>
+  <div class="tabs mt-2">
+    <ul class="tabs" role="tablist">
+      <li role="presentation">
+        <button id="<%=locals["mobile-preview-button"]%>" class="tab-button secondary" role="tab" type="button" aria-selected="true" data-tab="0" tabindex="-1">
+          Mobile
+        </button>
+      </li>
+      <li role="presentation">
+        <button id="<%=locals["tablet-preview-button"]%>" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="1" tabindex="-1">
+          Tablet
+        </button>
+      </li>
+      <li role="presentation">
+        <button id="<%=locals["desktop-preview-button"]%>" class="tab-button t-secondary" role="tab" type="button" aria-selected="false" data-tab="2" tabindex="-1">
+          Desktop
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="tab-panels"  style="background-color: var(--secondary-background);">
+    <div aria-labelledby="<%=locals["mobile-preview-button"]%>" role="tabpanel" tabindex="0">
+      <div style="padding: 8px 0px;overflow-x:auto;" class="hz-scroll">
+        <article role="presentation" class="preview-editor-mobile hz-scroll" data-preview-mobile style="max-width: 100%; overflow-x: hidden;">
+
+        </article>
+      </div>
+    </div>
+    <div aria-labelledby="<%=locals["tablet-preview-button"]%>" role="tabpanel" tabindex="0" hidden>
+      <div style="padding: 8px 0px;overflow-x:auto;" class="hz-scroll">
+        <article role="presentation" class="preview-editor-tablet hz-scroll" data-preview-tablet style="max-width: 100%; overflow-x: hidden;">
+
+        </article>
+      </div>
+    </div>
+    <div aria-labelledby="<%=locals["desktop-preview-button"]%>" role="tabpanel" tabindex="0" hidden>
+      <div style="padding: 8px 0px;overflow-x:auto;" class="hz-scroll">
+        <article role="presentation" class="preview-editor-desktop hz-scroll" data-preview-desktop style="max-width: 100%; overflow-x: hidden;">
+
+        </article>
+      </div>
+    </div>
+  </div>
+ 
+</output>

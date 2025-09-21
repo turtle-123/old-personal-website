@@ -1,0 +1,668 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/media-main.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.desktop
+%>
+<h2 class="bold bb-thick h2" id="media-header">
+  <a href="#media-header"  class="same-page bold">Images, Videos, and Audio</a>
+</h2>
+<section id="image-section">
+<h3 class="h6 bold">
+  <a href="#image-section" class="same-page fw-regular">Images</a>
+</h3>
+<details class="mt-1">
+  <summary>
+    <span class="h6 fw-regular">About Images</span>
+    <svg class="details" focusable="false" inert viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+      </path>
+    </svg>
+  </summary>
+  <div class="accordion-content" aria-hidden="true">
+      Most of the time, you want images to be centered on the page being on their own line, so this is how the <span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span>&gt;</span></span></code></span> tag is styled.
+      <br>
+      If you want to do a masonry-like image layout, it is probably best to configure that on the server side - that way you will prevent <abbr title="cumulative layout shift">CLS</abbr> (cumulative layout shift) as well.
+      <br>
+      All images should have an alt attribute, and they can also have a <span class="t-info bold">data-text</span> attribute that appends additional information to an image.
+      <br>
+      All images, when clicked, will launch the image dialog (<span><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dialog</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;image-dialog&quot;</span>&gt;</span></span></code></span>), where users can view an enlarged version of the image.
+      <span class="t-warning fw-regular">If you do not want this to be the case, then add the class </span> <span><code class="hljs"><span class="hljs-selector-class">.no-click</span></code></span> <span class="t-warning fw-regular">to the image.</span>
+  </div>
+</details>
+<div class="flex-row w-100 justify-center align-center mt-2">
+  <button class="text warning medium" data-hide-show data-el="#image-dialog-code">
+    <span data-show>SHOW IMAGE DIALOG CODE</span>
+    <span hidden data-hide> HIDE IMAGE DIALOG CODE</span>
+  </button>
+</div>
+<div hidden class="mt-2" id="image-dialog-code">
+  <div style="position: relative;"><pre class="hz-scroll"><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dialog</span> <span class="hljs-attr">data-esc</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;image-dialog&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-row justify-start align-center&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-row grow-1 justify-center align-center w-100&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;image-modal-text&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;h6 bold&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grow-0 flex-row align-center&quot;</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">kbd</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;kbd mr-1&quot;</span> <span class="hljs-attr">data-popover</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">data-pelem</span>=<span class="hljs-string">&quot;#close-image-dialog&quot;</span> <span class="hljs-attr">data-mouse</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span>ESC<span class="hljs-tag">&lt;/<span class="hljs-name">kbd</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;Close Image Dialog&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon medium close-dialog&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Close Image Dialog&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;t-normal&quot;</span> <span class="hljs-attr">focusable</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;tooltip body2&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;tooltip&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;close-image-dialog&quot;</span>&gt;</span>
+Press ESC to Close the Dialog
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;image-modal-image&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mt-2 no-click&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;body1 text-align-center&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;max-width: 600px; margin: 6px auto;&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;image-modal-additional-description&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">details</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;report-image&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mt-2 medium p-md&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">summary</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;t-warning h6 bold&quot;</span>&gt;</span>
+Report Inappropriate Content
+<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;details&quot;</span> <span class="hljs-attr">focusable</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">summary</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;report-image-main&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;p-md&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;accordion-content&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;input-group block mt-1&quot;</span> <span class="hljs-attr">data-hover</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">data-focus</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">data-error</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">data-blurred</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span> 
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;inappropriate-image-input&quot;</span>&gt;</span>Inappropriate Image Description:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mt-1 text-input block medium&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;inappropriate-image-input&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;inappropriate-image-input&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Please tell us why this image should be removed from this application. Input must be between 50 and 200 characters long. Your input will be reviewed, and we will make a decision to remove the image based on our content policy.&quot;</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">&quot;200&quot;</span> <span class="hljs-attr">minlength</span>=<span class="hljs-string">&quot;50&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;char-counter&quot;</span> <span class="hljs-attr">data-input</span>=<span class="hljs-string">&quot;inappropriate-image-input&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;min-counter body2&quot;</span> <span class="hljs-attr">data-val</span>=<span class="hljs-string">&quot;50&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span>more characters required<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;max-counter body2&quot;</span> <span class="hljs-attr">data-val</span>=<span class="hljs-string">&quot;200&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>Characters Remaining<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">menu</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;toolbar&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-row align-center justify-end mt-1&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;outlined success medium icon-text mr-1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">focusable</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;-1&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;SendSharp&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M2.01 21 23 12 2.01 3 2 10l15 2-15 2 .01 7z&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>SUBMIT<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">menu</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">details</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dialog</span>&gt;</span></span></code></pre><button data-snackbar data-selem="#copy-code-success" data-copy-prev class="toggle-button small" style="position: absolute; top: 3px; right: 3px; z-index: 2;"><svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ContentCopy"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></button></div>
+</div>
+<img src="https://image.storething.org/frankmbrown/example-1.jpg" alt="Example Image" class="mt-2">
+</section>
+<section id="javascript-for-media-elements" class="mt-2">
+<h3 class="h6 bold">
+  <a href="#javascript-for-media-elements" class="same-page fw-regular">JavaScript for Media Elements</a>
+</h3>
+<p class="body mt-2">
+  The JavaScript for the HTML Video and Audio elements is all basically the same except for the Video element 
+  utilizing the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API" target="_blank" class="secondary link">Fullscreen API</a>. 
+</p>
+<ul>
+  <li>Both elements have range inputs for the playback time and the audio level which allows the user to control where they are in the playback of the media and the volume of the audio, respectively.</li>
+  <li>Both elements have buttons for playing the media, pausing the media, replaying the media when it is finished playing, and muting/unmuting the audio.</li>
+  <li>Both elements have select inputs for changing the playback rate of the media.</li>
+  <li>Both elements show the current time / the time left for the media.</li>
+</ul>
+<p class="body mt-1">
+  When the user requests an action be done, the JavaScript attempts to complete the action, and the JavaScript listens to events signifying the completion of the action. When the action is completed, the user interface is updated. Here is a list of events that are listened to by the client-side JavaScript:
+</p>
+<dl class="mt-2">
+  <dt class="bold t-success">Abort Event</dt>
+  <dd>Changes the UI to show an error icon. Checks to see if there is warning text in the wrapper div and removes the hidden attribute if possible.</dd>
+  <dt class="bold t-success">Can Play Event</dt>
+  <dd>Updates the UI to show the play button.</dd>
+  <dt class="bold t-success">Can Play Through Event</dt>
+  <dd>Sets the <span class="t-info bold">data-play-through</span> attribute on the video or audio tag to true.</dd>
+  <dt class="bold t-success">Duration Change Event</dt>
+  <dd>Updates the UI of the playback slider to show the new duration.</dd>
+  <dt class="bold t-success">Emptied Event</dt>
+  <dd>Not handled.</dd>
+  <dt class="bold t-success">Ended Event</dt>
+  <dd>Updates the UI to show the user that they can replay the media.</dd>
+  <dt class="bold t-success">Error Event</dt>
+  <dd>Updates the UI to show an error icon. Checks to see if there is error text within the audio/video wrapper, and if there is, remove the hidden attribute from it.</dd>
+  <dt class="bold t-success">Loaded Data Event</dt>
+  <dd>Not handled.</dd>
+  <dt class="bold t-success">Loaded Metadata Event</dt>
+  <dd>Updates the UI of the playback slider and timing indicator to show a proper duration of the media.</dd>
+  <dt class="bold t-success">Load Start Event</dt>
+  <dd>Not handled.</dd>
+  <dt class="bold t-success">Pause Event</dt>
+  <dd>Updates the UI to show the user that they can play the media.</dd>
+  <dt class="bold t-success">Play Event</dt>
+  <dd>Updates the UI to show the user that they can pause the media.</dd>
+  <dt class="bold t-success">Playing Event</dt>
+  <dd>Updates the UI to show that they can pause the media.</dd>
+  <dt class="bold t-success">Progress Event</dt>
+  <dd>Not handled.</dd>
+  <dt class="bold t-success">Rate Change Event</dt>
+  <dd>Not handled.</dd>
+  <dt class="bold t-success">Seeked Event</dt>
+  <dd>Checks to see if the <span class="t-info bold">data-should-play</span> attribute on the media element is equal to true. If it is, then plays the media.</dd>
+  <dt class="bold t-success">Seeking Event</dt>
+  <dd>Sets the <span class="t-info bold">data-should-play</span> attribute on the media element to true.</dd>
+  <dt class="bold t-success">Stalled Event</dt>
+  <dd>Updates the UI to show a loading animation to the user.</dd>
+  <dt class="bold t-success">Suspend Event</dt>
+  <dd>Not handled.</dd>
+  <dt class="bold t-success">Time Update Event</dt>
+  <dd>Updates the time. This changes the appearance (background image) of the playback slider and updates the time remaining timer.</dd>
+  <dt class="bold t-success">Volume Change Event</dt>
+  <dd>Updates the volume slider.</dd>
+  <dt class="bold t-success">Waiting Event</dt>
+  <dd>Sets the <span class="t-info bold">data-resume</span> attribute on the media element to true.</dd>
+  <dt class="bold t-success">Video Click Event</dt>
+  <dd><span class="bold">Video Only:</span> Plays the media if it is already playing. Else pauses it.</dd>
+  <dt class="bold t-success">Video Focus Event</dt>
+  <dd><span class="bold">Video Only:</span> Sets the <span class="t-info bold">data-focus</span> attribute on the video wrapper element to true.</dd>
+  <dt class="bold t-success">Video Mouse Enter Event</dt>
+  <dd><span class="bold">Video Only:</span> Sets the <span class="t-info bold">data-hover</span> attribute on the video wrapper element to true.</dd>
+  <dt class="bold t-success">Video Mouse Leave Event</dt>
+  <dd><span class="bold">Video Only:</span> Sets the <span class="t-info bold">data-hover</span> attribute on the video wrapper element to false.</dd>
+  <dt class="bold t-success">Fullscreen Button Click Event</dt>
+  <dd><span class="bold">Video Only:</span> Toggles fullscreen mode using the Fullscreen API.</dd>
+</dl>
+</section>
+<div class="alert mt-2 error filled icon medium">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Videocam"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"></path></svg>
+  <p class="alert">
+    <strong>Audio and Video Elements on Mobile</strong>
+    <span>
+      For mobile devices, there is no purpose in including the audio volume slider since the volume level is exclusively handled by the 
+      device. For this reason, the device type should be identified on the server using the request <em class="bold">user-agent</em>, and the 
+      audio / video element that you send to the user should be configured to the device. Look into <a href="https://www.npmjs.com/package/ua-parser-js" class="secondary link" target="_blank">UAParser.js</a> if you are using a nodejs backend.
+    </span>
+  </p>
+</div>
+
+<section id="audio-section" class="mt-2">
+<h3 class="h6 bold">
+  <a href="#audio-section" class="same-page fw-regular">Audio</a>
+</h3>
+<div class="alert warning mt-1 filled icon small body2">
+  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="RemoveRounded"><path d="M18 13H6c-.55 0-1-.45-1-1s.45-1 1-1h12c.55 0 1 .45 1 1s-.45 1-1 1z"></path></svg>
+  <p class="alert body2">
+    For the data-main-controls wrapper, make sure that the data-play button is the only icon that is not hidden initially.
+  </p>
+</div>
+<%if(locals.desktop===true){%>
+  <div class="audio mt-3" data-audio-wrapper style="margin: 10px 0px;">
+    <audio controls="" hidden="" data-resume="false" data-play-through="true" data-src="https://audio.storething.org/frankmbrown/usc_fight_song.mp3" preload="metadata"><track default="" kind="captions" src="/vtt/audio/usc_fight_song" srclang="en"><source src="https://audio.storething.org/frankmbrown/usc_fight_song.aac.mp4" type="audio/mp4"><source src="https://audio.storething.org/frankmbrown/usc_fight_song.flac.flac" type="audio/flac"><source src="https://audio.storething.org/frankmbrown/usc_fight_song.mp3_mf.mp3" type="audio/mp3"><source src="https://audio.storething.org/frankmbrown/usc_fight_song.mp3" type="audio/mp3"></audio>
+    <div class="audio-header align-center gap-2" style="margin-bottom: 4px;">
+      <p class="body1 bold">USC Fight Song</p>
+      
+      <div class="audio-time-left">
+        <span data-ellapsed="">0:00</span>
+        /
+        <span data-remaining="">0:00</span>
+      </div>
+    </div>
+    <p data-error-text class="caption w-100 t-error" hidden>There was an error loading this audio file. Try reloading the page.</p>
+    <p data-warn-text class="caption w-100 t-warning" hidden>There was an error loading the rest of the audio file. Try reloading the page.</p>
+    <div class="flex-row justify-start align-center">
+      <div class="flex-row align-center justify-center grow-0" data-main-controls>
+        <button data-play data-type="audio" aria-hidden="true" class="icon large" type="button" aria-label="Play Audio">
+          <svg focusable="false" inert viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z"></path></svg>
+        </button>
+        <button data-pause data-type="audio" hidden aria-hidden="true" class="icon large" type="button" aria-label="Pause Audio">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Pause"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>                  
+        </button>
+        <button data-replay data-type="audio" hidden aria-hidden="true" class="icon large" type="button" aria-label="Replay Audio">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Replay"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"></path></svg>                  
+        </button>
+        <div data-load data-type="audio" hidden class="t-tsecondary">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <svg data-error hidden class="h6 t-error p-md" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Report">
+          <path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z">
+          </path>
+        </svg>
+      </div>
+      <input data-time data-type="audio" id="audio_rand_id_b203a935-0a0f-425d-bfda-04ff31b03c02" name="audio_rand_id_b203a935-0a0f-425d-bfda-04ff31b03c02" type="range" value="0" min="0" max="29" data-time-set="true" step="1" style="background-size: 0% 100%;">
+      <output hidden for="audio_rand_id_b203a935-0a0f-425d-bfda-04ff31b03c02">0</output>
+    </div>
+    <div class="flex-row align-center justify-start gap-2" style="max-width: 100%;">
+      <div data-popover data-mouse data-pelem="#audio_rand_id_bc916473-04be-4604-8ad3-7b6b7396aa9f" aria-describedby="audio_rand_id_bc916473-04be-4604-8ad3-7b6b7396aa9f">
+        <button data-mute-button data-type="audio" class="icon medium" aria-label="Mute / Unmute Audio" title="Mute / Unmute Audio" type="button">
+          <svg data-type="sound-up" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="VolumeUp"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path></svg>
+          <svg hidden data-type="sound-down" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="VolumeDown"><path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"></path></svg>
+          <svg hidden data-type="muted" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="VolumeOff"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"></path></svg>
+        </button>
+      </div>
+      
+      <input data-sound data-type="audio" type="range" value="100" min="0" max="100" class="small primary" id="audio_rand_id_21e71a6b-ed18-4bcf-a9c3-bd3641eb1aed" name="audio_rand_id_21e71a6b-ed18-4bcf-a9c3-bd3641eb1aed" style="background-size: 100% 100%;">
+      <output hidden for="audio_rand_id_21e71a6b-ed18-4bcf-a9c3-bd3641eb1aed">100</output>
+      
+
+      <button data-closed-captions type="button" class="icon medium" aria-label="Closed Captioning" data-popover data-pelem="#audio_rand_id_05386dff-3b4f-429a-995c-7d1c4876be20" data-mouse>
+        <svg data-on hidden focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ClosedCaption"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 7H9.5v-.5h-2v3h2V13H11v1c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zm7 0h-1.5v-.5h-2v3h2V13H18v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1z"></path></svg>
+        <svg data-off focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ClosedCaptionOff"><path d="M19.5 5.5v13h-15v-13h15zM19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 7H9.5v-.5h-2v3h2V13H11v1c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zm7 0h-1.5v-.5h-2v3h2V13H18v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1z"></path></svg>
+      </button>
+      <div data-popover data-mouse data-pelem="#audio_rand_id_8b294536-409b-4a0e-9d3f-72b3a5701c72" aria-describedby="audio_rand_id_8b294536-409b-4a0e-9d3f-72b3a5701c72">
+        <div class="select" aria-label="Sound Playback Speed Select">
+          <button   class="icon medium select auto-w" aria-label="Playback Speed" title="Playback Speed" data-popover data-click data-pelem="#audio_rand_id_5867c80c-4780-4cb9-a826-4c1aabd5f542" aria-controls="audio_rand_id_5867c80c-4780-4cb9-a826-4c1aabd5f542" aria-haspopup="listbox" aria-expanded="false" role="combobox" type="button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Speed"><path d="m20.38 8.57-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44zm-9.79 6.84a2 2 0 0 0 2.83 0l5.66-8.49-8.49 5.66a2 2 0 0 0 0 2.83z"></path></svg>
+          </button>
+          <div  tabindex="0" id="audio_rand_id_5867c80c-4780-4cb9-a826-4c1aabd5f542" role="listbox" class="select-menu o-sm" style="width: 50px;" data-placement="bottom">
+            <input data-playback data-type="audio" type="text" hidden value="1" name="audio_rand_id_1c4b01ab-a285-4177-b0b5-c8902e6a728b" id="audio_rand_id_1c4b01ab-a285-4177-b0b5-c8902e6a728b">
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="0.25" type="button">
+              0.25
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="0.5" type="button">
+              0.5
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="0.75" type="button">
+              0.75
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="true" data-val="1" type="button">
+              1
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="1.25" type="button">
+              1.25
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="1.5" type="button">
+              1.5
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="1.75" type="button">
+              1.75
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="2" type="button">
+              2
+            </button>
+          </div>
+  
+        </div>
+      </div>
+      
+      <div data-placement="left-start" class="tooltip caption" id="audio_rand_id_8b294536-409b-4a0e-9d3f-72b3a5701c72" role="tooltip"> 
+        Playback Speed
+      </div>
+      <div data-placement="top" class="tooltip caption" id="audio_rand_id_bc916473-04be-4604-8ad3-7b6b7396aa9f" role="tooltip">
+        Mute / Unmute Audio
+      </div>
+      <div data-placement="top" class="tooltip caption" id="audio_rand_id_05386dff-3b4f-429a-995c-7d1c4876be20" role="tooltip">
+        Closed Captioning
+      </div>
+      
+    </div>
+  </div>
+<%}else{%>
+  
+  <div class="audio mt-3" data-audio-wrapper style="margin: 10px 0px;">
+    <audio controls="" hidden="" data-resume="false" data-play-through="true" data-src="https://audio.storething.org/frankmbrown/usc_fight_song.mp3" preload="metadata"><track default="" kind="captions" src="/vtt/audio/usc_fight_song" srclang="en"><source src="https://audio.storething.org/frankmbrown/usc_fight_song.aac.mp4" type="audio/mp4"><source src="https://audio.storething.org/frankmbrown/usc_fight_song.flac.flac" type="audio/flac"><source src="https://audio.storething.org/frankmbrown/usc_fight_song.mp3_mf.mp3" type="audio/mp3"><source src="https://audio.storething.org/frankmbrown/usc_fight_song.mp3" type="audio/mp3"></audio>
+    <div class="audio-header align-center gap-2" style="margin-bottom: 4px;">
+      <p class="body1 bold">USC Fight Song</p>
+      
+      <div class="audio-time-left">
+        <span data-ellapsed="">0:00</span>
+        /
+        <span data-remaining="">0:00</span>
+      </div>
+    </div>
+    <p data-error-text class="caption w-100 t-error" hidden>There was an error loading this audio file. Try reloading the page.</p>
+    <p data-warn-text class="caption w-100 t-warning" hidden>There was an error loading the rest of the audio file. Try reloading the page.</p>
+    <div class="flex-row justify-start align-center">
+      <div class="flex-row align-center justify-center grow-0" data-main-controls>
+        <button data-play data-type="audio" aria-hidden="true" class="icon large" type="button" aria-label="Play Audio">
+          <svg focusable="false" inert viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z"></path></svg>
+        </button>
+        <button data-pause data-type="audio" hidden aria-hidden="true" class="icon large" type="button" aria-label="Pause Audio">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Pause"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>                  
+        </button>
+        <button data-replay data-type="audio" hidden aria-hidden="true" class="icon large" type="button" aria-label="Replay Audio">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Replay"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"></path></svg>                  
+        </button>
+        <div data-load data-type="audio" hidden class="t-tsecondary">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <svg data-error hidden class="h6 t-error p-md" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Report">
+          <path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z">
+          </path>
+        </svg>
+      </div>
+      <input data-time data-type="audio" id="audio_rand_id_b4c96cf4-534e-4b27-bfb2-b9d1657761b6" name="audio_rand_id_b4c96cf4-534e-4b27-bfb2-b9d1657761b6" type="range" value="0" min="0" max="29" data-time-set="true" step="1" style="background-size: 0% 100%;">
+      <output hidden for="audio_rand_id_b4c96cf4-534e-4b27-bfb2-b9d1657761b6">0</output>
+    </div>
+    <div class="flex-row align-center justify-start gap-2" style="max-width: 100%;">
+      <div >
+        <button data-mute-button data-type="audio" class="icon medium" aria-label="Mute / Unmute Audio" title="Mute / Unmute Audio" type="button">
+          <svg data-type="sound-up" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="VolumeUp"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path></svg>
+          <svg hidden data-type="sound-down" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="VolumeDown"><path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"></path></svg>
+          <svg hidden data-type="muted" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="VolumeOff"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"></path></svg>
+        </button>
+      </div>
+      <div class="grow-1"></div>
+
+      <button data-closed-captions type="button" class="icon medium" aria-label="Closed Captioning" >
+        <svg data-on hidden focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ClosedCaption"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 7H9.5v-.5h-2v3h2V13H11v1c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zm7 0h-1.5v-.5h-2v3h2V13H18v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1z"></path></svg>
+        <svg data-off focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ClosedCaptionOff"><path d="M19.5 5.5v13h-15v-13h15zM19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 7H9.5v-.5h-2v3h2V13H11v1c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zm7 0h-1.5v-.5h-2v3h2V13H18v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1z"></path></svg>
+      </button>
+      <div >
+        <div class="select" aria-label="Sound Playback Speed Select">
+          <button  data-force-close class="icon medium select auto-w" aria-label="Playback Speed" title="Playback Speed" data-popover data-click data-pelem="#audio_rand_id_7c037273-a0a3-46e6-acd7-41d999d1782a" aria-controls="audio_rand_id_7c037273-a0a3-46e6-acd7-41d999d1782a" aria-haspopup="listbox" aria-expanded="false" role="combobox" type="button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Speed"><path d="m20.38 8.57-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44zm-9.79 6.84a2 2 0 0 0 2.83 0l5.66-8.49-8.49 5.66a2 2 0 0 0 0 2.83z"></path></svg>
+          </button>
+          <div data-click-capture tabindex="0" id="audio_rand_id_7c037273-a0a3-46e6-acd7-41d999d1782a" role="listbox" class="select-menu o-sm" style="width: 50px;" data-placement="bottom">
+            <input data-playback data-type="audio" type="text" hidden value="1" name="audio_rand_id_799718c7-e1c7-422c-87b5-04c45e7b6408" id="audio_rand_id_799718c7-e1c7-422c-87b5-04c45e7b6408">
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="0.25" type="button">
+              0.25
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="0.5" type="button">
+              0.5
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="0.75" type="button">
+              0.75
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="true" data-val="1" type="button">
+              1
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="1.25" type="button">
+              1.25
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="1.5" type="button">
+              1.5
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="1.75" type="button">
+              1.75
+            </button>
+            <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="2" type="button">
+              2
+            </button>
+          </div>
+  
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<%}%>
+</section>
+<section id="video-section" class="mt-2">
+<h3 class="h6 bold">
+  <a href="#video-section" class="same-page fw-regular">Video</a>
+</h3>
+<%if(locals.desktop===true){%>
+  <div class="video-wrapper" data-video-wrapper style="margin: 10px 0px;">
+    <div class="video" data-fullscreen="false" data-focus="false" data-hover="false">
+      <video height="380" data-height="380" data-play-through="true" playsinline="" webkit-playsinline="" data-src="https://video.storething.org/frankmbrown/reggie_bush_highlights.mp4" preload="metadata" poster="https://image.storething.org/frankmbrown/reggie_bush_highlights-thumbnail.png"><track default="" kind="captions" src="/vtt/video/reggie_bush_highlights" srclang="en"><source src="https://audio.storething.org/frankmbrown/reggie_bush_highlights.libvpx.webm" type="video/webm"><source src="https://audio.storething.org/frankmbrown/reggie_bush_highlights.libx264.mp4" type="video/mp4"><source src="https://video.storething.org/frankmbrown/reggie_bush_highlights.mp4" type="video/mp4"></video>
+      <div class="video-controls">
+        <div class="block">
+          <input data-time data-type="video" type="range" id="video_rand_id_94dc941f-33b4-4e0e-9f96-36c8aed7b209" name="video_rand_id_94dc941f-33b4-4e0e-9f96-36c8aed7b209" class="video small primary" min="0" value="0" max="422" data-time-set="true" step="1" style="background-size: 0% 100%;">
+        </div>
+        <div class="flex-row justify-begin align-center gap-2 p-sm" style="padding-top:0px;" data-row-2>
+          <div class="flex-row align-center justify-center grow-0" data-main-controls>
+            <button data-play data-type="video" aria-hidden="true" class="icon large" type="button" aria-label="Play Audio">
+              <svg focusable="false" inert viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z"></path></svg>
+            </button>
+            <button data-pause data-type="video" hidden aria-hidden="true" class="icon large" type="button" aria-label="Pause Audio">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Pause"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>                  
+            </button>
+            <button data-replay data-type="video" hidden aria-hidden="true" class="icon large" type="button" aria-label="Replay Audio">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Replay"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"></path></svg>                  
+            </button>
+            <div data-load data-type="video" hidden class="t-tsecondary">
+              <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+            <svg data-error data-type="video" hidden class="h6 t-error p-md" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Report"><path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z"></path></svg>
+          </div>
+          <div data-popover data-mouse data-pelem="#video_rand_id_c069817b-0e14-4571-9ba1-c1d5d94b4bd6" aria-describedby="video_rand_id_c069817b-0e14-4571-9ba1-c1d5d94b4bd6">
+            <button data-mute-button data-type="video" class="icon medium" aria-label="Mute / Unmute Audio" title="Mute / Unmute Audio" type="button">
+              <svg data-type="sound-up" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="VolumeUp"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path></svg>
+              <svg hidden data-type="sound-down" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="VolumeDown"><path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"></path></svg>
+              <svg hidden data-type="muted" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="VolumeOff"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"></path></svg>
+            </button>
+          </div>
+          
+          <input class="small secondary" data-sound data-type="video" id="video_rand_id_7faa1d1d-47f7-497f-b931-4b03e00a035e" name="video_rand_id_7faa1d1d-47f7-497f-b931-4b03e00a035e" type="range" value="100" min="0" max="100" step="1" style="background-size: 100% 100%;">
+          <output for="video_rand_id_7faa1d1d-47f7-497f-b931-4b03e00a035e" hidden>100</output>
+          
+          <div class="video-time-left">
+            <span data-ellapsed>0:00</span>
+            /
+            <span data-remaining>0:00</span>
+          </div>
+          <button data-closed-captions type="button" class="icon medium" aria-label="Closed Captioning" data-popover data-pelem="#video_rand_id_69479e1f-32c1-429a-bafa-5057b4dde721" data-mouse>
+            <svg data-on hidden focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ClosedCaption"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 7H9.5v-.5h-2v3h2V13H11v1c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zm7 0h-1.5v-.5h-2v3h2V13H18v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1z"></path></svg>
+            <svg data-off focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ClosedCaptionOff"><path d="M19.5 5.5v13h-15v-13h15zM19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 7H9.5v-.5h-2v3h2V13H11v1c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zm7 0h-1.5v-.5h-2v3h2V13H18v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1z"></path></svg>
+          </button>
+          <div data-popover data-mouse data-pelem="#video_rand_id_74cde2e1-57b9-43b4-99e0-737dea07b894" aria-describedby="video_rand_id_74cde2e1-57b9-43b4-99e0-737dea07b894">
+            <div class="select" aria-label="Sound Playback Speed Select">
+              <button  class="icon medium select auto-w" aria-label="Playback Speed" title="Playback Speed" data-popover data-click data-pelem="#video_rand_id_c7120d38-b636-4277-9508-911746a696c6" aria-controls="video_rand_id_c7120d38-b636-4277-9508-911746a696c6" aria-haspopup="listbox" aria-expanded="false" role="combobox" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Speed"><path d="m20.38 8.57-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44zm-9.79 6.84a2 2 0 0 0 2.83 0l5.66-8.49-8.49 5.66a2 2 0 0 0 0 2.83z"></path></svg>
+              </button>
+              <div  tabindex="0" id="video_rand_id_c7120d38-b636-4277-9508-911746a696c6" role="listbox" class="select-menu o-sm" style="width: 50px;" data-placement="top">
+                <input data-playback data-type="video" type="text" hidden value="1" name="video_rand_id_bc3bfd5b-6ba6-4d51-b50f-6276e1cb7ff1" id="video_rand_id_bc3bfd5b-6ba6-4d51-b50f-6276e1cb7ff1">
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="0.25" type="button">
+                  0.25
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="0.5" type="button">
+                  0.5
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="0.75" type="button">
+                  0.75
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="true" data-val="1" type="button">
+                  1
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="1.25" type="button">
+                  1.25
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="1.5" type="button">
+                  1.5
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="1.75" type="button">
+                  1.75
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="2" type="button">
+                  2
+                </button>
+              </div>
+              
+              <div data-placement="top" class="tooltip caption" id="video_rand_id_c069817b-0e14-4571-9ba1-c1d5d94b4bd6" role="tooltip">
+                Mute / Unmute Audio
+              </div>
+              <div data-placement="left-start" class="tooltip caption" id="video_rand_id_74cde2e1-57b9-43b4-99e0-737dea07b894" role="tooltip">
+                Playback Speed
+              </div>
+              <div data-placement="top" class="tooltip caption" id="video_rand_id_69479e1f-32c1-429a-bafa-5057b4dde721" role="tooltip">
+                Closed Captions
+              </div>
+              
+            </div>
+          </div>
+          <button class="icon medium" data-fullscreen type="button">
+            <svg data-type="fullscreen" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FullscreenSharp"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>
+            <svg data-type="no-fullscreen" hidden focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FullscreenExit"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="video-info"><p class="fw-regular body1">Reggie Bush Highlights</p><p class="caption">Here is an example of random Reggie Bush Highlights.</p></div>
+  </div>
+<%}else{%>
+  <div class="video-wrapper" data-video-wrapper style="margin: 10px 0px;">
+    <div class="video" data-fullscreen="false" data-focus="false" data-hover="false">
+      <video height="380" data-height="380" data-play-through="true" playsinline="" webkit-playsinline="" data-src="https://video.storething.org/frankmbrown/reggie_bush_highlights.mp4" preload="metadata" poster="https://image.storething.org/frankmbrown/reggie_bush_highlights-thumbnail.png"><track default="" kind="captions" src="/vtt/video/reggie_bush_highlights" srclang="en"><source src="https://audio.storething.org/frankmbrown/reggie_bush_highlights.libvpx.webm" type="video/webm"><source src="https://audio.storething.org/frankmbrown/reggie_bush_highlights.libx264.mp4" type="video/mp4"><source src="https://video.storething.org/frankmbrown/reggie_bush_highlights.mp4" type="video/mp4"></video>
+      <div class="video-controls">
+        <div class="block">
+          <input data-time data-type="video" type="range" id="video_rand_id_8701ae16-4569-4d00-b4fc-e3b04bf63343" name="video_rand_id_8701ae16-4569-4d00-b4fc-e3b04bf63343" class="video small primary" min="0" value="0" max="422" data-time-set="true" step="1" style="background-size: 0% 100%;">
+        </div>
+        <div class="flex-row justify-begin align-center gap-2 p-sm" style="padding-top:0px;" data-row-2>
+          <div class="flex-row align-center justify-center grow-0" data-main-controls>
+            <button data-play data-type="video" aria-hidden="true" class="icon large" type="button" aria-label="Play Audio">
+              <svg focusable="false" inert viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z"></path></svg>
+            </button>
+            <button data-pause data-type="video" hidden aria-hidden="true" class="icon large" type="button" aria-label="Pause Audio">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Pause"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>                  
+            </button>
+            <button data-replay data-type="video" hidden aria-hidden="true" class="icon large" type="button" aria-label="Replay Audio">
+              <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Replay"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"></path></svg>                  
+            </button>
+            <div data-load data-type="video" hidden class="t-tsecondary">
+              <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+            <svg data-error data-type="video" hidden class="h6 t-error p-md" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Report"><path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z"></path></svg>
+          </div>
+          <div >
+            <button data-mute-button data-type="video" class="icon medium" aria-label="Mute / Unmute Audio" title="Mute / Unmute Audio" type="button">
+              <svg data-type="sound-up" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="VolumeUp"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path></svg>
+              <svg hidden data-type="sound-down" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="VolumeDown"><path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"></path></svg>
+              <svg hidden data-type="muted" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="VolumeOff"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"></path></svg>
+            </button>
+          </div>
+          <div class="grow-1"></div>
+          <div class="video-time-left">
+            <span data-ellapsed>0:00</span>
+            /
+            <span data-remaining>0:00</span>
+          </div>
+          <button data-closed-captions type="button" class="icon medium" aria-label="Closed Captioning" >
+            <svg data-on hidden focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ClosedCaption"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 7H9.5v-.5h-2v3h2V13H11v1c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zm7 0h-1.5v-.5h-2v3h2V13H18v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1z"></path></svg>
+            <svg data-off focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="ClosedCaptionOff"><path d="M19.5 5.5v13h-15v-13h15zM19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 7H9.5v-.5h-2v3h2V13H11v1c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zm7 0h-1.5v-.5h-2v3h2V13H18v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1z"></path></svg>
+          </button>
+          <div >
+            <div class="select" aria-label="Sound Playback Speed Select">
+              <button data-force-close class="icon medium select auto-w" aria-label="Playback Speed" title="Playback Speed" data-popover data-click data-pelem="#video_rand_id_28b1e61f-b041-4ade-940e-38a854e1f537" aria-controls="video_rand_id_28b1e61f-b041-4ade-940e-38a854e1f537" aria-haspopup="listbox" aria-expanded="false" role="combobox" type="button">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Speed"><path d="m20.38 8.57-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44zm-9.79 6.84a2 2 0 0 0 2.83 0l5.66-8.49-8.49 5.66a2 2 0 0 0 0 2.83z"></path></svg>
+              </button>
+              <div data-click-capture tabindex="0" id="video_rand_id_28b1e61f-b041-4ade-940e-38a854e1f537" role="listbox" class="select-menu o-sm" style="width: 50px;" data-placement="top">
+                <input data-playback data-type="video" type="text" hidden value="1" name="video_rand_id_336662d2-1cba-4ad7-b26e-0a4d564ac0f2" id="video_rand_id_336662d2-1cba-4ad7-b26e-0a4d564ac0f2">
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="0.25" type="button">
+                  0.25
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="0.5" type="button">
+                  0.5
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="0.75" type="button">
+                  0.75
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="true" data-val="1" type="button">
+                  1
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="1.25" type="button">
+                  1.25
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="1.5" type="button">
+                  1.5
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="1.75" type="button">
+                  1.75
+                </button>
+                <button tabindex="-1" class="select-option body2" role="option" aria-selected="false" data-val="2" type="button">
+                  2
+                </button>
+              </div>
+              
+            </div>
+          </div>
+          <button class="icon medium" data-fullscreen type="button">
+            <svg data-type="fullscreen" focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FullscreenSharp"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>
+            <svg data-type="no-fullscreen" hidden focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="FullscreenExit"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="video-info"><p class="fw-regular body1">Reggie Bush Highlights</p><p class="caption">Here is an example of random Reggie Bush Highlights.</p></div>
+  </div>
+<%}%>
+</section>
+
+
+<section id="splide-implementation" class="mt-4">
+    <h2 class="bold bb-thick h2">
+      <a href="#splide-implementation" class="same-page fw-regular">
+        <a class="secondary link" target="_blank" href="https://splidejs.com/" style="font-size: inherit; font-weight: inherit;">Splide</a> Implementation
+      </a>
+    </h2>
+
+    <p class="mt-2">
+    Testing out the Splide Implementation. I am not 100% sure if it is worth it to include Splide in the design system. It is easier to implement than a custom carousel and it is easier to use than what I have now for tabs / mobile steppers, but it also introduces 29kB of more code (which isn't much actually). Also, I'm testing out the splide implementation to create a HTML snippet for implementing these carousels. Size of the <a class="secondary link" target="_blank" href="https://splidejs.com/">Splide</a> Components:
+    </p>
+
+    <table cellspacing="0">
+      <thead>
+        <tr>
+          <th scope="col">CSS:</th>
+          <th scope="col">JavaScript:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5kB Minified (7kB UnMinified)</td>
+          <td>29kB</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="bold mt-3 h6">
+      Carousel Example 1:
+    </p>
+    <div class="splide">
+      <div class="splide__track" style="padding-bottom: 1rem!important;">
+        <ul class="splide__list">
+          <li class="splide__slide">
+            <p class="text-align-center h6 bold bg-primary" style="width: 100%; padding: 2rem;">
+              Primary
+            </p>
+          </li>
+          <li class="splide__slide">
+            <p class="text-align-center h6 bold bg-secondary"style="width: 100%; padding: 2rem;">
+              Secondary
+            </p>
+          </li>
+          <li class="splide__slide">
+            <p class="text-align-center h6 bold bg-info"style="width: 100%; padding: 2rem;">
+              Info
+            </p>
+          </li>
+          <li class="splide__slide">
+            <p class="text-align-center h6 bold bg-warning"style="width: 100%; padding: 2rem;">
+              Warning
+            </p>
+          </li>
+          <li class="splide__slide">
+            <p class="text-align-center h6 bold bg-error"style="width: 100%; padding: 2rem;">
+              Error
+            </p>
+          </li>
+          <li class="splide__slide">
+            <p class="text-align-center h6 bold bg-success"style="width: 100%; padding: 2rem;">
+              Success
+            </p>
+          </li>
+          <li class="splide__slide">
+            <p class="text-align-center h6 bold bg-card"style="width: 100%; padding: 2rem;">
+              Card
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="bold mt-3 h6">
+      Carousel Example 2:
+    </p>
+    <div class="splide">
+      <div class="splide__track" style="padding-bottom: 1rem!important;">
+        <ul class="splide__list">
+          <li class="splide__slide">
+            <img src="https://image.storething.org/frankmbrown/8a959c00-821e-46b6-8ae4-ab481845f787.jpg" alt="Mosaic 1" style="width: 350px; height: 200px;" width="350" height="200" data-text="Mosaic 1 Text" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://image.storething.org/frankmbrown/d8eeae11-f826-4c41-8dab-2046118b1370.webp" alt="Mosaic 2" style="width: 350px; height: 200px;" width="350" height="200" data-text="Mosaic 2 Text" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://image.storething.org/frankmbrown/a854057f-cb88-41cb-8cf9-b19e4db55234.jpg" alt="Mosaic 3" style="width: 350px; height: 200px;" width="350" height="200" data-text="Mosaic 3 Text" />
+          </li>
+        </ul>
+      </div>
+    </div>
+</section>

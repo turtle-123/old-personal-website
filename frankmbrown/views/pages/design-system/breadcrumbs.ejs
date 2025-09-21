@@ -1,0 +1,29 @@
+<%# 
+PARTIAL ROUTE: pages/design-system/breadcrumbs.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.subPageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest||locals.subPageRequest){%>
+  
+  <%if(Boolean(locals.fullPageRequest||locals.pageRequest)&&!!!locals.subPageRequest){%>
+     <%-include('DESIGN_SYSTEM_HEADER.ejs');%>
+  <%}%>
+  
+  <%if(locals.fullPageRequest||locals.pageRequest){%>
+    <div class="mt-2" id="subpage">
+  <%-include('breadcrumbs-main.ejs')%>
+  <%-include('../../partials/pagePartial')%>
+</div>
+<%}else if(locals.subPageRequest){%>
+<%-include('breadcrumbs-main.ejs')%>
+<%-include('../../partials/pagePartial')%>
+<%}%>
+
+<%if(Boolean(locals.fullPageRequest||locals.pageRequest)&&!!!locals.subPageRequest){%>
+<%-include('DESIGN_SYSTEM_FOOTER.ejs')%>
+<%}%>
+<%}%>

@@ -1,0 +1,759 @@
+<%# 
+PARTIAL ROUTE: pages/projects/various-nlp-tasks.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.desktop?650:(locals
+- locals.desktop?301:(locals
+- locals.desktop?597:(locals
+- locals.desktop?437:(locals
+- locals.desktop?250:(locals
+- locals.desktop?312:(locals
+- locals.desktop?351:(locals
+- locals.desktop?572:(locals
+- locals.desktop?481:(locals
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+     
+    <h1 class="page-title">Various NLP Tasks</h1>
+
+
+    <section id="why-create-page" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#why-create-page" class="same-page bold">
+            Why Create This Page
+          </a>
+        </h2>
+        <p class="mt-2">
+            I am creating this page to test out some <abbr title="natural language processing">nlp</abbr> tasks that commonly need to be performed when analyzing text-based user generated content (or any other text content). These tasks include: 
+        </p>
+        <ol>
+            <li class="h5" style="margin-top:0.25rem;">
+                <a class="secondary link" target="_blank" href="https://huggingface.co/tasks/fill-mask">Fill-Mask</a> Tasks
+            </li>
+            <li class="h5" style="margin-top:0.25rem;">
+                <a class="secondary link" target="_blank" href="https://huggingface.co/tasks/question-answering">Question Answering</a> Tasks 
+            </li>
+            <li class="h5" style="margin-top:0.25rem;">
+                <a class="secondary link" target="_blank" href="https://en.wikipedia.org/wiki/Sentiment_analysis">Sentiment Analysis</a> Tasks
+                
+            </li>
+            <li class="h5" style="margin-top:0.25rem;">
+                <a class="secondary link" target="_blank" href="https://en.wikipedia.org/wiki/Named-entity_recognition">Named Entity Recognition</a> Tasks
+                 
+            </li>
+            <li class="h5" style="margin-top:0.25rem;">
+                <a class="secondary link" target="_blank" href="https://huggingface.co/tasks/text-classification">Classification</a> Tasks
+                
+            </li>
+            <li class="h5" style="margin-top:0.25rem;">
+                <a class="secondary link" target="_blank" href="https://en.wikipedia.org/wiki/Neural_machine_translation">Translation</a> Tasks
+            </li>
+            <li class="h5" style="margin-top:0.25rem;">
+                <a class="secondary link" target="_blank" href="https://huggingface.co/tasks/table-question-answering">Table Question Answering</a> Tasks
+            </li>
+            <li class="h5" style="margin-top:0.25rem;">
+                <a class="secondary link" target="_blank" href="https://scikit-learn.org/1.5/modules/feature_extraction.html">Feature Extraction</a> Tasks
+            </li>
+            <li class="h5" style="margin-top:0.25rem;">
+                <a class="secondary link" target="_blank" href="https://huggingface.co/tasks/text-generation">Text Generation</a> Tasks
+            </li>
+            <li class="h5" style="margin-top:0.25rem;">
+              <a class="secondary link" target="_blank" href="https://huggingface.co/learn/nlp-course/en/chapter7/5">Summarization</a> Tasks
+            </li>
+            <li class="h5" style="margin-top:0.25rem;">
+              Keyword Extraction Tasks
+            </li>
+        </ol>
+    </section>
+
+    <section id="fill-mask" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#fill-mask" class="same-page bold">
+            Fill Mask Tasks
+          </a>
+        </h2>
+        <blockquote class="blockquote mt-2" cite="https://huggingface.co/tasks/fill-mask">
+          Masked language modeling is the task of masking some of the words in a sentence and predicting which words should replace those masks. These models are useful when we ant to get a statistical understanding of the language in which the model is trained in.
+        </blockquote>
+        <p class="mt-2">
+          Masked language models do not require labelled data. They are trained by masking a couple of words in sentences and the model is expected to guess the masked word. Models trained on fill-mask tasks can then be fine-tuned to solve different tasks, such as text classification or question answering. 
+        </p>
+        <img 
+        width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+        height="<%-locals.desktop?301:(locals.tablet?250:199)%>" 
+        style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 25 !important; height: auto;"
+        srcset="https://image.storething.org/frankmbrown%2F4be656da-b5be-4122-ada9-b9b0d38e8c3f-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F4be656da-b5be-4122-ada9-b9b0d38e8c3f-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F4be656da-b5be-4122-ada9-b9b0d38e8c3f-desktop.jpeg 650w" 
+        sizes="(max-width: 550px) 199px, ((min-width: 550px) and (max-width: 1200px)) 250px, (min-width: 1200px) 301px" 
+        src="https://image.storething.org/frankmbrown%2F4be656da-b5be-4122-ada9-b9b0d38e8c3f-desktop.jpeg" 
+        alt="What is Fill-Mask?" 
+        />
+        <p class="mt-2 fw-regular" style="padding: 2px; border: 4px yellowgreen dashed; border-radius: 2px;">
+          Enter in text into the textbox below. Replace the word you want filled in with <span class="text-code">[MASK]</span> and the AI model will attempt to fill in the masked word. If you do not enter in <span class="text-code">[MASK]</span> into the input, then <span class="text-code">[MASK]</span> will be appended to the text.
+        </p>
+        <p class="mt-2">
+          I am using the <a class="secondary link" target="_blank" href="https://huggingface.co/google-bert/bert-base-cased">BERT base model (cased)</a> for fill-mask tasks. It is a <q class="quote">pretrained model on English language using a masked language modeling (MLM) objective. It was introduced in <a class="secondary link" target="_blank" href="https://arxiv.org/abs/1810.04805"></a> and first released in <a class="secondary link" target="_blank" href="https://github.com/google-research/bert">this repository</a>.</q>
+        </p>
+        <blockquote class="blockquote mt-2" cite="https://huggingface.co/google-bert/bert-base-cased">
+          BERT is a transformers model pretrained on a large corpus of English data in a self-supervised fashion. This means it was pretrained on the raw texts only, with no humans labelling them in any way (which is why it can use lots of publicly available data) with an automatic process to generate inputs and labels from those texts. More precisely, it was pretrained with two objectives:
+        </blockquote>
+        <ol>
+          <li><strong>Masked Language Modeling</strong></li>
+          <li><strong>Next Sentence Prediction (NSP)</strong></li>
+        </ol>
+        <form class="mt-4" hx-post="/projects/various-nlp-tasks/fill-mask" hx-indicator="#ind_3acdf907-eaee-466d-962a-155803062a39" hx-target="#tar_4b9edeb8-8be3-451d-bf16-487ca15ea909" hx-trigger="submit" hx-swap="innerHTML">
+          <div class="input-group block mt-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+            <label for="masked-input">Masked Input:</label>
+            <div class="mt-1 text-input block medium disabled">
+                <textarea 
+                name="masked-input" 
+                placeholder="Enter the text with [MASK] in the input here..." 
+                rows="3"  
+                max="2000"
+                spellcheck="true"
+                autocomplete="off"
+                autocapitalize="off"
+                style="min-height: 100px; resize: vertical!important;"
+                ></textarea>
+            </div>
+          </div>
+
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_3acdf907-eaee-466d-962a-155803062a39">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_4b9edeb8-8be3-451d-bf16-487ca15ea909"></output>
+    </section>
+
+    <section id="question-answering" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#question-answering" class="same-page bold">
+            Question Answering Tasks
+          </a>
+        </h2>
+
+        <blockquote class="mt-2 blockquote" cite="https://huggingface.co/tasks/question-answering">
+          Question Answering models can retrieve the answer to a question from a given text, which is useful for searching for an answer in a document. Some question answering models can generate answers without context!
+        </blockquote>
+
+        <p class="mt-2">
+          You can use Question Answering models to automate the response to frequently asked questions by using a knowledge base (documents) as context. <br>
+          <strong>
+            Task Variants:
+          </strong>
+        </p>
+        <ul>
+          <li><strong>Extractive QA</strong>: The model <span class="bold">extracts</span> the answer from the context. This is usually solved with BERT-like models.</li>
+          <li><strong>Open Generative QA</strong>: The model <span class="bold">generates</span> free text based on the context.</li>
+          <li><strong>Closed Generative QA</strong>: No context is provided; the answer is completely generated. </li>
+        </ul>
+
+        <p class="mt-2">
+          I use the <a class="secondary link" target="_blank" href="https://huggingface.co/distilbert/distilbert-base-cased-distilled-squad/tree/main">distilbert/distilbert-base-cased-squad</a> model for question answering. <q class="quote">DitilBERT is a small, fast, cheap and light Transformer model trained by distilling BERT base. It has 40% less parameters than bert-base-uncased, runs 60% faster while preserving over 95% of BERT's performances as measured on the GLUE language understanding benchmark.</q>
+        </p>
+
+        <p class="mt-2 fw-regular" style="padding: 2px; border: 4px outset powderblue; border-radius: 2px;">
+          Upload a text document OR insert text into the textbox below, and ask a question about the document / text, using the textarea input, to get answers. 
+        </p>
+
+        <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-nlp-tasks/answer-question" hx-indicator="#ind_e3e644ff-3ed7-4e43-b92c-da1f92f0c16f" hx-target="#tar_3f270467-088a-44ef-a8b9-9ba48e12d145" hx-trigger="submit" hx-swap="innerHTML">
+          <label for="text-file" class="bold">Document Input:</label>
+          <input type="file" id="text-file" accept=".bib, .creole, .csv, .dbk, .djot, .docx, .doku, .epub, .fb2, .htm, .html, .ipynb, .jira, .json, .man, .markdown, .md, .mediawiki, .mmd, .muse, .odt, .opml, .org, .ris, .rst, .rtf, .t2t, .tex, .textile, .tiki, .tsv, .twiki, .txt, .typ, .vimwiki, .wiki, .xml" name="text-file" class="mt-1 info">
+          <output class="block" for="text-file"></output>
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+            <label for="text-input">Text Input:</label>
+            <div class="mt-1 text-input block medium disabled">
+                <textarea 
+                name="text-input" 
+                placeholder="Upload a document above OR insert text that you want to ask questions about here..." 
+                rows="3" 
+                spellcheck="true"
+                autocomplete="off"
+                autocapitalize="off"
+                style="resize: vertical!important; min-width: 100px;"
+                ></textarea>
+            </div>
+          </div>
+
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+            <label for="question-input">Question:</label>
+            <div class="mt-1 text-input block medium disabled">
+                <textarea 
+                name="question-input" 
+                placeholder="Insert the question here..."
+                minlength="1" 
+                rows="3" 
+                spellcheck="true"
+                autocomplete="off"
+                autocapitalize="off"
+                style="resize: vertical!important; min-width: 100px;"
+                ></textarea>
+            </div>
+          </div>
+
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+          </form>
+          <div class="mt-2 flex-row justify-center t-warning htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_e3e644ff-3ed7-4e43-b92c-da1f92f0c16f">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <output id="tar_3f270467-088a-44ef-a8b9-9ba48e12d145"></output>
+    </section>
+
+    <section id="sent-nala" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#sent-nala" class="same-page bold">
+            Sentiment Analysis Tasks
+          </a>
+        </h2>
+        <blockquote class="mt-2 blockquote" cite="https://en.wikipedia.org/wiki/Sentiment_analysis">
+          <strong>Sentiment Analysis</strong> (also known as <strong>opinion mining</strong> or <strong>emotion AI</strong>) is the use of natural language processing, computational linguistics, and biometrics to systematically identify, extract, quantify, and study affective states and subjective information. Sentiment analysis is widely applied to voice of the customer materials such as reviews and survey responses, online and social media, and healthcare materials for applications that range from marketing to customer service to clinical medicine. With the rise of deep language models, such as RoBERTa, more difficult domains can be analyzed. 
+        </blockquote>
+
+        <p class="mt-2">
+          I am using the <a class="secondary link" target="_blank" href="https://huggingface.co/SamLowe/roberta-base-go_emotions">SamLowe/roberta-base-go_emotions</a> model from hugging face for multi-label classification. <a class="secondary link" target="_blank" href="https://huggingface.co/datasets/go_emotions">go_emotions</a> is based on Reddit data and has 28 labels.  It is a multi-label dataset where one or multiple labels may apply for any given input text, hence this model is a multi-label classification model with 28 'probability' float outputs for any given input text.
+        </p>
+
+        <p class="mt-2 fw-regular" style="border: 4px double pink; border-radius: 2px; padding: 2px;">
+          Enter text into the textarea below OR upload a document, submit the form, and an analysis of the sentiment of the document will be returned.
+        </p>
+
+
+        <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-nlp-tasks/sentiment-analysis" hx-indicator="#ind_c3154be8-3bf5-46b6-ad6a-ae1a2d8fefb7" hx-target="#tar_d69e54ed-4e0d-4b9f-92b4-0db3042c92bf" hx-trigger="submit" hx-swap="innerHTML">
+          <label for="text-file" class="bold">Document Input:</label>
+          <input type="file" id="text-file" accept=".bib, .creole, .csv, .dbk, .djot, .docx, .doku, .epub, .fb2, .htm, .html, .ipynb, .jira, .json, .man, .markdown, .md, .mediawiki, .mmd, .muse, .odt, .opml, .org, .ris, .rst, .rtf, .t2t, .tex, .textile, .tiki, .tsv, .twiki, .txt, .typ, .vimwiki, .wiki, .xml" name="text-file" class="mt-1 primary">
+          <output class="block" for="text-file"></output>
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+            <label for="text-input">Text Input:</label>
+            <div class="mt-1 text-input block medium disabled">
+                <textarea 
+                name="text-input" 
+                placeholder="Upload a document above OR insert text that you want to ask questions about here..." 
+                rows="3" 
+                spellcheck="true"
+                autocomplete="off"
+                autocapitalize="off"
+                style="resize: vertical!important; min-width: 100px;"
+                ></textarea>
+            </div>
+          </div>
+
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+        </form> 
+        <div class="mt-2 flex-row justify-center t-error htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_c3154be8-3bf5-46b6-ad6a-ae1a2d8fefb7">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_d69e54ed-4e0d-4b9f-92b4-0db3042c92bf"></output>
+    </section>
+
+    <section id="ner-task" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#ner-task" class="same-page bold">
+            Named Entity Recognition Tasks
+          </a>
+        </h2>
+        <blockquote class="blockquote mt-2" cite="https://en.wikipedia.org/wiki/Named-entity_recognition">
+          <strong>Named-entity recognition (NER)</strong> (also known as <strong>(named) entity identification, entity chunking, </strong> and <strong>entity extraction</strong>) is a usbtask of information extraction that seeks to locate and classify named entities mentioned in unstructured text into pre-defined categories such as person names, organizations, locations, medical codes, time expressions, monetary values, percentages, etc. 
+          <br>
+          NER systems have been created that use linguistic grammar-based techniques as well as statistical models such as machine learning.
+        </blockquote>
+        <p class="mt-2">
+          I am using the <a class="secondary link" target="_blank" href="https://huggingface.co/dslim/bert-base-NER">dslim/bert-base-NER</a> model for named entity recognition. This model is a <q class="quote">fine-tuned BERT model that is ready to use for <strong>Named Entity Recognition</strong> and achieves <strong>state-of-the-art performance</strong> for the NER task. It has been trained to recognize four types of entities: location (LOC), organizations (ORG), person (PER), and Miscellaneous (MISC)</q>. <br> <span class="bold">See Types of Entities Below:</span>
+        </p>
+        <img 
+        width="<%-locals.desktop?597:(locals.tablet?460:322)%>" 
+        height="<%-locals.desktop?437:(locals.tablet?363:288)%>" 
+        style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 161 / 144 !important; height: auto;"
+        srcset="https://image.storething.org/frankmbrown%2F67fce771-965d-4ee4-9f54-71658db89b4e-mobile.jpeg 322w, https://image.storething.org/frankmbrown%2F67fce771-965d-4ee4-9f54-71658db89b4e-tablet.jpeg 460w, https://image.storething.org/frankmbrown%2F67fce771-965d-4ee4-9f54-71658db89b4e-desktop.jpeg 597w" 
+        sizes="(max-width: 550px) 288px, ((min-width: 550px) and (max-width: 1200px)) 363px, (min-width: 1200px) 437px" 
+        src="https://image.storething.org/frankmbrown%2F67fce771-965d-4ee4-9f54-71658db89b4e-desktop.jpeg" 
+        alt="dslim/bert-base-NER Types of Entities" 
+        />
+        <p class="fw-regular mt-2" style="border: 3px solid green; padding: 4px; border-radius: 4px;">
+          Upload a document or input text into the textbox below and submit the form to see the results of named entity recognition.
+        </p>
+
+        <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-nlp-tasks/ner" hx-indicator="#ind_23f098f4-bd2e-4db7-ac10-bfc7e22a094e" hx-target="#tar_487b1f26-a486-460f-8907-ab2285b393b5" hx-trigger="submit" hx-swap="innerHTML">
+          <label for="text-file" class="bold">Document Input:</label>
+          <input type="file" id="text-file" accept=".bib, .creole, .csv, .dbk, .djot, .docx, .doku, .epub, .fb2, .htm, .html, .ipynb, .jira, .json, .man, .markdown, .md, .mediawiki, .mmd, .muse, .odt, .opml, .org, .ris, .rst, .rtf, .t2t, .tex, .textile, .tiki, .tsv, .twiki, .txt, .typ, .vimwiki, .wiki, .xml" name="text-file" class="mt-1 secondary">
+          <output class="block" for="text-file"></output>
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+            <label for="text-input">Text Input:</label>
+            <div class="mt-1 text-input block medium disabled">
+                <textarea 
+                name="text-input" 
+                placeholder="Upload a document above OR insert text that you want to ask questions about here..." 
+                rows="3" 
+                spellcheck="true"
+                autocomplete="off"
+                autocapitalize="off"
+                style="resize: vertical!important; min-width: 100px;"
+                ></textarea>
+            </div>
+          </div>
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+          </form>
+          <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_23f098f4-bd2e-4db7-ac10-bfc7e22a094e">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <output id="tar_487b1f26-a486-460f-8907-ab2285b393b5"></output>
+    </section>
+
+    <section id="class-task" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#class-task" class="same-page bold">
+            Classification Tasks
+          </a>
+        </h2>
+        <blockquote class="blcokquote mt-2">
+          Text Classification is the task of assigning a label or class to a given text. Some use cases are sentiment analysis, natural language inference, and assessing grammatical correctness. 
+        </blockquote>
+        <img 
+        width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+        height="<%-locals.desktop?250:(locals.tablet?208:165)%>" 
+        style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 176 / 83 !important; height: auto;"
+        srcset="https://image.storething.org/frankmbrown%2Fa7dfdefe-1039-484b-ba5a-2f29258893a4-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2Fa7dfdefe-1039-484b-ba5a-2f29258893a4-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2Fa7dfdefe-1039-484b-ba5a-2f29258893a4-desktop.jpeg 650w" 
+        sizes="(max-width: 550px) 165px, ((min-width: 550px) and (max-width: 1200px)) 208px, (min-width: 1200px) 250px" 
+        src="https://image.storething.org/frankmbrown%2Fa7dfdefe-1039-484b-ba5a-2f29258893a4-desktop.jpeg" 
+        alt="Text Classification" 
+        />
+        <p class="mt-2">
+          Use cases include:
+        </p>
+        <ul>
+          <li><abbr title="Natural Language Inference">NLI</abbr>(Natural Language Inference)</li>
+          <li><abbr title="Multi-Genre Natural Language Inference">MNLI</abbr>(Multi-Genre Natural Language Inference)</li>
+          <li><abbr title="Multi-Genre Natural Language Inference">QNLI</abbr>(Question Natural Language Inference)</li>
+          <li>Sentiment Analysis</li>
+          <li>Grammatical Correctness</li>
+        </ul>
+        <p class="mt-2">
+          I am using the <a class="secondary link" target="_blank" href="https://huggingface.co/facebook/bart-large-mnli">facebook/bart-large-mnli</a> model for classification tasks. 
+        </p>
+        <blockquote class="blockquote mt-1">
+          <a class="secondary link" target="_blank" href="https://arxiv.org/abs/1909.00161">Yin et al.</a>
+           proposed a method for using pre-trained NLI models as a ready-made zero-shot sequence classifiers. The method works by posing the sequence to be classified as the NLI premise and to construct a hypothesis from each candidate label. For example, if we want to evaluate whether a sequence belongs to the class "politics", we could construct a hypothesis of This text is about politics.
+        </blockquote>
+
+        <p class="mt-2 fw-regular" style="border: 4px dotted navy; padding: 4px; border-radius: 4px;">
+          Upload a document or insert text that is to be classified using the textarea below. Enter the candidate labels - the labels that you want the text to be labeled as - in the textarea below as a comma separated list. Submit the form, and receive the likelihood that the text corresponds to each class.
+        </p>
+
+        <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-nlp-tasks/classification" hx-indicator="#ind_fb38eda9-cce4-4788-acd7-9607c76ea845" hx-target="#tar_492dc290-ee78-49fd-a2b5-dff094913110" hx-trigger="submit" hx-swap="innerHTML">
+          <label for="text-file" class="bold">Document Input:</label>
+          <input type="file" id="text-file" accept=".bib, .creole, .csv, .dbk, .djot, .docx, .doku, .epub, .fb2, .htm, .html, .ipynb, .jira, .json, .man, .markdown, .md, .mediawiki, .mmd, .muse, .odt, .opml, .org, .ris, .rst, .rtf, .t2t, .tex, .textile, .tiki, .tsv, .twiki, .txt, .typ, .vimwiki, .wiki, .xml" name="text-file" class="mt-1 success">
+          <output class="block" for="text-file"></output>
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+            <label for="text-input">Text Input:</label>
+            <div class="mt-1 text-input block medium disabled">
+                <textarea 
+                name="text-input" 
+                placeholder="Upload a document above OR insert text that you want to ask questions about here..." 
+                rows="3" 
+                spellcheck="true"
+                autocomplete="off"
+                autocapitalize="off"
+                style="resize: vertical!important; min-width: 100px;"
+                ></textarea>
+            </div>
+          </div>
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+            <label for="class-labels">Classification Labels:</label>
+            <div class="mt-1 text-input block medium disabled">
+                <textarea 
+                name="class-labels" 
+                placeholder="Enter comma separated classification labels here..." 
+                rows="3" 
+                spellcheck="true"
+                autocomplete="off"
+                autocapitalize="off"
+                style="resize: vertical!important; min-width: 100px;"
+                >politics, business, society, art, fashion, technology, local, dining, travel</textarea>
+            </div>
+          </div>
+
+          <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-success htmx-indicator" role="progressbar" aria-busy="false" id="ind_fb38eda9-cce4-4788-acd7-9607c76ea845">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_492dc290-ee78-49fd-a2b5-dff094913110"></output>
+    </section>
+
+    <section id="trans-task" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#trans-task" class="same-page bold">
+            Translation Tasks
+          </a>
+        </h2>
+        <blockquote class="blockquote mt-2" cite="https://en.wikipedia.org/wiki/Neural_machine_translation">
+          <strong>Neural Machine Translation (NMT)</strong> is an approach to machine translation that uses an artificial neural network to predict the likelihood of a sequence of words, typically modelling entire sentences in a single integrated model.
+          <br>
+          It is the dominant approach today and can produce translations that rival human translations when translating between high-resource languages under specific conditions. However, there still remain challenges, especially with languages where less high-quality data is available.
+        </blockquote>
+        <p class="mt-2">
+          I don't demonstrate a translation model here, but I have used some before and I recommend Google's <a class="secondary link" target="_blank" href="https://cloud.google.com/translate/docs/reference/rest">Cloud Translation API</a>.
+        </p>
+    </section>
+
+    <section id="tqa-task" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#tqa-task" class="same-page bold">
+            Table Question Answering Tasks
+          </a>
+        </h2>
+
+        <p class="mt-2">
+          <abbr title="Table Question Answering">Table QA</abbr> is the answering a question about information in a given table.
+        </p>
+        <img 
+        width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+        height="<%-locals.desktop?312:(locals.tablet?259:206)%>" 
+        style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 176 / 103 !important; height: auto;"
+        srcset="https://image.storething.org/frankmbrown%2F830f4d7c-d5e3-43db-9323-c59824be2064-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F830f4d7c-d5e3-43db-9323-c59824be2064-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F830f4d7c-d5e3-43db-9323-c59824be2064-desktop.jpeg 650w" 
+        sizes="(max-width: 550px) 206px, ((min-width: 550px) and (max-width: 1200px)) 259px, (min-width: 1200px) 312px" 
+        src="https://image.storething.org/frankmbrown%2F830f4d7c-d5e3-43db-9323-c59824be2064-desktop.jpeg" 
+        alt="Table Question Answering" 
+        />
+        <p class="bold">Use Cases:</p>
+        <ul>
+          <li>SQL Execution</li>
+          <li>Table Question Answring</li>
+        </ul>
+        <div class="alert warning mt-2 icon medium filled" role="alert">
+          <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Warning"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+          <p class="alert">
+            I have not completed Table Question Answering yet, but I hope to create a project that involves table question answering with the Census dataset, similar to Census GPT. 
+          </p>
+          <button aria-label="Close Alert" class="icon medium close-alert" type="button">
+            <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Close"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+          </button>
+        </div>
+    </section>
+
+    <section id="fe-task" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#fe-task" class="same-page bold">
+            Feature Extraction Tasks
+          </a>
+        </h2>
+        <blockquote class=" blockquote mt-2" cite="https://domino.ai/data-science-dictionary/feature-extraction">
+          Feature extraction is a process in machine learning and data analysis that involves identifying and extracting relevant features from raw data. These features are later use to create a more informative dataset, which can be further utilized for various tasks such as: classification, prediction, and clustering. Feature extraction aims to reduce data complexity while retaining as much relevant information as possible. 
+        </blockquote>
+        <p class="mt-1 fw-regular t-info">
+          While I have come across many different definitions of the term <q class="quote">feature extraction</q>, I think it is most commonly used to denote vectorization - the translation from characters or bytes into vectors with semantic / relative meaning.
+        </p>
+        <p class="mt-2">
+          I currently use <a class="secondary link" target="_blank" href="https://platform.openai.com/docs/guides/embeddings">OpenAI's vector embedding API</a> to generate feature vectors for text. I will not include an example here, but you can use the API to generate vectors of variable length for text. These vectors can be used for semantic search, recommendations, data visualization, a text feature encoder for ML models, and for zero shot classification. <em><strong>Note:</strong> I chose to use this embedding model throughout the site since I don't have a lot of traffic and the API is cheap; if I was to have more traffic and I didn't need great performance, I might choose a different model.</em>
+        </p>
+        <p class="mt-2 fw-regular" style="border: 4px ridge salmon; padding: 4px; border-radius: 4px;">
+          Enter some text (between 10 and 200 characters) into the input below, and see the result of OpenAI's feature extraction by submitting the form.
+        </p>
+        <form class="mt-4" hx-post="/projects/various-nlp-tasks/feature-extraction" hx-indicator="#ind_622ca47e-54e2-4f45-8acb-ae5a9007164e" hx-target="#tar_6eebd985-599e-456d-b793-6f3cfe1dfe1e" hx-trigger="submit" hx-swap="innerHTML">
+          <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+            <label for="text-input">Text Input:</label>
+            <div class="mt-1 text-input block medium disabled">
+                <textarea 
+                name="text-input" 
+                placeholder="Upload a document above OR insert text that you want to ask questions about here..." 
+                rows="3" 
+                minlength="10"
+                maxlength="8000"
+                spellcheck="true"
+                autocomplete="off"
+                autocapitalize="off"
+                style="resize: vertical!important; min-width: 100px;"
+                ></textarea>
+            </div>
+          </div>
+          <div class="flex-row justify-between align-center mt-3">
+                <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+                <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                    <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    SUBMIT
+                </button>
+            </div>
+          </form>
+          <div class="mt-2 flex-row justify-center t-error htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_622ca47e-54e2-4f45-8acb-ae5a9007164e">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <output id="tar_6eebd985-599e-456d-b793-6f3cfe1dfe1e"></output>
+    </section>
+
+    <section id="text-gen-tasks" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#text-gen-tasks" class="same-page bold">
+            Text Generation Tasks
+          </a>
+        </h2>
+        <p class="mt-2">
+          Generating text is the task of generating new text given another text. These models can, for example, fill in incomplete text or paraphrase.
+        </p>
+        <img 
+        width="<%-locals.desktop?650:(locals.tablet?501:351)%>" 
+        height="<%-locals.desktop?351:(locals.tablet?291:232)%>" 
+        style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 44 / 29 !important; height: auto;"
+        srcset="https://image.storething.org/frankmbrown%2F38d8337b-62f1-4e96-94f2-d17e25c8b3da-mobile.jpeg 351w, https://image.storething.org/frankmbrown%2F38d8337b-62f1-4e96-94f2-d17e25c8b3da-tablet.jpeg 501w, https://image.storething.org/frankmbrown%2F38d8337b-62f1-4e96-94f2-d17e25c8b3da-desktop.jpeg 650w" 
+        sizes="(max-width: 550px) 232px, ((min-width: 550px) and (max-width: 1200px)) 291px, (min-width: 1200px) 351px" 
+        src="https://image.storething.org/frankmbrown%2F38d8337b-62f1-4e96-94f2-d17e25c8b3da-desktop.jpeg" 
+        alt="Text Generation" 
+        />
+        <p class="mt-2">
+          I currently use <a class="secondary link" target="_blank" href="">OpenAI's Text Generation API</a> for text generation tasks. APIs from large AI labs are currently cheaper than running a large model on your own server and renting a GPU. You can see a demonstration of current chat model on the <a class="primary link" hx-get="/projects/chat" href="/projects/chat" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">chat page</a>. 
+        </p>
+    </section>
+
+    <section id="summarization-tasks" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#summarization-tasks" class="same-page bold">
+          Summarization Tasks
+        </a>
+      </h2>
+      <p class="mt-2">
+        Transformer models can be used to condense long documents into summaries, a task known as <em>text summarization</em>. This is one of the most challenging NLP tasks as it requires a range of abilities, such as understanding long passages and generating coherent text that captures the main topics in a document.
+      </p>
+      <p class="mt-2">
+        I currently use the <a class="secondary link" target="_blank" href="https://huggingface.co/facebook/bart-large-cnn">facebook/bart-large-cnn</a> model for summarization tasks. It is a <q class="quote">BART model pre-trained on English language, and fine-tuned on <a class="secondary link" target="_blank" href="https://huggingface.co/datasets/cnn_dailymail">CNN Daily Mail</a></q>. It was introduced in the paper <em><a class="secondary link" target="_blank" href="https://arxiv.org/abs/1910.13461">BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension </a></em>. BARTis a transformer encoder-encoder (seq2seq) model with a bidirectional (BERT-like) encoder and an autoregressive (GPT-like) decoder. BART is particularly effective when fine-tuned for text generation (e.g., summarization, translation) but also works well for comprehension tasks (e.g. text classification, question answering).  
+      </p>
+      
+      <p class="mt-2 fw-regular" style="border: 4px dashed purple; padding: 4px; border-radius: 4px;">
+        Upload a document or insert text that is to be summarized using the textarea below. Enter the max length and min length that the summary should be and submit the form to receive the summary.
+      </p>
+
+      <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-nlp-tasks/summarization" hx-indicator="#ind_fb5f9a38-b250-4f74-97f8-29ae54d89f92" hx-target="#tar_79204826-60f9-4fe2-8e56-9f5b0f7957d2" hx-trigger="submit" hx-swap="innerHTML">
+        <label for="text-file" class="bold">Document Input:</label>
+        <input type="file" id="text-file" accept=".bib, .creole, .csv, .dbk, .djot, .docx, .doku, .epub, .fb2, .htm, .html, .ipynb, .jira, .json, .man, .markdown, .md, .mediawiki, .mmd, .muse, .odt, .opml, .org, .ris, .rst, .rtf, .t2t, .tex, .textile, .tiki, .tsv, .twiki, .txt, .typ, .vimwiki, .wiki, .xml" name="text-file" class="mt-1 primary">
+        <output class="block" for="text-file"></output>
+        <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+          <label for="text-input">Text Input:</label>
+          <div class="mt-1 text-input block medium disabled">
+              <textarea 
+              name="text-input" 
+              placeholder="Upload a document above OR insert text that you want to summarize here..." 
+              rows="3" 
+              spellcheck="true"
+              autocomplete="off" 
+              autocapitalize="off"
+              style="resize: vertical!important; min-width: 100px;"
+              ></textarea>
+          </div>
+        </div>
+        <div class="flex-row gap-2 mt-2">
+          <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+            <label for="min_length">Min Length:</label>
+            <div class="mt-1 number-input medium">
+                <input 
+                type="number" 
+                min="1" 
+                max="1000" 
+                value="100" 
+                name="min_length"  
+                placeholder="Enter the min length of the summary" 
+                autocomplete="off" 
+                spellcheck="false" 
+                autocapitalize="off"
+                >
+                <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+          </div>
+          <div class="input-group grow-1" data-hover="false" data-focus="false" data-error="false" data-blurred="false">
+            <label for="max_length">Max Length:</label>
+            <div class="mt-1 number-input medium">
+                <input 
+                type="number" 
+                min="1" 
+                max="1000" 
+                value="300" 
+                name="max_length"  
+                placeholder="Enter the max length of the summary" 
+                autocomplete="off" 
+                spellcheck="false" 
+                autocapitalize="off"
+                >
+                <button class="icon large" data-increase aria-label="Increase Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="icon large" data-decrease aria-label="Decrease Input" type="button">
+                    <svg focusable="false" inert viewBox="0 0 24 24">
+                        <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+          </div>
+        </div>
+        <div class="flex-row justify-between align-center mt-3">
+            <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+            <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                SUBMIT
+            </button>
+        </div>
+      </form>
+      <div class="flex-row justify-center t-warning htmx-indicator" role="progressbar" aria-busy="false" id="ind_fb5f9a38-b250-4f74-97f8-29ae54d89f92">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <output id="tar_79204826-60f9-4fe2-8e56-9f5b0f7957d2"></output>
+    </section>
+
+    <section id="keyword-tasks" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#keyword-tasks" class="same-page bold">
+          Keyword Extraction Tasks
+        </a>
+      </h2>
+      <blockquote class="blockquote mt-2">
+        <strong>Keyword extraction</strong> is tasked with the automatic identification of terms that best describe the subject of a document. <br><em>Key Phrases</em>, <em>key segments</em>, or just <em>keywords</em> are the terminology which is used for definint teh terms that represent the most relevant information contained in the document. Although the terminology is different, function is the same: characterization of the topic discussed in a document. 
+      </blockquote>
+      <p class="mt-2">
+        I use the <a class="secondary link" target="_blank" href="https://huggingface.co/Voicelab/vlt5-base-keywords">Voicelab/vlt5-base-keywords</a> model for keyword extraction. This model generates approximately 3-5 keywords per paragraph of text. It was trained on scientific papers (<abbr title="Polish Open Science Metadata Corpus">POSMAC</abbr> corpus). Longer pieces of text must be split into smaller chunks (1,500 characters). 
+      </p>
+      <img 
+      width="<%-locals.desktop?572:(locals.tablet?440:309)%>" 
+      height="<%-locals.desktop?481:(locals.tablet?399:317)%>" 
+      style="margin: 4px auto; max-width: 100%; aspect-ratio: auto 155 / 159 !important; height: auto;"
+      srcset="https://image.storething.org/frankmbrown%2Fd9ff95c6-6028-4104-80f8-d58f37695d13-mobile.jpeg 309w, https://image.storething.org/frankmbrown%2Fd9ff95c6-6028-4104-80f8-d58f37695d13-tablet.jpeg 440w, https://image.storething.org/frankmbrown%2Fd9ff95c6-6028-4104-80f8-d58f37695d13-desktop.jpeg 572w" 
+      sizes="(max-width: 550px) 317px, ((min-width: 550px) and (max-width: 1200px)) 399px, (min-width: 1200px) 481px" 
+      src="https://image.storething.org/frankmbrown%2Fd9ff95c6-6028-4104-80f8-d58f37695d13-desktop.jpeg" 
+      alt="Keyword Extractor Training Set" 
+      />
+      <blockquote class="blockquote mt-2" cite="https://huggingface.co/Voicelab/vlt5-base-keywords">
+        Our vlT5 model is a keyword generation model based on encoder-decoder architecture using <a href="https://huggingface.co/t5-base" class="secondary link" target="_blank">Transformer blocks presented by Google</a>. The vlT5 was trained on scientific articles corpus to predict a given set of keyphrases based on the concatenation of the article's abstract and title. It generates precise, yet not always complete keyphrases that describe the content of the article based only on the abstract.
+      </blockquote>
+      <p class="mt-2 fw-regular" style="border: 4px groove khaki; border-radius: 4px; padding: 4px;">
+        Upload a document or insert text into the input below and submit the form to generate keywords for the text input. The amount of keywords returned will be dependent on the amount of text in the document / input. I think there will be about 3-5 keywords per 1,500 characters.
+      </p>
+      <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-nlp-tasks/keyword-extraction" hx-indicator="#ind_b9aac231-5afa-4655-a888-98f4632f66d9" hx-target="#tar_59512208-9a8b-48fb-98e3-9d4491dbec34" hx-trigger="submit" hx-swap="innerHTML">
+        <label for="text-file" class="bold">Document Input:</label>
+        <input type="file" id="text-file" accept=".bib, .creole, .csv, .dbk, .djot, .docx, .doku, .epub, .fb2, .htm, .html, .ipynb, .jira, .json, .man, .markdown, .md, .mediawiki, .mmd, .muse, .odt, .opml, .org, .ris, .rst, .rtf, .t2t, .tex, .textile, .tiki, .tsv, .twiki, .txt, .typ, .vimwiki, .wiki, .xml" name="text-file" class="mt-1 success">
+        <output class="block" for="text-file"></output>
+        <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+          <label for="text-input">Text Input:</label>
+          <div class="mt-1 text-input block medium disabled">
+              <textarea 
+              name="text-input" 
+              placeholder="Upload a document above OR insert text that you want to ask questions about here..." 
+              rows="3" 
+              spellcheck="true"
+              autocomplete="off"
+              autocapitalize="off"
+              style="resize: vertical!important; min-width: 100px;"
+              ></textarea>
+          </div>
+        </div>
+        <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+        </form>
+        <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_b9aac231-5afa-4655-a888-98f4632f66d9">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <output id="tar_59512208-9a8b-48fb-98e3-9d4491dbec34"></output>
+    </section>
+
+
+    <section id="open-ai-moderation" class="mt-4">
+      <h2 class="bold bb-thick h2">
+        <a href="#open-ai-moderation" class="same-page bold">
+          Open AI Moderation API
+        </a>
+      </h2>
+      <blockquote cite="https://platform.openai.com/docs/guides/moderation" class="mt-2">
+        The <a class="secondary link" target="_blank" href="https://platform.openai.com/docs/guides/moderation">moderations</a> endpoint is a tool you can use to check whether text or images are potentially harmful. Once harmful content is identified, developers can take corrective action like filtering content or intervening with user accounts creating offending content. The moderation endpoint if free to use. 
+      </blockquote>
+      <p class="mt-2">
+        The models available for this endpoint are:
+      </p>
+      <ul>
+        <li><span class="text-code">omni-moderation-latest</span>: This model and all snapshots support more categorization options and multi-modal inputs.
+        </li>
+        <li><span class="text-code">text-moderation-latest</span>: Older model that supports only text inputs and fewer input categorizations. The newer omni-moderation models will be the best choice for new applications.
+        </li>
+      </ul>
+      <p class="mt-2" style="padding: 4px; border: 4px yellow; border-style: dotted; border-radius: 4px;">
+        Upload a document or insert some text into the textarea below and submit the form to see what the free open ai moderations API says about the content.
+      </p>
+      <form class="mt-4" hx-encoding="multipart/form-data" hx-post="/projects/various-nlp-tasks/openai" hx-indicator="#ind_e00954fd-00bc-40d1-95b6-daef690940fa" hx-target="#tar_5f9a217e-965d-4900-beb5-e089e3c1ddca" hx-trigger="submit" hx-swap="innerHTML">
+        <label for="text-file" class="bold">Document Input:</label>
+        <input type="file" id="text-file" accept=".bib, .creole, .csv, .dbk, .djot, .docx, .doku, .epub, .fb2, .htm, .html, .ipynb, .jira, .json, .man, .markdown, .md, .mediawiki, .mmd, .muse, .odt, .opml, .org, .ris, .rst, .rtf, .t2t, .tex, .textile, .tiki, .tsv, .twiki, .txt, .typ, .vimwiki, .wiki, .xml" name="text-file" class="mt-1 success">
+        <output class="block" for="text-file"></output>
+        <div class="input-group block mt-2" data-hover="false" data-focus="false" data-error="false" data-blurred="false"> 
+          <label for="text-input">Text Input:</label>
+          <div class="mt-1 text-input block medium disabled">
+              <textarea 
+              name="text-input" 
+              placeholder="Upload a document above OR insert text that you want to ask questions about here..." 
+              rows="3" 
+              spellcheck="true"
+              autocomplete="off"
+              autocapitalize="off"
+              style="resize: vertical!important; min-width: 100px;"
+              ></textarea>
+          </div>
+        </div>
+        <div class="flex-row justify-between align-center mt-3">
+              <input role="button" value="RESET"  type="reset" aria-label="Reset Form"></input>
+              <button type="submit" aria-label="Submit" class="success filled icon-text medium">
+                  <svg focusable="false" inert viewBox="0 0 24 24" tabindex="-1" title="Send"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                  SUBMIT
+              </button>
+          </div>
+      </form>
+      <div class="mt-2 flex-row justify-center t-primary htmx-indicator" role="progressbar" aria-busy="false" aria-label="" id="ind_e00954fd-00bc-40d1-95b6-daef690940fa">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <output id="tar_5f9a217e-965d-4900-beb5-e089e3c1ddca"></output>
+  </section>
+
+    <%-include('../../partials/pagePartial')%>
+<%}%>

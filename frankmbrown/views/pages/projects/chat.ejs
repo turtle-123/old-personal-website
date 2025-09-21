@@ -1,0 +1,47 @@
+<%# 
+PARTIAL ROUTE: pages/projects/chat.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+- locals.auth
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+     
+    <h1 class="page-title">AI Chat</h1>
+
+
+    <section id="why-create-page" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#why-create-page" class="same-page bold">
+            Why Create This Page
+          </a>
+        </h2>
+
+        <p class="mt-2">
+            I want to create this page to test out a simple AI chat system. On this page, you can chat with an AI chatbots similar to other services on the internet. I want to get a good idea of how to handle chatbots in a database and what the prices would look like. 
+            <br>
+            Good text generation models are cheaper to urn through an external service API call, like <a class="secondary link" target="_blank" href="https://platform.openai.com/docs/guides/text-generation">OpenAI's chat completion API</a> or <a class="secondary link" target="_blank" href="https://github.com/GoogleCloudPlatform/generative-ai/blob/main/gemini/chat-completions/intro_chat_completions_api.ipynb">Google's gemini model</a>, than by running the model on a rented GPU. At least, this is true for sites that don't get much traffic. 
+        </p>
+        <p class="mt-2">
+          <a class="primary link h6" hx-get="/projects/chat/information-on-models" href="/projects/chat/information-on-models" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">See this page for a comparison of various AI chat models.</a>
+        </p>
+    </section>
+
+    <section id="chat-wrapper" class="mt-4">
+        <h2 class="bold bb-thick h2">
+          <a href="#chat-wrapper" class="same-page bold">
+            Chat
+          </a>
+        </h2>
+        
+
+        <p class="mt-2">
+          I have decided to move this <a class="primary link" hx-get="/ai-tools/ai-chat" href="/ai-tools/ai-chat" hx-push-url="true" hx-target="#PAGE" hx-indicator="#page-transition-progress">AI chat to a new page.</a> 
+        </p>
+    </section>  
+    
+
+    <%-include('../../partials/pagePartial')%>
+<%}%> 

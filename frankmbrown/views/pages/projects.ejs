@@ -1,0 +1,1060 @@
+<%# 
+PARTIAL ROUTE: pages/projects.ejs
+PARTIAL DESCRIPTION: Description...
+LOCAL VARIABLES:
+----------------------------------
+- locals.fullPageRequest
+- locals.pageRequest
+%>
+<%if(locals.fullPageRequest||locals.pageRequest){%>
+  
+  <h1 class="page-title">Frank's Projects</h1>    
+    <section id="what-is-this" class="mt-2">
+        <h2 class="navbar-sticky-transition bold bb-thick h2" style="opacity: 1; background: var(--background); top: var(--navbar-height); position: sticky; z-index: 2;">
+          <a href="#what-is-this" class="same-page fw-regular">What is This?</a>
+        </h2>
+        <p class="mt-3">
+        Place to keep links to some projects that I have worked on. These projects are software projects so far (and things that I wanted to test in a production environment), but I am not sure what all I will work on in the future.
+        </p>
+        <p class="mt-2">
+          The projects are not currently organized in any particular type of way. The projects are organized into vague sections based on what type of project they are - normal projects, ai projects, visualization projects, or a projects archive, and with each section, the projects are listed (roughly) oldest to newest. <strong>I need to come up with a better way to list projects in the future.</strong>  
+        </p>
+      </section>
+
+    <style>
+      a.project_link {
+        text-decoration: none;
+        border: 2px solid var(--divider);
+        padding: 0px 4px 0px 0px;
+        display: flex;
+        flex-basis: 100%;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: start;
+        border-radius: 4px;
+        margin-top: 8px;
+        color: var(--text-primary);
+      }
+      a.project_link:hover {
+        opacity: 0.7;
+        border: 2px solid var(--text-primary);
+      }
+      span.proj-info {
+        padding: 3px; 
+        border-radius: 6px;
+      }
+
+    </style>
+    <section id="projects" class="mt-4">
+      <h2 class="navbar-sticky-transition bold bb-thick h2" style="opacity: 1; background: var(--background); top: var(--navbar-height); position: sticky; z-index: 2;">
+        <a href="#projects" class="same-page fw-regular">Projects</a>
+      </h2>
+
+      <a href="/projects/design-system" hx-get="/projects/design-system" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/9cc680a1-cae7-4188-a8a6-8be1dc52ac19.jpg" alt="Material UI Logo" style="width:100px;height:100px;" width="150" height="150" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            A Material Design - Like Design System
+          </p>
+          <p class="body2 w-100">
+            I created a <abbr title="Material UI">MUI</abbr> like design system to learn about CSS and to use for various projects. I tried to make it smaller so that assets load faster. This page contains links to various components that make up most frontend design systems that you see out there. I will probably be adding more in the future. Need to create some more useful components.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              Completed
+            </span>
+            <span class="caption proj-info bg-info">
+              WILL ADD TO
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/design-system/google-maps" hx-get="/projects/design-system/google-maps" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/c9ba04fb-09ae-451f-91df-62e4dc0e2aab.jpg" alt="Google Maps" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Google Maps Implementation
+          </p>
+          <p class="body2 w-100">
+            Demonstration of the Google Maps JavaScript API, not only showing GEOJSON locations on a map, but also drawing circles and polygons on the map. This page was created because I want to include this functionality in another project. Need to fix how Google Maps API works on <abbr title="Single Page Applications">SPAs</abbr>.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              COMPLETED
+            </span>
+            <span class="caption proj-info bg-info">
+              WILL ADD TO
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/design-system/lexical-rich-text-editor" hx-get="/projects/design-system/lexical-rich-text-editor" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/01f757d8-ec61-4173-b6bf-c5dcccd98bea.jpg" alt="Lexical Implementation" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Lexical Implementation
+          </p>
+          <p class="body2 w-100">
+            This page contains a demonstration of my vanilla JS Lexical Rich Text Editor Implementation. It contains a demonstration and some description (which is currently not great) of how I went about implementing the editor.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              COMPLETED
+            </span>
+            <span class="caption proj-info bg-error">
+              REWRITE CONTENT
+            </span>
+          </div>
+         
+        </div>
+      </a>
+      <a href="/projects/lexical-implementations" hx-get="/projects/lexical-implementations" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/f005e283-f2e8-4651-a422-3caab32b004b.jpg" alt="Lexical" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Various Lexical Implementations
+          </p>
+          <p class="body2 w-100">
+            This page contains a demonstration of various different editors. When implementing rich text editors, you want different versions of an editor for different things - i.e., a article builder editor with all components, a comment editor with only some components, and a text-only editor that can handle links. This page shows some demonstrations of different editors. <span class="fw-regular">Add to this page when you create a new editor type.</span>
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              COMPLETED
+            </span>
+            <span class="caption proj-info bg-error">
+              REWRITE CONTENT
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/article-builder-4" hx-get="/projects/article-builder-4" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/52ca42ef-b65e-4d36-aa2e-a31269fe46b6.jpg" alt="Article Builder" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Article Builder - Final Implementation
+          </p>
+          <p class="body2 w-100">
+            I created a few different implementations of an article builder until I created one that I feel I got right. This implementation includes a <span class="text-code">sticky</span> navbar and an editor that has a variable <span class="text-code">height</span> based on the amount of content in the editor. I should explain this better.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              COMPLETED
+            </span>
+            <span class="caption proj-info bg-warning">
+              ADD CONTENT
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/article-builder-3" hx-get="/projects/article-builder-3" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/9d771237-4376-4da8-92d6-46a03c97dcb5.jpg" alt="Article Builder" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Article Builder Implementation 3
+          </p>
+          <p class="body2 w-100">
+            This version of the article builder allows users to insert multiple <span class="text-code">&lt;section&gt;</span>s - with each section either being custom HTML and CSS or a Lexical Rich Text editor. The sections can be rearranged through drag and drop. I felt this article builder was too difficult to use on mobile devices, and also just too involved in general. 
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-warning">
+              ARCHIVE
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/article-builder-2" hx-get="/projects/article-builder-2" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/dec7c0fa-6084-40d7-91ff-711ecb49b9f3.jpg" alt="Article Builder" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Article Builder Implementation 2
+          </p>
+          <p class="body2 w-100">
+            This version of the article builder is similar to the third version of the article builder, except that it doesn't allow users to insert custom HTML and CSS. This version of the article builder was again too involved and difficult to use on mobile.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-warning">
+              ARCHIVE
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/article-builder-1" hx-get="/projects/article-builder-1" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/f7a95407-9ef6-4242-803e-cfdef1014ab1.jpg" alt="Article Builder" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Article Builder Implementation 1
+          </p>
+          <p class="body2 w-100">
+            This version of the article builder takes up the whole page - giving users the whole screen to write a blog post or something similar. The styling of this article builder was no good and the styling also gives users the wrong impression of how content will look on mobile / tablet devices.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-warning">
+              ARCHIVE
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/html-css-javascript-playground" hx-get="/projects/html-css-javascript-playground" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/2de5aac5-13f8-4a99-9db4-e67368624326.jpg" alt="Playground Logo" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            HTML, CSS, and Javascript Playground
+          </p>
+          <p class="body2 w-100">
+            I created this page mainly to test out my codemirror (see npm) implementation. I also used the time creating this page to look into how I might safely implement user-supplied-code into my site, but I didn't find anything that I wanted to work on. This needs to be improved my implementing a view of the console of the <span class="text-code">&lt;frame&gt;</span> element.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-warning">
+              ARCHIVE
+            </span>
+            <span class="caption proj-info bg-warning">
+              WORK ON
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/projects/create-a-survey" hx-get="/projects/create-a-survey" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/01c3085b-ede4-4556-8a32-48e6598e375b.jpg" alt="Create a Survey" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Create a Survey
+          </p>
+          <p class="body2 w-100">
+            Using this page to demonstrate the functionality of something I want to implement in an application - a way of creating polls and analyzing them using AI. This involves allowing users to insert multi-modal input (upload images, audio, video, and custom HTML as a response to a survey/poll question). <span class="fw-regular t-warning">Need to come back to this.</span> 
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-warning">
+              WORK ON
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/record-media" hx-get="/projects/record-media" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/5d5aba8b-bea5-4e9d-a102-d1e3395c4fee.jpg" alt="Record Media" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Record Media
+          </p>
+          <p class="body2 w-100">
+            Demonstration of uploading / taking / recording images, audio, and video using JavaScript web APIs. I wanted to create my own implementation of recording audio / video / taking images, and I also wanted to see how it works. You can also test out uploading images and getting suitable sizes for mobile, desktop, and tablet devices. I need to review / rewrite the content for this page.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              COMPLETED
+            </span>
+            <span class="caption proj-info bg-error">
+              REWRITE CONTENT
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/create-gradient" hx-get="/projects/create-gradient" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/8fd23a6d-83b1-4db7-ba10-7906be1880f8.jpg" alt="Create Gradient" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Create Gradient
+          </p>
+          <p class="body2 w-100">
+            For some reason, I was really interested in CSS gradients one day so I created this page, on which you can create your own Linear and Radial gradients with any amount of colors / modifications. I think I created this page because I wanted to learn more about <abbr title="Scalable Vector Graphics">SVGs</abbr> too.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              COMPLETED
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/census-info-near-you" hx-get="/projects/census-info-near-you" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/240caf31-1977-494c-8602-f8cd313d326d.jpg" alt="Census Information Near You" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Census Information Near You
+          </p>
+          <p class="body2 w-100">
+            I created this page as a demonstration of dynamically loading google maps javascript maps / dynamically loading GEOJSON and also to figure out what kind of information I alreay have about census communities around the United States. I also wanted to test out the Geolocation JavaScript API.  
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              COMPETED
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/markdown-to-html" hx-get="/projects/markdown-to-html" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/9d8427a0-5d12-459e-98da-256d90a0993b.jpg" alt="Markdown to HTML" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Markdown to HTML
+          </p>
+          <p class="body2 w-100">
+            I created this page to test out my Markdown to HTML system that I created with marked-js. This page contains a code editor that you can use to inert markdown and see the resulting HTML using my current system. I might switch from using marked js to pandoc in the future for markdown to HTML conversions.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              COMPLETED
+            </span>
+            <span class="caption proj-info bg-error">
+              REWRITE CONTENT
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/configure-size-adjust-property" hx-get="/projects/configure-size-adjust-property" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/73f838d6-a44e-4937-99ad-1551df6a7a6b.jpg" alt="Configure Font Size Adjust" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Configure Font Size Adjust
+          </p>
+          <p class="body2 w-100">
+            I use a custom font, Anuphan, on this site, and I wanted to find the best way to configure the <span class="text-code">&lt;size-adjust&gt;</span> property of a <span class="text-code">@font-face</span> declaration to minimize the cumulative layout shift. On this page, you can sww what the optimal font <span class="text-code">&lt;size-adjust&gt;</span> property would be for every font on google fonts.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              COMPLETED
+            </span>
+          </div>
+        </div>
+      </a>
+    <a href="/projects/embed-social-media-posts" hx-get="/projects/embed-social-media-posts" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/ba1c89e7-f5be-4553-8a04-2c99ca0070f4.jpg" alt="Looking Into Safe Ways to Embed Social Media Post" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Looking into Embedding Social Media Posts
+          </p>
+          <p class="body2 w-100">
+            I created this page in an effort to look into safe ways to embed different social media posts so that I could include that as an option in my Lexical rich text editor. I wanted to test this out in a production environment to make sure my content security policy directives were correct.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              COMPLETED
+            </span>
+            <span class="caption proj-info bg-info">
+              INFORMATIVE
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/testing-css-env-variables" hx-get="/projects/testing-css-env-variables" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center; ">
+          <img src="https://image.storething.org/frankmbrown/889cf37d-d69a-4c2e-8138-eb8476cfebd6.jpg" alt="Testing CSS env Variables" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Testing CSS <span class="text-code">env</span> Variables
+          </p>
+          <p class="body2 w-100">
+            I created this page to test out CSS <span class="text-code">env</span> variables that are available to developers to make styling easier on different devices. It can be difficult to create styles for different types of mobile devices, tablets, and computers, and these CSS variables make it easier. I had to upload this in production to test out many different devices easily.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              COMPLETED
+            </span>
+            <span class="caption proj-info bg-info">
+              INFORMATIVE
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/convert-file-type" hx-get="/projects/convert-file-type" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/ed265c30-5e31-4bb3-8835-fdaae70eb826.jpg" alt="Convert File Type" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Convert File Type
+          </p>
+          <p class="body2 w-100">
+            I created this page so that I can easily convert images, audio files, video files, and documents to different file types, i.e., png to jpeg or docx to HTML. I created this page using imagemagick for images, ffmpeg for audio and video, and pandoc for documents. <span class="fw-regular t-info">I still need to work on converting documents to HTML and making it look good for jupyter notebooks, markdown, and tex documents.</span>
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              COMPLETED
+            </span>
+            
+          </div>
+        </div>
+      </a>
+
+      <a href="/projects/web-apis/a-b" hx-get="/projects/web-apis/a-b" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/f8affcd2-984f-48e7-b438-7988a736b2eb.jpg" alt="Web APIs" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Web APIs
+          </p>
+          <p class="body2 w-100">
+            I am creating this page because i want to test out various Web APIs that look interesting. I found a page on the mdn web docs that contains an alphabetical list of all the WebAPIs, and I saw how many looked interesting and how many I want to try out, so I am creating this page to try them out.
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              NOTES COMPLETE
+            </span>
+            <span class="caption proj-info bg-warning">
+              WORKING ON IMPLEMENTATIONS
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/projects/table-conversion" hx-get="/projects/table-conversion" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/da2a717b-5953-48b1-9647-40e9003246b4.jpg" alt="HTML Table to Markdown" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Table Conversions
+          </p>
+          <p class="body2 w-100">
+            I am creating this page because it is sometimes annoying to convert table between different formats. CSV, Excel, markdown, HTML, json, and a table that would be easily inserted into a rich text editor.  
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-success">
+              COMPLETED
+            </span>
+            <span class="caption proj-info bg-warning">
+              COULD IMPROVE
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="/projects/create-a-chart" hx-get="/projects/create-a-chart" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/b534748c-f247-4472-a086-1521ed2ccb98.jpg" alt="Create a Chart" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Create a Chart
+          </p>
+          <p class="body2 w-100">
+            I am creating this page to make the process of creating charts easier. I plan on allowing users to use Bokeh and mpld3 to make charts that can either be 1. saved and embedded in a rich text editor or 2. copied (copy HTML / css / js associated with the chart). Hopefully I will eventually have a AI coding assistant for this as well.  
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-warning">
+              ONGOING
+            </span>
+            <span class="caption proj-info bg-warning">
+              NOT COMPLETED
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/projects/testing-select-implementations" hx-get="/projects/testing-select-implementations" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/597ea5a0-feb9-436e-a926-15d633572598.jpg" alt="Testing Select Components" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Testing Select Components
+          </p>
+          <p class="body2 w-100">
+            I don't really like my implementation of the <span class="text-code">&lt;select&gt;</span> component right now. It's styled correctly and works fine, but its missing some JavaScript functionality, probably has accessibility issues, and lacks features that some JavaScript select libraries offer. On this page, I am going to test different JavaScript select libraries to see which ones I like best.          
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-warning">
+              IN PROGRESS
+            </span>
+            <span class="caption proj-info bg-info">
+              INFORMATIVE
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/projects/google-colab-clone" hx-get="/projects/google-colab-clone" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/d196431d-788c-4535-99e8-83e0c672fbcd.jpg" alt="Google Colab Clone" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Google Colab Clone
+          </p>
+          <p class="body2 w-100">
+            Because I decided to sandbox Python code using Jupyter Notebooks, I ended up having to learn how Jupyter Notebooks really work, which then led me to want to create a Google Colab clone.          
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-warning">
+              IN PROGRESS
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/projects/testing-recommendation-systems" hx-get="/projects/testing-recommendation-systems" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/0bca9b76-b0d5-4738-90ad-38a518feb9a3.jpg" alt="Test Build Recommendation System" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Testing Recommendation System(s)
+          </p>
+          <p class="body2 w-100">
+            I want to build this page to test out building different recommendation systems. I plan to use the Wikipedia API to suggest Wikipedia pages to you based on a description of yourself and based on what users similar to you are interested in. I will have to populate the database with test users to do this now. 
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-warning">
+              IN PROGRESS
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/projects/sorting-mechanisms" hx-get="/projects/sorting-mechanisms" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+        <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+          <img src="https://image.storething.org/frankmbrown/aaefde91-b293-46a1-8938-0f0044c8fe21.jpg" alt="Sorting Mechanisms" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+        </div>
+        <div style="padding: 4px 0px;">
+          <p class="h5 bold w-100">
+            Sorting Mechanisms
+          </p>
+          <p class="body2 w-100">
+            I sometimes need to sort components by some attribute they have. I want to test out the JavaScript / styling on this. I am also going to look into sorting table rows (which might impact Lexical implementation). 
+          </p>
+          <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+            <span class="caption proj-info bg-warning">
+              IN PROGRESS
+            </span>
+          </div>
+        </div>
+      </a>
+
+    </section> 
+
+    <section id="ai-projects" class="mt-4">
+        <h2 class="navbar-sticky-transition bold bb-thick h2" style="opacity: 1; background: var(--background); top: var(--navbar-height); position: sticky; z-index: 2;">
+          <a href="#ai-projects" class="same-page fw-regular">AI Projects</a>
+        </h2>
+        <div>     
+          <a href="/projects/get-file-information" hx-get="/projects/get-file-information" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+            <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+              <img src="https://image.storething.org/frankmbrown/8849e254-f945-4f78-8990-93185110660a.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+            </div>
+            <div style="padding: 4px 0px;">
+              <p class="h5 bold w-100">
+                Get File Information
+              </p>
+              <p class="body2 w-100">
+                I wanted to create this page so that I can easily get information about image, audio, video, and document files. It also gives me the opportunity to standardize the information that I care about with the respect to the metadata of each of these file types.
+              </p>
+              <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+                <span class="caption proj-info bg-success">
+                  COMPLETED
+                </span>
+              </div>
+            </div>
+          </a>
+          
+          <a href="/projects/neural-style-transfer" hx-get="/projects/neural-style-transfer" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+            <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+              <img src="https://image.storething.org/frankmbrown/2fc5655f-4b0e-48a5-bad5-172503af341e.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+            </div>
+            <div style="padding: 4px 0px;">
+              <p class="h5 bold w-100">
+                Neural Style Transfer
+              </p>
+              <p class="body2 w-100">
+                This is a page to demonstrate a Neural Style Tranfer model that I implemented on the backend. This is the first page that uses a different <span class="text-code">systemd</span> service than the Node.js service that runs most of this site. I learned about and provide information on Neural Style transfer on this page. I also learned about Flask and TensorFlow with this project. 
+              </p>
+              <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+                <span class="caption proj-info bg-success">
+                  COMPLETED
+                </span>
+              </div>
+            </div>
+          </a>
+          <a href="/projects/various-nlp-tasks" hx-get="/projects/various-nlp-tasks" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+            <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+              <img src="https://image.storething.org/frankmbrown/9f218a9d-c876-4604-aca9-bc7d09d3dbfe.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+            </div>
+            <div style="padding: 4px 0px;">
+              <p class="h5 bold w-100">
+                Various <abbr title="Natural Language Porcessing" class="bold">NLP</abbr> Tasks
+              </p>
+              <p class="body2 w-100">
+                I implemented various HuggingFace models on the backend (and used some external APIs) to demonstrate some common Natural Language Processing tasks on this page. Demonstrations of Fill-Mask, Question Answering, Semantic Analysis, Named Entity recognition, Classification, Feature Extraction, Summarization, and Keyword Extraction can be found here. 
+              </p>
+              <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+                <span class="caption proj-info bg-success">
+                  COMPLETED
+                </span>
+              </div>
+            </div>
+          </a>
+          <a href="/projects/various-image-tasks" hx-get="/projects/various-image-tasks" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+            <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+              <img src="https://image.storething.org/frankmbrown/6b68ed29-380f-495d-92cf-434a931cd851.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+            </div>
+            <div style="padding: 4px 0px;">
+              <p class="h5 bold w-100">
+                Various AI Image Tasks
+              </p>
+              <p class="body2 w-100">
+                I implemented various HuggingFace models on the backend (and used some external APIs) to demonstrate some common AI-related Image tasks on this page. This includes feature extraction, image captioning, image safe search, text to image, monocular depth estimation, object detection, image segmentation, keypoint detection, and optical character recognition. 
+              </p>
+              <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+                <span class="caption proj-info bg-success">
+                  COMPLETED
+                </span>
+              </div>
+            </div>
+          </a>
+          <a href="/projects/chat" hx-get="/projects/chat" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+            <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+              <img src="https://image.storething.org/frankmbrown/1fa03aec-7701-449e-8105-71969c17a9c5.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+            </div>
+            <div style="padding: 4px 0px;">
+              <p class="h5 bold w-100">
+                AI Chat
+              </p>
+              <p class="body2 w-100">
+                I want to create an AI chatbot using external APIs to learn more about how the big labs use chatbots - and to learn more about their APIs. I am not really talking about the Deep Learning behind these LLMs that I want to learn about (since the cost to create these models is out of my reach), but the software engineering related to running one.
+              </p>
+              <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+                <span class="caption proj-info bg-warning">
+                  WORKING ON
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+    </section>  
+
+    <section id="vis-projects" class="mt-4">
+      <h2 class="navbar-sticky-transition bold bb-thick h2" style="opacity: 1; background: var(--background); top: var(--navbar-height); position: sticky; z-index: 2;">
+        <a href="#vis-projects" class="same-page fw-regular">Visualization Projects</a>
+      </h2>
+
+      <div>  
+        <a href="/projects/three-js" hx-get="/projects/three-js" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/3a685429-fe31-46b7-9baa-dddef2a93ef0.png" alt="Three.js" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Three.js
+            </p>
+            <p class="body2 w-100">
+              I decided that I wanted to know more about Three.js, so I am creating this page to house some three js projects as I go through a Three.js tutorial.
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-warning">
+                NOT DONE
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects/webgl" hx-get="/projects/webgl" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/221dd36a-5dea-465e-af1a-b4eafdb381b8.jpg" alt="WebGL" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              WebGL
+            </p>
+            <p class="body2 w-100">
+              I decided that I wanted to know more about WebGL, so I am creating this page to house some WebGL projects as I go through a WebGL tutorial.
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-warning">
+                NOT DONE
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects/webgpu" hx-get="/projects/webgpu" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/f6b7d08f-a5b9-4d61-8916-72e29ef96152.png" alt="WebGPU" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              WebGPU
+            </p>
+            <p class="body2 w-100">
+              I decided that I wanted to know more about WebGPU, so I am creating this page to house some WebGPU projects as I go through a WebGPU tutorial.
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-warning">
+                NOT DONE
+              </span>
+            </div>
+          </div>
+        </a>
+        
+        <a href="/projects/bokeh-functionality-survey" hx-get="/projects/bokeh-functionality-survey" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/03e1baec-8457-4d30-8e65-9e2b7fc338e7.png" alt="Bokeh" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Demonstration of Bokeh Functionality for Survey Responses
+            </p>
+            <p class="body2 w-100">
+              I am using this page to test how I am going to show survey results properly. This page should show functionality for dimensionality-reduction and histogram plots. It may also show the color plots if I figure out how to properly show color survey results in Bokeh.
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-warning">
+                NOT DONE
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects/ncaa-basketball-tournament" hx-get="/projects/ncaa-basketball-tournament" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/1a5b8fdf-21bc-4883-945d-4940dc186c8a.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Visualizing NCAA Basketball Tournament Results
+            </p>
+            <p class="body2 w-100">
+              I got data on the results of the NCAA basketball tournament from the 80s to now and I wanted to create a page that visualizes the results on a map and bracket. I haven't completed this because I got caught up in other things and making a bracket in HTML is harder than I thought (or harder to put effort into than I previously thought).
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-warning">
+                NOT DONE
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects/learning-html5-canvas" hx-get="/projects/learning-html5-canvas" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/5332699c-6a29-4702-8eba-5a686113d868.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Learning HTML 5 Canvas
+            </p>
+            <p class="body2 w-100">
+              I wanted to learn more about the HTML 5 canvas element, so I created this page. I will probably tru to create a game or something using canvas in the future since there is a lot to do with it, but this page is not of much use. 
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-warning">
+                NOT HELPFUL (YET)
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects/sense-of-style" hx-get="/projects/sense-of-style" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/80a0a584-9db0-4155-badb-e3b91f19175c.jpg" alt="Sense of Style" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Getting a Sense of Style
+            </p>
+            <p class="body2 w-100">
+             I wanted to create this page to get a sense of how certain styles look on different devices. You could do this through the Developer Console, but I want to get a sense of what different styles look like while actually using different devices. <span class="bold t-warning">This page is not very useful to anyone except myself.</span>
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-success">
+                COMPLETED
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="to-be-completed" class="mt-4">
+      <h2 class="navbar-sticky-transition bold bb-thick h2" style="opacity: 1; background: var(--background); top: var(--navbar-height); position: sticky; z-index: 2;">
+        <a href="#to-be-completed" class="same-page fw-regular">To Be Completed</a>
+      </h2>
+      <div>
+        <a href="/projects/html-to-javascript" hx-get="/projects/html-to-javascript" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/bbd65c68-c64d-4d35-b5a6-e25e604363b5.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              HTML to JavaScript
+            </p>
+            <p class="body2 w-100">
+              I wanted to create this page to make it easier to create HTML components using JavaScript, i.e. - upload HTML and receive JavaScript that produces that HTML in a way that is impossible to attack via Cross Site Scripting. I have abandoned this for now. 
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-warning">
+                NOT DONE
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects/create-svg" hx-get="/projects/create-svg" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/76744d47-f117-4968-bcb7-4dd774df89f3.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Create SVG
+            </p>
+            <p class="body2 w-100">
+              I wanted to create an SVG maker that - instead of converting images to complex <span class="text-code">&lt;path&gt;</span> elements - actually used some more common SVG elements like <span class="text-code">&lt;circle&gt;</span> and <span class="text-code">&lt;rect&gt;</span> and <span class="text-code">&lt;text&gt;</span>. I will probably come back to this in the far off future (maybe). 
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-success">
+                MORE INFO (COMPLETED?)
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects/creating-css-sprite-builder" hx-get="/projects/creating-css-sprite-builder" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/68baa2a7-10db-4cc7-935e-3bf9dbf6f652.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              CSS Sprite Builder
+            </p>
+            <p class="body2 w-100">
+              I wanted to create a page that makes it easy to create CSS sprites. I will probably come back to this in the future.
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-success">
+                MORE INFO (COMPLETED?)
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects/create-three-js-texture" hx-get="/projects/create-three-js-texture" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/02ca140a-b80e-4c0c-a2f5-76e0aaaac5bf.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Create Three JS Texture
+            </p>
+            <p class="body2 w-100">
+              I wanted to create a page that makes it easy to create a Three JS texture. I will probably come back to this in the future.
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-success">
+                MORE INFO (COMPLETED?)
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="section-archive" class="mt-4">
+      <h2 class="navbar-sticky-transition bold bb-thick h2" style="opacity: 1; background: var(--background); top: var(--navbar-height); position: sticky; z-index: 2;">
+        <a href="#section-archive" class="same-page fw-regular">Archive</a>
+      </h2>
+      <p class="mt-2">
+        These projects aren't really projects but pages that I created to remind myself of things before I had finalized the article builder. Some of these projects are things I ended up abandoning because I didn't find them useful or I didn't want to do anything more with them.
+      </p>
+      <div>
+        <a href="/projects-archive/handbook-data-visualization" hx-get="/projects-archive/handbook-data-visualization" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/35b52b83-af74-4cf7-a62b-629c89f2cdd0.jpg" alt="Handbook of Data Visualization" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Handbook of Data Visualization
+            </p>
+            <p class="body2 w-100">
+              I created this page because I want to practice working with Bokeh, I want to generate some examples of Bokeh code to fine-tune an LLM for creating charts in text-to-sql applications, and I want to learn more about data visualization. The rich text editor is not yet powerful enough to handle these charts (I have yet to implement Jupyter Notebooks).
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-success">
+                DONE
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects/three-js-playground" hx-get="/projects/three-js-playground" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/ed37a22f-8838-45d4-b389-b6b4ad41f2d3.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Three JS Playground
+            </p>
+            <p class="body2 w-100">
+              I created this page because I wanted to create a page where users can upload 3D asset files and play with them in Three JS. I will probably come back to this in the future.
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-error">
+                NOT DONE
+              </span>
+              <span class="caption proj-info bg-warning">
+                ARCHIVE
+              </span>
+            </div>
+          </div>
+        </a>
+       <a href="/projects-archive/svg-basics" hx-get="/projects-archive/svg-basics" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/5bd1cf9c-af0e-4d73-9be4-28401fd126dd.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              SVG Basics
+            </p>
+            <p class="body2 w-100">
+              I wanted to learn about the basics of SVGs, so I created this page. On this page, I take notes on SVGs and demonstrate some animation functionality that they have.
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-info">
+                INFORMATIVE
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects-archive/three-js-test" hx-get="/projects-archive/three-js-test" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/ef8def8e-75f0-4b9f-a255-5c51e2942d18.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Three JS Test
+            </p>
+            <p class="body2 w-100">
+              I originally wanted users to be able to upload 3D objects to the Lexical rich text editor, but I decided against it because I wouldn't know how to perform content moderation on 3D assets.
+              This page is a demonstration that three js works on this site.
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-error">
+                NOT DONE
+              </span>
+              <span class="caption proj-info bg-warning">
+                ARCHIVE
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects-archive/creating-full-text-search" hx-get="/projects-archive/creating-full-text-search" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/c3e2613a-8c85-4ea0-bdfc-06924167ea00.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Creating Full Text Search
+            </p>
+            <p class="body2 w-100">
+              I created this page before I had completed the article builder. This page contains some notes on how I <strong>initially</strong> decided to go about implementing full text search for this site.
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-info">
+                INFORMATIVE
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects-archive/implementing-auth" hx-get="/projects-archive/implementing-auth" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/2a51ab22-db7a-4533-8680-b1c476c84401.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Implementing Auth
+            </p>
+            <p class="body2 w-100">
+              I created this page before I had completed the article builder. This page contains some notes on how I decided to go about implementing authentication for this site.
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-info">
+                INFORMATIVE
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects/learning-d3-js" hx-get="/projects/learning-d3-js" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/f232a6ef-325a-4071-b100-c6ebc22bf41e.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Learning D3.js
+            </p>
+            <p class="body2 w-100">
+              I wanted to learn D3.js because that is how I was planning to implement graphs on the client. Now, I think I am going to use something else. 
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-info">
+                INFORMATIVE
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects/image-editor" hx-get="/projects/image-editor" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/1dca4bca-3477-47d4-a2fa-ccefcd2f16f2.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Image Editor
+            </p>
+            <p class="body2 w-100">
+              I created this page to learn more about the pintura image editor and imagemagick. I will come back to this page to make it easier to edit images with imagemagick without having to learn/memorize the command with all the options.
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-warning">
+                WORKING ON
+              </span>
+              <span class="caption proj-info bg-info">
+                INFORMATIVE
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="/projects/excalidraw-implementation" hx-get="/projects/excalidraw-implementation" hx-target="#PAGE" hx-indicator="#page-transition-progress" hx-push-url="true"  class="project_link">
+          <div style="background-color: black; height: 100%;margin-right: 8px; align-self: center;">
+            <img src="https://image.storething.org/frankmbrown/57ddaa4f-bb79-4816-a032-7414440386d5.jpg" alt="" style="width:100px;height:100px;" width="100" height="100" class="no-click" />
+          </div>
+          <div style="padding: 4px 0px;">
+            <p class="h5 bold w-100">
+              Excalidraw Implementation
+            </p>
+            <p class="body2 w-100">
+              Originally, I wanted to create this page because I thought Excalidraw was a good way to create diagrams. I am just not a big fan of it, and given the fact that it is only available through React, I eventually quit caring about this. It used to work, but I don't care enough about it to make it work again. I may come back to this if I am really bored. 
+            </p>
+            <div class="flex-row justify-start align-center gap-2 wrap mt-1">
+              <span class="caption proj-info bg-error">
+                NOT DONE
+              </span>
+              <span class="caption proj-info bg-warning">
+                ARCHIVE
+              </span>
+            </div>
+          </div>
+        </a>
+  
+      </div>
+    </section>
+
+  <%-include('../partials/pagePartial')%>
+<%}%>

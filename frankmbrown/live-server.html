@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+const ERROR_PREFIX = "WebGPU Face Drawing Error:";
+
+async function drawFace() {
+    try {
+        // Check WebGPU support
+        if (!navigator.gpu) {
+            throw new Error(`${ERROR_PREFIX} WebGPU is not supported in this browser`);
+        }
+        console.log("WebGPU support confirmed");
+
+        // Get GPU adapter and device
+        const adapter = await navigator.gpu.requestAdapter();
+        if (!adapter) {
+            throw new Error(`${ERROR_PREFIX} Failed to get GPU adapter`);
+        }
+        const device = await adapter.requestDevice();
+        if (!device) {
+            throw new Error(`${ERROR_PREFIX} Failed to get GPU device`);
+        }
+        console.log("GPU adapter and device acquired");
+
+        // Create and configure canvas
+        const canvas = document.createElement('canvas');
+        canvas.width = 800;
+        canvas.height = 600;
+        document.body.appendChild(canvas);
+        const context = canvas.getContext('webgpu');
+        if (!context) {
+            throw new Error(`${ERROR_PREFIX} Failed to get WebGPU context from canvas`);
+        }
+        console.log("Canvas and WebGPU context created");
+
+        const presentationFormat = navigator.gpu.getPreferredCanvasFormat();
+        context.configure({
+            device,
+            format: presentationFormat,
+            alphaMode: 'opaque',
+        });
+        console.log("Canvas context configured");
+
+        // Shaders
+        const vertexShaderCode = `
+            struct Uniforms {
+                modelViewProjectionMatrix : mat4x4<f32>,
+            }
+            @binding(0) @group(0) var<uniform> uniforms : Uniforms;
+
+            struct VertexInput {
+                @location(0) position : vec2<f32>,
+                @location(1) color : vec4<f32>,
+            }
+
+            struct VertexOutput {
+                @builtin(position) Position : vec4<f32>,
+                @location(0) color : vec4<f32>,
+            }
+
+            @vertex
+            fn main(input : VertexInput) -> VertexOutput {
+                var output : VertexOutput;
+                output.Position = uniforms.modelViewProjectionMatrix * vec4<f32>(input.position, 0.0, 1.0);
+                output.color = input.color;
+                return output;
+            }
+        `;
+
+        const fragmentShaderCode = `
+            @fragment
+            fn main(@location(0) color: vec4<f32>) -> @location(0) vec4<f32> {
+                return color;
+            }
+        `;
+
+        const vertexShaderModule = device.createShaderModule({ code: vertexShaderCode });
+        const fragmentShaderModule = device.createShaderModule({ code: fragmentShaderCode });
+        console.log("Shader modules created");
+
+        // Create uniform buffer
+        const uniformBufferSize = 4 * 16; // 4x4 matrix
+        const uniformBuffer = device.createBuffer({
+            size: uniformBufferSize,
+            usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+        });
+        console.log("Uniform buffer created");
+
+        // Create pipeline
+        const pipeline = device.createRenderPipeline({
+            layout: 'auto',
+            vertex: {
+                module: vertexShaderModule,
+                entryPoint: 'main',
+                buffers: [{
+                    arrayStride: 24, // 2 floats for position + 4 floats for color
+                    attributes: [
+                        { shaderLocation: 0, offset: 0, format: 'float32x2' },
+                        { shaderLocation: 1, offset: 8, format: 'float32x4' },
+                    ],
+                }],
+            },
+            fragment: {
+                module: fragmentShaderModule,
+                entryPoint: 'main',
+                targets: [{ format: presentationFormat }],
+            },
+            primitive: {
+                topology: 'triangle-list',
+            },
+        });
+        console.log("Render pipeline created");
+
+        // Create bind group
+        const bindGroup = device.createBindGroup({
+            layout: pipeline.getBindGroupLayout(0),
+            entries: [{
+                binding: 0,
+                resource: { buffer: uniformBuffer },
+            }],
+        });
+        console.log("Bind group created");
+
+        // Create face geometry
+        function createCircle(centerX, centerY, radius, segments, color) {
+            const vertices = [];
+            const indices = [];
+
+            // Center point
+            vertices.push(centerX, centerY);
+            vertices.push(...color);
+
+            // Circle points
+            for (let i = 0; i <= segments; i++) {
+                const angle = (i / segments) * Math.PI * 2;
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+                vertices.push(x, y);
+                vertices.push(...color);
+            }
+
+            // Create triangles
+            for (let i = 0; i < segments; i++) {
+                indices.push(0, i + 1, i + 2);
+            }
+
+            return { vertices: new Float32Array(vertices), indices: new Uint32Array(indices) };
+        }
+
+        function createTriangle(x1, y1, x2, y2, x3, y3, color) {
+            const vertices = [
+                x1, y1, ...color,
+                x2, y2, ...color,
+                x3, y3, ...color
+            ];
+            const indices = [0, 1, 2];
+            return {
+                vertices: new Float32Array(vertices),
+                indices: new Uint32Array(indices)
+            };
+        }
+
+        function createLine(x1, y1, x2, y2, color) {
+            const vertices = [
+                x1, y1, ...color,
+                x2, y2, ...color
+            ];
+            const indices = [0, 1];
+            return {
+                vertices: new Float32Array(vertices),
+                indices: new Uint32Array(indices)
+            };
+        }
+
+        // Create face parts (coordinates in NDC space: -1 to 1)
+        const face = createCircle(0, 0, 0.5, 32, [1.0, 0.9, 0.8, 1.0]); // Face outline
+        const leftEye = createCircle(-0.2, 0.2, 0.1, 16, [0.0, 0.0, 0.0, 1.0]); // Left eye
+        const rightEye = createCircle(0.2, 0.2, 0.1, 16, [0.0, 0.0, 0.0, 1.0]); // Right eye
+        const nose = createTriangle(0, 0.05, -0.05, -0.05, 0.05, -0.05, [0.8, 0.6, 0.4, 1.0]); // Nose
+        const mouth = createLine(-0.2, -0.2, 0.2, -0.2, [0.0, 0.0, 0.0, 1.0]); // Mouth
+
+        const parts = [face, leftEye, rightEye, nose, mouth];
+        const partBuffers = parts.map((part, index) => {
+            const vertexBufferSize = Math.ceil(part.vertices.byteLength / 4) * 4;
+            const indexBufferSize = Math.ceil(part.indices.byteLength / 4) * 4;
+
+            const vertexBuffer = device.createBuffer({
+                size: vertexBufferSize,
+                usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
+            });
+            const indexBuffer = device.createBuffer({
+                size: indexBufferSize,
+                usage: GPUBufferUsage.INDEX | GPUBufferUsage.COPY_DST,
+            });
+
+            try {
+                device.queue.writeBuffer(vertexBuffer, 0, part.vertices);
+                device.queue.writeBuffer(indexBuffer, 0, part.indices);
+            } catch (error) {
+                console.error(`${ERROR_PREFIX} Buffer write failed for part ${index}:`, error);
+                throw error;
+            }
+
+            return {
+                vertexBuffer,
+                indexBuffer,
+                indexCount: part.indices.length,
+                isLine: index === 4 // mouth is a line
+            };
+        });
+        console.log("Face geometry and buffers created");
+
+        // Simple orthographic projection (NDC space)
+        const mvpMatrix = new Float32Array([
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1
+        ]);
+
+        function frame() {
+            try {
+                const commandEncoder = device.createCommandEncoder();
+                const textureView = context.getCurrentTexture().createView();
+
+                const renderPassDescriptor = {
+                    colorAttachments: [{
+                        view: textureView,
+                        clearValue: { r: 0.2, g: 0.2, b: 0.2, a: 1.0 },
+                        loadOp: 'clear',
+                        storeOp: 'store',
+                    }],
+                };
+
+                const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor);
+                passEncoder.setPipeline(pipeline);
+                passEncoder.setBindGroup(0, bindGroup);
+                passEncoder.setViewport(0, 0, canvas.width, canvas.height, 0, 1);
+
+                device.queue.writeBuffer(uniformBuffer, 0, mvpMatrix);
+
+                partBuffers.forEach((part, index) => {
+                    passEncoder.setVertexBuffer(0, part.vertexBuffer);
+                    passEncoder.setIndexBuffer(part.indexBuffer, 'uint32');
+                    if (part.isLine) {
+                        passEncoder.setPipeline(device.createRenderPipeline({
+                            layout: 'auto',
+                            vertex: {
+                                module: vertexShaderModule,
+                                entryPoint: 'main',
+                                buffers: [{
+                                    arrayStride: 24,
+                                    attributes: [
+                                        { shaderLocation: 0, offset: 0, format: 'float32x2' },
+                                        { shaderLocation: 1, offset: 8, format: 'float32x4' },
+                                    ],
+                                }],
+                            },
+                            fragment: {
+                                module: fragmentShaderModule,
+                                entryPoint: 'main',
+                                targets: [{ format: presentationFormat }],
+                            },
+                            primitive: {
+                                topology: 'line-list',
+                            },
+                        }));
+                        passEncoder.drawIndexed(part.indexCount);
+                        passEncoder.setPipeline(pipeline); // Reset to triangle pipeline
+                    } else {
+                        passEncoder.drawIndexed(part.indexCount);
+                    }
+                    console.log(`Drawing face part ${index}`);
+                });
+
+                passEncoder.end();
+                device.queue.submit([commandEncoder.finish()]);
+                console.log("Frame rendered");
+                requestAnimationFrame(frame);
+            } catch (error) {
+                console.error(`${ERROR_PREFIX} Frame rendering failed:`, error);
+            }
+        }
+
+        requestAnimationFrame(frame);
+        console.log("Animation loop started");
+    } catch (error) {
+        console.error(`${ERROR_PREFIX} Initialization failed:`, error);
+    }
+}
+
+drawFace();
+        </script>
+
+    </body>
+</html>
